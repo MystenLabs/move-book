@@ -1,0 +1,6 @@
+[book]
+authors = ["damirka"]
+language = "en"
+multilingual = false
+src = "docs"
+title = "Move Book"

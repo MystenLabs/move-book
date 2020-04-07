@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+
+    mdbook:
+        container_name: mdbook
+        image: hrektts/mdbook
+        command: mdbook serve -p 3000 -n 0.0.0.0
+        volumes:
+            - .:/data
+        ports:
+            - 3000:3000
+            - 3001:3001
+
