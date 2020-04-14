@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> The Move Book</a></li><li class="chapter-item expanded "><a href="introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="move-language-reference/index.html"><strong aria-hidden="true">4.</strong> Move Language reference</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="move-language-reference/concept.html"><strong aria-hidden="true">4.1.</strong> Concept</a></li><li class="chapter-item expanded "><a href="move-language-reference/imports.html"><strong aria-hidden="true">4.2.</strong> Imports</a></li><li class="chapter-item expanded "><a href="move-language-reference/primitives.html"><strong aria-hidden="true">4.3.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="move-language-reference/control-flow.html"><strong aria-hidden="true">4.4.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="move-language-reference/struct.html"><strong aria-hidden="true">4.5.</strong> Struct</a></li><li class="chapter-item expanded "><a href="move-language-reference/reference.html"><strong aria-hidden="true">4.6.</strong> References</a></li><li class="chapter-item expanded "><a href="move-language-reference/scope.html"><strong aria-hidden="true">4.7.</strong> Scope</a></li><li class="chapter-item expanded "><a href="move-language-reference/resource.html"><strong aria-hidden="true">4.8.</strong> Resource</a></li><li class="chapter-item expanded "><a href="move-language-reference/function.html"><strong aria-hidden="true">4.9.</strong> Function</a></li></ol></li><li class="chapter-item expanded "><a href="ide/index.html"><strong aria-hidden="true">5.</strong> Move IDE</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ide/setting-up.html"><strong aria-hidden="true">5.1.</strong> Install &amp; Configure</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="move-language-reference/index.html"><strong aria-hidden="true">4.</strong> Move Language reference</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="move-language-reference/concept.html"><strong aria-hidden="true">4.1.</strong> Script and Module</a></li><li class="chapter-item expanded "><a href="move-language-reference/imports.html"><strong aria-hidden="true">4.2.</strong> Imports</a></li><li class="chapter-item expanded "><a href="move-language-reference/primitives.html"><strong aria-hidden="true">4.3.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="move-language-reference/control-flow.html"><strong aria-hidden="true">4.4.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="move-language-reference/struct.html"><strong aria-hidden="true">4.5.</strong> Struct</a></li><li class="chapter-item expanded "><a href="move-language-reference/reference.html"><strong aria-hidden="true">4.6.</strong> References</a></li><li class="chapter-item expanded "><a href="move-language-reference/scope.html"><strong aria-hidden="true">4.7.</strong> Scope</a></li><li class="chapter-item expanded "><a href="move-language-reference/resource.html"><strong aria-hidden="true">4.8.</strong> Resource</a></li><li class="chapter-item expanded "><a href="move-language-reference/function.html"><strong aria-hidden="true">4.9.</strong> Function</a></li></ol></li><li class="chapter-item expanded "><a href="ide/index.html"><strong aria-hidden="true">5.</strong> Move IDE</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ide/setting-up.html"><strong aria-hidden="true">5.1.</strong> Install &amp; Configure</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -149,7 +149,9 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#the-move-book" id="the-move-book">The Move Book</a></h1>
+                        <h1><a class="header" href="#move-language" id="move-language">Move Language</a></h1>
+<p>Move is a safe and reliable language developed for blockchains by <a href="https://libra.org/">Libra</a>. You can read language white paper on <a href="https://developers.libra.org/docs/assets/papers/libra-move-a-language-with-programmable-resources/2019-09-26.pdf">libra developers website</a>.</p>
+<p>This book (or call it a resource for now) is a collection of all the information that me and my colleagues found and shaped into a single collection of knowledge about Move language.</p>
 <h1><a class="header" href="#foreword" id="foreword">Foreword</a></h1>
 <p>It's been few months since we at <a href="https://dfinance.co">dfinance</a> started working with Libra's Move VM and Move language. Before that we worked a lot with blockchains (and smart contracts specifically): you may know our <a href="http://wings.ai">Wings.ai</a> project - once the biggest dApp on ETH network; and we - better than many - know how hard it can be for a newcomer to work with new blockchain language, especially Rust-like, especially when blockchain environments and infrastructure challenges come to play. </p>
 <p>That is why we are here - to help you dive into yet unknown language, and to show you its beauty.</p>
@@ -168,7 +170,8 @@
 </ol>
 <p>We can only suggest using Move as primary as in long perspective it's propably going to be &quot;the Move&quot;. Though, as we've already mentioned, nobody can be sure at this point.</p>
 <p>In this book you will meet both languages (but mostly Move) and will be able to find tips for any language you've chosen.</p>
-<h1><a class="header" href="#concept" id="concept">Concept</a></h1>
+<h1><a class="header" href="#move-language-reference" id="move-language-reference">Move Language reference</a></h1>
+<h1><a class="header" href="#script-and-module" id="script-and-module">Script and Module</a></h1>
 <p>There are two types of code transactions in Move: module and script. Module is a deployment of new model (which then will be accessible under the address of sender); Script is a transaction-as-code in which you can use deployed modules as well as the standard library as dependencies.</p>
 <p>Module code starts with <code>module</code> keyword and its code looks like this. Inside module you can define: new <code>types</code> (as structs), <code>methods</code> and <code>resource structs</code>.</p>
 <pre><code class="language-Move">// written in Move
@@ -182,7 +185,7 @@ module MyModule {
     }
 }
 </code></pre>
-<p>Script must contain <code>main</code> function and usually uses deployed modules. See <a href="move-language-reference/move-language-reference/imports.html">imports</a> on how to import modules.</p>
+<p>Script must contain <code>main</code> function and usually uses deployed modules. See <a href="move-language-reference//move-language-reference/imports.html">imports</a> on how to import modules.</p>
 <pre><code class="language-Move">// assume that sender address was 0xAF
 use {sender}::MyModule;
 
@@ -192,7 +195,7 @@ fun main() {
 </code></pre>
 <h1><a class="header" href="#imports" id="imports">Imports</a></h1>
 <p>Default context in Move is empty - you can't operate Vector, you can't access Transaction details and you can't do almost anything (with small exception of built-in functions which will also require some Account features). To make your module or a script more meaningful and useful you need imports.</p>
-<p>Here we need to take a step back and go through concept again. As I've mentioned in previous part there're two types of code transactions: <code>module</code> and <code>script</code>. Module is <code>deployed</code> and can be imported and used in a script. Not only custom deployd modules can be imported. There's also the <code>Standard library</code> which significantly extends language functionality.</p>
+<p>Here we need to take a step back and go through concept again. As I've mentioned in previous part there're two types of code transactions: <code>module</code> and <code>script</code>. Module is <code>deployed</code> and can be imported and used in a script. Not only custom deployed modules can be imported. There's also the <code>Standard library</code> (accessible at <code>0x0</code>) which significantly extends language functionality.</p>
 <h2><a class="header" href="#senders-address" id="senders-address">Sender's address</a></h2>
 <p>Every transaction on blockchain is sent and signed by its sender, hence every module you or someone else publish to blockchain has sender's address which can be used to access/import this module.</p>
 <p>In modifications of Move VM any address format can be used, so not to misguide you and to make this book as basic and general as it can be, I will use <code>{sender}</code> pattern to mark sender's address.</p>
@@ -299,7 +302,7 @@ fun main() {
     addr = wallet1....;
 }
 </code></pre>
-<h1><a class="header" href="#control-flow" id="control-flow">Control flow</a></h1>
+<h1><a class="header" href="#control-flow" id="control-flow">Control Flow</a></h1>
 <p>In terms of control operators Move's syntax is similar to Rust with some differences which I'll highlight.</p>
 <p>Let's start with one simple rule:</p>
 <blockquote>
