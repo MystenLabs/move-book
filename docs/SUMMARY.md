@@ -7,6 +7,7 @@
     - [Concept](move-language-reference/concept.md)
     - [Imports](move-language-reference/imports.md)
     - [Primitive Types](move-language-reference/primitives.md)
+    - [Control Flow](move-language-reference/control-flow.md)
     - [Struct](move-language-reference/struct.md)
     - [References](move-language-reference/reference.md)
     - [Scope](move-language-reference/scope.md)
