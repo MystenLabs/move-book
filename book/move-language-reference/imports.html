@@ -1,0 +1,265 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Imports - Move Book</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> The Move Book</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="../move-language-reference/index.html"><strong aria-hidden="true">4.</strong> Move Language reference</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../move-language-reference/concept.html"><strong aria-hidden="true">4.1.</strong> Concept</a></li><li class="chapter-item expanded "><a href="../move-language-reference/imports.html" class="active"><strong aria-hidden="true">4.2.</strong> Imports</a></li><li class="chapter-item expanded "><a href="../move-language-reference/primitives.html"><strong aria-hidden="true">4.3.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../move-language-reference/control-flow.html"><strong aria-hidden="true">4.4.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../move-language-reference/struct.html"><strong aria-hidden="true">4.5.</strong> Struct</a></li><li class="chapter-item expanded "><a href="../move-language-reference/reference.html"><strong aria-hidden="true">4.6.</strong> References</a></li><li class="chapter-item expanded "><a href="../move-language-reference/scope.html"><strong aria-hidden="true">4.7.</strong> Scope</a></li><li class="chapter-item expanded "><a href="../move-language-reference/resource.html"><strong aria-hidden="true">4.8.</strong> Resource</a></li><li class="chapter-item expanded "><a href="../move-language-reference/function.html"><strong aria-hidden="true">4.9.</strong> Function</a></li></ol></li><li class="chapter-item expanded "><a href="../ide/index.html"><strong aria-hidden="true">5.</strong> Move IDE</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../ide/setting-up.html"><strong aria-hidden="true">5.1.</strong> Install &amp; Configure</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Move Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#imports" id="imports">Imports</a></h1>
+<p>Default context in Move is empty - you can't operate Vector, you can't access Transaction details and you can't do almost anything (with small exception of built-in functions which will also require some Account features). To make your module or a script more meaningful and useful you need imports.</p>
+<p>Here we need to take a step back and go through concept again. As I've mentioned in previous part there're two types of code transactions: <code>module</code> and <code>script</code>. Module is <code>deployed</code> and can be imported and used in a script. Not only custom deployd modules can be imported. There's also the <code>Standard library</code> which significantly extends language functionality.</p>
+<h2><a class="header" href="#senders-address" id="senders-address">Sender's address</a></h2>
+<p>Every transaction on blockchain is sent and signed by its sender, hence every module you or someone else publish to blockchain has sender's address which can be used to access/import this module.</p>
+<p>In modifications of Move VM any address format can be used, so not to misguide you and to make this book as basic and general as it can be, I will use <code>{sender}</code> pattern to mark sender's address.</p>
+<h2><a class="header" href="#keyword-use" id="keyword-use">Keyword <code>use</code></a></h2>
+<p>To import module from address use this pattern:</p>
+<pre><code class="language-Move">use {sender}::ModuleName;
+</code></pre>
+<p>In <code>module</code> context import MUST be placed inside module definition:</p>
+<pre><code class="language-Move">module Lebowski {
+    use {sender}::TheRug;
+
+    public fun get_the_rug_back() {
+        TheRug::tie_the_room_together();
+    }
+}
+</code></pre>
+<p>In <code>script</code> context import MUST be placed before <code>main()</code>.</p>
+<pre><code class="language-Move">// script context
+use {sender}::Lebowski;
+
+fun main() {
+    Lebowski::get_the_rug_back();
+}
+</code></pre>
+<h3><a class="header" href="#use-meets-as" id="use-meets-as"><code>use</code> meets <code>as</code></a></h3>
+<p>You can change name of the imported module in your code using keyword <code>as</code>.</p>
+<pre><code class="language-Move">use 0x0::Transaction as TX;
+
+fun main() {
+    TX::assert(true);
+}
+</code></pre>
+<p>This may be used to shorten-up some dependencies or to resolve name conflicts between modules.</p>
+<h2><a class="header" href="#importing-standard-library" id="importing-standard-library">Importing Standard library</a></h2>
+<p>Standard library is always accessible via <code>0x0</code> address. It can be used in both <code>module</code> and <code>script</code>.</p>
+<pre><code class="language-Move">module Printer {
+    use 0x0::Transaction;
+
+    public fun print_sender(): address {
+        Transaction::sender()
+    }
+}
+</code></pre>
+<p>There will be a huge part of this book devoted to Standard library. TBD.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../move-language-reference/concept.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../move-language-reference/primitives.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../move-language-reference/concept.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../move-language-reference/primitives.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
