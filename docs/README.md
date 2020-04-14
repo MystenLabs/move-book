@@ -1,4 +1,4 @@
-# The Move Book
+# Move Language
 
 Move is a safe and reliable language developed for blockchains by [Libra](https://libra.org/). You can read language white paper on [libra developers website](https://developers.libra.org/docs/assets/papers/libra-move-a-language-with-programmable-resources/2019-09-26.pdf).
 

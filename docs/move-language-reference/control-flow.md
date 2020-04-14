@@ -1,4 +1,4 @@
-# Control flow
+# Control Flow
 
 In terms of control operators Move's syntax is similar to Rust with some differences which I'll highlight.
 

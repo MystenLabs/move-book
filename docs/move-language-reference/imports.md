@@ -2,7 +2,7 @@
 
 Default context in Move is empty - you can't operate Vector, you can't access Transaction details and you can't do almost anything (with small exception of built-in functions which will also require some Account features). To make your module or a script more meaningful and useful you need imports.
 
-Here we need to take a step back and go through concept again. As I've mentioned in previous part there're two types of code transactions: `module` and `script`. Module is `deployed` and can be imported and used in a script. Not only custom deployd modules can be imported. There's also the `Standard library` which significantly extends language functionality.
+Here we need to take a step back and go through concept again. As I've mentioned in previous part there're two types of code transactions: `module` and `script`. Module is `deployed` and can be imported and used in a script. Not only custom deployed modules can be imported. There's also the `Standard library` (accessible at `0x0`) which significantly extends language functionality.
 
 ## Sender's address
 

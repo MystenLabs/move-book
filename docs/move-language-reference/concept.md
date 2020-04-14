@@ -1,4 +1,4 @@
-# Concept
+# Script and Module
 
 There are two types of code transactions in Move: module and script. Module is a deployment of new model (which then will be accessible under the address of sender); Script is a transaction-as-code in which you can use deployed modules as well as the standard library as dependencies.
 
@@ -17,7 +17,7 @@ module MyModule {
 }
 ```
 
-Script must contain `main` function and usually uses deployed modules. See [imports](move-language-reference/imports.md) on how to import modules.
+Script must contain `main` function and usually uses deployed modules. See [imports](/move-language-reference/imports.md) on how to import modules.
 
 ```Move
 // assume that sender address was 0xAF
