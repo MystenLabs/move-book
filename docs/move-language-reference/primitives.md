@@ -22,10 +22,10 @@ fun main() {
     let a = 10u128;
 
     // in function calls or expressions you can use ints as constant values
-    if (a < 10) {}
+    if (a < 10) {};
 
     // or like this, with type
-    if (a < 10u8) {} // usually you don't need to specify type
+    if (a < 10u8) {}; // usually you don't need to specify type
 }
 ```
 

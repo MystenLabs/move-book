@@ -38,6 +38,20 @@ fun main() {
 }
 ```
 
+### `use` meets `as`
+
+You can change name of the imported module in your code using keyword `as`.
+
+```Move
+use 0x0::Transaction as TX;
+
+fun main() {
+    TX::assert(true);
+}
+```
+
+This may be used to shorten-up some dependencies or to resolve name conflicts between modules.
+
 ## Importing Standard library
 
 Standard library is always accessible via `0x0` address. It can be used in both `module` and `script`.
