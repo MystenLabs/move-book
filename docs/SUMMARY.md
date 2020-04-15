@@ -10,9 +10,10 @@
     - [Control Flow](move-language-reference/control-flow.md)
     - [Struct](move-language-reference/struct.md)
     - [References](move-language-reference/reference.md)
-    - [Scope](move-language-reference/scope.md)
     - [Resource](move-language-reference/resource.md)
     - [Function](move-language-reference/function.md)
 - [Move IDE](ide/readme.md)
     - [Install & Configure](ide/setting-up.md)
 
+
+<!-- - [Scope](move-language-reference/scope.md) -->
