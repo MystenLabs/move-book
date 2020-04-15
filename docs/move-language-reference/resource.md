@@ -8,13 +8,12 @@ First, let's see description from [libra developers portal](https://developers.l
 > - **The Move type system provides special safety guarantees for resources**. Move resources can never be duplicated, reused, or discarded. A resource type can only be created or destroyed by the module that defines the type. These guarantees are enforced statically by the Move virtual machine via bytecode verification. The Move virtual machine will refuse to run code that has not passed through the bytecode verifier.
 > - The Libra currency is implemented as a resource type named LibraCoin.T. LibraCoin.T has no special status in the language; every Move resource enjoys the same protections.
 
-Okay, now how does it work syntax wise?
+## Why `resource`?
 
-## Why `resource struct`?
-
-As you can see in the heading a `resource struct` is also a `struct` and, currently, it's the only way to define a resource. Just like `struct`, a resource can only be defined in a module, and unlike struct, resource will outlive your script. To understand that let's look at struct syntax again:
+Just like `struct`, a `resource struct` (that's how it's called) can only be defined within module context, and unlike struct, resource will outlive your script. To understand that let's look at this example:
 
 ```Move
+// here's our module to manage records on chain
 module RecordsCollection {
 
     use 0x0::Transaction as Tx;
@@ -31,41 +30,49 @@ module RecordsCollection {
         records: vector<Record>
     }
 
-    public fun create(name: vector<u8>, author: vector<u8>, year: u64): Record {
+    public fun create_record(name: vector<u8>, author: vector<u8>, year: u64): Record {
         Record { name, author, year }
     }
 }
 ```
 
-What happens if we use module `VinylShop` in a script and call a method `add_new()`? New struct will be created in a script context. What happens when script scope ends? All defined variables and structs will be dumped:
+What happens if we use module `RecrodsCollection` in a script and call a method `add_new()`? New struct will be created in a script context. What happens when script scope ends? All defined variables and structs will be dumped:
 
 ```Move
-use {sender}::VinylShop;
+use {sender}::RecordsCollection as Collection;
 
-fun main() {
-    // nice one - record created inside code
-    let _r = VinylShop::add_new(10, 10, 1999);
+fun main(name: vector<u8>, author: vector<u8>, year: u64) {
+
+    let _r = Collection::create_record(name, author, year);
+
+    // record is created but it saved somewhere?
+    // where does it go when script ends? nowhere!
 }
-// but was it saved somewhere? where did it go when script ended? nowhere!
 ```
 
-Going further: even if we created new *Records collection* (imagine it as a vector or type Record) and pushed newly created `Record` in it, whole collection would have been gone by the end of scope.
+Going further: even if we created new `Collection` struct and pushed newly created `Record` in it, whole collection would still have been gone by the end of scope.
 
 > That's when the **`resource struct`** comes into play. It can be saved, accessed,  updated and destroyed. It outlives the script and affects blockchain state.
 
-## From `struct` to `resource`
+## How to work with `resource`
 
-Let's modify our example with RecordCollection (imagine we want to store our catalogue in blockchain). Even better - we wan't to let anyone have their record collection in our blockchain.
+Let's modify our example with RecordsCollection (imagine we want to store our catalogue in blockchain). Even better - we wan't to let anyone have their record collection in our blockchain.
 
-First order of business - `struct` becomes `resource struct`. We will do it only for collection (you'll see why):
+### Make `struct` a `resource struct`
+
+First order of business - turning `struct` into `resource struct`. We will do it only for collection (you'll see why):
 
 ```Move
 resource struct Collection {
     records: vector<Record>
 }
 ```
+
 Even better (or say more correct) way to name main resource in module is `"T"`:
-```
+
+```Move
+// since whole module is named RecordsCollection
+// everyone will understand that T equals Collection
 resource struct T {
     records: vector<Record>
 }
@@ -108,7 +115,8 @@ It's good to initialize resource once but not to be mistaken and not to inizaliz
 
 ```Move
 module RecordsCollection {
-    // -- module content is omitted --
+
+    // -- some definitions skipped --
 
     use 0x0::Transaction as Tx;
 
@@ -131,7 +139,7 @@ Okay, we've linked resource to sender account and even protected ourselves from 
 ```Move
 module RecordsCollection {
 
-    // -- module content is omitted --
+    // -- some definitions skipped --
 
     use 0x0::Transaction as Tx;
 
