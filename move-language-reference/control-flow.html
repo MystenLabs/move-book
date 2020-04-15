@@ -160,12 +160,12 @@
 use 0x0::Transaction;
 
 fun main(custom_addr: address) {
-    if (custom_addr !== Transaction::sender()) {
+    if (custom_addr != Transaction::sender()) {
         abort 11
     };
 
     // alternatively
-    if (custom_addr !== Transaction::sender()) abort 11
+    if (custom_addr != Transaction::sender()) abort 11
 }
 </code></pre>
 <p>Syntax:</p>
@@ -177,14 +177,14 @@ fun main(custom_addr: address) {
 use 0x0::Transaction;
 
 fun main(custom_addr: address) {
-    if (custom_addr !== Transaction::sender()) {
+    if (custom_addr != Transaction::sender()) {
         abort 11
     } else {
         let _ = true
     };
 
     // alternatively
-    if (custom_addr !== Transaction::sender()) abort 11 else {
+    if (custom_addr != Transaction::sender()) abort 11 else {
         let _ = true
     };
 }
