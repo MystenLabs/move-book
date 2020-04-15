@@ -70,7 +70,6 @@ Let's take a better look at `add_new(...)` function. Since struct is a new type,
 public fun add_new(author_id: u64, label_id: u64, year: u64): Record { /* ... */ }
 ```
 
-
 Okay. How can we use our `Record` struct after we published `VinylShop` module into network? Here's how:
 
 ```Move

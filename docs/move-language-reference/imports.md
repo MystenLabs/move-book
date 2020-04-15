@@ -55,6 +55,7 @@ This may be used to shorten-up some dependencies or to resolve name conflicts be
 ## Importing Standard library
 
 Standard library is always accessible via `0x0` address. It can be used in both `module` and `script`.
+
 ```Move
 module Printer {
     use 0x0::Transaction;
