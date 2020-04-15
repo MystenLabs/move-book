@@ -509,20 +509,24 @@ First, let's see description from <a href="https://developers.libra.org/docs/mov
 <p>Okay, now how does it work syntax wise?</p>
 <h2><a class="header" href="#why-resource-struct" id="why-resource-struct">Why <code>resource struct</code>?</a></h2>
 <p>As you can see in the heading a <code>resource struct</code> is also a <code>struct</code> and, currently, it's the only way to define a resource. Just like <code>struct</code>, a resource can only be defined in a module, and unlike struct, resource will outlive your script. To understand that let's look at struct syntax again:</p>
-<pre><code class="language-Move">module VinylShop {
+<pre><code class="language-Move">module RecordsCollection {
 
+    use 0x0::Transaction as Tx;
+
+    // the very basic information about our record
     struct Record {
-        author_id: u64,
-        label_id: u64,
+        name: vector&lt;u8&gt;,
+        author: vector&lt;u8&gt;,
         year: u64
     }
 
-    public fun add_new(author_id: u64, label_id: u64, year: u64): Record {
-        Record {
-            author_id,
-            label_id,
-            year
-        }
+    // imaginary collection of records
+    struct Collection {
+        records: vector&lt;Record&gt;
+    }
+
+    public fun create(name: vector&lt;u8&gt;, author: vector&lt;u8&gt;, year: u64): Record {
+        Record { name, author, year }
     }
 }
 </code></pre>
@@ -535,17 +539,145 @@ fun main() {
 }
 // but was it saved somewhere? where did it go when script ended? nowhere!
 </code></pre>
+<p>Going further: even if we created new <em>Records collection</em> (imagine it as a vector or type Record) and pushed newly created <code>Record</code> in it, whole collection would have been gone by the end of scope.</p>
 <blockquote>
-<p>That is when the <code>resource struct</code> comes into play. It can be saved, accessed,  updated and destroyed. It outlives the script and affects blockchain state.</p>
+<p>That's when the <strong><code>resource struct</code></strong> comes into play. It can be saved, accessed,  updated and destroyed. It outlives the script and affects blockchain state.</p>
 </blockquote>
 <h2><a class="header" href="#from-struct-to-resource" id="from-struct-to-resource">From <code>struct</code> to <code>resource</code></a></h2>
-<p>Let's modify our example with VinylShop (imagine we want to store our catalogue in blockchain).</p>
-<p>First order of business - <code>struct</code> becomes <code>resource struct</code>.</p>
-<pre><code class="language-Move">resource struct Record {
-    author_id: u64,
-    label_id: u64,
-    year: u64
+<p>Let's modify our example with RecordCollection (imagine we want to store our catalogue in blockchain). Even better - we wan't to let anyone have their record collection in our blockchain.</p>
+<p>First order of business - <code>struct</code> becomes <code>resource struct</code>. We will do it only for collection (you'll see why):</p>
+<pre><code class="language-Move">resource struct Collection {
+    records: vector&lt;Record&gt;
 }
+</code></pre>
+<p>Even better (or say more correct) way to name main resource in module is <code>&quot;T&quot;</code>:</p>
+<pre><code>resource struct T {
+    records: vector&lt;Record&gt;
+}
+</code></pre>
+<!-- MB rewrite this part later when done with structure; -->
+<p>As you can see, nothing but an addition of one keyword. What actually happens? Collection remains a type. Just like struct you can initialize it (in resource-specific way), you can push records into it and (!) what's really important: this <code>resource struct</code> will be saved on chain linked to your address making it possible to read and change it again in future transactions. Even more! If module is properly organized, you can even let other people see your collection, and (only if you want to do so!) you can let them add records into your collection.</p>
+<!-- END;  -->
+<p>TLDR; It's time to code!</p>
+<p>Move has 5 built-in functions to work with collections, we'll go through all of them in order.</p>
+<h3><a class="header" href="#attach-resource-with-move_to_sender" id="attach-resource-with-move_to_sender">Attach resource with <code>move_to_sender</code></a></h3>
+<p>To start working with resource it needs to be attached to sender. Please keep in mind that the only place where you can manage <code>structs</code> and <code>resource</code>s is their module. You can't init resourse outside the module context but you can provide <code>public</code> method. That's how you do it:</p>
+<pre><code class="language-Move">module RecordsCollection {
+
+    use 0x0::Vector;
+
+    // -- some definitions skipped --
+
+    resource struct T {
+        records: vector&lt;Record&gt;
+    }
+
+    public fun initialize() {
+        move_to_sender&lt;T&gt;(T { records: Vector::empty() })
+    }
+}
+</code></pre>
+<blockquote>
+<p>Function <code>move_to_sender&lt;RESOURCE&gt;(RESOURCE)</code> links resource to account. It uses some internal magic to define transaction sender so there's no need to specify one.</p>
+</blockquote>
+<h3><a class="header" href="#check-if-resource-exists-at-given-address" id="check-if-resource-exists-at-given-address">Check if resource <code>exists</code> at given address</a></h3>
+<p>It's good to initialize resource once but not to be mistaken and not to inizalize it twice we can check if resource is linked to address. Here's how it looks if we modify previously defined <code>initialize()</code> function:</p>
+<pre><code class="language-Move">module RecordsCollection {
+    // -- module content is omitted --
+
+    use 0x0::Transaction as Tx;
+
+    public fun initialize() {
+        let sender = Tx::sender();
+
+        if (!exists&lt;T&gt;(sender)) {
+            move_to_sender&lt;T&gt;(T { records: Vector::empty() })
+        }
+    }
+}
+</code></pre>
+<blockquote>
+<p>Function <code>exists&lt;RESOURCE&gt;(&lt;ADDRESS&gt;): bool</code> checks if resource is linked to address and returns boolean result. You can use this function to check any resource and any address - this information is meant to be public on blockchain.</p>
+</blockquote>
+<h3><a class="header" href="#read-resource-contents-with-borrow_global" id="read-resource-contents-with-borrow_global">Read resource contents with <code>borrow_global</code></a></h3>
+<p>Okay, we've linked resource to sender account and even protected ourselves from double initialization, let's learn to read our resource.</p>
+<pre><code class="language-Move">module RecordsCollection {
+
+    // -- module content is omitted --
+
+    use 0x0::Transaction as Tx;
+
+    resource struct T {
+        records: vector&lt;Record&gt;
+    }
+
+    public fun get_my_records(): vector&lt;Record&gt; acquires T {
+
+        let sender = Tx::sender();
+        let collection = borrow_global&lt;T&gt;(sender);
+
+        *&amp;collection.records
+    }
+}
+</code></pre>
+<p>There's a lot happened. TBD.</p>
+<h4><a class="header" href="#keyword-acquires" id="keyword-acquires">Keyword <code>acquires</code></a></h4>
+<h3><a class="header" href="#change-resource-contents-with-borrow_global_mut" id="change-resource-contents-with-borrow_global_mut">Change resource contents with <code>borrow_global_mut</code></a></h3>
+<h3><a class="header" href="#destroy-resource-with-move_from" id="destroy-resource-with-move_from">Destroy resource with <code>move_from</code></a></h3>
+<h3><a class="header" href="#final-contract" id="final-contract">Final contract</a></h3>
+<p>Here's final contract.</p>
+<pre><code class="language-Move">module RecordsCollection {
+
+    use 0x0::Transaction as Tx;
+    use 0x0::Vector;
+
+    struct Record {
+        name:   vector&lt;u8&gt;,
+        author: vector&lt;u8&gt;,
+        year:   u64
+    }
+
+    resource struct T {
+        records: vector&lt;Record&gt;
+    }
+
+    fun initialize(sender: address) {
+        if (!::exists&lt;T&gt;(sender)) {
+            move_to_sender&lt;T&gt;(T { records: Vector::empty() })
+        }
+    }
+
+    public fun add_to_my_collection(
+        name: vector&lt;u8&gt;,
+        author: vector&lt;u8&gt;,
+        year: u64
+    ) acquires T {
+
+        let sender = Tx::sender();
+
+        initialize(sender);
+
+        let record = Record { name, author, year };
+        let collection = borrow_global_mut&lt;T&gt;(sender);
+
+        Vector::push_back(&amp;mut collection.records, record);
+    }
+
+    public fun get_my_collection(): vector&lt;Record&gt; acquires T {
+        let sender = Tx::sender();
+        let collection = borrow_global&lt;T&gt;(sender);
+
+        *&amp;collection.records
+    }
+}
+</code></pre>
+<h2><a class="header" href="#functions-to-work-with-resource" id="functions-to-work-with-resource">Functions to work with resource</a></h2>
+<pre><code class="language-Move">borrow_global&lt;T&gt;(&lt;ADDRESS&gt;);
+borrow_global_mut&lt;T&gt;(&lt;ADDRESS&gt;);
+
+move_from&lt;T&gt;(&lt;ADDRESS&gt;); // destroy resource
+::exists&lt;T&gt;(&lt;ADDRESS&gt;);  // check if resource exists at given address
+move_to_sender&lt;T&gt;(T);    // move newly created resource to sender
 </code></pre>
 <h1><a class="header" href="#function" id="function">Function</a></h1>
 <h1><a class="header" href="#move-ide" id="move-ide">Move IDE</a></h1>
