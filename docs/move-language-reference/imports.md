@@ -46,7 +46,7 @@ You can change name of the imported module in your code using keyword `as`.
 use 0x0::Transaction as TX;
 
 fun main() {
-    TX::assert(true);
+    TX::assert(true, 11);
 }
 ```
 

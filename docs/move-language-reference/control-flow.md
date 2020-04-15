@@ -17,12 +17,12 @@ If you want to run code block when some expression is `true` you need to use `if
 use 0x0::Transaction;
 
 fun main(custom_addr: address) {
-    if (custom_addr !== Transaction::sender()) {
+    if (custom_addr != Transaction::sender()) {
         abort 11
     };
 
     // alternatively
-    if (custom_addr !== Transaction::sender()) abort 11
+    if (custom_addr != Transaction::sender()) abort 11
 }
 ```
 
@@ -40,14 +40,14 @@ You can (and sometimes must) add `else` to your `if` construction:
 use 0x0::Transaction;
 
 fun main(custom_addr: address) {
-    if (custom_addr !== Transaction::sender()) {
+    if (custom_addr != Transaction::sender()) {
         abort 11
     } else {
         let _ = true
     };
 
     // alternatively
-    if (custom_addr !== Transaction::sender()) abort 11 else {
+    if (custom_addr != Transaction::sender()) abort 11 else {
         let _ = true
     };
 }
