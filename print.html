@@ -323,11 +323,8 @@ fun main(custom_addr: address) {
     if (custom_addr !== Transaction::sender()) abort 11
 }
 </code></pre>
-<p>Syntax (take a good look at semicolon positions):</p>
+<p>Syntax:</p>
 <pre><code class="language-Move">if (&lt;EXPRESSION&gt;) &lt;EXPRESSION&gt;;
-if (&lt;EXPRESSION&gt;) {
-    &lt;EXPRESSION&gt;
-};
 </code></pre>
 <h3><a class="header" href="#lets-add-else-to-our-ifs" id="lets-add-else-to-our-ifs">Let's add <code>else</code> to our <code>if</code>s!</a></h3>
 <p>You can (and sometimes must) add <code>else</code> to your <code>if</code> construction:</p>
@@ -347,23 +344,78 @@ fun main(custom_addr: address) {
     };
 }
 </code></pre>
-<p>Syntax (again - mind semicolons):</p>
-<pre><code class="language-Move">if (&lt;EXPRESSION&gt;) &lt;EXPRESSION&gt; else &lt;EXPRESSION&gt;;
-if (&lt;EXPRESSION&gt;) { &lt;EXPRESSION&gt; } else &lt;EXPRESSION&gt;;
-if (&lt;EXPRESSION&gt;) { &lt;EXPRESSION&gt; } else { &lt;EXPRESSION&gt; };
+<p>Syntax with <code>else</code>:</p>
+<pre><code class="language-Move">if (&lt;EXPRESSION&gt;)
+    &lt;EXPRESSION&gt;
+else
+    &lt;EXPRESSION&gt;;
 </code></pre>
 <h2><a class="header" href="#using-loops" id="using-loops">Using loops</a></h2>
 <p>In Move you have two ways to do repetition: conditional loop with <code>while</code> and infinite <code>loop</code>.</p>
+<p>Use while loop with bool expression inside parentheses:</p>
+<pre><code class="language-Move">fun main() {
+
+    let i = 0;
+
+    while (i &lt; 5) {
+        i = i + 1;
+    }
+}
+</code></pre>
+<p>For infinite (non-conditional) loops use <code>loop</code> keyword with expression:</p>
 <pre><code class="language-Move">fun main() {
     let i = 0;
 
     loop {
-        if (i &lt; 5) {
-            i = i + 1;
-            continue
-        } else {
-            break
+        i = i + 1;
+        if (i == 5) break
+    }
+}
+</code></pre>
+<p>Syntax for loops:</p>
+<pre><code class="language-Move">while (&lt;EXPRESSION&gt;) &lt;EXPRESSION&gt;;
+loop &lt;EXPRESSION&gt;;
+</code></pre>
+<h3><a class="header" href="#control-loops-with-continue-and-break" id="control-loops-with-continue-and-break">Control loops with <code>continue</code> and <code>break</code></a></h3>
+<p>Keywords <code>continue</code> and <code>break</code> allow you to skip one round or break iteration.</p>
+<p>For example let's add two conditions into <code>loop</code>. If <code>i</code> is even we use <code>continue</code> to jump to next iteration without going through code after <code>continue</code> call.
+With <code>break</code> we stop iteration and exit loop.</p>
+<pre><code class="language-Move">fun main() {
+    let i = 0;
+
+    loop {
+        i = i + 1;
+
+        if (i / 2 == 0) continue;
+        if (i == 5) break;
+
+        // assume we do something here
+    };
+
+    // i here is 5
+}
+</code></pre>
+<p>About semicolons. If <code>break</code> and <code>continue</code> are the last keywords in scope, you can't put a semicolon after them as any code after won't be executed. Somehow even semi can't be put. See this:</p>
+<pre><code class="language-Move">fun main() {
+    let i = 0;
+
+    loop {
+        i = i + 1;
+
+        if (i == 5) {
+            break; // will result in compiler error. correct is `break` without semi
+                   // Error: Unreachable code
         }
+
+        // same with continue here: no semi, never;
+        if (true) {
+            continue
+        }
+
+        // however you can put semi like this, because continue and break here
+        // are single expressions, hence they &quot;end their own scope&quot;
+        if (true) continue;
+        if (i == 5) break;
     }
 }
 </code></pre>
