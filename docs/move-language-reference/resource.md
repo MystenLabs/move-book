@@ -36,7 +36,7 @@ module RecordsCollection {
 }
 ```
 
-What happens if we use module `RecrodsCollection` in a script and call a method `add_new()`? New struct will be created in a script context. What happens when script scope ends? All defined variables and structs will be dumped:
+What happens if we use module `RecordsCollection` in a script and call a method `add_new()`? New struct will be created in a script context. What happens when script scope ends? All defined variables and structs will be dumped:
 
 ```Move
 use {sender}::RecordsCollection as Collection;
@@ -50,13 +50,13 @@ fun main(name: vector<u8>, author: vector<u8>, year: u64) {
 }
 ```
 
-Going further: even if we created new `Collection` struct and pushed newly created `Record` in it, whole collection would still have been gone by the end of scope.
+Going further: even if we created `Collection` struct and pushed newly created `Record` in it, whole collection would still have been gone by the end of scope.
 
 > That's when the **`resource struct`** comes into play. It can be saved, accessed,  updated and destroyed. It outlives the script and affects blockchain state.
 
 ## How to work with `resource`
 
-Let's modify our example with RecordsCollection (imagine we want to store our catalogue in blockchain). Even better - we wan't to let anyone have their record collection in our blockchain.
+Let's modify our example with RecordsCollection (imagine we want to store our catalogue in blockchain). Even better - we wan't to let anyone manage their record collection.
 
 ### Make `struct` a `resource struct`
 
@@ -88,7 +88,7 @@ Move has 5 built-in functions to work with collections, we'll go through all of 
 
 ### Attach resource with `move_to_sender`
 
-To start working with resource it needs to be attached to sender. Please keep in mind that the only place where you can manage `structs` and `resource`s is their module. You can't init resourse outside the module context but you can provide `public` method. That's how you do it:
+To start working with resource it needs to be attached to sender. Please keep in mind that the only place where you can manage `structs` and `resources` is their module. You can't init resource outside the module context but you can provide `public` method. That's how you do it:
 
 ```Move
 module RecordsCollection {
@@ -157,9 +157,9 @@ module RecordsCollection {
 }
 ```
 
-There's a lot happened. TBD.
-
 #### Keyword `acquires`
+
+
 
 ### Change resource contents with `borrow_global_mut`
 
