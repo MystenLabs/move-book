@@ -182,7 +182,7 @@ module RecordsCollection {
     }
 }
 </code></pre>
-<p>What happens if we use module <code>RecrodsCollection</code> in a script and call a method <code>add_new()</code>? New struct will be created in a script context. What happens when script scope ends? All defined variables and structs will be dumped:</p>
+<p>What happens if we use module <code>RecordsCollection</code> in a script and call a method <code>add_new()</code>? New struct will be created in a script context. What happens when script scope ends? All defined variables and structs will be dumped:</p>
 <pre><code class="language-Move">use {sender}::RecordsCollection as Collection;
 
 fun main(name: vector&lt;u8&gt;, author: vector&lt;u8&gt;, year: u64) {
@@ -193,12 +193,12 @@ fun main(name: vector&lt;u8&gt;, author: vector&lt;u8&gt;, year: u64) {
     // where does it go when script ends? nowhere!
 }
 </code></pre>
-<p>Going further: even if we created new <code>Collection</code> struct and pushed newly created <code>Record</code> in it, whole collection would still have been gone by the end of scope.</p>
+<p>Going further: even if we created <code>Collection</code> struct and pushed newly created <code>Record</code> in it, whole collection would still have been gone by the end of scope.</p>
 <blockquote>
 <p>That's when the <strong><code>resource struct</code></strong> comes into play. It can be saved, accessed,  updated and destroyed. It outlives the script and affects blockchain state.</p>
 </blockquote>
 <h2><a class="header" href="#how-to-work-with-resource" id="how-to-work-with-resource">How to work with <code>resource</code></a></h2>
-<p>Let's modify our example with RecordsCollection (imagine we want to store our catalogue in blockchain). Even better - we wan't to let anyone have their record collection in our blockchain.</p>
+<p>Let's modify our example with RecordsCollection (imagine we want to store our catalogue in blockchain). Even better - we wan't to let anyone manage their record collection.</p>
 <h3><a class="header" href="#make-struct-a-resource-struct" id="make-struct-a-resource-struct">Make <code>struct</code> a <code>resource struct</code></a></h3>
 <p>First order of business - turning <code>struct</code> into <code>resource struct</code>. We will do it only for collection (you'll see why):</p>
 <pre><code class="language-Move">resource struct Collection {
@@ -218,7 +218,7 @@ resource struct T {
 <p>TLDR; It's time to code!</p>
 <p>Move has 5 built-in functions to work with collections, we'll go through all of them in order.</p>
 <h3><a class="header" href="#attach-resource-with-move_to_sender" id="attach-resource-with-move_to_sender">Attach resource with <code>move_to_sender</code></a></h3>
-<p>To start working with resource it needs to be attached to sender. Please keep in mind that the only place where you can manage <code>structs</code> and <code>resource</code>s is their module. You can't init resourse outside the module context but you can provide <code>public</code> method. That's how you do it:</p>
+<p>To start working with resource it needs to be attached to sender. Please keep in mind that the only place where you can manage <code>structs</code> and <code>resources</code> is their module. You can't init resource outside the module context but you can provide <code>public</code> method. That's how you do it:</p>
 <pre><code class="language-Move">module RecordsCollection {
 
     use 0x0::Vector;
@@ -278,7 +278,6 @@ resource struct T {
     }
 }
 </code></pre>
-<p>There's a lot happened. TBD.</p>
 <h4><a class="header" href="#keyword-acquires" id="keyword-acquires">Keyword <code>acquires</code></a></h4>
 <h3><a class="header" href="#change-resource-contents-with-borrow_global_mut" id="change-resource-contents-with-borrow_global_mut">Change resource contents with <code>borrow_global_mut</code></a></h3>
 <h3><a class="header" href="#destroy-resource-with-move_from" id="destroy-resource-with-move_from">Destroy resource with <code>move_from</code></a></h3>
