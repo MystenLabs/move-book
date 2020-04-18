@@ -212,7 +212,7 @@
 </code></pre>
 <p>Okay. How can we use our <code>Record</code> struct after we published <code>VinylShop</code> module into network? Here's how:</p>
 <pre><code class="language-Move">// specify publisher's address
-use {sender}::VinylShop;
+use {{sender}}::VinylShop;
 
 fun main() {
     // we can use type but we can't construct it - Rule #3
