@@ -11,9 +11,9 @@ From what we've known from calibra team, Move IR is a "developer version" of Mov
 
 You may be asking yourself "what should I choose?", well currently there's no correct answer to that. Move is Rust-like and simpler, Mvir is pretty hardcore when it comes to references and changes of values; both are supported by VM. According to [Libra's blog](https://developers.libra.org/blog/):
 
-1. New syntax from latest blog posts [looks like Move](https://developers.libra.org/blog/#test-file-structure);
-2. [In roadmap \#2 retrospective](https://developers.libra.org/blog/#roadmap-2-retrospective) Libra team marks Move IR as a tooling language and separates Move IR and Move language;
+1. New syntax from latest blog posts [looks like Move](https://libra.org/en-US/blog/how-to-use-the-end-to-end-tests-framework-in-move/);
+2. [In roadmap #2 retrospective](https://libra.org/en-US/blog/libra-core-roadmap-3/) Libra team marks Move IR as a tooling language and separates Move IR and Move language;
 
 We can only suggest using Move as primary as in long perspective it's propably going to be "the Move". Though, as we've already mentioned, nobody can be sure at this point.
 
-In this book you will meet both languages \(but mostly Move\) and will be able to find tips for any language you've chosen.
+In this book you will only meet Move (with some remarks on Mvir and their difference), as I believe it is going to be the final Move language.
