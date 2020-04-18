@@ -74,7 +74,7 @@ Okay. How can we use our `Record` struct after we published `VinylShop` module i
 
 ```Move
 // specify publisher's address
-use {sender}::VinylShop;
+use {{sender}}::VinylShop;
 
 fun main() {
     // we can use type but we can't construct it - Rule #3

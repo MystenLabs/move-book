@@ -1,6 +1,8 @@
 # Primitive Types
 
-In this section you'll find examples and short descriptions of Move's primitive types: `integer`, `boolean` and `address`. You will also learn how to change size of integer values and what types of addresses are supported in different versions of Move VM.
+In this section you'll find examples and short descriptions of Move's primitive types: integers (u8, u64, u128), `boolean` and `address`. You will also learn how to change size of integer values and what types of addresses are supported in different versions of Move VM.
+
+<!-- MB ADD NODE: Also, there are no floating point types or strings. -->
 
 ## Integer types
 
@@ -66,9 +68,9 @@ Address is identifier of sender (or wallet) in blockchain. The very basic operat
 fun main() {
     let addr: address; // type identifier
 
-    // in this book I'll use {sender} notation;
-    // always replace `{sender}` in examples with VM specific address!!!
-    addr = {sender};
+    // in this book I'll use {{sender}} notation;
+    // always replace `{{sender}}` in examples with VM specific address!!!
+    addr = {{sender}};
 
     // in Libra's Move VM - 16-byte address in HEX
     addr = 0x...;
