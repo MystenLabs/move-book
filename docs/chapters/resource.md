@@ -11,22 +11,22 @@ First, let's see description from [libra developers portal](https://developers.l
 
 ## Resource concept
 
-Imagine you open a cell at the bank. Since it's a bank you trust it with the contents of your cell, you know that bank will guard it and manage access policy correctly so you and only you (except special occasions in your agreement) can control contents of this cell.
+Imagine you open a safe deposit box at the bank. Since it's a bank you trust it with alls the contents of your deposit box, and you know that bank will guard it and manage access policy correctly so you and only you (except special occasions in your agreement) can control contents of this deposit box.
 
-What could be the properties of this cell?
+What could be the properties of this deposit box?
 
 - an owner - it is you
 - it's created for owner (you) by bank - trusted side
-- cell's access policy is managed by bank and you know it before signing
-- cell may contain anything - there's no limit
-- cell can be moved or destroyed by you or by bank (if your agreement allows it)
-- cell access may be shared (again - if it's specified in terms)
+- deposit box's access policy is managed by bank and you know it before signing
+- deposit box may contain anything - there's no limit
+- deposit box can be moved or destroyed by you or by bank (if your agreement allows it)
+- deposit box access may be shared (again - if it's specified in terms)
 
-That's pretty much what's going on in Move. Every resource is a cell and like cell it is user-specific. For each user cell goes full path from creation (or *initialization*) to using (or *modification*) and optionally to destruction. I suggest you keep in mind this analogy as it will help you understand resource concept.
+That's pretty much what's going on in Move. Every resource is a deposit box and just like deposit box - it is user-specific. For each user deposit deal goes full path from creation (or *initialization*) to using (or *modification*) and optionally to *destruction*. I suggest you keep in mind this analogy as it will help you understand resource concept.
 
-## Resource life time and transformation from `struct`?
+## Resource life time
 
-Just like `struct`, a `resource struct` (that's how it's called) can only be defined within module context, and unlike struct, resource will outlive your script. To understand that let's look at this example:
+Resource in Move is defined as a `resource struct` and just like `struct` it can only be defined within module context, and unlike struct, resource will outlive your script. To understand that let's look at this example:
 
 ```Move
 // here's our module to manage records on chain
@@ -239,7 +239,7 @@ module RecordsCollection {
 
 > Function `borrow_global_mut<RESOURCE>(<ADDRESS>): &mut <RESOURCE>` creates mutable reference to resource at given address. All the changes you apply via this mutable reference are going to be stored on chain.
 
-## Destroy resource with `move_from`
+## Remove resource with `move_from`
 
 Finally, to destroy our RecordCollection we will use `move_from` method.
 
@@ -264,13 +264,13 @@ module RecordsCollection {
 
 Even though it looks simple - it's not. `move_from` is the most tricky of all methods in this article. Let's go through rules:
 
-1. Value returned by `move_from` MUST be used - in module as a return value;
-2. You can't destroy resource twice;
-3. Value returned by `move_from` is a full (non-reference) instance of resource;
+1. Value returned by `move_from` MUST be used; it can also be desctructured!
+2. You can't destroy resource twice as there's no resource on your account;
+3. Value returned by `move_from` is a full (non-reference) instance of resource.
 
 That's it. Let's summarise.
 
-> To destroy resource under address use `move_from<RESOURCE>(<ADDRESS>): <RESOURCE>` method. Returned value MUST be used (eg passed as return value of destroy function).
+> To remove resource from address use `move_from<RESOURCE>(<ADDRESS>): <RESOURCE>` method. Returned value MUST be used (eg passed as return value of destroy function).
 
 ## Final contract
 
@@ -330,13 +330,13 @@ module RecordsCollection {
 }
 ```
 
-## List of function for resource
+## List of functions for resource
 
 For reference here's list of methods:
 
 ```Move
-::exists<T>(<ADDRESS>);  // check if resource exists at given address
-move_to_sender<T>(T);    // move newly created resource to sender
+exists<T>(<ADDRESS>);  // check if resource exists at given address
+move_to_sender<T>(T);  // move newly created resource to sender
 
 // ones below require `acquires` keyword:
 

@@ -31,10 +31,12 @@ module Lebowski {
 In `script` context import MUST be placed before `main()`.
 ```Move
 // script context
-use {{sender}}::Lebowski;
+script {
+    use {{sender}}::Lebowski;
 
-fun main() {
-    Lebowski::get_the_rug_back();
+    fun the_dude() {
+        Lebowski::get_the_rug_back();
+    }
 }
 ```
 
@@ -43,10 +45,12 @@ fun main() {
 You can change name of the imported module in your code using keyword `as`.
 
 ```Move
-use 0x0::Transaction as TX;
+script {
+    use 0x0::Transaction as Tx;
 
-fun main() {
-    TX::assert(true, 11);
+    fun check_assert() {
+        Tx::assert(true, 11);
+    }
 }
 ```
 
@@ -57,10 +61,10 @@ This may be used to shorten-up some dependencies or to resolve name conflicts be
 Standard library is always accessible via `0x0` address. It can be used in both *module* and *script*.
 
 ```Move
-module Printer {
+module M {
     use 0x0::Transaction;
 
-    public fun print_sender(): address {
+    public fun sender(): address {
         Transaction::sender()
     }
 }

@@ -1,1 +1,1 @@
-# Resource
+# Generics

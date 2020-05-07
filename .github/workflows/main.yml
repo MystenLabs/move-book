@@ -8,13 +8,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-18.04
-    env:
-      hljs_gh: https://github.com/highlightjs/highlight.js.git
-      hljs_branch: 10-0-stable
     steps:
       - uses: actions/checkout@v2
-
-      # Go on with regular tasks
 
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@v1
@@ -23,23 +18,6 @@ jobs:
 
       - run: mdbook build
 
-      - run: ls -la
-
-      # This code actually builds custom highlight.js for Move
-
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-
-      - run: git clone --single-branch --branch ${{ env.hljs_branch }} ${{ env.hljs_gh }} hljs
-      - run: npm ci
-        working-directory: hljs
-      - run: cp misc/move.js hljs/src/languages
-      - run: node tools/build -t browser move
-        working-directory: hljs
-      - run: cp hljs/build/highlight.min.js ./highlight.js
-      - run: ls -la
-
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -47,6 +25,5 @@ jobs:
           publish_dir: ./book
           cname: move-book.com
 
-      - run: ls -la
 
 

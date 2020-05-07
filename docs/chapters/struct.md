@@ -1,6 +1,8 @@
 # Struct
 
-Structure is a custom type which contains complex data. It can be described as a simple key-value storage where key is a name of property and value is what's stored. Defined using keyword `struct`.
+Structure is a custom type which contains complex data (or no data). It can be described as a simple key-value storage where key is a name of property and value is what's stored. Defined using keyword `struct`.
+
+> Struct (and resource struct) is the only way to create custom type in Move. You'll learn more about it later.
 
 ## Rules
 
@@ -13,13 +15,13 @@ Structure is a custom type which contains complex data. It can be described as a
 
 ## Definition and Usage
 
-Again: `struct` can be defined only in module context.
+Again: `struct` can be defined only inside module context.
 
 ```Move
-module VinylShop {
+module RecordsCollection {
 
     // struct can contain no fields it's
-    // initialization will be like this:
+    // initialization will be simple:
     // let d = Dummy {};
     struct Dummy {}
 
@@ -70,17 +72,45 @@ Let's take a better look at `add_new(...)` function. Since struct is a new type,
 public fun add_new(author_id: u64, label_id: u64, year: u64): Record { /* ... */ }
 ```
 
-Okay. How can we use our `Record` struct after we published `VinylShop` module into network? Here's how:
+Okay. How can we use our `Record` struct after we published `VinylShop` module into network?
 
 ```Move
 // specify publisher's address
-use {{sender}}::VinylShop;
 
-fun main() {
-    // we can use type but we can't construct it - Rule #3
-    let record : VinylShop::Record = VinylShop::add_new(10, 10, 1999);
+script {
+    use {{sender}}::VinylShop;
 
-    // here we can pass record type but can't use `record.year` - Rule #4
-    if (VinylShop::print_year(record) == 1999) abort 11;
+    fun add_new_record() {
+        // we can use type-binding but we can't construct it - Rule #3
+        let record : VinylShop::Record = VinylShop::add_new(10, 10, 1999);
+
+        // here we can pass record type but can't use `record.year` - Rule #4
+        if (VinylShop::print_year(record) == 1999) abort 11;
+    }
 }
+```
+
+## Destruction
+
+In some cases you may need to destroy your struct and get it's contents. This operation called destruction.
+
+```Move
+module LongLive {
+
+    struct T { value: u8 }
+
+    public fun create(value: u8): T {
+        T { value }
+    }
+
+    public fun destroy(t: T): u8 {
+        let T { value } = T;
+        value
+    }
+}
+```
+
+Syntax for destructuring is the opposite to creation:
+```
+let T { <field1>, <field...> } = T;
 ```

@@ -8,7 +8,7 @@
     - [Primitive Types](chapters/primitives.md)
     - [Expression](chapters/expression-block.md)
     - [Control Flow](chapters/control-flow.md)
-    - [Function](chapters/functions.md)
+    - [Function](chapters/function.md)
     - [Import](chapters/imports.md)
     - [Structures](chapters/struct.md)
 - [Advanced Topics](chapters/advanced-topics.md)
