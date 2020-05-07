@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="move-language-reference/index.html"><strong aria-hidden="true">4.</strong> Move Language reference</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="move-language-reference/concept.html"><strong aria-hidden="true">4.1.</strong> Script and Module</a></li><li class="chapter-item expanded "><a href="move-language-reference/imports.html"><strong aria-hidden="true">4.2.</strong> Imports</a></li><li class="chapter-item expanded "><a href="move-language-reference/primitives.html"><strong aria-hidden="true">4.3.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="move-language-reference/control-flow.html"><strong aria-hidden="true">4.4.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="move-language-reference/struct.html"><strong aria-hidden="true">4.5.</strong> Struct</a></li><li class="chapter-item expanded "><a href="move-language-reference/reference.html"><strong aria-hidden="true">4.6.</strong> References</a></li><li class="chapter-item expanded "><a href="move-language-reference/resource.html"><strong aria-hidden="true">4.7.</strong> Resource</a></li><li class="chapter-item expanded "><a href="move-language-reference/function.html"><strong aria-hidden="true">4.8.</strong> Function</a></li></ol></li><li class="chapter-item expanded "><a href="ide/index.html"><strong aria-hidden="true">5.</strong> Move IDE</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ide/setting-up.html"><strong aria-hidden="true">5.1.</strong> Install &amp; Configure</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="chapters/syntax-basics.html"><strong aria-hidden="true">4.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/concept.html"><strong aria-hidden="true">4.1.</strong> Script and Module</a></li><li class="chapter-item expanded "><a href="chapters/primitives.html"><strong aria-hidden="true">4.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="chapters/expression-block.html"><strong aria-hidden="true">4.3.</strong> Expression</a></li><li class="chapter-item expanded "><a href="chapters/control-flow.html"><strong aria-hidden="true">4.4.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="chapters/functions.html"><strong aria-hidden="true">4.5.</strong> Function</a></li><li class="chapter-item expanded "><a href="chapters/imports.html"><strong aria-hidden="true">4.6.</strong> Import</a></li><li class="chapter-item expanded "><a href="chapters/struct.html"><strong aria-hidden="true">4.7.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="chapters/advanced-topics.html"><strong aria-hidden="true">5.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/references.html"><strong aria-hidden="true">5.1.</strong> References</a></li><li class="chapter-item expanded "><a href="chapters/generics.html"><strong aria-hidden="true">5.2.</strong> Generics</a></li><li class="chapter-item expanded "><a href="chapters/vector.html"><strong aria-hidden="true">5.3.</strong> Vector</a></li><li class="chapter-item expanded "><a href="chapters/generics.html"><strong aria-hidden="true">5.4.</strong> Resource</a></li></ol></li><li class="chapter-item expanded "><a href="ide/index.html"><strong aria-hidden="true">6.</strong> Move IDE</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ide/setting-up.html"><strong aria-hidden="true">6.1.</strong> Install &amp; Configure</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -174,8 +174,7 @@
 <h1><a class="header" href="#script-and-module" id="script-and-module">Script and Module</a></h1>
 <p>There are two types of code transactions in Move: module and script. Module is a deployment of new model (which then will be accessible under the address of sender); Script is a transaction-as-code in which you can use deployed modules as well as the standard library as dependencies.</p>
 <p>Module code starts with <code>module</code> keyword and its code looks like this. Inside module you can define: new <em>types</em> (as structs), <em>methods</em> and <code>resource structs</code>.</p>
-<pre><code class="language-Move">// written in Move
-module MyModule {
+<pre><code class="language-Move">module MyModule {
     struct hi_fives {
         count: u8
     }
@@ -185,58 +184,12 @@ module MyModule {
     }
 }
 </code></pre>
-<p>Script must contain <code>main</code> function and usually uses deployed modules. See <a href="move-language-reference//move-language-reference/imports.html">imports</a> on how to import modules.</p>
+<p>Script must contain <code>main</code> function and usually uses deployed modules. See <a href="chapters//move-language-reference/imports.html">imports</a> on how to import modules.</p>
 <pre><code class="language-Move">// assume that sender address was 0xAF
 use {{sender}}::MyModule;
 
 fun main() {
     MyModule::high_five();
-}
-</code></pre>
-<h1><a class="header" href="#imports" id="imports">Imports</a></h1>
-<p>Default context in Move is empty - you can't operate Vector, you can't access Transaction details and you can't do almost anything (with small exception of built-in functions which will also require some Account features). To make your module or a script more meaningful and useful you need imports.</p>
-<p>Here we need to take a step back and go through concept again. As I've mentioned in previous part there're two types of code transactions: <em>module</em> and <em>script</em>. Module is <em>deployed</em> (or published) and can be imported and used in a script. Not only custom deployed modules can be imported. There's also the <em>Standard library</em> (accessible at address <code>0x0</code>) which significantly extends language functionality.</p>
-<h2><a class="header" href="#senders-address" id="senders-address">Sender's address</a></h2>
-<p>Every transaction on blockchain is sent and signed by its sender, hence every module you or someone else publish to blockchain has sender's address which can be used to access/import this module.</p>
-<p>In modifications of Move VM any address format can be used, so not to misguide you and to make this book as basic and general as it can be, I will use <code>{{sender}}</code> pattern to mark sender's address.</p>
-<h2><a class="header" href="#keyword-use" id="keyword-use">Keyword <code>use</code></a></h2>
-<p>To import module from address use this pattern:</p>
-<pre><code class="language-Move">use {{sender}}::ModuleName;
-</code></pre>
-<p>In <code>module</code> context import MUST be placed inside module definition:</p>
-<pre><code class="language-Move">module Lebowski {
-    use {{sender}}::TheRug;
-
-    public fun get_the_rug_back() {
-        TheRug::tie_the_room_together();
-    }
-}
-</code></pre>
-<p>In <code>script</code> context import MUST be placed before <code>main()</code>.</p>
-<pre><code class="language-Move">// script context
-use {{sender}}::Lebowski;
-
-fun main() {
-    Lebowski::get_the_rug_back();
-}
-</code></pre>
-<h3><a class="header" href="#use-meets-as" id="use-meets-as"><code>use</code> meets <code>as</code></a></h3>
-<p>You can change name of the imported module in your code using keyword <code>as</code>.</p>
-<pre><code class="language-Move">use 0x0::Transaction as TX;
-
-fun main() {
-    TX::assert(true, 11);
-}
-</code></pre>
-<p>This may be used to shorten-up some dependencies or to resolve name conflicts between modules.</p>
-<h2><a class="header" href="#importing-standard-library" id="importing-standard-library">Importing Standard library</a></h2>
-<p>Standard library is always accessible via <code>0x0</code> address. It can be used in both <em>module</em> and <em>script</em>.</p>
-<pre><code class="language-Move">module Printer {
-    use 0x0::Transaction;
-
-    public fun print_sender(): address {
-        Transaction::sender()
-    }
 }
 </code></pre>
 <h1><a class="header" href="#primitive-types" id="primitive-types">Primitive Types</a></h1>
@@ -302,6 +255,7 @@ fun main() {
     addr = wallet1....;
 }
 </code></pre>
+<h1><a class="header" href="#expression-and-blocks" id="expression-and-blocks">Expression and Blocks</a></h1>
 <h1><a class="header" href="#control-flow" id="control-flow">Control Flow</a></h1>
 <p>In terms of control operators Move's syntax is similar to Rust with some differences which I'll highlight.</p>
 <p>Let's start with one simple rule:</p>
@@ -419,6 +373,53 @@ With <code>break</code> we stop iteration and exit loop.</p>
     }
 }
 </code></pre>
+<h1><a class="header" href="#functions" id="functions">Functions</a></h1>
+<h1><a class="header" href="#imports" id="imports">Imports</a></h1>
+<p>Default context in Move is empty - you can't operate Vector, you can't access Transaction details and you can't do almost anything (with small exception of built-in functions which will also require some Account features). To make your module or a script more meaningful and useful you need imports.</p>
+<p>Here we need to take a step back and go through concept again. As I've mentioned in previous part there're two types of code transactions: <em>module</em> and <em>script</em>. Module is <em>deployed</em> (or published) and can be imported and used in a script. Not only custom deployed modules can be imported. There's also the <em>Standard library</em> (accessible at address <code>0x0</code>) which significantly extends language functionality.</p>
+<h2><a class="header" href="#senders-address" id="senders-address">Sender's address</a></h2>
+<p>Every transaction on blockchain is sent and signed by its sender, hence every module you or someone else publish to blockchain has sender's address which can be used to access/import this module.</p>
+<p>In modifications of Move VM any address format can be used, so not to misguide you and to make this book as basic and general as it can be, I will use <code>{{sender}}</code> pattern to mark sender's address.</p>
+<h2><a class="header" href="#keyword-use" id="keyword-use">Keyword <code>use</code></a></h2>
+<p>To import module from address use this pattern:</p>
+<pre><code class="language-Move">use {{sender}}::ModuleName;
+</code></pre>
+<p>In <code>module</code> context import MUST be placed inside module definition:</p>
+<pre><code class="language-Move">module Lebowski {
+    use {{sender}}::TheRug;
+
+    public fun get_the_rug_back() {
+        TheRug::tie_the_room_together();
+    }
+}
+</code></pre>
+<p>In <code>script</code> context import MUST be placed before <code>main()</code>.</p>
+<pre><code class="language-Move">// script context
+use {{sender}}::Lebowski;
+
+fun main() {
+    Lebowski::get_the_rug_back();
+}
+</code></pre>
+<h3><a class="header" href="#use-meets-as" id="use-meets-as"><code>use</code> meets <code>as</code></a></h3>
+<p>You can change name of the imported module in your code using keyword <code>as</code>.</p>
+<pre><code class="language-Move">use 0x0::Transaction as TX;
+
+fun main() {
+    TX::assert(true, 11);
+}
+</code></pre>
+<p>This may be used to shorten-up some dependencies or to resolve name conflicts between modules.</p>
+<h2><a class="header" href="#importing-standard-library" id="importing-standard-library">Importing Standard library</a></h2>
+<p>Standard library is always accessible via <code>0x0</code> address. It can be used in both <em>module</em> and <em>script</em>.</p>
+<pre><code class="language-Move">module Printer {
+    use 0x0::Transaction;
+
+    public fun print_sender(): address {
+        Transaction::sender()
+    }
+}
+</code></pre>
 <h1><a class="header" href="#struct" id="struct">Struct</a></h1>
 <p>Structure is a custom type which contains complex data. It can be described as a simple key-value storage where key is a name of property and value is what's stored. Defined using keyword <code>struct</code>.</p>
 <h2><a class="header" href="#rules" id="rules">Rules</a></h2>
@@ -494,295 +495,76 @@ fun main() {
     if (VinylShop::print_year(record) == 1999) abort 11;
 }
 </code></pre>
+<h1><a class="header" href="#advanced-topics" id="advanced-topics">Advanced Topics</a></h1>
 <h1><a class="header" href="#references" id="references">References</a></h1>
-<h1><a class="header" href="#resources" id="resources">Resources</a></h1>
-<p>Resources are what makes Move unique, safe and powerful.
-First, let's see description from <a href="https://developers.libra.org/docs/move-overview#move-has-first-class-resources">libra developers portal</a>:</p>
-<blockquote>
-<ul>
-<li>The key feature of Move is the ability to define custom resource types. <strong>Resource types are used to encode safe digital assets with rich programmability</strong>.</li>
-<li><strong>Resources are ordinary values in the language</strong>. They can be stored as data structures, passed as arguments to procedures, returned from procedures, and so on.</li>
-<li><strong>The Move type system provides special safety guarantees for resources</strong>. Move resources can never be duplicated, reused, or discarded. A resource type can only be created or destroyed by the module that defines the type. These guarantees are enforced statically by the Move virtual machine via bytecode verification. The Move virtual machine will refuse to run code that has not passed through the bytecode verifier.</li>
-<li>The Libra currency is implemented as a resource type named LibraCoin.T. LibraCoin.T has no special status in the language; every Move resource enjoys the same protections.</li>
-</ul>
-</blockquote>
-<h2><a class="header" href="#why-resource" id="why-resource">Why <code>resource</code>?</a></h2>
-<p>Just like <code>struct</code>, a <code>resource struct</code> (that's how it's called) can only be defined within module context, and unlike struct, resource will outlive your script. To understand that let's look at this example:</p>
-<pre><code class="language-Move">// here's our module to manage records on chain
-module RecordsCollection {
-
-    use 0x0::Transaction as Tx;
-
-    // the very basic information about our record
-    struct Record {
-        name: vector&lt;u8&gt;,
-        author: vector&lt;u8&gt;,
-        year: u64
-    }
-
-    // imaginary collection of records
-    struct Collection {
-        records: vector&lt;Record&gt;
-    }
-
-    public fun create_record(name: vector&lt;u8&gt;, author: vector&lt;u8&gt;, year: u64): Record {
-        Record { name, author, year }
-    }
-}
-</code></pre>
-<p>What happens if we use module <code>RecordsCollection</code> in a script and call a method <code>add_new()</code>? New struct will be created in a script context. What happens when script scope ends? All defined variables and structs will be dumped:</p>
-<pre><code class="language-Move">use {{sender}}::RecordsCollection as Collection;
-
-fun main(name: vector&lt;u8&gt;, author: vector&lt;u8&gt;, year: u64) {
-
-    let r = Collection::create_record(name, author, year);
-
-    // record is created but it saved somewhere?
-    // where does it go when script ends? nowhere!
-}
-</code></pre>
-<p>Going further: even if we created <code>Collection</code> struct and pushed newly created <code>Record</code> in it, whole collection would still have been gone by the end of scope.</p>
-<blockquote>
-<p>That's when the <strong><code>resource struct</code></strong> comes into play. It can be saved, accessed,  updated and destroyed. It outlives the script and affects blockchain state.</p>
-</blockquote>
-<h2><a class="header" href="#how-to-work-with-resource" id="how-to-work-with-resource">How to work with <code>resource</code></a></h2>
-<p>Let's modify our example with RecordsCollection (imagine we want to store our catalogue in blockchain). Even better - we wan't to let anyone manage their record collection.</p>
-<h2><a class="header" href="#make-struct-a-resource-struct" id="make-struct-a-resource-struct">Make <code>struct</code> a <code>resource struct</code></a></h2>
-<p>First order of business - turning <code>struct</code> into <code>resource struct</code>. We will do it only for collection (you'll see why):</p>
-<pre><code class="language-Move">resource struct Collection {
-    records: vector&lt;Record&gt;
-}
-</code></pre>
-<p>Even better (or say more correct) way to name main resource in module is <code>&quot;T&quot;</code>:</p>
-<pre><code class="language-Move">// since whole module is named RecordsCollection
-// everyone will understand that T equals Collection
-resource struct T {
-    records: vector&lt;Record&gt;
-}
-</code></pre>
-<!-- MB rewrite this part later when done with structure; -->
-<p>As you can see, nothing but an addition of one keyword. What actually happens? Collection remains a type. Just like struct you can initialize it (in resource-specific way), you can push records into it and (!) what's really important: this <code>resource struct</code> will be saved on chain linked to your address making it possible to read and change it again in future transactions. Even more! If module is properly organized, you can even let other people see your collection, and (only if you want to do so!) you can let them add records into your collection.</p>
-<!-- END;  -->
-<p>TLDR; It's time to code!</p>
-<p>Move has 5 built-in functions to work with collections, we'll go through all of them in order.</p>
-<h2><a class="header" href="#attach-resource-with-move_to_sender" id="attach-resource-with-move_to_sender">Attach resource with <code>move_to_sender</code></a></h2>
-<p>To start working with resource it needs to be attached to sender. Please keep in mind that the only place where you can manage <code>structs</code> and <code>resources</code> is their module. You can't init resource outside the module context but you can provide <code>public</code> method. That's how you do it:</p>
-<pre><code class="language-Move">module RecordsCollection {
-
-    use 0x0::Vector;
-
-    // -- some definitions skipped --
-
-    resource struct T {
-        records: vector&lt;Record&gt;
-    }
-
-    public fun initialize() {
-        move_to_sender&lt;T&gt;(T { records: Vector::empty() })
-    }
-}
-</code></pre>
-<blockquote>
-<p>Function <code>move_to_sender&lt;RESOURCE&gt;(RESOURCE)</code> links resource to account. It uses some internal magic to define transaction sender so there's no need to specify one.</p>
-</blockquote>
-<h2><a class="header" href="#check-if-resource-exists-at-given-address" id="check-if-resource-exists-at-given-address">Check if resource <code>exists</code> at given address</a></h2>
-<p>It's good to initialize resource once but not to be mistaken and not to inizalize it twice we can check if resource is linked to address. Here's how it looks if we modify previously defined <code>initialize()</code> function:</p>
-<pre><code class="language-Move">module RecordsCollection {
-
-    // -- some definitions skipped --
-
-    use 0x0::Transaction as Tx;
-
-    public fun initialize() {
-        let sender = Tx::sender();
-
-        if (!exists&lt;T&gt;(sender)) {
-            move_to_sender&lt;T&gt;(T { records: Vector::empty() })
-        }
-    }
-}
-</code></pre>
-<blockquote>
-<p>Function <code>exists&lt;RESOURCE&gt;(&lt;ADDRESS&gt;): bool</code> checks if resource is linked to address and returns boolean result. You can use this function to check any resource and any address - this information is meant to be public on blockchain.</p>
-</blockquote>
-<h2><a class="header" href="#using-existing-resources-with-acquires" id="using-existing-resources-with-acquires">Using existing resources with <code>acquires</code></a></h2>
-<p>Before we proceed. There is a huge difference between <em>using</em> resource and <em>checking or initializing</em> it. When you initialize resource you create a link between newly created resource, when you check existence you actually check this link exists. But when you <em>read</em>, <em>modify</em> or <em>destroy</em> resource, you need to actually <strong>use resource</strong>.</p>
-<p>That is when keyword <code>acquires</code> appears. If your function <em>reads</em>, <em>modifies</em> or <em>destroys</em> resource, you MUST put this keyword. Here's how:</p>
-<pre><code class="language-Move">module RecordsCollection {
-
-    // here's our resource T
-    resource struct T {
-        records: vector&lt;Record&gt;
-    }
-
-    // and here we're going to read our resource T
-    public fun get_my_records(): vector&lt;Record&gt; acquires T {
-        // ...
-    }
-</code></pre>
-<blockquote>
-<p>Keyword <code>acquires</code> is put only in function definition after return value or parentheses (when function has no return value). Resource names <em>acquired</em> by this function have to be listed after. If there're multiple resources, use comma-separated list: <code>fun my_fun() acquires R1, R2</code>.</p>
-</blockquote>
-<p>Functions requiring <code>acquire</code>:</p>
-<ul>
-<li>borrow_global_mut</li>
-<li>borrow_global</li>
-<li>move_from</li>
-</ul>
-<h2><a class="header" href="#read-resource-contents-with-borrow_global" id="read-resource-contents-with-borrow_global">Read resource contents with <code>borrow_global</code></a></h2>
-<p>Okay, we've already linked resource to sender account and even protected ourselves from double initialization, it's time to learn to read it.</p>
-<pre><code class="language-Move">module RecordsCollection {
-
-    // -- some definitions skipped --
-
-    use 0x0::Transaction as Tx;
-
-    resource struct T {
-        records: vector&lt;Record&gt;
-    }
-
-    public fun get_my_records(): vector&lt;Record&gt; acquires T {
-
-        let sender = Tx::sender();
-        let collection = borrow_global&lt;T&gt;(sender);
-
-        *&amp;collection.records
-    }
-}
-</code></pre>
-<blockquote>
-<p>Function <code>borrow_global&lt;RESOURCE&gt;(&lt;ADDRESS&gt;): &amp;&lt;RESOURCE&gt;</code> requests immutable reference to resource at given address. You can read resource contents just how you'd normally read struct's.</p>
-</blockquote>
-<h2><a class="header" href="#modify-resource-with-borrow_global_mut" id="modify-resource-with-borrow_global_mut">Modify resource with <code>borrow_global_mut</code></a></h2>
-<p>We've come a long way to get here, and finally we're ready to learn how to modify resource.</p>
-<pre><code class="language-Move">module RecordsCollection {
-
-    // -- some definitions skipped --
-
-    use 0x0::Transaction as Tx;
-    use 0x0::Vector;
-
-    resource struct T {
-        records: vector&lt;Record&gt;
-    }
-
-    public fun add_to_my_collection(
-        name: vector&lt;u8&gt;,
-        author: vector&lt;u8&gt;,
-        year: u64
-    ) acquires T {
-
-        let sender = Tx::sender();
-
-        // not to do additional call let's put it here
-        initialize(sender);
-
-        let record = Record { name, author, year };
-        let collection = borrow_global_mut&lt;T&gt;(sender);
-
-        Vector::push_back(&amp;mut collection.records, record)
-    }
-}
-</code></pre>
-<blockquote>
-<p>Function <code>borrow_global_mut&lt;RESOURCE&gt;(&lt;ADDRESS&gt;): &amp;mut &lt;RESOURCE&gt;</code> creates mutable reference to resource at given address. All the changes you apply via this mutable reference are going to be stored on chain.</p>
-</blockquote>
-<h2><a class="header" href="#destroy-resource-with-move_from" id="destroy-resource-with-move_from">Destroy resource with <code>move_from</code></a></h2>
-<p>Finally, to destroy our RecordCollection we will use <code>move_from</code> method.</p>
-<pre><code class="language-Move">module RecordsCollection {
-
-    // -- some definitions skipped --
-
-    resource struct T {
-        records: vector&lt;Record&gt;
-    }
-
-    // see return value here, it is important!
-    public fun destroy_collection(): T acquires T {
-
-        let sender = Tx::sender();
-
-        move_from&lt;T&gt;(sender)
-    }
-}
-</code></pre>
-<p>Even though it looks simple - it's not. <code>move_from</code> is the most tricky of all methods in this article. Let's go through rules:</p>
+<h1><a class="header" href="#resource" id="resource">Resource</a></h1>
+<h1><a class="header" href="#vector" id="vector">Vector</a></h1>
+<p>Vector is a complex type for storing collection of values of one type.</p>
+<h2><a class="header" href="#rules-1" id="rules-1">Rules</a></h2>
+<p>As usual - let's start with rules.</p>
 <ol>
-<li>Value returned by <code>move_from</code> MUST be used - in module as a return value;</li>
-<li>You can't destroy resource twice;</li>
-<li>Value returned by <code>move_from</code> is a full (non-reference) instance of resource;</li>
+<li>Vector is a native type (just like <a href="chapters//chapters/primitives.html">primitives</a>) which means you can use it in both modules and scripts;</li>
+<li>Vector can only contain items of the same time. Which means you can't
+store elements of type A and type B in the same vector;</li>
+<li>Vector can have size from zero to 9,223,372,036,854,775,807 (max size of <code>u64</code>);</li>
+<li>Type of stored value is specified in generic: <code>vector&lt;Element&gt;</code>;</li>
+<li>Since it's a native type, to use it you need standard library - usually <code>0x0::Vector</code>.</li>
 </ol>
-<p>That's it. Let's summarise.</p>
-<blockquote>
-<p>To destroy resource under address use <code>move_from&lt;RESOURCE&gt;(&lt;ADDRESS&gt;): &lt;RESOURCE&gt;</code> method. Returned value MUST be used (eg passed as return value of destroy function).</p>
-</blockquote>
-<h2><a class="header" href="#final-contract" id="final-contract">Final contract</a></h2>
-<p>Here's final contract. What it does:</p>
-<ul>
-<li>allows anyone store their own RecordCollection on chain;</li>
-<li>provides security for RecordCollection - only owner can access it.</li>
-</ul>
-<pre><code class="language-Move">module RecordsCollection {
+<h2><a class="header" href="#usage" id="usage">Usage</a></h2>
+<p>As said above you can use it everywhere. In module:</p>
+<pre><code class="language-Move">module Countries {
+    struct Country {
+        name: vector&lt;u8&gt;
+    }
 
-    use 0x0::Transaction as Tx;
+    resource struct CountriesList {
+        value: vector&lt;Country&gt;
+    }
+}
+
+</code></pre>
+<p>And in script!</p>
+<pre><code class="language-Move">script {
+
     use 0x0::Vector;
 
-    struct Record {
-        name:   vector&lt;u8&gt;,
-        author: vector&lt;u8&gt;,
-        year:   u64
-    }
+    fun vector_example() {
+        let collection = Vector::empty&lt;u8&gt;();
 
-    resource struct T {
-        records: vector&lt;Record&gt;
-    }
-
-    fun initialize(sender: address) {
-        if (!::exists&lt;T&gt;(sender)) {
-            move_to_sender&lt;T&gt;(T { records: Vector::empty() })
-        }
-    }
-
-    public fun add_to_my_collection(
-        name: vector&lt;u8&gt;,
-        author: vector&lt;u8&gt;,
-        year: u64
-    ) acquires T {
-
-        let sender = Tx::sender();
-
-        initialize(sender);
-
-        let record = Record { name, author, year };
-        let collection = borrow_global_mut&lt;T&gt;(sender);
-
-        Vector::push_back(&amp;mut collection.records, record)
-    }
-
-    public fun get_my_collection(): vector&lt;Record&gt; acquires T {
-        let sender = Tx::sender();
-        let collection = borrow_global&lt;T&gt;(sender);
-
-        *&amp;collection.records
-    }
-
-    public fun remove_from_me(): T acquires T {
-        move_from&lt;T&gt;(Tx::sender())
+        Vector::push_back&lt;u8&gt;(&amp;mut collection, 10);
     }
 }
 </code></pre>
-<h2><a class="header" href="#list-of-function-for-resource" id="list-of-function-for-resource">List of function for resource</a></h2>
-<p>For reference here's list of methods:</p>
-<pre><code class="language-Move">::exists&lt;T&gt;(&lt;ADDRESS&gt;);  // check if resource exists at given address
-move_to_sender&lt;T&gt;(T);    // move newly created resource to sender
-
-// ones below require `acquires` keyword:
-
-borrow_global&lt;T&gt;(&lt;ADDRESS&gt;);
-borrow_global_mut&lt;T&gt;(&lt;ADDRESS&gt;);
-move_from&lt;T&gt;(&lt;ADDRESS&gt;); // destroy resource
+<p>In this example we've created an empty vector of <code>u8</code> integers and filled it with one value. Please note that vector creation within code is only possible via <code>0x0::Vector</code> library since this type is native.</p>
+<h2><a class="header" href="#features--0x0vector-module" id="features--0x0vector-module">Features &amp; 0x0::Vector module</a></h2>
+<p>To manage collection properly we'd need to be able to get it's length, to access elements of this collection, and to modify its contents. All of this can be done with standard library (and only with standard library).</p>
+<p>Here's a short list of methods available:</p>
+<ul>
+<li>Create an empty vector of type &lt;Element&gt;</li>
+</ul>
+<pre><code class="language-Move">Vector::empty&lt;T&gt;(): vector&lt;T&gt;;
 </code></pre>
-<h1><a class="header" href="#function" id="function">Function</a></h1>
+<ul>
+<li>Push element to the end of the vector:</li>
+</ul>
+<pre><code class="language-Move">Vector::push_back&lt;T&gt;(v: &amp;mut vector&lt;T&gt;, e: T);
+</code></pre>
+<ul>
+<li>Get mutable reference to element of vector. For immutable borrow use <code>Vector::borrow()</code></li>
+</ul>
+<pre><code>Vector::borrow_mut&lt;T&gt;(v: &amp;mut vector&lt;T&gt;, i: u64): &amp;T;
+</code></pre>
+<ul>
+<li>Pop an element from the end of vector:</li>
+</ul>
+<pre><code>Vector::pop_back&lt;T&gt;(v: &amp;mut vector&lt;T&gt;): T;
+</code></pre>
+<p>This list is just enough to start working with vector, but to know full potential of vector you must see these standard libraries:</p>
+<ul>
+<li>Libra <a href="https://github.com/libra/libra/blob/master/language/stdlib/modules/vector.move">libra/libra</a></li>
+<li>Dfinance <a href="https://github.com/dfinance/dvm/blob/master/lang/stdlib/vector.move">dfinance/dvm</a></li>
+</ul>
+<h1><a class="header" href="#resource-1" id="resource-1">Resource</a></h1>
 <h1><a class="header" href="#move-ide" id="move-ide">Move IDE</a></h1>
 <p>Currently there're only few text editors with support of Move language (through extensions or packages). Those are:</p>
 <ul>

@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Struct - Move Book</title>
+        <title>Script and Module - Move Book</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="../move-language-reference/index.html"><strong aria-hidden="true">4.</strong> Move Language reference</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../move-language-reference/concept.html"><strong aria-hidden="true">4.1.</strong> Script and Module</a></li><li class="chapter-item expanded "><a href="../move-language-reference/imports.html"><strong aria-hidden="true">4.2.</strong> Imports</a></li><li class="chapter-item expanded "><a href="../move-language-reference/primitives.html"><strong aria-hidden="true">4.3.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../move-language-reference/control-flow.html"><strong aria-hidden="true">4.4.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../move-language-reference/struct.html" class="active"><strong aria-hidden="true">4.5.</strong> Struct</a></li><li class="chapter-item expanded "><a href="../move-language-reference/reference.html"><strong aria-hidden="true">4.6.</strong> References</a></li><li class="chapter-item expanded "><a href="../move-language-reference/resource.html"><strong aria-hidden="true">4.7.</strong> Resource</a></li><li class="chapter-item expanded "><a href="../move-language-reference/function.html"><strong aria-hidden="true">4.8.</strong> Function</a></li></ol></li><li class="chapter-item expanded "><a href="../ide/index.html"><strong aria-hidden="true">5.</strong> Move IDE</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../ide/setting-up.html"><strong aria-hidden="true">5.1.</strong> Install &amp; Configure</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="../chapters/syntax-basics.html"><strong aria-hidden="true">4.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/concept.html" class="active"><strong aria-hidden="true">4.1.</strong> Script and Module</a></li><li class="chapter-item expanded "><a href="../chapters/primitives.html"><strong aria-hidden="true">4.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../chapters/expression-block.html"><strong aria-hidden="true">4.3.</strong> Expression</a></li><li class="chapter-item expanded "><a href="../chapters/control-flow.html"><strong aria-hidden="true">4.4.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../chapters/functions.html"><strong aria-hidden="true">4.5.</strong> Function</a></li><li class="chapter-item expanded "><a href="../chapters/imports.html"><strong aria-hidden="true">4.6.</strong> Import</a></li><li class="chapter-item expanded "><a href="../chapters/struct.html"><strong aria-hidden="true">4.7.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="../chapters/advanced-topics.html"><strong aria-hidden="true">5.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/references.html"><strong aria-hidden="true">5.1.</strong> References</a></li><li class="chapter-item expanded "><a href="../chapters/generics.html"><strong aria-hidden="true">5.2.</strong> Generics</a></li><li class="chapter-item expanded "><a href="../chapters/vector.html"><strong aria-hidden="true">5.3.</strong> Vector</a></li><li class="chapter-item expanded "><a href="../chapters/generics.html"><strong aria-hidden="true">5.4.</strong> Resource</a></li></ol></li><li class="chapter-item expanded "><a href="../ide/index.html"><strong aria-hidden="true">6.</strong> Move IDE</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../ide/setting-up.html"><strong aria-hidden="true">6.1.</strong> Install &amp; Configure</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -147,79 +147,25 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#struct" id="struct">Struct</a></h1>
-<p>Structure is a custom type which contains complex data. It can be described as a simple key-value storage where key is a name of property and value is what's stored. Defined using keyword <code>struct</code>.</p>
-<h2><a class="header" href="#rules" id="rules">Rules</a></h2>
-<ol>
-<li>Struct definition is possible <strong>only within a module</strong>;</li>
-<li>Struct can contain field of any type including another structure;</li>
-<li>Structs can only be constructed in the module in which they are declared;</li>
-<li>Struct fields can only be accessed within module (therefore they are all private);</li>
-<li>Recursive struct definition is impossible;</li>
-<li>Struct may not have fields (can be empty).</li>
-</ol>
-<h2><a class="header" href="#definition-and-usage" id="definition-and-usage">Definition and Usage</a></h2>
-<p>Again: <code>struct</code> can be defined only in module context.</p>
-<pre><code class="language-Move">module VinylShop {
-
-    // struct can contain no fields it's
-    // initialization will be like this:
-    // let d = Dummy {};
-    struct Dummy {}
-
-    struct Record {
-        author_id: u64,
-        label_id: u64,
-        year: u64,
-        is_new: bool
+                        <h1><a class="header" href="#script-and-module" id="script-and-module">Script and Module</a></h1>
+<p>There are two types of code transactions in Move: module and script. Module is a deployment of new model (which then will be accessible under the address of sender); Script is a transaction-as-code in which you can use deployed modules as well as the standard library as dependencies.</p>
+<p>Module code starts with <code>module</code> keyword and its code looks like this. Inside module you can define: new <em>types</em> (as structs), <em>methods</em> and <code>resource structs</code>.</p>
+<pre><code class="language-Move">module MyModule {
+    struct hi_fives {
+        count: u8
     }
 
-    // we can create new Record in a method
-    public fun add_new(author_id: u64, label_id: u64, year: u64): Record {
-        // when creating new struct use pattern:
-        // &lt;key&gt;: &lt;value&gt;
-        Record {
-            author_id: author_id,
-            label_id: label_id,
-            year: year,
-            is_new: true
-        };
-
-        // you can could also use short notation when variable
-        // name matches name of the property
-        let record: Record = Record {
-            author_id,
-            label_id,
-            year,
-            is_new: true
-        };
-
-        record
-    }
-
-    // since struct fields can only be accessed within module, you
-    // have to provide interface to read structs if you pass it
-    // outside of the module
-    public fun print_year(r: Record): u64 {
-
-        // to access struct's fields use &quot;.&quot; (dot) notation
-        r.year
+    public fun high_five(): u8 {
+        5
     }
 }
 </code></pre>
-<p>Let's take a better look at <code>add_new(...)</code> function. Since struct is a new type, it can also be a return type, and you're able to see it in function definition:</p>
-<pre><code class="language-Move">public fun add_new(author_id: u64, label_id: u64, year: u64): Record { /* ... */ }
-</code></pre>
-<p>Okay. How can we use our <code>Record</code> struct after we published <code>VinylShop</code> module into network? Here's how:</p>
-<pre><code class="language-Move">// specify publisher's address
-use {{sender}}::VinylShop;
+<p>Script must contain <code>main</code> function and usually uses deployed modules. See <a href="/move-language-reference/imports.html">imports</a> on how to import modules.</p>
+<pre><code class="language-Move">// assume that sender address was 0xAF
+use {{sender}}::MyModule;
 
 fun main() {
-    // we can use type but we can't construct it - Rule #3
-    let record : VinylShop::Record = VinylShop::add_new(10, 10, 1999);
-
-    // here we can pass record type but can't use `record.year` - Rule #4
-    if (VinylShop::print_year(record) == 1999) abort 11;
+    MyModule::high_five();
 }
 </code></pre>
 
@@ -228,13 +174,13 @@ fun main() {
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../move-language-reference/control-flow.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../chapters/syntax-basics.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../move-language-reference/reference.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../chapters/primitives.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -246,13 +192,13 @@ fun main() {
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../move-language-reference/control-flow.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../chapters/syntax-basics.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="../move-language-reference/reference.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../chapters/primitives.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

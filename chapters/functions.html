@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Move IDE - Move Book</title>
+        <title>Function - Move Book</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="../chapters/syntax-basics.html"><strong aria-hidden="true">4.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/concept.html"><strong aria-hidden="true">4.1.</strong> Script and Module</a></li><li class="chapter-item expanded "><a href="../chapters/primitives.html"><strong aria-hidden="true">4.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../chapters/expression-block.html"><strong aria-hidden="true">4.3.</strong> Expression</a></li><li class="chapter-item expanded "><a href="../chapters/control-flow.html"><strong aria-hidden="true">4.4.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../chapters/functions.html"><strong aria-hidden="true">4.5.</strong> Function</a></li><li class="chapter-item expanded "><a href="../chapters/imports.html"><strong aria-hidden="true">4.6.</strong> Import</a></li><li class="chapter-item expanded "><a href="../chapters/struct.html"><strong aria-hidden="true">4.7.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="../chapters/advanced-topics.html"><strong aria-hidden="true">5.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/references.html"><strong aria-hidden="true">5.1.</strong> References</a></li><li class="chapter-item expanded "><a href="../chapters/generics.html"><strong aria-hidden="true">5.2.</strong> Generics</a></li><li class="chapter-item expanded "><a href="../chapters/vector.html"><strong aria-hidden="true">5.3.</strong> Vector</a></li><li class="chapter-item expanded "><a href="../chapters/generics.html"><strong aria-hidden="true">5.4.</strong> Resource</a></li></ol></li><li class="chapter-item expanded "><a href="../ide/index.html" class="active"><strong aria-hidden="true">6.</strong> Move IDE</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../ide/setting-up.html"><strong aria-hidden="true">6.1.</strong> Install &amp; Configure</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="../chapters/syntax-basics.html"><strong aria-hidden="true">4.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/concept.html"><strong aria-hidden="true">4.1.</strong> Script and Module</a></li><li class="chapter-item expanded "><a href="../chapters/primitives.html"><strong aria-hidden="true">4.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../chapters/expression-block.html"><strong aria-hidden="true">4.3.</strong> Expression</a></li><li class="chapter-item expanded "><a href="../chapters/control-flow.html"><strong aria-hidden="true">4.4.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../chapters/functions.html" class="active"><strong aria-hidden="true">4.5.</strong> Function</a></li><li class="chapter-item expanded "><a href="../chapters/imports.html"><strong aria-hidden="true">4.6.</strong> Import</a></li><li class="chapter-item expanded "><a href="../chapters/struct.html"><strong aria-hidden="true">4.7.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="../chapters/advanced-topics.html"><strong aria-hidden="true">5.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/references.html"><strong aria-hidden="true">5.1.</strong> References</a></li><li class="chapter-item expanded "><a href="../chapters/generics.html"><strong aria-hidden="true">5.2.</strong> Generics</a></li><li class="chapter-item expanded "><a href="../chapters/vector.html"><strong aria-hidden="true">5.3.</strong> Vector</a></li><li class="chapter-item expanded "><a href="../chapters/generics.html"><strong aria-hidden="true">5.4.</strong> Resource</a></li></ol></li><li class="chapter-item expanded "><a href="../ide/index.html"><strong aria-hidden="true">6.</strong> Move IDE</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../ide/setting-up.html"><strong aria-hidden="true">6.1.</strong> Install &amp; Configure</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -147,34 +147,20 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#move-ide" id="move-ide">Move IDE</a></h1>
-<p>Currently there're only few text editors with support of Move language (through extensions or packages). Those are:</p>
-<ul>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=SDKBox.vscode-libra-move">VSCode Move Language</a> - supports only Mvir, <strong>outdated</strong></li>
-<li><a href="https://atom.io/packages/language-move">Atom Language Move</a> - mostly Mvir, hardly Move</li>
-</ul>
-<p>And the best of all at the moment: <a href="https://marketplace.visualstudio.com/items?itemName=damirka.move-ide">Move IDE for VSCode</a></p>
-<h2><a class="header" href="#features" id="features">Features</a></h2>
-<p>As an active Move enthusiast and a guy who wrote 2 out of 3 currently available packages for Move language I gurarantee you that Move IDE for VSCode is the best option you've got. Let's see what's inside:</p>
-<ul>
-<li>Full syntax support for both Move and Mvir;</li>
-<li><a href="https://github.com/dfinance/move-language-server">Move Language Server</a> integrated into IDE which provides error highlights, code verification and import checks</li>
-<li>Fully customizable environment for your projects with ability to set custom Move dialect, use different versions of Standard Library or compiler within the directory</li>
-<li>It provides you with standard of organizing your Move project and aims to make this standard true</li>
-</ul>
+                        <h1><a class="header" href="#functions" id="functions">Functions</a></h1>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../chapters/generics.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../chapters/control-flow.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../ide/setting-up.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../chapters/imports.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -186,13 +172,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../chapters/generics.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../chapters/control-flow.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="../ide/setting-up.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../chapters/imports.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

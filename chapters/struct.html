@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Control Flow - Move Book</title>
+        <title>Structures - Move Book</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="../move-language-reference/index.html"><strong aria-hidden="true">4.</strong> Move Language reference</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../move-language-reference/concept.html"><strong aria-hidden="true">4.1.</strong> Script and Module</a></li><li class="chapter-item expanded "><a href="../move-language-reference/imports.html"><strong aria-hidden="true">4.2.</strong> Imports</a></li><li class="chapter-item expanded "><a href="../move-language-reference/primitives.html"><strong aria-hidden="true">4.3.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../move-language-reference/control-flow.html" class="active"><strong aria-hidden="true">4.4.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../move-language-reference/struct.html"><strong aria-hidden="true">4.5.</strong> Struct</a></li><li class="chapter-item expanded "><a href="../move-language-reference/reference.html"><strong aria-hidden="true">4.6.</strong> References</a></li><li class="chapter-item expanded "><a href="../move-language-reference/resource.html"><strong aria-hidden="true">4.7.</strong> Resource</a></li><li class="chapter-item expanded "><a href="../move-language-reference/function.html"><strong aria-hidden="true">4.8.</strong> Function</a></li></ol></li><li class="chapter-item expanded "><a href="../ide/index.html"><strong aria-hidden="true">5.</strong> Move IDE</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../ide/setting-up.html"><strong aria-hidden="true">5.1.</strong> Install &amp; Configure</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="../chapters/syntax-basics.html"><strong aria-hidden="true">4.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/concept.html"><strong aria-hidden="true">4.1.</strong> Script and Module</a></li><li class="chapter-item expanded "><a href="../chapters/primitives.html"><strong aria-hidden="true">4.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../chapters/expression-block.html"><strong aria-hidden="true">4.3.</strong> Expression</a></li><li class="chapter-item expanded "><a href="../chapters/control-flow.html"><strong aria-hidden="true">4.4.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../chapters/functions.html"><strong aria-hidden="true">4.5.</strong> Function</a></li><li class="chapter-item expanded "><a href="../chapters/imports.html"><strong aria-hidden="true">4.6.</strong> Import</a></li><li class="chapter-item expanded "><a href="../chapters/struct.html" class="active"><strong aria-hidden="true">4.7.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="../chapters/advanced-topics.html"><strong aria-hidden="true">5.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/references.html"><strong aria-hidden="true">5.1.</strong> References</a></li><li class="chapter-item expanded "><a href="../chapters/generics.html"><strong aria-hidden="true">5.2.</strong> Generics</a></li><li class="chapter-item expanded "><a href="../chapters/vector.html"><strong aria-hidden="true">5.3.</strong> Vector</a></li><li class="chapter-item expanded "><a href="../chapters/generics.html"><strong aria-hidden="true">5.4.</strong> Resource</a></li></ol></li><li class="chapter-item expanded "><a href="../ide/index.html"><strong aria-hidden="true">6.</strong> Move IDE</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../ide/setting-up.html"><strong aria-hidden="true">6.1.</strong> Install &amp; Configure</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -147,121 +147,79 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#control-flow" id="control-flow">Control Flow</a></h1>
-<p>In terms of control operators Move's syntax is similar to Rust with some differences which I'll highlight.</p>
-<p>Let's start with one simple rule:</p>
-<blockquote>
-<p>Every expression MUST end with semicolon unless it's the last expression in scope</p>
-</blockquote>
-<p>Which means that every <code>loop</code>, every <code>while</code> and <code>if</code> expressions - all of them MUST have semicolon at the end if any expression goes after. Not having semicolon (like in Rust) will result in syntax error.</p>
-<h2><a class="header" href="#the-if-expression" id="the-if-expression">The <code>if</code> expression</a></h2>
-<p>If you want to run code block when some expression is <code>true</code> you need to use <code>if</code> keyword:</p>
-<pre><code class="language-Move">// assume it's a script
-use 0x0::Transaction;
+                        <h1><a class="header" href="#struct" id="struct">Struct</a></h1>
+<p>Structure is a custom type which contains complex data. It can be described as a simple key-value storage where key is a name of property and value is what's stored. Defined using keyword <code>struct</code>.</p>
+<h2><a class="header" href="#rules" id="rules">Rules</a></h2>
+<ol>
+<li>Struct definition is possible <strong>only within a module</strong>;</li>
+<li>Struct can contain field of any type including another structure;</li>
+<li>Structs can only be constructed in the module in which they are declared;</li>
+<li>Struct fields can only be accessed within module (therefore they are all private);</li>
+<li>Recursive struct definition is impossible;</li>
+<li>Struct may not have fields (can be empty).</li>
+</ol>
+<h2><a class="header" href="#definition-and-usage" id="definition-and-usage">Definition and Usage</a></h2>
+<p>Again: <code>struct</code> can be defined only in module context.</p>
+<pre><code class="language-Move">module VinylShop {
 
-fun main(custom_addr: address) {
-    if (custom_addr != Transaction::sender()) {
-        abort 11
-    };
+    // struct can contain no fields it's
+    // initialization will be like this:
+    // let d = Dummy {};
+    struct Dummy {}
 
-    // alternatively
-    if (custom_addr != Transaction::sender()) abort 11
-}
-</code></pre>
-<p>Syntax:</p>
-<pre><code class="language-Move">if (&lt;EXPRESSION&gt;) &lt;EXPRESSION&gt;;
-</code></pre>
-<h3><a class="header" href="#lets-add-else-to-our-ifs" id="lets-add-else-to-our-ifs">Let's add <code>else</code> to our <code>if</code>s!</a></h3>
-<p>You can (and sometimes must) add <code>else</code> to your <code>if</code> construction:</p>
-<pre><code class="language-Move">// assume it's a script
-use 0x0::Transaction;
+    struct Record {
+        author_id: u64,
+        label_id: u64,
+        year: u64,
+        is_new: bool
+    }
 
-fun main(custom_addr: address) {
-    if (custom_addr != Transaction::sender()) {
-        abort 11
-    } else {
-        let _ = true
-    };
+    // we can create new Record in a method
+    public fun add_new(author_id: u64, label_id: u64, year: u64): Record {
+        // when creating new struct use pattern:
+        // &lt;key&gt;: &lt;value&gt;
+        Record {
+            author_id: author_id,
+            label_id: label_id,
+            year: year,
+            is_new: true
+        };
 
-    // alternatively
-    if (custom_addr != Transaction::sender()) abort 11 else {
-        let _ = true
-    };
-}
-</code></pre>
-<p>Syntax with <code>else</code>:</p>
-<pre><code class="language-Move">if (&lt;EXPRESSION&gt;)
-    &lt;EXPRESSION&gt;
-else
-    &lt;EXPRESSION&gt;;
-</code></pre>
-<h2><a class="header" href="#using-loops" id="using-loops">Using loops</a></h2>
-<p>In Move you have two ways to do repetition: conditional loop with <code>while</code> and infinite <code>loop</code>.</p>
-<p>Use while loop with bool expression inside parentheses:</p>
-<pre><code class="language-Move">fun main() {
+        // you can could also use short notation when variable
+        // name matches name of the property
+        let record: Record = Record {
+            author_id,
+            label_id,
+            year,
+            is_new: true
+        };
 
-    let i = 0;
+        record
+    }
 
-    while (i &lt; 5) {
-        i = i + 1;
+    // since struct fields can only be accessed within module, you
+    // have to provide interface to read structs if you pass it
+    // outside of the module
+    public fun print_year(r: Record): u64 {
+
+        // to access struct's fields use &quot;.&quot; (dot) notation
+        r.year
     }
 }
 </code></pre>
-<p>For infinite (non-conditional) loops use <code>loop</code> keyword with expression:</p>
-<pre><code class="language-Move">fun main() {
-    let i = 0;
-
-    loop {
-        i = i + 1;
-        if (i == 5) break
-    }
-}
+<p>Let's take a better look at <code>add_new(...)</code> function. Since struct is a new type, it can also be a return type, and you're able to see it in function definition:</p>
+<pre><code class="language-Move">public fun add_new(author_id: u64, label_id: u64, year: u64): Record { /* ... */ }
 </code></pre>
-<p>Syntax for loops:</p>
-<pre><code class="language-Move">while (&lt;EXPRESSION&gt;) &lt;EXPRESSION&gt;;
-loop &lt;EXPRESSION&gt;;
-</code></pre>
-<h3><a class="header" href="#control-loops-with-continue-and-break" id="control-loops-with-continue-and-break">Control loops with <code>continue</code> and <code>break</code></a></h3>
-<p>Keywords <code>continue</code> and <code>break</code> allow you to skip one round or break iteration.</p>
-<p>For example let's add two conditions into <code>loop</code>. If <code>i</code> is even we use <code>continue</code> to jump to next iteration without going through code after <code>continue</code> call.
-With <code>break</code> we stop iteration and exit loop.</p>
-<pre><code class="language-Move">fun main() {
-    let i = 0;
+<p>Okay. How can we use our <code>Record</code> struct after we published <code>VinylShop</code> module into network? Here's how:</p>
+<pre><code class="language-Move">// specify publisher's address
+use {{sender}}::VinylShop;
 
-    loop {
-        i = i + 1;
+fun main() {
+    // we can use type but we can't construct it - Rule #3
+    let record : VinylShop::Record = VinylShop::add_new(10, 10, 1999);
 
-        if (i / 2 == 0) continue;
-        if (i == 5) break;
-
-        // assume we do something here
-    };
-
-    // i here is 5
-}
-</code></pre>
-<p>About semicolons. If <code>break</code> and <code>continue</code> are the last keywords in scope, you can't put a semicolon after them as any code after won't be executed. Somehow even semi can't be put. See this:</p>
-<pre><code class="language-Move">fun main() {
-    let i = 0;
-
-    loop {
-        i = i + 1;
-
-        if (i == 5) {
-            break; // will result in compiler error. correct is `break` without semi
-                   // Error: Unreachable code
-        }
-
-        // same with continue here: no semi, never;
-        if (true) {
-            continue
-        }
-
-        // however you can put semi like this, because continue and break here
-        // are single expressions, hence they &quot;end their own scope&quot;
-        if (true) continue;
-        if (i == 5) break;
-    }
+    // here we can pass record type but can't use `record.year` - Rule #4
+    if (VinylShop::print_year(record) == 1999) abort 11;
 }
 </code></pre>
 
@@ -270,13 +228,13 @@ With <code>break</code> we stop iteration and exit loop.</p>
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../move-language-reference/primitives.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../chapters/imports.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../move-language-reference/struct.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../chapters/advanced-topics.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -288,13 +246,13 @@ With <code>break</code> we stop iteration and exit loop.</p>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../move-language-reference/primitives.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../chapters/imports.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="../move-language-reference/struct.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../chapters/advanced-topics.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
