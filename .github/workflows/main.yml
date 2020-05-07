@@ -20,7 +20,8 @@ jobs:
           node-version: 12.x
 
       - run: npm install highlight.js@10
-      - run: cp misc/move.js node_modules/highlight.js/src/languages
+      - run: ls -la && ls -la node_modules
+      - run: cp misc/move.js ${{ env.hljs }}/src/languages
       - run: node tools/build.js -t browser move
         working-directory: ${{ env.hljs }}
       - run: mkdir themes
