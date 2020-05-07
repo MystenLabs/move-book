@@ -5,7 +5,6 @@ There are two types of code transactions in Move: module and script. Module is a
 Module code starts with `module` keyword and its code looks like this. Inside module you can define: new *types* (as structs), *methods* and `resource structs`.
 
 ```Move
-// written in Move
 module MyModule {
     struct hi_fives {
         count: u8

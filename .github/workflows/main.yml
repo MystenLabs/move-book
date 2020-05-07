@@ -8,8 +8,25 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-18.04
+    env:
+      hljs: node_modules/highlight.js
     steps:
       - uses: actions/checkout@v2
+
+      # This code actually builds custom highlight.js for Move
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - run: npm install highlight.js@10
+      - run: cp misc/move.js node_modules/highlight.js/src/languages
+      - run: node tools/build.js -t browser move
+        working-directory: ${{ env.hljs }}
+      - run: mkdir themes
+      - run: cp ${{ env.hljs }}/build/highlight.min.js themes/highlight.js
+
+      # Go on with regular tasks
 
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@v1
@@ -24,3 +41,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./book
           cname: move-book.com
+
+
