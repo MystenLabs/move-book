@@ -37,7 +37,7 @@ jobs:
       - run: cp misc/move.js hljs/src/languages
       - run: node tools/build -t browser move
         working-directory: hljs
-      - run: cp hljs/build/highlight.js ./highlight.HEARMEOUT.md
+      - run: cp hljs/build/highlight.min.js ./highlight.js
       - run: ls -la
 
       - name: Deploy
