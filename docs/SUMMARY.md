@@ -15,7 +15,7 @@
     - [References](chapters/references.md)
     - [Generics](chapters/generics.md)
     - [Vector](chapters/vector.md)
-    - [Resource](chapters/generics.md)
+    - [Resource](chapters/resource.md)
 - [Move IDE](ide/readme.md)
     - [Install & Configure](ide/setting-up.md)
 
