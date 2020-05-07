@@ -13,16 +13,17 @@ Which means that every `loop`, every `while` and `if` expressions - all of them 
 If you want to run code block when some expression is `true` you need to use `if` keyword:
 
 ```Move
-// assume it's a script
-use 0x0::Transaction;
+script {
+    use 0x0::Transaction;
 
-fun main(custom_addr: address) {
-    if (custom_addr != Transaction::sender()) {
-        abort 11
-    };
+    fun main(custom_addr: address) {
+        if (custom_addr != Transaction::sender()) {
+            abort 11
+        };
 
-    // alternatively
-    if (custom_addr != Transaction::sender()) abort 11
+        // alternatively
+        if (custom_addr != Transaction::sender()) abort 11
+    }
 }
 ```
 
@@ -36,20 +37,21 @@ if (<EXPRESSION>) <EXPRESSION>;
 
 You can (and sometimes must) add `else` to your `if` construction:
 ```Move
-// assume it's a script
-use 0x0::Transaction;
+script {
+    use 0x0::Transaction;
 
-fun main(custom_addr: address) {
-    if (custom_addr != Transaction::sender()) {
-        abort 11
-    } else {
-        let _ = true
-    };
+    fun main(custom_addr: address) {
+        if (custom_addr != Transaction::sender()) {
+            abort 11
+        } else {
+            let _ = true
+        };
 
-    // alternatively
-    if (custom_addr != Transaction::sender()) abort 11 else {
-        let _ = true
-    };
+        // alternatively
+        if (custom_addr != Transaction::sender()) abort 11 else {
+            let _ = true
+        };
+    }
 }
 ```
 

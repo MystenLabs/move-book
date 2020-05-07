@@ -1,4 +1,3 @@
-<!-- toc -->
 # Resources
 
 Resources are what makes Move unique, safe and powerful.

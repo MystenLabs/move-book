@@ -6,6 +6,7 @@
 - [Syntax Basics](chapters/syntax-basics.md)
     - [Script and Module](chapters/concept.md)
     - [Primitive Types](chapters/primitives.md)
+    - [Comments](chapters/comments.md)
     - [Expression](chapters/expression-block.md)
     - [Control Flow](chapters/control-flow.md)
     - [Function](chapters/function.md)

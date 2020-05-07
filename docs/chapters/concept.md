@@ -19,11 +19,13 @@ module MyModule {
 Script must contain `main` function and usually uses deployed modules. See [imports](/move-language-reference/imports.md) on how to import modules.
 
 ```Move
-// assume that sender address was 0xAF
-use {{sender}}::MyModule;
+script {
+    // assume that sender address was 0xAF
+    use {{sender}}::MyModule;
 
-fun main() {
-    MyModule::high_five();
+    fun main() {
+        MyModule::high_five();
+    }
 }
 ```
 

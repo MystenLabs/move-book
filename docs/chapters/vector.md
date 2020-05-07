@@ -48,29 +48,29 @@ In this example we've created an empty vector of `u8` integers and filled it wit
 
 ## 0x0::Vector module
 
-To manage collection properly we'd need to be able to get it's length, to access elements of this collection, and to modify its contents. All of this can be done with standard library (and only with standard library).
+To manage collection properly we'd need to be able to get its length, to access elements of this collection, and to modify its contents. All of this can be done with standard library (and only with standard library).
 
 Here's a short list of methods available:
 
-- Create an empty vector of type \<Element\>
+- Create an empty vector of type \<E\>
 ```Move
-Vector::empty<T>(): vector<T>;
+Vector::empty<E>(): vector<E>;
 ```
 - Get length of a vector
 ```Move
-Vector::length<T>(v: &vector<T>): u64;
+Vector::length<E>(v: &vector<E>): u64;
 ```
 - Push element to the end of the vector:
 ```Move
-Vector::push_back<T>(v: &mut vector<T>, e: T);
+Vector::push_back<E>(v: &mut vector<E>, e: E);
 ```
 - Get mutable reference to element of vector. For immutable borrow use `Vector::borrow()`
 ```
-Vector::borrow_mut<T>(v: &mut vector<T>, i: u64): &T;
+Vector::borrow_mut<E>(v: &mut vector<E>, i: u64): &E;
 ```
 - Pop an element from the end of vector:
 ```
-Vector::pop_back<T>(v: &mut vector<T>): T;
+Vector::pop_back<E>(v: &mut vector<E>): E;
 ```
 
 This list is just enough to start working with vector, but to know full potential of vector you must see these standard libraries:
