@@ -38,7 +38,7 @@ There's no need to explain what these functions do. Also we've added two argumen
 1. Function arguments MUST have types specified and MUST be separated by comma;
 2. Function return value (if there is one) is put after parentheses and requires a colon;
 
-Now how would we call function `sum`? That's how!
+Now how would we call function `sum`? Here's a sample.
 
 ```Move
 script {
@@ -96,9 +96,9 @@ script {
     }
 }
 ```
-This function again takes two arguments: *a* and *b* and also returns two values, first is the mini and second is max. Take closer look at the syntax: instead of specifying singe return argument we've added parenteses and have listed return argument types.
+This function takes two arguments: *a* and *b* and also **returns two values**: first is the max value and second is a boolean whether numbers entered are equal. Take closer look at the syntax: instead of specifying singe return argument we've added **parenteses** and have listed return argument types.
 
-What this function does? It returns max value out of a and b as the first return value and second value of type *bool* marks if they are equal. Let's see how we can use result of this function in `let` statement.
+Now let's see how we can use result of this function in `let` statement.
 
 ```Move
 script {
@@ -116,6 +116,10 @@ script {
 ```
 
 In this example we've *destructed* a tuple: created two new variables with values and types of return values of function *max*. Order is preserved and variable *m* here gets type *u8* and store max value, whereas *is_equal* is a *bool*.
+
+Two is not the limit - number of returned arguments is up to you, though you'll soon learn about structs and see alternative way to return complex data.
+
+
 
 
 
