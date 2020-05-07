@@ -401,7 +401,7 @@ With <code>break</code> we stop iteration and exit loop.</p>
 <li>Function arguments MUST have types specified and MUST be separated by comma;</li>
 <li>Function return value (if there is one) is put after parentheses and requires a colon;</li>
 </ol>
-<p>Now how would we call function <code>sum</code>? That's how!</p>
+<p>Now how would we call function <code>sum</code>? Here's a sample.</p>
 <pre><code class="language-Move">script {
     fun sum(a: u8, b: u8): u8 {
         a + b
@@ -446,8 +446,8 @@ With <code>break</code> we stop iteration and exit loop.</p>
     }
 }
 </code></pre>
-<p>This function again takes two arguments: <em>a</em> and <em>b</em> and also returns two values, first is the mini and second is max. Take closer look at the syntax: instead of specifying singe return argument we've added parenteses and have listed return argument types.</p>
-<p>What this function does? It returns max value out of a and b as the first return value and second value of type <em>bool</em> marks if they are equal. Let's see how we can use result of this function in <code>let</code> statement.</p>
+<p>This function takes two arguments: <em>a</em> and <em>b</em> and also <strong>returns two values</strong>: first is the max value and second is a boolean whether numbers entered are equal. Take closer look at the syntax: instead of specifying singe return argument we've added <strong>parenteses</strong> and have listed return argument types.</p>
+<p>Now let's see how we can use result of this function in <code>let</code> statement.</p>
 <pre><code class="language-Move">script {
     // max function is defined ...
     fun main(): u64  {
@@ -462,6 +462,7 @@ With <code>break</code> we stop iteration and exit loop.</p>
 }
 </code></pre>
 <p>In this example we've <em>destructed</em> a tuple: created two new variables with values and types of return values of function <em>max</em>. Order is preserved and variable <em>m</em> here gets type <em>u8</em> and store max value, whereas <em>is_equal</em> is a <em>bool</em>.</p>
+<p>Two is not the limit - number of returned arguments is up to you, though you'll soon learn about structs and see alternative way to return complex data.</p>
 <h1><a class="header" href="#imports" id="imports">Imports</a></h1>
 <p>Default context in Move is empty - you can't operate Vector, you can't access Transaction details and you can't do almost anything (with small exception of built-in functions which will also require some Account features). To make your module or a script more meaningful and useful you need imports.</p>
 <p>Here we need to take a step back and go through concept again. As I've mentioned in previous part there're two types of code transactions: <em>module</em> and <em>script</em>. Module is <em>deployed</em> (or published) and can be imported and used in a script. Not only custom deployed modules can be imported. There's also the <em>Standard library</em> (accessible at address <code>0x0</code>) which significantly extends language functionality.</p>
