@@ -33,7 +33,7 @@ script {
 }
 ```
 
-There's no need to explain what these functions do. Also we've added two arguments to `sum` function inside parentheses: *a* and *b*. Let's learn few rules:
+Here we've created `sum` function with two arguments inside parentheses: *a* and *b*. Let's learn few rules:
 
 1. Function arguments MUST have types specified and MUST be separated by comma;
 2. Function return value (if there is one) is put after parentheses and requires a colon;
