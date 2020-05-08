@@ -96,6 +96,7 @@ script {
     }
 }
 ```
+
 This function takes two arguments: *a* and *b* and also **returns two values**: first is the max value and second is a boolean whether numbers entered are equal. Take closer look at the syntax: instead of specifying singe return argument we've added **parenteses** and have listed return argument types.
 
 Now let's see how we can use result of this function in `let` statement.
@@ -115,12 +116,11 @@ script {
 }
 ```
 
-In this example we've *destructed* a tuple: created two new variables with values and types of return values of function *max*. Order is preserved and variable *m* here gets type *u8* and store max value, whereas *is_equal* is a *bool*.
+In this example we've *destructed* a tuple: created two new variables with values and types of return values of function *max*. Order is preserved and variable *m* here gets type *u8* and now stores max value, whereas *is_equal* is a *bool*.
 
 Two is not the limit - number of returned arguments is up to you, though you'll soon learn about structs and see alternative way to return complex data.
 
+### Functions in a module
 
-
-
-
+### Function visibility
 

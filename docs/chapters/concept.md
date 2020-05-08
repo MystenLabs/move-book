@@ -1,6 +1,6 @@
 # Script and Module
 
-There are two types of code transactions in Move: module and script. Module is a deployment of new model (which then will be accessible under the address of sender); Script is a transaction-as-code in which you can use deployed modules as well as the standard library as dependencies.
+There are two types of code transactions in Move: module and script. Module is a deployment of new module (which then will be accessible under the address of sender); Script is a transaction-as-code in which you can use deployed modules as well as the standard library as dependencies.
 
 Module code starts with `module` keyword and its code looks like this. Inside module you can define: new *types* (as structs), *methods* and `resource structs`.
 
