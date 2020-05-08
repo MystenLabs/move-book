@@ -173,7 +173,7 @@
 <h1><a class="header" href="#syntax-basics" id="syntax-basics">Syntax Basics</a></h1>
 <p>In this chapter you'll get to know Move language. We'll start with very simple and basic grammar rules and intensity will increase from one chapter to another. If you're a skilled developer this may seem too easy at first glance, but I do recommend you to take a closer look. If you're a beginner, then this part will give you everything you need to know about Move basics.</p>
 <h1><a class="header" href="#script-and-module" id="script-and-module">Script and Module</a></h1>
-<p>There are two types of code transactions in Move: module and script. Module is a deployment of new model (which then will be accessible under the address of sender); Script is a transaction-as-code in which you can use deployed modules as well as the standard library as dependencies.</p>
+<p>There are two types of code transactions in Move: module and script. Module is a deployment of new module (which then will be accessible under the address of sender); Script is a transaction-as-code in which you can use deployed modules as well as the standard library as dependencies.</p>
 <p>Module code starts with <code>module</code> keyword and its code looks like this. Inside module you can define: new <em>types</em> (as structs), <em>methods</em> and <code>resource structs</code>.</p>
 <pre><code class="language-Move">module MyModule {
     struct hi_fives {
@@ -297,7 +297,19 @@
 }
 </code></pre>
 <p>Of course this example is ridiculous! But it clearly shows the power of block comment. Feel free to comment anywhere!</p>
-<h1><a class="header" href="#expression-and-blocks" id="expression-and-blocks">Expression and Blocks</a></h1>
+<h1><a class="header" href="#expression" id="expression">Expression</a></h1>
+<p>In programming languages expressions is a unit of code which returns a value. A function call with return value is an expression - it returns value, an integer literal is an expression - it has the value of this integer and so on.</p>
+<h3><a class="header" href="#simple-expressions" id="simple-expressions">Simple expressions</a></h3>
+<p>Look at the code below. What do you see? What is an expression from the definition and what is not?</p>
+<pre><code class="language-Move">fun main(): u8 {
+    let a = 10;
+    let b;
+    b = a;
+    (a + b)
+}
+</code></pre>
+<p>Remember keyword <code>let</code> from <a href="chapters//chapters/primitives.html">primitives chapter</a>? It creates new variable and assigns it a value of expression which has to be put right after equality (or <em>assignment</em>) sign.</p>
+<p>In this example <code>10</code> is an expression (an integer literal) which returns 10. Variable <code>a</code> was created and assigned a value - 10.</p>
 <h1><a class="header" href="#control-flow" id="control-flow">Control Flow</a></h1>
 <p>In terms of control operators Move's syntax is similar to Rust with some differences which I'll highlight.</p>
 <p>Let's start with one simple rule:</p>
@@ -505,8 +517,10 @@ With <code>break</code> we stop iteration and exit loop.</p>
     }
 }
 </code></pre>
-<p>In this example we've <em>destructed</em> a tuple: created two new variables with values and types of return values of function <em>max</em>. Order is preserved and variable <em>m</em> here gets type <em>u8</em> and store max value, whereas <em>is_equal</em> is a <em>bool</em>.</p>
+<p>In this example we've <em>destructed</em> a tuple: created two new variables with values and types of return values of function <em>max</em>. Order is preserved and variable <em>m</em> here gets type <em>u8</em> and now stores max value, whereas <em>is_equal</em> is a <em>bool</em>.</p>
 <p>Two is not the limit - number of returned arguments is up to you, though you'll soon learn about structs and see alternative way to return complex data.</p>
+<h3><a class="header" href="#functions-in-a-module" id="functions-in-a-module">Functions in a module</a></h3>
+<h3><a class="header" href="#function-visibility" id="function-visibility">Function visibility</a></h3>
 <h1><a class="header" href="#imports" id="imports">Imports</a></h1>
 <p>Default context in Move is empty - you can't operate Vector, you can't access Transaction details and you can't do almost anything (with small exception of built-in functions which will also require some Account features). To make your module or a script more meaningful and useful you need imports.</p>
 <p>Here we need to take a step back and go through concept again. As I've mentioned in previous part there're two types of code transactions: <em>module</em> and <em>script</em>. Module is <em>deployed</em> (or published) and can be imported and used in a script. Not only custom deployed modules can be imported. There's also the <em>Standard library</em> (accessible at address <code>0x0</code>) which significantly extends language functionality.</p>

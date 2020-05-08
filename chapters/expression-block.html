@@ -147,7 +147,19 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#expression-and-blocks" id="expression-and-blocks">Expression and Blocks</a></h1>
+                        <h1><a class="header" href="#expression" id="expression">Expression</a></h1>
+<p>In programming languages expressions is a unit of code which returns a value. A function call with return value is an expression - it returns value, an integer literal is an expression - it has the value of this integer and so on.</p>
+<h3><a class="header" href="#simple-expressions" id="simple-expressions">Simple expressions</a></h3>
+<p>Look at the code below. What do you see? What is an expression from the definition and what is not?</p>
+<pre><code class="language-Move">fun main(): u8 {
+    let a = 10;
+    let b;
+    b = a;
+    (a + b)
+}
+</code></pre>
+<p>Remember keyword <code>let</code> from <a href="/chapters/primitives.html">primitives chapter</a>? It creates new variable and assigns it a value of expression which has to be put right after equality (or <em>assignment</em>) sign.</p>
+<p>In this example <code>10</code> is an expression (an integer literal) which returns 10. Variable <code>a</code> was created and assigned a value - 10.</p>
 
                     </main>
 
