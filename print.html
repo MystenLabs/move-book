@@ -374,19 +374,66 @@ out/
 </code></pre>
 <p>Of course this example is ridiculous! But it clearly shows the power of block comment. Feel free to comment anywhere!</p>
 <h1><a class="header" href="#expression" id="expression">Expression</a></h1>
-<p>In programming languages expressions is a unit of code which returns a value. A function call with return value is an expression - it returns value, an integer literal is an expression - it has the value of this integer and so on.</p>
-<h3><a class="header" href="#simple-expressions" id="simple-expressions">Simple expressions</a></h3>
-<p>Look at the code below. What do you see? What is an expression from the definition and what is not?</p>
-<pre><code class="language-Move">fun main(): u8 {
-    let a = 10;
-    let b;
-    b = a;
-    (a + b)
+<p>In programming languages expressions is a unit of code which returns a value. A function call with return value is an expression - it returns value, an integer (or bool or address) literal is an expression - it has the value of its integer type and so on.</p>
+<blockquote>
+<p>Every expression in Move MUST end with semicolon*</p>
+</blockquote>
+<h3><a class="header" href="#literal-expressions" id="literal-expressions">Literal expressions</a></h3>
+<p>Look at the code below. Every line contains an expression which ends with semicolon. Last line has three expressions separated by semicolons.</p>
+<pre><code class="language-Move">script {
+    fun expr_samples() {
+        10;
+        10 + 5;
+        true;
+        true != false;
+        0x0;
+        1; 2; 3;
+    }
 }
 </code></pre>
-<p>Remember keyword <code>let</code> from <a href="chapters//chapters/primitives.html">primitives chapter</a>? It creates new variable and assigns it a value of expression which has to be put right after equality (or <em>assignment</em>) sign.</p>
-<p>In this example <code>10</code> is an expression (an integer literal) which returns 10. Variable <code>a</code> was created and assigned a value - 10. Variable <code>b</code> however did not get value and was only defined in <code>let</code> statement.</p>
-<p>Going further.</p>
+<p>Good. You now know the simplest expressions there are. But why do we need them? And how to use? It's time to know <code>let</code> keyword.</p>
+<h3><a class="header" href="#variables-and-let-keyword" id="variables-and-let-keyword">Variables and <code>let</code> keyword</a></h3>
+<p>To store expression value inside variable (to pass it somewhere) you have keyword <code>let</code> (you've already seen it in <a href="chapters//chapters/primitives.html">primitives chapter</a>, remember?). It creates a new variable either empty (undefined) or with value of expression. Let's see some code:</p>
+<pre><code class="language-Move">script {
+    fun let_kwd() {
+        let a;
+        let b = true;
+        let c = 10;
+        let d = 0x0;
+        a = c;
+    }
+}
+</code></pre>
+<blockquote>
+<p>Keword <code>let</code> creates new variable inside <em>current scope</em> and optionally <em>initializes</em> this variable with value. Syntax for this expression is: <code>let &lt;VARIABLE&gt;;</code> or <code>let &lt;VARIABLE&gt; = &lt;EXPRESSION&gt;</code>.</p>
+</blockquote>
+<p>After you've created and initialized variable you're able to <em>modify</em> or <em>access</em> its value by using variable name. In example above variable <code>a</code> was initialized in the end of function and was <em>assigned</em> a value of variable <code>c</code>.</p>
+<blockquote>
+<p>Equality sign <code>=</code> is an assignment operator. It assigns right-hand-side expression to left-hand-side variable. Example: <code>a = 10</code> - variable <code>a</code> is assigned an integer value of <code>10</code>.</p>
+</blockquote>
+<h2><a class="header" href="#block-expression" id="block-expression">Block expression</a></h2>
+<p>A block is an expression - it's marked with <em>curly braces</em> - <code>{}</code>. It can contain other expressions (and other blocks). Function body (as you can see by already familiar curly-braces) is also a block in some sence (with few limitations).</p>
+<pre><code class="language-Move">script {
+    fun block() {
+        { };
+        { { }; };
+        true;
+        {
+            true;
+
+            { 10; };
+        };
+        { { { 10; }; }; };
+    }
+}
+</code></pre>
+<p>Even though you can create an empty block, there's no reason to do so. Blocks have their purpose and it's essential in Move. First, two rules:</p>
+<ol>
+<li>Block defines a <em>scope</em> inside it's own <em>scope</em> (where block is defined);</li>
+<li>Block can <em>return</em> value of any type.</li>
+</ol>
+<pre><code class="language-Move">
+</code></pre>
 <h1><a class="header" href="#control-flow" id="control-flow">Control Flow</a></h1>
 <p>In terms of control operators Move's syntax is similar to Rust with some differences which I'll highlight.</p>
 <p>Let's start with one simple rule:</p>
