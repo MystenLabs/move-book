@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Vector - Move Book</title>
+        <title>Getting Started - Move Book</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="../introduction/getting-started.html"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="../chapters/syntax-basics.html"><strong aria-hidden="true">5.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/concept.html"><strong aria-hidden="true">5.1.</strong> Script and Module</a></li><li class="chapter-item expanded "><a href="../chapters/primitives.html"><strong aria-hidden="true">5.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../chapters/comments.html"><strong aria-hidden="true">5.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../chapters/expression-block.html"><strong aria-hidden="true">5.4.</strong> Expression</a></li><li class="chapter-item expanded "><a href="../chapters/control-flow.html"><strong aria-hidden="true">5.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../chapters/function.html"><strong aria-hidden="true">5.6.</strong> Function</a></li><li class="chapter-item expanded "><a href="../chapters/imports.html"><strong aria-hidden="true">5.7.</strong> Import</a></li><li class="chapter-item expanded "><a href="../chapters/struct.html"><strong aria-hidden="true">5.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="../chapters/advanced-topics.html"><strong aria-hidden="true">6.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/references.html"><strong aria-hidden="true">6.1.</strong> References</a></li><li class="chapter-item expanded "><a href="../chapters/generics.html"><strong aria-hidden="true">6.2.</strong> Generics</a></li><li class="chapter-item expanded "><a href="../chapters/vector.html" class="active"><strong aria-hidden="true">6.3.</strong> Vector</a></li><li class="chapter-item expanded "><a href="../chapters/resource.html"><strong aria-hidden="true">6.4.</strong> Resource</a></li></ol></li><li class="chapter-item expanded "><a href="../ide/index.html"><strong aria-hidden="true">7.</strong> Move IDE</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../ide/setting-up.html"><strong aria-hidden="true">7.1.</strong> Install &amp; Configure</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="../introduction/getting-started.html" class="active"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="../chapters/syntax-basics.html"><strong aria-hidden="true">5.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/concept.html"><strong aria-hidden="true">5.1.</strong> Script and Module</a></li><li class="chapter-item expanded "><a href="../chapters/primitives.html"><strong aria-hidden="true">5.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../chapters/comments.html"><strong aria-hidden="true">5.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../chapters/expression-block.html"><strong aria-hidden="true">5.4.</strong> Expression</a></li><li class="chapter-item expanded "><a href="../chapters/control-flow.html"><strong aria-hidden="true">5.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../chapters/function.html"><strong aria-hidden="true">5.6.</strong> Function</a></li><li class="chapter-item expanded "><a href="../chapters/imports.html"><strong aria-hidden="true">5.7.</strong> Import</a></li><li class="chapter-item expanded "><a href="../chapters/struct.html"><strong aria-hidden="true">5.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="../chapters/advanced-topics.html"><strong aria-hidden="true">6.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/references.html"><strong aria-hidden="true">6.1.</strong> References</a></li><li class="chapter-item expanded "><a href="../chapters/generics.html"><strong aria-hidden="true">6.2.</strong> Generics</a></li><li class="chapter-item expanded "><a href="../chapters/vector.html"><strong aria-hidden="true">6.3.</strong> Vector</a></li><li class="chapter-item expanded "><a href="../chapters/resource.html"><strong aria-hidden="true">6.4.</strong> Resource</a></li></ol></li><li class="chapter-item expanded "><a href="../ide/index.html"><strong aria-hidden="true">7.</strong> Move IDE</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../ide/setting-up.html"><strong aria-hidden="true">7.1.</strong> Install &amp; Configure</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -147,89 +147,95 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#vector" id="vector">Vector</a></h1>
-<p>Vector is a built-in (native) complex type for storing collection of values of one type.</p>
-<h2><a class="header" href="#rules" id="rules">Rules</a></h2>
-<p>As usual - let's start with rules.</p>
+                        <h1><a class="header" href="#getting-started" id="getting-started">Getting started</a></h1>
+<p>As with any compiled language, you need proper set of tools to compile, run and debug your Move applications. Since this language is created for blockchains and used only within them, running scripts off-chain is a non-trivial task: every module will require environment, account handling and compile-publishing system.</p>
+<p>To simpify development of Move modules we've created Move IDE extension for Visual Studio Code. This extension will help you cope with environment requirements. Use of this extension is highly recommended as it will handle build/run environment for you, hence will let you focus on learning Move language instead of struggling with the CLI environment. This extension also includes Move syntax highlighting and run environment to help you debug your applications before going public.</p>
+<h2><a class="header" href="#install" id="install">Install</a></h2>
+<p>To install it you'll need:</p>
 <ol>
-<li>Vector is a native type (just like <a href="/chapters/primitives.html">primitives</a>) which means you can use it in both modules and scripts;</li>
-<li>Vector can only contain items of the same type. Which means you cannot store elements of type A and type B in the same vector;</li>
-<li>Vector can have size from zero to 9,223,372,036,854,775,807 (max size of <code>u64</code>), it's called length;</li>
-<li>Type of stored value is specified in generic: <code>vector&lt;Element&gt;</code>;</li>
-<li>Since it's a native type, to use it you need standard library - usually <code>0x0::Vector</code>.</li>
+<li>VSCode (version 1.43.0 and above) - you can <a href="https://code.visualstudio.com/download">get it here</a>; if you already have one - proceed to next step.</li>
+<li>Move IDE - once VSCode is installed, follow <a href="https://marketplace.visualstudio.com/items?itemName=damirka.move-ide">this link</a> to install newest version of IDE.</li>
 </ol>
-<h2><a class="header" href="#usage" id="usage">Usage</a></h2>
-<p>As said above you can use it everywhere. In module:</p>
-<pre><code class="language-Move">module Countries {
-    struct Country {
-        name: vector&lt;u8&gt;
-    }
+<h3><a class="header" href="#setup-environment" id="setup-environment">Setup environment</a></h3>
+<p>Move IDE proposes single way of organizing your directory structure. Create new directory for your project and open it in VSCode. Then setup this directory structure:</p>
+<pre><code>modules/    - directory for our modules
+scripts/    - directory for transaction scripts
+out/          - this directory will hold compiled sources
+</code></pre>
+<p>Also you'll need to create file called <code>.mvconfig.json</code> which will configure your working environment. This is a sample for <code>libra</code>:</p>
+<pre><code class="language-json">{
+    &quot;network&quot;: &quot;libra&quot;,
+    &quot;sender&quot;: &quot;0x1&quot;
+}
+</code></pre>
+<p>Alternatively you can use <code>dfinance</code> as network:</p>
+<pre><code class="language-json">{
+    &quot;network&quot;: &quot;dfinance&quot;,
+    &quot;sender&quot;: &quot;0x1&quot;
+}
+</code></pre>
+<blockquote>
+<p>dfinance uses bech32 'wallet1...' addresses, libra uses 16-byte '0x...' addresses. For local runs and experiments 0x1 address is enough - it's simple and short. Though when working with real blockchains in testnet or production environment you'll have to use correct address of network you've chosen.</p>
+</blockquote>
+<h2><a class="header" href="#your-very-first-application-with-move" id="your-very-first-application-with-move">Your very first application with Move</a></h2>
+<p>Move IDE allows you to run scripts in testing environment. Let's see how it works by implementing <code>gimme_five()</code> function and running it inside VSCode.</p>
+<h3><a class="header" href="#create-module" id="create-module">Create module</a></h3>
+<p>Create new file called <code>high_fiver.move</code> inside <code>modules/</code> directory of your project.</p>
+<pre><code class="language-Move">// modules/high_fiver.move
+address 0x1 {
 
-    resource struct CountriesList {
-        value: vector&lt;Country&gt;
+module HighFiver {
+    public fun gimme_five(): u8 {
+        5
     }
 }
 
+}
 </code></pre>
-<p>And in script!</p>
-<pre><code class="language-Move">script {
+<h3><a class="header" href="#write-script" id="write-script">Write script</a></h3>
+<p>Then create a script, let's call it <code>me.move</code> inside <code>scripts/</code> directory:</p>
+<pre><code class="language-Move">// scripts/me.move
+script {
+    use 0x1::HighFiver;
+    use 0x0::Debug;
 
-    use 0x0::Vector;
+    fun main() {
+        let five = HighFiver::gimme_five();
 
-    fun vector_example() {
-        let collection = Vector::empty&lt;u8&gt;();
-
-        Vector::push_back&lt;u8&gt;(&amp;mut collection, 10);
+        Debug::print&lt;u8&gt;(&amp;five);
     }
 }
 </code></pre>
-<p>In this example we've created an empty vector of <code>u8</code> integers and filled it with one value. Please note that vector creation within code is only possible via <code>0x0::Vector</code> library since this type is native.</p>
-<h2><a class="header" href="#0x0vector-module" id="0x0vector-module">0x0::Vector module</a></h2>
-<p>To manage collection properly we'd need to be able to get its length, to access elements of this collection, and to modify its contents. All of this can be done with standard library (and only with standard library).</p>
-<p>Here's a short list of methods available:</p>
-<ul>
-<li>Create an empty vector of type &lt;E&gt;</li>
-</ul>
-<pre><code class="language-Move">Vector::empty&lt;E&gt;(): vector&lt;E&gt;;
+<p>Then, while keeping your script open follow these steps:</p>
+<ol>
+<li>Toggle VSCode's command palette by pressing <code>⌘+Shift+P</code> (on Mac) or <code>Ctrl+Shift+P</code> (on Linux/Windows)</li>
+<li>Type: <code>&gt;Move: Run Script</code> and press enter or click when you see the right option.</li>
+</ol>
+<p>Voila! You should see execution result - log message with '5' printed in debug. If you don't see this window, go through this part again.</p>
+<p>Your directory structure should look like this:</p>
+<pre><code>modules/
+  high_fiver.move
+scripts/
+  me.move
+out/
+.mvconfig.json
 </code></pre>
-<ul>
-<li>Get length of a vector</li>
-</ul>
-<pre><code class="language-Move">Vector::length&lt;E&gt;(v: &amp;vector&lt;E&gt;): u64;
-</code></pre>
-<ul>
-<li>Push element to the end of the vector:</li>
-</ul>
-<pre><code class="language-Move">Vector::push_back&lt;E&gt;(v: &amp;mut vector&lt;E&gt;, e: E);
-</code></pre>
-<ul>
-<li>Get mutable reference to element of vector. For immutable borrow use <code>Vector::borrow()</code></li>
-</ul>
-<pre><code>Vector::borrow_mut&lt;E&gt;(v: &amp;mut vector&lt;E&gt;, i: u64): &amp;E;
-</code></pre>
-<ul>
-<li>Pop an element from the end of vector:</li>
-</ul>
-<pre><code>Vector::pop_back&lt;E&gt;(v: &amp;mut vector&lt;E&gt;): E;
-</code></pre>
-<p>This list is just enough to start working with vector, but to know full potential of vector you must see these standard libraries:</p>
-<ul>
-<li>Libra <a href="https://github.com/libra/libra/blob/master/language/stdlib/modules/vector.move">libra/libra</a></li>
-<li>Dfinance <a href="https://github.com/dfinance/dvm/blob/master/lang/stdlib/vector.move">dfinance/dvm</a></li>
-</ul>
+<blockquote>
+<p>You can have as many modules as you want in your modules directory; all of them will be accessible in your scripts under address which you've specified in .mvconfig.json</p>
+</blockquote>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../chapters/generics.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../introduction/move.or.mvir.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../chapters/resource.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../chapters/syntax-basics.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -241,13 +247,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../chapters/generics.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../introduction/move.or.mvir.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="../chapters/resource.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../chapters/syntax-basics.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
