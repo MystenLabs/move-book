@@ -17,4 +17,8 @@ fun main(): u8 {
 
 Remember keyword `let` from [primitives chapter](/chapters/primitives.md)? It creates new variable and assigns it a value of expression which has to be put right after equality (or *assignment*) sign.
 
-In this example `10` is an expression (an integer literal) which returns 10. Variable `a` was created and assigned a value - 10.
+In this example `10` is an expression (an integer literal) which returns 10. Variable `a` was created and assigned a value - 10. Variable `b` however did not get value and was only defined in `let` statement.
+
+Going further.
+
+
