@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Understanding Scopes - Move Book</title>
+        <title>Expression and Scope - Move Book</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="../introduction/getting-started.html"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="../chapters/syntax-basics.html"><strong aria-hidden="true">5.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/concept.html"><strong aria-hidden="true">5.1.</strong> Script and Module</a></li><li class="chapter-item expanded "><a href="../chapters/primitives.html"><strong aria-hidden="true">5.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../chapters/comments.html"><strong aria-hidden="true">5.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../chapters/expression-block.html"><strong aria-hidden="true">5.4.</strong> Expression</a></li><li class="chapter-item expanded "><a href="../chapters/scopes.html" class="active"><strong aria-hidden="true">5.5.</strong> Understanding Scopes</a></li><li class="chapter-item expanded "><a href="../chapters/control-flow.html"><strong aria-hidden="true">5.6.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../chapters/function.html"><strong aria-hidden="true">5.7.</strong> Function</a></li><li class="chapter-item expanded "><a href="../chapters/imports.html"><strong aria-hidden="true">5.8.</strong> Import</a></li><li class="chapter-item expanded "><a href="../chapters/struct.html"><strong aria-hidden="true">5.9.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="../chapters/advanced-topics.html"><strong aria-hidden="true">6.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/references.html"><strong aria-hidden="true">6.1.</strong> References</a></li><li class="chapter-item expanded "><a href="../chapters/generics.html"><strong aria-hidden="true">6.2.</strong> Generics</a></li><li class="chapter-item expanded "><a href="../chapters/vector.html"><strong aria-hidden="true">6.3.</strong> Vector</a></li><li class="chapter-item expanded "><a href="../chapters/resource.html"><strong aria-hidden="true">6.4.</strong> Resource</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="../introduction/getting-started.html"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="../chapters/syntax-basics.html"><strong aria-hidden="true">5.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/concept.html"><strong aria-hidden="true">5.1.</strong> Script and Module</a></li><li class="chapter-item expanded "><a href="../chapters/primitives.html"><strong aria-hidden="true">5.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../chapters/comments.html"><strong aria-hidden="true">5.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../chapters/expression-and-scope.html" class="active"><strong aria-hidden="true">5.4.</strong> Expression and Scope</a></li><li class="chapter-item expanded "><a href="../chapters/control-flow.html"><strong aria-hidden="true">5.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../chapters/function.html"><strong aria-hidden="true">5.6.</strong> Function</a></li><li class="chapter-item expanded "><a href="../chapters/imports.html"><strong aria-hidden="true">5.7.</strong> Import</a></li><li class="chapter-item expanded "><a href="../chapters/struct.html"><strong aria-hidden="true">5.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="../chapters/advanced-topics.html"><strong aria-hidden="true">6.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/references.html"><strong aria-hidden="true">6.1.</strong> References</a></li><li class="chapter-item expanded "><a href="../chapters/generics.html"><strong aria-hidden="true">6.2.</strong> Generics</a></li><li class="chapter-item expanded "><a href="../chapters/vector.html"><strong aria-hidden="true">6.3.</strong> Vector</a></li><li class="chapter-item expanded "><a href="../chapters/resource.html"><strong aria-hidden="true">6.4.</strong> Resource</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -147,12 +147,65 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#understanding-scopes" id="understanding-scopes">Understanding Scopes</a></h1>
-<p>Scope (as it's said in <a href="https://en.wikipedia.org/wiki/Scope_(computer_science)">Wikipedia</a>) is a region of code where binding is valid. In other words - it's a code block in which variable exist. In Move scope is a block of code surrounded by curly braces - basically a block, as mentioned in previous chapter.</p>
+                        <h1><a class="header" href="#expression-and-scope" id="expression-and-scope">Expression and Scope</a></h1>
+<p>In programming languages expressions is a unit of code which returns a value. A function call with return value is an expression - it returns value, an integer (or bool or address) literal is an expression - it has the value of its integer type and so on.</p>
 <blockquote>
-<p>When defining a block you actually define a scope.</p>
+<p>Every expression in Move MUST end with semicolon*</p>
 </blockquote>
-<p>Let's jump straight to samples!</p>
+<h3><a class="header" href="#literal-expressions" id="literal-expressions">Literal expressions</a></h3>
+<p>Look at the code below. Every line contains an expression which ends with semicolon. Last line has three expressions separated by semicolons.</p>
+<pre><code class="language-Move">script {
+    fun expr_samples() {
+        10;
+        10 + 5;
+        true;
+        true != false;
+        0x0;
+        1; 2; 3;
+    }
+}
+</code></pre>
+<p>Good. You now know the simplest expressions there are. But why do we need them? And how to use? It's time to know <code>let</code> keyword.</p>
+<h3><a class="header" href="#variables-and-let-keyword" id="variables-and-let-keyword">Variables and <code>let</code> keyword</a></h3>
+<p>To store expression value inside variable (to pass it somewhere) you have keyword <code>let</code> (you've already seen it in <a href="/chapters/primitives.html">primitives chapter</a>, remember?). It creates a new variable either empty (undefined) or with value of expression. Let's see some code:</p>
+<pre><code class="language-Move">script {
+    fun let_kwd() {
+        let a;
+        let b = true;
+        let c = 10;
+        let d = 0x0;
+        a = c;
+    }
+}
+</code></pre>
+<blockquote>
+<p>Keword <code>let</code> creates new variable inside <em>current scope</em> and optionally <em>initializes</em> this variable with value. Syntax for this expression is: <code>let &lt;VARIABLE&gt;;</code> or <code>let &lt;VARIABLE&gt; = &lt;EXPRESSION&gt;</code>.</p>
+</blockquote>
+<p>After you've created and initialized variable you're able to <em>modify</em> or <em>access</em> its value by using variable name. In example above variable <code>a</code> was initialized in the end of function and was <em>assigned</em> a value of variable <code>c</code>.</p>
+<blockquote>
+<p>Equality sign <code>=</code> is an assignment operator. It assigns right-hand-side expression to left-hand-side variable. Example: <code>a = 10</code> - variable <code>a</code> is assigned an integer value of <code>10</code>.</p>
+</blockquote>
+<h2><a class="header" href="#block-expression" id="block-expression">Block expression</a></h2>
+<p>A block is an expression; it's marked with <em>curly braces</em> - <code>{}</code>. Block can contain other expressions (and other blocks). Function body (as you can see by already familiar curly-braces) is also a block in some sence (with few limitations).</p>
+<pre><code class="language-Move">script {
+    fun block() {
+        { };
+        { { }; };
+        true;
+        {
+            true;
+
+            { 10; };
+        };
+        { { { 10; }; }; };
+    }
+}
+</code></pre>
+<h3><a class="header" href="#understanding-scopes" id="understanding-scopes">Understanding scopes</a></h3>
+<p>Scope (as it's said in <a href="https://en.wikipedia.org/wiki/Scope_(computer_science)">Wikipedia</a>) is a region of code where binding is valid. In other words - it's a part of code in which variable exists. In Move scope is a block of code surrounded by curly braces - basically a block.</p>
+<blockquote>
+<p>When defining block you actually define a scope.</p>
+</blockquote>
 <pre><code class="language-Move">script {
     fun scope_sample() {
         // this is a function scope
@@ -170,7 +223,7 @@
     }
 }
 </code></pre>
-<p>As you can see by comments in this sample, scopes are defined by blocks, they can be nested and there's no limit to how many scopes you can define.</p>
+<p>As you can see from comments in this sample, scopes are defined by blocks (or functions), they can be nested and there's no limit to how many scopes you can define.</p>
 <h3><a class="header" href="#variable-lifetime-and-visibility" id="variable-lifetime-and-visibility">Variable lifetime and visibility</a></h3>
 <p>Keyword let creates a variable - you already know that. Though you probably don't know that defined variable will live only inside the scope where it's defined (hence inside nested scopes); simply put - it's unaccessible outside its scope and dies right after this scope's end.</p>
 <pre><code class="language-Move">script {
@@ -240,13 +293,33 @@
     }
 }
 </code></pre>
+<h3><a class="header" href="#summary" id="summary">Summary</a></h3>
+<p>Let's keynote main points of this chapter.</p>
+<ol>
+<li>
+<blockquote>
+<p>Every expression must end with semicolon unless it's the return value of block</p>
+</blockquote>
+</li>
+<li>
+<blockquote>
+<p>Keyword <code>let</code> creates new variable with value or right-hand-side expression which lives as long as the scope in which it's been created</p>
+</blockquote>
+</li>
+<li>
+<blockquote>
+<p>Block is an expression which may or may not have return value</p>
+</blockquote>
+</li>
+</ol>
+<p>How to control execution flow and how to use blocks for logic switches - on the next page.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../chapters/expression-block.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../chapters/comments.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
@@ -264,7 +337,7 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../chapters/expression-block.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../chapters/comments.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
