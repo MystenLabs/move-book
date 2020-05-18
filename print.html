@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="introduction/getting-started.html"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="chapters/syntax-basics.html"><strong aria-hidden="true">5.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/concept.html"><strong aria-hidden="true">5.1.</strong> Script and Module</a></li><li class="chapter-item expanded "><a href="chapters/primitives.html"><strong aria-hidden="true">5.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="chapters/comments.html"><strong aria-hidden="true">5.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="chapters/expression-block.html"><strong aria-hidden="true">5.4.</strong> Expression</a></li><li class="chapter-item expanded "><a href="chapters/control-flow.html"><strong aria-hidden="true">5.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="chapters/function.html"><strong aria-hidden="true">5.6.</strong> Function</a></li><li class="chapter-item expanded "><a href="chapters/imports.html"><strong aria-hidden="true">5.7.</strong> Import</a></li><li class="chapter-item expanded "><a href="chapters/struct.html"><strong aria-hidden="true">5.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="chapters/advanced-topics.html"><strong aria-hidden="true">6.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/references.html"><strong aria-hidden="true">6.1.</strong> References</a></li><li class="chapter-item expanded "><a href="chapters/generics.html"><strong aria-hidden="true">6.2.</strong> Generics</a></li><li class="chapter-item expanded "><a href="chapters/vector.html"><strong aria-hidden="true">6.3.</strong> Vector</a></li><li class="chapter-item expanded "><a href="chapters/resource.html"><strong aria-hidden="true">6.4.</strong> Resource</a></li></ol></li><li class="chapter-item expanded "><a href="ide/index.html"><strong aria-hidden="true">7.</strong> Move IDE</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ide/setting-up.html"><strong aria-hidden="true">7.1.</strong> Install &amp; Configure</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="introduction/getting-started.html"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="chapters/syntax-basics.html"><strong aria-hidden="true">5.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/concept.html"><strong aria-hidden="true">5.1.</strong> Script and Module</a></li><li class="chapter-item expanded "><a href="chapters/primitives.html"><strong aria-hidden="true">5.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="chapters/comments.html"><strong aria-hidden="true">5.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="chapters/expression-block.html"><strong aria-hidden="true">5.4.</strong> Expression</a></li><li class="chapter-item expanded "><a href="chapters/scopes.html"><strong aria-hidden="true">5.5.</strong> Understanding Scopes</a></li><li class="chapter-item expanded "><a href="chapters/control-flow.html"><strong aria-hidden="true">5.6.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="chapters/function.html"><strong aria-hidden="true">5.7.</strong> Function</a></li><li class="chapter-item expanded "><a href="chapters/imports.html"><strong aria-hidden="true">5.8.</strong> Import</a></li><li class="chapter-item expanded "><a href="chapters/struct.html"><strong aria-hidden="true">5.9.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="chapters/advanced-topics.html"><strong aria-hidden="true">6.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/references.html"><strong aria-hidden="true">6.1.</strong> References</a></li><li class="chapter-item expanded "><a href="chapters/generics.html"><strong aria-hidden="true">6.2.</strong> Generics</a></li><li class="chapter-item expanded "><a href="chapters/vector.html"><strong aria-hidden="true">6.3.</strong> Vector</a></li><li class="chapter-item expanded "><a href="chapters/resource.html"><strong aria-hidden="true">6.4.</strong> Resource</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -427,12 +427,98 @@ out/
     }
 }
 </code></pre>
-<p>Even though you can create an empty block, there's no reason to do so. Blocks have their purpose and it's essential in Move. First, two rules:</p>
-<ol>
-<li>Block defines a <em>scope</em> inside it's own <em>scope</em> (where block is defined);</li>
-<li>Block can <em>return</em> value of any type.</li>
-</ol>
-<pre><code class="language-Move">
+<h1><a class="header" href="#understanding-scopes" id="understanding-scopes">Understanding Scopes</a></h1>
+<p>Scope (as it's said in <a href="https://en.wikipedia.org/wiki/Scope_(computer_science)">Wikipedia</a>) is a region of code where binding is valid. In other words - it's a code block in which variable exist. In Move scope is a block of code surrounded by curly braces - basically a block, as mentioned in previous chapter.</p>
+<blockquote>
+<p>When defining a block you actually define a scope.</p>
+</blockquote>
+<p>Let's jump straight to samples!</p>
+<pre><code class="language-Move">script {
+    fun scope_sample() {
+        // this is a function scope
+        {
+            // this is a block scope inside function scope
+            {
+                // and this is a scope inside scope
+                // inside functions scope... etc
+            };
+        };
+
+        {
+            // this is another block inside function scope
+        };
+    }
+}
+</code></pre>
+<p>As you can see by comments in this sample, scopes are defined by blocks, they can be nested and there's no limit to how many scopes you can define.</p>
+<h3><a class="header" href="#variable-lifetime-and-visibility" id="variable-lifetime-and-visibility">Variable lifetime and visibility</a></h3>
+<p>Keyword let creates a variable - you already know that. Though you probably don't know that defined variable will live only inside the scope where it's defined (hence inside nested scopes); simply put - it's unaccessible outside its scope and dies right after this scope's end.</p>
+<pre><code class="language-Move">script {
+    fun let_scope_sample() {
+        let a = 1; // we've defined variable A inside function scope
+
+        {
+            let b = 2; // variable B is inside block scope
+
+            {
+                // variables A and B are accessible inside
+                // nested scopes
+                let c = a + b;
+
+            }; // in here C dies
+
+            // we can't write this line
+            // let d = c + b;
+            // as variable C died with its scope
+
+            // but we can define another C
+            let c = b - 1;
+
+        }; // variable C dies, so does C
+
+        // this is impossible
+        // let d = b + c;
+
+        // we can define any variables we want
+        // no name reservation happened
+        let b = a + 1;
+        let c = b + 1;
+
+    } // function scope ended - no A, B and C are dead
+}
+</code></pre>
+<blockquote>
+<p>Variable lives only within scope (or block) where it's defined. When its scope ends, variable dies.</p>
+</blockquote>
+<h3><a class="header" href="#block-return-values" id="block-return-values">Block return values</a></h3>
+<p>In previous part you've learned that block is an expression but we didn't cover why it is an expression and what is block's return value.</p>
+<blockquote>
+<p>Block can return a value, it's the value of the last expression inside this block if it's not followed by semicolon</p>
+</blockquote>
+<p>May sound hard, so I'll give you few examples:</p>
+<pre><code class="language-Move">script {
+    fun block_ret_sample() {
+
+        // since block is an expression, we can
+        // assign it's value to variable with let
+        let a = {
+
+            let c = 10;
+
+            c * 1000  // no semicolon!
+        }; // scope ended, variable a got value 10000
+
+        let b = {
+            a * 1000  // no semi!
+        };
+
+        // variable b got value 10000000
+
+        {
+            10; // see semi!
+        }; // this block does not return a value
+    }
+}
 </code></pre>
 <h1><a class="header" href="#control-flow" id="control-flow">Control Flow</a></h1>
 <p>In terms of control operators Move's syntax is similar to Rust with some differences which I'll highlight.</p>
@@ -1167,29 +1253,6 @@ borrow_global&lt;T&gt;(&lt;ADDRESS&gt;);
 borrow_global_mut&lt;T&gt;(&lt;ADDRESS&gt;);
 move_from&lt;T&gt;(&lt;ADDRESS&gt;); // destroy resource
 </code></pre>
-<h1><a class="header" href="#move-ide" id="move-ide">Move IDE</a></h1>
-<p>Currently there're only few text editors with support of Move language (through extensions or packages). Those are:</p>
-<ul>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=SDKBox.vscode-libra-move">VSCode Move Language</a> - supports only Mvir, <strong>outdated</strong></li>
-<li><a href="https://atom.io/packages/language-move">Atom Language Move</a> - mostly Mvir, hardly Move</li>
-</ul>
-<p>And the best of all at the moment: <a href="https://marketplace.visualstudio.com/items?itemName=damirka.move-ide">Move IDE for VSCode</a></p>
-<h2><a class="header" href="#features" id="features">Features</a></h2>
-<p>As an active Move enthusiast and a guy who wrote 2 out of 3 currently available packages for Move language I gurarantee you that Move IDE for VSCode is the best option you've got. Let's see what's inside:</p>
-<ul>
-<li>Full syntax support for both Move and Mvir;</li>
-<li><a href="https://github.com/dfinance/move-language-server">Move Language Server</a> integrated into IDE which provides error highlights, code verification and import checks</li>
-<li>Fully customizable environment for your projects with ability to set custom Move dialect, use different versions of Standard Library or compiler within the directory</li>
-<li>It provides you with standard of organizing your Move project and aims to make this standard true</li>
-</ul>
-<h2><a class="header" href="#install" id="install">Install</a></h2>
-<ul>
-<li>If you don't have VSCode - <a href="https://code.visualstudio.com/download">get it here</a>!</li>
-<li>Go to <a href="https://marketplace.visualstudio.com/items?itemName=damirka.move-ide">VSCode Extensions Marketplace</a> and press INSTALL button or find it in your VSCode by the <strong>Move IDE</strong> name and install there.</li>
-<li>Thoroughly read and follow instructions in <a href="https://github.com/damirka/vscode-move-ide#move-ide-for-vscode">README</a> or just scroll down...</li>
-</ul>
-<h2><a class="header" href="#setting-up-your-environment" id="setting-up-your-environment">Setting up your environment</a></h2>
-<p>TBD</p>
 
                     </main>
 
