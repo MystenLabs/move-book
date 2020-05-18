@@ -165,11 +165,13 @@
 <p>From what we've known from calibra team, Move IR is a &quot;developer version&quot; of Move which was created to speed up VM development while &quot;the Move language&quot; was being designed. Even though these two languages have different syntax - both compile into bytecode which is supported by Move VM.</p>
 <p>You may be asking yourself &quot;what should I choose?&quot;, well currently there's no correct answer to that. Move is Rust-like and simpler, Mvir is pretty hardcore when it comes to references and changes of values; both are supported by VM. According to <a href="https://developers.libra.org/blog/">Libra's blog</a>:</p>
 <ol>
+<li>In December member of Calibra team wrote that <a href="https://community.libra.org/t/on-move-and-ir/2260/2">Move IR is a prototyping language</a>, and Move will be the main.</li>
 <li>New syntax from latest blog posts <a href="https://libra.org/en-US/blog/how-to-use-the-end-to-end-tests-framework-in-move/">looks like Move</a>;</li>
 <li><a href="https://libra.org/en-US/blog/libra-core-roadmap-3/">In roadmap #2 retrospective</a> Libra team marks Move IR as a tooling language and separates Move IR and Move language;</li>
+<li>Move's standard library <a href="https://github.com/libra/libra/tree/master/language/stdlib/modules">is written in Move</a> and is rapidly growing and developing;</li>
 </ol>
-<p>We can only suggest using Move as primary as in long perspective it's propably going to be &quot;the Move&quot;. Though, as we've already mentioned, nobody can be sure at this point.</p>
-<p>In this book you will only meet Move (with some remarks on Mvir and their difference), as I believe it is going to be the final Move language.</p>
+<p>I can only suggest using Move as primary as in long perspective it's propably going to be &quot;the Move&quot;. Though, as I've already mentioned, nobody can be sure at this point.</p>
+<p>In this book you will only meet Move as I believe it is going to be the final Move language.</p>
 <h1><a class="header" href="#getting-started" id="getting-started">Getting started</a></h1>
 <p>As with any compiled language, you need proper set of tools to compile, run and debug your Move applications. Since this language is created for blockchains and used only within them, running scripts off-chain is a non-trivial task: every module will require environment, account handling and compile-publishing system.</p>
 <p>To simpify development of Move modules we've created <a href="https://github.com/damirka/vscode-move-ide">Move IDE</a> extension for Visual Studio Code. This extension will help you cope with environment requirements. Use of this extension is highly recommended as it will handle build/run environment for you, hence will let you focus on learning Move language instead of struggling with the CLI environment. This extension also includes Move syntax highlighting and run environment to help you debug your applications before going public.</p>
