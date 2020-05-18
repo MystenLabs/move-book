@@ -170,7 +170,6 @@
 <li><a href="https://libra.org/en-US/blog/libra-core-roadmap-3/">In roadmap #2 retrospective</a> Libra team marks Move IR as a tooling language and separates Move IR and Move language;</li>
 <li>Move's standard library <a href="https://github.com/libra/libra/tree/master/language/stdlib/modules">is written in Move</a> and is rapidly growing and developing;</li>
 </ol>
-<p>I can only suggest using Move as primary as in long perspective it's propably going to be &quot;the Move&quot;. Though, as I've already mentioned, nobody can be sure at this point.</p>
 <p>In this book you will only meet Move as I believe it is going to be the final Move language.</p>
 <h1><a class="header" href="#getting-started" id="getting-started">Getting started</a></h1>
 <p>As with any compiled language, you need proper set of tools to compile, run and debug your Move applications. Since this language is created for blockchains and used only within them, running scripts off-chain is a non-trivial task: every module will require environment, account handling and compile-publishing system.</p>
@@ -542,8 +541,8 @@ out/
 </ol>
 <p>How to control execution flow and how to use blocks for logic switches - on the next page.</p>
 <h1><a class="header" href="#control-flow" id="control-flow">Control Flow</a></h1>
-<p>In terms of control operators Move's syntax is similar to Rust with some differences which I'll highlight.</p>
-<h2><a class="header" href="#the-if-expression" id="the-if-expression">The <code>if</code> expression</a></h2>
+<p>To do something more complex than basic 2+2, to do logic switches and to iterate though complex data you need control operators and expressions.</p>
+<h3><a class="header" href="#the-if-expression" id="the-if-expression">The <code>if</code> expression</a></h3>
 <p>If you want to run code block when some expression is <code>true</code> you need to use <code>if</code> keyword:</p>
 <pre><code class="language-Move">script {
     use 0x0::Transaction;
