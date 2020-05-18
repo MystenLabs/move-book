@@ -2,12 +2,6 @@
 
 In terms of control operators Move's syntax is similar to Rust with some differences which I'll highlight.
 
-Let's start with one simple rule:
-
-> Every expression MUST end with semicolon unless it's the last expression in scope
-
-Which means that every `loop`, every `while` and `if` expressions - all of them MUST have semicolon at the end if any expression goes after. Not having semicolon (like in Rust) will result in syntax error.
-
 ## The `if` expression
 
 If you want to run code block when some expression is `true` you need to use `if` keyword:
