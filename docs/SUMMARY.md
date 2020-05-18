@@ -9,6 +9,7 @@
     - [Primitive Types](chapters/primitives.md)
     - [Comments](chapters/comments.md)
     - [Expression](chapters/expression-block.md)
+    - [Understanding Scopes](chapters/scopes.md)
     - [Control Flow](chapters/control-flow.md)
     - [Function](chapters/function.md)
     - [Import](chapters/imports.md)
@@ -18,6 +19,8 @@
     - [Generics](chapters/generics.md)
     - [Vector](chapters/vector.md)
     - [Resource](chapters/resource.md)
+<!--
 - [Move IDE](ide/readme.md)
     - [Install & Configure](ide/setting-up.md)
+-->
 

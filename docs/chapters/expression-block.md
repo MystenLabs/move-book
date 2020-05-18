@@ -64,12 +64,3 @@ script {
     }
 }
 ```
-
-Even though you can create an empty block, there's no reason to do so. Blocks have their purpose and it's essential in Move. First, two rules:
-
-1. Block defines a *scope* inside it's own *scope* (where block is defined);
-2. Block can *return* value of any type.
-
-```Move
-
-```
