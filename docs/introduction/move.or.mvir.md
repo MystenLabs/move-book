@@ -16,6 +16,4 @@ You may be asking yourself "what should I choose?", well currently there's no co
 3. [In roadmap #2 retrospective](https://libra.org/en-US/blog/libra-core-roadmap-3/) Libra team marks Move IR as a tooling language and separates Move IR and Move language;
 4. Move's standard library [is written in Move](https://github.com/libra/libra/tree/master/language/stdlib/modules) and is rapidly growing and developing;
 
-I can only suggest using Move as primary as in long perspective it's propably going to be "the Move". Though, as I've already mentioned, nobody can be sure at this point.
-
 In this book you will only meet Move as I believe it is going to be the final Move language.

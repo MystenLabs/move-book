@@ -1,8 +1,8 @@
 # Control Flow
 
-In terms of control operators Move's syntax is similar to Rust with some differences which I'll highlight.
+To do something more complex than basic 2+2, to do logic switches and to iterate though complex data you need control operators and expressions.
 
-## The `if` expression
+### The `if` expression
 
 If you want to run code block when some expression is `true` you need to use `if` keyword:
 
