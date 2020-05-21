@@ -345,7 +345,7 @@ out/
 }
 </code></pre>
 <h3><a class="header" href="#block-comments" id="block-comments">Block comments</a></h3>
-<p>If you don't want to comment all the line contents, alternatively if you want to comment out more than one line you can use block comments.</p>
+<p>If you don't want to comment all the line contents, or if you want to comment out more than one line you can use block comments.</p>
 <p>Block comment starts with slash-asterisk <em>/*</em> and includes all the text before first asterisk-slash <em>*/</em>. Block comment is not limited by one line and gives you power of making a note in absolutely any place in code.</p>
 <pre><code class="language-Move">script {
     fun /* you can comment everywhere */ main() {
@@ -900,9 +900,10 @@ module Math {
 <h3><a class="header" href="#native-functions" id="native-functions">Native functions</a></h3>
 <p>There's a special kind of functions - <em>native</em> ones. <em>Native functions</em> implement functionality which goes beyond Move's possibilities and give you extra power. Native functions are defined by VM itself and may vary in different implementations. Which means they don't have implementation in Move syntax and instead of having function body they end with semicolon. Keyword <code>native</code> is used to mark native functions. It does not conflict with function visibility modifiers and same function can be <code>native</code> and <code>public</code> at the same time.</p>
 <p>Here's an example from Libra's standard library.</p>
-<pre><code class="language-Move">module Vector {
-    // ...
-    native public fun length&lt;Element&gt;(v: &amp;vector&lt;Element&gt;): u64;
+<pre><code class="language-Move">module Transaction {
+    // get transaction sender
+    native public fun sender(): address;
+
     // ...
 }
 </code></pre>
