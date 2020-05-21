@@ -5,13 +5,13 @@
 - [Move or Mvir](introduction/move.or.mvir.md)
 - [Getting Started](introduction/getting-started.md)
 - [Syntax Basics](chapters/syntax-basics.md)
-    - [Script and Module](chapters/concept.md)
+    - [Concept](chapters/concept.md)
     - [Primitive Types](chapters/primitives.md)
     - [Comments](chapters/comments.md)
     - [Expression and Scope](chapters/expression-and-scope.md)
     - [Control Flow](chapters/control-flow.md)
+    - [Module](chapters/module.md)
     - [Function](chapters/function.md)
-    - [Import](chapters/imports.md)
     - [Structures](chapters/struct.md)
 - [Advanced Topics](chapters/advanced-topics.md)
     - [References](chapters/references.md)
@@ -21,5 +21,9 @@
 <!--
 - [Move IDE](ide/readme.md)
     - [Install & Configure](ide/setting-up.md)
+
+REMOVED:
+
+    - [Import](chapters/_imports.md)
 -->
 

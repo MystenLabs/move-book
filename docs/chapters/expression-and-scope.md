@@ -1,6 +1,6 @@
 # Expression and Scope
 
-In programming languages expressions is a unit of code which returns a value. A function call with return value is an expression - it returns value, an integer (or bool or address) literal is an expression - it has the value of its integer type and so on.
+In programming languages expression is a unit of code which returns a value. A function call with return value is an expression - it returns value; an integer (or bool or address) literal is also an expression - it has the value of its integer type and so on.
 
 > Every expression in Move MUST end with semicolon*
 
@@ -25,7 +25,7 @@ Good. You now know the simplest expressions there are. But why do we need them? 
 
 ### Variables and `let` keyword
 
-To store expression value inside variable (to pass it somewhere) you have keyword `let` (you've already seen it in [primitives chapter](/chapters/primitives.md), remember?). It creates a new variable either empty (undefined) or with value of expression. Let's see some code:
+To store expression value inside variable (to pass it somewhere) you have keyword `let` (you've already seen it in [primitives chapter](/chapters/primitives.md)). It creates a new variable either empty (undefined) or with value of expression.
 
 ```Move
 script {

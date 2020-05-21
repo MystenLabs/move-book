@@ -6,7 +6,7 @@ If you feel like some places in your code require additional explanation, use *c
 
 ```Move
 script {
-    fun empty() {
+    fun main() {
         // this is a comment line
     }
 }
@@ -17,7 +17,7 @@ You can use double-slash "*//*" to write line comments. Rules are simple - **eve
 ```Move
 script {
     // let's add a note to everything!
-    fun check_this(): u8 {
+    fun main() {
         let a = 10;
         // let b = 10 this line is commented and won't be executed
         let b = 5; // here comment is placed after code
@@ -34,7 +34,7 @@ Block comment starts with slash-asterisk */\** and includes all the text before 
 
 ```Move
 script {
-    fun /* you can comment everywhere */ notes(): u8 {
+    fun /* you can comment everywhere */ main() {
         /* here
            there
            everywhere */ let a = 10;

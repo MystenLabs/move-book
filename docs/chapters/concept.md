@@ -1,31 +1,5 @@
-# Script and Module
+# Concept
 
-There are two types of code transactions in Move: module and script. Module is a deployment of new module (which then will be accessible under the address of sender); Script is a transaction-as-code in which you can use deployed modules as well as the standard library as dependencies.
+Unlike other blockchain languages (e.g. Solidity) Move proposes separation of *scrips* (or *transaction-as-script*) and *modules*. The former allows you to put more logic into your transactions and make them more flexible while saving your time and resources; and the latter allows developers to extend blockchain functionality or to implement custom *smart-contracts* with variety of options.
 
-Module code starts with `module` keyword and its code looks like this. Inside module you can define: new *types* (as structs), *methods* and `resource structs`.
-
-```Move
-module MyModule {
-    struct hi_fives {
-        count: u8
-    }
-
-    public fun high_five(): u8 {
-        5
-    }
-}
-```
-
-Script must contain `main` function and usually uses deployed modules. See [imports](/move-language-reference/imports.md) on how to import modules.
-
-```Move
-script {
-    // assume that sender address was 0xAF
-    use {{sender}}::MyModule;
-
-    fun main() {
-        MyModule::high_five();
-    }
-}
-```
-
+In basics we'll start with scripts as they're pretty friendly for a newcomer, and then we'll get to modules.
