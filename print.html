@@ -177,14 +177,14 @@
 <h2><a class="header" href="#install-move-ide" id="install-move-ide">Install Move IDE</a></h2>
 <p>To install it you'll need:</p>
 <ol>
-<li>VSCode (version 1.43.0 and above) - you can <a href="https://code.visualstudio.com/download">get it here</a>; if you already have one - proceed to next step.</li>
+<li>VSCode (version 1.43.0 and above) - you can <a href="https://code.visualstudio.com/download">get it here</a>; if you already have one - proceed to the next step;</li>
 <li>Move IDE - once VSCode is installed, follow <a href="https://marketplace.visualstudio.com/items?itemName=damirka.move-ide">this link</a> to install newest version of IDE.</li>
 </ol>
 <h3><a class="header" href="#setup-environment" id="setup-environment">Setup environment</a></h3>
 <p>Move IDE proposes single way of organizing your directory structure. Create new directory for your project and open it in VSCode. Then setup this directory structure:</p>
-<pre><code>modules/    - directory for our modules
-scripts/    - directory for transaction scripts
-out/          - this directory will hold compiled sources
+<pre><code>modules/   - directory for our modules
+scripts/   - directory for transaction scripts
+out/       - this directory will hold compiled sources
 </code></pre>
 <p>Also you'll need to create file called <code>.mvconfig.json</code> which will configure your working environment. This is a sample for <code>libra</code>:</p>
 <pre><code class="language-json">{
@@ -207,15 +207,16 @@ out/          - this directory will hold compiled sources
 <p>Create new file called <code>high_fiver.move</code> inside <code>modules/</code> directory of your project.</p>
 <pre><code class="language-Move">// modules/high_fiver.move
 address 0x1 {
-
 module HighFiver {
     public fun gimme_five(): u8 {
         5
     }
-}
-
+}s
 }
 </code></pre>
+<blockquote>
+<p>If you decided to use your own address (not <code>0x1</code>) - make sure you've changed 0x1 in this file and the one below</p>
+</blockquote>
 <h3><a class="header" href="#write-script" id="write-script">Write script</a></h3>
 <p>Then create a script, let's call it <code>me.move</code> inside <code>scripts/</code> directory:</p>
 <pre><code class="language-Move">// scripts/me.move
@@ -254,7 +255,7 @@ out/
 <p>In basics we'll start with scripts as they're pretty friendly for a newcomer, and then we'll get to modules.</p>
 <h1><a class="header" href="#primitive-types" id="primitive-types">Primitive Types</a></h1>
 <p>In this section you'll find examples and short descriptions of Move's primitive types: integers (u8, u64, u128), <code>boolean</code> and <code>address</code>. You will also learn how to change size of integer values and what types of addresses are supported in different versions of Move VM.</p>
-<!-- MB ADD NODE: Also, there are no floating point types or strings. -->
+<!-- MB ADD NOTE: Also, there are no floating point types or strings. -->
 <h2><a class="header" href="#integer-types" id="integer-types">Integer types</a></h2>
 <p>Integers are represented by <code>u8</code>, <code>u64</code> and <code>u128</code>; Possible integer notations are:</p>
 <pre><code class="language-Move">script {
