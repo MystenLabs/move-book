@@ -47,11 +47,11 @@ Move IDE allows you to run scripts in testing environment. Let's see how it work
 
 ### Create module
 
-Create new file called `high_fiver.move` inside `modules/` directory of your project.
+Create new file called `hello_world.move` inside `modules/` directory of your project.
 ```Move
-// modules/high_fiver.move
+// modules/hello_world.move
 address 0x1 {
-module HighFiver {
+module HelloWorld {
     public fun gimme_five(): u8 {
         5
     }
@@ -65,13 +65,13 @@ module HighFiver {
 
 Then create a script, let's call it `me.move` inside `scripts/` directory:
 ```Move
-// scripts/me.move
+// scripts/run_hello.move
 script {
-    use 0x1::HighFiver;
+    use 0x1::HelloWorld;
     use 0x0::Debug;
 
     fun main() {
-        let five = HighFiver::gimme_five();
+        let five = HelloWorld::gimme_five();
 
         Debug::print<u8>(&five);
     }
@@ -87,9 +87,9 @@ Voila! You should see execution result - log message with '5' printed in debug. 
 Your directory structure should look like this:
 ```
 modules/
-  high_fiver.move
+  hello_world.move
 scripts/
-  me.move
+  run_hello.move
 out/
 .mvconfig.json
 ```
