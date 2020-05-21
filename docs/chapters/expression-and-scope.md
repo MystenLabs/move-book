@@ -10,7 +10,7 @@ Look at the code below. Every line contains an expression which ends with semico
 
 ```Move
 script {
-    fun expr_samples() {
+    fun main() {
         10;
         10 + 5;
         true;
@@ -29,7 +29,7 @@ To store expression value inside variable (to pass it somewhere) you have keywor
 
 ```Move
 script {
-    fun let_kwd() {
+    fun main() {
         let a;
         let b = true;
         let c = 10;
@@ -44,6 +44,23 @@ script {
 After you've created and initialized variable you're able to *modify* or *access* its value by using variable name. In example above variable `a` was initialized in the end of function and was *assigned* a value of variable `c`.
 
 > Equality sign `=` is an assignment operator. It assigns right-hand-side expression to left-hand-side variable. Example: `a = 10` - variable `a` is assigned an integer value of `10`.
+
+### Unused variables
+
+In Move every variable must be used (otherwise your code won't compile), hence you can't initialize one and leave it untouched. Though you have one way to mark variable as *intentionally unused* - by using underscore `_`.
+
+```Move
+script {
+    fun main() {
+        let _ = 10; // variable defined but not used
+
+        let a = 5;
+        a = a + 5; // a is used, no need for undescoring
+    }
+}
+```
+
+
 
 ## Block expression
 
