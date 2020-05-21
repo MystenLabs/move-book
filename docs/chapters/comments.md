@@ -28,7 +28,7 @@ script {
 
 ### Block comments
 
-If you don't want to comment all the line contents, alternatively if you want to comment out more than one line you can use block comments.
+If you don't want to comment all the line contents, or if you want to comment out more than one line you can use block comments.
 
 Block comment starts with slash-asterisk */\** and includes all the text before first asterisk-slash *\*/*. Block comment is not limited by one line and gives you power of making a note in absolutely any place in code.
 

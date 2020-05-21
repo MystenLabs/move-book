@@ -199,9 +199,10 @@ There's a special kind of functions - *native* ones. *Native functions* implemen
 Here's an example from Libra's standard library.
 
 ```Move
-module Vector {
-    // ...
-    native public fun length<Element>(v: &vector<Element>): u64;
+module Transaction {
+    // get transaction sender
+    native public fun sender(): address;
+
     // ...
 }
 ```
