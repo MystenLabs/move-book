@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="introduction/getting-started.html"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="chapters/syntax-basics.html"><strong aria-hidden="true">5.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/concept.html"><strong aria-hidden="true">5.1.</strong> Script and Module</a></li><li class="chapter-item expanded "><a href="chapters/primitives.html"><strong aria-hidden="true">5.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="chapters/comments.html"><strong aria-hidden="true">5.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="chapters/expression-and-scope.html"><strong aria-hidden="true">5.4.</strong> Expression and Scope</a></li><li class="chapter-item expanded "><a href="chapters/control-flow.html"><strong aria-hidden="true">5.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="chapters/function.html"><strong aria-hidden="true">5.6.</strong> Function</a></li><li class="chapter-item expanded "><a href="chapters/imports.html"><strong aria-hidden="true">5.7.</strong> Import</a></li><li class="chapter-item expanded "><a href="chapters/struct.html"><strong aria-hidden="true">5.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="chapters/advanced-topics.html"><strong aria-hidden="true">6.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/references.html"><strong aria-hidden="true">6.1.</strong> References</a></li><li class="chapter-item expanded "><a href="chapters/generics.html"><strong aria-hidden="true">6.2.</strong> Generics</a></li><li class="chapter-item expanded "><a href="chapters/vector.html"><strong aria-hidden="true">6.3.</strong> Vector</a></li><li class="chapter-item expanded "><a href="chapters/resource.html"><strong aria-hidden="true">6.4.</strong> Resource</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="introduction/getting-started.html"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="chapters/syntax-basics.html"><strong aria-hidden="true">5.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/concept.html"><strong aria-hidden="true">5.1.</strong> Concept</a></li><li class="chapter-item expanded "><a href="chapters/primitives.html"><strong aria-hidden="true">5.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="chapters/comments.html"><strong aria-hidden="true">5.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="chapters/expression-and-scope.html"><strong aria-hidden="true">5.4.</strong> Expression and Scope</a></li><li class="chapter-item expanded "><a href="chapters/control-flow.html"><strong aria-hidden="true">5.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="chapters/module.html"><strong aria-hidden="true">5.6.</strong> Module</a></li><li class="chapter-item expanded "><a href="chapters/function.html"><strong aria-hidden="true">5.7.</strong> Function</a></li><li class="chapter-item expanded "><a href="chapters/struct.html"><strong aria-hidden="true">5.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="chapters/advanced-topics.html"><strong aria-hidden="true">6.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/references.html"><strong aria-hidden="true">6.1.</strong> References</a></li><li class="chapter-item expanded "><a href="chapters/generics.html"><strong aria-hidden="true">6.2.</strong> Generics</a></li><li class="chapter-item expanded "><a href="chapters/vector.html"><strong aria-hidden="true">6.3.</strong> Vector</a></li><li class="chapter-item expanded "><a href="chapters/resource.html"><strong aria-hidden="true">6.4.</strong> Resource</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -249,97 +249,85 @@ out/
 </blockquote>
 <h1><a class="header" href="#syntax-basics" id="syntax-basics">Syntax Basics</a></h1>
 <p>In this chapter you'll get to know Move language. We'll start with very simple and basic grammar rules and intensity will increase from one chapter to another. If you're a skilled developer this may seem too easy at first glance, but I do recommend you to take a closer look. If you're a beginner, then this part will give you everything you need to know about Move basics.</p>
-<h1><a class="header" href="#script-and-module" id="script-and-module">Script and Module</a></h1>
-<p>There are two types of code transactions in Move: module and script. Module is a deployment of new module (which then will be accessible under the address of sender); Script is a transaction-as-code in which you can use deployed modules as well as the standard library as dependencies.</p>
-<p>Module code starts with <code>module</code> keyword and its code looks like this. Inside module you can define: new <em>types</em> (as structs), <em>methods</em> and <code>resource structs</code>.</p>
-<pre><code class="language-Move">module MyModule {
-    struct hi_fives {
-        count: u8
-    }
-
-    public fun high_five(): u8 {
-        5
-    }
-}
-</code></pre>
-<p>Script must contain <code>main</code> function and usually uses deployed modules. See <a href="chapters//move-language-reference/imports.html">imports</a> on how to import modules.</p>
-<pre><code class="language-Move">script {
-    // assume that sender address was 0xAF
-    use {{sender}}::MyModule;
-
-    fun main() {
-        MyModule::high_five();
-    }
-}
-</code></pre>
+<h1><a class="header" href="#concept" id="concept">Concept</a></h1>
+<p>Unlike other blockchain languages (e.g. Solidity) Move proposes separation of <em>scrips</em> (or <em>transaction-as-script</em>) and <em>modules</em>. The former allows you to put more logic into your transactions and make them more flexible while saving your time and resources; and the latter allows developers to extend blockchain functionality or to implement custom <em>smart-contracts</em> with variety of options.</p>
+<p>In basics we'll start with scripts as they're pretty friendly for a newcomer, and then we'll get to modules.</p>
 <h1><a class="header" href="#primitive-types" id="primitive-types">Primitive Types</a></h1>
 <p>In this section you'll find examples and short descriptions of Move's primitive types: integers (u8, u64, u128), <code>boolean</code> and <code>address</code>. You will also learn how to change size of integer values and what types of addresses are supported in different versions of Move VM.</p>
 <!-- MB ADD NODE: Also, there are no floating point types or strings. -->
 <h2><a class="header" href="#integer-types" id="integer-types">Integer types</a></h2>
 <p>Integers are represented by <code>u8</code>, <code>u64</code> and <code>u128</code>; Possible integer notations are:</p>
-<pre><code class="language-Move">fun main() {
-    // define empty variable, set value later
-    let a: u8;
-    a = 10;
+<pre><code class="language-Move">script {
+    fun main() {
+        // define empty variable, set value later
+        let a: u8;
+        a = 10;
 
-    // define variable, set type
-    let a: u64 = 10;
+        // define variable, set type
+        let a: u64 = 10;
 
-    // finally simple assignment
-    let a = 10;
+        // finally simple assignment
+        let a = 10;
 
-    // simple assignment with defined value type
-    let a = 10u128;
+        // simple assignment with defined value type
+        let a = 10u128;
 
-    // in function calls or expressions you can use ints as constant values
-    if (a &lt; 10) {};
+        // in function calls or expressions you can use ints as constant values
+        if (a &lt; 10) {};
 
-    // or like this, with type
-    if (a &lt; 10u8) {}; // usually you don't need to specify type
+        // or like this, with type
+        if (a &lt; 10u8) {}; // usually you don't need to specify type
+    }
 }
 </code></pre>
 <h3><a class="header" href="#operator-as" id="operator-as">Operator <code>as</code></a></h3>
 <p>When you need to compare values or when function argument requires integer of different size you can cast your integer variable to another size by using operator <code>as</code>:</p>
-<pre><code class="language-Move">fun main() {
-    let a: u8 = 10;
-    let b: u64 = 100;
+<pre><code class="language-Move">script {
+    fun main() {
+        let a: u8 = 10;
+        let b: u64 = 100;
 
-    // we can only compare same size integers
-    if (a == (b as u8)) abort 11;
-    if ((a as u64) == b) abort 11;
+        // we can only compare same size integers
+        if (a == (b as u8)) abort 11;
+        if ((a as u64) == b) abort 11;
+    }
 }
 </code></pre>
 <h2><a class="header" href="#boolean" id="boolean">Boolean</a></h2>
 <p>Boolean type is just the one you're used to. Two constant values: <code>false</code> and <code>true</code> - both can only mean one thing - a value of <code>bool</code> type.</p>
-<pre><code class="language-Move">fun main() {
-    // these are all the ways to do it
-    let b : bool; b = true;
-    let b : bool = true;
-    let b = true
-    let b = false; // here's an example with false
+<pre><code class="language-Move">script {
+    fun main() {
+        // these are all the ways to do it
+        let b : bool; b = true;
+        let b : bool = true;
+        let b = true
+        let b = false; // here's an example with false
+    }
 }
 </code></pre>
 <h2><a class="header" href="#address" id="address">Address</a></h2>
 <p>Address is identifier of sender (or wallet) in blockchain. The very basic operations which require address type are sending coins and importing module.</p>
-<pre><code class="language-Move">fun main() {
-    let addr: address; // type identifier
+<pre><code class="language-Move">script {
+    fun main() {
+        let addr: address; // type identifier
 
-    // in this book I'll use {{sender}} notation;
-    // always replace `{{sender}}` in examples with VM specific address!!!
-    addr = {{sender}};
+        // in this book I'll use {{sender}} notation;
+        // always replace `{{sender}}` in examples with VM specific address!!!
+        addr = {{sender}};
 
-    // in Libra's Move VM - 16-byte address in HEX
-    addr = 0x...;
+        // in Libra's Move VM - 16-byte address in HEX
+        addr = 0x...;
 
-    // in dfinance's DVM - bech32 encoded address with `wallet1` prefix
-    addr = wallet1....;
+        // in dfinance's DVM - bech32 encoded address with `wallet1` prefix
+        addr = wallet1....;
+    }
 }
 </code></pre>
 <h1><a class="header" href="#comments" id="comments">Comments</a></h1>
 <p>If you feel like some places in your code require additional explanation, use <em>comments</em>. Comments are non-executable blocks or lines of text aimed to describe some pieces of the code.</p>
 <h3><a class="header" href="#line-comments" id="line-comments">Line comments</a></h3>
 <pre><code class="language-Move">script {
-    fun empty() {
+    fun main() {
         // this is a comment line
     }
 }
@@ -347,7 +335,7 @@ out/
 <p>You can use double-slash &quot;<em>//</em>&quot; to write line comments. Rules are simple - <strong>everything after</strong> &quot;<em>//</em>&quot; is considered a comment to the end of line. You can use line comments to leave short notes for other developers or to <em>comment out</em> some code to remove it from execution chain.</p>
 <pre><code class="language-Move">script {
     // let's add a note to everything!
-    fun check_this(): u8 {
+    fun main() {
         let a = 10;
         // let b = 10 this line is commented and won't be executed
         let b = 5; // here comment is placed after code
@@ -359,7 +347,7 @@ out/
 <p>If you don't want to comment all the line contents, alternatively if you want to comment out more than one line you can use block comments.</p>
 <p>Block comment starts with slash-asterisk <em>/*</em> and includes all the text before first asterisk-slash <em>*/</em>. Block comment is not limited by one line and gives you power of making a note in absolutely any place in code.</p>
 <pre><code class="language-Move">script {
-    fun /* you can comment everywhere */ notes(): u8 {
+    fun /* you can comment everywhere */ main() {
         /* here
            there
            everywhere */ let a = 10;
@@ -375,7 +363,7 @@ out/
 </code></pre>
 <p>Of course this example is ridiculous! But it clearly shows the power of block comment. Feel free to comment anywhere!</p>
 <h1><a class="header" href="#expression-and-scope" id="expression-and-scope">Expression and Scope</a></h1>
-<p>In programming languages expressions is a unit of code which returns a value. A function call with return value is an expression - it returns value, an integer (or bool or address) literal is an expression - it has the value of its integer type and so on.</p>
+<p>In programming languages expression is a unit of code which returns a value. A function call with return value is an expression - it returns value; an integer (or bool or address) literal is also an expression - it has the value of its integer type and so on.</p>
 <blockquote>
 <p>Every expression in Move MUST end with semicolon*</p>
 </blockquote>
@@ -394,7 +382,7 @@ out/
 </code></pre>
 <p>Good. You now know the simplest expressions there are. But why do we need them? And how to use? It's time to know <code>let</code> keyword.</p>
 <h3><a class="header" href="#variables-and-let-keyword" id="variables-and-let-keyword">Variables and <code>let</code> keyword</a></h3>
-<p>To store expression value inside variable (to pass it somewhere) you have keyword <code>let</code> (you've already seen it in <a href="chapters//chapters/primitives.html">primitives chapter</a>, remember?). It creates a new variable either empty (undefined) or with value of expression. Let's see some code:</p>
+<p>To store expression value inside variable (to pass it somewhere) you have keyword <code>let</code> (you've already seen it in <a href="chapters//chapters/primitives.html">primitives chapter</a>). It creates a new variable either empty (undefined) or with value of expression.</p>
 <pre><code class="language-Move">script {
     fun let_kwd() {
         let a;
@@ -654,69 +642,188 @@ With <code>break</code> we stop iteration and exit loop.</p>
     }
 }
 </code></pre>
+<h1><a class="header" href="#module" id="module">Module</a></h1>
+<p>Module is set of functions and types packed together which developer publishes under his address. In prevous chapters we only used scripts, though script can only operate with published modules or standard library which itself is a set of modules published under <code>0x0</code> address.</p>
+<blockquote>
+<p>Module is published under its sender's address. Standard library is published under <code>0x0</code> address.</p>
+</blockquote>
+<blockquote>
+<p>When publishing a module, none of its functions are executed. To use module - use scripts.</p>
+</blockquote>
+<p>Module starts with <code>module</code> keyword, which is followed by module name and curly braces - inside them module contents is placed.</p>
+<pre><code class="language-Move">module Math {
+
+    // module contents
+
+    public fun sum(a: u64, b: u64): u64 {
+        a + b
+    }
+}
+</code></pre>
+<blockquote>
+<p>Module is the only way to publish code accessible for others; new types and resources can too only be defined within module context.</p>
+</blockquote>
+<p>By default your module will be compiled and published from your address. However if you need to use some modules locally (e.g. for testing or developing) or want to specify your address inside module file, use <code>address &lt;ADDR&gt; {}</code> syntax:</p>
+<pre><code class="language-Move">address 0x1 {
+module Math {
+    // module contents
+
+    public fun sum(a: u64, b: u64): u64 {
+        a + b
+    }
+}
+}
+</code></pre>
+<p><em>Like shown in example: best practice is to keep module line without indentation</em></p>
+<h2><a class="header" href="#imports" id="imports">Imports</a></h2>
+<p>Default context in Move is empty: the only types you can use are primitives (integers, bool and address), and the only thing you can do within empty context is operate these types and variables while being unable to do something meaningful or useful.</p>
+<p>To change that you can import published modules (or standard library).</p>
+<h3><a class="header" href="#keyword-use" id="keyword-use">Keyword use</a></h3>
+<p>Import is marked with keyword <code>use</code>, like this:</p>
+<pre><code class="language-Move">use &lt;Address&gt;::&lt;ModuleName&gt;;
+</code></pre>
+<p>In here <code>&lt;Address&gt;</code> is a publisher's address and <code>&lt;ModuleName&gt;</code> is a name of a module. Pretty simple. I'll give you one real example of importing module <code>Transaction</code> from standard library:</p>
+<pre><code class="language-Move">use 0x0::Transaction;
+</code></pre>
+<h3><a class="header" href="#accessing-modules-contents" id="accessing-modules-contents">Accessing module's contents</a></h3>
+<p>To access imported module's methods (or types) use <code>::</code> notation. Simple as that - modules can only have one level of definitions so everything you define in module (publicly) can be accessed via double colon.</p>
+<pre><code class="language-Move">script {
+    use 0x0::Transaction;
+
+    fun main(addr: address) {
+        // here we use method assert() of module Transaction
+        // the same way we'd access any other method of any other module
+        Transaction::assert(addr == 0x1, 1);
+    }
+}
+</code></pre>
+<h3><a class="header" href="#import-in-script" id="import-in-script">Import in script</a></h3>
+<p>In scripts imports must be placed inside <code>script {}</code> block:</p>
+<pre><code class="language-Move">script {
+    use 0x0::Transaction;
+
+    // in just the same way you can import any
+    // other module(s). as many as you want!
+
+    fun main() {
+        Transaction::assert(true, 1);
+    }
+}
+</code></pre>
+<h3><a class="header" href="#import-in-module" id="import-in-module">Import in module</a></h3>
+<p>Module imports must be specified inside <code>module {}</code> block:</p>
+<pre><code class="language-Move">module Math {
+    use 0x0::Transaction;
+
+    // the same way as in scripts
+    // you are free to import any number of modules
+
+    public fun equal_or_fail(a: u64, b: u64) {
+        Transaction::assert(a == b, 1);
+    }
+}
+
+</code></pre>
+<h3><a class="header" href="#use-meets-as" id="use-meets-as">Use meets as</a></h3>
+<p>To resolve naming conflicts (when 2 or more modules have same names) and to shorten you code you can change name of the imported module using keyword <code>as</code>.</p>
+<p>Syntax:</p>
+<pre><code class="language-Move">use &lt;Address&gt;::&lt;ModuleName&gt; as &lt;Alias&gt;;
+</code></pre>
+<p>In script:</p>
+<pre><code class="language-Move">script {
+    use 0x0::Transaction as Tx; // Tx now means Transaction
+
+    fun check_assert() {
+        Tx::assert(true, 11);
+    }
+}
+</code></pre>
+<p>The same in module:</p>
+<pre><code class="language-Move">module Math {
+    use 0x0::Vector as Vec;
+
+    fun length(&amp;v: vector&lt;u8&gt;): u64 {
+        Vec::length(&amp;v)
+    }
+}
+</code></pre>
 <h1><a class="header" href="#function" id="function">Function</a></h1>
-<p>Function is the only place of execution in Move. Functions start with <code>fun</code> keyword which is followed by function name, parentheses for arguments and curly braces for body.</p>
-<p>You've already seen few in previous chapters. And now you will learn how to use them.</p>
-<h3><a class="header" href="#functions-in-script-context" id="functions-in-script-context">Functions in script context</a></h3>
-<p>Let's try to write few functions and see what we can do. We'll start with script context as it's fairly simple.</p>
+<p>Function is the only place of execution in Move. Function starts with <code>fun</code> keyword which is followed by function name, parentheses for arguments and curly braces for body.</p>
+<pre><code class="language-Move">fun function_name(arg1: u64, arg2: bool): u64 {
+    // function body
+}
+</code></pre>
+<p>You have already seen some in previous chapters. And now you will learn how to use them.</p>
+<blockquote>
+<p><strong>Note:</strong> in Move functions should be named in <em>snake_case</em> - lowercase with underscores as word separators.</p>
+</blockquote>
+<h2><a class="header" href="#function-in-script" id="function-in-script">Function in script</a></h2>
+<p>Script block can contain only one function which is considered <em>main</em>. This function (possibly with arguments) will be executed as transaction. It is very limited: it cannot return value and should be used to operate other functions in already published modules.</p>
+<p>Here's an example of simple script which checks if address exists:</p>
 <pre><code class="language-Move">script {
-    fun gimme_five(): u8 {
-        5
+    use 0x0::Account;
+
+    fun main(addr: address) {
+        Transaction::assert(Account::exists(addr), 1);
     }
 }
 </code></pre>
-<p>We defined our first <code>gimme_five</code> function with no arguments and return value of <code>u8</code> type. It's obvious that in this function return value (remember <a href="chapters//chapters/expression-blocks">expressions</a>!) is always 5.</p>
-<p>Let's look at a different example and see how we can use <em>function arguments</em>.</p>
-<h3><a class="header" href="#function-arguments-and-return-values" id="function-arguments-and-return-values">Function arguments and return values</a></h3>
-<pre><code class="language-Move">script {
-    fun empty() {
+<p>This function can have arguments: in this case it is <code>addr</code> argument with type <code>address</code>, also it can operate imported modules.</p>
+<blockquote>
+<p><strong>Note:</strong> as there's only one function, you can call it any way you want. Though you may want to follow general programming concepts and call it <strong>main</strong></p>
+</blockquote>
+<h2><a class="header" href="#function-in-module" id="function-in-module">Function in module</a></h2>
+<p>While script context is fairly limited, full potential of functions can only be seen in a module. Let's go through it again: module is a published set of functions and types (we'll get to it in the next chapter) which solves one or many tasks.</p>
+<p>In this part we'll create simple Math module which will provide users with basic set of mathematical functions and few helper methods. Most of this could be done without using module, but our goal is education!</p>
+<pre><code class="language-Move">module Math {
+    fun zero(): u8 {
+        0
     }
+}
+</code></pre>
+<p>First step: we've defined a module named <code>Math</code> with one function in it: <code>zero()</code>, which returns 0 - a value of type <code>u8</code>. Remember <a href="chapters//chapters/expression-and-scope.html">expressions</a>? There's no semicolon after <code>0</code> as it is the <em>return value</em> of this function. Just like you would do with block. Yeah, function body is very similar to block.</p>
+<h3><a class="header" href="#function-arguments" id="function-arguments">Function arguments</a></h3>
+<p>This should be clear by now, but let's repeat. Function can take arguments (values passed into function). As many as needed. Every argument has 2 properties: name - its name within a function body, and type - just like any other variable in Move.</p>
+<p>Function arguments - just like any other variables defined within a scope - live only within function body. When function block ends, no variables remain.</p>
+<pre><code class="language-Move">module Math {
 
-    fun sum(a: u8, b: u8): u8 {
+    public fun sum(a: u64, b: u64): u64 {
         a + b
     }
-}
+
+    fun zero(): u8 {
+        0
+    }
+]
 </code></pre>
-<p>Here we've created <code>sum</code> function with two arguments inside parentheses: <em>a</em> and <em>b</em>. Let's learn few rules:</p>
+<p>What's new in our Math: function <code>sum(a,b)</code> which sums two <code>u64</code> values and returns result - <code>u64</code> sum (type can't change).</p>
+<p>Let's state few syntax rules:</p>
 <ol>
-<li>Function arguments MUST have types specified and MUST be separated by comma;</li>
-<li>Function return value (if there is one) is put after parentheses and requires a colon;</li>
+<li>Arguments must have types and must be separated by comma</li>
+<li>Function return value is placed after parentheses and must follow a colon</li>
 </ol>
-<p>Now how would we call function <code>sum</code>? Here's a sample.</p>
+<p>Now how would we use this function in script? Through import!</p>
 <pre><code class="language-Move">script {
-    fun sum(a: u8, b: u8): u8 {
-        a + b
-    }
+    use 0x1::Math;  // used 0x1 here; could be your address
+    use 0x0::Debug; // this one will be covered later!
 
-    fun gimme_five_and_five(): u8 {
-        let ten = sum(5, 5);
-        ten
+    fun main(first_num: u64, second_num: u64) {
+
+        // variables names don't have to match the function's ones
+        let sum = Math::sum(first_num, second_num);
+
+        Debug::print&lt;u64&gt;(&amp;sum);
     }
 }
 </code></pre>
-<h3><a class="header" href="#function-body" id="function-body">Function body</a></h3>
-<p>In this example we've defined another function <em>gimme_five_and_five()</em> which takes no arguments and makes a call to function <em>sum</em> with two fives as arguments. In return it gets 10 and returns this value to the caller. Returned type of our function-caller matches return type of function <em>sum</em>.</p>
-<p>In Move only function body can contain expressions and statements. It is impossible to do an assignment or create a loop outside of the function context.</p>
-<pre><code class="language-Move">script {
-    fun sum_iterator(iter: u8, n: u8): u8 {
-
-        let i = 0;
-        let res = 0;
-        while (i &lt; iter) {
-            res = res + n;
-            i = i + 1;
-        };
-
-        res
-    }
-}
-</code></pre>
-<p>We can surely say that none of the statements you see inside the body of function <em>sum_iterator</em> can be used outside function context. Try it yourself - there's no point in life without mistakes!</p>
 <h3><a class="header" href="#multiple-return-values" id="multiple-return-values">Multiple return values</a></h3>
-<p>In previous examples we've experimented with functions with no return value or with single. But what if I told you that you can return multiple values of any type. Curious? Let's proceed!</p>
+<p>In previous examples we've experimented with functions with no return value or with single. But what if I told you that you can return multiple values of any type? Curious? Let's proceed!</p>
 <p>To specify multiple return values you need to use parentheses:</p>
-<pre><code class="language-Move">script {
-    fun max(a: u8, b: u8): (u8, bool) {
+<pre><code class="language-Move">module Math {
+
+    // ...
+
+    public fun max(a: u8, b: u8): (u8, bool) {
         if (a &gt; b) {
             (a, false)
         } else if (a &lt; b) {
@@ -727,73 +834,75 @@ With <code>break</code> we stop iteration and exit loop.</p>
     }
 }
 </code></pre>
-<p>This function takes two arguments: <em>a</em> and <em>b</em> and also <strong>returns two values</strong>: first is the max value and second is a boolean whether numbers entered are equal. Take closer look at the syntax: instead of specifying singe return argument we've added <strong>parenteses</strong> and have listed return argument types.</p>
-<p>Now let's see how we can use result of this function in <code>let</code> statement.</p>
+<p>This function takes two arguments: <code>a</code> and <code>b</code> and <em>returns two values</em>: first is the max value from two passed and second is a bool - whether numbers entered are equal. Take closer look at the syntax: instead of specifying singe return argument we've added <em>parenteses</em> and have listed return argument types.</p>
+<p>Now let's see how we can use result of this function in another function in script.</p>
 <pre><code class="language-Move">script {
-    // max function is defined ...
-    fun main(): u64  {
-        let (m, is_equal) = max(99, 100);
+    use 0x0::Debug;
+    use 0x1::Math;
 
-        if (is_equal) {
-            m = m * 2;
-        }
+    fun main(a: u8, b: u8)  {
+        let (max, is_equal) = Math::max(99, 100);
 
-        (m as u64)
+        Transaction::assert(is_equal, 1)
+
+        Debug::print&lt;u8&gt;(&amp;max);
     }
 }
 </code></pre>
-<p>In this example we've <em>destructed</em> a tuple: created two new variables with values and types of return values of function <em>max</em>. Order is preserved and variable <em>m</em> here gets type <em>u8</em> and now stores max value, whereas <em>is_equal</em> is a <em>bool</em>.</p>
+<p>In this example we've <em>destructed</em> a tuple: created two new variables with values and types of return values of function <em>max</em>. Order is preserved and variable <em>max</em> here gets type <em>u8</em> and now stores max value, whereas <em>is_equal</em> is a <em>bool</em>.</p>
 <p>Two is not the limit - number of returned arguments is up to you, though you'll soon learn about structs and see alternative way to return complex data.</p>
-<h3><a class="header" href="#functions-in-a-module" id="functions-in-a-module">Functions in a module</a></h3>
 <h3><a class="header" href="#function-visibility" id="function-visibility">Function visibility</a></h3>
-<h1><a class="header" href="#imports" id="imports">Imports</a></h1>
-<p>Default context in Move is empty - you can't operate Vector, you can't access Transaction details and you can't do almost anything (with small exception of built-in functions which will also require some Account features). To make your module or a script more meaningful and useful you need imports.</p>
-<p>Here we need to take a step back and go through concept again. As I've mentioned in previous part there're two types of code transactions: <em>module</em> and <em>script</em>. Module is <em>deployed</em> (or published) and can be imported and used in a script. Not only custom deployed modules can be imported. There's also the <em>Standard library</em> (accessible at address <code>0x0</code>) which significantly extends language functionality.</p>
-<h2><a class="header" href="#senders-address" id="senders-address">Sender's address</a></h2>
-<p>Every transaction on blockchain is sent and signed by its sender, hence every module you or someone else publish to blockchain has sender's address which can be used to access/import this module.</p>
-<p>In modifications of Move VM any address format can be used, so not to misguide you and to make this book as basic and general as it can be, I will use <code>{{sender}}</code> pattern to mark sender's address.</p>
-<h2><a class="header" href="#keyword-use" id="keyword-use">Keyword <code>use</code></a></h2>
-<p>To import module from address use this pattern:</p>
-<pre><code class="language-Move">use {{sender}}::ModuleName;
-</code></pre>
-<p>In <code>module</code> context import MUST be placed inside module definition:</p>
-<pre><code class="language-Move">module Lebowski {
-    use {{sender}}::TheRug;
+<p>When defining a module you may want to make some functions accessible by other developers and some to remain hidden. This is when <em>function visibility modifiers</em> come to play.</p>
+<p>By default every function defined in module is private - it cannot be accessed in other modules or scripts. If you've been attentive, you may have noticed that some of the functions that we've defined in our Math module have keyword <code>public</code> before their definition:</p>
+<pre><code class="language-Move">module Math {
 
-    public fun get_the_rug_back() {
-        TheRug::tie_the_room_together();
+    public fun sum(a: u64, b: u64): u64 {
+        a + b
+    }
+
+    fun zero(): u8 {
+        0
     }
 }
 </code></pre>
-<p>In <code>script</code> context import MUST be placed before <code>main()</code>.</p>
-<pre><code class="language-Move">// script context
-script {
-    use {{sender}}::Lebowski;
-
-    fun the_dude() {
-        Lebowski::get_the_rug_back();
-    }
-}
-</code></pre>
-<h3><a class="header" href="#use-meets-as" id="use-meets-as"><code>use</code> meets <code>as</code></a></h3>
-<p>You can change name of the imported module in your code using keyword <code>as</code>.</p>
+<p>In this example function <code>sum()</code> is accessible from outside when module is imported, however function <code>zero()</code> is not - it is private by default.</p>
+<blockquote>
+<p>Keyword <code>public</code> changes function's default <em>private</em> visibility and makes it <em>public</em> - i.e. accessible from outside.</p>
+</blockquote>
+<p>So basically if you didn't make <code>sum()</code> function <em>public</em>, this wouldn't be possible:</p>
 <pre><code class="language-Move">script {
-    use 0x0::Transaction as Tx;
+    use 0x1::Math;
 
-    fun check_assert() {
-        Tx::assert(true, 11);
+    fun main() {
+        Math::sum(10, 100); // won't compile!
     }
 }
 </code></pre>
-<p>This may be used to shorten-up some dependencies or to resolve name conflicts between modules.</p>
-<h2><a class="header" href="#importing-standard-library" id="importing-standard-library">Importing Standard library</a></h2>
-<p>Standard library is always accessible via <code>0x0</code> address. It can be used in both <em>module</em> and <em>script</em>.</p>
-<pre><code class="language-Move">module M {
-    use 0x0::Transaction;
+<h3><a class="header" href="#access-local-functions" id="access-local-functions">Access local functions</a></h3>
+<p>There would not be any sence in making private functions if they could not be accessed at all. Private functions exist to do some <em>internal</em> work when public functions are called.</p>
+<blockquote>
+<p>Private functions can only be accessed in the module where they're defined.</p>
+</blockquote>
+<p>So how do you access function in the same module? By simply calling this function like it was imported!</p>
+<pre><code class="language-Move">module Math {
 
-    public fun sender(): address {
-        Transaction::sender()
+    public fun is_zero(a: u8): bool {
+        a == zero()
     }
+
+    fun zero(): u8 {
+        0
+    }
+}
+</code></pre>
+<p>Any function defined in a module is acessible by any function in the same module no matter what visibility modifiers any of them has. This way private functions can still be used as calls inside public ones without exposing some private features or too risky operations.</p>
+<h3><a class="header" href="#native-functions" id="native-functions">Native functions</a></h3>
+<p>There's a special kind of functions - <em>native</em> ones. <em>Native functions</em> implement functionality which goes beyond Move's possibilities and give you extra power. Native functions are defined by VM itself and may vary in different implementations. Which means they don't have implementation in Move syntax and instead of having function body they end with semicolon. Keyword <code>native</code> is used to mark native functions. It does not conflict with function visibility modifiers and same function can be <code>native</code> and <code>public</code> at the same time.</p>
+<p>Here's an example from Libra's standard library.</p>
+<pre><code class="language-Move">module Vector {
+    // ...
+    native public fun length&lt;Element&gt;(v: &amp;vector&lt;Element&gt;): u64;
+    // ...
 }
 </code></pre>
 <h1><a class="header" href="#struct" id="struct">Struct</a></h1>

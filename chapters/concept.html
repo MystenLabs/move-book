@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Script and Module - Move Book</title>
+        <title>Concept - Move Book</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="../introduction/getting-started.html"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="../chapters/syntax-basics.html"><strong aria-hidden="true">5.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/concept.html" class="active"><strong aria-hidden="true">5.1.</strong> Script and Module</a></li><li class="chapter-item expanded "><a href="../chapters/primitives.html"><strong aria-hidden="true">5.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../chapters/comments.html"><strong aria-hidden="true">5.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../chapters/expression-and-scope.html"><strong aria-hidden="true">5.4.</strong> Expression and Scope</a></li><li class="chapter-item expanded "><a href="../chapters/control-flow.html"><strong aria-hidden="true">5.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../chapters/function.html"><strong aria-hidden="true">5.6.</strong> Function</a></li><li class="chapter-item expanded "><a href="../chapters/imports.html"><strong aria-hidden="true">5.7.</strong> Import</a></li><li class="chapter-item expanded "><a href="../chapters/struct.html"><strong aria-hidden="true">5.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="../chapters/advanced-topics.html"><strong aria-hidden="true">6.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/references.html"><strong aria-hidden="true">6.1.</strong> References</a></li><li class="chapter-item expanded "><a href="../chapters/generics.html"><strong aria-hidden="true">6.2.</strong> Generics</a></li><li class="chapter-item expanded "><a href="../chapters/vector.html"><strong aria-hidden="true">6.3.</strong> Vector</a></li><li class="chapter-item expanded "><a href="../chapters/resource.html"><strong aria-hidden="true">6.4.</strong> Resource</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="../introduction/getting-started.html"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="../chapters/syntax-basics.html"><strong aria-hidden="true">5.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/concept.html" class="active"><strong aria-hidden="true">5.1.</strong> Concept</a></li><li class="chapter-item expanded "><a href="../chapters/primitives.html"><strong aria-hidden="true">5.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../chapters/comments.html"><strong aria-hidden="true">5.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../chapters/expression-and-scope.html"><strong aria-hidden="true">5.4.</strong> Expression and Scope</a></li><li class="chapter-item expanded "><a href="../chapters/control-flow.html"><strong aria-hidden="true">5.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../chapters/module.html"><strong aria-hidden="true">5.6.</strong> Module</a></li><li class="chapter-item expanded "><a href="../chapters/function.html"><strong aria-hidden="true">5.7.</strong> Function</a></li><li class="chapter-item expanded "><a href="../chapters/struct.html"><strong aria-hidden="true">5.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="../chapters/advanced-topics.html"><strong aria-hidden="true">6.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/references.html"><strong aria-hidden="true">6.1.</strong> References</a></li><li class="chapter-item expanded "><a href="../chapters/generics.html"><strong aria-hidden="true">6.2.</strong> Generics</a></li><li class="chapter-item expanded "><a href="../chapters/vector.html"><strong aria-hidden="true">6.3.</strong> Vector</a></li><li class="chapter-item expanded "><a href="../chapters/resource.html"><strong aria-hidden="true">6.4.</strong> Resource</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -147,29 +147,9 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#script-and-module" id="script-and-module">Script and Module</a></h1>
-<p>There are two types of code transactions in Move: module and script. Module is a deployment of new module (which then will be accessible under the address of sender); Script is a transaction-as-code in which you can use deployed modules as well as the standard library as dependencies.</p>
-<p>Module code starts with <code>module</code> keyword and its code looks like this. Inside module you can define: new <em>types</em> (as structs), <em>methods</em> and <code>resource structs</code>.</p>
-<pre><code class="language-Move">module MyModule {
-    struct hi_fives {
-        count: u8
-    }
-
-    public fun high_five(): u8 {
-        5
-    }
-}
-</code></pre>
-<p>Script must contain <code>main</code> function and usually uses deployed modules. See <a href="/move-language-reference/imports.html">imports</a> on how to import modules.</p>
-<pre><code class="language-Move">script {
-    // assume that sender address was 0xAF
-    use {{sender}}::MyModule;
-
-    fun main() {
-        MyModule::high_five();
-    }
-}
-</code></pre>
+                        <h1><a class="header" href="#concept" id="concept">Concept</a></h1>
+<p>Unlike other blockchain languages (e.g. Solidity) Move proposes separation of <em>scrips</em> (or <em>transaction-as-script</em>) and <em>modules</em>. The former allows you to put more logic into your transactions and make them more flexible while saving your time and resources; and the latter allows developers to extend blockchain functionality or to implement custom <em>smart-contracts</em> with variety of options.</p>
+<p>In basics we'll start with scripts as they're pretty friendly for a newcomer, and then we'll get to modules.</p>
 
                     </main>
 

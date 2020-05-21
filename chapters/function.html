@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="../introduction/getting-started.html"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="../chapters/syntax-basics.html"><strong aria-hidden="true">5.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/concept.html"><strong aria-hidden="true">5.1.</strong> Script and Module</a></li><li class="chapter-item expanded "><a href="../chapters/primitives.html"><strong aria-hidden="true">5.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../chapters/comments.html"><strong aria-hidden="true">5.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../chapters/expression-and-scope.html"><strong aria-hidden="true">5.4.</strong> Expression and Scope</a></li><li class="chapter-item expanded "><a href="../chapters/control-flow.html"><strong aria-hidden="true">5.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../chapters/function.html" class="active"><strong aria-hidden="true">5.6.</strong> Function</a></li><li class="chapter-item expanded "><a href="../chapters/imports.html"><strong aria-hidden="true">5.7.</strong> Import</a></li><li class="chapter-item expanded "><a href="../chapters/struct.html"><strong aria-hidden="true">5.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="../chapters/advanced-topics.html"><strong aria-hidden="true">6.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/references.html"><strong aria-hidden="true">6.1.</strong> References</a></li><li class="chapter-item expanded "><a href="../chapters/generics.html"><strong aria-hidden="true">6.2.</strong> Generics</a></li><li class="chapter-item expanded "><a href="../chapters/vector.html"><strong aria-hidden="true">6.3.</strong> Vector</a></li><li class="chapter-item expanded "><a href="../chapters/resource.html"><strong aria-hidden="true">6.4.</strong> Resource</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="../introduction/getting-started.html"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="../chapters/syntax-basics.html"><strong aria-hidden="true">5.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/concept.html"><strong aria-hidden="true">5.1.</strong> Concept</a></li><li class="chapter-item expanded "><a href="../chapters/primitives.html"><strong aria-hidden="true">5.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../chapters/comments.html"><strong aria-hidden="true">5.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../chapters/expression-and-scope.html"><strong aria-hidden="true">5.4.</strong> Expression and Scope</a></li><li class="chapter-item expanded "><a href="../chapters/control-flow.html"><strong aria-hidden="true">5.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../chapters/module.html"><strong aria-hidden="true">5.6.</strong> Module</a></li><li class="chapter-item expanded "><a href="../chapters/function.html" class="active"><strong aria-hidden="true">5.7.</strong> Function</a></li><li class="chapter-item expanded "><a href="../chapters/struct.html"><strong aria-hidden="true">5.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="../chapters/advanced-topics.html"><strong aria-hidden="true">6.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/references.html"><strong aria-hidden="true">6.1.</strong> References</a></li><li class="chapter-item expanded "><a href="../chapters/generics.html"><strong aria-hidden="true">6.2.</strong> Generics</a></li><li class="chapter-item expanded "><a href="../chapters/vector.html"><strong aria-hidden="true">6.3.</strong> Vector</a></li><li class="chapter-item expanded "><a href="../chapters/resource.html"><strong aria-hidden="true">6.4.</strong> Resource</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -148,68 +148,82 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#function" id="function">Function</a></h1>
-<p>Function is the only place of execution in Move. Functions start with <code>fun</code> keyword which is followed by function name, parentheses for arguments and curly braces for body.</p>
-<p>You've already seen few in previous chapters. And now you will learn how to use them.</p>
-<h3><a class="header" href="#functions-in-script-context" id="functions-in-script-context">Functions in script context</a></h3>
-<p>Let's try to write few functions and see what we can do. We'll start with script context as it's fairly simple.</p>
+<p>Function is the only place of execution in Move. Function starts with <code>fun</code> keyword which is followed by function name, parentheses for arguments and curly braces for body.</p>
+<pre><code class="language-Move">fun function_name(arg1: u64, arg2: bool): u64 {
+    // function body
+}
+</code></pre>
+<p>You have already seen some in previous chapters. And now you will learn how to use them.</p>
+<blockquote>
+<p><strong>Note:</strong> in Move functions should be named in <em>snake_case</em> - lowercase with underscores as word separators.</p>
+</blockquote>
+<h2><a class="header" href="#function-in-script" id="function-in-script">Function in script</a></h2>
+<p>Script block can contain only one function which is considered <em>main</em>. This function (possibly with arguments) will be executed as transaction. It is very limited: it cannot return value and should be used to operate other functions in already published modules.</p>
+<p>Here's an example of simple script which checks if address exists:</p>
 <pre><code class="language-Move">script {
-    fun gimme_five(): u8 {
-        5
+    use 0x0::Account;
+
+    fun main(addr: address) {
+        Transaction::assert(Account::exists(addr), 1);
     }
 }
 </code></pre>
-<p>We defined our first <code>gimme_five</code> function with no arguments and return value of <code>u8</code> type. It's obvious that in this function return value (remember <a href="/chapters/expression-blocks">expressions</a>!) is always 5.</p>
-<p>Let's look at a different example and see how we can use <em>function arguments</em>.</p>
-<h3><a class="header" href="#function-arguments-and-return-values" id="function-arguments-and-return-values">Function arguments and return values</a></h3>
-<pre><code class="language-Move">script {
-    fun empty() {
+<p>This function can have arguments: in this case it is <code>addr</code> argument with type <code>address</code>, also it can operate imported modules.</p>
+<blockquote>
+<p><strong>Note:</strong> as there's only one function, you can call it any way you want. Though you may want to follow general programming concepts and call it <strong>main</strong></p>
+</blockquote>
+<h2><a class="header" href="#function-in-module" id="function-in-module">Function in module</a></h2>
+<p>While script context is fairly limited, full potential of functions can only be seen in a module. Let's go through it again: module is a published set of functions and types (we'll get to it in the next chapter) which solves one or many tasks.</p>
+<p>In this part we'll create simple Math module which will provide users with basic set of mathematical functions and few helper methods. Most of this could be done without using module, but our goal is education!</p>
+<pre><code class="language-Move">module Math {
+    fun zero(): u8 {
+        0
     }
+}
+</code></pre>
+<p>First step: we've defined a module named <code>Math</code> with one function in it: <code>zero()</code>, which returns 0 - a value of type <code>u8</code>. Remember <a href="/chapters/expression-and-scope.html">expressions</a>? There's no semicolon after <code>0</code> as it is the <em>return value</em> of this function. Just like you would do with block. Yeah, function body is very similar to block.</p>
+<h3><a class="header" href="#function-arguments" id="function-arguments">Function arguments</a></h3>
+<p>This should be clear by now, but let's repeat. Function can take arguments (values passed into function). As many as needed. Every argument has 2 properties: name - its name within a function body, and type - just like any other variable in Move.</p>
+<p>Function arguments - just like any other variables defined within a scope - live only within function body. When function block ends, no variables remain.</p>
+<pre><code class="language-Move">module Math {
 
-    fun sum(a: u8, b: u8): u8 {
+    public fun sum(a: u64, b: u64): u64 {
         a + b
     }
-}
+
+    fun zero(): u8 {
+        0
+    }
+]
 </code></pre>
-<p>Here we've created <code>sum</code> function with two arguments inside parentheses: <em>a</em> and <em>b</em>. Let's learn few rules:</p>
+<p>What's new in our Math: function <code>sum(a,b)</code> which sums two <code>u64</code> values and returns result - <code>u64</code> sum (type can't change).</p>
+<p>Let's state few syntax rules:</p>
 <ol>
-<li>Function arguments MUST have types specified and MUST be separated by comma;</li>
-<li>Function return value (if there is one) is put after parentheses and requires a colon;</li>
+<li>Arguments must have types and must be separated by comma</li>
+<li>Function return value is placed after parentheses and must follow a colon</li>
 </ol>
-<p>Now how would we call function <code>sum</code>? Here's a sample.</p>
+<p>Now how would we use this function in script? Through import!</p>
 <pre><code class="language-Move">script {
-    fun sum(a: u8, b: u8): u8 {
-        a + b
-    }
+    use 0x1::Math;  // used 0x1 here; could be your address
+    use 0x0::Debug; // this one will be covered later!
 
-    fun gimme_five_and_five(): u8 {
-        let ten = sum(5, 5);
-        ten
+    fun main(first_num: u64, second_num: u64) {
+
+        // variables names don't have to match the function's ones
+        let sum = Math::sum(first_num, second_num);
+
+        Debug::print&lt;u64&gt;(&amp;sum);
     }
 }
 </code></pre>
-<h3><a class="header" href="#function-body" id="function-body">Function body</a></h3>
-<p>In this example we've defined another function <em>gimme_five_and_five()</em> which takes no arguments and makes a call to function <em>sum</em> with two fives as arguments. In return it gets 10 and returns this value to the caller. Returned type of our function-caller matches return type of function <em>sum</em>.</p>
-<p>In Move only function body can contain expressions and statements. It is impossible to do an assignment or create a loop outside of the function context.</p>
-<pre><code class="language-Move">script {
-    fun sum_iterator(iter: u8, n: u8): u8 {
-
-        let i = 0;
-        let res = 0;
-        while (i &lt; iter) {
-            res = res + n;
-            i = i + 1;
-        };
-
-        res
-    }
-}
-</code></pre>
-<p>We can surely say that none of the statements you see inside the body of function <em>sum_iterator</em> can be used outside function context. Try it yourself - there's no point in life without mistakes!</p>
 <h3><a class="header" href="#multiple-return-values" id="multiple-return-values">Multiple return values</a></h3>
-<p>In previous examples we've experimented with functions with no return value or with single. But what if I told you that you can return multiple values of any type. Curious? Let's proceed!</p>
+<p>In previous examples we've experimented with functions with no return value or with single. But what if I told you that you can return multiple values of any type? Curious? Let's proceed!</p>
 <p>To specify multiple return values you need to use parentheses:</p>
-<pre><code class="language-Move">script {
-    fun max(a: u8, b: u8): (u8, bool) {
+<pre><code class="language-Move">module Math {
+
+    // ...
+
+    public fun max(a: u8, b: u8): (u8, bool) {
         if (a &gt; b) {
             (a, false)
         } else if (a &lt; b) {
@@ -220,38 +234,90 @@
     }
 }
 </code></pre>
-<p>This function takes two arguments: <em>a</em> and <em>b</em> and also <strong>returns two values</strong>: first is the max value and second is a boolean whether numbers entered are equal. Take closer look at the syntax: instead of specifying singe return argument we've added <strong>parenteses</strong> and have listed return argument types.</p>
-<p>Now let's see how we can use result of this function in <code>let</code> statement.</p>
+<p>This function takes two arguments: <code>a</code> and <code>b</code> and <em>returns two values</em>: first is the max value from two passed and second is a bool - whether numbers entered are equal. Take closer look at the syntax: instead of specifying singe return argument we've added <em>parenteses</em> and have listed return argument types.</p>
+<p>Now let's see how we can use result of this function in another function in script.</p>
 <pre><code class="language-Move">script {
-    // max function is defined ...
-    fun main(): u64  {
-        let (m, is_equal) = max(99, 100);
+    use 0x0::Debug;
+    use 0x1::Math;
 
-        if (is_equal) {
-            m = m * 2;
-        }
+    fun main(a: u8, b: u8)  {
+        let (max, is_equal) = Math::max(99, 100);
 
-        (m as u64)
+        Transaction::assert(is_equal, 1)
+
+        Debug::print&lt;u8&gt;(&amp;max);
     }
 }
 </code></pre>
-<p>In this example we've <em>destructed</em> a tuple: created two new variables with values and types of return values of function <em>max</em>. Order is preserved and variable <em>m</em> here gets type <em>u8</em> and now stores max value, whereas <em>is_equal</em> is a <em>bool</em>.</p>
+<p>In this example we've <em>destructed</em> a tuple: created two new variables with values and types of return values of function <em>max</em>. Order is preserved and variable <em>max</em> here gets type <em>u8</em> and now stores max value, whereas <em>is_equal</em> is a <em>bool</em>.</p>
 <p>Two is not the limit - number of returned arguments is up to you, though you'll soon learn about structs and see alternative way to return complex data.</p>
-<h3><a class="header" href="#functions-in-a-module" id="functions-in-a-module">Functions in a module</a></h3>
 <h3><a class="header" href="#function-visibility" id="function-visibility">Function visibility</a></h3>
+<p>When defining a module you may want to make some functions accessible by other developers and some to remain hidden. This is when <em>function visibility modifiers</em> come to play.</p>
+<p>By default every function defined in module is private - it cannot be accessed in other modules or scripts. If you've been attentive, you may have noticed that some of the functions that we've defined in our Math module have keyword <code>public</code> before their definition:</p>
+<pre><code class="language-Move">module Math {
+
+    public fun sum(a: u64, b: u64): u64 {
+        a + b
+    }
+
+    fun zero(): u8 {
+        0
+    }
+}
+</code></pre>
+<p>In this example function <code>sum()</code> is accessible from outside when module is imported, however function <code>zero()</code> is not - it is private by default.</p>
+<blockquote>
+<p>Keyword <code>public</code> changes function's default <em>private</em> visibility and makes it <em>public</em> - i.e. accessible from outside.</p>
+</blockquote>
+<p>So basically if you didn't make <code>sum()</code> function <em>public</em>, this wouldn't be possible:</p>
+<pre><code class="language-Move">script {
+    use 0x1::Math;
+
+    fun main() {
+        Math::sum(10, 100); // won't compile!
+    }
+}
+</code></pre>
+<h3><a class="header" href="#access-local-functions" id="access-local-functions">Access local functions</a></h3>
+<p>There would not be any sence in making private functions if they could not be accessed at all. Private functions exist to do some <em>internal</em> work when public functions are called.</p>
+<blockquote>
+<p>Private functions can only be accessed in the module where they're defined.</p>
+</blockquote>
+<p>So how do you access function in the same module? By simply calling this function like it was imported!</p>
+<pre><code class="language-Move">module Math {
+
+    public fun is_zero(a: u8): bool {
+        a == zero()
+    }
+
+    fun zero(): u8 {
+        0
+    }
+}
+</code></pre>
+<p>Any function defined in a module is acessible by any function in the same module no matter what visibility modifiers any of them has. This way private functions can still be used as calls inside public ones without exposing some private features or too risky operations.</p>
+<h3><a class="header" href="#native-functions" id="native-functions">Native functions</a></h3>
+<p>There's a special kind of functions - <em>native</em> ones. <em>Native functions</em> implement functionality which goes beyond Move's possibilities and give you extra power. Native functions are defined by VM itself and may vary in different implementations. Which means they don't have implementation in Move syntax and instead of having function body they end with semicolon. Keyword <code>native</code> is used to mark native functions. It does not conflict with function visibility modifiers and same function can be <code>native</code> and <code>public</code> at the same time.</p>
+<p>Here's an example from Libra's standard library.</p>
+<pre><code class="language-Move">module Vector {
+    // ...
+    native public fun length&lt;Element&gt;(v: &amp;vector&lt;Element&gt;): u64;
+    // ...
+}
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../chapters/control-flow.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../chapters/module.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../chapters/imports.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../chapters/struct.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -263,13 +329,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../chapters/control-flow.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../chapters/module.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="../chapters/imports.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../chapters/struct.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

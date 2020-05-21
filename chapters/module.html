@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Import - Move Book</title>
+        <title>Module - Move Book</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="../introduction/getting-started.html"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="../chapters/syntax-basics.html"><strong aria-hidden="true">5.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/concept.html"><strong aria-hidden="true">5.1.</strong> Script and Module</a></li><li class="chapter-item expanded "><a href="../chapters/primitives.html"><strong aria-hidden="true">5.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../chapters/comments.html"><strong aria-hidden="true">5.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../chapters/expression-and-scope.html"><strong aria-hidden="true">5.4.</strong> Expression and Scope</a></li><li class="chapter-item expanded "><a href="../chapters/control-flow.html"><strong aria-hidden="true">5.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../chapters/function.html"><strong aria-hidden="true">5.6.</strong> Function</a></li><li class="chapter-item expanded "><a href="../chapters/imports.html" class="active"><strong aria-hidden="true">5.7.</strong> Import</a></li><li class="chapter-item expanded "><a href="../chapters/struct.html"><strong aria-hidden="true">5.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="../chapters/advanced-topics.html"><strong aria-hidden="true">6.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/references.html"><strong aria-hidden="true">6.1.</strong> References</a></li><li class="chapter-item expanded "><a href="../chapters/generics.html"><strong aria-hidden="true">6.2.</strong> Generics</a></li><li class="chapter-item expanded "><a href="../chapters/vector.html"><strong aria-hidden="true">6.3.</strong> Vector</a></li><li class="chapter-item expanded "><a href="../chapters/resource.html"><strong aria-hidden="true">6.4.</strong> Resource</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="../introduction/getting-started.html"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="../chapters/syntax-basics.html"><strong aria-hidden="true">5.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/concept.html"><strong aria-hidden="true">5.1.</strong> Concept</a></li><li class="chapter-item expanded "><a href="../chapters/primitives.html"><strong aria-hidden="true">5.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../chapters/comments.html"><strong aria-hidden="true">5.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../chapters/expression-and-scope.html"><strong aria-hidden="true">5.4.</strong> Expression and Scope</a></li><li class="chapter-item expanded "><a href="../chapters/control-flow.html"><strong aria-hidden="true">5.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../chapters/module.html" class="active"><strong aria-hidden="true">5.6.</strong> Module</a></li><li class="chapter-item expanded "><a href="../chapters/function.html"><strong aria-hidden="true">5.7.</strong> Function</a></li><li class="chapter-item expanded "><a href="../chapters/struct.html"><strong aria-hidden="true">5.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="../chapters/advanced-topics.html"><strong aria-hidden="true">6.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/references.html"><strong aria-hidden="true">6.1.</strong> References</a></li><li class="chapter-item expanded "><a href="../chapters/generics.html"><strong aria-hidden="true">6.2.</strong> Generics</a></li><li class="chapter-item expanded "><a href="../chapters/vector.html"><strong aria-hidden="true">6.3.</strong> Vector</a></li><li class="chapter-item expanded "><a href="../chapters/resource.html"><strong aria-hidden="true">6.4.</strong> Resource</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -147,53 +147,108 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#imports" id="imports">Imports</a></h1>
-<p>Default context in Move is empty - you can't operate Vector, you can't access Transaction details and you can't do almost anything (with small exception of built-in functions which will also require some Account features). To make your module or a script more meaningful and useful you need imports.</p>
-<p>Here we need to take a step back and go through concept again. As I've mentioned in previous part there're two types of code transactions: <em>module</em> and <em>script</em>. Module is <em>deployed</em> (or published) and can be imported and used in a script. Not only custom deployed modules can be imported. There's also the <em>Standard library</em> (accessible at address <code>0x0</code>) which significantly extends language functionality.</p>
-<h2><a class="header" href="#senders-address" id="senders-address">Sender's address</a></h2>
-<p>Every transaction on blockchain is sent and signed by its sender, hence every module you or someone else publish to blockchain has sender's address which can be used to access/import this module.</p>
-<p>In modifications of Move VM any address format can be used, so not to misguide you and to make this book as basic and general as it can be, I will use <code>{{sender}}</code> pattern to mark sender's address.</p>
-<h2><a class="header" href="#keyword-use" id="keyword-use">Keyword <code>use</code></a></h2>
-<p>To import module from address use this pattern:</p>
-<pre><code class="language-Move">use {{sender}}::ModuleName;
-</code></pre>
-<p>In <code>module</code> context import MUST be placed inside module definition:</p>
-<pre><code class="language-Move">module Lebowski {
-    use {{sender}}::TheRug;
+                        <h1><a class="header" href="#module" id="module">Module</a></h1>
+<p>Module is set of functions and types packed together which developer publishes under his address. In prevous chapters we only used scripts, though script can only operate with published modules or standard library which itself is a set of modules published under <code>0x0</code> address.</p>
+<blockquote>
+<p>Module is published under its sender's address. Standard library is published under <code>0x0</code> address.</p>
+</blockquote>
+<blockquote>
+<p>When publishing a module, none of its functions are executed. To use module - use scripts.</p>
+</blockquote>
+<p>Module starts with <code>module</code> keyword, which is followed by module name and curly braces - inside them module contents is placed.</p>
+<pre><code class="language-Move">module Math {
 
-    public fun get_the_rug_back() {
-        TheRug::tie_the_room_together();
+    // module contents
+
+    public fun sum(a: u64, b: u64): u64 {
+        a + b
     }
 }
 </code></pre>
-<p>In <code>script</code> context import MUST be placed before <code>main()</code>.</p>
-<pre><code class="language-Move">// script context
-script {
-    use {{sender}}::Lebowski;
+<blockquote>
+<p>Module is the only way to publish code accessible for others; new types and resources can too only be defined within module context.</p>
+</blockquote>
+<p>By default your module will be compiled and published from your address. However if you need to use some modules locally (e.g. for testing or developing) or want to specify your address inside module file, use <code>address &lt;ADDR&gt; {}</code> syntax:</p>
+<pre><code class="language-Move">address 0x1 {
+module Math {
+    // module contents
 
-    fun the_dude() {
-        Lebowski::get_the_rug_back();
+    public fun sum(a: u64, b: u64): u64 {
+        a + b
     }
 }
+}
 </code></pre>
-<h3><a class="header" href="#use-meets-as" id="use-meets-as"><code>use</code> meets <code>as</code></a></h3>
-<p>You can change name of the imported module in your code using keyword <code>as</code>.</p>
+<p><em>Like shown in example: best practice is to keep module line without indentation</em></p>
+<h2><a class="header" href="#imports" id="imports">Imports</a></h2>
+<p>Default context in Move is empty: the only types you can use are primitives (integers, bool and address), and the only thing you can do within empty context is operate these types and variables while being unable to do something meaningful or useful.</p>
+<p>To change that you can import published modules (or standard library).</p>
+<h3><a class="header" href="#keyword-use" id="keyword-use">Keyword use</a></h3>
+<p>Import is marked with keyword <code>use</code>, like this:</p>
+<pre><code class="language-Move">use &lt;Address&gt;::&lt;ModuleName&gt;;
+</code></pre>
+<p>In here <code>&lt;Address&gt;</code> is a publisher's address and <code>&lt;ModuleName&gt;</code> is a name of a module. Pretty simple. I'll give you one real example of importing module <code>Transaction</code> from standard library:</p>
+<pre><code class="language-Move">use 0x0::Transaction;
+</code></pre>
+<h3><a class="header" href="#accessing-modules-contents" id="accessing-modules-contents">Accessing module's contents</a></h3>
+<p>To access imported module's methods (or types) use <code>::</code> notation. Simple as that - modules can only have one level of definitions so everything you define in module (publicly) can be accessed via double colon.</p>
 <pre><code class="language-Move">script {
-    use 0x0::Transaction as Tx;
+    use 0x0::Transaction;
+
+    fun main(addr: address) {
+        // here we use method assert() of module Transaction
+        // the same way we'd access any other method of any other module
+        Transaction::assert(addr == 0x1, 1);
+    }
+}
+</code></pre>
+<h3><a class="header" href="#import-in-script" id="import-in-script">Import in script</a></h3>
+<p>In scripts imports must be placed inside <code>script {}</code> block:</p>
+<pre><code class="language-Move">script {
+    use 0x0::Transaction;
+
+    // in just the same way you can import any
+    // other module(s). as many as you want!
+
+    fun main() {
+        Transaction::assert(true, 1);
+    }
+}
+</code></pre>
+<h3><a class="header" href="#import-in-module" id="import-in-module">Import in module</a></h3>
+<p>Module imports must be specified inside <code>module {}</code> block:</p>
+<pre><code class="language-Move">module Math {
+    use 0x0::Transaction;
+
+    // the same way as in scripts
+    // you are free to import any number of modules
+
+    public fun equal_or_fail(a: u64, b: u64) {
+        Transaction::assert(a == b, 1);
+    }
+}
+
+</code></pre>
+<h3><a class="header" href="#use-meets-as" id="use-meets-as">Use meets as</a></h3>
+<p>To resolve naming conflicts (when 2 or more modules have same names) and to shorten you code you can change name of the imported module using keyword <code>as</code>.</p>
+<p>Syntax:</p>
+<pre><code class="language-Move">use &lt;Address&gt;::&lt;ModuleName&gt; as &lt;Alias&gt;;
+</code></pre>
+<p>In script:</p>
+<pre><code class="language-Move">script {
+    use 0x0::Transaction as Tx; // Tx now means Transaction
 
     fun check_assert() {
         Tx::assert(true, 11);
     }
 }
 </code></pre>
-<p>This may be used to shorten-up some dependencies or to resolve name conflicts between modules.</p>
-<h2><a class="header" href="#importing-standard-library" id="importing-standard-library">Importing Standard library</a></h2>
-<p>Standard library is always accessible via <code>0x0</code> address. It can be used in both <em>module</em> and <em>script</em>.</p>
-<pre><code class="language-Move">module M {
-    use 0x0::Transaction;
+<p>The same in module:</p>
+<pre><code class="language-Move">module Math {
+    use 0x0::Vector as Vec;
 
-    public fun sender(): address {
-        Transaction::sender()
+    fun length(&amp;v: vector&lt;u8&gt;): u64 {
+        Vec::length(&amp;v)
     }
 }
 </code></pre>
@@ -203,13 +258,13 @@ script {
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../chapters/function.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../chapters/control-flow.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../chapters/struct.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../chapters/function.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -221,13 +276,13 @@ script {
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../chapters/function.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../chapters/control-flow.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="../chapters/struct.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../chapters/function.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
