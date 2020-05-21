@@ -8,7 +8,7 @@ To simpify development of Move modules we've created [Move IDE](https://github.c
 
 To install it you'll need:
 
-1. VSCode (version 1.43.0 and above) - you can [get it here](https://code.visualstudio.com/download); if you already have one - proceed to next step.
+1. VSCode (version 1.43.0 and above) - you can [get it here](https://code.visualstudio.com/download); if you already have one - proceed to the next step;
 2. Move IDE - once VSCode is installed, follow [this link](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide) to install newest version of IDE.
 
 ### Setup environment
@@ -16,9 +16,9 @@ To install it you'll need:
 Move IDE proposes single way of organizing your directory structure. Create new directory for your project and open it in VSCode. Then setup this directory structure:
 
 ```
-modules/    - directory for our modules
-scripts/    - directory for transaction scripts
-out/          - this directory will hold compiled sources
+modules/   - directory for our modules
+scripts/   - directory for transaction scripts
+out/       - this directory will hold compiled sources
 ```
 
 Also you'll need to create file called `.mvconfig.json` which will configure your working environment. This is a sample for `libra`:
@@ -51,15 +51,15 @@ Create new file called `high_fiver.move` inside `modules/` directory of your pro
 ```Move
 // modules/high_fiver.move
 address 0x1 {
-
 module HighFiver {
     public fun gimme_five(): u8 {
         5
     }
-}
-
+}s
 }
 ```
+
+> If you decided to use your own address (not `0x1`) - make sure you've changed 0x1 in this file and the one below
 
 ### Write script
 

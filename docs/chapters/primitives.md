@@ -2,7 +2,7 @@
 
 In this section you'll find examples and short descriptions of Move's primitive types: integers (u8, u64, u128), `boolean` and `address`. You will also learn how to change size of integer values and what types of addresses are supported in different versions of Move VM.
 
-<!-- MB ADD NODE: Also, there are no floating point types or strings. -->
+<!-- MB ADD NOTE: Also, there are no floating point types or strings. -->
 
 ## Integer types
 

@@ -21,9 +21,5 @@
 <!--
 - [Move IDE](ide/readme.md)
     - [Install & Configure](ide/setting-up.md)
-
-REMOVED:
-
-    - [Import](chapters/_imports.md)
 -->
 
