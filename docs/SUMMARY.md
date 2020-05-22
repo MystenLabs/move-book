@@ -14,6 +14,7 @@
     - [Function](chapters/function.md)
     - [Structures](chapters/struct.md)
 - [Advanced Topics](chapters/advanced-topics.md)
+    - [Borrow Check](chapters/borrow-check.md)
     - [References](chapters/references.md)
     - [Generics](chapters/generics.md)
     - [Vector](chapters/vector.md)
