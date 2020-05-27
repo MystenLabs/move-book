@@ -45,22 +45,65 @@ After you've created and initialized variable you're able to *modify* or *access
 
 > Equality sign `=` is an assignment operator. It assigns right-hand-side expression to left-hand-side variable. Example: `a = 10` - variable `a` is assigned an integer value of `10`.
 
-### Unused variables
+### Underscore "_" to mark unused
 
 In Move every variable must be used (otherwise your code won't compile), hence you can't initialize one and leave it untouched. Though you have one way to mark variable as *intentionally unused* - by using underscore `_`.
+
+You'll get an error if you try to compile this script:
 
 ```Move
 script {
     fun main() {
-        let _ = 10; // variable defined but not used
-
-        let a = 5;
-        a = a + 5; // a is used, no need for undescoring
+        let a = 1;
     }
 }
 ```
 
+The error:
+```
 
+    ┌── /scripts/script.move:3:13 ───
+    │
+ 33 │         let a = 1;
+    │             ^ Unused assignment or binding for local 'a'. Consider removing or replacing it with '_'
+    │
+```
+
+Compiler message is pretty clear, so all you have to do in this case is put underscore instead:
+
+```Move
+script {
+    fun main() {
+        let _ = 1;
+    }
+}
+```
+
+### Shadowing
+
+Move allows you to define same variable twice with one limitation - it still needs to be used. In the example above only second `a` is used. The first one: `let a = 1` is actually unused as on the next line we *redefine* `a` while leaving first one unused.
+
+```Move
+script {
+    fun main() {
+        let a = 1;
+        let a = 2;
+        let _ = a;
+    }
+}
+```
+
+Though we still can make it work by using first one:
+
+```Move
+script {
+    fun main() {
+        let a = 1;
+        let a = a + 2; // though let here is unnecessary
+        let _ = a;
+    }
+}
+```
 
 ## Block expression
 
@@ -189,8 +232,8 @@ script {
 
 Let's keynote main points of this chapter.
 
-1. > Every expression must end with semicolon unless it's the return value of block
-2. > Keyword `let` creates new variable with value or right-hand-side expression which lives as long as the scope in which it's been created
-3. > Block is an expression which may or may not have return value
+1. Every expression must end with semicolon unless it's the return value of block;
+2. Keyword `let` creates new variable with value or right-hand-side expression which lives as long as the scope in which it's been created;
+3. Block is an expression that may or may not have return value.
 
 How to control execution flow and how to use blocks for logic switches - on the next page.

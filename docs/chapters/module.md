@@ -42,14 +42,29 @@ Default context in Move is empty: the only types you can use are primitives (int
 
 To change that you can import published modules (or standard library).
 
+### Direct import
+
+You can use modules by their address directly in your code:
+
+```Move
+script {
+    fun main(a: u8) {
+        0x0::Transaction::assert(a == 10, 1);
+    }
+}
+```
+
+In this example we've imported module `Transaction` from address `0x0` (standard library) and used its method `assert(expr: bool, code: u8)`.
+
 ### Keyword use
 
-Import is marked with keyword `use`, like this:
+To make code shorter (remember that only 0x0 address is short, actual addresses are pretty long!) and to organize imports you can use keyword `use`:
 
 ```Move
 use <Address>::<ModuleName>;
 ```
-In here `<Address>` is a publisher's address and `<ModuleName>` is a name of a module. Pretty simple. I'll give you one real example of importing module `Transaction` from standard library:
+
+In here `<Address>` is a publisher's address and `<ModuleName>` is a name of a module. Pretty simple. Same here, we'll import `Transaction` module from `0x0`.
 
 ```Move
 use 0x0::Transaction;

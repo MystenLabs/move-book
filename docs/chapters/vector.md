@@ -7,9 +7,9 @@ Vector is a built-in (native) complex type for storing collection of values of o
 As usual - let's start with rules.
 
 1. Vector is a native type (just like [primitives](/chapters/primitives.md)) which means you can use it in both modules and scripts;
-2. Vector can only contain items of the same type. Which means you cannot store elements of type A and type B in the same vector;
-3. Vector can have size from zero to 9,223,372,036,854,775,807 (max size of `u64`), it's called length;
-4. Type of stored value is specified in generic: `vector<Element>`;
+2. Vector can only contain items of the same type. You cannot store elements of type A and type B in the same vector;
+3. Vector can have size from 0 to 9,223,372,036,854,775,807 (max size of `u64`), it's called length;
+4. Type of stored value is specified as type parameter: `vector<Element>`;
 5. Since it's a native type, to use it you need standard library - usually `0x0::Vector`.
 
 ## Usage
