@@ -157,11 +157,11 @@
 <p>Owner is a scope which <em>owns</em> a variable. Variable either can be defined in this scope (e.g. with keyword <code>let</code> in script) or be passed into scope as argument. Since the only scope in Move is function's - there are no other ways to put variable into scope.</p>
 <p>Each variable has only one owner, which means that when variable is passed into function as argument, this function becomes the <em>new owner</em>, and variable no longer <em>owned</em> by the first function. Or you may say that function <em>takes ownership</em> of variable.</p>
 <pre><code class="language-Move">script {
-    use {{sender}}::M
+    use {{sender}}::M;
 
     fun main() {
         // Module::T is a struct
-        let a : Module::T = Module::create_struct(10);
+        let a : Module::T = Module::create(10);
 
         // here variable `a` leaves scope of `main` function
         // and is being put into new scope of `M::value` function
@@ -178,6 +178,10 @@
     // create_fun skipped
     struct T { value: u8 }
 
+    public fun create(value: u8): T {
+        T { value }
+    }
+
     // variable t of type M::T passed
     // `value()` function takes ownership
     public fun value(t: T): u8 {
@@ -188,7 +192,7 @@
     // t no longer exists
 }
 </code></pre>
-<p>Of course quick workaround could be to return a tuple with original variable and additional results (return value would have been <code>(T, u8)</code>), but Move has a better solution for that.</p>
+<p>Of course, quick workaround is to return a tuple with original variable and additional results (return value would have been <code>(T, u8)</code>), but Move has a better solution for that.</p>
 <h2><a class="header" href="#references" id="references">References</a></h2>
 <p>Many programming languages have implementation of references (<a href="https://en.wikipedia.org/wiki/Reference_(computer_science)">see Wikipedia</a>). <em>Reference</em> is a link to variable (usually to a section in memory) which you can pass into other parts of program instead of <em>moving</em> the value.</p>
 <blockquote>
@@ -209,7 +213,7 @@
 <blockquote>
 <p>Move supports two types of references: <em>immutable</em> - defined with <code>&amp;</code> (e.g. <code>&amp;T</code>) and <em>mutable</em> - <code>&amp;mut</code> (e.g. <code>&amp;mut T</code>).</p>
 </blockquote>
-<p>Immutable references allow access to value without changing it. Mutable - the opposite - give ability to change the value.</p>
+<p>Immutable references allow reading value without changing it. Mutable - the opposite - give ability to read and change the value.</p>
 <pre><code class="language-Move">module M {
     struct T { value: u8 }
 
@@ -262,7 +266,7 @@
 <pre><code class="language-Move">module M {
     struct T {}
 
-    // ...
+    // value t here is of reference type
     public fun deref(t: &amp;T): T {
         *t
     }
