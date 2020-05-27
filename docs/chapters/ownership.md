@@ -14,11 +14,11 @@ Each variable has only one owner, which means that when variable is passed into 
 
 ```Move
 script {
-    use {{sender}}::M
+    use {{sender}}::M;
 
     fun main() {
         // Module::T is a struct
-        let a : Module::T = Module::create_struct(10);
+        let a : Module::T = Module::create(10);
 
         // here variable `a` leaves scope of `main` function
         // and is being put into new scope of `M::value` function
@@ -38,6 +38,10 @@ module M {
     // create_fun skipped
     struct T { value: u8 }
 
+    public fun create(value: u8): T {
+        T { value }
+    }
+
     // variable t of type M::T passed
     // `value()` function takes ownership
     public fun value(t: T): u8 {
@@ -49,7 +53,7 @@ module M {
 }
 ```
 
-Of course quick workaround could be to return a tuple with original variable and additional results (return value would have been `(T, u8)`), but Move has a better solution for that.
+Of course, quick workaround is to return a tuple with original variable and additional results (return value would have been `(T, u8)`), but Move has a better solution for that.
 
 ## References
 
@@ -75,7 +79,7 @@ We added ampersand `&` to argument type T - and by doing that we've changed argu
 
 > Move supports two types of references: *immutable* - defined with `&` (e.g. `&T`) and *mutable* - `&mut` (e.g. `&mut T`).
 
-Immutable references allow access to value without changing it. Mutable - the opposite - give ability to change the value.
+Immutable references allow reading value without changing it. Mutable - the opposite - give ability to read and change the value.
 
 ```Move
 module M {
@@ -137,7 +141,7 @@ References can be dereferenced to get linked value - to do it use asterisk `*`.
 module M {
     struct T {}
 
-    // ...
+    // value t here is of reference type
     public fun deref(t: &T): T {
         *t
     }
