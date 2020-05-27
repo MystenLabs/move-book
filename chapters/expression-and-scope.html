@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="../introduction/getting-started.html"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="../chapters/syntax-basics.html"><strong aria-hidden="true">5.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/concept.html"><strong aria-hidden="true">5.1.</strong> Concept</a></li><li class="chapter-item expanded "><a href="../chapters/primitives.html"><strong aria-hidden="true">5.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../chapters/comments.html"><strong aria-hidden="true">5.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../chapters/expression-and-scope.html" class="active"><strong aria-hidden="true">5.4.</strong> Expression and Scope</a></li><li class="chapter-item expanded "><a href="../chapters/control-flow.html"><strong aria-hidden="true">5.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../chapters/module.html"><strong aria-hidden="true">5.6.</strong> Module</a></li><li class="chapter-item expanded "><a href="../chapters/function.html"><strong aria-hidden="true">5.7.</strong> Function</a></li><li class="chapter-item expanded "><a href="../chapters/struct.html"><strong aria-hidden="true">5.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="../chapters/advanced-topics.html"><strong aria-hidden="true">6.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/borrow-check.html"><strong aria-hidden="true">6.1.</strong> Borrow Check</a></li><li class="chapter-item expanded "><a href="../chapters/references.html"><strong aria-hidden="true">6.2.</strong> References</a></li><li class="chapter-item expanded "><a href="../chapters/generics.html"><strong aria-hidden="true">6.3.</strong> Generics</a></li><li class="chapter-item expanded "><a href="../chapters/vector.html"><strong aria-hidden="true">6.4.</strong> Vector</a></li><li class="chapter-item expanded "><a href="../chapters/resource.html"><strong aria-hidden="true">6.5.</strong> Resource</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="../introduction/getting-started.html"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="../chapters/syntax-basics.html"><strong aria-hidden="true">5.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/concept.html"><strong aria-hidden="true">5.1.</strong> Concept</a></li><li class="chapter-item expanded "><a href="../chapters/primitives.html"><strong aria-hidden="true">5.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../chapters/comments.html"><strong aria-hidden="true">5.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../chapters/expression-and-scope.html" class="active"><strong aria-hidden="true">5.4.</strong> Expression and Scope</a></li><li class="chapter-item expanded "><a href="../chapters/control-flow.html"><strong aria-hidden="true">5.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../chapters/module.html"><strong aria-hidden="true">5.6.</strong> Module</a></li><li class="chapter-item expanded "><a href="../chapters/function.html"><strong aria-hidden="true">5.7.</strong> Function</a></li><li class="chapter-item expanded "><a href="../chapters/struct.html"><strong aria-hidden="true">5.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="../chapters/advanced-topics.html"><strong aria-hidden="true">6.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/ownership.html"><strong aria-hidden="true">6.1.</strong> Ownership and References</a></li><li class="chapter-item expanded "><a href="../chapters/generics.html"><strong aria-hidden="true">6.2.</strong> Generics</a></li><li class="chapter-item expanded "><a href="../chapters/vector.html"><strong aria-hidden="true">6.3.</strong> Vector</a></li><li class="chapter-item expanded "><a href="../chapters/resource.html"><strong aria-hidden="true">6.4.</strong> Resource</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -185,14 +185,46 @@
 <blockquote>
 <p>Equality sign <code>=</code> is an assignment operator. It assigns right-hand-side expression to left-hand-side variable. Example: <code>a = 10</code> - variable <code>a</code> is assigned an integer value of <code>10</code>.</p>
 </blockquote>
-<h3><a class="header" href="#unused-variables" id="unused-variables">Unused variables</a></h3>
+<h3><a class="header" href="#underscore-_-to-mark-unused" id="underscore-_-to-mark-unused">Underscore &quot;_&quot; to mark unused</a></h3>
 <p>In Move every variable must be used (otherwise your code won't compile), hence you can't initialize one and leave it untouched. Though you have one way to mark variable as <em>intentionally unused</em> - by using underscore <code>_</code>.</p>
+<p>You'll get an error if you try to compile this script:</p>
 <pre><code class="language-Move">script {
     fun main() {
-        let _ = 10; // variable defined but not used
-
-        let a = 5;
-        a = a + 5; // a is used, no need for undescoring
+        let a = 1;
+    }
+}
+</code></pre>
+<p>The error:</p>
+<pre><code>
+    ┌── /scripts/script.move:3:13 ───
+    │
+ 33 │         let a = 1;
+    │             ^ Unused assignment or binding for local 'a'. Consider removing or replacing it with '_'
+    │
+</code></pre>
+<p>Compiler message is pretty clear, so all you have to do in this case is put underscore instead:</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let _ = 1;
+    }
+}
+</code></pre>
+<h3><a class="header" href="#shadowing" id="shadowing">Shadowing</a></h3>
+<p>Move allows you to define same variable twice with one limitation - it still needs to be used. In the example above only second <code>a</code> is used. The first one: <code>let a = 1</code> is actually unused as on the next line we <em>redefine</em> <code>a</code> while leaving first one unused.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let a = 1;
+        let a = 2;
+        let _ = a;
+    }
+}
+</code></pre>
+<p>Though we still can make it work by using first one:</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let a = 1;
+        let a = a + 2; // though let here is unnecessary
+        let _ = a;
     }
 }
 </code></pre>
@@ -307,21 +339,9 @@
 <h3><a class="header" href="#summary" id="summary">Summary</a></h3>
 <p>Let's keynote main points of this chapter.</p>
 <ol>
-<li>
-<blockquote>
-<p>Every expression must end with semicolon unless it's the return value of block</p>
-</blockquote>
-</li>
-<li>
-<blockquote>
-<p>Keyword <code>let</code> creates new variable with value or right-hand-side expression which lives as long as the scope in which it's been created</p>
-</blockquote>
-</li>
-<li>
-<blockquote>
-<p>Block is an expression which may or may not have return value</p>
-</blockquote>
-</li>
+<li>Every expression must end with semicolon unless it's the return value of block;</li>
+<li>Keyword <code>let</code> creates new variable with value or right-hand-side expression which lives as long as the scope in which it's been created;</li>
+<li>Block is an expression that may or may not have return value.</li>
 </ol>
 <p>How to control execution flow and how to use blocks for logic switches - on the next page.</p>
 

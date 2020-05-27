@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="introduction/getting-started.html"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="chapters/syntax-basics.html"><strong aria-hidden="true">5.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/concept.html"><strong aria-hidden="true">5.1.</strong> Concept</a></li><li class="chapter-item expanded "><a href="chapters/primitives.html"><strong aria-hidden="true">5.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="chapters/comments.html"><strong aria-hidden="true">5.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="chapters/expression-and-scope.html"><strong aria-hidden="true">5.4.</strong> Expression and Scope</a></li><li class="chapter-item expanded "><a href="chapters/control-flow.html"><strong aria-hidden="true">5.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="chapters/module.html"><strong aria-hidden="true">5.6.</strong> Module</a></li><li class="chapter-item expanded "><a href="chapters/function.html"><strong aria-hidden="true">5.7.</strong> Function</a></li><li class="chapter-item expanded "><a href="chapters/struct.html"><strong aria-hidden="true">5.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="chapters/advanced-topics.html"><strong aria-hidden="true">6.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/borrow-check.html"><strong aria-hidden="true">6.1.</strong> Borrow Check</a></li><li class="chapter-item expanded "><a href="chapters/references.html"><strong aria-hidden="true">6.2.</strong> References</a></li><li class="chapter-item expanded "><a href="chapters/generics.html"><strong aria-hidden="true">6.3.</strong> Generics</a></li><li class="chapter-item expanded "><a href="chapters/vector.html"><strong aria-hidden="true">6.4.</strong> Vector</a></li><li class="chapter-item expanded "><a href="chapters/resource.html"><strong aria-hidden="true">6.5.</strong> Resource</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="introduction/getting-started.html"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="chapters/syntax-basics.html"><strong aria-hidden="true">5.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/concept.html"><strong aria-hidden="true">5.1.</strong> Concept</a></li><li class="chapter-item expanded "><a href="chapters/primitives.html"><strong aria-hidden="true">5.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="chapters/comments.html"><strong aria-hidden="true">5.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="chapters/expression-and-scope.html"><strong aria-hidden="true">5.4.</strong> Expression and Scope</a></li><li class="chapter-item expanded "><a href="chapters/control-flow.html"><strong aria-hidden="true">5.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="chapters/module.html"><strong aria-hidden="true">5.6.</strong> Module</a></li><li class="chapter-item expanded "><a href="chapters/function.html"><strong aria-hidden="true">5.7.</strong> Function</a></li><li class="chapter-item expanded "><a href="chapters/struct.html"><strong aria-hidden="true">5.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="chapters/advanced-topics.html"><strong aria-hidden="true">6.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/ownership.html"><strong aria-hidden="true">6.1.</strong> Ownership and References</a></li><li class="chapter-item expanded "><a href="chapters/generics.html"><strong aria-hidden="true">6.2.</strong> Generics</a></li><li class="chapter-item expanded "><a href="chapters/vector.html"><strong aria-hidden="true">6.3.</strong> Vector</a></li><li class="chapter-item expanded "><a href="chapters/resource.html"><strong aria-hidden="true">6.4.</strong> Resource</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -401,14 +401,46 @@ out/
 <blockquote>
 <p>Equality sign <code>=</code> is an assignment operator. It assigns right-hand-side expression to left-hand-side variable. Example: <code>a = 10</code> - variable <code>a</code> is assigned an integer value of <code>10</code>.</p>
 </blockquote>
-<h3><a class="header" href="#unused-variables" id="unused-variables">Unused variables</a></h3>
+<h3><a class="header" href="#underscore-_-to-mark-unused" id="underscore-_-to-mark-unused">Underscore &quot;_&quot; to mark unused</a></h3>
 <p>In Move every variable must be used (otherwise your code won't compile), hence you can't initialize one and leave it untouched. Though you have one way to mark variable as <em>intentionally unused</em> - by using underscore <code>_</code>.</p>
+<p>You'll get an error if you try to compile this script:</p>
 <pre><code class="language-Move">script {
     fun main() {
-        let _ = 10; // variable defined but not used
-
-        let a = 5;
-        a = a + 5; // a is used, no need for undescoring
+        let a = 1;
+    }
+}
+</code></pre>
+<p>The error:</p>
+<pre><code>
+    ┌── /scripts/script.move:3:13 ───
+    │
+ 33 │         let a = 1;
+    │             ^ Unused assignment or binding for local 'a'. Consider removing or replacing it with '_'
+    │
+</code></pre>
+<p>Compiler message is pretty clear, so all you have to do in this case is put underscore instead:</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let _ = 1;
+    }
+}
+</code></pre>
+<h3><a class="header" href="#shadowing" id="shadowing">Shadowing</a></h3>
+<p>Move allows you to define same variable twice with one limitation - it still needs to be used. In the example above only second <code>a</code> is used. The first one: <code>let a = 1</code> is actually unused as on the next line we <em>redefine</em> <code>a</code> while leaving first one unused.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let a = 1;
+        let a = 2;
+        let _ = a;
+    }
+}
+</code></pre>
+<p>Though we still can make it work by using first one:</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let a = 1;
+        let a = a + 2; // though let here is unnecessary
+        let _ = a;
     }
 }
 </code></pre>
@@ -523,24 +555,15 @@ out/
 <h3><a class="header" href="#summary" id="summary">Summary</a></h3>
 <p>Let's keynote main points of this chapter.</p>
 <ol>
-<li>
-<blockquote>
-<p>Every expression must end with semicolon unless it's the return value of block</p>
-</blockquote>
-</li>
-<li>
-<blockquote>
-<p>Keyword <code>let</code> creates new variable with value or right-hand-side expression which lives as long as the scope in which it's been created</p>
-</blockquote>
-</li>
-<li>
-<blockquote>
-<p>Block is an expression which may or may not have return value</p>
-</blockquote>
-</li>
+<li>Every expression must end with semicolon unless it's the return value of block;</li>
+<li>Keyword <code>let</code> creates new variable with value or right-hand-side expression which lives as long as the scope in which it's been created;</li>
+<li>Block is an expression that may or may not have return value.</li>
 </ol>
 <p>How to control execution flow and how to use blocks for logic switches - on the next page.</p>
 <h1><a class="header" href="#control-flow" id="control-flow">Control Flow</a></h1>
+<blockquote>
+<p>Work in progress.</p>
+</blockquote>
 <p>To do something more complex than basic 2+2, to do logic switches and to iterate though complex data you need control operators and expressions.</p>
 <h3><a class="header" href="#the-if-expression" id="the-if-expression">The <code>if</code> expression</a></h3>
 <p>If you want to run code block when some expression is <code>true</code> you need to use <code>if</code> keyword:</p>
@@ -690,11 +713,20 @@ module Math {
 <h2><a class="header" href="#imports" id="imports">Imports</a></h2>
 <p>Default context in Move is empty: the only types you can use are primitives (integers, bool and address), and the only thing you can do within empty context is operate these types and variables while being unable to do something meaningful or useful.</p>
 <p>To change that you can import published modules (or standard library).</p>
+<h3><a class="header" href="#direct-import" id="direct-import">Direct import</a></h3>
+<p>You can use modules by their address directly in your code:</p>
+<pre><code class="language-Move">script {
+    fun main(a: u8) {
+        0x0::Transaction::assert(a == 10, 1);
+    }
+}
+</code></pre>
+<p>In this example we've imported module <code>Transaction</code> from address <code>0x0</code> (standard library) and used its method <code>assert(expr: bool, code: u8)</code>.</p>
 <h3><a class="header" href="#keyword-use" id="keyword-use">Keyword use</a></h3>
-<p>Import is marked with keyword <code>use</code>, like this:</p>
+<p>To make code shorter (remember that only 0x0 address is short, actual addresses are pretty long!) and to organize imports you can use keyword <code>use</code>:</p>
 <pre><code class="language-Move">use &lt;Address&gt;::&lt;ModuleName&gt;;
 </code></pre>
-<p>In here <code>&lt;Address&gt;</code> is a publisher's address and <code>&lt;ModuleName&gt;</code> is a name of a module. Pretty simple. I'll give you one real example of importing module <code>Transaction</code> from standard library:</p>
+<p>In here <code>&lt;Address&gt;</code> is a publisher's address and <code>&lt;ModuleName&gt;</code> is a name of a module. Pretty simple. Same here, we'll import <code>Transaction</code> module from <code>0x0</code>.</p>
 <pre><code class="language-Move">use 0x0::Transaction;
 </code></pre>
 <h3><a class="header" href="#accessing-modules-contents" id="accessing-modules-contents">Accessing module's contents</a></h3>
@@ -1019,8 +1051,165 @@ script {
 <pre><code>let T { &lt;field1&gt;, &lt;field...&gt; } = T;
 </code></pre>
 <h1><a class="header" href="#advanced-topics" id="advanced-topics">Advanced Topics</a></h1>
-<h1><a class="header" href="#borrow-check" id="borrow-check">Borrow Check</a></h1>
-<h1><a class="header" href="#references" id="references">References</a></h1>
+<h1><a class="header" href="#ownership" id="ownership">Ownership</a></h1>
+<p>Move VM implements Rust-like ownership system. And the best description of it is in <a href="https://doc.rust-lang.org/stable/book/ch04-01-what-is-ownership.html">Rust Book</a>. <!-- There's one main difference between two languages: Move does not have *heap*, and all of its variables are *put on stack*. --></p>
+<p>I recommend you reading ownership chapter in Rust Book even though Rust syntax differs and some of the examples may not be easy to understand. In this chapter we will go through main points anyway.</p>
+<blockquote>
+<p>Each variable has only one owner scope. When owner scope ends - owned variables are dropped.</p>
+</blockquote>
+<p>We've already seen this behavior in <a href="chapters//chapters/expression-and-scope.html">expressions chapter</a>. Remember that variable lives as long as its scope? Now is the perfect time to get under the hood and learn why it happens.</p>
+<p>Owner is a scope which <em>owns</em> a variable. Variable either can be defined in this scope (e.g. with keyword <code>let</code> in script) or be passed into scope as argument. Since the only scope in Move is function's - there are no other ways to put variable into scope.</p>
+<p>Each variable has only one owner, which means that when variable is passed into function as argument, this function becomes the <em>new owner</em>, and variable no longer <em>owned</em> by the first function. Or you may say that function <em>takes ownership</em> of variable.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::M
+
+    fun main() {
+        // Module::T is a struct
+        let a : Module::T = Module::create_struct(10);
+
+        // here variable `a` leaves scope of `main` function
+        // and is being put into new scope of `M::value` function
+        M::value(a);
+
+        // variable a no longer exists in this scope
+        // this code won't compile
+        M::value(a);
+    }
+}
+</code></pre>
+<p>Let's look at what happens inside <code>value()</code> when we pass our value into it:</p>
+<pre><code class="language-Move">module M {
+    // create_fun skipped
+    struct T { value: u8 }
+
+    // variable t of type M::T passed
+    // `value()` function takes ownership
+    public fun value(t: T): u8 {
+        // we can use t as variable
+        t.value
+    }
+    // function scope ends, t dropped, only u8 result returned
+    // t no longer exists
+}
+</code></pre>
+<p>Of course quick workaround could be to return a tuple with original variable and additional results (return value would have been <code>(T, u8)</code>), but Move has a better solution for that.</p>
+<h2><a class="header" href="#references" id="references">References</a></h2>
+<p>Many programming languages have implementation of references (<a href="https://en.wikipedia.org/wiki/Reference_(computer_science)">see Wikipedia</a>). <em>Reference</em> is a link to variable (usually to a section in memory) which you can pass into other parts of program instead of <em>moving</em> the value.</p>
+<blockquote>
+<p>References (marked with &amp;) allow you to <em>refer</em> to value without taking <em>ownership</em> of it</p>
+</blockquote>
+<p>Let's modify our example and see how references can be used.</p>
+<pre><code class="language-Move">module M {
+    struct T { value: u8 }
+    // ...
+    // ...
+    // instead of passing a value, we'll pass a reference
+    public fun value(t: &amp;T): u8 {
+        t.value
+    }
+}
+</code></pre>
+<p>We added ampersand <code>&amp;</code> to argument type T - and by doing that we've changed argument type from <code>T</code> to <em>reference to T</em> or simply <code>&amp;T</code>.</p>
+<blockquote>
+<p>Move supports two types of references: <em>immutable</em> - defined with <code>&amp;</code> (e.g. <code>&amp;T</code>) and <em>mutable</em> - <code>&amp;mut</code> (e.g. <code>&amp;mut T</code>).</p>
+</blockquote>
+<p>Immutable references allow access to value without changing it. Mutable - the opposite - give ability to change the value.</p>
+<pre><code class="language-Move">module M {
+    struct T { value: u8 }
+
+    // returned value is of non-reference type
+    public fun create(value: u8): T {
+        T { value }
+    }
+
+    // immutable references allow reading
+    public fun value(t: &amp;T): u8 {
+        t.value
+    }
+
+    // mutable references allow reading and changing the value
+    public fun change(t: &amp;mut T, value: u8) {
+        t.value = value;
+    }
+}
+</code></pre>
+<p>Now let's see how to use our upgraded module M.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::M;
+
+    fun main() {
+        let t = M::create(10);
+
+        // create a reference directly
+        M::change(&amp;mut t, 20);
+
+        // or write reference to a variable
+        let mut_ref_t = &amp;mut t;
+
+        M::change(mut_ref_t, 100);
+
+        // same with immutable ref
+        let value = M::value(&amp;t);
+
+        // this method also takes only references
+        // printed value will be 100
+        0x0::Debug::print&lt;u8&gt;(&amp;value);
+    }
+}
+</code></pre>
+<blockquote>
+<p>Only one mutable reference is allowed at the time for a singe value. Immutable references don't change the value and do not have this limit.</p>
+</blockquote>
+<!-- ## Move and Copy -->
+<h3><a class="header" href="#deferencing" id="deferencing">Deferencing</a></h3>
+<p>References can be dereferenced to get linked value - to do it use asterisk <code>*</code>.</p>
+<pre><code class="language-Move">module M {
+    struct T {}
+
+    // ...
+    public fun deref(t: &amp;T): T {
+        *t
+    }
+}
+</code></pre>
+<blockquote>
+<p>Dereference operator does not move original value into current scope. It creates a <em>copy</em> of this value instead.</p>
+</blockquote>
+<h3><a class="header" href="#referencing-primitive-types" id="referencing-primitive-types">Referencing primitive types</a></h3>
+<p>Primitive types (due to their simplicity) do not need to be passed as references. Even if you pass them into function <em>by value</em> they will remain in current scope. You only need references for complex values: <code>struct</code>, <code>resource</code> and <code>vector</code> - you'll soon learn about last two.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::M;
+
+    fun main() {
+        let a = 10;
+        M::do_smth(a);
+        let _ = a;
+    }
+}
+</code></pre>
+<p>This script will compile even though we didn't pass <code>a</code> as a reference.</p>
+<!-- unless explicit `move` keyword used -->
+<!--
+
+To note here:
+
+[x] references
+[x] mutable
+[x] only one mutable
+[x] immutable
+[x] reference as fun arg
+[x] access by ref, get value
+[ ] why primitives can be passed freely
+
+[ ] kw copy, kw move
+[ ] 1 mutable - example!
+
+In generics:
+
+resource
+copyable
+
+-->
 <h1><a class="header" href="#generics" id="generics">Generics</a></h1>
 <h1><a class="header" href="#vector" id="vector">Vector</a></h1>
 <p>Vector is a built-in (native) complex type for storing collection of values of one type.</p>
@@ -1028,9 +1217,9 @@ script {
 <p>As usual - let's start with rules.</p>
 <ol>
 <li>Vector is a native type (just like <a href="chapters//chapters/primitives.html">primitives</a>) which means you can use it in both modules and scripts;</li>
-<li>Vector can only contain items of the same type. Which means you cannot store elements of type A and type B in the same vector;</li>
-<li>Vector can have size from zero to 9,223,372,036,854,775,807 (max size of <code>u64</code>), it's called length;</li>
-<li>Type of stored value is specified in generic: <code>vector&lt;Element&gt;</code>;</li>
+<li>Vector can only contain items of the same type. You cannot store elements of type A and type B in the same vector;</li>
+<li>Vector can have size from 0 to 9,223,372,036,854,775,807 (max size of <code>u64</code>), it's called length;</li>
+<li>Type of stored value is specified as type parameter: <code>vector&lt;Element&gt;</code>;</li>
 <li>Since it's a native type, to use it you need standard library - usually <code>0x0::Vector</code>.</li>
 </ol>
 <h2><a class="header" href="#usage" id="usage">Usage</a></h2>
