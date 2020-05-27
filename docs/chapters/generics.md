@@ -66,7 +66,7 @@ module Storage {
 
 ### In function calls
 
-What we did here is we added angle brackets into function signature right after function name. Just the same way as we did with struct. Now how would we use this function? By specifying type in function call.
+What we did is we added angle brackets into function signature right after function name. Just the same way as we did with struct. Now how would we use this function? By specifying type in function call.
 
 ```Move
 script {
@@ -103,7 +103,9 @@ script {
 }
 ```
 
-Here we have used Box struct with 3 types: `bool`, `u64` and with `Box<u64>` - last one may seem way too complicated but once you've gotten used to it and understood how it works, Move opens in new way - the way you probably could never imagine in blockchains.
+Here we have used Box struct with 3 types: `bool`, `u64` and with `Box<u64>` - last one may seem way too complicated but once you've gotten used to it and understood how it works, it will become easy.
+
+<!-- , Move opens in new way - the way you probably could never imagine in blockchains. -->
 
 Before we go any further, let's take a step back. By adding generics to `Box` struct we've made this box *abstract* - it's definition is fairly simple compared to capacity it gave us. Now we can create `Box` with any type - be it `u64` or `address`, or even another box, or another struct.
 
