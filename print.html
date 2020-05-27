@@ -1262,7 +1262,7 @@ copyable
 }
 </code></pre>
 <h3><a class="header" href="#in-function-calls" id="in-function-calls">In function calls</a></h3>
-<p>What we did here is we added angle brackets into function signature right after function name. Just the same way as we did with struct. Now how would we use this function? By specifying type in function call.</p>
+<p>What we did is we added angle brackets into function signature right after function name. Just the same way as we did with struct. Now how would we use this function? By specifying type in function call.</p>
 <pre><code class="language-Move">script {
     use {{sender}}::Storage;
     use 0x0::Transaction;
@@ -1296,7 +1296,8 @@ copyable
     }
 }
 </code></pre>
-<p>Here we have used Box struct with 3 types: <code>bool</code>, <code>u64</code> and with <code>Box&lt;u64&gt;</code> - last one may seem way too complicated but once you've gotten used to it and understood how it works, Move opens in new way - the way you probably could never imagine in blockchains.</p>
+<p>Here we have used Box struct with 3 types: <code>bool</code>, <code>u64</code> and with <code>Box&lt;u64&gt;</code> - last one may seem way too complicated but once you've gotten used to it and understood how it works, it will become easy.</p>
+<!-- , Move opens in new way - the way you probably could never imagine in blockchains. -->
 <p>Before we go any further, let's take a step back. By adding generics to <code>Box</code> struct we've made this box <em>abstract</em> - it's definition is fairly simple compared to capacity it gave us. Now we can create <code>Box</code> with any type - be it <code>u64</code> or <code>address</code>, or even another box, or another struct.</p>
 <h3><a class="header" href="#multiple-types-in-generics" id="multiple-types-in-generics">Multiple types in generics</a></h3>
 <p>Just like you can use single type, you can use many. Generic types are put into angle brackets and separated by comma. Let's add new type <code>Shelf</code> which will hold two boxes of two different types.</p>
