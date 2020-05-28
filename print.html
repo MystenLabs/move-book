@@ -1423,6 +1423,34 @@ script {
 <p>Here we use generics to mark type, but we don't actually use it. You'll soon learn why this definition matters when you get to know <code>resources</code>. For now it's just another way to use them.</p>
 <h3><a class="header" href="#forced-type-params" id="forced-type-params">Forced type params</a></h3>
 <h3><a class="header" href="#kind-matching-and-copyable" id="kind-matching-and-copyable">Kind-matching and :copyable</a></h3>
+<p>In <a href="chapters//chapters/ownership.html">ownership chapter</a> we learned about <em>copy</em> and <em>move</em> operations in VM. Not every value in Move can be copied (but all of them can be moved!) - in the <a href="chapters//chapters/resource.html">resources chapter</a> you'll study <code>resources</code>, which are not <em>copyable</em>. But before we jump there, let's learn what <em>Kind</em> is.</p>
+<p>Kind (in terms of VM) - is a group of types, there're only 2 kinds: <code>copyable</code> and <code>resource</code>. Kinds can be used to limit (or restrict) generic types passed into function.</p>
+<h3><a class="header" href="#copyable" id="copyable">Copyable</a></h3>
+<p><em>Copyable kind</em> - is a kind of types, value of which can be copied. <code>struct</code>, <code>vector</code> and primitive types - are three main groups of types fitting into this kind.</p>
+<p>To understand why Move needs this constraint let's see this example:</p>
+<pre><code class="language-Move">module M {
+    public fun deref&lt;T&gt;(t: &amp;T): T {
+        *t
+    }
+}
+</code></pre>
+<p>By using <em>dereference</em> on a reference you can <em>copy</em> original value and return it as a regular. But what if we've tried to use <code>resource</code> in this example? Resource can't be copied, hence this code would fail. Hopefully compiler won't let you compile this type, and kinds exist to manage cases like this.</p>
+<pre><code class="language-Move">module M {
+    public fun deref&lt;T: copyable&gt;(t: &amp;T): T {
+        *t
+    }
+}
+</code></pre>
+<p>We've added <code>: copyable</code> constraint into generic definition, and now type <code>T</code> must be of kind <em>copyable</em>. So now function accepts only <code>struct</code>, <code>vector</code> and primitives as type parameters. This code compiles as constraint provides safety over used types and passing non-copyable value here is impossible.</p>
+<h3><a class="header" href="#resource" id="resource">Resource</a></h3>
+<p>Another kind has only one type inside is a <code>resource</code> kind. It is used in the same manner:</p>
+<pre><code class="language-Move">module M {
+    public fun smth&lt;T: resource&gt;(t: &amp;T) {
+        // do smth
+    }
+}
+</code></pre>
+<p>This example here is only needed to show syntax, we'll get to resources soon and you'll learn actual use cases for this constraint.</p>
 <!--
   + generics in general
   + templating
@@ -1430,9 +1458,10 @@ script {
   + back to types
   + multiple type params
 
-  unused type params
-  hard-coded types
-  trait-like bounds - introducing kinds
+  + unused type params
+  + trait-like bounds - introducing kinds
+
+  ? hard-coded types
 -->
 <h1><a class="header" href="#vector" id="vector">Vector</a></h1>
 <p>Vector is a built-in (native) complex type for storing collection of values of one type.</p>
