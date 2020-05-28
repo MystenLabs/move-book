@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="introduction/getting-started.html"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="chapters/syntax-basics.html"><strong aria-hidden="true">5.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/concept.html"><strong aria-hidden="true">5.1.</strong> Concept</a></li><li class="chapter-item expanded "><a href="chapters/primitives.html"><strong aria-hidden="true">5.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="chapters/comments.html"><strong aria-hidden="true">5.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="chapters/expression-and-scope.html"><strong aria-hidden="true">5.4.</strong> Expression and Scope</a></li><li class="chapter-item expanded "><a href="chapters/control-flow.html"><strong aria-hidden="true">5.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="chapters/module.html"><strong aria-hidden="true">5.6.</strong> Module</a></li><li class="chapter-item expanded "><a href="chapters/function.html"><strong aria-hidden="true">5.7.</strong> Function</a></li><li class="chapter-item expanded "><a href="chapters/struct.html"><strong aria-hidden="true">5.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="chapters/advanced-topics.html"><strong aria-hidden="true">6.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/ownership.html"><strong aria-hidden="true">6.1.</strong> Ownership and References</a></li><li class="chapter-item expanded "><a href="chapters/generics.html"><strong aria-hidden="true">6.2.</strong> Generics</a></li><li class="chapter-item expanded "><a href="chapters/vector.html"><strong aria-hidden="true">6.3.</strong> Vector</a></li><li class="chapter-item expanded "><a href="chapters/resource.html"><strong aria-hidden="true">6.4.</strong> Resource</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="introduction/getting-started.html"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="chapters/syntax-basics.html"><strong aria-hidden="true">5.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/concept.html"><strong aria-hidden="true">5.1.</strong> Concept</a></li><li class="chapter-item expanded "><a href="chapters/primitives.html"><strong aria-hidden="true">5.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="chapters/comments.html"><strong aria-hidden="true">5.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="chapters/expression-and-scope.html"><strong aria-hidden="true">5.4.</strong> Expression and Scope</a></li><li class="chapter-item expanded "><a href="chapters/control-flow.html"><strong aria-hidden="true">5.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="chapters/module.html"><strong aria-hidden="true">5.6.</strong> Module</a></li><li class="chapter-item expanded "><a href="chapters/function.html"><strong aria-hidden="true">5.7.</strong> Function</a></li><li class="chapter-item expanded "><a href="chapters/struct.html"><strong aria-hidden="true">5.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="chapters/advanced-topics.html"><strong aria-hidden="true">6.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/ownership.html"><strong aria-hidden="true">6.1.</strong> Ownership and References</a></li><li class="chapter-item expanded "><a href="chapters/generics.html"><strong aria-hidden="true">6.2.</strong> Using Generics</a></li><li class="chapter-item expanded "><a href="chapters/vector.html"><strong aria-hidden="true">6.3.</strong> Vector</a></li><li class="chapter-item expanded "><a href="chapters/resource.html"><strong aria-hidden="true">6.4.</strong> Resource</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -944,7 +944,7 @@ module Math {
 <p>There's a special kind of functions - <em>native</em> ones. <em>Native functions</em> implement functionality which goes beyond Move's possibilities and give you extra power. Native functions are defined by VM itself and may vary in different implementations. Which means they don't have implementation in Move syntax and instead of having function body they end with semicolon. Keyword <code>native</code> is used to mark native functions. It does not conflict with function visibility modifiers and same function can be <code>native</code> and <code>public</code> at the same time.</p>
 <p>Here's an example from Libra's standard library.</p>
 <pre><code class="language-Move">module Transaction {
-    // get transaction sender
+    // get transaction sender, you can't do it other way
     native public fun sender(): address;
 
     // ...
@@ -1215,9 +1215,9 @@ copyable
 
 -->
 <h1><a class="header" href="#generics" id="generics">Generics</a></h1>
-<p><em>Generics are abstract stand-ins for concrete types or other properties</em> (quote from <a href="https://doc.rust-lang.org/stable/book/ch10-00-generics.html">Rust Book</a>). Practically speaking, they are the way of writing single function for multiple types, they can also be called templates as this function can be used as a template handler for any type.</p>
 <p>Generics are essential to Move, they are what makes this language so unique to blockchain world, and they are the source of Move's flexibility.</p>
-<p>Generics can be applied to signatures of <code>struct</code>, <code>function</code> and <code>resource</code>.</p>
+<p>To start I'll quote <a href="https://doc.rust-lang.org/stable/book/ch10-00-generics.html">Rust Book</a>: <em>Generics are abstract stand-ins for concrete types or other properties</em>. Practically speaking, they are the way of writing single function, which can then be used for any type, they can also be called templates as this function can be used as a template handler for any type.</p>
+<p>In Move generics can be applied to signatures of <code>struct</code>, <code>function</code> and <code>resource</code>.</p>
 <h3><a class="header" href="#in-struct-definition" id="in-struct-definition">In struct definition</a></h3>
 <p>First, we'll create a Box which will hold <code>u64</code> value. We've already been through this, so no need for comments.</p>
 <pre><code class="language-Move">module Storage {
@@ -1226,14 +1226,14 @@ copyable
     }
 }
 </code></pre>
-<p>This box can only contain value of <code>u64</code> type - this is clear. But what if we wanted to make the same box for <code>u8</code> type or a <code>bool</code>? Should we create type <code>Box1</code> and then <code>Box2</code>? Or should we publish another module for that? The answer is no - use generics instead.</p>
+<p>This box can only contain value of <code>u64</code> type - this is clear. But what if we wanted to make the same box for <code>u8</code> type or a <code>bool</code>? Would we create type <code>Box1</code> and then <code>Box2</code>? Or would we publish another module for that? The answer is no - use generics instead.</p>
 <pre><code class="language-Move">module Storage {
     struct Box&lt;T&gt; {
         value: T
     }
 }
 </code></pre>
-<p>Next to struct name we've placed <code>&lt;T&gt;</code>. Where <code>&lt;&gt;</code> syntax is a place to define generic types and <code>T</code> is a type we've <em>templated</em> in this struct. Inside the struct body definition we've used <code>T</code> as a regular type. Type T does not exist, it is a placeholder for <em>any type</em>.</p>
+<p>Next to struct name we've placed <code>&lt;T&gt;</code>. Where angle brackets <code>&lt;..&gt;</code> is a place to define generic types, and <code>T</code> is a type we've <em>templated</em> in this struct. Inside the struct body definition we've used <code>T</code> as a regular type. Type T does not exist, it is a placeholder for <em>any type</em>.</p>
 <h3><a class="header" href="#in-function-signature" id="in-function-signature">In function signature</a></h3>
 <p>Now let's create constructor for this struct which will first use type <code>u64</code> for value.</p>
 <pre><code class="language-Move">module Storage {
@@ -1241,7 +1241,7 @@ copyable
         value: T
     }
 
-    // type u64 is put into a angle brackets meaning
+    // type u64 is put into angle brackets meaning
     // that we're using Box with type u64
     public fun create_box(value: u64): Box&lt;u64&gt; {
         Box&lt;u64&gt;{ value }
@@ -1296,7 +1296,7 @@ copyable
     }
 }
 </code></pre>
-<p>Here we have used Box struct with 3 types: <code>bool</code>, <code>u64</code> and with <code>Box&lt;u64&gt;</code> - last one may seem way too complicated but once you've gotten used to it and understood how it works, it will become easy.</p>
+<p>Here we have used Box struct with 3 types: <code>bool</code>, <code>u64</code> and with <code>Box&lt;u64&gt;</code> - last one may seem way too complicated but once you've gotten used to it and understood how it works, it becomes part of your routine.</p>
 <!-- , Move opens in new way - the way you probably could never imagine in blockchains. -->
 <p>Before we go any further, let's take a step back. By adding generics to <code>Box</code> struct we've made this box <em>abstract</em> - it's definition is fairly simple compared to capacity it gave us. Now we can create <code>Box</code> with any type - be it <code>u64</code> or <code>address</code>, or even another box, or another struct.</p>
 <h3><a class="header" href="#multiple-types-in-generics" id="multiple-types-in-generics">Multiple types in generics</a></h3>
