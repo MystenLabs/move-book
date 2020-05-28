@@ -157,15 +157,54 @@ script {
 
 ### Unused type params
 
-TBD
+Not every type specified in generic must be used. Look at this example:
+
+```Move
+module Storage {
+
+    // these two types will be used to mark
+    // where box will be sent when it's taken from shelf
+    struct Abroad {}
+    struct Local {}
+
+    // modified Box will have target property
+    struct Box<T, Destination> {
+        value: T
+    }
+
+    public fun create_box<T, Dest>(value: T): Box<T, Dest> {
+        Box { value }
+    }
+}
+```
+
+In script this can be used :
+
+```Move
+
+script {
+    use {{sender}}::Storage;
+
+    fun main() {
+        // value will be of type Storage::Box<bool>
+        let _ = Storage::create_box<bool, Storage::Abroad>(true);
+        let _ = Storage::create_box<u64, Storage::Abroad>(1000);
+
+        let _ = Storage::create_box<u128, Storage::Local>(1000);
+        let _ = Storage::create_box<address, Storage::Local>(0x0);
+
+        // or even u64 destination!
+        let _ = Storage::create_box<address, u64>(0x0);
+    }
+}
+```
+
+Here we use generics to mark type, but we don't actually use it. You'll soon learn why this definition matters when you get to know `resources`. For now it's just another way to use them.
 
 ### Forced type params
 
-TBD
-
 ### Kind-matching and :copyable
 
-TBD
 
 
 <!--
