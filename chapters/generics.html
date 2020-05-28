@@ -271,11 +271,45 @@
 }
 </code></pre>
 <h3><a class="header" href="#unused-type-params" id="unused-type-params">Unused type params</a></h3>
-<p>TBD</p>
+<p>Not every type specified in generic must be used. Look at this example:</p>
+<pre><code class="language-Move">module Storage {
+
+    // these two types will be used to mark
+    // where box will be sent when it's taken from shelf
+    struct Abroad {}
+    struct Local {}
+
+    // modified Box will have target property
+    struct Box&lt;T, Destination&gt; {
+        value: T
+    }
+
+    public fun create_box&lt;T, Dest&gt;(value: T): Box&lt;T, Dest&gt; {
+        Box { value }
+    }
+}
+</code></pre>
+<p>In script this can be used :</p>
+<pre><code class="language-Move">
+script {
+    use {{sender}}::Storage;
+
+    fun main() {
+        // value will be of type Storage::Box&lt;bool&gt;
+        let _ = Storage::create_box&lt;bool, Storage::Abroad&gt;(true);
+        let _ = Storage::create_box&lt;u64, Storage::Abroad&gt;(1000);
+
+        let _ = Storage::create_box&lt;u128, Storage::Local&gt;(1000);
+        let _ = Storage::create_box&lt;address, Storage::Local&gt;(0x0);
+
+        // or even u64 destination!
+        let _ = Storage::create_box&lt;address, u64&gt;(0x0);
+    }
+}
+</code></pre>
+<p>Here we use generics to mark type, but we don't actually use it. You'll soon learn why this definition matters when you get to know <code>resources</code>. For now it's just another way to use them.</p>
 <h3><a class="header" href="#forced-type-params" id="forced-type-params">Forced type params</a></h3>
-<p>TBD</p>
 <h3><a class="header" href="#kind-matching-and-copyable" id="kind-matching-and-copyable">Kind-matching and :copyable</a></h3>
-<p>TBD</p>
 <!--
   + generics in general
   + templating
