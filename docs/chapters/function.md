@@ -200,7 +200,7 @@ Here's an example from Libra's standard library.
 
 ```Move
 module Transaction {
-    // get transaction sender
+    // get transaction sender, you can't do it other way
     native public fun sender(): address;
 
     // ...

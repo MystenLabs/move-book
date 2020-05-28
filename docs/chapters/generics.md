@@ -1,10 +1,10 @@
 # Generics
 
-*Generics are abstract stand-ins for concrete types or other properties* (quote from [Rust Book](https://doc.rust-lang.org/stable/book/ch10-00-generics.html)). Practically speaking, they are the way of writing single function for multiple types, they can also be called templates as this function can be used as a template handler for any type.
-
 Generics are essential to Move, they are what makes this language so unique to blockchain world, and they are the source of Move's flexibility.
 
-Generics can be applied to signatures of `struct`, `function` and `resource`.
+To start I'll quote [Rust Book](https://doc.rust-lang.org/stable/book/ch10-00-generics.html): *Generics are abstract stand-ins for concrete types or other properties*. Practically speaking, they are the way of writing single function, which can then be used for any type, they can also be called templates as this function can be used as a template handler for any type.
+
+In Move generics can be applied to signatures of `struct`, `function` and `resource`.
 
 ### In struct definition
 
@@ -18,7 +18,7 @@ module Storage {
 }
 ```
 
-This box can only contain value of `u64` type - this is clear. But what if we wanted to make the same box for `u8` type or a `bool`? Should we create type `Box1` and then `Box2`? Or should we publish another module for that? The answer is no - use generics instead.
+This box can only contain value of `u64` type - this is clear. But what if we wanted to make the same box for `u8` type or a `bool`? Would we create type `Box1` and then `Box2`? Or would we publish another module for that? The answer is no - use generics instead.
 
 ```Move
 module Storage {
@@ -28,7 +28,7 @@ module Storage {
 }
 ```
 
-Next to struct name we've placed `<T>`. Where `<>` syntax is a place to define generic types and `T` is a type we've *templated* in this struct. Inside the struct body definition we've used `T` as a regular type. Type T does not exist, it is a placeholder for *any type*.
+Next to struct name we've placed `<T>`. Where angle brackets `<..>` is a place to define generic types, and `T` is a type we've *templated* in this struct. Inside the struct body definition we've used `T` as a regular type. Type T does not exist, it is a placeholder for *any type*.
 
 ### In function signature
 
@@ -40,7 +40,7 @@ module Storage {
         value: T
     }
 
-    // type u64 is put into a angle brackets meaning
+    // type u64 is put into angle brackets meaning
     // that we're using Box with type u64
     public fun create_box(value: u64): Box<u64> {
         Box<u64>{ value }
@@ -103,7 +103,7 @@ script {
 }
 ```
 
-Here we have used Box struct with 3 types: `bool`, `u64` and with `Box<u64>` - last one may seem way too complicated but once you've gotten used to it and understood how it works, it will become easy.
+Here we have used Box struct with 3 types: `bool`, `u64` and with `Box<u64>` - last one may seem way too complicated but once you've gotten used to it and understood how it works, it becomes part of your routine.
 
 <!-- , Move opens in new way - the way you probably could never imagine in blockchains. -->
 

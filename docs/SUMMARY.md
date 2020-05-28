@@ -15,7 +15,7 @@
     - [Structures](chapters/struct.md)
 - [Advanced Topics](chapters/advanced-topics.md)
     - [Ownership and References](chapters/ownership.md)
-    - [Generics](chapters/generics.md)
+    - [Using Generics](chapters/generics.md)
     - [Vector](chapters/vector.md)
     - [Resource](chapters/resource.md)
 <!--
