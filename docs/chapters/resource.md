@@ -8,7 +8,7 @@ First, let's see description from [libra developers portal](https://developers.l
 > - **The Move type system provides special safety guarantees for resources**. Move resources can never be duplicated, reused, or discarded. A resource type can only be created or destroyed by the module that defines the type. These guarantees are enforced statically by the Move virtual machine via bytecode verification. The Move virtual machine will refuse to run code that has not passed through the bytecode verifier.
 > - The Libra currency is implemented as a resource type named LibraCoin.T. LibraCoin.T has no special status in the language; every Move resource enjoys the same protections.
 
-## Resource concept
+<!-- ## Resource concept
 
 Imagine you open a safe deposit box at the bank. Since it's a bank you trust it with alls the contents of your deposit box, and you know that bank will guard it and manage access policy correctly so you and only you (except special occasions in your agreement) can control contents of this deposit box.
 
@@ -21,7 +21,7 @@ What could be the properties of this deposit box?
 - deposit box can be moved or destroyed by you or by bank (if your agreement allows it)
 - deposit box access may be shared (again - if it's specified in terms)
 
-That's pretty much what's going on in Move. Every resource is a deposit box and just like deposit box - it is user-specific. For each user deposit deal goes full path from creation (or *initialization*) to using (or *modification*) and optionally to *destruction*. I suggest you keep in mind this analogy as it will help you understand resource concept.
+That's pretty much what's going on in Move. Every resource is a deposit box and just like deposit box - it is user-specific. For each user deposit deal goes full path from creation (or *initialization*) to using (or *modification*) and optionally to *destruction*. I suggest you keep in mind this analogy as it will help you understand resource concept. -->
 
 ## Resource life time
 

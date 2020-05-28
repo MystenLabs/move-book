@@ -55,6 +55,53 @@ module M {
 
 Of course, quick workaround is to return a tuple with original variable and additional results (return value would have been `(T, u8)`), but Move has a better solution for that.
 
+## Move and Copy
+
+First, you need to understand how Move VM works, and what happens when you pass your value into a function. There are two bytecode instructions in VM: *MoveLoc* and *CopyLoc* - both of them can be manually used with keywords `move` and `copy` respectively.
+
+When variable is being passed into another function - it's being *moved* and *MoveLoc* OpCode is used. Let's see how our code would look if we've used keyword `move`:
+
+```Move
+script {
+    use {{sender}}::M;
+
+    fun main() {
+        let a : Module::T = Module::create(10);
+
+        M::value(move a); // variable a is moved
+
+        // local a is dropped
+    }
+}
+```
+
+This is a valid Move code, however, knowing that value will still be moved you don't need to explicitly *move* it. Now when it's clear we can get to *copy*.
+
+### Keyword `copy`
+
+If you need to pass a value to the function (where it's being moved) and save a copy of your variable, you can use keyword `copy`.
+
+```Move
+script {
+    use {{sender}}::M;
+
+    fun main() {
+        let a : Module::T = Module::create(10);
+
+        // we use keyword copy to clone structure
+        // can be used as `let a_copy = copy a`
+        M::value(copy a);
+        M::value(a); // won't fail, a is still here
+    }
+}
+```
+
+In this example we've passed *copy* of variable (hence value) `a` into first call of method `value` and saved `a` in local scope to use it again in second call.
+
+By copying value we've duplicated it and increased memory size of our program, so it can be used - but when you copy huge data it may become pricey in terms of memory. Remember - in blockchains every byte counts and affects price of execution, so using `copy` all the time may cost you a lot.
+
+Now you are ready to learn about references which help you avoid unnecessary copying and literally save some money.
+
 ## References
 
 Many programming languages have implementation of references ([see Wikipedia](https://en.wikipedia.org/wiki/Reference_(computer_science))). *Reference* is a link to variable (usually to a section in memory) which you can pass into other parts of program instead of *moving* the value.
@@ -137,6 +184,8 @@ script {
 
 References can be dereferenced to get linked value - to do it use asterisk `*`.
 
+> When dereferencing you're actually making a *copy* - avoid
+
 ```Move
 module M {
     struct T {}
@@ -152,7 +201,7 @@ module M {
 
 ### Referencing primitive types
 
-Primitive types (due to their simplicity) do not need to be passed as references. Even if you pass them into function *by value* they will remain in current scope. You only need references for complex values: `struct`, `resource` and `vector` - you'll soon learn about last two.
+Primitive types (due to their simplicity) do not need to be passed as references and *copy* operation is done instead. Even if you pass them into function *by value* they will remain in current scope. You can intentionally use `move` keyword, but since primitives are very small in size copying them may even be cheaper than passing them by reference or even moving.
 
 ```Move
 script {
@@ -166,7 +215,17 @@ script {
 }
 ```
 
-This script will compile even though we didn't pass `a` as a reference.
+This script will compile even though we didn't pass `a` as a reference. Adding `copy` is unnecessary - it's already put there by VM.
+
+
+<!--
+
+Notes:
+
+ - blocks are simply syntax sugar to simplify scripting, they don't set restrictions to using
+
+
+-->
 
 <!-- unless explicit `move` keyword used -->
 

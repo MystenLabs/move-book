@@ -16,7 +16,7 @@
 - [Advanced Topics](chapters/advanced-topics.md)
     - [Ownership and References](chapters/ownership.md)
     - [Using Generics](chapters/generics.md)
-    - [Vector](chapters/vector.md)
+    - [Vectors](chapters/vector.md)
     - [Resource](chapters/resource.md)
 <!--
 - [Move IDE](ide/readme.md)

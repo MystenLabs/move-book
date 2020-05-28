@@ -139,7 +139,7 @@ module Storage {
 
 Type paramereters for `Shelf` are listed and matched inside struct's fields definition. Also, as you can see, name of the type parameter inside generics does not matter - it's up to you to chose a proper one. And each type parameter is only valid within definition so no need to match `T1` or `T2` with `T`.
 
-In a script it we'd use this method just the same way we'd use one with single type parameter:
+Using multiple generic type parameters is similar to using single:
 
 ```Move
 script {
