@@ -205,7 +205,49 @@ Here we use generics to mark type, but we don't actually use it. You'll soon lea
 
 ### Kind-matching and :copyable
 
+In [ownership chapter](/chapters/ownership.md) we learned about *copy* and *move* operations in VM. Not every value in Move can be copied (but all of them can be moved!) - in the [resources chapter](/chapters/resource.md) you'll study `resources`, which are not *copyable*. But before we jump there, let's learn what *Kind* is.
 
+Kind (in terms of VM) - is a group of types, there're only 2 kinds: `copyable` and `resource`. Kinds can be used to limit (or restrict) generic types passed into function.
+
+### Copyable
+
+*Copyable kind* - is a kind of types, value of which can be copied. `struct`, `vector` and primitive types - are three main groups of types fitting into this kind.
+
+To understand why Move needs this constraint let's see this example:
+
+```Move
+module M {
+    public fun deref<T>(t: &T): T {
+        *t
+    }
+}
+```
+
+By using *dereference* on a reference you can *copy* original value and return it as a regular. But what if we've tried to use `resource` in this example? Resource can't be copied, hence this code would fail. Hopefully compiler won't let you compile this type, and kinds exist to manage cases like this.
+
+```Move
+module M {
+    public fun deref<T: copyable>(t: &T): T {
+        *t
+    }
+}
+```
+
+We've added `: copyable` constraint into generic definition, and now type `T` must be of kind *copyable*. So now function accepts only `struct`, `vector` and primitives as type parameters. This code compiles as constraint provides safety over used types and passing non-copyable value here is impossible.
+
+### Resource
+
+Another kind has only one type inside is a `resource` kind. It is used in the same manner:
+
+```Move
+module M {
+    public fun smth<T: resource>(t: &T) {
+        // do smth
+    }
+}
+```
+
+This example here is only needed to show syntax, we'll get to resources soon and you'll learn actual use cases for this constraint.
 
 <!--
   + generics in general
@@ -214,7 +256,8 @@ Here we use generics to mark type, but we don't actually use it. You'll soon lea
   + back to types
   + multiple type params
 
-  unused type params
-  hard-coded types
-  trait-like bounds - introducing kinds
+  + unused type params
+  + trait-like bounds - introducing kinds
+
+  ? hard-coded types
 -->
