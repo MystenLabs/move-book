@@ -309,9 +309,9 @@ public fun get_country_population(country: Country): u64 {
 <p>To <em>destruct</em> a struct use <code>let &lt;STRUCT DEF&gt; = &lt;STRUCT&gt;</code> syntax:</p>
 <pre><code class="language-Move">module Country {
 
-    // ...s
+    // ...
 
-    // we'll return values of this struct outside to use
+    // we'll return values of this struct outside
     public fun destroy(country: Country): (u8, u64) {
 
         // variables must match struct fields
