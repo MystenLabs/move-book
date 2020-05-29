@@ -2,7 +2,7 @@
 
 In programming languages expression is a unit of code which returns a value. A function call with return value is an expression - it returns value; an integer (or bool or address) literal is also an expression - it has the value of its integer type and so on.
 
-> Every expression in Move MUST end with semicolon.
+> Expressions must be separated by semiconon.
 
 ### Literal expressions
 
@@ -16,7 +16,7 @@ script {
         true;
         true != false;
         0x0;
-        1; 2; 3;
+        1; 2; 3
     }
 }
 ```
@@ -230,7 +230,7 @@ script {
 }
 ```
 
-> Every expression in Move MUST end with semicolon unless it's the last expression in scope - in this case it's the return value of this scope.
+> Last expression in scope (without semicolon) is the return value of this scope.
 
 ### Summary
 

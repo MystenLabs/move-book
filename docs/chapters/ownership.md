@@ -106,7 +106,7 @@ Now you are ready to learn about references which help you avoid unnecessary cop
 
 Many programming languages have implementation of references ([see Wikipedia](https://en.wikipedia.org/wiki/Reference_(computer_science))). *Reference* is a link to variable (usually to a section in memory) which you can pass into other parts of program instead of *moving* the value.
 
-> References (marked with &) allow you to *refer* to value without taking *ownership* of it
+> References (marked with &) allow you to *refer* to value without taking *ownership* of it.
 
 Let's modify our example and see how references can be used.
 
@@ -178,7 +178,7 @@ script {
 
 > Use immutable (&) references to read data from structs, use mutable (&mut) to modify them. By using proper type of references you help maintaining secutiry and help reading your modules so the reader will know if this method changes the value or only reads.
 
-###  Borrow checking
+### Borrow checking
 
 Move controls the way you use references and helps you prevent unexpected bullet in your foot. To understand that let's see an example. I'll give you module and script and then will comment on what's going on and why.
 
