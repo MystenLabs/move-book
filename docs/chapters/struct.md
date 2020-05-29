@@ -75,8 +75,6 @@ public fun add_new(author_id: u64, label_id: u64, year: u64): Record { /* ... */
 Okay. How can we use our `Record` struct after we published `VinylShop` module into network?
 
 ```Move
-// specify publisher's address
-
 script {
     use {{sender}}::VinylShop;
 
@@ -103,9 +101,8 @@ module LongLive {
         T { value }
     }
 
-    public fun destroy(t: T): u8 {
-        let T { value } = T;
-        value
+    public fun destroy(t: T) {
+        let T { value: _ } = T;
     }
 }
 ```

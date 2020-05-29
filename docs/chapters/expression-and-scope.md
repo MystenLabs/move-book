@@ -2,7 +2,7 @@
 
 In programming languages expression is a unit of code which returns a value. A function call with return value is an expression - it returns value; an integer (or bool or address) literal is also an expression - it has the value of its integer type and so on.
 
-> Every expression in Move MUST end with semicolon*
+> Every expression in Move MUST end with semicolon.
 
 ### Literal expressions
 
@@ -39,7 +39,7 @@ script {
 }
 ```
 
-> Keword `let` creates new variable inside *current scope* and optionally *initializes* this variable with value. Syntax for this expression is: `let <VARIABLE>;` or `let <VARIABLE> = <EXPRESSION>`.
+> Keword `let` creates new variable inside *current scope* and optionally *initializes* this variable with value. Syntax for this expression is: `let <VARIABLE> : <TYPE>;` or `let <VARIABLE> = <EXPRESSION>`.
 
 After you've created and initialized variable you're able to *modify* or *access* its value by using variable name. In example above variable `a` was initialized in the end of function and was *assigned* a value of variable `c`.
 
@@ -188,7 +188,7 @@ script {
         let b = a + 1;
         let c = b + 1;
 
-    } // function scope ended - no A, B and C are dead
+    } // function scope ended - a, b and c are dropped and no longer accessible
 }
 ```
 
@@ -224,9 +224,13 @@ script {
         {
             10; // see semi!
         }; // this block does not return a value
+
+        let _ = a + b; // both a and b get their values from blocks
     }
 }
 ```
+
+> Every expression in Move MUST end with semicolon unless it's the last expression in scope - in this case it's the return value of this scope.
 
 ### Summary
 

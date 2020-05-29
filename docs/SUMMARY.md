@@ -2,7 +2,6 @@
 
 - [The Move Language](README.md)
 - [Foreword](introduction/foreword.md)
-- [Move or Mvir](introduction/move.or.mvir.md)
 - [Getting Started](introduction/getting-started.md)
 - [Syntax Basics](chapters/syntax-basics.md)
     - [Concept](chapters/concept.md)
@@ -19,6 +18,7 @@
     - [Vectors](chapters/vector.md)
     - [Resource](chapters/resource.md)
 <!--
+- [Move or Mvir](introduction/move.or.mvir.md)
 - [Move IDE](ide/readme.md)
     - [Install & Configure](ide/setting-up.md)
 -->
