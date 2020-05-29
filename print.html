@@ -355,7 +355,7 @@ out/
 <h1><a class="header" href="#expression-and-scope" id="expression-and-scope">Expression and Scope</a></h1>
 <p>In programming languages expression is a unit of code which returns a value. A function call with return value is an expression - it returns value; an integer (or bool or address) literal is also an expression - it has the value of its integer type and so on.</p>
 <blockquote>
-<p>Every expression in Move MUST end with semicolon.</p>
+<p>Expressions must be separated by semiconon.</p>
 </blockquote>
 <h3><a class="header" href="#literal-expressions" id="literal-expressions">Literal expressions</a></h3>
 <p>Look at the code below. Every line contains an expression which ends with semicolon. Last line has three expressions separated by semicolons.</p>
@@ -366,7 +366,7 @@ out/
         true;
         true != false;
         0x0;
-        1; 2; 3;
+        1; 2; 3
     }
 }
 </code></pre>
@@ -544,7 +544,7 @@ out/
 }
 </code></pre>
 <blockquote>
-<p>Every expression in Move MUST end with semicolon unless it's the last expression in scope - in this case it's the return value of this scope.</p>
+<p>Last expression in scope (without semicolon) is the return value of this scope.</p>
 </blockquote>
 <h3><a class="header" href="#summary" id="summary">Summary</a></h3>
 <p>Let's keynote main points of this chapter.</p>
@@ -1265,7 +1265,7 @@ public fun get_country_population(country: Country): u64 {
 <h2><a class="header" href="#references" id="references">References</a></h2>
 <p>Many programming languages have implementation of references (<a href="https://en.wikipedia.org/wiki/Reference_(computer_science)">see Wikipedia</a>). <em>Reference</em> is a link to variable (usually to a section in memory) which you can pass into other parts of program instead of <em>moving</em> the value.</p>
 <blockquote>
-<p>References (marked with &amp;) allow you to <em>refer</em> to value without taking <em>ownership</em> of it</p>
+<p>References (marked with &amp;) allow you to <em>refer</em> to value without taking <em>ownership</em> of it.</p>
 </blockquote>
 <p>Let's modify our example and see how references can be used.</p>
 <pre><code class="language-Move">module M {
