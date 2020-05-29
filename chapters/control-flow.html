@@ -7,7 +7,7 @@
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="">
+        <meta name="description" content="Book about Libra's Move language">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
@@ -120,6 +120,10 @@
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                         
+                        <a href="https://github.com/damirka/move-book" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        
                     </div>
                 </div>
 
@@ -171,7 +175,7 @@
 <p>In this example we've used <code>if</code> + <code>block</code> to print <code>0</code> if <code>a == true</code> and if a is <code>false</code> - then <code>99</code> is printed. Simple as that, if syntax is:</p>
 <pre><code>if (&lt;bool_expression&gt;) &lt;expression&gt; else &lt;expression&gt;;
 </code></pre>
-<p><code>if</code> is an expression, and like all of them it must finish with semicolon. This fact also gives us an option to use it with <code>let</code> statement!</p>
+<p><code>if</code> is an expression, and like all of them it must end with semicolon. This is also a reason to use it with <code>let</code> statement!</p>
 <pre><code class="language-Move">script {
     use 0x0::Debug;
 
@@ -189,8 +193,8 @@
     }
 }
 </code></pre>
-<p>Now variable <code>b</code> will be assigned a different value depending on expression. But both of the return expressions in <code>if</code> must have the same type! Otherwise variable <code>b</code> will have an option to be of different kind and this is impossible in statically typed language. In compiler terms it's called <em>branch compatibility</em> - both of the branches must return compatible (same) type.</p>
-<p>If can be used in-solo - without <code>else</code>.</p>
+<p>Now variable <code>b</code> will be assigned a different value depending on the <code>a</code> expression. But both of the branhes in <code>if</code> must return the same type! Otherwise variable <code>b</code> will have an option to be of different kind (or undefined) and this is impossible in statically typed language. In compiler terms it's called <em>branch compatibility</em> - both of the branches must return compatible (same) type.</p>
+<p><code>if</code> can be used in-solo - without <code>else</code>.</p>
 <pre><code class="language-Move">script {
     use 0x0::Debug;
 
@@ -206,7 +210,7 @@
     }
 }
 </code></pre>
-<p>But keep in mind that <code>if</code> expression without <code>else</code> branch cannot be used in assignment as when condition is not met alternative branch is not called and variable may be undefined which is - again - impossible.</p>
+<p>But keep in mind that <code>if</code> expression without <code>else</code> branch cannot be used in assignment as when condition is not met - alternative branch is not called and variable may be undefined which is, again, impossible.</p>
 <h2><a class="header" href="#iterating-with-loops" id="iterating-with-loops">Iterating with loops</a></h2>
 <p>There're two ways of defining loops in Move:</p>
 <ol>
@@ -352,6 +356,23 @@
 
         
 
+        
+        <!-- Google Analytics Tag -->
+        <script type="text/javascript">
+            var localAddrs = ["localhost", "127.0.0.1", ""];
+
+            // make sure we don't activate google analytics if the developer is
+            // inspecting the book locally...
+            if (localAddrs.indexOf(document.location.hostname) === -1) {
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-93092448-16', 'auto');
+                ga('send', 'pageview');
+            }
+        </script>
         
 
         
