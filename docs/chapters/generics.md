@@ -155,6 +155,8 @@ script {
 }
 ```
 
+*You can have up to 18,446,744,073,709,551,615 (u64 size) generics in one definition. You definetely will never reach this limit, so feel free to use as many as you need without worrying about limits.*
+
 ### Unused type params
 
 Not every type specified in generic must be used. Look at this example:
@@ -200,8 +202,6 @@ script {
 ```
 
 Here we use generics to mark type, but we don't actually use it. You'll soon learn why this definition matters when you get to know `resources`. For now it's just another way to use them.
-
-### Forced type params
 
 ### Kind-matching and :copyable
 
@@ -259,5 +259,5 @@ This example here is only needed to show syntax, we'll get to resources soon and
   + unused type params
   + trait-like bounds - introducing kinds
 
-  ? hard-coded types
+  ? hard-coded types - no way
 -->

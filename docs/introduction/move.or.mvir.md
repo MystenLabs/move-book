@@ -7,11 +7,11 @@ Why are there two languages? Do they compile/transpile into each other? Is Move 
 1. There's only one VM (which is also called Move VM);
 2. There're two compilers, hence two languages;
 
-From what we've known from calibra team, Move IR is a "developer version" of Move which was created to speed up VM development while "the Move language" was being designed. Even though these two languages have different syntax - both compile into bytecode which is supported by Move VM.
+From what we've known from Novi (ex Calibra) team, Move IR is a "developer version" of Move which was created to speed up VM development while "the Move language" was being designed. Even though these two languages have different syntax - both compile into bytecode which is supported by Move VM.
 
 You may be asking yourself "what should I choose?", well currently there's no correct answer to that. Move is Rust-like and simpler, Mvir is pretty hardcore when it comes to references and changes of values; both are supported by VM. According to [Libra's blog](https://developers.libra.org/blog/):
 
-1. In December member of Calibra team wrote that [Move IR is a prototyping language](https://community.libra.org/t/on-move-and-ir/2260/2), and Move will be the main.
+1. In December member of Novi team wrote that [Move IR is a prototyping language](https://community.libra.org/t/on-move-and-ir/2260/2), and Move will be the main.
 2. New syntax from latest blog posts [looks like Move](https://libra.org/en-US/blog/how-to-use-the-end-to-end-tests-framework-in-move/);
 3. [In roadmap #2 retrospective](https://libra.org/en-US/blog/libra-core-roadmap-3/) Libra team marks Move IR as a tooling language and separates Move IR and Move language;
 4. Move's standard library [is written in Move](https://github.com/libra/libra/tree/master/language/stdlib/modules) and is rapidly growing and developing;
