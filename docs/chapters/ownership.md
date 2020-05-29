@@ -176,9 +176,11 @@ script {
 }
 ```
 
+> Use immutable (&) references to read data from structs, use mutable (&mut) to modify them. By using proper type of references you help maintaining secutiry and help reading your modules so the reader will know if this method changes the value or only reads.
+
 ###  Borrow checking
 
-Move controls the way you use references and helps you prevent unexpected bullet in your foot. To understand this let's look at example. I'll give you module and script and then will comment on what's going on and why.
+Move controls the way you use references and helps you prevent unexpected bullet in your foot. To understand that let's see an example. I'll give you module and script and then will comment on what's going on and why.
 
 ```Move
 module Borrow {
@@ -319,30 +321,6 @@ This script will compile even though we didn't pass `a` as a reference. Adding `
 Notes:
 
  - blocks are simply syntax sugar to simplify scripting, they don't set restrictions to using
-
-
--->
-
-<!--
-
-To note here:
-
-[x] references
-[x] mutable
-[x] only one mutable
-[x] immutable
-[x] reference as fun arg
-[x] access by ref, get value
-[x] why primitives can be passed freely
-
-[x] kw copy, kw move
-[x] 1 mutable - example!
-
-In generics:
-
-resource
-copyable
+ - any non implicitly copyable type has to be copied via a copy or *, otherwise it is a move
 
 -->
-
-
