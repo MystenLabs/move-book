@@ -270,6 +270,7 @@
     }
 }
 </code></pre>
+<p><em>You can have up to 18,446,744,073,709,551,615 (u64 size) generics in one definition. You definetely will never reach this limit, so feel free to use as many as you need without worrying about limits.</em></p>
 <h3><a class="header" href="#unused-type-params" id="unused-type-params">Unused type params</a></h3>
 <p>Not every type specified in generic must be used. Look at this example:</p>
 <pre><code class="language-Move">module Storage {
@@ -308,7 +309,6 @@ script {
 }
 </code></pre>
 <p>Here we use generics to mark type, but we don't actually use it. You'll soon learn why this definition matters when you get to know <code>resources</code>. For now it's just another way to use them.</p>
-<h3><a class="header" href="#forced-type-params" id="forced-type-params">Forced type params</a></h3>
 <h3><a class="header" href="#kind-matching-and-copyable" id="kind-matching-and-copyable">Kind-matching and :copyable</a></h3>
 <p>In <a href="/chapters/ownership.html">ownership chapter</a> we learned about <em>copy</em> and <em>move</em> operations in VM. Not every value in Move can be copied (but all of them can be moved!) - in the <a href="/chapters/resource.html">resources chapter</a> you'll study <code>resources</code>, which are not <em>copyable</em>. But before we jump there, let's learn what <em>Kind</em> is.</p>
 <p>Kind (in terms of VM) - is a group of types, there're only 2 kinds: <code>copyable</code> and <code>resource</code>. Kinds can be used to limit (or restrict) generic types passed into function.</p>
@@ -348,7 +348,7 @@ script {
   + unused type params
   + trait-like bounds - introducing kinds
 
-  ? hard-coded types
+  ? hard-coded types - no way
 -->
 
                     </main>
