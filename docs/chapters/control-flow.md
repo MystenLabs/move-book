@@ -1,65 +1,83 @@
 # Control Flow
 
-> Work in progress.
+Move is imperative language and like one it has *control flow* - a way to control execution and to make a choice whether to run block of code or to skip or to run another one instead.
 
-To do something more complex than basic 2+2, to do logic switches and to iterate though complex data you need control operators and expressions.
+In Move you have two ways to control flow: by using loops (`while` and `loop`) or `if` expressions.
 
-### The `if` expression
+## The `if`
 
-If you want to run code block when some expression is `true` you need to use `if` keyword:
+`if` expression allows you to run a block of code if some condition is true, and to run another block instead if condition resulted in false.
 
 ```Move
 script {
-    use 0x0::Transaction;
+    use 0x0::Debug;
 
-    fun main(custom_addr: address) {
-        if (custom_addr != Transaction::sender()) {
-            abort 11
-        };
+    fun main() {
 
-        // alternatively
-        if (custom_addr != Transaction::sender()) abort 11
-    }
-}
-```
+        let a = true;
 
-Syntax:
-
-```Move
-if (<EXPRESSION>) <EXPRESSION>;
-```
-
-### Let's add `else` to our `if`s!
-
-You can (and sometimes must) add `else` to your `if` construction:
-```Move
-script {
-    use 0x0::Transaction;
-
-    fun main(custom_addr: address) {
-        if (custom_addr != Transaction::sender()) {
-            abort 11
+        if (a) {
+            Debug::print<u8>(&0);
         } else {
-            let _ = true
-        };
-
-        // alternatively
-        if (custom_addr != Transaction::sender()) abort 11 else {
-            let _ = true
+            Debug::print<u8>(&99);
         };
     }
 }
 ```
 
-Syntax with `else`:
-```Move
-if (<EXPRESSION>)
-    <EXPRESSION>
-else
-    <EXPRESSION>;
+In this example we've used `if` + `block` to print `0` if `a == true` and if a is `false` - then `99` is printed. Simple as that, if syntax is:
+
+```
+if (<bool_expression>) <expression> else <expression>;
 ```
 
-## Using loops
+`if` is an expression, and like all of them it must finish with semicolon. This fact also gives us an option to use it with `let` statement!
+
+```Move
+script {
+    use 0x0::Debug;
+
+    fun main() {
+
+        // try switching to false
+        let a = true;
+        let b = if (a) { // 1st branch
+            10
+        } else { // 2nd branch
+            20
+        };
+
+        Debug::print<u8>(&b);
+    }
+}
+```
+
+Now variable `b` will be assigned a different value depending on expression. But both of the return expressions in `if` must have the same type! Otherwise variable `b` will have an option to be of different kind and this is impossible in statically typed language. In compiler terms it's called *branch compatibility* - both of the branches must return compatible (same) type.
+
+If can be used in-solo - without `else`.
+
+```Move
+script {
+    use 0x0::Debug;
+
+    fun main() {
+
+        let a = true;
+
+        // only one optional branch
+        // if a = false, debug won't be called
+        if (a) {
+            Debug::print<u8>(&10);
+        };
+    }
+}
+```
+
+But keep in mind that `if` expression without `else` branch cannot be used in assignment as when condition is not met alternative branch is not called and variable may be undefined which is - again - impossible.
+
+## Iterating with loops
+
+> In progress.
 
 In Move you have two ways to do repetition: conditional loop with `while` and infinite `loop`.
 

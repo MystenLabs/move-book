@@ -197,9 +197,9 @@ To *destruct* a struct use `let <STRUCT DEF> = <STRUCT>` syntax:
 ```Move
 module Country {
 
-    // ...s
+    // ...
 
-    // we'll return values of this struct outside to use
+    // we'll return values of this struct outside
     public fun destroy(country: Country): (u8, u64) {
 
         // variables must match struct fields
