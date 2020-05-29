@@ -1,56 +1,119 @@
-# Vector
+# Managing collections with Vector
 
-Vector is a built-in (native) complex type for storing collection of values of one type.
+You're already familiar with `struct` type which gives you ability to create your own types and to store complex data. But sometimes you need something more dynamic, extensible and manageable. And for that Move has Vectors.
 
-## Rules
+Vector is a built-in type for storing *collections* of data. It is a generic solution for collection of any type (but only one). As its functionality is given to you by VM - not by actual Move language, the only way to work with it is by using standard library and `native` functions.
 
-As usual - let's start with rules.
-
-1. Vector is a native type (just like [primitives](/chapters/primitives.md)) which means you can use it in both modules and scripts;
-2. Vector can only contain items of the same type. You cannot store elements of type A and type B in the same vector;
-3. Vector can have size from 0 to 9,223,372,036,854,775,807 (max size of `u64`), it's called length;
-4. Type of stored value is specified as type parameter: `vector<Element>`;
-5. Since it's a native type, to use it you need standard library - usually `0x0::Vector`.
-
-## Usage
-
-As said above you can use it everywhere. In module:
-
-```Move
-module Countries {
-    struct Country {
-        name: vector<u8>
-    }
-
-    resource struct CountriesList {
-        value: vector<Country>
-    }
-}
-
-```
-
-And in script!
 ```Move
 script {
+    use 0x0::Vector;
+
+    fun main() {
+        // use generics to create an emtpy vector
+        let a = Vector::empty<&u8>();
+        let i = 0;
+
+        // let's fill it with data
+        while (i < 10) {
+            Vector::push_back(&mut a, i);
+            i = i + 1;
+        }
+
+        // now print vector length
+        let a_len = Vector::length(&a);
+        0x0::Debug::print<u64>(&a_len);
+
+        // then remove 2 elements from it
+        Vector::pop_back(&mut a);
+        Vector::pop_back(&mut a);
+
+        // and print length again
+        let a_len = Vector::length(&a);
+        0x0::Debug::print<u64>(&a_len);
+    }
+}
+```
+
+Vector is a collection of values of a single non-reference type. It's is an ordered collection with max length of `u64`. It is also dynamic. And to see how it helps managing huge storages let's write a module with it.
+
+```Move
+module Shelf {
 
     use 0x0::Vector;
 
-    fun vector_example() {
-        let collection = Vector::empty<u8>();
+    struct Box<T> {
+        value: T
+    }
 
-        Vector::push_back<u8>(&mut collection, 10);
+    struct Shelf<T> {
+        boxes: vector<Box<T>>
+    }
+
+    public fun create_box<T>(value: T): Box<T> {
+        Box { value }
+    }
+
+    public fun value<T: copyable>(box: &Box<T>): T {
+        *&box.value
+    }
+
+    public fun create_shelf<T>(): Shelf<T> {
+        Shelf {
+            boxes: Vector::empty<Box<T>>()
+        }
+    }
+
+    // box value is moved to the vector
+    public fun put<T>(shelf: &mut Shelf<T>, box: Box<T>) {
+        Vector::push_back<Box<T>>(&mut shelf.boxes, box);
+    }
+
+    public fun remove<T>(shelf: &mut Shelf<T>, box: Box<T>): Box<T> {
+        Vector::pop_back<Box<T>>(shelf)
+    }
+
+    public fun size<T>(shelf: &Shelf<T>) {
+        Vector::length<Box<T>>(&shelf.boxes)
     }
 }
 ```
 
+We'll create a shelf, few boxes for it and see how to work with vector collections in module:
 
-In this example we've created an empty vector of `u8` integers and filled it with one value. Please note that vector creation within code is only possible via `0x0::Vector` library since this type is native.
+```
+script {
+    use {{sender}}::Shelf;
 
-## 0x0::Vector module
+    fun main() {
 
-To manage collection properly we'd need to be able to get its length, to access elements of this collection, and to modify its contents. All of this can be done with standard library (and only with standard library).
+        // create shelf and 2 boxes of type u64
+        let shelf = Shelf::create<u64>();
+        let box_1 = Shelf::create_box<u64>(99);
+        let box_2 = Shelf::create_box<u64>(999);
 
-Here's a short list of methods available:
+        // put both boxes to shelf
+        Shelf::put(&mut shelf, box_1);
+        Shelf::put(&mut shelf, box_2);
+
+        // prints size - 2
+        0x0::Debug::print<u64>(&Shelf::size<u64>(&shelf));
+
+        // then take one from shelf (last one pushed)
+        let take_back = Shelf::remove(&mut shelf);
+        let value     = Shelf::value<u64>(&take_back);
+
+        // verify that the box we took back is one with 999
+        0x0::Transaction::assert(value == 999, 1);
+
+        // and print size again - 1
+        0x0::Debug::print<u64>(&Shelf::size<u64>(&shelf));
+    }
+}
+```
+
+Vectors are very powerful. They allow you to store huge amounts of data (max length is *18446744073709551615*) and to work with it inside indexed storage.
+
+Here's a short cheatsheet for Vector methods from standard library:
 
 - Create an empty vector of type \<E\>
 ```Move
@@ -73,7 +136,7 @@ Vector::borrow_mut<E>(v: &mut vector<E>, i: u64): &E;
 Vector::pop_back<E>(v: &mut vector<E>): E;
 ```
 
-This list is just enough to start working with vector, but to know full potential of vector you must see these standard libraries:
+Vector module in standard libraries:
 
 - Libra [libra/libra](https://github.com/libra/libra/blob/master/language/stdlib/modules/vector.move)
 - Dfinance [dfinance/dvm](https://github.com/dfinance/dvm/blob/master/lang/stdlib/vector.move)

@@ -17,6 +17,7 @@
     - [Understanding Generics](chapters/generics.md)
     - [Managing collections with Vectors](chapters/vector.md)
     - [Programmable Resources](chapters/resource.md)
+
 <!--
 - [Move or Mvir](introduction/move.or.mvir.md)
 - [Move IDE](ide/readme.md)

@@ -1,4 +1,4 @@
-# Generics
+# Understanding Generics
 
 Generics are essential to Move, they are what makes this language so unique to blockchain world, and they are the source of Move's flexibility.
 
