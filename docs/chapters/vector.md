@@ -57,7 +57,7 @@ module Shelf {
         *&box.value
     }
 
-    public fun create_shelf<T>(): Shelf<T> {
+    public fun create<T>(): Shelf<T> {
         Shelf {
             boxes: Vector::empty<Box<T>>()
         }
@@ -68,11 +68,11 @@ module Shelf {
         Vector::push_back<Box<T>>(&mut shelf.boxes, box);
     }
 
-    public fun remove<T>(shelf: &mut Shelf<T>, box: Box<T>): Box<T> {
-        Vector::pop_back<Box<T>>(shelf)
+    public fun remove<T>(shelf: &mut Shelf<T>): Box<T> {
+        Vector::pop_back<Box<T>>(&mut shelf.boxes)
     }
 
-    public fun size<T>(shelf: &Shelf<T>) {
+    public fun size<T>(shelf: &Shelf<T>): u64 {
         Vector::length<Box<T>>(&shelf.boxes)
     }
 }
@@ -112,6 +112,33 @@ script {
 ```
 
 Vectors are very powerful. They allow you to store huge amounts of data (max length is *18446744073709551615*) and to work with it inside indexed storage.
+
+### Hex literal for inline vector definitions
+
+Vector is also *meant* to represent strings. VM supports way of passing `vector<u8>` as argument into `main` function in script.
+
+But you can also use hexadecimal literal do define a `vector<u8>` in your script or a module:
+
+```Move
+script {
+
+    use 0x0::Vector;
+
+    // this is the way to accept arguments in main
+    fun main(name: vector<u8>) {
+        let _ = name;
+
+        // and this is how you use literals
+        // this is a helloworld string!
+        let str = x"68656c6c6f20776f726c64";
+
+        // hex literal gives you vector<u8> as well
+        Vector::length<u8>(&str);
+    }
+}
+```
+
+### Vector cheatsheet
 
 Here's a short cheatsheet for Vector methods from standard library:
 
