@@ -1,9 +1,13 @@
 [book]
-authors = ["damirka"]
+title = "Move Book"
+description = "Book about Libra's Move language"
+authors = ["Damir Shamanaev"]
 language = "en"
 multilingual = false
 src = "docs"
-title = "Move Book"
 
-[preprocessor.toc]
-renderer = ["html"]
+[output.html]
+
+google-analytics = "UA-93092448-16"
+git-repository-url = "https://github.com/damirka/move-book"
+git-repository-icon = "fa-github"

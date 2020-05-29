@@ -33,7 +33,7 @@ In this example we've used `if` + `block` to print `0` if `a == true` and if a i
 if (<bool_expression>) <expression> else <expression>;
 ```
 
-`if` is an expression, and like all of them it must finish with semicolon. This fact also gives us an option to use it with `let` statement!
+`if` is an expression, and like all of them it must end with semicolon. This is also a reason to use it with `let` statement!
 
 ```Move
 script {
@@ -54,9 +54,9 @@ script {
 }
 ```
 
-Now variable `b` will be assigned a different value depending on expression. But both of the return expressions in `if` must have the same type! Otherwise variable `b` will have an option to be of different kind and this is impossible in statically typed language. In compiler terms it's called *branch compatibility* - both of the branches must return compatible (same) type.
+Now variable `b` will be assigned a different value depending on the `a` expression. But both of the branhes in `if` must return the same type! Otherwise variable `b` will have an option to be of different kind (or undefined) and this is impossible in statically typed language. In compiler terms it's called *branch compatibility* - both of the branches must return compatible (same) type.
 
-If can be used in-solo - without `else`.
+`if` can be used in-solo - without `else`.
 
 ```Move
 script {
@@ -75,7 +75,7 @@ script {
 }
 ```
 
-But keep in mind that `if` expression without `else` branch cannot be used in assignment as when condition is not met alternative branch is not called and variable may be undefined which is - again - impossible.
+But keep in mind that `if` expression without `else` branch cannot be used in assignment as when condition is not met - alternative branch is not called and variable may be undefined which is, again, impossible.
 
 ## Iterating with loops
 
