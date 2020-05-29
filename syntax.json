@@ -1,0 +1,157 @@
+{
+    "integer_type": {
+        "def": "u8 | u64 | u128"
+    },
+    "primitive_types": [
+        "#integer_type",
+        "address",
+        "bool"
+    ],
+    "module access": "<module>::<prop>",
+    "vector": {
+        "def": "vector<type>",
+        "type": [
+            "#primitive_types",
+            "#module_access",
+            "#vector"
+        ]
+    },
+    "key_type_match": {
+        "def": "text: <type>",
+        "type": [
+            "primitive types",
+            "module access",
+            "vector"
+        ]
+    },
+    "struct body": [
+      {
+        "def": "(<key>: <type>)+"
+      },
+      {
+        "type": [
+          "vector",
+          "module access",
+          "primitive types"
+        ]
+      }
+    ],
+    "struct": [
+      {
+        "def": "struct <name> { <struct body> }"
+      },
+      {
+        "name": "text"
+      }
+    ],
+    "resource": "resource <struct> - struct",
+    "module body": [
+      "struct",
+      "resource",
+      "fun def",
+      "public fun def",
+      "native fun def"
+    ],
+    "module": [
+      {
+        "def": "module <name> { <module body> }"
+      }
+    ],
+    "keyword native": [
+      {
+        "def": "native"
+      }
+    ],
+    "fun ret": [
+      {
+        "def": ": <type> [, <type>]+"
+      }
+    ],
+    "fun acquires": [
+      {
+        "def": "acquires <T> [, <res>]"
+      }
+    ],
+    "constraint": "copyable | resource",
+    "generic": [
+      {
+        "comment": "specifying generic type(s)"
+      },
+      {
+        "def": "<T [, T]>"
+      },
+      {
+        "T": "text"
+      }
+    ],
+    "constraint generic": [
+      {
+        "comment": "generic with constraint (only in definitions)"
+      },
+      {
+        "def": "<T: <constraint> [, <generic>]>"
+      },
+      {
+        "T": "text"
+      },
+      {
+        "constraint": null
+      }
+    ],
+    "fun signature": [
+      {
+        "comment": "function signature - only as function definition"
+      },
+      {
+        "def": "<name><generic>?(<args>?)<return>?<acquires>?"
+      },
+      {
+        "name": "text"
+      },
+      {
+        "generic": [
+          "generic",
+          "constraint generic"
+        ]
+      },
+      {
+        "args": "key type match [, key type match]"
+      },
+      {
+        "return": "fun ret"
+      }
+    ],
+    "fun body": [
+      {
+        "def": {
+          "(<expr>)+": null
+        }
+      },
+      {
+        "expr": [
+          "loops",
+          "control statements",
+          "literals",
+          "expressions",
+          "primitives",
+          "function calls",
+          "module access"
+        ]
+      }
+    ],
+    "native fun": [
+      {
+        "def": "native <fun signature>;"
+      }
+    ],
+    "fun": [
+      {
+        "def": "<fun signature> { <fun body> }"
+      }
+    ],
+    "public fun": [
+      {
+        "def": "public <fun>"
+      }
+    ]
+  }
