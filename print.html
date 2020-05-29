@@ -1368,8 +1368,8 @@ public fun get_country_population(country: Country): u64 {
     }
 }
 </code></pre>
-<p>This code compiles and runs without errors. First, what happens here: we use mutable reference to <code>A</code> to get mutable reference to its inner struct <code>B</code>. Then we change <code>B</code>, hence change <code>A</code>. Then operation can be repeated.</p>
-<p>But what if we changed swapped two last expressions and first tried to create new mutable reference to <code>A</code> while mutable reference to <code>B</code> is still alive?</p>
+<p>This code compiles and runs without errors. First, what happens here: we use mutable reference to <code>A</code> to get mutable reference to its inner struct <code>B</code>. Then we change <code>B</code>. Then operation can be repeated.</p>
+<p>But what if we've swapped two last expressions and first tried to create new mutable reference to <code>A</code> while mutable reference to <code>B</code> is still alive?</p>
 <pre><code class="language-Move">let mut_a = &amp;mut a;
 let mut_b = Borrow::ref_from_mut_a(mut_a);
 
@@ -1377,7 +1377,7 @@ let _ = Borrow::ref_from_mut_a(mut_a);
 
 Borrow::change_b(mut_b, 100000);
 </code></pre>
-<p>Error will be:</p>
+<p>We'd have gotten an error:</p>
 <pre><code class="language-Move">    ┌── /scripts/script.move:10:17 ───
     │
  10 │         let _ = Borrow::ref_from_mut_a(mut_a);
@@ -1387,12 +1387,12 @@ Borrow::change_b(mut_b, 100000);
     │                     ----------------------------- It is still being mutably borrowed by this reference
     │
 </code></pre>
-<p>This code won't compile. Why? Because <code>&amp;mut A</code> is <em>being borrowed</em> by <code>&amp;mut B</code>. If we could change A while still having mutable reference to its contents, we'd get into odd situation where A can be changed but its contents are still here. What would <code>mut_b</code> reference to if it no longer would be there.</p>
+<p>This code won't compile. Why? Because <code>&amp;mut A</code> is <em>being borrowed</em> by <code>&amp;mut B</code>. If we could change <code>A</code> while having mutable reference to its contents, we'd get into odd situation where <code>A</code> can be changed but reference to its contents is still here. Where would <code>mut_b</code> point to if there was no actual <code>B</code>?</p>
 <p>We come to few conclusions:</p>
 <ol>
-<li>You can create reference from reference, so that original reference will <em>be borrowed</em> by new one. Mutable and immutable from mutable and only immutable from immutable.</li>
+<li>We get a compilation error which means that Move compiler prevents these cases. It's called <em>borrow checking</em> (originally concept from Rust language). Compiler builds a <em>borrow graph</em> and disallows <em>moving borrowed values</em>. This is one of the reasons why Move is so safe to use in blockchains.</li>
+<li>You can create reference from reference, so that original reference will <em>be borrowed</em> by the new one. Mutable and immutable can be created from mutable and only immutable from immutable.</li>
 <li>When reference <em>is borrowed</em> it cannot be <em>moved</em> because other values depend on it.</li>
-<li>Move compiler has <em>borrow checking</em> in it and builds a <em>borrow graph</em> to track references. This is also a reason why Move is so safe to use in blockchains.</li>
 </ol>
 <h3><a class="header" href="#deferencing" id="deferencing">Deferencing</a></h3>
 <p>References can be dereferenced to get linked value - to do it use asterisk <code>*</code>.</p>
@@ -1411,6 +1411,20 @@ Borrow::change_b(mut_b, 100000);
 <blockquote>
 <p>Dereference operator does not move original value into current scope. It creates a <em>copy</em> of this value instead.</p>
 </blockquote>
+<p>There's a technique in Move used to copy inner field of a struct: <code>*&amp;</code> - dereference a reference to the field. Here's a quick example:</p>
+<pre><code class="language-Move">module M {
+    struct H {}
+    struct T { inner: H }
+
+    // ...
+
+    // we can do it even from immutable reference!
+    public fun copy_inner(t: &amp;T): H {
+        *&amp;t.inner
+    }
+}
+</code></pre>
+<p>By using <code>*&amp;</code> (even compiler will advise you to do so) we've copied inner value of a struct.</p>
 <h3><a class="header" href="#referencing-primitive-types" id="referencing-primitive-types">Referencing primitive types</a></h3>
 <p>Primitive types (due to their simplicity) do not need to be passed as references and <em>copy</em> operation is done instead. Even if you pass them into function <em>by value</em> they will remain in current scope. You can intentionally use <code>move</code> keyword, but since primitives are very small in size copying them may even be cheaper than passing them by reference or even moving.</p>
 <pre><code class="language-Move">script {
@@ -1432,7 +1446,6 @@ Notes:
 
 
 -->
-<!-- unless explicit `move` keyword used -->
 <!--
 
 To note here:
@@ -1443,10 +1456,10 @@ To note here:
 [x] immutable
 [x] reference as fun arg
 [x] access by ref, get value
-[ ] why primitives can be passed freely
+[x] why primitives can be passed freely
 
-[ ] kw copy, kw move
-[ ] 1 mutable - example!
+[x] kw copy, kw move
+[x] 1 mutable - example!
 
 In generics:
 
