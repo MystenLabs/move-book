@@ -14,9 +14,9 @@
     - [Structures](chapters/struct.md)
 - [Advanced Topics](chapters/advanced-topics.md)
     - [Ownership and References](chapters/ownership.md)
-    - [Using Generics](chapters/generics.md)
-    - [Vectors](chapters/vector.md)
-    - [Resource](chapters/resource.md)
+    - [Understanding Genericss](chapters/generics.md)
+    - [Managing collections with Vectors](chapters/vector.md)
+    - [Programmable Resources](chapters/resource.md)
 <!--
 - [Move or Mvir](introduction/move.or.mvir.md)
 - [Move IDE](ide/readme.md)

@@ -1,10 +1,12 @@
 # Control Flow
 
-Move is imperative language and like one it has *control flow* - a way to control execution and to make a choice whether to run block of code or to skip or to run another one instead.
+Move is imperative language and like one it has *control flow* - a way to make schoice whether to run block of code or to skip or to run another one instead.
 
-In Move you have two ways to control flow: by using loops (`while` and `loop`) or `if` expressions.
+<!-- In Move you have two statme to control flow: by using loops (`while` and `loop`) or `if` expressions. -->
 
-## The `if`
+In Move you have loops (`while` and `loop`) and `if` expressions.
+
+## The `if` expression
 
 `if` expression allows you to run a block of code if some condition is true, and to run another block instead if condition resulted in false.
 
@@ -77,24 +79,47 @@ But keep in mind that `if` expression without `else` branch cannot be used in as
 
 ## Iterating with loops
 
-> In progress.
+There're two ways of defining loops in Move:
+1. Conditional loop with `while`
+2. Inifinite `loop`
 
-In Move you have two ways to do repetition: conditional loop with `while` and infinite `loop`.
+### Conditional loop with `while`
 
-Use while loop with bool expression inside parentheses:
+`while` is a way to define loop - expression which will be executed while some condition is true. So simply: code will be run over and over *while* condition is `true`. To implement condition usually external variable (or counter) is used.
 
 ```Move
 fun main() {
 
-    let i = 0;
+    let i = 0; // define counter
 
+    // iterate while i < 5
+    // on every iteration increase i
+    // when i is 5, condition fails and loop exits
     while (i < 5) {
         i = i + 1;
-    }
+    };
 }
 ```
 
-For infinite (non-conditional) loops use `loop` keyword with expression:
+It's worth mentioning that `while` is an expression - just like `if` is, and it too requires a semicolon afterwards. Generic syntax for while loop is:
+
+```Move
+while (<bool_expression>) <expression>;
+```
+
+Unlike `if`, `while` cannot return a value, so variable assignment (like we did with `if` expersion) is impossible.
+
+### Unreachable code
+
+To be reliable Move must be secure. This is why it obliges you to use all your variables and for the same reason it forbids having unreachable code. As digital assets are programmable, they can be used in code (you'll learn about it in [resources chapter](/chapters/resource.md)), and placing them in unreachable area may lead to inconvinience and their loss as the result.
+
+This is why unreachable code is such a big issue. Now that is clear, we can proceed.
+
+### Infinite `loop`
+
+There is a way to define infinite loops. They're non-conditional and actually infinite (unless you force them to stop). Unfortunately compiler cannot define whether a loop is infinite (in most of the cases) and cannot stop you from publishing code, execution of which will consume all given resources (in blockchain terms - gas). So it's on you to test your code properly when using them or just switch to conditional `while` as it's way more secure.
+
+Infinite loops are defined with keyword `loop`.
 
 ```Move
 fun main() {
@@ -102,62 +127,86 @@ fun main() {
 
     loop {
         i = i + 1;
-        if (i == 5) break
+    };
+
+    // UNREACHABLE CODE
+    let _ = i;
+}
+```
+
+However this is possible (compiler will let you do this):
+
+```Move
+script {
+    fun main() {
+        let i = 0;
+
+        loop {
+            if (i == 1) { // i never changed
+                break // this statement breaks loop
+            }
+        };
+
+        // actually unreachable
+        0x0::Debug::print<u8>(&i);
     }
 }
 ```
 
-Syntax for loops:
-```Move
-while (<EXPRESSION>) <EXPRESSION>;
-loop <EXPRESSION>;
-```
+It's a non-trivial task for compiler to understand whether loop is really infinite or not, so for now you and only you can help yourself avoid looping errors. As I described above, this can lead to assets loss.
 
 ### Control loops with `continue` and `break`
 
-Keywords `continue` and `break` allow you to skip one round or break iteration.
+Keywords `continue` and `break` allow you to skip one round or break iteration respectively. You can use both of them in both types of loops.
 
 For example let's add two conditions into `loop`. If `i` is even we use `continue` to jump to next iteration without going through code after `continue` call.
+
 With `break` we stop iteration and exit loop.
+
 ```Move
-fun main() {
-    let i = 0;
+script {
+    fun main() {
+        let i = 0;
 
-    loop {
-        i = i + 1;
+        loop {
+            i = i + 1;
 
-        if (i / 2 == 0) continue;
-        if (i == 5) break;
+            if (i / 2 == 0) continue;
+            if (i == 5) break;
 
-        // assume we do something here
-    };
+            // assume we do something here
+         };
 
-    // i here is 5
+        0x0::Debug::print<u8>(&i);
+    }
 }
 ```
 
-About semicolons. If `break` and `continue` are the last keywords in scope, you can't put a semicolon after them as any code after won't be executed. Somehow even semi can't be put. See this:
+About semicolons. If `break` and `continue` are the last keywords in block, you can't put a semicolon after them as any code after won't be executed. Somehow even semi can't be put. See this:
+
 ```Move
-fun main() {
-    let i = 0;
+script {
+    fun main() {
+        let i = 0;
 
-    loop {
-        i = i + 1;
+        loop {
+            i = i + 1;
 
-        if (i == 5) {
-            break; // will result in compiler error. correct is `break` without semi
-                   // Error: Unreachable code
+            if (i == 5) {
+                break; // will result in compiler error. correct is `break` without semi
+                       // Error: Unreachable code
+            };
+
+            // same with continue here: no semi, never;
+            if (true) {
+                continue
+            };
+
+            // however you can put semi like this, because continue and break here
+            // are single expressions, hence they "end their own scope"
+            if (true) continue;
+            if (i == 5) break;
         }
-
-        // same with continue here: no semi, never;
-        if (true) {
-            continue
-        }
-
-        // however you can put semi like this, because continue and break here
-        // are single expressions, hence they "end their own scope"
-        if (true) continue;
-        if (i == 5) break;
     }
 }
 ```
