@@ -224,9 +224,9 @@ script {
 }
 ```
 
-This code compiles and runs without errors. First, what happens here: we use mutable reference to `A` to get mutable reference to its inner struct `B`. Then we change `B`, hence change `A`. Then operation can be repeated.
+This code compiles and runs without errors. First, what happens here: we use mutable reference to `A` to get mutable reference to its inner struct `B`. Then we change `B`. Then operation can be repeated.
 
-But what if we changed swapped two last expressions and first tried to create new mutable reference to `A` while mutable reference to `B` is still alive?
+But what if we've swapped two last expressions and first tried to create new mutable reference to `A` while mutable reference to `B` is still alive?
 
 ```Move
 let mut_a = &mut a;
@@ -237,7 +237,7 @@ let _ = Borrow::ref_from_mut_a(mut_a);
 Borrow::change_b(mut_b, 100000);
 ```
 
-Error will be:
+We'd have gotten an error:
 
 ```Move
     ┌── /scripts/script.move:10:17 ───
@@ -250,14 +250,13 @@ Error will be:
     │
 ```
 
-This code won't compile. Why? Because `&mut A` is *being borrowed* by `&mut B`. If we could change A while still having mutable reference to its contents, we'd get into odd situation where A can be changed but its contents are still here. What would `mut_b` reference to if it no longer would be there.
+This code won't compile. Why? Because `&mut A` is *being borrowed* by `&mut B`. If we could change `A` while having mutable reference to its contents, we'd get into odd situation where `A` can be changed but reference to its contents is still here. Where would `mut_b` point to if there was no actual `B`?
 
 We come to few conclusions:
 
-1. You can create reference from reference, so that original reference will *be borrowed* by new one. Mutable and immutable from mutable and only immutable from immutable.
-2. When reference *is borrowed* it cannot be *moved* because other values depend on it.
-3. Move compiler has *borrow checking* in it and builds a *borrow graph* to track references. This is also a reason why Move is so safe to use in blockchains.
-
+1. We get a compilation error which means that Move compiler prevents these cases. It's called *borrow checking* (originally concept from Rust language). Compiler builds a *borrow graph* and disallows *moving borrowed values*. This is one of the reasons why Move is so safe to use in blockchains.
+2. You can create reference from reference, so that original reference will *be borrowed* by the new one. Mutable and immutable can be created from mutable and only immutable from immutable.
+3. When reference *is borrowed* it cannot be *moved* because other values depend on it.
 
 ### Deferencing
 
@@ -277,6 +276,24 @@ module M {
 ```
 
 > Dereference operator does not move original value into current scope. It creates a *copy* of this value instead.
+
+There's a technique in Move used to copy inner field of a struct: `*&` - dereference a reference to the field. Here's a quick example:
+
+```Move
+module M {
+    struct H {}
+    struct T { inner: H }
+
+    // ...
+
+    // we can do it even from immutable reference!
+    public fun copy_inner(t: &T): H {
+        *&t.inner
+    }
+}
+```
+
+By using `*&` (even compiler will advise you to do so) we've copied inner value of a struct.
 
 ### Referencing primitive types
 
@@ -306,8 +323,6 @@ Notes:
 
 -->
 
-<!-- unless explicit `move` keyword used -->
-
 <!--
 
 To note here:
@@ -318,10 +333,10 @@ To note here:
 [x] immutable
 [x] reference as fun arg
 [x] access by ref, get value
-[ ] why primitives can be passed freely
+[x] why primitives can be passed freely
 
-[ ] kw copy, kw move
-[ ] 1 mutable - example!
+[x] kw copy, kw move
+[x] 1 mutable - example!
 
 In generics:
 
