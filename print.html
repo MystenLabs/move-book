@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="introduction/getting-started.html"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="chapters/syntax-basics.html"><strong aria-hidden="true">5.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/concept.html"><strong aria-hidden="true">5.1.</strong> Concept</a></li><li class="chapter-item expanded "><a href="chapters/primitives.html"><strong aria-hidden="true">5.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="chapters/comments.html"><strong aria-hidden="true">5.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="chapters/expression-and-scope.html"><strong aria-hidden="true">5.4.</strong> Expression and Scope</a></li><li class="chapter-item expanded "><a href="chapters/control-flow.html"><strong aria-hidden="true">5.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="chapters/module.html"><strong aria-hidden="true">5.6.</strong> Module</a></li><li class="chapter-item expanded "><a href="chapters/function.html"><strong aria-hidden="true">5.7.</strong> Function</a></li><li class="chapter-item expanded "><a href="chapters/struct.html"><strong aria-hidden="true">5.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="chapters/advanced-topics.html"><strong aria-hidden="true">6.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/ownership.html"><strong aria-hidden="true">6.1.</strong> Ownership and References</a></li><li class="chapter-item expanded "><a href="chapters/generics.html"><strong aria-hidden="true">6.2.</strong> Using Generics</a></li><li class="chapter-item expanded "><a href="chapters/vector.html"><strong aria-hidden="true">6.3.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="chapters/resource.html"><strong aria-hidden="true">6.4.</strong> Resource</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="introduction/getting-started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="chapters/syntax-basics.html"><strong aria-hidden="true">4.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/concept.html"><strong aria-hidden="true">4.1.</strong> Concept</a></li><li class="chapter-item expanded "><a href="chapters/primitives.html"><strong aria-hidden="true">4.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="chapters/comments.html"><strong aria-hidden="true">4.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="chapters/expression-and-scope.html"><strong aria-hidden="true">4.4.</strong> Expression and Scope</a></li><li class="chapter-item expanded "><a href="chapters/control-flow.html"><strong aria-hidden="true">4.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="chapters/module.html"><strong aria-hidden="true">4.6.</strong> Module</a></li><li class="chapter-item expanded "><a href="chapters/function.html"><strong aria-hidden="true">4.7.</strong> Function</a></li><li class="chapter-item expanded "><a href="chapters/struct.html"><strong aria-hidden="true">4.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="chapters/advanced-topics.html"><strong aria-hidden="true">5.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/ownership.html"><strong aria-hidden="true">5.1.</strong> Ownership and References</a></li><li class="chapter-item expanded "><a href="chapters/generics.html"><strong aria-hidden="true">5.2.</strong> Using Generics</a></li><li class="chapter-item expanded "><a href="chapters/vector.html"><strong aria-hidden="true">5.3.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="chapters/resource.html"><strong aria-hidden="true">5.4.</strong> Resource</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -155,22 +155,6 @@
 <h1><a class="header" href="#foreword" id="foreword">Foreword</a></h1>
 <p>It's been few months since we at <a href="https://dfinance.co">dfinance</a> started working with Libra's Move VM and Move language. Before that we worked a lot with blockchains (and smart contracts specifically): you may know our <a href="http://wings.ai">Wings.ai</a> project - once the biggest dApp on ETH network; and we - better than many - know how hard it can be for a newcomer to work with new blockchain language, especially Rust-like, especially when blockchain environments and infrastructure challenges come to play. </p>
 <p>That is why we are here - to help you dive into yet unknown language, and to show you its beauty.</p>
-<h1><a class="header" href="#move-or-mvir" id="move-or-mvir">Move or Mvir</a></h1>
-<p>If you've tried searching any information on Move language or if you have visited <a href="https://developers.libra.org">developers.libra.org</a>, you may have noticed that there're 2 languages right now: Move - the one from whitepaper and fancy news headlines, and Mvir (Move IR) - most documented and mentioned on libra's developers portal.</p>
-<p>Why are there two languages? Do they compile/transpile into each other? Is Move IR a middle step between Move and bytecode? The short answer is no. However long answer will require some explanation - let's start with the facts:</p>
-<ol>
-<li>There's only one VM (which is also called Move VM);</li>
-<li>There're two compilers, hence two languages;</li>
-</ol>
-<p>From what we've known from calibra team, Move IR is a &quot;developer version&quot; of Move which was created to speed up VM development while &quot;the Move language&quot; was being designed. Even though these two languages have different syntax - both compile into bytecode which is supported by Move VM.</p>
-<p>You may be asking yourself &quot;what should I choose?&quot;, well currently there's no correct answer to that. Move is Rust-like and simpler, Mvir is pretty hardcore when it comes to references and changes of values; both are supported by VM. According to <a href="https://developers.libra.org/blog/">Libra's blog</a>:</p>
-<ol>
-<li>In December member of Calibra team wrote that <a href="https://community.libra.org/t/on-move-and-ir/2260/2">Move IR is a prototyping language</a>, and Move will be the main.</li>
-<li>New syntax from latest blog posts <a href="https://libra.org/en-US/blog/how-to-use-the-end-to-end-tests-framework-in-move/">looks like Move</a>;</li>
-<li><a href="https://libra.org/en-US/blog/libra-core-roadmap-3/">In roadmap #2 retrospective</a> Libra team marks Move IR as a tooling language and separates Move IR and Move language;</li>
-<li>Move's standard library <a href="https://github.com/libra/libra/tree/master/language/stdlib/modules">is written in Move</a> and is rapidly growing and developing;</li>
-</ol>
-<p>In this book you will only meet Move as I believe it is going to be the final Move language.</p>
 <h1><a class="header" href="#getting-started" id="getting-started">Getting started</a></h1>
 <p>As with any compiled language, you need proper set of tools to compile, run and debug your Move applications. Since this language is created for blockchains and used only within them, running scripts off-chain is a non-trivial task: every module will require environment, account handling and compile-publishing system.</p>
 <p>To simpify development of Move modules we've created <a href="https://github.com/damirka/vscode-move-ide">Move IDE</a> extension for Visual Studio Code. This extension will help you cope with environment requirements. Use of this extension is highly recommended as it will handle build/run environment for you, hence will let you focus on learning Move language instead of struggling with the CLI environment. This extension also includes Move syntax highlighting and run environment to help you debug your applications before going public.</p>
@@ -211,7 +195,7 @@ module HelloWorld {
     public fun gimme_five(): u8 {
         5
     }
-}s
+}
 }
 </code></pre>
 <blockquote>
@@ -366,7 +350,7 @@ out/
 <h1><a class="header" href="#expression-and-scope" id="expression-and-scope">Expression and Scope</a></h1>
 <p>In programming languages expression is a unit of code which returns a value. A function call with return value is an expression - it returns value; an integer (or bool or address) literal is also an expression - it has the value of its integer type and so on.</p>
 <blockquote>
-<p>Every expression in Move MUST end with semicolon*</p>
+<p>Every expression in Move MUST end with semicolon.</p>
 </blockquote>
 <h3><a class="header" href="#literal-expressions" id="literal-expressions">Literal expressions</a></h3>
 <p>Look at the code below. Every line contains an expression which ends with semicolon. Last line has three expressions separated by semicolons.</p>
@@ -395,7 +379,7 @@ out/
 }
 </code></pre>
 <blockquote>
-<p>Keword <code>let</code> creates new variable inside <em>current scope</em> and optionally <em>initializes</em> this variable with value. Syntax for this expression is: <code>let &lt;VARIABLE&gt;;</code> or <code>let &lt;VARIABLE&gt; = &lt;EXPRESSION&gt;</code>.</p>
+<p>Keword <code>let</code> creates new variable inside <em>current scope</em> and optionally <em>initializes</em> this variable with value. Syntax for this expression is: <code>let &lt;VARIABLE&gt; : &lt;TYPE&gt;;</code> or <code>let &lt;VARIABLE&gt; = &lt;EXPRESSION&gt;</code>.</p>
 </blockquote>
 <p>After you've created and initialized variable you're able to <em>modify</em> or <em>access</em> its value by using variable name. In example above variable <code>a</code> was initialized in the end of function and was <em>assigned</em> a value of variable <code>c</code>.</p>
 <blockquote>
@@ -516,7 +500,7 @@ out/
         let b = a + 1;
         let c = b + 1;
 
-    } // function scope ended - no A, B and C are dead
+    } // function scope ended - a, b and c are dropped and no longer accessible
 }
 </code></pre>
 <blockquote>
@@ -549,9 +533,14 @@ out/
         {
             10; // see semi!
         }; // this block does not return a value
+
+        let _ = a + b; // both a and b get their values from blocks
     }
 }
 </code></pre>
+<blockquote>
+<p>Every expression in Move MUST end with semicolon unless it's the last expression in scope - in this case it's the return value of this scope.</p>
+</blockquote>
 <h3><a class="header" href="#summary" id="summary">Summary</a></h3>
 <p>Let's keynote main points of this chapter.</p>
 <ol>
@@ -1017,9 +1006,7 @@ module Math {
 <pre><code class="language-Move">public fun add_new(author_id: u64, label_id: u64, year: u64): Record { /* ... */ }
 </code></pre>
 <p>Okay. How can we use our <code>Record</code> struct after we published <code>VinylShop</code> module into network?</p>
-<pre><code class="language-Move">// specify publisher's address
-
-script {
+<pre><code class="language-Move">script {
     use {{sender}}::VinylShop;
 
     fun add_new_record() {
@@ -1041,9 +1028,8 @@ script {
         T { value }
     }
 
-    public fun destroy(t: T): u8 {
-        let T { value } = T;
-        value
+    public fun destroy(t: T) {
+        let T { value: _ } = T;
     }
 }
 </code></pre>

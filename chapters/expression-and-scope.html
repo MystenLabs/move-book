@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../introduction/move.or.mvir.html"><strong aria-hidden="true">3.</strong> Move or Mvir</a></li><li class="chapter-item expanded "><a href="../introduction/getting-started.html"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="../chapters/syntax-basics.html"><strong aria-hidden="true">5.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/concept.html"><strong aria-hidden="true">5.1.</strong> Concept</a></li><li class="chapter-item expanded "><a href="../chapters/primitives.html"><strong aria-hidden="true">5.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../chapters/comments.html"><strong aria-hidden="true">5.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../chapters/expression-and-scope.html" class="active"><strong aria-hidden="true">5.4.</strong> Expression and Scope</a></li><li class="chapter-item expanded "><a href="../chapters/control-flow.html"><strong aria-hidden="true">5.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../chapters/module.html"><strong aria-hidden="true">5.6.</strong> Module</a></li><li class="chapter-item expanded "><a href="../chapters/function.html"><strong aria-hidden="true">5.7.</strong> Function</a></li><li class="chapter-item expanded "><a href="../chapters/struct.html"><strong aria-hidden="true">5.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="../chapters/advanced-topics.html"><strong aria-hidden="true">6.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/ownership.html"><strong aria-hidden="true">6.1.</strong> Ownership and References</a></li><li class="chapter-item expanded "><a href="../chapters/generics.html"><strong aria-hidden="true">6.2.</strong> Using Generics</a></li><li class="chapter-item expanded "><a href="../chapters/vector.html"><strong aria-hidden="true">6.3.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="../chapters/resource.html"><strong aria-hidden="true">6.4.</strong> Resource</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../introduction/getting-started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="../chapters/syntax-basics.html"><strong aria-hidden="true">4.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/concept.html"><strong aria-hidden="true">4.1.</strong> Concept</a></li><li class="chapter-item expanded "><a href="../chapters/primitives.html"><strong aria-hidden="true">4.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../chapters/comments.html"><strong aria-hidden="true">4.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../chapters/expression-and-scope.html" class="active"><strong aria-hidden="true">4.4.</strong> Expression and Scope</a></li><li class="chapter-item expanded "><a href="../chapters/control-flow.html"><strong aria-hidden="true">4.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../chapters/module.html"><strong aria-hidden="true">4.6.</strong> Module</a></li><li class="chapter-item expanded "><a href="../chapters/function.html"><strong aria-hidden="true">4.7.</strong> Function</a></li><li class="chapter-item expanded "><a href="../chapters/struct.html"><strong aria-hidden="true">4.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="../chapters/advanced-topics.html"><strong aria-hidden="true">5.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/ownership.html"><strong aria-hidden="true">5.1.</strong> Ownership and References</a></li><li class="chapter-item expanded "><a href="../chapters/generics.html"><strong aria-hidden="true">5.2.</strong> Using Generics</a></li><li class="chapter-item expanded "><a href="../chapters/vector.html"><strong aria-hidden="true">5.3.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="../chapters/resource.html"><strong aria-hidden="true">5.4.</strong> Resource</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -150,7 +150,7 @@
                         <h1><a class="header" href="#expression-and-scope" id="expression-and-scope">Expression and Scope</a></h1>
 <p>In programming languages expression is a unit of code which returns a value. A function call with return value is an expression - it returns value; an integer (or bool or address) literal is also an expression - it has the value of its integer type and so on.</p>
 <blockquote>
-<p>Every expression in Move MUST end with semicolon*</p>
+<p>Every expression in Move MUST end with semicolon.</p>
 </blockquote>
 <h3><a class="header" href="#literal-expressions" id="literal-expressions">Literal expressions</a></h3>
 <p>Look at the code below. Every line contains an expression which ends with semicolon. Last line has three expressions separated by semicolons.</p>
@@ -179,7 +179,7 @@
 }
 </code></pre>
 <blockquote>
-<p>Keword <code>let</code> creates new variable inside <em>current scope</em> and optionally <em>initializes</em> this variable with value. Syntax for this expression is: <code>let &lt;VARIABLE&gt;;</code> or <code>let &lt;VARIABLE&gt; = &lt;EXPRESSION&gt;</code>.</p>
+<p>Keword <code>let</code> creates new variable inside <em>current scope</em> and optionally <em>initializes</em> this variable with value. Syntax for this expression is: <code>let &lt;VARIABLE&gt; : &lt;TYPE&gt;;</code> or <code>let &lt;VARIABLE&gt; = &lt;EXPRESSION&gt;</code>.</p>
 </blockquote>
 <p>After you've created and initialized variable you're able to <em>modify</em> or <em>access</em> its value by using variable name. In example above variable <code>a</code> was initialized in the end of function and was <em>assigned</em> a value of variable <code>c</code>.</p>
 <blockquote>
@@ -300,7 +300,7 @@
         let b = a + 1;
         let c = b + 1;
 
-    } // function scope ended - no A, B and C are dead
+    } // function scope ended - a, b and c are dropped and no longer accessible
 }
 </code></pre>
 <blockquote>
@@ -333,9 +333,14 @@
         {
             10; // see semi!
         }; // this block does not return a value
+
+        let _ = a + b; // both a and b get their values from blocks
     }
 }
 </code></pre>
+<blockquote>
+<p>Every expression in Move MUST end with semicolon unless it's the last expression in scope - in this case it's the return value of this scope.</p>
+</blockquote>
 <h3><a class="header" href="#summary" id="summary">Summary</a></h3>
 <p>Let's keynote main points of this chapter.</p>
 <ol>
