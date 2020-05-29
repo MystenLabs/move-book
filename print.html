@@ -1645,7 +1645,7 @@ script {
         *&amp;box.value
     }
 
-    public fun create_shelf&lt;T&gt;(): Shelf&lt;T&gt; {
+    public fun create&lt;T&gt;(): Shelf&lt;T&gt; {
         Shelf {
             boxes: Vector::empty&lt;Box&lt;T&gt;&gt;()
         }
@@ -1656,11 +1656,11 @@ script {
         Vector::push_back&lt;Box&lt;T&gt;&gt;(&amp;mut shelf.boxes, box);
     }
 
-    public fun remove&lt;T&gt;(shelf: &amp;mut Shelf&lt;T&gt;, box: Box&lt;T&gt;): Box&lt;T&gt; {
-        Vector::pop_back&lt;Box&lt;T&gt;&gt;(shelf)
+    public fun remove&lt;T&gt;(shelf: &amp;mut Shelf&lt;T&gt;): Box&lt;T&gt; {
+        Vector::pop_back&lt;Box&lt;T&gt;&gt;(&amp;mut shelf.boxes)
     }
 
-    public fun size&lt;T&gt;(shelf: &amp;Shelf&lt;T&gt;) {
+    public fun size&lt;T&gt;(shelf: &amp;Shelf&lt;T&gt;): u64 {
         Vector::length&lt;Box&lt;T&gt;&gt;(&amp;shelf.boxes)
     }
 }
@@ -1696,6 +1696,27 @@ script {
 }
 </code></pre>
 <p>Vectors are very powerful. They allow you to store huge amounts of data (max length is <em>18446744073709551615</em>) and to work with it inside indexed storage.</p>
+<h3><a class="header" href="#hex-literal-for-inline-vector-definitions" id="hex-literal-for-inline-vector-definitions">Hex literal for inline vector definitions</a></h3>
+<p>Vector is also <em>meant</em> to represent strings. VM supports way of passing <code>vector&lt;u8&gt;</code> as argument into <code>main</code> function in script.</p>
+<p>But you can also use hexadecimal literal do define a <code>vector&lt;u8&gt;</code> in your script or a module:</p>
+<pre><code class="language-Move">script {
+
+    use 0x0::Vector;
+
+    // this is the way to accept arguments in main
+    fun main(name: vector&lt;u8&gt;) {
+        let _ = name;
+
+        // and this is how you use literals
+        // this is a helloworld string!
+        let str = x&quot;68656c6c6f20776f726c64&quot;;
+
+        // hex literal gives you vector&lt;u8&gt; as well
+        Vector::length&lt;u8&gt;(&amp;str);
+    }
+}
+</code></pre>
+<h3><a class="header" href="#vector-cheatsheet" id="vector-cheatsheet">Vector cheatsheet</a></h3>
 <p>Here's a short cheatsheet for Vector methods from standard library:</p>
 <ul>
 <li>Create an empty vector of type &lt;E&gt;</li>
