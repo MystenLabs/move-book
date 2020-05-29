@@ -129,7 +129,7 @@ script {
         let _ = name;
 
         // and this is how you use literals
-        // this is a helloworld string!
+        // this is a "hello world" string!
         let str = x"68656c6c6f20776f726c64";
 
         // hex literal gives you vector<u8> as well

@@ -176,9 +176,88 @@ script {
 }
 ```
 
-> Only one mutable reference is allowed at the time for a singe value. Immutable references don't change the value and do not have this limit.
+###  Borrow checking
 
-<!-- ## Move and Copy -->
+Move controls the way you use references and helps you prevent unexpected bullet in your foot. To understand this let's look at example. I'll give you module and script and then will comment on what's going on and why.
+
+```Move
+module Borrow {
+
+    struct B { value: u64 }
+    struct A { b: B }
+
+    // create A with inner B
+    public fun create(value: u64): A {
+        A { b: B { c: C { value } } }
+    }
+
+    // give a mutable reference to inner B
+    public fun ref_from_mut_a(a: &mut A): &mut B {
+        &mut a.b
+    }
+
+    // change B
+    public fun change_b(b: &mut B, value: u64) {
+        b.value = value;
+    }
+}
+```
+
+```Move
+script {
+    use {{sender}}::Borrow;
+
+    fun main() {
+        // create a struct A { b: B { value: u64 } }
+        let a = Borrow::create(0);
+
+        // get mutable reference to B from mut A
+        let mut_a = &mut a;
+        let mut_b = Borrow::ref_from_mut_a(mut_a);
+
+        // change B
+        Borrow::change_b(mut_b, 100000);
+
+        // get another mutable reference from A
+        let _ = Borrow::ref_from_mut_a(mut_a);
+    }
+}
+```
+
+This code compiles and runs without errors. First, what happens here: we use mutable reference to `A` to get mutable reference to its inner struct `B`. Then we change `B`, hence change `A`. Then operation can be repeated.
+
+But what if we changed swapped two last expressions and first tried to create new mutable reference to `A` while mutable reference to `B` is still alive?
+
+```Move
+let mut_a = &mut a;
+let mut_b = Borrow::ref_from_mut_a(mut_a);
+
+let _ = Borrow::ref_from_mut_a(mut_a);
+
+Borrow::change_b(mut_b, 100000);
+```
+
+Error will be:
+
+```Move
+    ┌── /scripts/script.move:10:17 ───
+    │
+ 10 │         let _ = Borrow::ref_from_mut_a(mut_a);
+    │                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Invalid usage of reference as function argument. Cannot transfer a mutable reference that is being borrowed
+    ·
+  8 │         let mut_b = Borrow::ref_from_mut_a(mut_a);
+    │                     ----------------------------- It is still being mutably borrowed by this reference
+    │
+```
+
+This code won't compile. Why? Because `&mut A` is *being borrowed* by `&mut B`. If we could change A while still having mutable reference to its contents, we'd get into odd situation where A can be changed but its contents are still here. What would `mut_b` reference to if it no longer would be there.
+
+We come to few conclusions:
+
+1. You can create reference from reference, so that original reference will *be borrowed* by new one. Mutable and immutable from mutable and only immutable from immutable.
+2. When reference *is borrowed* it cannot be *moved* because other values depend on it.
+3. Move compiler has *borrow checking* in it and builds a *borrow graph* to track references. This is also a reason why Move is so safe to use in blockchains.
+
 
 ### Deferencing
 
