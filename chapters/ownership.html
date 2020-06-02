@@ -158,8 +158,8 @@
 <p>Each variable has only one owner scope. When owner scope ends - owned variables are dropped.</p>
 </blockquote>
 <p>We've already seen this behavior in <a href="/chapters/expression-and-scope.html">expressions chapter</a>. Remember that variable lives as long as its scope? Now is the perfect time to get under the hood and learn why it happens.</p>
-<p>Owner is a scope which <em>owns</em> a variable. Variable either can be defined in this scope (e.g. with keyword <code>let</code> in script) or be passed into scope as argument. Since the only scope in Move is function's - there are no other ways to put variable into scope.</p>
-<p>Each variable has only one owner, which means that when variable is passed into function as argument, this function becomes the <em>new owner</em>, and variable no longer <em>owned</em> by the first function. Or you may say that function <em>takes ownership</em> of variable.</p>
+<p>Owner is a scope which <em>owns</em> a variable. Variables either can be defined in this scope (e.g. with keyword <code>let</code> in script) or be passed into scope as argument. Since the only scope in Move is function's - there are no other ways to put variables into scope.</p>
+<p>Each variable has only one owner, which means that when a variable is passed into function as argument, this function becomes the <em>new owner</em>, and variable no longer <em>owned</em> by the first function. Or you may say that function <em>takes ownership</em> of variable.</p>
 <pre><code class="language-Move">script {
     use {{sender}}::M;
 
@@ -196,10 +196,10 @@
     // t no longer exists
 }
 </code></pre>
-<p>Of course, quick workaround is to return a tuple with original variable and additional results (return value would have been <code>(T, u8)</code>), but Move has a better solution for that.</p>
+<p>Of course, a quick workaround is to return a tuple with original variable and additional results (return value would have been <code>(T, u8)</code>), but Move has a better solution for that.</p>
 <h2><a class="header" href="#move-and-copy" id="move-and-copy">Move and Copy</a></h2>
 <p>First, you need to understand how Move VM works, and what happens when you pass your value into a function. There are two bytecode instructions in VM: <em>MoveLoc</em> and <em>CopyLoc</em> - both of them can be manually used with keywords <code>move</code> and <code>copy</code> respectively.</p>
-<p>When variable is being passed into another function - it's being <em>moved</em> and <em>MoveLoc</em> OpCode is used. Let's see how our code would look if we've used keyword <code>move</code>:</p>
+<p>When a variable is being passed into another function - it's being <em>moved</em> and <em>MoveLoc</em> OpCode is used. Let's see how our code would look if we've used keyword <code>move</code>:</p>
 <pre><code class="language-Move">script {
     use {{sender}}::M;
 
@@ -228,11 +228,11 @@
     }
 }
 </code></pre>
-<p>In this example we've passed <em>copy</em> of variable (hence value) <code>a</code> into first call of method <code>value</code> and saved <code>a</code> in local scope to use it again in second call.</p>
-<p>By copying value we've duplicated it and increased memory size of our program, so it can be used - but when you copy huge data it may become pricey in terms of memory. Remember - in blockchains every byte counts and affects price of execution, so using <code>copy</code> all the time may cost you a lot.</p>
+<p>In this example we've passed a <em>copy</em> of variable (hence value) <code>a</code> into the first call of method <code>value</code> and saved <code>a</code> in local scope to use it again in second the call.</p>
+<p>By copying value we've duplicated it and increased the memory size of our program, so it can be used - but when you copy huge data it may become pricey in terms of memory. Remember - in blockchains every byte counts and affects price of execution, so using <code>copy</code> all the time may cost you a lot.</p>
 <p>Now you are ready to learn about references which help you avoid unnecessary copying and literally save some money.</p>
 <h2><a class="header" href="#references" id="references">References</a></h2>
-<p>Many programming languages have implementation of references (<a href="https://en.wikipedia.org/wiki/Reference_(computer_science)">see Wikipedia</a>). <em>Reference</em> is a link to variable (usually to a section in memory) which you can pass into other parts of program instead of <em>moving</em> the value.</p>
+<p>Many programming languages have implementation of references (<a href="https://en.wikipedia.org/wiki/Reference_(computer_science)">see Wikipedia</a>). <em>Reference</em> is a link to a variable (usually to a section in memory) which you can pass into other parts of the program instead of <em>moving</em> the value.</p>
 <blockquote>
 <p>References (marked with &amp;) allow you to <em>refer</em> to value without taking <em>ownership</em> of it.</p>
 </blockquote>
@@ -299,7 +299,7 @@
 <p>Use immutable (&amp;) references to read data from structs, use mutable (&amp;mut) to modify them. By using proper type of references you help maintaining secutiry and help reading your modules so the reader will know if this method changes the value or only reads.</p>
 </blockquote>
 <h3><a class="header" href="#borrow-checking" id="borrow-checking">Borrow checking</a></h3>
-<p>Move controls the way you use references and helps you prevent unexpected bullet in your foot. To understand that let's see an example. I'll give you module and script and then will comment on what's going on and why.</p>
+<p>Move controls the way you use references and helps you prevent unexpected bullet in your foot. To understand that let's see an example. I'll give you a module and a script and then will comment on what's going on and why.</p>
 <pre><code class="language-Move">module Borrow {
 
     struct B { value: u64 }
@@ -341,7 +341,7 @@
 }
 </code></pre>
 <p>This code compiles and runs without errors. First, what happens here: we use mutable reference to <code>A</code> to get mutable reference to its inner struct <code>B</code>. Then we change <code>B</code>. Then operation can be repeated.</p>
-<p>But what if we've swapped two last expressions and first tried to create new mutable reference to <code>A</code> while mutable reference to <code>B</code> is still alive?</p>
+<p>But what if we've swapped two last expressions and first tried to create a new mutable reference to <code>A</code> while mutable reference to <code>B</code> is still alive?</p>
 <pre><code class="language-Move">let mut_a = &amp;mut a;
 let mut_b = Borrow::ref_from_mut_a(mut_a);
 
@@ -359,10 +359,10 @@ Borrow::change_b(mut_b, 100000);
     │                     ----------------------------- It is still being mutably borrowed by this reference
     │
 </code></pre>
-<p>This code won't compile. Why? Because <code>&amp;mut A</code> is <em>being borrowed</em> by <code>&amp;mut B</code>. If we could change <code>A</code> while having mutable reference to its contents, we'd get into odd situation where <code>A</code> can be changed but reference to its contents is still here. Where would <code>mut_b</code> point to if there was no actual <code>B</code>?</p>
+<p>This code won't compile. Why? Because <code>&amp;mut A</code> is <em>being borrowed</em> by <code>&amp;mut B</code>. If we could change <code>A</code> while having mutable reference to its contents, we'd get into an odd situation where <code>A</code> can be changed but reference to its contents is still here. Where would <code>mut_b</code> point to if there was no actual <code>B</code>?</p>
 <p>We come to few conclusions:</p>
 <ol>
-<li>We get a compilation error which means that Move compiler prevents these cases. It's called <em>borrow checking</em> (originally concept from Rust language). Compiler builds a <em>borrow graph</em> and disallows <em>moving borrowed values</em>. This is one of the reasons why Move is so safe to use in blockchains.</li>
+<li>We get a compilation error which means that the Move compiler prevents these cases. It's called <em>borrow checking</em> (originally concept from Rust language). Compiler builds a <em>borrow graph</em> and disallows <em>moving borrowed values</em>. This is one of the reasons why Move is so safe to use in blockchains.</li>
 <li>You can create reference from reference, so that original reference will <em>be borrowed</em> by the new one. Mutable and immutable can be created from mutable and only immutable from immutable.</li>
 <li>When reference <em>is borrowed</em> it cannot be <em>moved</em> because other values depend on it.</li>
 </ol>
@@ -396,7 +396,7 @@ Borrow::change_b(mut_b, 100000);
     }
 }
 </code></pre>
-<p>By using <code>*&amp;</code> (even compiler will advise you to do so) we've copied inner value of a struct.</p>
+<p>By using <code>*&amp;</code> (even compiler will advise you to do so) we've copied the inner value of a struct.</p>
 <h3><a class="header" href="#referencing-primitive-types" id="referencing-primitive-types">Referencing primitive types</a></h3>
 <p>Primitive types (due to their simplicity) do not need to be passed as references and <em>copy</em> operation is done instead. Even if you pass them into function <em>by value</em> they will remain in current scope. You can intentionally use <code>move</code> keyword, but since primitives are very small in size copying them may even be cheaper than passing them by reference or even moving.</p>
 <pre><code class="language-Move">script {

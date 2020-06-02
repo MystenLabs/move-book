@@ -152,14 +152,14 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#module" id="module">Module</a></h1>
-<p>Module is set of functions and types packed together which developer publishes under his address. In prevous chapters we only used scripts, though script can only operate with published modules or standard library which itself is a set of modules published under <code>0x0</code> address.</p>
+<p>Module is a set of functions and types packed together which the developer publishes under his address. In the previous chapters we only used scripts, though script can only operate with published modules or standard library which itself is a set of modules published under <code>0x0</code> address.</p>
 <blockquote>
 <p>Module is published under its sender's address. Standard library is published under <code>0x0</code> address.</p>
 </blockquote>
 <blockquote>
 <p>When publishing a module, none of its functions are executed. To use module - use scripts.</p>
 </blockquote>
-<p>Module starts with <code>module</code> keyword, which is followed by module name and curly braces - inside them module contents is placed.</p>
+<p>Module starts with <code>module</code> keyword, which is followed by module name and curly braces - inside them module contents are placed.</p>
 <pre><code class="language-Move">module Math {
 
     // module contents
@@ -200,11 +200,11 @@ module Math {
 <p>To make code shorter (remember that only 0x0 address is short, actual addresses are pretty long!) and to organize imports you can use keyword <code>use</code>:</p>
 <pre><code class="language-Move">use &lt;Address&gt;::&lt;ModuleName&gt;;
 </code></pre>
-<p>In here <code>&lt;Address&gt;</code> is a publisher's address and <code>&lt;ModuleName&gt;</code> is a name of a module. Pretty simple. Same here, we'll import <code>Transaction</code> module from <code>0x0</code>.</p>
+<p>Here <code>&lt;Address&gt;</code> is a publisher's address and <code>&lt;ModuleName&gt;</code> is a name of a module. Pretty simple. Same here, we'll import <code>Transaction</code> module from <code>0x0</code>.</p>
 <pre><code class="language-Move">use 0x0::Transaction;
 </code></pre>
 <h3><a class="header" href="#accessing-modules-contents" id="accessing-modules-contents">Accessing module's contents</a></h3>
-<p>To access imported module's methods (or types) use <code>::</code> notation. Simple as that - modules can only have one level of definitions so everything you define in module (publicly) can be accessed via double colon.</p>
+<p>To access imported module's methods (or types) use <code>::</code> notation. Simple as that - modules can only have one level of definitions so everything you define in the module (publicly) can be accessed via double colon.</p>
 <pre><code class="language-Move">script {
     use 0x0::Transaction;
 

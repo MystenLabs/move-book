@@ -152,8 +152,8 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#understanding-generics" id="understanding-generics">Understanding Generics</a></h1>
-<p>Generics are essential to Move, they are what makes this language so unique to blockchain world, and they are the source of Move's flexibility.</p>
-<p>To start I'll quote <a href="https://doc.rust-lang.org/stable/book/ch10-00-generics.html">Rust Book</a>: <em>Generics are abstract stand-ins for concrete types or other properties</em>. Practically speaking, they are the way of writing single function, which can then be used for any type, they can also be called templates as this function can be used as a template handler for any type.</p>
+<p>Generics are essential to Move, they are what makes this language so unique to the blockchain world, and they are the source of Move's flexibility.</p>
+<p>To start I'll quote <a href="https://doc.rust-lang.org/stable/book/ch10-00-generics.html">Rust Book</a>: <em>Generics are abstract stand-ins for concrete types or other properties</em>. Practically speaking, they are the way of writing a single function, which can then be used for any type, they can also be called templates as this function can be used as a template handler for any type.</p>
 <p>In Move generics can be applied to signatures of <code>struct</code>, <code>function</code> and <code>resource</code>.</p>
 <h3><a class="header" href="#in-struct-definition" id="in-struct-definition">In struct definition</a></h3>
 <p>First, we'll create a Box which will hold <code>u64</code> value. We've already been through this, so no need for comments.</p>
@@ -170,9 +170,9 @@
     }
 }
 </code></pre>
-<p>Next to struct name we've placed <code>&lt;T&gt;</code>. Where angle brackets <code>&lt;..&gt;</code> is a place to define generic types, and <code>T</code> is a type we've <em>templated</em> in this struct. Inside the struct body definition we've used <code>T</code> as a regular type. Type T does not exist, it is a placeholder for <em>any type</em>.</p>
+<p>Next to the struct name we've placed <code>&lt;T&gt;</code>. Where angle brackets <code>&lt;..&gt;</code> is a place to define generic types, and <code>T</code> is a type we've <em>templated</em> in this struct. Inside the struct body definition we've used <code>T</code> as a regular type. Type T does not exist, it is a placeholder for <em>any type</em>.</p>
 <h3><a class="header" href="#in-function-signature" id="in-function-signature">In function signature</a></h3>
-<p>Now let's create constructor for this struct which will first use type <code>u64</code> for value.</p>
+<p>Now let's create a constructor for this struct which will first use type <code>u64</code> for value.</p>
 <pre><code class="language-Move">module Storage {
     struct Box&lt;T&gt; {
         value: T
@@ -185,7 +185,7 @@
     }
 }
 </code></pre>
-<p>Generics have a bit more complicated definitions - since they need to have type parameters specified, and regular struct <code>Box</code> becomes <code>Box&lt;u64&gt;</code>. There are no restrictions in what types you can pass into generic's angle brackets. Let's make our <code>create_box</code> method more gereric and let users specify any type. How do we do that? Using another generic, now in function signature!</p>
+<p>Generics have a bit more complicated definitions - since they need to have type parameters specified, and regular struct <code>Box</code> becomes <code>Box&lt;u64&gt;</code>. There are no restrictions in what types you can pass into generic's angle brackets. Let's make our <code>create_box</code> method more generic and let users specify any type. How do we do that? Using another generic, now in function signature!</p>
 <pre><code class="language-Move">module Storage {
     // ...
     public fun create_box&lt;T&gt;(value: T): Box&lt;T&gt; {
@@ -235,9 +235,9 @@
 </code></pre>
 <p>Here we have used Box struct with 3 types: <code>bool</code>, <code>u64</code> and with <code>Box&lt;u64&gt;</code> - last one may seem way too complicated but once you've gotten used to it and understood how it works, it becomes part of your routine.</p>
 <!-- , Move opens in new way - the way you probably could never imagine in blockchains. -->
-<p>Before we go any further, let's take a step back. By adding generics to <code>Box</code> struct we've made this box <em>abstract</em> - it's definition is fairly simple compared to capacity it gave us. Now we can create <code>Box</code> with any type - be it <code>u64</code> or <code>address</code>, or even another box, or another struct.</p>
+<p>Before we go any further, let's take a step back. By adding generics to <code>Box</code> struct we've made this box <em>abstract</em> - its definition is fairly simple compared to capacity it gave us. Now we can create <code>Box</code> with any type - be it <code>u64</code> or <code>address</code>, or even another box, or another struct.</p>
 <h3><a class="header" href="#multiple-types-in-generics" id="multiple-types-in-generics">Multiple types in generics</a></h3>
-<p>Just like you can use single type, you can use many. Generic types are put into angle brackets and separated by comma. Let's add new type <code>Shelf</code> which will hold two boxes of two different types.</p>
+<p>Just like you can use a single type, you can use many. Generic types are put into angle brackets and separated by comma. Let's add a new type <code>Shelf</code> which will hold two boxes of two different types.</p>
 <pre><code class="language-Move">module Storage {
 
     struct Box&lt;T&gt; {
@@ -260,7 +260,7 @@
     }
 }
 </code></pre>
-<p>Type paramereters for <code>Shelf</code> are listed and matched inside struct's fields definition. Also, as you can see, name of the type parameter inside generics does not matter - it's up to you to chose a proper one. And each type parameter is only valid within definition so no need to match <code>T1</code> or <code>T2</code> with <code>T</code>.</p>
+<p>Type parameters for <code>Shelf</code> are listed and matched inside struct's fields definition. Also, as you can see, name of the type parameter inside generics does not matter - it's up to you to choose a proper one. And each type parameter is only valid within definition so no need to match <code>T1</code> or <code>T2</code> with <code>T</code>.</p>
 <p>Using multiple generic type parameters is similar to using single:</p>
 <pre><code class="language-Move">script {
     use {{sender}}::Storage;
@@ -274,7 +274,7 @@
     }
 }
 </code></pre>
-<p><em>You can have up to 18,446,744,073,709,551,615 (u64 size) generics in one definition. You definetely will never reach this limit, so feel free to use as many as you need without worrying about limits.</em></p>
+<p><em>You can have up to 18,446,744,073,709,551,615 (u64 size) generics in one definition. You definitely will never reach this limit, so feel free to use as many as you need without worrying about limits.</em></p>
 <h3><a class="header" href="#unused-type-params" id="unused-type-params">Unused type params</a></h3>
 <p>Not every type specified in generic must be used. Look at this example:</p>
 <pre><code class="language-Move">module Storage {
@@ -314,8 +314,8 @@ script {
 </code></pre>
 <p>Here we use generics to mark type, but we don't actually use it. You'll soon learn why this definition matters when you get to know <code>resources</code>. For now it's just another way to use them.</p>
 <h3><a class="header" href="#kind-matching-and-copyable" id="kind-matching-and-copyable">Kind-matching and :copyable</a></h3>
-<p>In <a href="/chapters/ownership.html">ownership chapter</a> we learned about <em>copy</em> and <em>move</em> operations in VM. Not every value in Move can be copied (but all of them can be moved!) - in the <a href="/chapters/resource.html">resources chapter</a> you'll study <code>resources</code>, which are not <em>copyable</em>. But before we jump there, let's learn what <em>Kind</em> is.</p>
-<p>Kind (in terms of VM) - is a group of types, there're only 2 kinds: <code>copyable</code> and <code>resource</code>. Kinds can be used to limit (or restrict) generic types passed into function.</p>
+<p>In the <a href="/chapters/ownership.html">ownership chapter</a> we learned about <em>copy</em> and <em>move</em> operations in VM. Not every value in Move can be copied (but all of them can be moved!) - in the <a href="/chapters/resource.html">resources chapter</a> you'll study <code>resources</code>, which are not <em>copyable</em>. But before we jump there, let's learn what <em>Kind</em> is.</p>
+<p>Kind (in terms of VM) - is a group of types, there are only 2 kinds: <code>copyable</code> and <code>resource</code>. Kinds can be used to limit (or restrict) generic types passed into function.</p>
 <h3><a class="header" href="#copyable" id="copyable">Copyable</a></h3>
 <p><em>Copyable kind</em> - is a kind of types, value of which can be copied. <code>struct</code>, <code>vector</code> and primitive types - are three main groups of types fitting into this kind.</p>
 <p>To understand why Move needs this constraint let's see this example:</p>
@@ -325,7 +325,7 @@ script {
     }
 }
 </code></pre>
-<p>By using <em>dereference</em> on a reference you can <em>copy</em> original value and return it as a regular. But what if we've tried to use <code>resource</code> in this example? Resource can't be copied, hence this code would fail. Hopefully compiler won't let you compile this type, and kinds exist to manage cases like this.</p>
+<p>By using <em>dereference</em> on a reference you can <em>copy</em> the original value and return it as a regular. But what if we've tried to use <code>resource</code> in this example? Resource can't be copied, hence this code would fail. Hopefully compiler won't let you compile this type, and kinds exist to manage cases like this.</p>
 <pre><code class="language-Move">module M {
     public fun deref&lt;T: copyable&gt;(t: &amp;T): T {
         *t

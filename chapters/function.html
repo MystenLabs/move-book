@@ -152,7 +152,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#function" id="function">Function</a></h1>
-<p>Function is the only place of execution in Move. Function starts with <code>fun</code> keyword which is followed by function name, parentheses for arguments and curly braces for body.</p>
+<p>Function is the only place of execution in Move. Function starts with the <code>fun</code> keyword which is followed by function name, parentheses for arguments and curly braces for body.</p>
 <pre><code class="language-Move">fun function_name(arg1: u64, arg2: bool): u64 {
     // function body
 }
@@ -162,7 +162,7 @@
 <p><strong>Note:</strong> in Move functions should be named in <em>snake_case</em> - lowercase with underscores as word separators.</p>
 </blockquote>
 <h2><a class="header" href="#function-in-script" id="function-in-script">Function in script</a></h2>
-<p>Script block can contain only one function which is considered <em>main</em>. This function (possibly with arguments) will be executed as transaction. It is very limited: it cannot return value and should be used to operate other functions in already published modules.</p>
+<p>Script block can contain only one function which is considered <em>main</em>. This function (possibly with arguments) will be executed as a transaction. It is very limited: it cannot return value and should be used to operate other functions in already published modules.</p>
 <p>Here's an example of simple script which checks if address exists:</p>
 <pre><code class="language-Move">script {
     use 0x0::Account;
@@ -178,7 +178,7 @@
 </blockquote>
 <h2><a class="header" href="#function-in-module" id="function-in-module">Function in module</a></h2>
 <p>While script context is fairly limited, full potential of functions can only be seen in a module. Let's go through it again: module is a published set of functions and types (we'll get to it in the next chapter) which solves one or many tasks.</p>
-<p>In this part we'll create simple Math module which will provide users with basic set of mathematical functions and few helper methods. Most of this could be done without using module, but our goal is education!</p>
+<p>In this part we'll create a simple Math module which will provide users with a basic set of mathematical functions and a few helper methods. Most of this could be done without using a module, but our goal is education!</p>
 <pre><code class="language-Move">module Math {
     fun zero(): u8 {
         0
@@ -188,7 +188,7 @@
 <p>First step: we've defined a module named <code>Math</code> with one function in it: <code>zero()</code>, which returns 0 - a value of type <code>u8</code>. Remember <a href="/chapters/expression-and-scope.html">expressions</a>? There's no semicolon after <code>0</code> as it is the <em>return value</em> of this function. Just like you would do with block. Yeah, function body is very similar to block.</p>
 <h3><a class="header" href="#function-arguments" id="function-arguments">Function arguments</a></h3>
 <p>This should be clear by now, but let's repeat. Function can take arguments (values passed into function). As many as needed. Every argument has 2 properties: name - its name within a function body, and type - just like any other variable in Move.</p>
-<p>Function arguments - just like any other variables defined within a scope - live only within function body. When function block ends, no variables remain.</p>
+<p>Function arguments - just like any other variables defined within a scope - live only within function body. When the function block ends, no variables remain.</p>
 <pre><code class="language-Move">module Math {
 
     public fun sum(a: u64, b: u64): u64 {
@@ -200,7 +200,7 @@
     }
 ]
 </code></pre>
-<p>What's new in our Math: function <code>sum(a,b)</code> which sums two <code>u64</code> values and returns result - <code>u64</code> sum (type can't change).</p>
+<p>What's new in our Math: function <code>sum(a,b)</code> which sums two <code>u64</code> values and returns a result - <code>u64</code> sum (type can't change).</p>
 <p>Let's state few syntax rules:</p>
 <ol>
 <li>Arguments must have types and must be separated by comma</li>
@@ -238,8 +238,8 @@
     }
 }
 </code></pre>
-<p>This function takes two arguments: <code>a</code> and <code>b</code> and <em>returns two values</em>: first is the max value from two passed and second is a bool - whether numbers entered are equal. Take closer look at the syntax: instead of specifying singe return argument we've added <em>parenteses</em> and have listed return argument types.</p>
-<p>Now let's see how we can use result of this function in another function in script.</p>
+<p>This function takes two arguments: <code>a</code> and <code>b</code> and <em>returns two values</em>: first is the max value from two passed and second is a bool - whether numbers entered are equal. Take closer look at the syntax: instead of specifying single return argument we've added <em>parenteses</em> and have listed return argument types.</p>
+<p>Now let's see how we can use the result of this function in another function in the script.</p>
 <pre><code class="language-Move">script {
     use 0x0::Debug;
     use 0x1::Math;
@@ -257,7 +257,7 @@
 <p>Two is not the limit - number of returned arguments is up to you, though you'll soon learn about structs and see alternative way to return complex data.</p>
 <h3><a class="header" href="#function-visibility" id="function-visibility">Function visibility</a></h3>
 <p>When defining a module you may want to make some functions accessible by other developers and some to remain hidden. This is when <em>function visibility modifiers</em> come to play.</p>
-<p>By default every function defined in module is private - it cannot be accessed in other modules or scripts. If you've been attentive, you may have noticed that some of the functions that we've defined in our Math module have keyword <code>public</code> before their definition:</p>
+<p>By default every function defined in a module is private - it cannot be accessed in other modules or scripts. If you've been attentive, you may have noticed that some of the functions that we've defined in our Math module have keyword <code>public</code> before their definition:</p>
 <pre><code class="language-Move">module Math {
 
     public fun sum(a: u64, b: u64): u64 {
@@ -283,11 +283,11 @@
 }
 </code></pre>
 <h3><a class="header" href="#access-local-functions" id="access-local-functions">Access local functions</a></h3>
-<p>There would not be any sence in making private functions if they could not be accessed at all. Private functions exist to do some <em>internal</em> work when public functions are called.</p>
+<p>There would not be any sense in making private functions if they could not be accessed at all. Private functions exist to do some <em>internal</em> work when public functions are called.</p>
 <blockquote>
 <p>Private functions can only be accessed in the module where they're defined.</p>
 </blockquote>
-<p>So how do you access function in the same module? By simply calling this function like it was imported!</p>
+<p>So how do you access functions in the same module? By simply calling this function like it was imported!</p>
 <pre><code class="language-Move">module Math {
 
     public fun is_zero(a: u8): bool {
@@ -299,9 +299,9 @@
     }
 }
 </code></pre>
-<p>Any function defined in a module is acessible by any function in the same module no matter what visibility modifiers any of them has. This way private functions can still be used as calls inside public ones without exposing some private features or too risky operations.</p>
+<p>Any function defined in a module is accessible by any function in the same module no matter what visibility modifiers any of them has. This way private functions can still be used as calls inside public ones without exposing some private features or too risky operations.</p>
 <h3><a class="header" href="#native-functions" id="native-functions">Native functions</a></h3>
-<p>There's a special kind of functions - <em>native</em> ones. <em>Native functions</em> implement functionality which goes beyond Move's possibilities and give you extra power. Native functions are defined by VM itself and may vary in different implementations. Which means they don't have implementation in Move syntax and instead of having function body they end with semicolon. Keyword <code>native</code> is used to mark native functions. It does not conflict with function visibility modifiers and same function can be <code>native</code> and <code>public</code> at the same time.</p>
+<p>There's a special kind of functions - <em>native</em> ones. <em>Native functions</em> implement functionality which goes beyond Move's possibilities and give you extra power. Native functions are defined by VM itself and may vary in different implementations. Which means they don't have implementation in Move syntax and instead of having function body they end with a semicolon. Keyword <code>native</code> is used to mark native functions. It does not conflict with function visibility modifiers and the same function can be <code>native</code> and <code>public</code> at the same time.</p>
 <p>Here's an example from Libra's standard library.</p>
 <pre><code class="language-Move">module Transaction {
     // get transaction sender, you can't do it other way

@@ -182,7 +182,7 @@
     }
 }
 </code></pre>
-<p>Vector is a collection of values of a single non-reference type. It's is an ordered collection with max length of <code>u64</code>. It is also dynamic. And to see how it helps managing huge storages let's write a module with it.</p>
+<p>Vector can store up to <code>u64</code> number of values of a single non-reference type. To see how it helps managing huge storages let's write a module with it.</p>
 <pre><code class="language-Move">module Shelf {
 
     use 0x0::Vector;
@@ -223,8 +223,8 @@
     }
 }
 </code></pre>
-<p>We'll create a shelf, few boxes for it and see how to work with vector collections in module:</p>
-<pre><code>script {
+<p>We'll create a shelf, few boxes for it and see how to work with vector in module:</p>
+<pre><code class="language-Move">script {
     use {{sender}}::Shelf;
 
     fun main() {
@@ -277,7 +277,7 @@
 <h3><a class="header" href="#vector-cheatsheet" id="vector-cheatsheet">Vector cheatsheet</a></h3>
 <p>Here's a short cheatsheet for Vector methods from standard library:</p>
 <ul>
-<li>Create an empty vector of type &lt;E&gt;</li>
+<li>Create an empty vector of type <code>&lt;E&gt;</code></li>
 </ul>
 <pre><code class="language-Move">Vector::empty&lt;E&gt;(): vector&lt;E&gt;;
 </code></pre>

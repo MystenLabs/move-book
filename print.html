@@ -161,21 +161,21 @@
 <p>That is why we are here - to help you dive into yet unknown language, and to show you its beauty.</p>
 <p>— Damir Shamanaev and Dfinance team</p>
 <h1><a class="header" href="#getting-started" id="getting-started">Getting started</a></h1>
-<p>As with any compiled language, you need proper set of tools to compile, run and debug your Move applications. Since this language is created for blockchains and used only within them, running scripts off-chain is a non-trivial task: every module will require environment, account handling and compile-publishing system.</p>
-<p>To simpify development of Move modules we've created <a href="https://github.com/damirka/vscode-move-ide">Move IDE</a> extension for Visual Studio Code. This extension will help you cope with environment requirements. Use of this extension is highly recommended as it will handle build/run environment for you, hence will let you focus on learning Move language instead of struggling with the CLI environment. This extension also includes Move syntax highlighting and run environment to help you debug your applications before going public.</p>
+<p>As with any compiled language, you need a proper set of tools to compile, run and debug your Move applications. Since this language is created for blockchains and used only within them, running scripts off-chain is a non-trivial task: every module will require an environment, account handling and compile-publishing system.</p>
+<p>To simpify development of Move modules we've created <a href="https://github.com/damirka/vscode-move-ide">Move IDE</a> extension for Visual Studio Code. This extension will help you cope with environment requirements. Use of this extension is highly recommended as it will handle the build/run environment for you, hence will let you focus on learning Move language instead of struggling with the CLI environment. This extension also includes Move syntax highlighting and run environment to help you debug your applications before going public.</p>
 <h2><a class="header" href="#install-move-ide" id="install-move-ide">Install Move IDE</a></h2>
 <p>To install it you'll need:</p>
 <ol>
 <li>VSCode (version 1.43.0 and above) - you can <a href="https://code.visualstudio.com/download">get it here</a>; if you already have one - proceed to the next step;</li>
-<li>Move IDE - once VSCode is installed, follow <a href="https://marketplace.visualstudio.com/items?itemName=damirka.move-ide">this link</a> to install newest version of IDE.</li>
+<li>Move IDE - once VSCode is installed, follow <a href="https://marketplace.visualstudio.com/items?itemName=damirka.move-ide">this link</a> to install the newest version of IDE.</li>
 </ol>
 <h3><a class="header" href="#setup-environment" id="setup-environment">Setup environment</a></h3>
-<p>Move IDE proposes single way of organizing your directory structure. Create new directory for your project and open it in VSCode. Then setup this directory structure:</p>
+<p>Move IDE proposes a single way of organizing your directory structure. Create a new directory for your project and open it in VSCode. Then setup this directory structure:</p>
 <pre><code>modules/   - directory for our modules
 scripts/   - directory for transaction scripts
 out/       - this directory will hold compiled sources
 </code></pre>
-<p>Also you'll need to create file called <code>.mvconfig.json</code> which will configure your working environment. This is a sample for <code>libra</code>:</p>
+<p>Also you'll need to create a file called <code>.mvconfig.json</code> which will configure your working environment. This is a sample for <code>libra</code>:</p>
 <pre><code class="language-json">{
     &quot;network&quot;: &quot;libra&quot;,
     &quot;sender&quot;: &quot;0x1&quot;
@@ -188,10 +188,10 @@ out/       - this directory will hold compiled sources
 }
 </code></pre>
 <blockquote>
-<p>dfinance uses bech32 'wallet1...' addresses, libra uses 16-byte '0x...' addresses. For local runs and experiments 0x1 address is enough - it's simple and short. Though when working with real blockchains in testnet or production environment you'll have to use correct address of network you've chosen.</p>
+<p>dfinance uses bech32 'wallet1...' addresses, libra uses 16-byte '0x...' addresses. For local runs and experiments 0x1 address is enough - it's simple and short. Though when working with real blockchains in testnet or production environment you'll have to use correct address of the network you've chosen.</p>
 </blockquote>
 <h2><a class="header" href="#your-very-first-application-with-move" id="your-very-first-application-with-move">Your very first application with Move</a></h2>
-<p>Move IDE allows you to run scripts in testing environment. Let's see how it works by implementing <code>gimme_five()</code> function and running it inside VSCode.</p>
+<p>Move IDE allows you to run scripts in a testing environment. Let's see how it works by implementing <code>gimme_five()</code> function and running it inside VSCode.</p>
 <h3><a class="header" href="#create-module" id="create-module">Create module</a></h3>
 <p>Create new file called <code>hello_world.move</code> inside <code>modules/</code> directory of your project.</p>
 <pre><code class="language-Move">// modules/hello_world.move
@@ -225,7 +225,7 @@ script {
 <li>Toggle VSCode's command palette by pressing <code>⌘+Shift+P</code> (on Mac) or <code>Ctrl+Shift+P</code> (on Linux/Windows)</li>
 <li>Type: <code>&gt;Move: Run Script</code> and press enter or click when you see the right option.</li>
 </ol>
-<p>Voila! You should see execution result - log message with '5' printed in debug. If you don't see this window, go through this part again.</p>
+<p>Voila! You should see the execution result - log message with '5' printed in debug. If you don't see this window, go through this part again.</p>
 <p>Your directory structure should look like this:</p>
 <pre><code>modules/
   hello_world.move
@@ -240,7 +240,7 @@ out/
 <h1><a class="header" href="#syntax-basics" id="syntax-basics">Syntax Basics</a></h1>
 <p>In this chapter you'll get to know Move language. We'll start with very simple and basic grammar rules and intensity will increase from one chapter to another. If you're a skilled developer this may seem too easy at first glance, but I do recommend you to take a closer look. If you're a beginner, then this part will give you everything you need to know about Move basics.</p>
 <h1><a class="header" href="#concept" id="concept">Concept</a></h1>
-<p>Unlike other blockchain languages (e.g. Solidity) Move proposes separation of <em>scrips</em> (or <em>transaction-as-script</em>) and <em>modules</em>. The former allows you to put more logic into your transactions and make them more flexible while saving your time and resources; and the latter allows developers to extend blockchain functionality or to implement custom <em>smart-contracts</em> with variety of options.</p>
+<p>Unlike other blockchain languages (e.g. Solidity) Move proposes separation of <em>scrips</em> (or <em>transaction-as-script</em>) and <em>modules</em>. The former allows you to put more logic into your transactions and make them more flexible while saving your time and resources; and the latter allows developers to extend blockchain functionality or to implement custom <em>smart-contracts</em> with a variety of options.</p>
 <p>In basics we'll start with scripts as they're pretty friendly for a newcomer, and then we'll get to modules.</p>
 <h1><a class="header" href="#primitive-types" id="primitive-types">Primitive Types</a></h1>
 <p>In this section you'll find examples and short descriptions of Move's primitive types: integers (u8, u64, u128), <code>boolean</code> and <code>address</code>. You will also learn how to change size of integer values and what types of addresses are supported in different versions of Move VM.</p>
@@ -296,7 +296,7 @@ out/
 }
 </code></pre>
 <h2><a class="header" href="#address" id="address">Address</a></h2>
-<p>Address is an identifier of sender (or wallet) in blockchain. The very basic operations which require address type are sending coins and importing module.</p>
+<p>Address is an identifier of sender (or wallet) in blockchain. The very basic operations which require address type are sending coins and importing modules.</p>
 <pre><code class="language-Move">script {
     fun main() {
         let addr: address; // type identifier
@@ -322,7 +322,7 @@ out/
     }
 }
 </code></pre>
-<p>You can use double-slash &quot;<em>//</em>&quot; to write line comments. Rules are simple - <strong>everything after</strong> &quot;<em>//</em>&quot; is considered a comment to the end of line. You can use line comments to leave short notes for other developers or to <em>comment out</em> some code to remove it from execution chain.</p>
+<p>You can use double-slash &quot;<em>//</em>&quot; to write line comments. Rules are simple - <strong>everything after</strong> &quot;<em>//</em>&quot; is considered a comment to the end of line. You can use line comments to leave short notes for other developers or to <em>comment out</em> some code to remove it from the execution chain.</p>
 <pre><code class="language-Move">script {
     // let's add a note to everything!
     fun main() {
@@ -355,10 +355,10 @@ out/
 <h1><a class="header" href="#expression-and-scope" id="expression-and-scope">Expression and Scope</a></h1>
 <p>In programming languages expression is a unit of code which returns a value. A function call with return value is an expression - it returns value; an integer (or bool or address) literal is also an expression - it has the value of its integer type and so on.</p>
 <blockquote>
-<p>Expressions must be separated by semiconon.</p>
+<p>Expressions must be separated by semicolon.</p>
 </blockquote>
 <h3><a class="header" href="#literal-expressions" id="literal-expressions">Literal expressions</a></h3>
-<p>Look at the code below. Every line contains an expression which ends with semicolon. Last line has three expressions separated by semicolons.</p>
+<p>Look at the code below. Every line contains an expression which ends with a semicolon. Last line has three expressions separated by semicolons.</p>
 <pre><code class="language-Move">script {
     fun main() {
         10;
@@ -370,9 +370,9 @@ out/
     }
 }
 </code></pre>
-<p>Good. You now know the simplest expressions there are. But why do we need them? And how to use? It's time to know <code>let</code> keyword.</p>
+<p>Good. You now know the simplest expressions there are. But why do we need them? And how to use it? It's time to know the <code>let</code> keyword.</p>
 <h3><a class="header" href="#variables-and-let-keyword" id="variables-and-let-keyword">Variables and <code>let</code> keyword</a></h3>
-<p>To store expression value inside variable (to pass it somewhere) you have keyword <code>let</code> (you've already seen it in <a href="chapters//chapters/primitives.html">primitives chapter</a>). It creates a new variable either empty (undefined) or with value of expression.</p>
+<p>To store expression value inside a variable (to pass it somewhere) you have a keyword <code>let</code> (you've already seen it in <a href="chapters//chapters/primitives.html">primitives chapter</a>). It creates a new variable either empty (undefined) or with value of expression.</p>
 <pre><code class="language-Move">script {
     fun main() {
         let a;
@@ -384,11 +384,11 @@ out/
 }
 </code></pre>
 <blockquote>
-<p>Keword <code>let</code> creates new variable inside <em>current scope</em> and optionally <em>initializes</em> this variable with value. Syntax for this expression is: <code>let &lt;VARIABLE&gt; : &lt;TYPE&gt;;</code> or <code>let &lt;VARIABLE&gt; = &lt;EXPRESSION&gt;</code>.</p>
+<p>Keyword <code>let</code> creates new variable inside <em>current scope</em> and optionally <em>initializes</em> this variable with value. Syntax for this expression is: <code>let &lt;VARIABLE&gt; : &lt;TYPE&gt;;</code> or <code>let &lt;VARIABLE&gt; = &lt;EXPRESSION&gt;</code>.</p>
 </blockquote>
-<p>After you've created and initialized variable you're able to <em>modify</em> or <em>access</em> its value by using variable name. In example above variable <code>a</code> was initialized in the end of function and was <em>assigned</em> a value of variable <code>c</code>.</p>
+<p>After you've created and initialized variable you're able to <em>modify</em> or <em>access</em> its value by using a variable name. In example above variable <code>a</code> was initialized in the end of function and was <em>assigned</em> a value of variable <code>c</code>.</p>
 <blockquote>
-<p>Equality sign <code>=</code> is an assignment operator. It assigns right-hand-side expression to left-hand-side variable. Example: <code>a = 10</code> - variable <code>a</code> is assigned an integer value of <code>10</code>.</p>
+<p>Equality sign <code>=</code> is an assignment operator. It assigns right-hand-side expression to the left-hand-side variable. Example: <code>a = 10</code> - variable <code>a</code> is assigned an integer value of <code>10</code>.</p>
 </blockquote>
 <h3><a class="header" href="#underscore-_-to-mark-unused" id="underscore-_-to-mark-unused">Underscore &quot;_&quot; to mark unused</a></h3>
 <p>In Move every variable must be used (otherwise your code won't compile), hence you can't initialize one and leave it untouched. Though you have one way to mark variable as <em>intentionally unused</em> - by using underscore <code>_</code>.</p>
@@ -415,7 +415,7 @@ out/
 }
 </code></pre>
 <h3><a class="header" href="#shadowing" id="shadowing">Shadowing</a></h3>
-<p>Move allows you to define same variable twice with one limitation - it still needs to be used. In the example above only second <code>a</code> is used. The first one: <code>let a = 1</code> is actually unused as on the next line we <em>redefine</em> <code>a</code> while leaving first one unused.</p>
+<p>Move allows you to define the same variable twice with one limitation - it still needs to be used. In the example above only second <code>a</code> is used. The first one: <code>let a = 1</code> is actually unused as on the next line we <em>redefine</em> <code>a</code> while leaving the first one unused.</p>
 <pre><code class="language-Move">script {
     fun main() {
         let a = 1;
@@ -434,7 +434,7 @@ out/
 }
 </code></pre>
 <h2><a class="header" href="#block-expression" id="block-expression">Block expression</a></h2>
-<p>A block is an expression; it's marked with <em>curly braces</em> - <code>{}</code>. Block can contain other expressions (and other blocks). Function body (as you can see by already familiar curly-braces) is also a block in some sence (with few limitations).</p>
+<p>A block is an expression; it's marked with <em>curly braces</em> - <code>{}</code>. Block can contain other expressions (and other blocks). Function body (as you can see by already familiar curly-braces) is also a block in some sense (with few limitations).</p>
 <pre><code class="language-Move">script {
     fun block() {
         { };
@@ -509,10 +509,10 @@ out/
 }
 </code></pre>
 <blockquote>
-<p>Variable lives only within scope (or block) where it's defined. When its scope ends, variable dies.</p>
+<p>Variable lives only within scope (or block) where it's defined. When its scope ends, the variable dies.</p>
 </blockquote>
 <h3><a class="header" href="#block-return-values" id="block-return-values">Block return values</a></h3>
-<p>In previous part you've learned that block is an expression but we didn't cover why it is an expression and what is block's return value.</p>
+<p>In the previous part you've learned that block is an expression but we didn't cover why it is an expression and what is the block's return value.</p>
 <blockquote>
 <p>Block can return a value, it's the value of the last expression inside this block if it's not followed by semicolon</p>
 </blockquote>
@@ -547,7 +547,7 @@ out/
 <p>Last expression in scope (without semicolon) is the return value of this scope.</p>
 </blockquote>
 <h3><a class="header" href="#summary" id="summary">Summary</a></h3>
-<p>Let's keynote main points of this chapter.</p>
+<p>Let's keynote the main points of this chapter.</p>
 <ol>
 <li>Every expression must end with semicolon unless it's the return value of block;</li>
 <li>Keyword <code>let</code> creates new variable with value or right-hand-side expression which lives as long as the scope in which it's been created;</li>
@@ -596,7 +596,7 @@ out/
     }
 }
 </code></pre>
-<p>Now variable <code>b</code> will be assigned a different value depending on the <code>a</code> expression. But both of the branhes in <code>if</code> must return the same type! Otherwise variable <code>b</code> will have an option to be of different kind (or undefined) and this is impossible in statically typed language. In compiler terms it's called <em>branch compatibility</em> - both of the branches must return compatible (same) type.</p>
+<p>Now variable <code>b</code> will be assigned a different value depending on the <code>a</code> expression. But both of the branches in <code>if</code> must return the same type! Otherwise variable <code>b</code> will have an option to be of different kind (or undefined) and this is impossible in statically typed language. In compiler terms it's called <em>branch compatibility</em> - both of the branches must return compatible (same) type.</p>
 <p><code>if</code> can be used in-solo - without <code>else</code>.</p>
 <pre><code class="language-Move">script {
     use 0x0::Debug;
@@ -621,7 +621,7 @@ out/
 <li>Inifinite <code>loop</code></li>
 </ol>
 <h3><a class="header" href="#conditional-loop-with-while" id="conditional-loop-with-while">Conditional loop with <code>while</code></a></h3>
-<p><code>while</code> is a way to define loop - expression which will be executed while some condition is true. So simply: code will be run over and over <em>while</em> condition is <code>true</code>. To implement condition usually external variable (or counter) is used.</p>
+<p><code>while</code> is a way to define loop - expression which will be executed while some condition is true. So simply: code will be run over and over <em>while</em> condition is <code>true</code>. To implement condition usually an external variable (or counter) is used.</p>
 <pre><code class="language-Move">fun main() {
 
     let i = 0; // define counter
@@ -637,12 +637,12 @@ out/
 <p>It's worth mentioning that <code>while</code> is an expression - just like <code>if</code> is, and it too requires a semicolon afterwards. Generic syntax for while loop is:</p>
 <pre><code class="language-Move">while (&lt;bool_expression&gt;) &lt;expression&gt;;
 </code></pre>
-<p>Unlike <code>if</code>, <code>while</code> cannot return a value, so variable assignment (like we did with <code>if</code> expersion) is impossible.</p>
+<p>Unlike <code>if</code>, <code>while</code> cannot return a value, so variable assignment (like we did with <code>if</code> expression) is impossible.</p>
 <h3><a class="header" href="#unreachable-code" id="unreachable-code">Unreachable code</a></h3>
-<p>To be reliable Move must be secure. This is why it obliges you to use all your variables and for the same reason it forbids having unreachable code. As digital assets are programmable, they can be used in code (you'll learn about it in <a href="chapters//chapters/resource.html">resources chapter</a>), and placing them in unreachable area may lead to inconvinience and their loss as the result.</p>
+<p>To be reliable Move must be secure. This is why it obliges you to use all your variables and for the same reason it forbids having unreachable code. As digital assets are programmable, they can be used in code (you'll learn about it in <a href="chapters//chapters/resource.html">resources chapter</a>), and placing them in unreachable areas may lead to inconvenience and their loss as the result.</p>
 <p>This is why unreachable code is such a big issue. Now that is clear, we can proceed.</p>
 <h3><a class="header" href="#infinite-loop" id="infinite-loop">Infinite <code>loop</code></a></h3>
-<p>There is a way to define infinite loops. They're non-conditional and actually infinite (unless you force them to stop). Unfortunately compiler cannot define whether a loop is infinite (in most of the cases) and cannot stop you from publishing code, execution of which will consume all given resources (in blockchain terms - gas). So it's on you to test your code properly when using them or just switch to conditional <code>while</code> as it's way more secure.</p>
+<p>There is a way to define infinite loops. They're non-conditional and actually infinite (unless you force them to stop). Unfortunately the compiler cannot define whether a loop is infinite (in most of the cases) and cannot stop you from publishing code, execution of which will consume all given resources (in blockchain terms - gas). So it's on you to test your code properly when using them or just switch to conditional <code>while</code> as it's way more secure.</p>
 <p>Infinite loops are defined with keyword <code>loop</code>.</p>
 <pre><code class="language-Move">fun main() {
     let i = 0;
@@ -671,10 +671,10 @@ out/
     }
 }
 </code></pre>
-<p>It's a non-trivial task for compiler to understand whether loop is really infinite or not, so for now you and only you can help yourself avoid looping errors. As I described above, this can lead to assets loss.</p>
+<p>It's a non-trivial task for the compiler to understand whether a loop is really infinite or not, so for now you and only you can help yourself avoid looping errors. As I described above, this can lead to assets loss.</p>
 <h3><a class="header" href="#control-loops-with-continue-and-break" id="control-loops-with-continue-and-break">Control loops with <code>continue</code> and <code>break</code></a></h3>
 <p>Keywords <code>continue</code> and <code>break</code> allow you to skip one round or break iteration respectively. You can use both of them in both types of loops.</p>
-<p>For example let's add two conditions into <code>loop</code>. If <code>i</code> is even we use <code>continue</code> to jump to next iteration without going through code after <code>continue</code> call.</p>
+<p>For example let's add two conditions into the <code>loop</code>. If <code>i</code> is even, we use <code>continue</code> to jump to the next iteration without going through code after <code>continue</code> call.</p>
 <p>With <code>break</code> we stop iteration and exit loop.</p>
 <pre><code class="language-Move">script {
     fun main() {
@@ -720,14 +720,14 @@ out/
 }
 </code></pre>
 <h1><a class="header" href="#module" id="module">Module</a></h1>
-<p>Module is set of functions and types packed together which developer publishes under his address. In prevous chapters we only used scripts, though script can only operate with published modules or standard library which itself is a set of modules published under <code>0x0</code> address.</p>
+<p>Module is a set of functions and types packed together which the developer publishes under his address. In the previous chapters we only used scripts, though script can only operate with published modules or standard library which itself is a set of modules published under <code>0x0</code> address.</p>
 <blockquote>
 <p>Module is published under its sender's address. Standard library is published under <code>0x0</code> address.</p>
 </blockquote>
 <blockquote>
 <p>When publishing a module, none of its functions are executed. To use module - use scripts.</p>
 </blockquote>
-<p>Module starts with <code>module</code> keyword, which is followed by module name and curly braces - inside them module contents is placed.</p>
+<p>Module starts with <code>module</code> keyword, which is followed by module name and curly braces - inside them module contents are placed.</p>
 <pre><code class="language-Move">module Math {
 
     // module contents
@@ -768,11 +768,11 @@ module Math {
 <p>To make code shorter (remember that only 0x0 address is short, actual addresses are pretty long!) and to organize imports you can use keyword <code>use</code>:</p>
 <pre><code class="language-Move">use &lt;Address&gt;::&lt;ModuleName&gt;;
 </code></pre>
-<p>In here <code>&lt;Address&gt;</code> is a publisher's address and <code>&lt;ModuleName&gt;</code> is a name of a module. Pretty simple. Same here, we'll import <code>Transaction</code> module from <code>0x0</code>.</p>
+<p>Here <code>&lt;Address&gt;</code> is a publisher's address and <code>&lt;ModuleName&gt;</code> is a name of a module. Pretty simple. Same here, we'll import <code>Transaction</code> module from <code>0x0</code>.</p>
 <pre><code class="language-Move">use 0x0::Transaction;
 </code></pre>
 <h3><a class="header" href="#accessing-modules-contents" id="accessing-modules-contents">Accessing module's contents</a></h3>
-<p>To access imported module's methods (or types) use <code>::</code> notation. Simple as that - modules can only have one level of definitions so everything you define in module (publicly) can be accessed via double colon.</p>
+<p>To access imported module's methods (or types) use <code>::</code> notation. Simple as that - modules can only have one level of definitions so everything you define in the module (publicly) can be accessed via double colon.</p>
 <pre><code class="language-Move">script {
     use 0x0::Transaction;
 
@@ -834,7 +834,7 @@ module Math {
 }
 </code></pre>
 <h1><a class="header" href="#function" id="function">Function</a></h1>
-<p>Function is the only place of execution in Move. Function starts with <code>fun</code> keyword which is followed by function name, parentheses for arguments and curly braces for body.</p>
+<p>Function is the only place of execution in Move. Function starts with the <code>fun</code> keyword which is followed by function name, parentheses for arguments and curly braces for body.</p>
 <pre><code class="language-Move">fun function_name(arg1: u64, arg2: bool): u64 {
     // function body
 }
@@ -844,7 +844,7 @@ module Math {
 <p><strong>Note:</strong> in Move functions should be named in <em>snake_case</em> - lowercase with underscores as word separators.</p>
 </blockquote>
 <h2><a class="header" href="#function-in-script" id="function-in-script">Function in script</a></h2>
-<p>Script block can contain only one function which is considered <em>main</em>. This function (possibly with arguments) will be executed as transaction. It is very limited: it cannot return value and should be used to operate other functions in already published modules.</p>
+<p>Script block can contain only one function which is considered <em>main</em>. This function (possibly with arguments) will be executed as a transaction. It is very limited: it cannot return value and should be used to operate other functions in already published modules.</p>
 <p>Here's an example of simple script which checks if address exists:</p>
 <pre><code class="language-Move">script {
     use 0x0::Account;
@@ -860,7 +860,7 @@ module Math {
 </blockquote>
 <h2><a class="header" href="#function-in-module" id="function-in-module">Function in module</a></h2>
 <p>While script context is fairly limited, full potential of functions can only be seen in a module. Let's go through it again: module is a published set of functions and types (we'll get to it in the next chapter) which solves one or many tasks.</p>
-<p>In this part we'll create simple Math module which will provide users with basic set of mathematical functions and few helper methods. Most of this could be done without using module, but our goal is education!</p>
+<p>In this part we'll create a simple Math module which will provide users with a basic set of mathematical functions and a few helper methods. Most of this could be done without using a module, but our goal is education!</p>
 <pre><code class="language-Move">module Math {
     fun zero(): u8 {
         0
@@ -870,7 +870,7 @@ module Math {
 <p>First step: we've defined a module named <code>Math</code> with one function in it: <code>zero()</code>, which returns 0 - a value of type <code>u8</code>. Remember <a href="chapters//chapters/expression-and-scope.html">expressions</a>? There's no semicolon after <code>0</code> as it is the <em>return value</em> of this function. Just like you would do with block. Yeah, function body is very similar to block.</p>
 <h3><a class="header" href="#function-arguments" id="function-arguments">Function arguments</a></h3>
 <p>This should be clear by now, but let's repeat. Function can take arguments (values passed into function). As many as needed. Every argument has 2 properties: name - its name within a function body, and type - just like any other variable in Move.</p>
-<p>Function arguments - just like any other variables defined within a scope - live only within function body. When function block ends, no variables remain.</p>
+<p>Function arguments - just like any other variables defined within a scope - live only within function body. When the function block ends, no variables remain.</p>
 <pre><code class="language-Move">module Math {
 
     public fun sum(a: u64, b: u64): u64 {
@@ -882,7 +882,7 @@ module Math {
     }
 ]
 </code></pre>
-<p>What's new in our Math: function <code>sum(a,b)</code> which sums two <code>u64</code> values and returns result - <code>u64</code> sum (type can't change).</p>
+<p>What's new in our Math: function <code>sum(a,b)</code> which sums two <code>u64</code> values and returns a result - <code>u64</code> sum (type can't change).</p>
 <p>Let's state few syntax rules:</p>
 <ol>
 <li>Arguments must have types and must be separated by comma</li>
@@ -920,8 +920,8 @@ module Math {
     }
 }
 </code></pre>
-<p>This function takes two arguments: <code>a</code> and <code>b</code> and <em>returns two values</em>: first is the max value from two passed and second is a bool - whether numbers entered are equal. Take closer look at the syntax: instead of specifying singe return argument we've added <em>parenteses</em> and have listed return argument types.</p>
-<p>Now let's see how we can use result of this function in another function in script.</p>
+<p>This function takes two arguments: <code>a</code> and <code>b</code> and <em>returns two values</em>: first is the max value from two passed and second is a bool - whether numbers entered are equal. Take closer look at the syntax: instead of specifying single return argument we've added <em>parenteses</em> and have listed return argument types.</p>
+<p>Now let's see how we can use the result of this function in another function in the script.</p>
 <pre><code class="language-Move">script {
     use 0x0::Debug;
     use 0x1::Math;
@@ -939,7 +939,7 @@ module Math {
 <p>Two is not the limit - number of returned arguments is up to you, though you'll soon learn about structs and see alternative way to return complex data.</p>
 <h3><a class="header" href="#function-visibility" id="function-visibility">Function visibility</a></h3>
 <p>When defining a module you may want to make some functions accessible by other developers and some to remain hidden. This is when <em>function visibility modifiers</em> come to play.</p>
-<p>By default every function defined in module is private - it cannot be accessed in other modules or scripts. If you've been attentive, you may have noticed that some of the functions that we've defined in our Math module have keyword <code>public</code> before their definition:</p>
+<p>By default every function defined in a module is private - it cannot be accessed in other modules or scripts. If you've been attentive, you may have noticed that some of the functions that we've defined in our Math module have keyword <code>public</code> before their definition:</p>
 <pre><code class="language-Move">module Math {
 
     public fun sum(a: u64, b: u64): u64 {
@@ -965,11 +965,11 @@ module Math {
 }
 </code></pre>
 <h3><a class="header" href="#access-local-functions" id="access-local-functions">Access local functions</a></h3>
-<p>There would not be any sence in making private functions if they could not be accessed at all. Private functions exist to do some <em>internal</em> work when public functions are called.</p>
+<p>There would not be any sense in making private functions if they could not be accessed at all. Private functions exist to do some <em>internal</em> work when public functions are called.</p>
 <blockquote>
 <p>Private functions can only be accessed in the module where they're defined.</p>
 </blockquote>
-<p>So how do you access function in the same module? By simply calling this function like it was imported!</p>
+<p>So how do you access functions in the same module? By simply calling this function like it was imported!</p>
 <pre><code class="language-Move">module Math {
 
     public fun is_zero(a: u8): bool {
@@ -981,9 +981,9 @@ module Math {
     }
 }
 </code></pre>
-<p>Any function defined in a module is acessible by any function in the same module no matter what visibility modifiers any of them has. This way private functions can still be used as calls inside public ones without exposing some private features or too risky operations.</p>
+<p>Any function defined in a module is accessible by any function in the same module no matter what visibility modifiers any of them has. This way private functions can still be used as calls inside public ones without exposing some private features or too risky operations.</p>
 <h3><a class="header" href="#native-functions" id="native-functions">Native functions</a></h3>
-<p>There's a special kind of functions - <em>native</em> ones. <em>Native functions</em> implement functionality which goes beyond Move's possibilities and give you extra power. Native functions are defined by VM itself and may vary in different implementations. Which means they don't have implementation in Move syntax and instead of having function body they end with semicolon. Keyword <code>native</code> is used to mark native functions. It does not conflict with function visibility modifiers and same function can be <code>native</code> and <code>public</code> at the same time.</p>
+<p>There's a special kind of functions - <em>native</em> ones. <em>Native functions</em> implement functionality which goes beyond Move's possibilities and give you extra power. Native functions are defined by VM itself and may vary in different implementations. Which means they don't have implementation in Move syntax and instead of having function body they end with a semicolon. Keyword <code>native</code> is used to mark native functions. It does not conflict with function visibility modifiers and the same function can be <code>native</code> and <code>public</code> at the same time.</p>
 <p>Here's an example from Libra's standard library.</p>
 <pre><code class="language-Move">module Transaction {
     // get transaction sender, you can't do it other way
@@ -1024,7 +1024,7 @@ module Math {
 }
 </code></pre>
 <p><em>Max number of fields in one struct is 65535</em>.</p>
-<p>Every defined struct becomes new type. This type can be accessed through its module:</p>
+<p>Every defined struct becomes new a type. This type can be accessed through its module:</p>
 <pre><code>M::MyStruct;
 // or
 M::Example;
@@ -1045,7 +1045,7 @@ M::Example;
 <h3><a class="header" href="#create-new-struct" id="create-new-struct">Create new struct</a></h3>
 <p>To use this type you need to create its <em>instance</em>.</p>
 <blockquote>
-<p>New instances can only be created inside module where they're defined.</p>
+<p>New instances can only be created inside the module where they're defined.</p>
 </blockquote>
 <p>To create new instance use it's definition, but instead of passing types pass values of these types:</p>
 <pre><code class="language-Move">module M {
@@ -1087,7 +1087,7 @@ public fun new_country(id: u8, population: u64): Country {
 <h3><a class="header" href="#access-struct-fields" id="access-struct-fields">Access struct fields</a></h3>
 <p>Structs would have been almost useless if we hadn't had a way to access their fields (though you can create struct without fields).</p>
 <blockquote>
-<p>Only module can access it's struct's fields. Outside of module struct fields are private.</p>
+<p>Only module can access its struct's fields. Outside of module struct fields are private.</p>
 </blockquote>
 <p>Struct fields are only visible inside its module. Outside of this module (in script or another module) it's just a type. To access struct's fields use <code>.</code> dot notation:</p>
 <pre><code class="language-Move">// ...
@@ -1101,7 +1101,7 @@ public fun get_country_population(country: Country): u64 {
 &lt;struct&gt;.&lt;field&gt;.&lt;nested_struct_field&gt;...
 </code></pre>
 <h3><a class="header" href="#implementing-getter-functions-for-struct-fields" id="implementing-getter-functions-for-struct-fields">Implementing getter-functions for struct fields</a></h3>
-<p>To make struct fields readable outside, you need to implement methods which will read these fields and pass them as return values. Usually getter method is called the same way as struct's field but it may cause inconvenience if you module defines more than one struct.</p>
+<p>To make struct fields readable outside, you need to implement methods which will read these fields and pass them as return values. Usually the getter method is called the same way as struct's field but it may cause inconvenience if you module defines more than one struct.</p>
 <pre><code class="language-Move">module Country {
 
     struct Country {
@@ -1189,8 +1189,8 @@ public fun get_country_population(country: Country): u64 {
 <p>Each variable has only one owner scope. When owner scope ends - owned variables are dropped.</p>
 </blockquote>
 <p>We've already seen this behavior in <a href="chapters//chapters/expression-and-scope.html">expressions chapter</a>. Remember that variable lives as long as its scope? Now is the perfect time to get under the hood and learn why it happens.</p>
-<p>Owner is a scope which <em>owns</em> a variable. Variable either can be defined in this scope (e.g. with keyword <code>let</code> in script) or be passed into scope as argument. Since the only scope in Move is function's - there are no other ways to put variable into scope.</p>
-<p>Each variable has only one owner, which means that when variable is passed into function as argument, this function becomes the <em>new owner</em>, and variable no longer <em>owned</em> by the first function. Or you may say that function <em>takes ownership</em> of variable.</p>
+<p>Owner is a scope which <em>owns</em> a variable. Variables either can be defined in this scope (e.g. with keyword <code>let</code> in script) or be passed into scope as argument. Since the only scope in Move is function's - there are no other ways to put variables into scope.</p>
+<p>Each variable has only one owner, which means that when a variable is passed into function as argument, this function becomes the <em>new owner</em>, and variable no longer <em>owned</em> by the first function. Or you may say that function <em>takes ownership</em> of variable.</p>
 <pre><code class="language-Move">script {
     use {{sender}}::M;
 
@@ -1227,10 +1227,10 @@ public fun get_country_population(country: Country): u64 {
     // t no longer exists
 }
 </code></pre>
-<p>Of course, quick workaround is to return a tuple with original variable and additional results (return value would have been <code>(T, u8)</code>), but Move has a better solution for that.</p>
+<p>Of course, a quick workaround is to return a tuple with original variable and additional results (return value would have been <code>(T, u8)</code>), but Move has a better solution for that.</p>
 <h2><a class="header" href="#move-and-copy" id="move-and-copy">Move and Copy</a></h2>
 <p>First, you need to understand how Move VM works, and what happens when you pass your value into a function. There are two bytecode instructions in VM: <em>MoveLoc</em> and <em>CopyLoc</em> - both of them can be manually used with keywords <code>move</code> and <code>copy</code> respectively.</p>
-<p>When variable is being passed into another function - it's being <em>moved</em> and <em>MoveLoc</em> OpCode is used. Let's see how our code would look if we've used keyword <code>move</code>:</p>
+<p>When a variable is being passed into another function - it's being <em>moved</em> and <em>MoveLoc</em> OpCode is used. Let's see how our code would look if we've used keyword <code>move</code>:</p>
 <pre><code class="language-Move">script {
     use {{sender}}::M;
 
@@ -1259,11 +1259,11 @@ public fun get_country_population(country: Country): u64 {
     }
 }
 </code></pre>
-<p>In this example we've passed <em>copy</em> of variable (hence value) <code>a</code> into first call of method <code>value</code> and saved <code>a</code> in local scope to use it again in second call.</p>
-<p>By copying value we've duplicated it and increased memory size of our program, so it can be used - but when you copy huge data it may become pricey in terms of memory. Remember - in blockchains every byte counts and affects price of execution, so using <code>copy</code> all the time may cost you a lot.</p>
+<p>In this example we've passed a <em>copy</em> of variable (hence value) <code>a</code> into the first call of method <code>value</code> and saved <code>a</code> in local scope to use it again in second the call.</p>
+<p>By copying value we've duplicated it and increased the memory size of our program, so it can be used - but when you copy huge data it may become pricey in terms of memory. Remember - in blockchains every byte counts and affects price of execution, so using <code>copy</code> all the time may cost you a lot.</p>
 <p>Now you are ready to learn about references which help you avoid unnecessary copying and literally save some money.</p>
 <h2><a class="header" href="#references" id="references">References</a></h2>
-<p>Many programming languages have implementation of references (<a href="https://en.wikipedia.org/wiki/Reference_(computer_science)">see Wikipedia</a>). <em>Reference</em> is a link to variable (usually to a section in memory) which you can pass into other parts of program instead of <em>moving</em> the value.</p>
+<p>Many programming languages have implementation of references (<a href="https://en.wikipedia.org/wiki/Reference_(computer_science)">see Wikipedia</a>). <em>Reference</em> is a link to a variable (usually to a section in memory) which you can pass into other parts of the program instead of <em>moving</em> the value.</p>
 <blockquote>
 <p>References (marked with &amp;) allow you to <em>refer</em> to value without taking <em>ownership</em> of it.</p>
 </blockquote>
@@ -1330,7 +1330,7 @@ public fun get_country_population(country: Country): u64 {
 <p>Use immutable (&amp;) references to read data from structs, use mutable (&amp;mut) to modify them. By using proper type of references you help maintaining secutiry and help reading your modules so the reader will know if this method changes the value or only reads.</p>
 </blockquote>
 <h3><a class="header" href="#borrow-checking" id="borrow-checking">Borrow checking</a></h3>
-<p>Move controls the way you use references and helps you prevent unexpected bullet in your foot. To understand that let's see an example. I'll give you module and script and then will comment on what's going on and why.</p>
+<p>Move controls the way you use references and helps you prevent unexpected bullet in your foot. To understand that let's see an example. I'll give you a module and a script and then will comment on what's going on and why.</p>
 <pre><code class="language-Move">module Borrow {
 
     struct B { value: u64 }
@@ -1372,7 +1372,7 @@ public fun get_country_population(country: Country): u64 {
 }
 </code></pre>
 <p>This code compiles and runs without errors. First, what happens here: we use mutable reference to <code>A</code> to get mutable reference to its inner struct <code>B</code>. Then we change <code>B</code>. Then operation can be repeated.</p>
-<p>But what if we've swapped two last expressions and first tried to create new mutable reference to <code>A</code> while mutable reference to <code>B</code> is still alive?</p>
+<p>But what if we've swapped two last expressions and first tried to create a new mutable reference to <code>A</code> while mutable reference to <code>B</code> is still alive?</p>
 <pre><code class="language-Move">let mut_a = &amp;mut a;
 let mut_b = Borrow::ref_from_mut_a(mut_a);
 
@@ -1390,10 +1390,10 @@ Borrow::change_b(mut_b, 100000);
     │                     ----------------------------- It is still being mutably borrowed by this reference
     │
 </code></pre>
-<p>This code won't compile. Why? Because <code>&amp;mut A</code> is <em>being borrowed</em> by <code>&amp;mut B</code>. If we could change <code>A</code> while having mutable reference to its contents, we'd get into odd situation where <code>A</code> can be changed but reference to its contents is still here. Where would <code>mut_b</code> point to if there was no actual <code>B</code>?</p>
+<p>This code won't compile. Why? Because <code>&amp;mut A</code> is <em>being borrowed</em> by <code>&amp;mut B</code>. If we could change <code>A</code> while having mutable reference to its contents, we'd get into an odd situation where <code>A</code> can be changed but reference to its contents is still here. Where would <code>mut_b</code> point to if there was no actual <code>B</code>?</p>
 <p>We come to few conclusions:</p>
 <ol>
-<li>We get a compilation error which means that Move compiler prevents these cases. It's called <em>borrow checking</em> (originally concept from Rust language). Compiler builds a <em>borrow graph</em> and disallows <em>moving borrowed values</em>. This is one of the reasons why Move is so safe to use in blockchains.</li>
+<li>We get a compilation error which means that the Move compiler prevents these cases. It's called <em>borrow checking</em> (originally concept from Rust language). Compiler builds a <em>borrow graph</em> and disallows <em>moving borrowed values</em>. This is one of the reasons why Move is so safe to use in blockchains.</li>
 <li>You can create reference from reference, so that original reference will <em>be borrowed</em> by the new one. Mutable and immutable can be created from mutable and only immutable from immutable.</li>
 <li>When reference <em>is borrowed</em> it cannot be <em>moved</em> because other values depend on it.</li>
 </ol>
@@ -1427,7 +1427,7 @@ Borrow::change_b(mut_b, 100000);
     }
 }
 </code></pre>
-<p>By using <code>*&amp;</code> (even compiler will advise you to do so) we've copied inner value of a struct.</p>
+<p>By using <code>*&amp;</code> (even compiler will advise you to do so) we've copied the inner value of a struct.</p>
 <h3><a class="header" href="#referencing-primitive-types" id="referencing-primitive-types">Referencing primitive types</a></h3>
 <p>Primitive types (due to their simplicity) do not need to be passed as references and <em>copy</em> operation is done instead. Even if you pass them into function <em>by value</em> they will remain in current scope. You can intentionally use <code>move</code> keyword, but since primitives are very small in size copying them may even be cheaper than passing them by reference or even moving.</p>
 <pre><code class="language-Move">script {
@@ -1450,8 +1450,8 @@ Notes:
 
 -->
 <h1><a class="header" href="#understanding-generics" id="understanding-generics">Understanding Generics</a></h1>
-<p>Generics are essential to Move, they are what makes this language so unique to blockchain world, and they are the source of Move's flexibility.</p>
-<p>To start I'll quote <a href="https://doc.rust-lang.org/stable/book/ch10-00-generics.html">Rust Book</a>: <em>Generics are abstract stand-ins for concrete types or other properties</em>. Practically speaking, they are the way of writing single function, which can then be used for any type, they can also be called templates as this function can be used as a template handler for any type.</p>
+<p>Generics are essential to Move, they are what makes this language so unique to the blockchain world, and they are the source of Move's flexibility.</p>
+<p>To start I'll quote <a href="https://doc.rust-lang.org/stable/book/ch10-00-generics.html">Rust Book</a>: <em>Generics are abstract stand-ins for concrete types or other properties</em>. Practically speaking, they are the way of writing a single function, which can then be used for any type, they can also be called templates as this function can be used as a template handler for any type.</p>
 <p>In Move generics can be applied to signatures of <code>struct</code>, <code>function</code> and <code>resource</code>.</p>
 <h3><a class="header" href="#in-struct-definition" id="in-struct-definition">In struct definition</a></h3>
 <p>First, we'll create a Box which will hold <code>u64</code> value. We've already been through this, so no need for comments.</p>
@@ -1468,9 +1468,9 @@ Notes:
     }
 }
 </code></pre>
-<p>Next to struct name we've placed <code>&lt;T&gt;</code>. Where angle brackets <code>&lt;..&gt;</code> is a place to define generic types, and <code>T</code> is a type we've <em>templated</em> in this struct. Inside the struct body definition we've used <code>T</code> as a regular type. Type T does not exist, it is a placeholder for <em>any type</em>.</p>
+<p>Next to the struct name we've placed <code>&lt;T&gt;</code>. Where angle brackets <code>&lt;..&gt;</code> is a place to define generic types, and <code>T</code> is a type we've <em>templated</em> in this struct. Inside the struct body definition we've used <code>T</code> as a regular type. Type T does not exist, it is a placeholder for <em>any type</em>.</p>
 <h3><a class="header" href="#in-function-signature" id="in-function-signature">In function signature</a></h3>
-<p>Now let's create constructor for this struct which will first use type <code>u64</code> for value.</p>
+<p>Now let's create a constructor for this struct which will first use type <code>u64</code> for value.</p>
 <pre><code class="language-Move">module Storage {
     struct Box&lt;T&gt; {
         value: T
@@ -1483,7 +1483,7 @@ Notes:
     }
 }
 </code></pre>
-<p>Generics have a bit more complicated definitions - since they need to have type parameters specified, and regular struct <code>Box</code> becomes <code>Box&lt;u64&gt;</code>. There are no restrictions in what types you can pass into generic's angle brackets. Let's make our <code>create_box</code> method more gereric and let users specify any type. How do we do that? Using another generic, now in function signature!</p>
+<p>Generics have a bit more complicated definitions - since they need to have type parameters specified, and regular struct <code>Box</code> becomes <code>Box&lt;u64&gt;</code>. There are no restrictions in what types you can pass into generic's angle brackets. Let's make our <code>create_box</code> method more generic and let users specify any type. How do we do that? Using another generic, now in function signature!</p>
 <pre><code class="language-Move">module Storage {
     // ...
     public fun create_box&lt;T&gt;(value: T): Box&lt;T&gt; {
@@ -1533,9 +1533,9 @@ Notes:
 </code></pre>
 <p>Here we have used Box struct with 3 types: <code>bool</code>, <code>u64</code> and with <code>Box&lt;u64&gt;</code> - last one may seem way too complicated but once you've gotten used to it and understood how it works, it becomes part of your routine.</p>
 <!-- , Move opens in new way - the way you probably could never imagine in blockchains. -->
-<p>Before we go any further, let's take a step back. By adding generics to <code>Box</code> struct we've made this box <em>abstract</em> - it's definition is fairly simple compared to capacity it gave us. Now we can create <code>Box</code> with any type - be it <code>u64</code> or <code>address</code>, or even another box, or another struct.</p>
+<p>Before we go any further, let's take a step back. By adding generics to <code>Box</code> struct we've made this box <em>abstract</em> - its definition is fairly simple compared to capacity it gave us. Now we can create <code>Box</code> with any type - be it <code>u64</code> or <code>address</code>, or even another box, or another struct.</p>
 <h3><a class="header" href="#multiple-types-in-generics" id="multiple-types-in-generics">Multiple types in generics</a></h3>
-<p>Just like you can use single type, you can use many. Generic types are put into angle brackets and separated by comma. Let's add new type <code>Shelf</code> which will hold two boxes of two different types.</p>
+<p>Just like you can use a single type, you can use many. Generic types are put into angle brackets and separated by comma. Let's add a new type <code>Shelf</code> which will hold two boxes of two different types.</p>
 <pre><code class="language-Move">module Storage {
 
     struct Box&lt;T&gt; {
@@ -1558,7 +1558,7 @@ Notes:
     }
 }
 </code></pre>
-<p>Type paramereters for <code>Shelf</code> are listed and matched inside struct's fields definition. Also, as you can see, name of the type parameter inside generics does not matter - it's up to you to chose a proper one. And each type parameter is only valid within definition so no need to match <code>T1</code> or <code>T2</code> with <code>T</code>.</p>
+<p>Type parameters for <code>Shelf</code> are listed and matched inside struct's fields definition. Also, as you can see, name of the type parameter inside generics does not matter - it's up to you to choose a proper one. And each type parameter is only valid within definition so no need to match <code>T1</code> or <code>T2</code> with <code>T</code>.</p>
 <p>Using multiple generic type parameters is similar to using single:</p>
 <pre><code class="language-Move">script {
     use {{sender}}::Storage;
@@ -1572,7 +1572,7 @@ Notes:
     }
 }
 </code></pre>
-<p><em>You can have up to 18,446,744,073,709,551,615 (u64 size) generics in one definition. You definetely will never reach this limit, so feel free to use as many as you need without worrying about limits.</em></p>
+<p><em>You can have up to 18,446,744,073,709,551,615 (u64 size) generics in one definition. You definitely will never reach this limit, so feel free to use as many as you need without worrying about limits.</em></p>
 <h3><a class="header" href="#unused-type-params" id="unused-type-params">Unused type params</a></h3>
 <p>Not every type specified in generic must be used. Look at this example:</p>
 <pre><code class="language-Move">module Storage {
@@ -1612,8 +1612,8 @@ script {
 </code></pre>
 <p>Here we use generics to mark type, but we don't actually use it. You'll soon learn why this definition matters when you get to know <code>resources</code>. For now it's just another way to use them.</p>
 <h3><a class="header" href="#kind-matching-and-copyable" id="kind-matching-and-copyable">Kind-matching and :copyable</a></h3>
-<p>In <a href="chapters//chapters/ownership.html">ownership chapter</a> we learned about <em>copy</em> and <em>move</em> operations in VM. Not every value in Move can be copied (but all of them can be moved!) - in the <a href="chapters//chapters/resource.html">resources chapter</a> you'll study <code>resources</code>, which are not <em>copyable</em>. But before we jump there, let's learn what <em>Kind</em> is.</p>
-<p>Kind (in terms of VM) - is a group of types, there're only 2 kinds: <code>copyable</code> and <code>resource</code>. Kinds can be used to limit (or restrict) generic types passed into function.</p>
+<p>In the <a href="chapters//chapters/ownership.html">ownership chapter</a> we learned about <em>copy</em> and <em>move</em> operations in VM. Not every value in Move can be copied (but all of them can be moved!) - in the <a href="chapters//chapters/resource.html">resources chapter</a> you'll study <code>resources</code>, which are not <em>copyable</em>. But before we jump there, let's learn what <em>Kind</em> is.</p>
+<p>Kind (in terms of VM) - is a group of types, there are only 2 kinds: <code>copyable</code> and <code>resource</code>. Kinds can be used to limit (or restrict) generic types passed into function.</p>
 <h3><a class="header" href="#copyable" id="copyable">Copyable</a></h3>
 <p><em>Copyable kind</em> - is a kind of types, value of which can be copied. <code>struct</code>, <code>vector</code> and primitive types - are three main groups of types fitting into this kind.</p>
 <p>To understand why Move needs this constraint let's see this example:</p>
@@ -1623,7 +1623,7 @@ script {
     }
 }
 </code></pre>
-<p>By using <em>dereference</em> on a reference you can <em>copy</em> original value and return it as a regular. But what if we've tried to use <code>resource</code> in this example? Resource can't be copied, hence this code would fail. Hopefully compiler won't let you compile this type, and kinds exist to manage cases like this.</p>
+<p>By using <em>dereference</em> on a reference you can <em>copy</em> the original value and return it as a regular. But what if we've tried to use <code>resource</code> in this example? Resource can't be copied, hence this code would fail. Hopefully compiler won't let you compile this type, and kinds exist to manage cases like this.</p>
 <pre><code class="language-Move">module M {
     public fun deref&lt;T: copyable&gt;(t: &amp;T): T {
         *t
@@ -1683,7 +1683,7 @@ script {
     }
 }
 </code></pre>
-<p>Vector is a collection of values of a single non-reference type. It's is an ordered collection with max length of <code>u64</code>. It is also dynamic. And to see how it helps managing huge storages let's write a module with it.</p>
+<p>Vector can store up to <code>u64</code> number of values of a single non-reference type. To see how it helps managing huge storages let's write a module with it.</p>
 <pre><code class="language-Move">module Shelf {
 
     use 0x0::Vector;
@@ -1724,8 +1724,8 @@ script {
     }
 }
 </code></pre>
-<p>We'll create a shelf, few boxes for it and see how to work with vector collections in module:</p>
-<pre><code>script {
+<p>We'll create a shelf, few boxes for it and see how to work with vector in module:</p>
+<pre><code class="language-Move">script {
     use {{sender}}::Shelf;
 
     fun main() {
@@ -1778,7 +1778,7 @@ script {
 <h3><a class="header" href="#vector-cheatsheet" id="vector-cheatsheet">Vector cheatsheet</a></h3>
 <p>Here's a short cheatsheet for Vector methods from standard library:</p>
 <ul>
-<li>Create an empty vector of type &lt;E&gt;</li>
+<li>Create an empty vector of type <code>&lt;E&gt;</code></li>
 </ul>
 <pre><code class="language-Move">Vector::empty&lt;E&gt;(): vector&lt;E&gt;;
 </code></pre>

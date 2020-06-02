@@ -183,7 +183,7 @@
 }
 </code></pre>
 <p><em>Max number of fields in one struct is 65535</em>.</p>
-<p>Every defined struct becomes new type. This type can be accessed through its module:</p>
+<p>Every defined struct becomes new a type. This type can be accessed through its module:</p>
 <pre><code>M::MyStruct;
 // or
 M::Example;
@@ -204,7 +204,7 @@ M::Example;
 <h3><a class="header" href="#create-new-struct" id="create-new-struct">Create new struct</a></h3>
 <p>To use this type you need to create its <em>instance</em>.</p>
 <blockquote>
-<p>New instances can only be created inside module where they're defined.</p>
+<p>New instances can only be created inside the module where they're defined.</p>
 </blockquote>
 <p>To create new instance use it's definition, but instead of passing types pass values of these types:</p>
 <pre><code class="language-Move">module M {
@@ -246,7 +246,7 @@ public fun new_country(id: u8, population: u64): Country {
 <h3><a class="header" href="#access-struct-fields" id="access-struct-fields">Access struct fields</a></h3>
 <p>Structs would have been almost useless if we hadn't had a way to access their fields (though you can create struct without fields).</p>
 <blockquote>
-<p>Only module can access it's struct's fields. Outside of module struct fields are private.</p>
+<p>Only module can access its struct's fields. Outside of module struct fields are private.</p>
 </blockquote>
 <p>Struct fields are only visible inside its module. Outside of this module (in script or another module) it's just a type. To access struct's fields use <code>.</code> dot notation:</p>
 <pre><code class="language-Move">// ...
@@ -260,7 +260,7 @@ public fun get_country_population(country: Country): u64 {
 &lt;struct&gt;.&lt;field&gt;.&lt;nested_struct_field&gt;...
 </code></pre>
 <h3><a class="header" href="#implementing-getter-functions-for-struct-fields" id="implementing-getter-functions-for-struct-fields">Implementing getter-functions for struct fields</a></h3>
-<p>To make struct fields readable outside, you need to implement methods which will read these fields and pass them as return values. Usually getter method is called the same way as struct's field but it may cause inconvenience if you module defines more than one struct.</p>
+<p>To make struct fields readable outside, you need to implement methods which will read these fields and pass them as return values. Usually the getter method is called the same way as struct's field but it may cause inconvenience if you module defines more than one struct.</p>
 <pre><code class="language-Move">module Country {
 
     struct Country {

@@ -152,21 +152,21 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#getting-started" id="getting-started">Getting started</a></h1>
-<p>As with any compiled language, you need proper set of tools to compile, run and debug your Move applications. Since this language is created for blockchains and used only within them, running scripts off-chain is a non-trivial task: every module will require environment, account handling and compile-publishing system.</p>
-<p>To simpify development of Move modules we've created <a href="https://github.com/damirka/vscode-move-ide">Move IDE</a> extension for Visual Studio Code. This extension will help you cope with environment requirements. Use of this extension is highly recommended as it will handle build/run environment for you, hence will let you focus on learning Move language instead of struggling with the CLI environment. This extension also includes Move syntax highlighting and run environment to help you debug your applications before going public.</p>
+<p>As with any compiled language, you need a proper set of tools to compile, run and debug your Move applications. Since this language is created for blockchains and used only within them, running scripts off-chain is a non-trivial task: every module will require an environment, account handling and compile-publishing system.</p>
+<p>To simpify development of Move modules we've created <a href="https://github.com/damirka/vscode-move-ide">Move IDE</a> extension for Visual Studio Code. This extension will help you cope with environment requirements. Use of this extension is highly recommended as it will handle the build/run environment for you, hence will let you focus on learning Move language instead of struggling with the CLI environment. This extension also includes Move syntax highlighting and run environment to help you debug your applications before going public.</p>
 <h2><a class="header" href="#install-move-ide" id="install-move-ide">Install Move IDE</a></h2>
 <p>To install it you'll need:</p>
 <ol>
 <li>VSCode (version 1.43.0 and above) - you can <a href="https://code.visualstudio.com/download">get it here</a>; if you already have one - proceed to the next step;</li>
-<li>Move IDE - once VSCode is installed, follow <a href="https://marketplace.visualstudio.com/items?itemName=damirka.move-ide">this link</a> to install newest version of IDE.</li>
+<li>Move IDE - once VSCode is installed, follow <a href="https://marketplace.visualstudio.com/items?itemName=damirka.move-ide">this link</a> to install the newest version of IDE.</li>
 </ol>
 <h3><a class="header" href="#setup-environment" id="setup-environment">Setup environment</a></h3>
-<p>Move IDE proposes single way of organizing your directory structure. Create new directory for your project and open it in VSCode. Then setup this directory structure:</p>
+<p>Move IDE proposes a single way of organizing your directory structure. Create a new directory for your project and open it in VSCode. Then setup this directory structure:</p>
 <pre><code>modules/   - directory for our modules
 scripts/   - directory for transaction scripts
 out/       - this directory will hold compiled sources
 </code></pre>
-<p>Also you'll need to create file called <code>.mvconfig.json</code> which will configure your working environment. This is a sample for <code>libra</code>:</p>
+<p>Also you'll need to create a file called <code>.mvconfig.json</code> which will configure your working environment. This is a sample for <code>libra</code>:</p>
 <pre><code class="language-json">{
     &quot;network&quot;: &quot;libra&quot;,
     &quot;sender&quot;: &quot;0x1&quot;
@@ -179,10 +179,10 @@ out/       - this directory will hold compiled sources
 }
 </code></pre>
 <blockquote>
-<p>dfinance uses bech32 'wallet1...' addresses, libra uses 16-byte '0x...' addresses. For local runs and experiments 0x1 address is enough - it's simple and short. Though when working with real blockchains in testnet or production environment you'll have to use correct address of network you've chosen.</p>
+<p>dfinance uses bech32 'wallet1...' addresses, libra uses 16-byte '0x...' addresses. For local runs and experiments 0x1 address is enough - it's simple and short. Though when working with real blockchains in testnet or production environment you'll have to use correct address of the network you've chosen.</p>
 </blockquote>
 <h2><a class="header" href="#your-very-first-application-with-move" id="your-very-first-application-with-move">Your very first application with Move</a></h2>
-<p>Move IDE allows you to run scripts in testing environment. Let's see how it works by implementing <code>gimme_five()</code> function and running it inside VSCode.</p>
+<p>Move IDE allows you to run scripts in a testing environment. Let's see how it works by implementing <code>gimme_five()</code> function and running it inside VSCode.</p>
 <h3><a class="header" href="#create-module" id="create-module">Create module</a></h3>
 <p>Create new file called <code>hello_world.move</code> inside <code>modules/</code> directory of your project.</p>
 <pre><code class="language-Move">// modules/hello_world.move
@@ -216,7 +216,7 @@ script {
 <li>Toggle VSCode's command palette by pressing <code>⌘+Shift+P</code> (on Mac) or <code>Ctrl+Shift+P</code> (on Linux/Windows)</li>
 <li>Type: <code>&gt;Move: Run Script</code> and press enter or click when you see the right option.</li>
 </ol>
-<p>Voila! You should see execution result - log message with '5' printed in debug. If you don't see this window, go through this part again.</p>
+<p>Voila! You should see the execution result - log message with '5' printed in debug. If you don't see this window, go through this part again.</p>
 <p>Your directory structure should look like this:</p>
 <pre><code>modules/
   hello_world.move

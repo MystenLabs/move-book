@@ -193,7 +193,7 @@
     }
 }
 </code></pre>
-<p>Now variable <code>b</code> will be assigned a different value depending on the <code>a</code> expression. But both of the branhes in <code>if</code> must return the same type! Otherwise variable <code>b</code> will have an option to be of different kind (or undefined) and this is impossible in statically typed language. In compiler terms it's called <em>branch compatibility</em> - both of the branches must return compatible (same) type.</p>
+<p>Now variable <code>b</code> will be assigned a different value depending on the <code>a</code> expression. But both of the branches in <code>if</code> must return the same type! Otherwise variable <code>b</code> will have an option to be of different kind (or undefined) and this is impossible in statically typed language. In compiler terms it's called <em>branch compatibility</em> - both of the branches must return compatible (same) type.</p>
 <p><code>if</code> can be used in-solo - without <code>else</code>.</p>
 <pre><code class="language-Move">script {
     use 0x0::Debug;
@@ -218,7 +218,7 @@
 <li>Inifinite <code>loop</code></li>
 </ol>
 <h3><a class="header" href="#conditional-loop-with-while" id="conditional-loop-with-while">Conditional loop with <code>while</code></a></h3>
-<p><code>while</code> is a way to define loop - expression which will be executed while some condition is true. So simply: code will be run over and over <em>while</em> condition is <code>true</code>. To implement condition usually external variable (or counter) is used.</p>
+<p><code>while</code> is a way to define loop - expression which will be executed while some condition is true. So simply: code will be run over and over <em>while</em> condition is <code>true</code>. To implement condition usually an external variable (or counter) is used.</p>
 <pre><code class="language-Move">fun main() {
 
     let i = 0; // define counter
@@ -234,12 +234,12 @@
 <p>It's worth mentioning that <code>while</code> is an expression - just like <code>if</code> is, and it too requires a semicolon afterwards. Generic syntax for while loop is:</p>
 <pre><code class="language-Move">while (&lt;bool_expression&gt;) &lt;expression&gt;;
 </code></pre>
-<p>Unlike <code>if</code>, <code>while</code> cannot return a value, so variable assignment (like we did with <code>if</code> expersion) is impossible.</p>
+<p>Unlike <code>if</code>, <code>while</code> cannot return a value, so variable assignment (like we did with <code>if</code> expression) is impossible.</p>
 <h3><a class="header" href="#unreachable-code" id="unreachable-code">Unreachable code</a></h3>
-<p>To be reliable Move must be secure. This is why it obliges you to use all your variables and for the same reason it forbids having unreachable code. As digital assets are programmable, they can be used in code (you'll learn about it in <a href="/chapters/resource.html">resources chapter</a>), and placing them in unreachable area may lead to inconvinience and their loss as the result.</p>
+<p>To be reliable Move must be secure. This is why it obliges you to use all your variables and for the same reason it forbids having unreachable code. As digital assets are programmable, they can be used in code (you'll learn about it in <a href="/chapters/resource.html">resources chapter</a>), and placing them in unreachable areas may lead to inconvenience and their loss as the result.</p>
 <p>This is why unreachable code is such a big issue. Now that is clear, we can proceed.</p>
 <h3><a class="header" href="#infinite-loop" id="infinite-loop">Infinite <code>loop</code></a></h3>
-<p>There is a way to define infinite loops. They're non-conditional and actually infinite (unless you force them to stop). Unfortunately compiler cannot define whether a loop is infinite (in most of the cases) and cannot stop you from publishing code, execution of which will consume all given resources (in blockchain terms - gas). So it's on you to test your code properly when using them or just switch to conditional <code>while</code> as it's way more secure.</p>
+<p>There is a way to define infinite loops. They're non-conditional and actually infinite (unless you force them to stop). Unfortunately the compiler cannot define whether a loop is infinite (in most of the cases) and cannot stop you from publishing code, execution of which will consume all given resources (in blockchain terms - gas). So it's on you to test your code properly when using them or just switch to conditional <code>while</code> as it's way more secure.</p>
 <p>Infinite loops are defined with keyword <code>loop</code>.</p>
 <pre><code class="language-Move">fun main() {
     let i = 0;
@@ -268,10 +268,10 @@
     }
 }
 </code></pre>
-<p>It's a non-trivial task for compiler to understand whether loop is really infinite or not, so for now you and only you can help yourself avoid looping errors. As I described above, this can lead to assets loss.</p>
+<p>It's a non-trivial task for the compiler to understand whether a loop is really infinite or not, so for now you and only you can help yourself avoid looping errors. As I described above, this can lead to assets loss.</p>
 <h3><a class="header" href="#control-loops-with-continue-and-break" id="control-loops-with-continue-and-break">Control loops with <code>continue</code> and <code>break</code></a></h3>
 <p>Keywords <code>continue</code> and <code>break</code> allow you to skip one round or break iteration respectively. You can use both of them in both types of loops.</p>
-<p>For example let's add two conditions into <code>loop</code>. If <code>i</code> is even we use <code>continue</code> to jump to next iteration without going through code after <code>continue</code> call.</p>
+<p>For example let's add two conditions into the <code>loop</code>. If <code>i</code> is even, we use <code>continue</code> to jump to the next iteration without going through code after <code>continue</code> call.</p>
 <p>With <code>break</code> we stop iteration and exit loop.</p>
 <pre><code class="language-Move">script {
     fun main() {
