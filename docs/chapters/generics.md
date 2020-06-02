@@ -1,8 +1,8 @@
 # Understanding Generics
 
-Generics are essential to Move, they are what makes this language so unique to blockchain world, and they are the source of Move's flexibility.
+Generics are essential to Move, they are what makes this language so unique to the blockchain world, and they are the source of Move's flexibility.
 
-To start I'll quote [Rust Book](https://doc.rust-lang.org/stable/book/ch10-00-generics.html): *Generics are abstract stand-ins for concrete types or other properties*. Practically speaking, they are the way of writing single function, which can then be used for any type, they can also be called templates as this function can be used as a template handler for any type.
+To start I'll quote [Rust Book](https://doc.rust-lang.org/stable/book/ch10-00-generics.html): *Generics are abstract stand-ins for concrete types or other properties*. Practically speaking, they are the way of writing a single function, which can then be used for any type, they can also be called templates as this function can be used as a template handler for any type.
 
 In Move generics can be applied to signatures of `struct`, `function` and `resource`.
 
@@ -28,11 +28,11 @@ module Storage {
 }
 ```
 
-Next to struct name we've placed `<T>`. Where angle brackets `<..>` is a place to define generic types, and `T` is a type we've *templated* in this struct. Inside the struct body definition we've used `T` as a regular type. Type T does not exist, it is a placeholder for *any type*.
+Next to the struct name we've placed `<T>`. Where angle brackets `<..>` is a place to define generic types, and `T` is a type we've *templated* in this struct. Inside the struct body definition we've used `T` as a regular type. Type T does not exist, it is a placeholder for *any type*.
 
 ### In function signature
 
-Now let's create constructor for this struct which will first use type `u64` for value.
+Now let's create a constructor for this struct which will first use type `u64` for value.
 
 ```Move
 module Storage {
@@ -48,7 +48,7 @@ module Storage {
 }
 ```
 
-Generics have a bit more complicated definitions - since they need to have type parameters specified, and regular struct `Box` becomes `Box<u64>`. There are no restrictions in what types you can pass into generic's angle brackets. Let's make our `create_box` method more gereric and let users specify any type. How do we do that? Using another generic, now in function signature!
+Generics have a bit more complicated definitions - since they need to have type parameters specified, and regular struct `Box` becomes `Box<u64>`. There are no restrictions in what types you can pass into generic's angle brackets. Let's make our `create_box` method more generic and let users specify any type. How do we do that? Using another generic, now in function signature!
 
 ```Move
 module Storage {
@@ -107,11 +107,11 @@ Here we have used Box struct with 3 types: `bool`, `u64` and with `Box<u64>` - l
 
 <!-- , Move opens in new way - the way you probably could never imagine in blockchains. -->
 
-Before we go any further, let's take a step back. By adding generics to `Box` struct we've made this box *abstract* - it's definition is fairly simple compared to capacity it gave us. Now we can create `Box` with any type - be it `u64` or `address`, or even another box, or another struct.
+Before we go any further, let's take a step back. By adding generics to `Box` struct we've made this box *abstract* - its definition is fairly simple compared to capacity it gave us. Now we can create `Box` with any type - be it `u64` or `address`, or even another box, or another struct.
 
 ### Multiple types in generics
 
-Just like you can use single type, you can use many. Generic types are put into angle brackets and separated by comma. Let's add new type `Shelf` which will hold two boxes of two different types.
+Just like you can use a single type, you can use many. Generic types are put into angle brackets and separated by comma. Let's add a new type `Shelf` which will hold two boxes of two different types.
 
 ```Move
 module Storage {
@@ -137,7 +137,7 @@ module Storage {
 }
 ```
 
-Type paramereters for `Shelf` are listed and matched inside struct's fields definition. Also, as you can see, name of the type parameter inside generics does not matter - it's up to you to chose a proper one. And each type parameter is only valid within definition so no need to match `T1` or `T2` with `T`.
+Type parameters for `Shelf` are listed and matched inside struct's fields definition. Also, as you can see, name of the type parameter inside generics does not matter - it's up to you to choose a proper one. And each type parameter is only valid within definition so no need to match `T1` or `T2` with `T`.
 
 Using multiple generic type parameters is similar to using single:
 
@@ -155,7 +155,7 @@ script {
 }
 ```
 
-*You can have up to 18,446,744,073,709,551,615 (u64 size) generics in one definition. You definetely will never reach this limit, so feel free to use as many as you need without worrying about limits.*
+*You can have up to 18,446,744,073,709,551,615 (u64 size) generics in one definition. You definitely will never reach this limit, so feel free to use as many as you need without worrying about limits.*
 
 ### Unused type params
 
@@ -205,9 +205,9 @@ Here we use generics to mark type, but we don't actually use it. You'll soon lea
 
 ### Kind-matching and :copyable
 
-In [ownership chapter](/chapters/ownership.md) we learned about *copy* and *move* operations in VM. Not every value in Move can be copied (but all of them can be moved!) - in the [resources chapter](/chapters/resource.md) you'll study `resources`, which are not *copyable*. But before we jump there, let's learn what *Kind* is.
+In the [ownership chapter](/chapters/ownership.md) we learned about *copy* and *move* operations in VM. Not every value in Move can be copied (but all of them can be moved!) - in the [resources chapter](/chapters/resource.md) you'll study `resources`, which are not *copyable*. But before we jump there, let's learn what *Kind* is.
 
-Kind (in terms of VM) - is a group of types, there're only 2 kinds: `copyable` and `resource`. Kinds can be used to limit (or restrict) generic types passed into function.
+Kind (in terms of VM) - is a group of types, there are only 2 kinds: `copyable` and `resource`. Kinds can be used to limit (or restrict) generic types passed into function.
 
 ### Copyable
 
@@ -223,7 +223,7 @@ module M {
 }
 ```
 
-By using *dereference* on a reference you can *copy* original value and return it as a regular. But what if we've tried to use `resource` in this example? Resource can't be copied, hence this code would fail. Hopefully compiler won't let you compile this type, and kinds exist to manage cases like this.
+By using *dereference* on a reference you can *copy* the original value and return it as a regular. But what if we've tried to use `resource` in this example? Resource can't be copied, hence this code would fail. Hopefully compiler won't let you compile this type, and kinds exist to manage cases like this.
 
 ```Move
 module M {

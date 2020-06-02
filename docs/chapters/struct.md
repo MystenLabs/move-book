@@ -35,7 +35,7 @@ module M {
 ```
 *Max number of fields in one struct is 65535*.
 
-Every defined struct becomes new type. This type can be accessed through its module:
+Every defined struct becomes new a type. This type can be accessed through its module:
 ```
 M::MyStruct;
 // or
@@ -62,7 +62,7 @@ module M {
 
 To use this type you need to create its *instance*.
 
->New instances can only be created inside module where they're defined.
+>New instances can only be created inside the module where they're defined.
 
 To create new instance use it's definition, but instead of passing types pass values of these types:
 
@@ -114,7 +114,7 @@ public fun empty(): Empty {
 
 Structs would have been almost useless if we hadn't had a way to access their fields (though you can create struct without fields).
 
-> Only module can access it's struct's fields. Outside of module struct fields are private.
+> Only module can access its struct's fields. Outside of module struct fields are private.
 
 Struct fields are only visible inside its module. Outside of this module (in script or another module) it's just a type. To access struct's fields use `.` dot notation:
 
@@ -135,7 +135,7 @@ If nested struct type is defined in the same module it can be accessed in simila
 
 ### Implementing getter-functions for struct fields
 
-To make struct fields readable outside, you need to implement methods which will read these fields and pass them as return values. Usually getter method is called the same way as struct's field but it may cause inconvenience if you module defines more than one struct.
+To make struct fields readable outside, you need to implement methods which will read these fields and pass them as return values. Usually the getter method is called the same way as struct's field but it may cause inconvenience if you module defines more than one struct.
 
 ```Move
 module Country {

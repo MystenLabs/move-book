@@ -54,7 +54,7 @@ script {
 }
 ```
 
-Now variable `b` will be assigned a different value depending on the `a` expression. But both of the branhes in `if` must return the same type! Otherwise variable `b` will have an option to be of different kind (or undefined) and this is impossible in statically typed language. In compiler terms it's called *branch compatibility* - both of the branches must return compatible (same) type.
+Now variable `b` will be assigned a different value depending on the `a` expression. But both of the branches in `if` must return the same type! Otherwise variable `b` will have an option to be of different kind (or undefined) and this is impossible in statically typed language. In compiler terms it's called *branch compatibility* - both of the branches must return compatible (same) type.
 
 `if` can be used in-solo - without `else`.
 
@@ -85,7 +85,7 @@ There're two ways of defining loops in Move:
 
 ### Conditional loop with `while`
 
-`while` is a way to define loop - expression which will be executed while some condition is true. So simply: code will be run over and over *while* condition is `true`. To implement condition usually external variable (or counter) is used.
+`while` is a way to define loop - expression which will be executed while some condition is true. So simply: code will be run over and over *while* condition is `true`. To implement condition usually an external variable (or counter) is used.
 
 ```Move
 fun main() {
@@ -107,17 +107,17 @@ It's worth mentioning that `while` is an expression - just like `if` is, and it 
 while (<bool_expression>) <expression>;
 ```
 
-Unlike `if`, `while` cannot return a value, so variable assignment (like we did with `if` expersion) is impossible.
+Unlike `if`, `while` cannot return a value, so variable assignment (like we did with `if` expression) is impossible.
 
 ### Unreachable code
 
-To be reliable Move must be secure. This is why it obliges you to use all your variables and for the same reason it forbids having unreachable code. As digital assets are programmable, they can be used in code (you'll learn about it in [resources chapter](/chapters/resource.md)), and placing them in unreachable area may lead to inconvinience and their loss as the result.
+To be reliable Move must be secure. This is why it obliges you to use all your variables and for the same reason it forbids having unreachable code. As digital assets are programmable, they can be used in code (you'll learn about it in [resources chapter](/chapters/resource.md)), and placing them in unreachable areas may lead to inconvenience and their loss as the result.
 
 This is why unreachable code is such a big issue. Now that is clear, we can proceed.
 
 ### Infinite `loop`
 
-There is a way to define infinite loops. They're non-conditional and actually infinite (unless you force them to stop). Unfortunately compiler cannot define whether a loop is infinite (in most of the cases) and cannot stop you from publishing code, execution of which will consume all given resources (in blockchain terms - gas). So it's on you to test your code properly when using them or just switch to conditional `while` as it's way more secure.
+There is a way to define infinite loops. They're non-conditional and actually infinite (unless you force them to stop). Unfortunately the compiler cannot define whether a loop is infinite (in most of the cases) and cannot stop you from publishing code, execution of which will consume all given resources (in blockchain terms - gas). So it's on you to test your code properly when using them or just switch to conditional `while` as it's way more secure.
 
 Infinite loops are defined with keyword `loop`.
 
@@ -153,13 +153,13 @@ script {
 }
 ```
 
-It's a non-trivial task for compiler to understand whether loop is really infinite or not, so for now you and only you can help yourself avoid looping errors. As I described above, this can lead to assets loss.
+It's a non-trivial task for the compiler to understand whether a loop is really infinite or not, so for now you and only you can help yourself avoid looping errors. As I described above, this can lead to assets loss.
 
 ### Control loops with `continue` and `break`
 
 Keywords `continue` and `break` allow you to skip one round or break iteration respectively. You can use both of them in both types of loops.
 
-For example let's add two conditions into `loop`. If `i` is even we use `continue` to jump to next iteration without going through code after `continue` call.
+For example let's add two conditions into the `loop`. If `i` is even, we use `continue` to jump to the next iteration without going through code after `continue` call.
 
 With `break` we stop iteration and exit loop.
 

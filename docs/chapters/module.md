@@ -1,12 +1,12 @@
 # Module
 
-Module is set of functions and types packed together which developer publishes under his address. In prevous chapters we only used scripts, though script can only operate with published modules or standard library which itself is a set of modules published under `0x0` address.
+Module is a set of functions and types packed together which the developer publishes under his address. In the previous chapters we only used scripts, though script can only operate with published modules or standard library which itself is a set of modules published under `0x0` address.
 
 > Module is published under its sender's address. Standard library is published under `0x0` address.
 
 > When publishing a module, none of its functions are executed. To use module - use scripts.
 
-Module starts with `module` keyword, which is followed by module name and curly braces - inside them module contents is placed.
+Module starts with `module` keyword, which is followed by module name and curly braces - inside them module contents are placed.
 
 ```Move
 module Math {
@@ -64,7 +64,7 @@ To make code shorter (remember that only 0x0 address is short, actual addresses 
 use <Address>::<ModuleName>;
 ```
 
-In here `<Address>` is a publisher's address and `<ModuleName>` is a name of a module. Pretty simple. Same here, we'll import `Transaction` module from `0x0`.
+Here `<Address>` is a publisher's address and `<ModuleName>` is a name of a module. Pretty simple. Same here, we'll import `Transaction` module from `0x0`.
 
 ```Move
 use 0x0::Transaction;
@@ -72,7 +72,7 @@ use 0x0::Transaction;
 
 ### Accessing module's contents
 
-To access imported module's methods (or types) use `::` notation. Simple as that - modules can only have one level of definitions so everything you define in module (publicly) can be accessed via double colon.
+To access imported module's methods (or types) use `::` notation. Simple as that - modules can only have one level of definitions so everything you define in the module (publicly) can be accessed via double colon.
 
 ```Move
 script {

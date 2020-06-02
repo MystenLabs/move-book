@@ -2,11 +2,11 @@
 
 In programming languages expression is a unit of code which returns a value. A function call with return value is an expression - it returns value; an integer (or bool or address) literal is also an expression - it has the value of its integer type and so on.
 
-> Expressions must be separated by semiconon.
+> Expressions must be separated by semicolon.
 
 ### Literal expressions
 
-Look at the code below. Every line contains an expression which ends with semicolon. Last line has three expressions separated by semicolons.
+Look at the code below. Every line contains an expression which ends with a semicolon. Last line has three expressions separated by semicolons.
 
 ```Move
 script {
@@ -21,11 +21,11 @@ script {
 }
 ```
 
-Good. You now know the simplest expressions there are. But why do we need them? And how to use? It's time to know `let` keyword.
+Good. You now know the simplest expressions there are. But why do we need them? And how to use it? It's time to know the `let` keyword.
 
 ### Variables and `let` keyword
 
-To store expression value inside variable (to pass it somewhere) you have keyword `let` (you've already seen it in [primitives chapter](/chapters/primitives.md)). It creates a new variable either empty (undefined) or with value of expression.
+To store expression value inside a variable (to pass it somewhere) you have a keyword `let` (you've already seen it in [primitives chapter](/chapters/primitives.md)). It creates a new variable either empty (undefined) or with value of expression.
 
 ```Move
 script {
@@ -39,11 +39,11 @@ script {
 }
 ```
 
-> Keword `let` creates new variable inside *current scope* and optionally *initializes* this variable with value. Syntax for this expression is: `let <VARIABLE> : <TYPE>;` or `let <VARIABLE> = <EXPRESSION>`.
+> Keyword `let` creates new variable inside *current scope* and optionally *initializes* this variable with value. Syntax for this expression is: `let <VARIABLE> : <TYPE>;` or `let <VARIABLE> = <EXPRESSION>`.
 
-After you've created and initialized variable you're able to *modify* or *access* its value by using variable name. In example above variable `a` was initialized in the end of function and was *assigned* a value of variable `c`.
+After you've created and initialized variable you're able to *modify* or *access* its value by using a variable name. In example above variable `a` was initialized in the end of function and was *assigned* a value of variable `c`.
 
-> Equality sign `=` is an assignment operator. It assigns right-hand-side expression to left-hand-side variable. Example: `a = 10` - variable `a` is assigned an integer value of `10`.
+> Equality sign `=` is an assignment operator. It assigns right-hand-side expression to the left-hand-side variable. Example: `a = 10` - variable `a` is assigned an integer value of `10`.
 
 ### Underscore "_" to mark unused
 
@@ -81,7 +81,7 @@ script {
 
 ### Shadowing
 
-Move allows you to define same variable twice with one limitation - it still needs to be used. In the example above only second `a` is used. The first one: `let a = 1` is actually unused as on the next line we *redefine* `a` while leaving first one unused.
+Move allows you to define the same variable twice with one limitation - it still needs to be used. In the example above only second `a` is used. The first one: `let a = 1` is actually unused as on the next line we *redefine* `a` while leaving the first one unused.
 
 ```Move
 script {
@@ -107,7 +107,7 @@ script {
 
 ## Block expression
 
-A block is an expression; it's marked with *curly braces* - `{}`. Block can contain other expressions (and other blocks). Function body (as you can see by already familiar curly-braces) is also a block in some sence (with few limitations).
+A block is an expression; it's marked with *curly braces* - `{}`. Block can contain other expressions (and other blocks). Function body (as you can see by already familiar curly-braces) is also a block in some sense (with few limitations).
 
 ```Move
 script {
@@ -192,11 +192,11 @@ script {
 }
 ```
 
-> Variable lives only within scope (or block) where it's defined. When its scope ends, variable dies.
+> Variable lives only within scope (or block) where it's defined. When its scope ends, the variable dies.
 
 ### Block return values
 
-In previous part you've learned that block is an expression but we didn't cover why it is an expression and what is block's return value.
+In the previous part you've learned that block is an expression but we didn't cover why it is an expression and what is the block's return value.
 
 > Block can return a value, it's the value of the last expression inside this block if it's not followed by semicolon
 
@@ -234,7 +234,7 @@ script {
 
 ### Summary
 
-Let's keynote main points of this chapter.
+Let's keynote the main points of this chapter.
 
 1. Every expression must end with semicolon unless it's the return value of block;
 2. Keyword `let` creates new variable with value or right-hand-side expression which lives as long as the scope in which it's been created;

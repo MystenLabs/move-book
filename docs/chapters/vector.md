@@ -34,7 +34,7 @@ script {
 }
 ```
 
-Vector is a collection of values of a single non-reference type. It's is an ordered collection with max length of `u64`. It is also dynamic. And to see how it helps managing huge storages let's write a module with it.
+Vector can store up to `u64` number of values of a single non-reference type. To see how it helps managing huge storages let's write a module with it.
 
 ```Move
 module Shelf {
@@ -78,9 +78,9 @@ module Shelf {
 }
 ```
 
-We'll create a shelf, few boxes for it and see how to work with vector collections in module:
+We'll create a shelf, few boxes for it and see how to work with vector in module:
 
-```
+```Move
 script {
     use {{sender}}::Shelf;
 
@@ -142,7 +142,7 @@ script {
 
 Here's a short cheatsheet for Vector methods from standard library:
 
-- Create an empty vector of type \<E\>
+- Create an empty vector of type `<E>`
 ```Move
 Vector::empty<E>(): vector<E>;
 ```

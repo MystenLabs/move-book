@@ -1,6 +1,6 @@
 # Function
 
-Function is the only place of execution in Move. Function starts with `fun` keyword which is followed by function name, parentheses for arguments and curly braces for body.
+Function is the only place of execution in Move. Function starts with the `fun` keyword which is followed by function name, parentheses for arguments and curly braces for body.
 
 ```Move
 fun function_name(arg1: u64, arg2: bool): u64 {
@@ -13,7 +13,7 @@ You have already seen some in previous chapters. And now you will learn how to u
 
 ## Function in script
 
-Script block can contain only one function which is considered *main*. This function (possibly with arguments) will be executed as transaction. It is very limited: it cannot return value and should be used to operate other functions in already published modules.
+Script block can contain only one function which is considered *main*. This function (possibly with arguments) will be executed as a transaction. It is very limited: it cannot return value and should be used to operate other functions in already published modules.
 
 Here's an example of simple script which checks if address exists:
 
@@ -34,7 +34,7 @@ This function can have arguments: in this case it is `addr` argument with type `
 
 While script context is fairly limited, full potential of functions can only be seen in a module. Let's go through it again: module is a published set of functions and types (we'll get to it in the next chapter) which solves one or many tasks.
 
-In this part we'll create simple Math module which will provide users with basic set of mathematical functions and few helper methods. Most of this could be done without using module, but our goal is education!
+In this part we'll create a simple Math module which will provide users with a basic set of mathematical functions and a few helper methods. Most of this could be done without using a module, but our goal is education!
 
 ```Move
 module Math {
@@ -50,7 +50,7 @@ First step: we've defined a module named `Math` with one function in it: `zero()
 
 This should be clear by now, but let's repeat. Function can take arguments (values passed into function). As many as needed. Every argument has 2 properties: name - its name within a function body, and type - just like any other variable in Move.
 
-Function arguments - just like any other variables defined within a scope - live only within function body. When function block ends, no variables remain.
+Function arguments - just like any other variables defined within a scope - live only within function body. When the function block ends, no variables remain.
 
 ```Move
 module Math {
@@ -65,7 +65,7 @@ module Math {
 ]
 ```
 
-What's new in our Math: function `sum(a,b)` which sums two `u64` values and returns result - `u64` sum (type can't change).
+What's new in our Math: function `sum(a,b)` which sums two `u64` values and returns a result - `u64` sum (type can't change).
 
 Let's state few syntax rules:
 
@@ -111,9 +111,9 @@ module Math {
     }
 }
 ```
-This function takes two arguments: `a` and `b` and *returns two values*: first is the max value from two passed and second is a bool - whether numbers entered are equal. Take closer look at the syntax: instead of specifying singe return argument we've added *parenteses* and have listed return argument types.
+This function takes two arguments: `a` and `b` and *returns two values*: first is the max value from two passed and second is a bool - whether numbers entered are equal. Take closer look at the syntax: instead of specifying single return argument we've added *parenteses* and have listed return argument types.
 
-Now let's see how we can use result of this function in another function in script.
+Now let's see how we can use the result of this function in another function in the script.
 
 ```Move
 script {
@@ -138,7 +138,7 @@ Two is not the limit - number of returned arguments is up to you, though you'll 
 
 When defining a module you may want to make some functions accessible by other developers and some to remain hidden. This is when *function visibility modifiers* come to play.
 
-By default every function defined in module is private - it cannot be accessed in other modules or scripts. If you've been attentive, you may have noticed that some of the functions that we've defined in our Math module have keyword `public` before their definition:
+By default every function defined in a module is private - it cannot be accessed in other modules or scripts. If you've been attentive, you may have noticed that some of the functions that we've defined in our Math module have keyword `public` before their definition:
 
 ```Move
 module Math {
@@ -171,11 +171,11 @@ script {
 
 ### Access local functions
 
-There would not be any sence in making private functions if they could not be accessed at all. Private functions exist to do some *internal* work when public functions are called.
+There would not be any sense in making private functions if they could not be accessed at all. Private functions exist to do some *internal* work when public functions are called.
 
 > Private functions can only be accessed in the module where they're defined.
 
-So how do you access function in the same module? By simply calling this function like it was imported!
+So how do you access functions in the same module? By simply calling this function like it was imported!
 
 ```Move
 module Math {
@@ -190,11 +190,11 @@ module Math {
 }
 ```
 
-Any function defined in a module is acessible by any function in the same module no matter what visibility modifiers any of them has. This way private functions can still be used as calls inside public ones without exposing some private features or too risky operations.
+Any function defined in a module is accessible by any function in the same module no matter what visibility modifiers any of them has. This way private functions can still be used as calls inside public ones without exposing some private features or too risky operations.
 
 ### Native functions
 
-There's a special kind of functions - *native* ones. *Native functions* implement functionality which goes beyond Move's possibilities and give you extra power. Native functions are defined by VM itself and may vary in different implementations. Which means they don't have implementation in Move syntax and instead of having function body they end with semicolon. Keyword `native` is used to mark native functions. It does not conflict with function visibility modifiers and same function can be `native` and `public` at the same time.
+There's a special kind of functions - *native* ones. *Native functions* implement functionality which goes beyond Move's possibilities and give you extra power. Native functions are defined by VM itself and may vary in different implementations. Which means they don't have implementation in Move syntax and instead of having function body they end with a semicolon. Keyword `native` is used to mark native functions. It does not conflict with function visibility modifiers and the same function can be `native` and `public` at the same time.
 
 Here's an example from Libra's standard library.
 

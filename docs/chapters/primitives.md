@@ -68,7 +68,7 @@ script {
 
 ## Address
 
-Address is an identifier of sender (or wallet) in blockchain. The very basic operations which require address type are sending coins and importing module.
+Address is an identifier of sender (or wallet) in blockchain. The very basic operations which require address type are sending coins and importing modules.
 
 ```Move
 script {

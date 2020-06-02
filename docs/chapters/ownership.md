@@ -8,9 +8,9 @@ I recommend you reading ownership chapter in Rust Book even though Rust syntax d
 
 We've already seen this behavior in [expressions chapter](/chapters/expression-and-scope.md). Remember that variable lives as long as its scope? Now is the perfect time to get under the hood and learn why it happens.
 
-Owner is a scope which *owns* a variable. Variable either can be defined in this scope (e.g. with keyword `let` in script) or be passed into scope as argument. Since the only scope in Move is function's - there are no other ways to put variable into scope.
+Owner is a scope which *owns* a variable. Variables either can be defined in this scope (e.g. with keyword `let` in script) or be passed into scope as argument. Since the only scope in Move is function's - there are no other ways to put variables into scope.
 
-Each variable has only one owner, which means that when variable is passed into function as argument, this function becomes the *new owner*, and variable no longer *owned* by the first function. Or you may say that function *takes ownership* of variable.
+Each variable has only one owner, which means that when a variable is passed into function as argument, this function becomes the *new owner*, and variable no longer *owned* by the first function. Or you may say that function *takes ownership* of variable.
 
 ```Move
 script {
@@ -53,13 +53,13 @@ module M {
 }
 ```
 
-Of course, quick workaround is to return a tuple with original variable and additional results (return value would have been `(T, u8)`), but Move has a better solution for that.
+Of course, a quick workaround is to return a tuple with original variable and additional results (return value would have been `(T, u8)`), but Move has a better solution for that.
 
 ## Move and Copy
 
 First, you need to understand how Move VM works, and what happens when you pass your value into a function. There are two bytecode instructions in VM: *MoveLoc* and *CopyLoc* - both of them can be manually used with keywords `move` and `copy` respectively.
 
-When variable is being passed into another function - it's being *moved* and *MoveLoc* OpCode is used. Let's see how our code would look if we've used keyword `move`:
+When a variable is being passed into another function - it's being *moved* and *MoveLoc* OpCode is used. Let's see how our code would look if we've used keyword `move`:
 
 ```Move
 script {
@@ -96,15 +96,15 @@ script {
 }
 ```
 
-In this example we've passed *copy* of variable (hence value) `a` into first call of method `value` and saved `a` in local scope to use it again in second call.
+In this example we've passed a *copy* of variable (hence value) `a` into the first call of method `value` and saved `a` in local scope to use it again in second the call.
 
-By copying value we've duplicated it and increased memory size of our program, so it can be used - but when you copy huge data it may become pricey in terms of memory. Remember - in blockchains every byte counts and affects price of execution, so using `copy` all the time may cost you a lot.
+By copying value we've duplicated it and increased the memory size of our program, so it can be used - but when you copy huge data it may become pricey in terms of memory. Remember - in blockchains every byte counts and affects price of execution, so using `copy` all the time may cost you a lot.
 
 Now you are ready to learn about references which help you avoid unnecessary copying and literally save some money.
 
 ## References
 
-Many programming languages have implementation of references ([see Wikipedia](https://en.wikipedia.org/wiki/Reference_(computer_science))). *Reference* is a link to variable (usually to a section in memory) which you can pass into other parts of program instead of *moving* the value.
+Many programming languages have implementation of references ([see Wikipedia](https://en.wikipedia.org/wiki/Reference_(computer_science))). *Reference* is a link to a variable (usually to a section in memory) which you can pass into other parts of the program instead of *moving* the value.
 
 > References (marked with &) allow you to *refer* to value without taking *ownership* of it.
 
@@ -180,7 +180,7 @@ script {
 
 ### Borrow checking
 
-Move controls the way you use references and helps you prevent unexpected bullet in your foot. To understand that let's see an example. I'll give you module and script and then will comment on what's going on and why.
+Move controls the way you use references and helps you prevent unexpected bullet in your foot. To understand that let's see an example. I'll give you a module and a script and then will comment on what's going on and why.
 
 ```Move
 module Borrow {
@@ -228,7 +228,7 @@ script {
 
 This code compiles and runs without errors. First, what happens here: we use mutable reference to `A` to get mutable reference to its inner struct `B`. Then we change `B`. Then operation can be repeated.
 
-But what if we've swapped two last expressions and first tried to create new mutable reference to `A` while mutable reference to `B` is still alive?
+But what if we've swapped two last expressions and first tried to create a new mutable reference to `A` while mutable reference to `B` is still alive?
 
 ```Move
 let mut_a = &mut a;
@@ -252,11 +252,11 @@ We'd have gotten an error:
     │
 ```
 
-This code won't compile. Why? Because `&mut A` is *being borrowed* by `&mut B`. If we could change `A` while having mutable reference to its contents, we'd get into odd situation where `A` can be changed but reference to its contents is still here. Where would `mut_b` point to if there was no actual `B`?
+This code won't compile. Why? Because `&mut A` is *being borrowed* by `&mut B`. If we could change `A` while having mutable reference to its contents, we'd get into an odd situation where `A` can be changed but reference to its contents is still here. Where would `mut_b` point to if there was no actual `B`?
 
 We come to few conclusions:
 
-1. We get a compilation error which means that Move compiler prevents these cases. It's called *borrow checking* (originally concept from Rust language). Compiler builds a *borrow graph* and disallows *moving borrowed values*. This is one of the reasons why Move is so safe to use in blockchains.
+1. We get a compilation error which means that the Move compiler prevents these cases. It's called *borrow checking* (originally concept from Rust language). Compiler builds a *borrow graph* and disallows *moving borrowed values*. This is one of the reasons why Move is so safe to use in blockchains.
 2. You can create reference from reference, so that original reference will *be borrowed* by the new one. Mutable and immutable can be created from mutable and only immutable from immutable.
 3. When reference *is borrowed* it cannot be *moved* because other values depend on it.
 
@@ -295,7 +295,7 @@ module M {
 }
 ```
 
-By using `*&` (even compiler will advise you to do so) we've copied inner value of a struct.
+By using `*&` (even compiler will advise you to do so) we've copied the inner value of a struct.
 
 ### Referencing primitive types
 

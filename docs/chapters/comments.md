@@ -12,7 +12,7 @@ script {
 }
 ```
 
-You can use double-slash "*//*" to write line comments. Rules are simple - **everything after** "*//*" is considered a comment to the end of line. You can use line comments to leave short notes for other developers or to *comment out* some code to remove it from execution chain.
+You can use double-slash "*//*" to write line comments. Rules are simple - **everything after** "*//*" is considered a comment to the end of line. You can use line comments to leave short notes for other developers or to *comment out* some code to remove it from the execution chain.
 
 ```Move
 script {
