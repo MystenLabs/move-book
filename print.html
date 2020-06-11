@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="introduction/getting-started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="chapters/syntax-basics.html"><strong aria-hidden="true">4.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/concept.html"><strong aria-hidden="true">4.1.</strong> Concept</a></li><li class="chapter-item expanded "><a href="chapters/primitives.html"><strong aria-hidden="true">4.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="chapters/comments.html"><strong aria-hidden="true">4.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="chapters/expression-and-scope.html"><strong aria-hidden="true">4.4.</strong> Expression and Scope</a></li><li class="chapter-item expanded "><a href="chapters/control-flow.html"><strong aria-hidden="true">4.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="chapters/module.html"><strong aria-hidden="true">4.6.</strong> Module</a></li><li class="chapter-item expanded "><a href="chapters/function.html"><strong aria-hidden="true">4.7.</strong> Function</a></li><li class="chapter-item expanded "><a href="chapters/struct.html"><strong aria-hidden="true">4.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="chapters/advanced-topics.html"><strong aria-hidden="true">5.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/ownership.html"><strong aria-hidden="true">5.1.</strong> Ownership and References</a></li><li class="chapter-item expanded "><a href="chapters/generics.html"><strong aria-hidden="true">5.2.</strong> Understanding Generics</a></li><li class="chapter-item expanded "><a href="chapters/vector.html"><strong aria-hidden="true">5.3.</strong> Managing collections with Vectors</a></li><li class="chapter-item expanded "><a href="chapters/resource.html"><strong aria-hidden="true">5.4.</strong> Programmable Resources</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="introduction/getting-started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="chapters/syntax-basics.html"><strong aria-hidden="true">4.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/concept.html"><strong aria-hidden="true">4.1.</strong> Concept</a></li><li class="chapter-item expanded "><a href="chapters/primitives.html"><strong aria-hidden="true">4.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="chapters/comments.html"><strong aria-hidden="true">4.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="chapters/expression-and-scope.html"><strong aria-hidden="true">4.4.</strong> Expression and Scope</a></li><li class="chapter-item expanded "><a href="chapters/control-flow.html"><strong aria-hidden="true">4.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="chapters/module.html"><strong aria-hidden="true">4.6.</strong> Module</a></li><li class="chapter-item expanded "><a href="chapters/function.html"><strong aria-hidden="true">4.7.</strong> Function</a></li><li class="chapter-item expanded "><a href="chapters/struct.html"><strong aria-hidden="true">4.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="chapters/advanced-topics.html"><strong aria-hidden="true">5.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapters/ownership.html"><strong aria-hidden="true">5.1.</strong> Ownership and References</a></li><li class="chapter-item expanded "><a href="chapters/generics.html"><strong aria-hidden="true">5.2.</strong> Understanding Generics</a></li><li class="chapter-item expanded "><a href="chapters/vector.html"><strong aria-hidden="true">5.3.</strong> Managing collections with Vectors</a></li><li class="chapter-item expanded "><a href="chapters/signer.html"><strong aria-hidden="true">5.4.</strong> Signer Type</a></li><li class="chapter-item expanded "><a href="chapters/resource.html"><strong aria-hidden="true">5.5.</strong> Programmable Resources</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -355,8 +355,18 @@ out/
 <h1><a class="header" href="#expression-and-scope" id="expression-and-scope">Expression and Scope</a></h1>
 <p>In programming languages expression is a unit of code which returns a value. A function call with return value is an expression - it returns value; an integer (or bool or address) literal is also an expression - it has the value of its integer type and so on.</p>
 <blockquote>
-<p>Expressions must be separated by semicolon.</p>
+<p>Expressions must be separated by semicolon*</p>
 </blockquote>
+<p><em>* When you put a semicolon, 'internally' it's treated as <code>; (empty_expression)</code>. If you put any expression after semi, it will replace the empty one.</em></p>
+<h3><a class="header" href="#empty-expression" id="empty-expression">Empty expression</a></h3>
+<p>You probably will never use it directly but empty expression in Move (in this way it's similar to Rust) is marked with empty parentheses:</p>
+<pre><code class="language-Move">script {
+    fun empty() {
+        () // this is an empty expression
+    }
+}
+</code></pre>
+<p>Empty expression can be omitted as it's automatically put by VM.</p>
 <h3><a class="header" href="#literal-expressions" id="literal-expressions">Literal expressions</a></h3>
 <p>Look at the code below. Every line contains an expression which ends with a semicolon. Last line has three expressions separated by semicolons.</p>
 <pre><code class="language-Move">script {
@@ -1806,6 +1816,69 @@ script {
 <ul>
 <li>Libra <a href="https://github.com/libra/libra/blob/master/language/stdlib/modules/vector.move">libra/libra</a></li>
 <li>Dfinance <a href="https://github.com/dfinance/dvm/blob/master/lang/stdlib/vector.move">dfinance/dvm</a></li>
+</ul>
+<h1><a class="header" href="#signer-type" id="signer-type">Signer Type</a></h1>
+<p>We've almost reached most important part - resources. But before we get to them, you need to learn about <code>signer</code> type and its features, and why this type exists.</p>
+<blockquote>
+<p>Signer is a native non-copyable (resource-like) type which holds address of transaction sender.</p>
+</blockquote>
+<p>Signer type represents sender authority. In other words - using signer means accessing sender's address and resources. It has no direct relation to <em>signatures</em> or literally <em>signing</em>, in terms of Move VM it just represents sender.</p>
+<p>Important! <code>0x0::Transaction::sender()</code> may soon be deprecated <a href="https://community.libra.org/t/signer-type-and-move-to/2894">as mentioned here</a>. So in the future using <code>signer</code> will be the only way to get sender's address.</p>
+<h3><a class="header" href="#signer-in-scripts" id="signer-in-scripts">Signer in scripts</a></h3>
+<p>Since signer is a native type, it has to be created. Though unlike <code>vector</code> it cannot be directly created in code, but can be received as script argument:</p>
+<pre><code class="language-Move">script {
+    // signer is a reference type here!
+    fun main(account: &amp;signer) {
+        let _ = account;
+    }
+}
+</code></pre>
+<p>Signer argument is put into your scripts automatically by VM, which means that there's no way nor need to pass it into script manually. One more thing - it's always a <em>reference</em>. Even though standard library (in case of Libra it's - <a href="https://github.com/libra/libra/blob/master/language/stdlib/modules/LibraAccount.move">LibraAccount</a>) has access to actual value of signer, functions using this value are private and there's no way to use or pass signer value anywhere else.</p>
+<blockquote>
+<p>Currently, canonical name of the variable holding signer type is <em>account</em></p>
+</blockquote>
+<h3><a class="header" href="#signer-module-in-standard-library" id="signer-module-in-standard-library">Signer module in standard library</a></h3>
+<p>Native types require native functions, and for signer type it is <code>0x0::Signer</code>. This module is fairly simple (<a href="https://github.com/libra/libra/blob/master/language/stdlib/modules/Signer.move">link to original module in libra</a>):</p>
+<pre><code class="language-Move">module Signer {
+    // Borrows the address of the signer
+    // Conceptually, you can think of the `signer`
+    // as being a resource struct wrapper arround an address
+    // ```
+    // resource struct Signer { addr: address }
+    // ```
+    // `borrow_address` borrows this inner field
+    native public fun borrow_address(s: &amp;signer): &amp;address;
+
+    // Copies the address of the signer
+    public fun address_of(s: &amp;signer): address {
+        *borrow_address(s)
+    }
+}
+</code></pre>
+<p>As you can see, there're 2 methods, one of which is native and the other one is more handy as it copies address with dereference operator.</p>
+<p>Usage of this module is just as simple:</p>
+<pre><code class="language-Move">script {
+    fun main(account: &amp;signer) {
+        let _ : address = 0x0::Signer::address_of(account);
+    }
+}
+</code></pre>
+<h3><a class="header" href="#signer-in-module" id="signer-in-module">Signer in module</a></h3>
+<pre><code class="language-Move">module M {
+    use 0x0::Signer;
+
+    // let's proxy Signer::address_of
+    public fun get_address(account: &amp;signer): address {
+        Signer::address_of(account)
+    }
+}
+</code></pre>
+<!--  MAYBE ADD HISTORY OF THIS TYPE? -->
+<h3><a class="header" href="#further-reading-and-prs" id="further-reading-and-prs">Further reading and PRs</a></h3>
+<ul>
+<li><a href="https://community.libra.org/t/signer-type-and-move-to/2894">Libra Community thread on signer</a></li>
+<li><a href="https://github.com/libra/libra/issues/3679">Issue in libra repository with reasoning</a></li>
+<li><a href="https://github.com/libra/libra/pull/3819">PR in libra repository</a></li>
 </ul>
 <h1><a class="header" href="#resources" id="resources">Resources</a></h1>
 <p>Resources are what makes Move unique, safe and powerful.

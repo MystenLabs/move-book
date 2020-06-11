@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Syntax Basics - Move Book</title>
+        <title>Signer Type - Move Book</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../introduction/getting-started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="../chapters/syntax-basics.html" class="active"><strong aria-hidden="true">4.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/concept.html"><strong aria-hidden="true">4.1.</strong> Concept</a></li><li class="chapter-item expanded "><a href="../chapters/primitives.html"><strong aria-hidden="true">4.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../chapters/comments.html"><strong aria-hidden="true">4.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../chapters/expression-and-scope.html"><strong aria-hidden="true">4.4.</strong> Expression and Scope</a></li><li class="chapter-item expanded "><a href="../chapters/control-flow.html"><strong aria-hidden="true">4.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../chapters/module.html"><strong aria-hidden="true">4.6.</strong> Module</a></li><li class="chapter-item expanded "><a href="../chapters/function.html"><strong aria-hidden="true">4.7.</strong> Function</a></li><li class="chapter-item expanded "><a href="../chapters/struct.html"><strong aria-hidden="true">4.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="../chapters/advanced-topics.html"><strong aria-hidden="true">5.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/ownership.html"><strong aria-hidden="true">5.1.</strong> Ownership and References</a></li><li class="chapter-item expanded "><a href="../chapters/generics.html"><strong aria-hidden="true">5.2.</strong> Understanding Generics</a></li><li class="chapter-item expanded "><a href="../chapters/vector.html"><strong aria-hidden="true">5.3.</strong> Managing collections with Vectors</a></li><li class="chapter-item expanded "><a href="../chapters/signer.html"><strong aria-hidden="true">5.4.</strong> Signer Type</a></li><li class="chapter-item expanded "><a href="../chapters/resource.html"><strong aria-hidden="true">5.5.</strong> Programmable Resources</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../introduction/getting-started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="../chapters/syntax-basics.html"><strong aria-hidden="true">4.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/concept.html"><strong aria-hidden="true">4.1.</strong> Concept</a></li><li class="chapter-item expanded "><a href="../chapters/primitives.html"><strong aria-hidden="true">4.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../chapters/comments.html"><strong aria-hidden="true">4.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../chapters/expression-and-scope.html"><strong aria-hidden="true">4.4.</strong> Expression and Scope</a></li><li class="chapter-item expanded "><a href="../chapters/control-flow.html"><strong aria-hidden="true">4.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../chapters/module.html"><strong aria-hidden="true">4.6.</strong> Module</a></li><li class="chapter-item expanded "><a href="../chapters/function.html"><strong aria-hidden="true">4.7.</strong> Function</a></li><li class="chapter-item expanded "><a href="../chapters/struct.html"><strong aria-hidden="true">4.8.</strong> Structures</a></li></ol></li><li class="chapter-item expanded "><a href="../chapters/advanced-topics.html"><strong aria-hidden="true">5.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../chapters/ownership.html"><strong aria-hidden="true">5.1.</strong> Ownership and References</a></li><li class="chapter-item expanded "><a href="../chapters/generics.html"><strong aria-hidden="true">5.2.</strong> Understanding Generics</a></li><li class="chapter-item expanded "><a href="../chapters/vector.html"><strong aria-hidden="true">5.3.</strong> Managing collections with Vectors</a></li><li class="chapter-item expanded "><a href="../chapters/signer.html" class="active"><strong aria-hidden="true">5.4.</strong> Signer Type</a></li><li class="chapter-item expanded "><a href="../chapters/resource.html"><strong aria-hidden="true">5.5.</strong> Programmable Resources</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -151,21 +151,82 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#syntax-basics" id="syntax-basics">Syntax Basics</a></h1>
-<p>In this chapter you'll get to know Move language. We'll start with very simple and basic grammar rules and intensity will increase from one chapter to another. If you're a skilled developer this may seem too easy at first glance, but I do recommend you to take a closer look. If you're a beginner, then this part will give you everything you need to know about Move basics.</p>
+                        <h1><a class="header" href="#signer-type" id="signer-type">Signer Type</a></h1>
+<p>We've almost reached most important part - resources. But before we get to them, you need to learn about <code>signer</code> type and its features, and why this type exists.</p>
+<blockquote>
+<p>Signer is a native non-copyable (resource-like) type which holds address of transaction sender.</p>
+</blockquote>
+<p>Signer type represents sender authority. In other words - using signer means accessing sender's address and resources. It has no direct relation to <em>signatures</em> or literally <em>signing</em>, in terms of Move VM it just represents sender.</p>
+<p>Important! <code>0x0::Transaction::sender()</code> may soon be deprecated <a href="https://community.libra.org/t/signer-type-and-move-to/2894">as mentioned here</a>. So in the future using <code>signer</code> will be the only way to get sender's address.</p>
+<h3><a class="header" href="#signer-in-scripts" id="signer-in-scripts">Signer in scripts</a></h3>
+<p>Since signer is a native type, it has to be created. Though unlike <code>vector</code> it cannot be directly created in code, but can be received as script argument:</p>
+<pre><code class="language-Move">script {
+    // signer is a reference type here!
+    fun main(account: &amp;signer) {
+        let _ = account;
+    }
+}
+</code></pre>
+<p>Signer argument is put into your scripts automatically by VM, which means that there's no way nor need to pass it into script manually. One more thing - it's always a <em>reference</em>. Even though standard library (in case of Libra it's - <a href="https://github.com/libra/libra/blob/master/language/stdlib/modules/LibraAccount.move">LibraAccount</a>) has access to actual value of signer, functions using this value are private and there's no way to use or pass signer value anywhere else.</p>
+<blockquote>
+<p>Currently, canonical name of the variable holding signer type is <em>account</em></p>
+</blockquote>
+<h3><a class="header" href="#signer-module-in-standard-library" id="signer-module-in-standard-library">Signer module in standard library</a></h3>
+<p>Native types require native functions, and for signer type it is <code>0x0::Signer</code>. This module is fairly simple (<a href="https://github.com/libra/libra/blob/master/language/stdlib/modules/Signer.move">link to original module in libra</a>):</p>
+<pre><code class="language-Move">module Signer {
+    // Borrows the address of the signer
+    // Conceptually, you can think of the `signer`
+    // as being a resource struct wrapper arround an address
+    // ```
+    // resource struct Signer { addr: address }
+    // ```
+    // `borrow_address` borrows this inner field
+    native public fun borrow_address(s: &amp;signer): &amp;address;
+
+    // Copies the address of the signer
+    public fun address_of(s: &amp;signer): address {
+        *borrow_address(s)
+    }
+}
+</code></pre>
+<p>As you can see, there're 2 methods, one of which is native and the other one is more handy as it copies address with dereference operator.</p>
+<p>Usage of this module is just as simple:</p>
+<pre><code class="language-Move">script {
+    fun main(account: &amp;signer) {
+        let _ : address = 0x0::Signer::address_of(account);
+    }
+}
+</code></pre>
+<h3><a class="header" href="#signer-in-module" id="signer-in-module">Signer in module</a></h3>
+<pre><code class="language-Move">module M {
+    use 0x0::Signer;
+
+    // let's proxy Signer::address_of
+    public fun get_address(account: &amp;signer): address {
+        Signer::address_of(account)
+    }
+}
+</code></pre>
+<!--  MAYBE ADD HISTORY OF THIS TYPE? -->
+<h3><a class="header" href="#further-reading-and-prs" id="further-reading-and-prs">Further reading and PRs</a></h3>
+<ul>
+<li><a href="https://community.libra.org/t/signer-type-and-move-to/2894">Libra Community thread on signer</a></li>
+<li><a href="https://github.com/libra/libra/issues/3679">Issue in libra repository with reasoning</a></li>
+<li><a href="https://github.com/libra/libra/pull/3819">PR in libra repository</a></li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../introduction/getting-started.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../chapters/vector.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../chapters/concept.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../chapters/resource.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -177,13 +238,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../introduction/getting-started.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../chapters/vector.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="../chapters/concept.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../chapters/resource.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
