@@ -2,7 +2,23 @@
 
 In programming languages expression is a unit of code which returns a value. A function call with return value is an expression - it returns value; an integer (or bool or address) literal is also an expression - it has the value of its integer type and so on.
 
-> Expressions must be separated by semicolon.
+> Expressions must be separated by semicolon*
+
+*\* When you put a semicolon, 'internally' it's treated as `; (empty_expression)`. If you put any expression after semi, it will replace the empty one.*
+
+### Empty expression
+
+You probably will never use it directly but empty expression in Move (in this way it's similar to Rust) is marked with empty parentheses:
+
+```Move
+script {
+    fun empty() {
+        () // this is an empty expression
+    }
+}
+```
+
+Empty expression can be omitted as it's automatically put by VM.
 
 ### Literal expressions
 

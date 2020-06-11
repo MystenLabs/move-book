@@ -16,6 +16,7 @@
     - [Ownership and References](chapters/ownership.md)
     - [Understanding Generics](chapters/generics.md)
     - [Managing collections with Vectors](chapters/vector.md)
+    - [Signer Type](chapters/signer.md)
     - [Programmable Resources](chapters/resource.md)
 
 <!--
