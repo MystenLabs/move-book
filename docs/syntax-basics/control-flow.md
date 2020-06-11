@@ -210,3 +210,39 @@ script {
     }
 }
 ```
+
+### Conditional `abort`
+
+Sometimes you need to abort execution of transaction when some condition has failed. For that case there's keyword `abort`.
+
+```Move
+script {
+    fun main(a: u8) {
+
+        if (a != 10) {
+            abort 0;
+        }
+
+        // code here won't be executed if a != 10
+        // transaction aborted
+    }
+}
+```
+
+Keyword `abort` allows you to *abort* execution with an error code which is placed right after. Although `0x0::Transaction::assert(<condition>, <code>)` method already wraps this keyword into a handy method:
+
+```Move
+script {
+    use 0x0::Transaction;
+
+    fun main(a: u8) {
+        Transaction::assert(a == 10, 0);
+
+        // code here will be executed if (a == 10)
+    }
+}
+```
+
+`Transaction::assert` will abort execution when condition is not met, or it will do nothing in the opposite case.
+
+

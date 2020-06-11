@@ -113,7 +113,7 @@ script {
 
 Vectors are very powerful. They allow you to store huge amounts of data (max length is *18446744073709551615*) and to work with it inside indexed storage.
 
-### Hex literal for inline vector definitions
+### Hex and Bytestring literal for inline vector definitions
 
 Vector is also *meant* to represent strings. VM supports way of passing `vector<u8>` as argument into `main` function in script.
 
@@ -137,6 +137,19 @@ script {
     }
 }
 ```
+
+Much more simple approach (which [has become possible recently](https://github.com/libra/libra/pull/4058)) is to use bytestring literals:
+
+```Move
+script {
+
+    fun main() {
+        let _ = b"hello world";
+    }
+}
+```
+
+They are treated as ASCII strings and are also interpreted as `vector<u8>`.
 
 ### Vector cheatsheet
 

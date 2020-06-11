@@ -89,6 +89,27 @@ script {
 }
 ```
 
+### Keyword `return`
+
+Keyword `return` allows you to stop function execution and return value. It is supposed to be used with `if` condition, as that is the only way to make conditional switch in control flow.
+
+```Move
+module M {
+
+    public fun conditional_return(a: u8): bool {
+        if (a == 10) {
+            return true // semi is not put!
+        };
+
+        if (a < 10) {
+            true
+        } else {
+            false
+        }
+    }
+}
+```
+
 ### Multiple return values
 
 In previous examples we've experimented with functions with no return value or with single. But what if I told you that you can return multiple values of any type? Curious? Let's proceed!

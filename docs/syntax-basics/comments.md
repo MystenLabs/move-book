@@ -50,3 +50,6 @@ script {
 ```
 
 Of course this example is ridiculous! But it clearly shows the power of block comment. Feel free to comment anywhere!
+
+<!-- ### Documentation comments -->
+

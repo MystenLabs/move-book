@@ -1,10 +1,10 @@
-# Signer Type
+# Sender as Signer
 
-We've almost reached most important part - resources. But before we get to them, you need to learn about `signer` type and its features, and why this type exists.
+Before we get to how to use resources, you need to learn about `signer` type, and why this type exists.
 
 > Signer is a native non-copyable (resource-like) type which holds address of transaction sender.
 
-Signer type represents sender authority. In other words - using signer means accessing sender's address and resources. It has no direct relation to *signatures* or literally *signing*, in terms of Move VM it just represents sender.
+Signer type represents sender authority. In other words - using signer means accessing sender's address and resources. It has no direct relation to *signatures* or literally *signing*, in terms of Move VM it simply represents sender.
 
 Important! `0x0::Transaction::sender()` may soon be deprecated [as mentioned here](https://community.libra.org/t/signer-type-and-move-to/2894). So in the future using `signer` will be the only way to get sender's address.
 
@@ -72,6 +72,10 @@ module M {
 }
 ```
 
+> Methods using `&signer` type as argument explicitly show that they are using sender's address.
+
+One of the reasons for this type was to show which methods require sender authority and which ones do not. So method cannot trick user into unauthorized access to its resources.
+
 <!--  MAYBE ADD HISTORY OF THIS TYPE? -->
 
 ### Further reading and PRs
@@ -79,8 +83,3 @@ module M {
 - [Libra Community thread on signer](https://community.libra.org/t/signer-type-and-move-to/2894)
 - [Issue in libra repository with reasoning](https://github.com/libra/libra/issues/3679)
 - [PR in libra repository](https://github.com/libra/libra/pull/3819)
-
-
-
-
-

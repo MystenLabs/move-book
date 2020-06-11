@@ -1,4 +1,4 @@
-# Ownership
+# Ownership and References
 
 Move VM implements Rust-like ownership system. And the best description of it is in [Rust Book](https://doc.rust-lang.org/stable/book/ch04-01-what-is-ownership.html). <!-- There's one main difference between two languages: Move does not have *heap*, and all of its variables are *put on stack*. -->
 

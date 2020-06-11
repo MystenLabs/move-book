@@ -227,3 +227,4 @@ module Country {
 }
 ```
 
+Destructuring may not be needed with structs. But remember it - it's going to play a huge part when we get to resources.

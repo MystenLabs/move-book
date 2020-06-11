@@ -257,3 +257,7 @@ Let's keynote the main points of this chapter.
 3. Block is an expression that may or may not have return value.
 
 How to control execution flow and how to use blocks for logic switches - on the next page.
+
+### Further reading
+
+- [Libra Community thread on empty expressions and semicolon](https://community.libra.org/t/odd-error-when-semi-is-put-after-break-or-continue/2868)
