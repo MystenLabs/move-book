@@ -4,10 +4,12 @@ In this section you'll finally learn how to use resources. We'll go through the 
 
 We'll create a Collection contract, which will allow us to:
 
-- start a collection of any item
+- start a collection
 - add and take items from collection
 - destroy collection
+
 - offer collectibles to other users
+- allow using this module with any type
 
 For better understanding of this chapter I recommend you using Move IDE (which has already been presented in [getting started chapter](/introduction/getting-started.md)) and running all of these modules and scripts in it. It will also highlight possible errors and will automatically sync with standard library to verify that you're using correct methods and addresses.
 

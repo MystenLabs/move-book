@@ -1,4 +1,4 @@
-# Access and Modify Resource
+# Read and Modify Resource
 
 To read and modify resource Move has two more built-in functions. Their names perfectly match their goals: `borrow_global` and `borrow_global_mut`.
 

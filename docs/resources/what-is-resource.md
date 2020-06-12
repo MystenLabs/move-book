@@ -1,6 +1,6 @@
 # What is Resource
 
-Resource is defineable a type with set of restrictions created to make this type safe enough to represent digital assets. That being said, resource must meet the requirements for this assets: it cannot be copied nor can it be discarded or reused. We've already [been through](/resources) general description of its properties; let's see how these restrictions are implemented in the Move language.
+Resource is a defineable type with set of restrictions created to make this type safe enough to represent digital assets. That being said, resource must meet the requirements for this assets: it cannot be copied nor can it be discarded or reused. We've already [been through](/resources) general description of its properties; let's see how these restrictions are implemented in the Move language.
 
 ### Definition
 

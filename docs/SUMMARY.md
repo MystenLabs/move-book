@@ -21,7 +21,7 @@
     - [What is Resource](resources/what-is-resource.md)
     - [Resource by Example](resources/resource-by-example.md)
         - [Create and Move](resources/storing-new-resource.md)
-        - [Access and Modify](resources/access-resource-with-borrow.md)
+        - [Read and Modify](resources/access-resource-with-borrow.md)
         - [Take and Destroy](resources/destroy-resource.md)
         - [Further Steps](resources/furher-steps.md)
 - [Tutorials](tutorials/README.md)
