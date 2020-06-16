@@ -199,6 +199,35 @@
 <blockquote>
 <p>Equality sign <code>=</code> is an assignment operator. It assigns right-hand-side expression to the left-hand-side variable. Example: <code>a = 10</code> - variable <code>a</code> is assigned an integer value of <code>10</code>.</p>
 </blockquote>
+<h3><a class="header" href="#operators-for-integer-types" id="operators-for-integer-types">Operators for integer types</a></h3>
+<p>Move has a variety of operators to modify integer values. Here's a list:</p>
+<table><thead><tr><th>Operator</th><th>Op</th><th>Types</th><th></th></tr></thead><tbody>
+<tr><td>+</td><td>sum</td><td>uint</td><td>Sum LHS and RHS</td></tr>
+<tr><td>-</td><td>sub</td><td>uint</td><td>Subtract RHS from LHS</td></tr>
+<tr><td>/</td><td>div</td><td>uint</td><td>Divide LHS by RHS</td></tr>
+<tr><td>*</td><td>mul</td><td>uint</td><td>Multiply LHS times RHS</td></tr>
+<tr><td>%</td><td>mod</td><td>uint</td><td>Division remainder (LHS by RHS)</td></tr>
+<tr><td>&lt;&lt;</td><td>lshift</td><td>uint</td><td>Left bit shift LHS by RHS</td></tr>
+<tr><td>&gt;&gt;</td><td>rshift</td><td>uint</td><td>Right bit shift LHS by RHS</td></tr>
+<tr><td>&amp;</td><td>and</td><td>uint</td><td>Bitwise AND</td></tr>
+<tr><td>^</td><td>xor</td><td>uint</td><td>Bitwise XOR</td></tr>
+<tr><td></td><td></td><td>or</td><td>uint</td></tr>
+</tbody></table>
+<p><em>LHS - left-hand-side expression, RHS - right-hand-side expression; uint: u8, u64, u128.</em></p>
+<!--
+
+### Comparison and boolean operators
+
+To build a bool condition by comparing values you have these operators. All of them return `bool` value and require LHS and RHS types match.
+
+| Operator | Op     | Types |                                |
+|----------|--------|-------|--------------------------------|
+| ==       | equal  | any   | Check if LHS equals RHS        |
+|----------|--------|-------|--------------------------------|
+| =<       | equal  | any   | Check if LHS equals RHS        |
+|----------|--------|-------|--------------------------------|
+
+-->
 <h3><a class="header" href="#underscore-_-to-mark-unused" id="underscore-_-to-mark-unused">Underscore &quot;_&quot; to mark unused</a></h3>
 <p>In Move every variable must be used (otherwise your code won't compile), hence you can't initialize one and leave it untouched. Though you have one way to mark variable as <em>intentionally unused</em> - by using underscore <code>_</code>.</p>
 <p>You'll get an error if you try to compile this script:</p>
