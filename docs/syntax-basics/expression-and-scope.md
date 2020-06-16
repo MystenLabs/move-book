@@ -61,6 +61,40 @@ After you've created and initialized variable you're able to *modify* or *access
 
 > Equality sign `=` is an assignment operator. It assigns right-hand-side expression to the left-hand-side variable. Example: `a = 10` - variable `a` is assigned an integer value of `10`.
 
+### Operators for integer types
+
+Move has a variety of operators to modify integer values. Here's a list:
+
+| Operator | Op     | Types |                                 |
+|----------|--------|-------|---------------------------------|
+| +        | sum    | uint  | Sum LHS and RHS                 |
+| -        | sub    | uint  | Subtract RHS from LHS           |
+| /        | div    | uint  | Divide LHS by RHS               |
+| *        | mul    | uint  | Multiply LHS times RHS          |
+| %        | mod    | uint  | Division remainder (LHS by RHS) |
+| <<       | lshift | uint  | Left bit shift LHS by RHS       |
+| >>       | rshift | uint  | Right bit shift LHS by RHS      |
+| &        | and    | uint  | Bitwise AND                     |
+| ^        | xor    | uint  | Bitwise XOR                     |
+| |        | or     | uint  | Bitwise OR                      |
+
+*LHS - left-hand-side expression, RHS - right-hand-side expression; uint: u8, u64, u128.*
+
+<!--
+
+### Comparison and boolean operators
+
+To build a bool condition by comparing values you have these operators. All of them return `bool` value and require LHS and RHS types match.
+
+| Operator | Op     | Types |                                |
+|----------|--------|-------|--------------------------------|
+| ==       | equal  | any   | Check if LHS equals RHS        |
+|----------|--------|-------|--------------------------------|
+| =<       | equal  | any   | Check if LHS equals RHS        |
+|----------|--------|-------|--------------------------------|
+
+-->
+
 ### Underscore "_" to mark unused
 
 In Move every variable must be used (otherwise your code won't compile), hence you can't initialize one and leave it untouched. Though you have one way to mark variable as *intentionally unused* - by using underscore `_`.
