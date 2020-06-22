@@ -31,7 +31,7 @@ script {
         10 + 5;
         true;
         true != false;
-        0x0;
+        0x1;
         1; 2; 3
     }
 }
@@ -49,7 +49,7 @@ script {
         let a;
         let b = true;
         let c = 10;
-        let d = 0x0;
+        let d = 0x1;
         a = c;
     }
 }

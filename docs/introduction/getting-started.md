@@ -68,7 +68,7 @@ Then create a script, let's call it `me.move` inside `scripts/` directory:
 // scripts/run_hello.move
 script {
     use 0x1::HelloWorld;
-    use 0x0::Debug;
+    use 0x1::Debug;
 
     fun main() {
         let five = HelloWorld::gimme_five();

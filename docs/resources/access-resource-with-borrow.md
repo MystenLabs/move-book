@@ -11,8 +11,8 @@ In [ownership and references chapter](/advanced-topics/ownership-and-references.
 module Collection {
 
     // added a dependency here!
-    use 0x0::Signer;
-    use 0x0::Vector;
+    use 0x1::Signer;
+    use 0x1::Vector;
 
     struct Item {}
     resource struct T {

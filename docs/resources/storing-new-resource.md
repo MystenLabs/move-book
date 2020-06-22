@@ -27,7 +27,7 @@ We've defined a resource struct `T`, which will hold vector of type `Item`. Now 
 // modules/Collection.move
 module Collection {
 
-    use 0x0::Vector;
+    use 0x1::Vector;
 
     struct Item {}
 

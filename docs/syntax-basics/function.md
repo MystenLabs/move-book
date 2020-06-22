@@ -19,10 +19,10 @@ Here's an example of simple script which checks if address exists:
 
 ```Move
 script {
-    use 0x0::Account;
+    use 0x1::Account;
 
     fun main(addr: address) {
-        Transaction::assert(Account::exists(addr), 1);
+        assert(Account::exists(addr), 1);
     }
 }
 ```
@@ -77,7 +77,7 @@ Now how would we use this function in script? Through import!
 ```Move
 script {
     use 0x1::Math;  // used 0x1 here; could be your address
-    use 0x0::Debug; // this one will be covered later!
+    use 0x1::Debug; // this one will be covered later!
 
     fun main(first_num: u64, second_num: u64) {
 
@@ -138,13 +138,13 @@ Now let's see how we can use the result of this function in another function in 
 
 ```Move
 script {
-    use 0x0::Debug;
+    use 0x1::Debug;
     use 0x1::Math;
 
     fun main(a: u8, b: u8)  {
         let (max, is_equal) = Math::max(99, 100);
 
-        Transaction::assert(is_equal, 1)
+        assert(is_equal, 1)
 
         Debug::print<u8>(&max);
     }
@@ -220,11 +220,11 @@ There's a special kind of functions - *native* ones. *Native functions* implemen
 Here's an example from Libra's standard library.
 
 ```Move
-module Transaction {
-    // get transaction sender, you can't do it other way
-    native public fun sender(): address;
+module Signer {
 
-    // ...
+    native public fun borrow_address(s: &signer): &address;
+
+    // ... some other functions ...
 }
 ```
 

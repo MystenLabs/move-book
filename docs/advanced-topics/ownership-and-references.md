@@ -171,7 +171,7 @@ script {
 
         // this method also takes only references
         // printed value will be 100
-        0x0::Debug::print<u8>(&value);
+        0x1::Debug::print<u8>(&value);
     }
 }
 ```

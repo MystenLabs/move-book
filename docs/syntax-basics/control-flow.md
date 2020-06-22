@@ -12,7 +12,7 @@ In Move you have loops (`while` and `loop`) and `if` expressions.
 
 ```Move
 script {
-    use 0x0::Debug;
+    use 0x1::Debug;
 
     fun main() {
 
@@ -37,7 +37,7 @@ if (<bool_expression>) <expression> else <expression>;
 
 ```Move
 script {
-    use 0x0::Debug;
+    use 0x1::Debug;
 
     fun main() {
 
@@ -60,7 +60,7 @@ Now variable `b` will be assigned a different value depending on the `a` express
 
 ```Move
 script {
-    use 0x0::Debug;
+    use 0x1::Debug;
 
     fun main() {
 
@@ -148,7 +148,7 @@ script {
         };
 
         // actually unreachable
-        0x0::Debug::print<u8>(&i);
+        0x1::Debug::print<u8>(&i);
     }
 }
 ```
@@ -177,7 +177,7 @@ script {
             // assume we do something here
          };
 
-        0x0::Debug::print<u8>(&i);
+        0x1::Debug::print<u8>(&i);
     }
 }
 ```
@@ -229,20 +229,23 @@ script {
 }
 ```
 
-Keyword `abort` allows you to *abort* execution with an error code which is placed right after. Although `0x0::Transaction::assert(<condition>, <code>)` method already wraps this keyword into a handy method:
+Keyword `abort` allows you to *abort* execution with an error code which is placed right after.
+
+### `assert` built-in
+
+Although built-in `assert(<condition>, <code>)` method already wraps this keyword into a handy method:
 
 ```Move
 script {
-    use 0x0::Transaction;
 
     fun main(a: u8) {
-        Transaction::assert(a == 10, 0);
+        assert(a == 10, 0);
 
         // code here will be executed if (a == 10)
     }
 }
 ```
 
-`Transaction::assert` will abort execution when condition is not met, or it will do nothing in the opposite case.
+`assert()` will abort execution when condition is not met, or it will do nothing in the opposite case.
 
 

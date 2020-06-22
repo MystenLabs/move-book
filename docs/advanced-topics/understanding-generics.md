@@ -71,15 +71,14 @@ What we did is we added angle brackets into function signature right after funct
 ```Move
 script {
     use {{sender}}::Storage;
-    use 0x0::Transaction;
-    use 0x0::Debug;
+    use 0x1::Debug;
 
     fun main() {
         // value will be of type Storage::Box<bool>
         let bool_box = Storage::create_box<bool>(true);
         let bool_val = Storage::value(&bool_box);
 
-        Transaction::assert(bool_val, 0);
+        assert(bool_val, 0);
 
         // we can do the same with integer
         let u64_box = Storage::create_box<u64>(1000000);
@@ -193,10 +192,10 @@ script {
         let _ = Storage::create_box<u64, Storage::Abroad>(1000);
 
         let _ = Storage::create_box<u128, Storage::Local>(1000);
-        let _ = Storage::create_box<address, Storage::Local>(0x0);
+        let _ = Storage::create_box<address, Storage::Local>(0x1);
 
         // or even u64 destination!
-        let _ = Storage::create_box<address, u64>(0x0);
+        let _ = Storage::create_box<address, u64>(0x1);
     }
 }
 ```

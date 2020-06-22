@@ -169,7 +169,7 @@ By making getters we've allowed module users access fields of our struct:
 ```Move
 script {
     use {{sender}}::Country as C;
-    use 0x0::Debug;
+    use 0x1::Debug;
 
     fun main() {
         // variable here is of type C::Country

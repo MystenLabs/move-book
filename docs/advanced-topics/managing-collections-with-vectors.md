@@ -6,7 +6,7 @@ Vector is a built-in type for storing *collections* of data. It is a generic sol
 
 ```Move
 script {
-    use 0x0::Vector;
+    use 0x1::Vector;
 
     fun main() {
         // use generics to create an emtpy vector
@@ -21,7 +21,7 @@ script {
 
         // now print vector length
         let a_len = Vector::length(&a);
-        0x0::Debug::print<u64>(&a_len);
+        0x1::Debug::print<u64>(&a_len);
 
         // then remove 2 elements from it
         Vector::pop_back(&mut a);
@@ -29,7 +29,7 @@ script {
 
         // and print length again
         let a_len = Vector::length(&a);
-        0x0::Debug::print<u64>(&a_len);
+        0x1::Debug::print<u64>(&a_len);
     }
 }
 ```
@@ -39,7 +39,7 @@ Vector can store up to `u64` number of values of a single non-reference type. To
 ```Move
 module Shelf {
 
-    use 0x0::Vector;
+    use 0x1::Vector;
 
     struct Box<T> {
         value: T
@@ -96,17 +96,17 @@ script {
         Shelf::put(&mut shelf, box_2);
 
         // prints size - 2
-        0x0::Debug::print<u64>(&Shelf::size<u64>(&shelf));
+        0x1::Debug::print<u64>(&Shelf::size<u64>(&shelf));
 
         // then take one from shelf (last one pushed)
         let take_back = Shelf::remove(&mut shelf);
         let value     = Shelf::value<u64>(&take_back);
 
         // verify that the box we took back is one with 999
-        0x0::Transaction::assert(value == 999, 1);
+        assert(value == 999, 1);
 
         // and print size again - 1
-        0x0::Debug::print<u64>(&Shelf::size<u64>(&shelf));
+        0x1::Debug::print<u64>(&Shelf::size<u64>(&shelf));
     }
 }
 ```
@@ -122,7 +122,7 @@ But you can also use hexadecimal literal do define a `vector<u8>` in your script
 ```Move
 script {
 
-    use 0x0::Vector;
+    use 0x1::Vector;
 
     // this is the way to accept arguments in main
     fun main(name: vector<u8>) {

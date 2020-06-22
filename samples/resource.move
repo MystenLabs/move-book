@@ -1,7 +1,7 @@
 module Collection {
 
-    use 0x0::Vector;
-    use 0x0::Signer;
+    use 0x1::Vector;
+    use 0x1::Signer;
 
     struct Item {}
 
