@@ -231,9 +231,9 @@ script {
 
 Keyword `abort` allows you to *abort* execution with an error code which is placed right after.
 
-### `assert` built-in
+### Use `assert` built-in
 
-Although built-in `assert(<condition>, <code>)` method already wraps this keyword into a handy method:
+Built-in `assert(<condition>, <code>)` method already wraps `abort` + condition and is accessible anywhere in code:
 
 ```Move
 script {
