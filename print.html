@@ -666,16 +666,18 @@ To build a bool condition by comparing values you have these operators. All of t
 </ol>
 <h3><a class="header" href="#conditional-loop-with-while" id="conditional-loop-with-while">Conditional loop with <code>while</code></a></h3>
 <p><code>while</code> is a way to define loop - expression which will be executed while some condition is true. So simply: code will be run over and over <em>while</em> condition is <code>true</code>. To implement condition usually an external variable (or counter) is used.</p>
-<pre><code class="language-Move">fun main() {
+<pre><code class="language-Move">script {
+    fun main() {
 
-    let i = 0; // define counter
+        let i = 0; // define counter
 
-    // iterate while i &lt; 5
-    // on every iteration increase i
-    // when i is 5, condition fails and loop exits
-    while (i &lt; 5) {
-        i = i + 1;
-    };
+        // iterate while i &lt; 5
+        // on every iteration increase i
+        // when i is 5, condition fails and loop exits
+        while (i &lt; 5) {
+            i = i + 1;
+        };
+    }
 }
 </code></pre>
 <p>It's worth mentioning that <code>while</code> is an expression - just like <code>if</code> is, and it too requires a semicolon afterwards. Generic syntax for while loop is:</p>
@@ -688,15 +690,17 @@ To build a bool condition by comparing values you have these operators. All of t
 <h3><a class="header" href="#infinite-loop" id="infinite-loop">Infinite <code>loop</code></a></h3>
 <p>There is a way to define infinite loops. They're non-conditional and actually infinite (unless you force them to stop). Unfortunately the compiler cannot define whether a loop is infinite (in most of the cases) and cannot stop you from publishing code, execution of which will consume all given resources (in blockchain terms - gas). So it's on you to test your code properly when using them or just switch to conditional <code>while</code> as it's way more secure.</p>
 <p>Infinite loops are defined with keyword <code>loop</code>.</p>
-<pre><code class="language-Move">fun main() {
-    let i = 0;
+<pre><code class="language-Move">script {
+    fun main() {
+        let i = 0;
 
-    loop {
-        i = i + 1;
-    };
+        loop {
+            i = i + 1;
+        };
 
-    // UNREACHABLE CODE
-    let _ = i;
+        // UNREACHABLE CODE
+        let _ = i;
+    }
 }
 </code></pre>
 <p>However this is possible (compiler will let you do this):</p>
