@@ -331,8 +331,8 @@
 }
 </code></pre>
 <p>Keyword <code>abort</code> allows you to <em>abort</em> execution with an error code which is placed right after.</p>
-<h3><a class="header" href="#assert-built-in" id="assert-built-in"><code>assert</code> built-in</a></h3>
-<p>Although built-in <code>assert(&lt;condition&gt;, &lt;code&gt;)</code> method already wraps this keyword into a handy method:</p>
+<h3><a class="header" href="#use-assert-built-in" id="use-assert-built-in">Use <code>assert</code> built-in</a></h3>
+<p>Built-in <code>assert(&lt;condition&gt;, &lt;code&gt;)</code> method already wraps <code>abort</code> + condition and is accessible anywhere in code:</p>
 <pre><code class="language-Move">script {
 
     fun main(a: u8) {
