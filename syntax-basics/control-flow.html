@@ -158,7 +158,7 @@
 <h2><a class="header" href="#the-if-expression" id="the-if-expression">The <code>if</code> expression</a></h2>
 <p><code>if</code> expression allows you to run a block of code if some condition is true, and to run another block instead if condition resulted in false.</p>
 <pre><code class="language-Move">script {
-    use 0x0::Debug;
+    use 0x1::Debug;
 
     fun main() {
 
@@ -177,7 +177,7 @@
 </code></pre>
 <p><code>if</code> is an expression, and like all of them it must end with semicolon. This is also a reason to use it with <code>let</code> statement!</p>
 <pre><code class="language-Move">script {
-    use 0x0::Debug;
+    use 0x1::Debug;
 
     fun main() {
 
@@ -196,7 +196,7 @@
 <p>Now variable <code>b</code> will be assigned a different value depending on the <code>a</code> expression. But both of the branches in <code>if</code> must return the same type! Otherwise variable <code>b</code> will have an option to be of different kind (or undefined) and this is impossible in statically typed language. In compiler terms it's called <em>branch compatibility</em> - both of the branches must return compatible (same) type.</p>
 <p><code>if</code> can be used in-solo - without <code>else</code>.</p>
 <pre><code class="language-Move">script {
-    use 0x0::Debug;
+    use 0x1::Debug;
 
     fun main() {
 
@@ -264,7 +264,7 @@
         };
 
         // actually unreachable
-        0x0::Debug::print&lt;u8&gt;(&amp;i);
+        0x1::Debug::print&lt;u8&gt;(&amp;i);
     }
 }
 </code></pre>
@@ -286,7 +286,7 @@
             // assume we do something here
          };
 
-        0x0::Debug::print&lt;u8&gt;(&amp;i);
+        0x1::Debug::print&lt;u8&gt;(&amp;i);
     }
 }
 </code></pre>
@@ -330,18 +330,19 @@
     }
 }
 </code></pre>
-<p>Keyword <code>abort</code> allows you to <em>abort</em> execution with an error code which is placed right after. Although <code>0x0::Transaction::assert(&lt;condition&gt;, &lt;code&gt;)</code> method already wraps this keyword into a handy method:</p>
+<p>Keyword <code>abort</code> allows you to <em>abort</em> execution with an error code which is placed right after.</p>
+<h3><a class="header" href="#assert-built-in" id="assert-built-in"><code>assert</code> built-in</a></h3>
+<p>Although built-in <code>assert(&lt;condition&gt;, &lt;code&gt;)</code> method already wraps this keyword into a handy method:</p>
 <pre><code class="language-Move">script {
-    use 0x0::Transaction;
 
     fun main(a: u8) {
-        Transaction::assert(a == 10, 0);
+        assert(a == 10, 0);
 
         // code here will be executed if (a == 10)
     }
 }
 </code></pre>
-<p><code>Transaction::assert</code> will abort execution when condition is not met, or it will do nothing in the opposite case.</p>
+<p><code>assert()</code> will abort execution when condition is not met, or it will do nothing in the opposite case.</p>
 
                     </main>
 

@@ -155,7 +155,7 @@
 <p>You're already familiar with <code>struct</code> type which gives you ability to create your own types and to store complex data. But sometimes you need something more dynamic, extensible and manageable. And for that Move has Vectors.</p>
 <p>Vector is a built-in type for storing <em>collections</em> of data. It is a generic solution for collection of any type (but only one). As its functionality is given to you by VM - not by actual Move language, the only way to work with it is by using standard library and <code>native</code> functions.</p>
 <pre><code class="language-Move">script {
-    use 0x0::Vector;
+    use 0x1::Vector;
 
     fun main() {
         // use generics to create an emtpy vector
@@ -170,7 +170,7 @@
 
         // now print vector length
         let a_len = Vector::length(&amp;a);
-        0x0::Debug::print&lt;u64&gt;(&amp;a_len);
+        0x1::Debug::print&lt;u64&gt;(&amp;a_len);
 
         // then remove 2 elements from it
         Vector::pop_back(&amp;mut a);
@@ -178,14 +178,14 @@
 
         // and print length again
         let a_len = Vector::length(&amp;a);
-        0x0::Debug::print&lt;u64&gt;(&amp;a_len);
+        0x1::Debug::print&lt;u64&gt;(&amp;a_len);
     }
 }
 </code></pre>
 <p>Vector can store up to <code>u64</code> number of values of a single non-reference type. To see how it helps managing huge storages let's write a module with it.</p>
 <pre><code class="language-Move">module Shelf {
 
-    use 0x0::Vector;
+    use 0x1::Vector;
 
     struct Box&lt;T&gt; {
         value: T
@@ -239,17 +239,17 @@
         Shelf::put(&amp;mut shelf, box_2);
 
         // prints size - 2
-        0x0::Debug::print&lt;u64&gt;(&amp;Shelf::size&lt;u64&gt;(&amp;shelf));
+        0x1::Debug::print&lt;u64&gt;(&amp;Shelf::size&lt;u64&gt;(&amp;shelf));
 
         // then take one from shelf (last one pushed)
         let take_back = Shelf::remove(&amp;mut shelf);
         let value     = Shelf::value&lt;u64&gt;(&amp;take_back);
 
         // verify that the box we took back is one with 999
-        0x0::Transaction::assert(value == 999, 1);
+        assert(value == 999, 1);
 
         // and print size again - 1
-        0x0::Debug::print&lt;u64&gt;(&amp;Shelf::size&lt;u64&gt;(&amp;shelf));
+        0x1::Debug::print&lt;u64&gt;(&amp;Shelf::size&lt;u64&gt;(&amp;shelf));
     }
 }
 </code></pre>
@@ -259,7 +259,7 @@
 <p>But you can also use hexadecimal literal do define a <code>vector&lt;u8&gt;</code> in your script or a module:</p>
 <pre><code class="language-Move">script {
 
-    use 0x0::Vector;
+    use 0x1::Vector;
 
     // this is the way to accept arguments in main
     fun main(name: vector&lt;u8&gt;) {

@@ -152,9 +152,9 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#module" id="module">Module</a></h1>
-<p>Module is a set of functions and types packed together which the developer publishes under his address. In the previous chapters we only used scripts, though script can only operate with published modules or standard library which itself is a set of modules published under <code>0x0</code> address.</p>
+<p>Module is a set of functions and types packed together which the developer publishes under his address. In the previous chapters we only used scripts, though script can only operate with published modules or standard library which itself is a set of modules published under <code>0x1</code> address.</p>
 <blockquote>
-<p>Module is published under its sender's address. Standard library is published under <code>0x0</code> address.</p>
+<p>Module is published under its sender's address. Standard library is published under <code>0x1</code> address.</p>
 </blockquote>
 <blockquote>
 <p>When publishing a module, none of its functions are executed. To use module - use scripts.</p>
@@ -191,53 +191,53 @@ module Math {
 <p>You can use modules by their address directly in your code:</p>
 <pre><code class="language-Move">script {
     fun main(a: u8) {
-        0x0::Transaction::assert(a == 10, 1);
+        0x1::Offer::create(a == 10, 1);
     }
 }
 </code></pre>
-<p>In this example we've imported module <code>Transaction</code> from address <code>0x0</code> (standard library) and used its method <code>assert(expr: bool, code: u8)</code>.</p>
+<p>In this example we've imported module <code>Offer</code> from address <code>0x1</code> (standard library) and used its method <code>assert(expr: bool, code: u8)</code>.</p>
 <h3><a class="header" href="#keyword-use" id="keyword-use">Keyword use</a></h3>
-<p>To make code shorter (remember that only 0x0 address is short, actual addresses are pretty long!) and to organize imports you can use keyword <code>use</code>:</p>
+<p>To make code shorter (remember that only 0x1 address is short, actual addresses are pretty long!) and to organize imports you can use keyword <code>use</code>:</p>
 <pre><code class="language-Move">use &lt;Address&gt;::&lt;ModuleName&gt;;
 </code></pre>
-<p>Here <code>&lt;Address&gt;</code> is a publisher's address and <code>&lt;ModuleName&gt;</code> is a name of a module. Pretty simple. Same here, we'll import <code>Transaction</code> module from <code>0x0</code>.</p>
-<pre><code class="language-Move">use 0x0::Transaction;
+<p>Here <code>&lt;Address&gt;</code> is a publisher's address and <code>&lt;ModuleName&gt;</code> is a name of a module. Pretty simple. Same here, we'll import <code>Vector</code> module from <code>0x1</code>.</p>
+<pre><code class="language-Move">use 0x1::Vector;
 </code></pre>
 <h3><a class="header" href="#accessing-modules-contents" id="accessing-modules-contents">Accessing module's contents</a></h3>
 <p>To access imported module's methods (or types) use <code>::</code> notation. Simple as that - modules can only have one level of definitions so everything you define in the module (publicly) can be accessed via double colon.</p>
 <pre><code class="language-Move">script {
-    use 0x0::Transaction;
+    use 0x1::Vector;
 
-    fun main(addr: address) {
-        // here we use method assert() of module Transaction
+    fun main() {
+        // here we use method empty() of module Vector
         // the same way we'd access any other method of any other module
-        Transaction::assert(addr == 0x1, 1);
+        let _ = Vector::empty&lt;u64&gt;();
     }
 }
 </code></pre>
 <h3><a class="header" href="#import-in-script" id="import-in-script">Import in script</a></h3>
 <p>In scripts imports must be placed inside <code>script {}</code> block:</p>
 <pre><code class="language-Move">script {
-    use 0x0::Transaction;
+    use 0x1::Vector;
 
     // in just the same way you can import any
     // other module(s). as many as you want!
 
     fun main() {
-        Transaction::assert(true, 1);
+        let _ = Vector::empty&lt;u64&gt;();
     }
 }
 </code></pre>
 <h3><a class="header" href="#import-in-module" id="import-in-module">Import in module</a></h3>
 <p>Module imports must be specified inside <code>module {}</code> block:</p>
 <pre><code class="language-Move">module Math {
-    use 0x0::Transaction;
+    use 0x1::Vector;
 
     // the same way as in scripts
     // you are free to import any number of modules
 
-    public fun equal_or_fail(a: u64, b: u64) {
-        Transaction::assert(a == b, 1);
+    public fun empty_vec(): vector&lt;u64&gt; {
+        Vector::empty&lt;u64&gt;();
     }
 }
 
@@ -249,16 +249,16 @@ module Math {
 </code></pre>
 <p>In script:</p>
 <pre><code class="language-Move">script {
-    use 0x0::Transaction as Tx; // Tx now means Transaction
+    use 0x1::Vector as V; // V now means Vector
 
-    fun check_assert() {
-        Tx::assert(true, 11);
+    fun main() {
+        V::empty&lt;u64&gt;();
     }
 }
 </code></pre>
 <p>The same in module:</p>
 <pre><code class="language-Move">module Math {
-    use 0x0::Vector as Vec;
+    use 0x1::Vector as Vec;
 
     fun length(&amp;v: vector&lt;u8&gt;): u64 {
         Vec::length(&amp;v)

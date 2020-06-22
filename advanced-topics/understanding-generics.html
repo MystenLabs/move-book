@@ -202,15 +202,14 @@
 <p>What we did is we added angle brackets into function signature right after function name. Just the same way as we did with struct. Now how would we use this function? By specifying type in function call.</p>
 <pre><code class="language-Move">script {
     use {{sender}}::Storage;
-    use 0x0::Transaction;
-    use 0x0::Debug;
+    use 0x1::Debug;
 
     fun main() {
         // value will be of type Storage::Box&lt;bool&gt;
         let bool_box = Storage::create_box&lt;bool&gt;(true);
         let bool_val = Storage::value(&amp;bool_box);
 
-        Transaction::assert(bool_val, 0);
+        assert(bool_val, 0);
 
         // we can do the same with integer
         let u64_box = Storage::create_box&lt;u64&gt;(1000000);
@@ -305,10 +304,10 @@ script {
         let _ = Storage::create_box&lt;u64, Storage::Abroad&gt;(1000);
 
         let _ = Storage::create_box&lt;u128, Storage::Local&gt;(1000);
-        let _ = Storage::create_box&lt;address, Storage::Local&gt;(0x0);
+        let _ = Storage::create_box&lt;address, Storage::Local&gt;(0x1);
 
         // or even u64 destination!
-        let _ = Storage::create_box&lt;address, u64&gt;(0x0);
+        let _ = Storage::create_box&lt;address, u64&gt;(0x1);
     }
 }
 </code></pre>

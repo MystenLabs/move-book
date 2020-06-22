@@ -165,10 +165,10 @@
 <p>Script block can contain only one function which is considered <em>main</em>. This function (possibly with arguments) will be executed as a transaction. It is very limited: it cannot return value and should be used to operate other functions in already published modules.</p>
 <p>Here's an example of simple script which checks if address exists:</p>
 <pre><code class="language-Move">script {
-    use 0x0::Account;
+    use 0x1::Account;
 
     fun main(addr: address) {
-        Transaction::assert(Account::exists(addr), 1);
+        assert(Account::exists(addr), 1);
     }
 }
 </code></pre>
@@ -209,7 +209,7 @@
 <p>Now how would we use this function in script? Through import!</p>
 <pre><code class="language-Move">script {
     use 0x1::Math;  // used 0x1 here; could be your address
-    use 0x0::Debug; // this one will be covered later!
+    use 0x1::Debug; // this one will be covered later!
 
     fun main(first_num: u64, second_num: u64) {
 
@@ -258,13 +258,13 @@
 <p>This function takes two arguments: <code>a</code> and <code>b</code> and <em>returns two values</em>: first is the max value from two passed and second is a bool - whether numbers entered are equal. Take closer look at the syntax: instead of specifying single return argument we've added <em>parenteses</em> and have listed return argument types.</p>
 <p>Now let's see how we can use the result of this function in another function in the script.</p>
 <pre><code class="language-Move">script {
-    use 0x0::Debug;
+    use 0x1::Debug;
     use 0x1::Math;
 
     fun main(a: u8, b: u8)  {
         let (max, is_equal) = Math::max(99, 100);
 
-        Transaction::assert(is_equal, 1)
+        assert(is_equal, 1)
 
         Debug::print&lt;u8&gt;(&amp;max);
     }
@@ -320,11 +320,11 @@
 <h3><a class="header" href="#native-functions" id="native-functions">Native functions</a></h3>
 <p>There's a special kind of functions - <em>native</em> ones. <em>Native functions</em> implement functionality which goes beyond Move's possibilities and give you extra power. Native functions are defined by VM itself and may vary in different implementations. Which means they don't have implementation in Move syntax and instead of having function body they end with a semicolon. Keyword <code>native</code> is used to mark native functions. It does not conflict with function visibility modifiers and the same function can be <code>native</code> and <code>public</code> at the same time.</p>
 <p>Here's an example from Libra's standard library.</p>
-<pre><code class="language-Move">module Transaction {
-    // get transaction sender, you can't do it other way
-    native public fun sender(): address;
+<pre><code class="language-Move">module Signer {
 
-    // ...
+    native public fun borrow_address(s: &amp;signer): &amp;address;
+
+    // ... some other functions ...
 }
 </code></pre>
 

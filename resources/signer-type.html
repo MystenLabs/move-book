@@ -157,7 +157,7 @@
 <p>Signer is a native non-copyable (resource-like) type which holds address of transaction sender.</p>
 </blockquote>
 <p>Signer type represents sender authority. In other words - using signer means accessing sender's address and resources. It has no direct relation to <em>signatures</em> or literally <em>signing</em>, in terms of Move VM it simply represents sender.</p>
-<p>Important! <code>0x0::Transaction::sender()</code> may soon be deprecated <a href="https://community.libra.org/t/signer-type-and-move-to/2894">as mentioned here</a>. So in the future using <code>signer</code> will be the only way to get sender's address.</p>
+<p>Important! <code>0x1::Transaction::sender()</code> may soon be deprecated <a href="https://community.libra.org/t/signer-type-and-move-to/2894">as mentioned here</a>. So in the future using <code>signer</code> will be the only way to get sender's address.</p>
 <h3><a class="header" href="#signer-in-scripts" id="signer-in-scripts">Signer in scripts</a></h3>
 <p>Since signer is a native type, it has to be created. Though unlike <code>vector</code> it cannot be directly created in code, but can be received as script argument:</p>
 <pre><code class="language-Move">script {
@@ -172,7 +172,7 @@
 <p>Currently, canonical name of the variable holding signer type is <em>account</em></p>
 </blockquote>
 <h3><a class="header" href="#signer-module-in-standard-library" id="signer-module-in-standard-library">Signer module in standard library</a></h3>
-<p>Native types require native functions, and for signer type it is <code>0x0::Signer</code>. This module is fairly simple (<a href="https://github.com/libra/libra/blob/master/language/stdlib/modules/Signer.move">link to original module in libra</a>):</p>
+<p>Native types require native functions, and for signer type it is <code>0x1::Signer</code>. This module is fairly simple (<a href="https://github.com/libra/libra/blob/master/language/stdlib/modules/Signer.move">link to original module in libra</a>):</p>
 <pre><code class="language-Move">module Signer {
     // Borrows the address of the signer
     // Conceptually, you can think of the `signer`
@@ -193,13 +193,13 @@
 <p>Usage of this module is just as simple:</p>
 <pre><code class="language-Move">script {
     fun main(account: &amp;signer) {
-        let _ : address = 0x0::Signer::address_of(account);
+        let _ : address = 0x1::Signer::address_of(account);
     }
 }
 </code></pre>
 <h3><a class="header" href="#signer-in-module" id="signer-in-module">Signer in module</a></h3>
 <pre><code class="language-Move">module M {
-    use 0x0::Signer;
+    use 0x1::Signer;
 
     // let's proxy Signer::address_of
     public fun get_address(account: &amp;signer): address {

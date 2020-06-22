@@ -211,7 +211,7 @@ module HelloWorld {
 <pre><code class="language-Move">// scripts/run_hello.move
 script {
     use 0x1::HelloWorld;
-    use 0x0::Debug;
+    use 0x1::Debug;
 
     fun main() {
         let five = HelloWorld::gimme_five();
@@ -376,7 +376,7 @@ out/
         10 + 5;
         true;
         true != false;
-        0x0;
+        0x1;
         1; 2; 3
     }
 }
@@ -389,7 +389,7 @@ out/
         let a;
         let b = true;
         let c = 10;
-        let d = 0x0;
+        let d = 0x1;
         a = c;
     }
 }
@@ -605,7 +605,7 @@ To build a bool condition by comparing values you have these operators. All of t
 <h2><a class="header" href="#the-if-expression" id="the-if-expression">The <code>if</code> expression</a></h2>
 <p><code>if</code> expression allows you to run a block of code if some condition is true, and to run another block instead if condition resulted in false.</p>
 <pre><code class="language-Move">script {
-    use 0x0::Debug;
+    use 0x1::Debug;
 
     fun main() {
 
@@ -624,7 +624,7 @@ To build a bool condition by comparing values you have these operators. All of t
 </code></pre>
 <p><code>if</code> is an expression, and like all of them it must end with semicolon. This is also a reason to use it with <code>let</code> statement!</p>
 <pre><code class="language-Move">script {
-    use 0x0::Debug;
+    use 0x1::Debug;
 
     fun main() {
 
@@ -643,7 +643,7 @@ To build a bool condition by comparing values you have these operators. All of t
 <p>Now variable <code>b</code> will be assigned a different value depending on the <code>a</code> expression. But both of the branches in <code>if</code> must return the same type! Otherwise variable <code>b</code> will have an option to be of different kind (or undefined) and this is impossible in statically typed language. In compiler terms it's called <em>branch compatibility</em> - both of the branches must return compatible (same) type.</p>
 <p><code>if</code> can be used in-solo - without <code>else</code>.</p>
 <pre><code class="language-Move">script {
-    use 0x0::Debug;
+    use 0x1::Debug;
 
     fun main() {
 
@@ -711,7 +711,7 @@ To build a bool condition by comparing values you have these operators. All of t
         };
 
         // actually unreachable
-        0x0::Debug::print&lt;u8&gt;(&amp;i);
+        0x1::Debug::print&lt;u8&gt;(&amp;i);
     }
 }
 </code></pre>
@@ -733,7 +733,7 @@ To build a bool condition by comparing values you have these operators. All of t
             // assume we do something here
          };
 
-        0x0::Debug::print&lt;u8&gt;(&amp;i);
+        0x1::Debug::print&lt;u8&gt;(&amp;i);
     }
 }
 </code></pre>
@@ -777,22 +777,23 @@ To build a bool condition by comparing values you have these operators. All of t
     }
 }
 </code></pre>
-<p>Keyword <code>abort</code> allows you to <em>abort</em> execution with an error code which is placed right after. Although <code>0x0::Transaction::assert(&lt;condition&gt;, &lt;code&gt;)</code> method already wraps this keyword into a handy method:</p>
+<p>Keyword <code>abort</code> allows you to <em>abort</em> execution with an error code which is placed right after.</p>
+<h3><a class="header" href="#assert-built-in" id="assert-built-in"><code>assert</code> built-in</a></h3>
+<p>Although built-in <code>assert(&lt;condition&gt;, &lt;code&gt;)</code> method already wraps this keyword into a handy method:</p>
 <pre><code class="language-Move">script {
-    use 0x0::Transaction;
 
     fun main(a: u8) {
-        Transaction::assert(a == 10, 0);
+        assert(a == 10, 0);
 
         // code here will be executed if (a == 10)
     }
 }
 </code></pre>
-<p><code>Transaction::assert</code> will abort execution when condition is not met, or it will do nothing in the opposite case.</p>
+<p><code>assert()</code> will abort execution when condition is not met, or it will do nothing in the opposite case.</p>
 <h1><a class="header" href="#module" id="module">Module</a></h1>
-<p>Module is a set of functions and types packed together which the developer publishes under his address. In the previous chapters we only used scripts, though script can only operate with published modules or standard library which itself is a set of modules published under <code>0x0</code> address.</p>
+<p>Module is a set of functions and types packed together which the developer publishes under his address. In the previous chapters we only used scripts, though script can only operate with published modules or standard library which itself is a set of modules published under <code>0x1</code> address.</p>
 <blockquote>
-<p>Module is published under its sender's address. Standard library is published under <code>0x0</code> address.</p>
+<p>Module is published under its sender's address. Standard library is published under <code>0x1</code> address.</p>
 </blockquote>
 <blockquote>
 <p>When publishing a module, none of its functions are executed. To use module - use scripts.</p>
@@ -829,53 +830,53 @@ module Math {
 <p>You can use modules by their address directly in your code:</p>
 <pre><code class="language-Move">script {
     fun main(a: u8) {
-        0x0::Transaction::assert(a == 10, 1);
+        0x1::Offer::create(a == 10, 1);
     }
 }
 </code></pre>
-<p>In this example we've imported module <code>Transaction</code> from address <code>0x0</code> (standard library) and used its method <code>assert(expr: bool, code: u8)</code>.</p>
+<p>In this example we've imported module <code>Offer</code> from address <code>0x1</code> (standard library) and used its method <code>assert(expr: bool, code: u8)</code>.</p>
 <h3><a class="header" href="#keyword-use" id="keyword-use">Keyword use</a></h3>
-<p>To make code shorter (remember that only 0x0 address is short, actual addresses are pretty long!) and to organize imports you can use keyword <code>use</code>:</p>
+<p>To make code shorter (remember that only 0x1 address is short, actual addresses are pretty long!) and to organize imports you can use keyword <code>use</code>:</p>
 <pre><code class="language-Move">use &lt;Address&gt;::&lt;ModuleName&gt;;
 </code></pre>
-<p>Here <code>&lt;Address&gt;</code> is a publisher's address and <code>&lt;ModuleName&gt;</code> is a name of a module. Pretty simple. Same here, we'll import <code>Transaction</code> module from <code>0x0</code>.</p>
-<pre><code class="language-Move">use 0x0::Transaction;
+<p>Here <code>&lt;Address&gt;</code> is a publisher's address and <code>&lt;ModuleName&gt;</code> is a name of a module. Pretty simple. Same here, we'll import <code>Vector</code> module from <code>0x1</code>.</p>
+<pre><code class="language-Move">use 0x1::Vector;
 </code></pre>
 <h3><a class="header" href="#accessing-modules-contents" id="accessing-modules-contents">Accessing module's contents</a></h3>
 <p>To access imported module's methods (or types) use <code>::</code> notation. Simple as that - modules can only have one level of definitions so everything you define in the module (publicly) can be accessed via double colon.</p>
 <pre><code class="language-Move">script {
-    use 0x0::Transaction;
+    use 0x1::Vector;
 
-    fun main(addr: address) {
-        // here we use method assert() of module Transaction
+    fun main() {
+        // here we use method empty() of module Vector
         // the same way we'd access any other method of any other module
-        Transaction::assert(addr == 0x1, 1);
+        let _ = Vector::empty&lt;u64&gt;();
     }
 }
 </code></pre>
 <h3><a class="header" href="#import-in-script" id="import-in-script">Import in script</a></h3>
 <p>In scripts imports must be placed inside <code>script {}</code> block:</p>
 <pre><code class="language-Move">script {
-    use 0x0::Transaction;
+    use 0x1::Vector;
 
     // in just the same way you can import any
     // other module(s). as many as you want!
 
     fun main() {
-        Transaction::assert(true, 1);
+        let _ = Vector::empty&lt;u64&gt;();
     }
 }
 </code></pre>
 <h3><a class="header" href="#import-in-module" id="import-in-module">Import in module</a></h3>
 <p>Module imports must be specified inside <code>module {}</code> block:</p>
 <pre><code class="language-Move">module Math {
-    use 0x0::Transaction;
+    use 0x1::Vector;
 
     // the same way as in scripts
     // you are free to import any number of modules
 
-    public fun equal_or_fail(a: u64, b: u64) {
-        Transaction::assert(a == b, 1);
+    public fun empty_vec(): vector&lt;u64&gt; {
+        Vector::empty&lt;u64&gt;();
     }
 }
 
@@ -887,16 +888,16 @@ module Math {
 </code></pre>
 <p>In script:</p>
 <pre><code class="language-Move">script {
-    use 0x0::Transaction as Tx; // Tx now means Transaction
+    use 0x1::Vector as V; // V now means Vector
 
-    fun check_assert() {
-        Tx::assert(true, 11);
+    fun main() {
+        V::empty&lt;u64&gt;();
     }
 }
 </code></pre>
 <p>The same in module:</p>
 <pre><code class="language-Move">module Math {
-    use 0x0::Vector as Vec;
+    use 0x1::Vector as Vec;
 
     fun length(&amp;v: vector&lt;u8&gt;): u64 {
         Vec::length(&amp;v)
@@ -917,10 +918,10 @@ module Math {
 <p>Script block can contain only one function which is considered <em>main</em>. This function (possibly with arguments) will be executed as a transaction. It is very limited: it cannot return value and should be used to operate other functions in already published modules.</p>
 <p>Here's an example of simple script which checks if address exists:</p>
 <pre><code class="language-Move">script {
-    use 0x0::Account;
+    use 0x1::Account;
 
     fun main(addr: address) {
-        Transaction::assert(Account::exists(addr), 1);
+        assert(Account::exists(addr), 1);
     }
 }
 </code></pre>
@@ -961,7 +962,7 @@ module Math {
 <p>Now how would we use this function in script? Through import!</p>
 <pre><code class="language-Move">script {
     use 0x1::Math;  // used 0x1 here; could be your address
-    use 0x0::Debug; // this one will be covered later!
+    use 0x1::Debug; // this one will be covered later!
 
     fun main(first_num: u64, second_num: u64) {
 
@@ -1010,13 +1011,13 @@ module Math {
 <p>This function takes two arguments: <code>a</code> and <code>b</code> and <em>returns two values</em>: first is the max value from two passed and second is a bool - whether numbers entered are equal. Take closer look at the syntax: instead of specifying single return argument we've added <em>parenteses</em> and have listed return argument types.</p>
 <p>Now let's see how we can use the result of this function in another function in the script.</p>
 <pre><code class="language-Move">script {
-    use 0x0::Debug;
+    use 0x1::Debug;
     use 0x1::Math;
 
     fun main(a: u8, b: u8)  {
         let (max, is_equal) = Math::max(99, 100);
 
-        Transaction::assert(is_equal, 1)
+        assert(is_equal, 1)
 
         Debug::print&lt;u8&gt;(&amp;max);
     }
@@ -1072,11 +1073,11 @@ module Math {
 <h3><a class="header" href="#native-functions" id="native-functions">Native functions</a></h3>
 <p>There's a special kind of functions - <em>native</em> ones. <em>Native functions</em> implement functionality which goes beyond Move's possibilities and give you extra power. Native functions are defined by VM itself and may vary in different implementations. Which means they don't have implementation in Move syntax and instead of having function body they end with a semicolon. Keyword <code>native</code> is used to mark native functions. It does not conflict with function visibility modifiers and the same function can be <code>native</code> and <code>public</code> at the same time.</p>
 <p>Here's an example from Libra's standard library.</p>
-<pre><code class="language-Move">module Transaction {
-    // get transaction sender, you can't do it other way
-    native public fun sender(): address;
+<pre><code class="language-Move">module Signer {
 
-    // ...
+    native public fun borrow_address(s: &amp;signer): &amp;address;
+
+    // ... some other functions ...
 }
 </code></pre>
 <h1><a class="header" href="#struct" id="struct">Struct</a></h1>
@@ -1217,7 +1218,7 @@ public fun get_country_population(country: Country): u64 {
 <p>By making getters we've allowed module users access fields of our struct:</p>
 <pre><code class="language-Move">script {
     use {{sender}}::Country as C;
-    use 0x0::Debug;
+    use 0x1::Debug;
 
     fun main() {
         // variable here is of type C::Country
@@ -1410,7 +1411,7 @@ public fun get_country_population(country: Country): u64 {
 
         // this method also takes only references
         // printed value will be 100
-        0x0::Debug::print&lt;u8&gt;(&amp;value);
+        0x1::Debug::print&lt;u8&gt;(&amp;value);
     }
 }
 </code></pre>
@@ -1588,15 +1589,14 @@ Notes:
 <p>What we did is we added angle brackets into function signature right after function name. Just the same way as we did with struct. Now how would we use this function? By specifying type in function call.</p>
 <pre><code class="language-Move">script {
     use {{sender}}::Storage;
-    use 0x0::Transaction;
-    use 0x0::Debug;
+    use 0x1::Debug;
 
     fun main() {
         // value will be of type Storage::Box&lt;bool&gt;
         let bool_box = Storage::create_box&lt;bool&gt;(true);
         let bool_val = Storage::value(&amp;bool_box);
 
-        Transaction::assert(bool_val, 0);
+        assert(bool_val, 0);
 
         // we can do the same with integer
         let u64_box = Storage::create_box&lt;u64&gt;(1000000);
@@ -1691,10 +1691,10 @@ script {
         let _ = Storage::create_box&lt;u64, Storage::Abroad&gt;(1000);
 
         let _ = Storage::create_box&lt;u128, Storage::Local&gt;(1000);
-        let _ = Storage::create_box&lt;address, Storage::Local&gt;(0x0);
+        let _ = Storage::create_box&lt;address, Storage::Local&gt;(0x1);
 
         // or even u64 destination!
-        let _ = Storage::create_box&lt;address, u64&gt;(0x0);
+        let _ = Storage::create_box&lt;address, u64&gt;(0x1);
     }
 }
 </code></pre>
@@ -1744,7 +1744,7 @@ script {
 <p>You're already familiar with <code>struct</code> type which gives you ability to create your own types and to store complex data. But sometimes you need something more dynamic, extensible and manageable. And for that Move has Vectors.</p>
 <p>Vector is a built-in type for storing <em>collections</em> of data. It is a generic solution for collection of any type (but only one). As its functionality is given to you by VM - not by actual Move language, the only way to work with it is by using standard library and <code>native</code> functions.</p>
 <pre><code class="language-Move">script {
-    use 0x0::Vector;
+    use 0x1::Vector;
 
     fun main() {
         // use generics to create an emtpy vector
@@ -1759,7 +1759,7 @@ script {
 
         // now print vector length
         let a_len = Vector::length(&amp;a);
-        0x0::Debug::print&lt;u64&gt;(&amp;a_len);
+        0x1::Debug::print&lt;u64&gt;(&amp;a_len);
 
         // then remove 2 elements from it
         Vector::pop_back(&amp;mut a);
@@ -1767,14 +1767,14 @@ script {
 
         // and print length again
         let a_len = Vector::length(&amp;a);
-        0x0::Debug::print&lt;u64&gt;(&amp;a_len);
+        0x1::Debug::print&lt;u64&gt;(&amp;a_len);
     }
 }
 </code></pre>
 <p>Vector can store up to <code>u64</code> number of values of a single non-reference type. To see how it helps managing huge storages let's write a module with it.</p>
 <pre><code class="language-Move">module Shelf {
 
-    use 0x0::Vector;
+    use 0x1::Vector;
 
     struct Box&lt;T&gt; {
         value: T
@@ -1828,17 +1828,17 @@ script {
         Shelf::put(&amp;mut shelf, box_2);
 
         // prints size - 2
-        0x0::Debug::print&lt;u64&gt;(&amp;Shelf::size&lt;u64&gt;(&amp;shelf));
+        0x1::Debug::print&lt;u64&gt;(&amp;Shelf::size&lt;u64&gt;(&amp;shelf));
 
         // then take one from shelf (last one pushed)
         let take_back = Shelf::remove(&amp;mut shelf);
         let value     = Shelf::value&lt;u64&gt;(&amp;take_back);
 
         // verify that the box we took back is one with 999
-        0x0::Transaction::assert(value == 999, 1);
+        assert(value == 999, 1);
 
         // and print size again - 1
-        0x0::Debug::print&lt;u64&gt;(&amp;Shelf::size&lt;u64&gt;(&amp;shelf));
+        0x1::Debug::print&lt;u64&gt;(&amp;Shelf::size&lt;u64&gt;(&amp;shelf));
     }
 }
 </code></pre>
@@ -1848,7 +1848,7 @@ script {
 <p>But you can also use hexadecimal literal do define a <code>vector&lt;u8&gt;</code> in your script or a module:</p>
 <pre><code class="language-Move">script {
 
-    use 0x0::Vector;
+    use 0x1::Vector;
 
     // this is the way to accept arguments in main
     fun main(name: vector&lt;u8&gt;) {
@@ -1938,7 +1938,7 @@ script {
 <p>Signer is a native non-copyable (resource-like) type which holds address of transaction sender.</p>
 </blockquote>
 <p>Signer type represents sender authority. In other words - using signer means accessing sender's address and resources. It has no direct relation to <em>signatures</em> or literally <em>signing</em>, in terms of Move VM it simply represents sender.</p>
-<p>Important! <code>0x0::Transaction::sender()</code> may soon be deprecated <a href="https://community.libra.org/t/signer-type-and-move-to/2894">as mentioned here</a>. So in the future using <code>signer</code> will be the only way to get sender's address.</p>
+<p>Important! <code>0x1::Transaction::sender()</code> may soon be deprecated <a href="https://community.libra.org/t/signer-type-and-move-to/2894">as mentioned here</a>. So in the future using <code>signer</code> will be the only way to get sender's address.</p>
 <h3><a class="header" href="#signer-in-scripts" id="signer-in-scripts">Signer in scripts</a></h3>
 <p>Since signer is a native type, it has to be created. Though unlike <code>vector</code> it cannot be directly created in code, but can be received as script argument:</p>
 <pre><code class="language-Move">script {
@@ -1953,7 +1953,7 @@ script {
 <p>Currently, canonical name of the variable holding signer type is <em>account</em></p>
 </blockquote>
 <h3><a class="header" href="#signer-module-in-standard-library" id="signer-module-in-standard-library">Signer module in standard library</a></h3>
-<p>Native types require native functions, and for signer type it is <code>0x0::Signer</code>. This module is fairly simple (<a href="https://github.com/libra/libra/blob/master/language/stdlib/modules/Signer.move">link to original module in libra</a>):</p>
+<p>Native types require native functions, and for signer type it is <code>0x1::Signer</code>. This module is fairly simple (<a href="https://github.com/libra/libra/blob/master/language/stdlib/modules/Signer.move">link to original module in libra</a>):</p>
 <pre><code class="language-Move">module Signer {
     // Borrows the address of the signer
     // Conceptually, you can think of the `signer`
@@ -1974,13 +1974,13 @@ script {
 <p>Usage of this module is just as simple:</p>
 <pre><code class="language-Move">script {
     fun main(account: &amp;signer) {
-        let _ : address = 0x0::Signer::address_of(account);
+        let _ : address = 0x1::Signer::address_of(account);
     }
 }
 </code></pre>
 <h3><a class="header" href="#signer-in-module" id="signer-in-module">Signer in module</a></h3>
 <pre><code class="language-Move">module M {
-    use 0x0::Signer;
+    use 0x1::Signer;
 
     // let's proxy Signer::address_of
     public fun get_address(account: &amp;signer): address {
@@ -2076,7 +2076,7 @@ module Collection {
 <pre><code class="language-Move">// modules/Collection.move
 module Collection {
 
-    use 0x0::Vector;
+    use 0x1::Vector;
 
     struct Item {}
 
@@ -2134,8 +2134,8 @@ module Collection {
 module Collection {
 
     // added a dependency here!
-    use 0x0::Signer;
-    use 0x0::Vector;
+    use 0x1::Signer;
+    use 0x1::Vector;
 
     struct Item {}
     resource struct T {
