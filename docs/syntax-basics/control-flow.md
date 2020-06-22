@@ -88,16 +88,18 @@ There're two ways of defining loops in Move:
 `while` is a way to define loop - expression which will be executed while some condition is true. So simply: code will be run over and over *while* condition is `true`. To implement condition usually an external variable (or counter) is used.
 
 ```Move
-fun main() {
+script {
+    fun main() {
 
-    let i = 0; // define counter
+        let i = 0; // define counter
 
-    // iterate while i < 5
-    // on every iteration increase i
-    // when i is 5, condition fails and loop exits
-    while (i < 5) {
-        i = i + 1;
-    };
+        // iterate while i < 5
+        // on every iteration increase i
+        // when i is 5, condition fails and loop exits
+        while (i < 5) {
+            i = i + 1;
+        };
+    }
 }
 ```
 
@@ -122,15 +124,17 @@ There is a way to define infinite loops. They're non-conditional and actually in
 Infinite loops are defined with keyword `loop`.
 
 ```Move
-fun main() {
-    let i = 0;
+script {
+    fun main() {
+        let i = 0;
 
-    loop {
-        i = i + 1;
-    };
+        loop {
+            i = i + 1;
+        };
 
-    // UNREACHABLE CODE
-    let _ = i;
+        // UNREACHABLE CODE
+        let _ = i;
+    }
 }
 ```
 
