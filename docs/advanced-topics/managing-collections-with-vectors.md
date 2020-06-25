@@ -138,7 +138,7 @@ script {
 }
 ```
 
-Much more simple approach (which [has become possible recently](https://github.com/libra/libra/pull/4058)) is to use bytestring literals:
+Simpler approach (which [has become possible recently](https://github.com/libra/libra/pull/4058)) is to use bytestring literals:
 
 ```Move
 script {
