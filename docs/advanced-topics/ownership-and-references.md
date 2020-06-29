@@ -176,7 +176,7 @@ script {
 }
 ```
 
-> Use immutable (&) references to read data from structs, use mutable (&mut) to modify them. By using proper type of references you help maintaining secutiry and help reading your modules so the reader will know if this method changes the value or only reads.
+> Use immutable (&) references to read data from structs, use mutable (&mut) to modify them. By using proper type of references you help maintaining security and help reading your modules so the reader will know whether this method changes the value or only reads.
 
 ### Borrow checking
 
@@ -239,7 +239,7 @@ let _ = Borrow::ref_from_mut_a(mut_a);
 Borrow::change_b(mut_b, 100000);
 ```
 
-We'd have gotten an error:
+We would have gotten an error:
 
 ```Move
     ┌── /scripts/script.move:10:17 ───
