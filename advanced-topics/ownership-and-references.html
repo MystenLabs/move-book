@@ -7,7 +7,7 @@
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="First Book about Libra's Move language and Move VM. Move documentation, tutorials and language reference">
+        <meta name="description" content="First book about Libra's Move language and Move VM. Move documentation, Move tutorials and language reference">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
@@ -296,7 +296,7 @@
 }
 </code></pre>
 <blockquote>
-<p>Use immutable (&amp;) references to read data from structs, use mutable (&amp;mut) to modify them. By using proper type of references you help maintaining secutiry and help reading your modules so the reader will know if this method changes the value or only reads.</p>
+<p>Use immutable (&amp;) references to read data from structs, use mutable (&amp;mut) to modify them. By using proper type of references you help maintaining security and help reading your modules so the reader will know whether this method changes the value or only reads.</p>
 </blockquote>
 <h3><a class="header" href="#borrow-checking" id="borrow-checking">Borrow checking</a></h3>
 <p>Move controls the way you use references and helps you prevent unexpected bullet in your foot. To understand that let's see an example. I'll give you a module and a script and then will comment on what's going on and why.</p>
@@ -349,7 +349,7 @@ let _ = Borrow::ref_from_mut_a(mut_a);
 
 Borrow::change_b(mut_b, 100000);
 </code></pre>
-<p>We'd have gotten an error:</p>
+<p>We would have gotten an error:</p>
 <pre><code class="language-Move">    ┌── /scripts/script.move:10:17 ───
     │
  10 │         let _ = Borrow::ref_from_mut_a(mut_a);
