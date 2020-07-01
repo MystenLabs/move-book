@@ -2122,12 +2122,12 @@ module Collection {
     // ... skipped ...
 
     /// this function will check if resource exists at address
-    public fun exists(at: address): bool {
-        ::exists&lt;T&gt;(at)
+    public fun exists_at(at: address): bool {
+        exists&lt;T&gt;(at)
     }
 }
 </code></pre>
-<p>Note that we've put <code>::</code> - double colon before <code>exists</code> function. This is the way to access global functions (such as <code>move_to</code> or <code>exists</code>) without having conflicts with local functions with the same name.</p>
+<!-- Note that we've put `::` - double colon before `exists` function. This is the way to access global functions (such as `move_to` or `exists`) without having conflicts with local functions with the same name. -->
 <hr />
 <p>Now you know how to create a resource, how to move it to sender and how to check if resource already exists. It's time to learn to read this resource and to modify it!</p>
 <h1><a class="header" href="#read-and-modify-resource" id="read-and-modify-resource">Read and Modify Resource</a></h1>
