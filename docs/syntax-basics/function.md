@@ -62,7 +62,7 @@ module Math {
     fun zero(): u8 {
         0
     }
-]
+}
 ```
 
 What's new in our Math: function `sum(a,b)` which sums two `u64` values and returns a result - `u64` sum (type can't change).
