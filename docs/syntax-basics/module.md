@@ -126,11 +126,13 @@ module Math {
 To resolve naming conflicts (when 2 or more modules have same names) and to shorten you code you can change name of the imported module using keyword `as`.
 
 Syntax:
+
 ```Move
 use <Address>::<ModuleName> as <Alias>;
 ```
 
 In script:
+
 ```Move
 script {
     use 0x1::Vector as V; // V now means Vector
@@ -142,6 +144,7 @@ script {
 ```
 
 The same in module:
+
 ```Move
 module Math {
     use 0x1::Vector as Vec;

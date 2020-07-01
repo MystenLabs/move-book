@@ -28,8 +28,8 @@ module Collection {
         Vector::push_back(&mut collection.items, Item {});
     }
 
-    public fun exists(at: address): bool {
-        ::exists<T>(at)
+    public fun exists_at(at: address): bool {
+        exists<T>(at)
     }
 
     public fun destroy(account: &signer) acquires T {

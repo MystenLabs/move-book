@@ -80,6 +80,7 @@ But keep in mind that `if` expression without `else` branch cannot be used in as
 ## Iterating with loops
 
 There're two ways of defining loops in Move:
+
 1. Conditional loop with `while`
 2. Inifinite `loop`
 
@@ -251,5 +252,3 @@ script {
 ```
 
 `assert()` will abort execution when condition is not met, or it will do nothing in the opposite case.
-
-

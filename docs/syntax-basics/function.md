@@ -7,6 +7,7 @@ fun function_name(arg1: u64, arg2: bool): u64 {
     // function body
 }
 ```
+
 You have already seen some in previous chapters. And now you will learn how to use them.
 
 > **Note:** in Move functions should be named in *snake_case* - lowercase with underscores as word separators.
@@ -26,6 +27,7 @@ script {
     }
 }
 ```
+
 This function can have arguments: in this case it is `addr` argument with type `address`, also it can operate imported modules.
 
 > **Note:** as there's only one function, you can call it any way you want. Though you may want to follow general programming concepts and call it **main**
@@ -132,6 +134,7 @@ module Math {
     }
 }
 ```
+
 This function takes two arguments: `a` and `b` and *returns two values*: first is the max value from two passed and second is a bool - whether numbers entered are equal. Take closer look at the syntax: instead of specifying single return argument we've added *parenteses* and have listed return argument types.
 
 Now let's see how we can use the result of this function in another function in the script.
@@ -227,4 +230,3 @@ module Signer {
     // ... some other functions ...
 }
 ```
-

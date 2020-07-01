@@ -80,13 +80,13 @@ module Collection {
     // ... skipped ...
 
     /// this function will check if resource exists at address
-    public fun exists(at: address): bool {
-        ::exists<T>(at)
+    public fun exists_at(at: address): bool {
+        exists<T>(at)
     }
 }
 ````
 
-Note that we've put `::` - double colon before `exists` function. This is the way to access global functions (such as `move_to` or `exists`) without having conflicts with local functions with the same name.
+<!-- Note that we've put `::` - double colon before `exists` function. This is the way to access global functions (such as `move_to` or `exists`) without having conflicts with local functions with the same name. -->
 
 ---
 
