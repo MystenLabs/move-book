@@ -6,7 +6,7 @@ Before we get to how to use resources, you need to learn about `signer` type, an
 
 Signer type represents sender authority. In other words - using signer means accessing sender's address and resources. It has no direct relation to *signatures* or literally *signing*, in terms of Move VM it simply represents sender.
 
-Important! `0x1::Transaction::sender()` may soon be deprecated [as mentioned here](https://community.libra.org/t/signer-type-and-move-to/2894). So in the future using `signer` will be the only way to get sender's address.
+<!-- Important! `0x1::Transaction::sender()` may soon be deprecated [as mentioned here](https://community.libra.org/t/signer-type-and-move-to/2894). So in the future using `signer` will be the only way to get sender's address. -->
 
 ### Signer in scripts
 
