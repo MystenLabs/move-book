@@ -1993,7 +1993,7 @@ script {
 <p>Signer is a native non-copyable (resource-like) type which holds address of transaction sender.</p>
 </blockquote>
 <p>Signer type represents sender authority. In other words - using signer means accessing sender's address and resources. It has no direct relation to <em>signatures</em> or literally <em>signing</em>, in terms of Move VM it simply represents sender.</p>
-<p>Important! <code>0x1::Transaction::sender()</code> may soon be deprecated <a href="https://community.libra.org/t/signer-type-and-move-to/2894">as mentioned here</a>. So in the future using <code>signer</code> will be the only way to get sender's address.</p>
+<!-- Important! `0x1::Transaction::sender()` may soon be deprecated [as mentioned here](https://community.libra.org/t/signer-type-and-move-to/2894). So in the future using `signer` will be the only way to get sender's address. -->
 <h3><a class="header" href="#signer-in-scripts" id="signer-in-scripts">Signer in scripts</a></h3>
 <p>Since signer is a native type, it has to be created. Though unlike <code>vector</code> it cannot be directly created in code, but can be received as script argument:</p>
 <pre><code class="language-Move">script {
