@@ -413,7 +413,7 @@ out/
 <tr><td>&gt;&gt;</td><td>rshift</td><td>uint</td><td>Right bit shift LHS by RHS</td></tr>
 <tr><td>&amp;</td><td>and</td><td>uint</td><td>Bitwise AND</td></tr>
 <tr><td>^</td><td>xor</td><td>uint</td><td>Bitwise XOR</td></tr>
-<tr><td></td><td></td><td>or</td><td>uint</td></tr>
+<tr><td>|</td><td>or</td><td>uint</td><td>Bitwise OR</td></tr>
 </tbody></table>
 <p><em>LHS - left-hand-side expression, RHS - right-hand-side expression; uint: u8, u64, u128.</em></p>
 <!--
@@ -1960,7 +1960,7 @@ script {
 <li>Dfinance <a href="https://github.com/dfinance/dvm/blob/master/lang/stdlib/vector.move">dfinance/dvm</a></li>
 </ul>
 <h1><a class="header" href="#programmable-resources" id="programmable-resources">Programmable Resources</a></h1>
-<p>In this section we'll finally go through key feature of Move - resources. They are what makes Move unique, safe and powerful.</p>
+<p>In this section we'll finally learn key feature of Move - resources. They are what makes Move unique, safe and powerful.</p>
 <p>To start, let's go through key points from <a href="https://developers.libra.org/docs/move-overview#move-has-first-class-resources">libra developers website</a>:</p>
 <blockquote>
 <ol>
@@ -2055,7 +2055,7 @@ script {
 <li><a href="https://github.com/libra/libra/pull/3819">PR in libra repository</a></li>
 </ul>
 <h1><a class="header" href="#what-is-resource" id="what-is-resource">What is Resource</a></h1>
-<p>Resource is a defineable type with set of restrictions created to make this type safe enough to represent digital assets. That being said, resource must meet the requirements for this assets: it cannot be copied nor can it be discarded or reused. We've already <a href="resources//resources">been through</a> general description of its properties; let's see how these restrictions are implemented in the Move language.</p>
+<p>Resource is a defineable type with set of restrictions created to make this type safe enough to represent digital assets. That being said, resource must meet the requirements for these assets: it cannot be copied nor can it be discarded or reused. We've already <a href="resources//resources">been through</a> general description of its properties; let's see how these restrictions are implemented in the Move language.</p>
 <h3><a class="header" href="#definition-1" id="definition-1">Definition</a></h3>
 <p>Resource definition is similar to struct's:</p>
 <pre><code class="language-Move">module M {
