@@ -1,6 +1,6 @@
 # Programmable Resources
 
-In this section we'll finally go through key feature of Move - resources. They are what makes Move unique, safe and powerful.
+In this section we'll finally learn key feature of Move - resources. They are what makes Move unique, safe and powerful.
 
 To start, let's go through key points from [libra developers website](https://developers.libra.org/docs/move-overview#move-has-first-class-resources):
 

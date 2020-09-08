@@ -76,7 +76,7 @@ Move has a variety of operators to modify integer values. Here's a list:
 | >>       | rshift | uint  | Right bit shift LHS by RHS      |
 | &        | and    | uint  | Bitwise AND                     |
 | ^        | xor    | uint  | Bitwise XOR                     |
-| |        | or     | uint  | Bitwise OR                      |
+| \|       | or     | uint  | Bitwise OR                      |
 
 *LHS - left-hand-side expression, RHS - right-hand-side expression; uint: u8, u64, u128.*
 
