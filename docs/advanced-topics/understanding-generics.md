@@ -204,7 +204,7 @@ Here we use generics to mark type, but we don't actually use it. You'll soon lea
 
 ### Kind-matching and :copyable
 
-In the [ownership chapter](/chapters/ownership.md) we learned about *copy* and *move* operations in VM. Not every value in Move can be copied (but all of them can be moved!) - in the [resources chapter](/chapters/resource.md) you'll study `resources`, which are not *copyable*. But before we jump there, let's learn what *Kind* is.
+In the [ownership chapter](/advanced-topics/ownership-and-references.md) we learned about *copy* and *move* operations in VM. Not every value in Move can be copied (but all of them can be moved!) - in the [resources chapter](/resources/README.md) you'll study `resources`, which are not *copyable*. But before we jump there, let's learn what *Kind* is.
 
 Kind (in terms of VM) - is a group of types, there are only 2 kinds: `copyable` and `resource`. Kinds can be used to limit (or restrict) generic types passed into function.
 

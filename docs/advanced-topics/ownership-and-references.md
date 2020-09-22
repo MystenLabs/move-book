@@ -6,7 +6,7 @@ I recommend you reading ownership chapter in Rust Book even though Rust syntax d
 
 > Each variable has only one owner scope. When owner scope ends - owned variables are dropped.
 
-We've already seen this behavior in [expressions chapter](/chapters/expression-and-scope.md). Remember that variable lives as long as its scope? Now is the perfect time to get under the hood and learn why it happens.
+We've already seen this behavior in [expressions chapter](/syntax-basics/expression-and-scope.md). Remember that variable lives as long as its scope? Now is the perfect time to get under the hood and learn why it happens.
 
 Owner is a scope which *owns* a variable. Variables either can be defined in this scope (e.g. with keyword `let` in script) or be passed into scope as argument. Since the only scope in Move is function's - there are no other ways to put variables into scope.
 
