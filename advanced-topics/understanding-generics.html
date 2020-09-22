@@ -313,7 +313,7 @@ script {
 </code></pre>
 <p>Here we use generics to mark type, but we don't actually use it. You'll soon learn why this definition matters when you get to know <code>resources</code>. For now it's just another way to use them.</p>
 <h3><a class="header" href="#kind-matching-and-copyable" id="kind-matching-and-copyable">Kind-matching and :copyable</a></h3>
-<p>In the <a href="/chapters/ownership.html">ownership chapter</a> we learned about <em>copy</em> and <em>move</em> operations in VM. Not every value in Move can be copied (but all of them can be moved!) - in the <a href="/chapters/resource.html">resources chapter</a> you'll study <code>resources</code>, which are not <em>copyable</em>. But before we jump there, let's learn what <em>Kind</em> is.</p>
+<p>In the <a href="/advanced-topics/ownership-and-references.html">ownership chapter</a> we learned about <em>copy</em> and <em>move</em> operations in VM. Not every value in Move can be copied (but all of them can be moved!) - in the <a href="/resources/README.html">resources chapter</a> you'll study <code>resources</code>, which are not <em>copyable</em>. But before we jump there, let's learn what <em>Kind</em> is.</p>
 <p>Kind (in terms of VM) - is a group of types, there are only 2 kinds: <code>copyable</code> and <code>resource</code>. Kinds can be used to limit (or restrict) generic types passed into function.</p>
 <h3><a class="header" href="#copyable" id="copyable">Copyable</a></h3>
 <p><em>Copyable kind</em> - is a kind of types, value of which can be copied. <code>struct</code>, <code>vector</code> and primitive types - are three main groups of types fitting into this kind.</p>

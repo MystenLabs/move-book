@@ -157,7 +157,7 @@
 <blockquote>
 <p>Each variable has only one owner scope. When owner scope ends - owned variables are dropped.</p>
 </blockquote>
-<p>We've already seen this behavior in <a href="/chapters/expression-and-scope.html">expressions chapter</a>. Remember that variable lives as long as its scope? Now is the perfect time to get under the hood and learn why it happens.</p>
+<p>We've already seen this behavior in <a href="/syntax-basics/expression-and-scope.html">expressions chapter</a>. Remember that variable lives as long as its scope? Now is the perfect time to get under the hood and learn why it happens.</p>
 <p>Owner is a scope which <em>owns</em> a variable. Variables either can be defined in this scope (e.g. with keyword <code>let</code> in script) or be passed into scope as argument. Since the only scope in Move is function's - there are no other ways to put variables into scope.</p>
 <p>Each variable has only one owner, which means that when a variable is passed into function as argument, this function becomes the <em>new owner</em>, and variable no longer <em>owned</em> by the first function. Or you may say that function <em>takes ownership</em> of variable.</p>
 <pre><code class="language-Move">script {

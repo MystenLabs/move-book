@@ -1332,7 +1332,7 @@ public fun get_country_population(country: Country): u64 {
 <blockquote>
 <p>Each variable has only one owner scope. When owner scope ends - owned variables are dropped.</p>
 </blockquote>
-<p>We've already seen this behavior in <a href="advanced-topics//chapters/expression-and-scope.html">expressions chapter</a>. Remember that variable lives as long as its scope? Now is the perfect time to get under the hood and learn why it happens.</p>
+<p>We've already seen this behavior in <a href="advanced-topics//syntax-basics/expression-and-scope.html">expressions chapter</a>. Remember that variable lives as long as its scope? Now is the perfect time to get under the hood and learn why it happens.</p>
 <p>Owner is a scope which <em>owns</em> a variable. Variables either can be defined in this scope (e.g. with keyword <code>let</code> in script) or be passed into scope as argument. Since the only scope in Move is function's - there are no other ways to put variables into scope.</p>
 <p>Each variable has only one owner, which means that when a variable is passed into function as argument, this function becomes the <em>new owner</em>, and variable no longer <em>owned</em> by the first function. Or you may say that function <em>takes ownership</em> of variable.</p>
 <pre><code class="language-Move">script {
@@ -1755,7 +1755,7 @@ script {
 </code></pre>
 <p>Here we use generics to mark type, but we don't actually use it. You'll soon learn why this definition matters when you get to know <code>resources</code>. For now it's just another way to use them.</p>
 <h3><a class="header" href="#kind-matching-and-copyable" id="kind-matching-and-copyable">Kind-matching and :copyable</a></h3>
-<p>In the <a href="advanced-topics//chapters/ownership.html">ownership chapter</a> we learned about <em>copy</em> and <em>move</em> operations in VM. Not every value in Move can be copied (but all of them can be moved!) - in the <a href="advanced-topics//chapters/resource.html">resources chapter</a> you'll study <code>resources</code>, which are not <em>copyable</em>. But before we jump there, let's learn what <em>Kind</em> is.</p>
+<p>In the <a href="advanced-topics//advanced-topics/ownership-and-references.html">ownership chapter</a> we learned about <em>copy</em> and <em>move</em> operations in VM. Not every value in Move can be copied (but all of them can be moved!) - in the <a href="advanced-topics//resources/README.html">resources chapter</a> you'll study <code>resources</code>, which are not <em>copyable</em>. But before we jump there, let's learn what <em>Kind</em> is.</p>
 <p>Kind (in terms of VM) - is a group of types, there are only 2 kinds: <code>copyable</code> and <code>resource</code>. Kinds can be used to limit (or restrict) generic types passed into function.</p>
 <h3><a class="header" href="#copyable" id="copyable">Copyable</a></h3>
 <p><em>Copyable kind</em> - is a kind of types, value of which can be copied. <code>struct</code>, <code>vector</code> and primitive types - are three main groups of types fitting into this kind.</p>
