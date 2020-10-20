@@ -1,6 +1,6 @@
 [book]
 title = "Libra's Move Book for beginners"
-description = "First book about Libra's Move language and Move VM. Move documentation, Move tutorials and language reference"
+description = "First book about Libra's Move programming language and Move VM. Move documentation, Move tutorials and language reference"
 authors = ["Damir Shamanaev"]
 language = "en"
 multilingual = false
@@ -8,5 +8,5 @@ src = "docs"
 
 [output.html]
 google-analytics = "UA-93092448-16"
-git-repository-url = "https://github.com/damirka/move-book"
+git-repository-url = "https://github.com/dfinance/move-book"
 git-repository-icon = "fa-github"
