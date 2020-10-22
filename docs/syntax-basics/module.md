@@ -1,4 +1,4 @@
-# Module
+# Module and Import
 
 Module is a set of functions and types packed together which the developer publishes under his address. In the previous chapters we only used scripts, though script can only operate with published modules or standard library which itself is a set of modules published under `0x1` address.
 
@@ -200,6 +200,7 @@ module Math {
         Vec::length(&v)
     }
 }
+```
 
 For Self and *member import* (works in modules and scripts):
 

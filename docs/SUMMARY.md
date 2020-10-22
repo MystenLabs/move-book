@@ -9,7 +9,7 @@
     - [Comments](syntax-basics/comments.md)
     - [Expression and Scope](syntax-basics/expression-and-scope.md)
     - [Control Flow](syntax-basics/control-flow.md)
-    - [Module](syntax-basics/module.md)
+    - [Module and Import](syntax-basics/module.md)
     - [Constants](syntax-basics/constants.md)
     - [Function](syntax-basics/function.md)
     - [Structures](syntax-basics/struct.md)
