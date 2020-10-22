@@ -151,7 +151,7 @@ script {
 
 Small extension to member import syntax allows you to import whole module and its members. Use `Self` for module.
 
-```
+```Move
 script {
     use 0x1::Vector::{
         Self, // Self == Imported module
