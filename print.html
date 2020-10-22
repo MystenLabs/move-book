@@ -885,6 +885,45 @@ module Math {
 }
 
 </code></pre>
+<h3><a class="header" href="#member-import" id="member-import">Member import</a></h3>
+<p>Import statement can be extended - you can specify which members of the module you want to import:</p>
+<pre><code class="language-Move">script {
+    // single member import
+    use 0x1::Signer::address_of;
+
+    // multi member import (mind braces)
+    use 0x1::Vector::{
+        empty,
+        push_back
+    };
+
+    fun main(acc: &amp;signer) {
+        // use functions without module access
+        let vec = empty&lt;u8&gt;();
+        push_back(&amp;mut vec, 10);
+
+        // same here
+        let _ = address_of(acc);
+    }
+}
+</code></pre>
+<h3><a class="header" href="#using-self-to-import-module-alongside-its-members" id="using-self-to-import-module-alongside-its-members">Using <code>Self</code> to import module alongside its members</a></h3>
+<p>Small extension to member import syntax allows you to import whole module and its members. Use <code>Self</code> for module.</p>
+<pre><code>script {
+    use 0x1::Vector::{
+        Self, // Self == Imported module
+        empty
+    };
+
+    fun main() {
+        // `empty` imported as `empty`
+        let vec = empty&lt;u8&gt;();
+
+        // Self means Vector
+        Vector::push_back(&amp;mut vec, 10);
+    }
+}
+</code></pre>
 <h3><a class="header" href="#use-meets-as" id="use-meets-as">Use meets as</a></h3>
 <p>To resolve naming conflicts (when 2 or more modules have same names) and to shorten you code you can change name of the imported module using keyword <code>as</code>.</p>
 <p>Syntax:</p>
@@ -905,6 +944,24 @@ module Math {
 
     fun length(&amp;v: vector&lt;u8&gt;): u64 {
         Vec::length(&amp;v)
+    }
+}
+
+For Self and *member import* (works in modules and scripts):
+
+```Move
+script {
+    use 0x1::Vector::{
+        Self as V,
+        empty as empty_vec
+    };
+
+    fun main() {
+        // `empty` imported as `empty_vec`
+        let vec = empty_vec&lt;u8&gt;();
+
+        // Self as V = V
+        V::push_back(&amp;mut vec, 10);
     }
 }
 </code></pre>
