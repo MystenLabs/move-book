@@ -121,6 +121,53 @@ module Math {
 
 ```
 
+### Member import
+
+Import statement can be extended - you can specify which members of the module you want to import:
+
+```Move
+script {
+    // single member import
+    use 0x1::Signer::address_of;
+
+    // multi member import (mind braces)
+    use 0x1::Vector::{
+        empty,
+        push_back
+    };
+
+    fun main(acc: &signer) {
+        // use functions without module access
+        let vec = empty<u8>();
+        push_back(&mut vec, 10);
+
+        // same here
+        let _ = address_of(acc);
+    }
+}
+```
+
+### Using `Self` to import module alongside its members
+
+Small extension to member import syntax allows you to import whole module and its members. Use `Self` for module.
+
+```
+script {
+    use 0x1::Vector::{
+        Self, // Self == Imported module
+        empty
+    };
+
+    fun main() {
+        // `empty` imported as `empty`
+        let vec = empty<u8>();
+
+        // Self means Vector
+        Vector::push_back(&mut vec, 10);
+    }
+}
+```
+
 ### Use meets as
 
 To resolve naming conflicts (when 2 or more modules have same names) and to shorten you code you can change name of the imported module using keyword `as`.
@@ -153,3 +200,22 @@ module Math {
         Vec::length(&v)
     }
 }
+
+For Self and *member import* (works in modules and scripts):
+
+```Move
+script {
+    use 0x1::Vector::{
+        Self as V,
+        empty as empty_vec
+    };
+
+    fun main() {
+        // `empty` imported as `empty_vec`
+        let vec = empty_vec<u8>();
+
+        // Self as V = V
+        V::push_back(&mut vec, 10);
+    }
+}
+```
