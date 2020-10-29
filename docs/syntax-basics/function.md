@@ -46,7 +46,7 @@ module Math {
 }
 ```
 
-First step: we've defined a module named `Math` with one function in it: `zero()`, which returns 0 - a value of type `u8`. Remember [expressions](/chapters/expression-and-scope.md)? There's no semicolon after `0` as it is the *return value* of this function. Just like you would do with block. Yeah, function body is very similar to block.
+First step: we've defined a module named `Math` with one function in it: `zero()`, which returns 0 - a value of type `u8`. Remember [expressions](/syntax-basics/expression-and-scope.md)? There's no semicolon after `0` as it is the *return value* of this function. Just like you would do with block. Yeah, function body is very similar to block.
 
 ### Function arguments
 

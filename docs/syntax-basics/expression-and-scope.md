@@ -41,7 +41,7 @@ Good. You now know the simplest expressions there are. But why do we need them? 
 
 ### Variables and `let` keyword
 
-To store expression value inside a variable (to pass it somewhere) you have a keyword `let` (you've already seen it in [primitives chapter](/chapters/primitives.md)). It creates a new variable either empty (undefined) or with value of expression.
+To store expression value inside a variable (to pass it somewhere) you have a keyword `let` (you've already seen it in [primitives chapter](/syntax-basics/primitives.md)). It creates a new variable either empty (undefined) or with value of expression.
 
 ```Move
 script {
