@@ -7,6 +7,6 @@ multilingual = false
 src = "docs"
 
 [output.html]
-google-analytics = "UA-93092448-16"
-git-repository-url = "https://github.com/dfinance/move-book"
+# google-analytics = "UA-93092448-16"
+git-repository-url = "https://github.com/damirka/move-book"
 git-repository-icon = "fa-github"
