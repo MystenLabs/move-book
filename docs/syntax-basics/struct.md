@@ -206,14 +206,15 @@ module Country {
         // all struct fields must be specified
         let Country { id, population } = country;
 
-        // after destruction contry is dropped
-        // but its fields can be used
+        // after destruction country is dropped
+        // but its fields are now variables and
+        // can be used
         (id, population)
     }
 }
 ```
 
-You should remember that unused variables are prohibited in Move and sometimes you may need to destruct without using structs fields. For unused struct fields use `_` - underscore:
+You should remember that unused variables are prohibited in Move and sometimes you may need to destruct a structure without using its fields. For unused struct fields use `_` - underscore:
 
 ```Move
 module Country {
@@ -223,6 +224,9 @@ module Country {
 
         // this way you destroy struct and don't create unused variables
         let Country { id: _, population: _ } = country;
+
+        // or take only id and don't init `population` variable
+        // let Country { id, population: _ } = country;
     }
 }
 ```

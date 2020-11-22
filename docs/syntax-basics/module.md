@@ -118,7 +118,6 @@ module Math {
         Vector::empty<u64>();
     }
 }
-
 ```
 
 ### Member import
@@ -215,7 +214,7 @@ script {
         // `empty` imported as `empty_vec`
         let vec = empty_vec<u8>();
 
-        // Self as V = V
+        // Self as V = Vector
         V::push_back(&mut vec, 10);
     }
 }
