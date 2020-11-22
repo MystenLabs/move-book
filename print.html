@@ -122,7 +122,7 @@
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                         
-                        <a href="https://github.com/dfinance/move-book" title="Git repository" aria-label="Git repository">
+                        <a href="https://github.com/damirka/move-book" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
                         
@@ -883,7 +883,6 @@ module Math {
         Vector::empty&lt;u64&gt;();
     }
 }
-
 </code></pre>
 <h3><a class="header" href="#member-import" id="member-import">Member import</a></h3>
 <p>Import statement can be extended - you can specify which members of the module you want to import:</p>
@@ -958,7 +957,7 @@ module Math {
         // `empty` imported as `empty_vec`
         let vec = empty_vec&lt;u8&gt;();
 
-        // Self as V = V
+        // Self as V = Vector
         V::push_back(&amp;mut vec, 10);
     }
 }
@@ -1361,13 +1360,14 @@ public fun get_country_population(country: Country): u64 {
         // all struct fields must be specified
         let Country { id, population } = country;
 
-        // after destruction contry is dropped
-        // but its fields can be used
+        // after destruction country is dropped
+        // but its fields are now variables and
+        // can be used
         (id, population)
     }
 }
 </code></pre>
-<p>You should remember that unused variables are prohibited in Move and sometimes you may need to destruct without using structs fields. For unused struct fields use <code>_</code> - underscore:</p>
+<p>You should remember that unused variables are prohibited in Move and sometimes you may need to destruct a structure without using its fields. For unused struct fields use <code>_</code> - underscore:</p>
 <pre><code class="language-Move">module Country {
     // ...
 
@@ -1375,6 +1375,9 @@ public fun get_country_population(country: Country): u64 {
 
         // this way you destroy struct and don't create unused variables
         let Country { id: _, population: _ } = country;
+
+        // or take only id and don't init `population` variable
+        // let Country { id, population: _ } = country;
     }
 }
 </code></pre>
@@ -2352,23 +2355,6 @@ module Collection {
 
         
 
-        
-        <!-- Google Analytics Tag -->
-        <script type="text/javascript">
-            var localAddrs = ["localhost", "127.0.0.1", ""];
-
-            // make sure we don't activate google analytics if the developer is
-            // inspecting the book locally...
-            if (localAddrs.indexOf(document.location.hostname) === -1) {
-                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-                ga('create', 'UA-93092448-16', 'auto');
-                ga('send', 'pageview');
-            }
-        </script>
         
 
         
