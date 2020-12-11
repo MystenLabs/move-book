@@ -220,7 +220,7 @@ Any function defined in a module is accessible by any function in the same modul
 
 There's a special kind of functions - *native* ones. *Native functions* implement functionality which goes beyond Move's possibilities and give you extra power. Native functions are defined by VM itself and may vary in different implementations. Which means they don't have implementation in Move syntax and instead of having function body they end with a semicolon. Keyword `native` is used to mark native functions. It does not conflict with function visibility modifiers and the same function can be `native` and `public` at the same time.
 
-Here's an example from Libra's standard library.
+Here's an example from Diem's standard library.
 
 ```Move
 module Signer {

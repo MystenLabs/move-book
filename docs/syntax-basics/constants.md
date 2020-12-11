@@ -54,4 +54,4 @@ What is important to know about constants:
 
 ### Further reading
 
-- [PR with constant syntax](https://github.com/libra/libra/pull/4653)
+- [PR with constant syntax](https://github.com/diem/diem/pull/4653)

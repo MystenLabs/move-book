@@ -294,4 +294,4 @@ How to control execution flow and how to use blocks for logic switches - on the 
 
 ### Further reading
 
-- [Libra Community thread on empty expressions and semicolon](https://community.libra.org/t/odd-error-when-semi-is-put-after-break-or-continue/2868)
+- [Diem Community thread on empty expressions and semicolon](https://community.diem.com/t/odd-error-when-semi-is-put-after-break-or-continue/2868)

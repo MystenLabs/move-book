@@ -1,6 +1,6 @@
 [book]
-title = "Libra's Move Book for beginners"
-description = "First book about Libra's Move programming language and Move VM. Move documentation, Move tutorials and language reference"
+title = "The Move Book"
+description = "First book about Diem's Move programming language and Move VM. Move documentation, Move tutorials and language reference"
 authors = ["Damir Shamanaev"]
 language = "en"
 multilingual = false

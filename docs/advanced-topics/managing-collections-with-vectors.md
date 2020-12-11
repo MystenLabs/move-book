@@ -138,7 +138,7 @@ script {
 }
 ```
 
-Simpler approach (which [has become possible recently](https://github.com/libra/libra/pull/4058)) is to use bytestring literals:
+Simpler approach (which [has become possible recently](https://github.com/diem/diem/pull/4058)) is to use bytestring literals:
 
 ```Move
 script {
@@ -178,6 +178,6 @@ Vector::pop_back<E>(v: &mut vector<E>): E;
 
 Vector module in standard libraries:
 
-- Libra [libra/libra](https://github.com/libra/libra/blob/master/language/stdlib/modules/vector.move)
+- Diem [diem/diem](https://github.com/diem/diem/blob/master/language/stdlib/modules/vector.move)
 - Dfinance [dfinance/dvm](https://github.com/dfinance/dvm/blob/master/lang/stdlib/vector.move)
 

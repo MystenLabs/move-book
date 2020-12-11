@@ -21,13 +21,13 @@ script {
 }
 ```
 
-Signer argument is put into your scripts automatically by VM, which means that there's no way nor need to pass it into script manually. One more thing - it's always a *reference*. Even though standard library (in case of Libra it's - [LibraAccount](https://github.com/libra/libra/blob/master/language/stdlib/modules/LibraAccount.move)) has access to actual value of signer, functions using this value are private and there's no way to use or pass signer value anywhere else.
+Signer argument is put into your scripts automatically by VM, which means that there's no way nor need to pass it into script manually. One more thing - it's always a *reference*. Even though standard library (in case of Diem it's - [DiemAccount](https://github.com/diem/diem/blob/master/language/stdlib/modules/DiemAccount.move)) has access to actual value of signer, functions using this value are private and there's no way to use or pass signer value anywhere else.
 
 > Currently, canonical name of the variable holding signer type is *account*
 
 ### Signer module in standard library
 
-Native types require native functions, and for signer type it is `0x1::Signer`. This module is fairly simple ([link to original module in libra](https://github.com/libra/libra/blob/master/language/stdlib/modules/Signer.move)):
+Native types require native functions, and for signer type it is `0x1::Signer`. This module is fairly simple ([link to original module in diem](https://github.com/diem/diem/blob/master/language/stdlib/modules/Signer.move)):
 
 ```Move
 module Signer {
@@ -80,6 +80,6 @@ One of the reasons for this type was to show which methods require sender author
 
 ### Further reading and PRs
 
-- [Libra Community thread on signer](https://community.libra.org/t/signer-type-and-move-to/2894)
-- [Issue in libra repository with reasoning](https://github.com/libra/libra/issues/3679)
-- [PR in libra repository](https://github.com/libra/libra/pull/3819)
+- [Diem Community thread on signer](https://community.diem.com/t/signer-type-and-move-to/2894)
+- [Issue in Diem repository with reasoning](https://github.com/diem/diem/issues/3679)
+- [PR in Diem repository](https://github.com/diem/diem/pull/3819)
