@@ -3,13 +3,13 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Libra's Move Book for beginners</title>
+        <title>The Move Book</title>
         
         <meta name="robots" content="noindex" />
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="First book about Libra's Move programming language and Move VM. Move documentation, Move tutorials and language reference">
+        <meta name="description" content="First book about Diem's Move programming language and Move VM. Move documentation, Move tutorials and language reference">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
@@ -115,7 +115,7 @@
                         
                     </div>
 
-                    <h1 class="menu-title">Libra's Move Book for beginners</h1>
+                    <h1 class="menu-title">The Move Book</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
@@ -153,13 +153,20 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#the-move-language" id="the-move-language">The Move Language</a></h1>
-<p>Move is a safe and reliable language developed for blockchains by <a href="https://libra.org/">Libra</a>. You can read language white paper on <a href="https://developers.libra.org/docs/assets/papers/libra-move-a-language-with-programmable-resources/2019-09-26.pdf">libra developers website</a>. And you can find perfect answer to why it's suited for blockchain use <a href="https://community.libra.org/t/introducing-the-move-programming-language/72/45">here</a>.</p>
-<p>This book is a collection of all the information which my colleagues and I found and shaped into a single source of knowledge about Move language.</p>
+                        <h1><a class="header" href="#the-move-programming-language" id="the-move-programming-language">The Move Programming Language</a></h1>
+<p>Move is a safe and reliable language developed for blockchains by <a href="https://diem.com/">Diem</a>. You can read language white paper on <a href="https://developers.libra.org/docs/assets/papers/libra-move-a-language-with-programmable-resources/2019-09-26.pdf">Diem developers website</a>. And you can find perfect answer to why it's suited for blockchain use <a href="https://community.diem.com/t/introducing-the-move-programming-language/72/45">here</a>.</p>
+<p>This book is a collection of all the information which my I found and shaped into a single source of knowledge about Move language.F</p>
 <h1><a class="header" href="#foreword" id="foreword">Foreword</a></h1>
-<p>It's been few months since we at <a href="https://dfinance.co">dfinance</a> started using Libra's Move VM and Move language. Before that we worked a lot with blockchains (and smart contracts specifically): you may know our <a href="http://wings.ai">Wings.ai</a> project - once the biggest dApp on ETH network; and we - better than many - know how hard it can be for a newcomer to work with new blockchain language, especially Rust-like, especially when blockchain environments and infrastructure challenges come to play.</p>
-<p>That is why we are here - to help you dive into yet unknown language, and to show you its beauty.</p>
-<p>— Damir Shamanaev and Dfinance team</p>
+<p>When I wrote this book, there was no documentation (or other reference) on Move language and the goal I pursued was to give people a chance to see hidden gem of crypto world - the Move language. Currently, <a href="https://developers.diem.com/docs/move/overview">there is a Move documentation</a> written by language developers. Yet I still think that flow given in this book is more intuitive and more friendly for a newcomer, I once was a newcomer too and Move is one tricky and interesting language some concepts of which might be mind-blowing.</p>
+<p>Move is a language that I deeply love and I hope you will see why!</p>
+<p>- Damir Shamanaev</p>
+<p><em>The book was started when I was working at <a href="https://dfinance.co">dfinance</a>.</em></p>
+<!-- It's been few months since we at [dfinance](https://dfinance.co) started using Libra's Move VM and Move language. Before that we worked a lot with blockchains \(and smart contracts specifically\): you may know our [Wings.ai](http://wings.ai) project - once the biggest dApp on ETH network; and we - better than many - know how hard it can be for a newcomer to work with new blockchain language, especially Rust-like, especially when blockchain environments and infrastructure challenges come to play.
+
+That is why we are here - to help you dive into yet unknown language, and to show you its beauty.
+
+— Damir Shamanaev and Dfinance team
+ -->
 <h1><a class="header" href="#getting-started" id="getting-started">Getting started</a></h1>
 <p>As with any compiled language, you need a proper set of tools to compile, run and debug your Move applications. Since this language is created for blockchains and used only within them, running scripts off-chain is a non-trivial task: every module will require an environment, account handling and compile-publishing system.</p>
 <p>To simpify development of Move modules we've created <a href="https://github.com/damirka/vscode-move-ide">Move IDE</a> extension for Visual Studio Code. This extension will help you cope with environment requirements. Use of this extension is highly recommended as it will handle the build/run environment for you, hence will let you focus on learning Move language instead of struggling with the CLI environment. This extension also includes Move syntax highlighting and run environment to help you debug your applications before going public.</p>
@@ -305,7 +312,7 @@ out/
         // always replace `{{sender}}` in examples with VM specific address!!!
         addr = {{sender}};
 
-        // in Libra's Move VM - 16-byte address in HEX
+        // in Diem's Move VM - 16-byte address in HEX
         addr = 0x...;
 
         // in dfinance's DVM - bech32 encoded address with `wallet1` prefix
@@ -596,7 +603,7 @@ To build a bool condition by comparing values you have these operators. All of t
 <p>How to control execution flow and how to use blocks for logic switches - on the next page.</p>
 <h3><a class="header" href="#further-reading" id="further-reading">Further reading</a></h3>
 <ul>
-<li><a href="https://community.libra.org/t/odd-error-when-semi-is-put-after-break-or-continue/2868">Libra Community thread on empty expressions and semicolon</a></li>
+<li><a href="https://community.diem.com/t/odd-error-when-semi-is-put-after-break-or-continue/2868">Diem Community thread on empty expressions and semicolon</a></li>
 </ul>
 <h1><a class="header" href="#control-flow" id="control-flow">Control Flow</a></h1>
 <p>Move is imperative language and like one it has <em>control flow</em> - a way to make schoice whether to run block of code or to skip or to run another one instead.</p>
@@ -1011,7 +1018,7 @@ module Math {
 </ol>
 <h3><a class="header" href="#further-reading-1" id="further-reading-1">Further reading</a></h3>
 <ul>
-<li><a href="https://github.com/libra/libra/pull/4653">PR with constant syntax</a></li>
+<li><a href="https://github.com/diem/diem/pull/4653">PR with constant syntax</a></li>
 </ul>
 <h1><a class="header" href="#function" id="function">Function</a></h1>
 <p>Function is the only place of execution in Move. Function starts with the <code>fun</code> keyword which is followed by function name, parentheses for arguments and curly braces for body.</p>
@@ -1181,7 +1188,7 @@ module Math {
 <p>Any function defined in a module is accessible by any function in the same module no matter what visibility modifiers any of them has. This way private functions can still be used as calls inside public ones without exposing some private features or too risky operations.</p>
 <h3><a class="header" href="#native-functions" id="native-functions">Native functions</a></h3>
 <p>There's a special kind of functions - <em>native</em> ones. <em>Native functions</em> implement functionality which goes beyond Move's possibilities and give you extra power. Native functions are defined by VM itself and may vary in different implementations. Which means they don't have implementation in Move syntax and instead of having function body they end with a semicolon. Keyword <code>native</code> is used to mark native functions. It does not conflict with function visibility modifiers and the same function can be <code>native</code> and <code>public</code> at the same time.</p>
-<p>Here's an example from Libra's standard library.</p>
+<p>Here's an example from Diem's standard library.</p>
 <pre><code class="language-Move">module Signer {
 
     native public fun borrow_address(s: &amp;signer): &amp;address;
@@ -1976,7 +1983,7 @@ script {
     }
 }
 </code></pre>
-<p>Simpler approach (which <a href="https://github.com/libra/libra/pull/4058">has become possible recently</a>) is to use bytestring literals:</p>
+<p>Simpler approach (which <a href="https://github.com/diem/diem/pull/4058">has become possible recently</a>) is to use bytestring literals:</p>
 <pre><code class="language-Move">script {
 
     fun main() {
@@ -2014,12 +2021,12 @@ script {
 </code></pre>
 <p>Vector module in standard libraries:</p>
 <ul>
-<li>Libra <a href="https://github.com/libra/libra/blob/master/language/stdlib/modules/vector.move">libra/libra</a></li>
+<li>Diem <a href="https://github.com/diem/diem/blob/master/language/stdlib/modules/vector.move">diem/diem</a></li>
 <li>Dfinance <a href="https://github.com/dfinance/dvm/blob/master/lang/stdlib/vector.move">dfinance/dvm</a></li>
 </ul>
 <h1><a class="header" href="#programmable-resources" id="programmable-resources">Programmable Resources</a></h1>
 <p>In this section we'll finally learn key feature of Move - resources. They are what makes Move unique, safe and powerful.</p>
-<p>To start, let's go through key points from <a href="https://developers.libra.org/docs/move-overview#move-has-first-class-resources">libra developers website</a>:</p>
+<p>To start, let's go through key points from diem developers website (source page was removed after renaming Libra to Diem):</p>
 <blockquote>
 <ol>
 <li>The key feature of Move is the ability to define custom resource types. <em>Resource types are used to encode safe digital assets with rich programmability</em>.</li>
@@ -2035,16 +2042,16 @@ script {
 <p>In <a href="resources//ownership.html">references and ownership chapter</a> you've seen how Move secures scopes and controls variable's owner scope. And in <a href="resources//generics.html">generics chapter</a> you've learned that there's a special way of kind-matching to separate <em>copyable</em> and <em>non-copyable</em> types. All of these features provide safety for resource type.</p>
 <blockquote>
 <ol start="4">
-<li>All Libra currencies are implemented using the generic Libra::T type. For example: the LBR currency is represented as Libra::T<a href="resources/LBR::T">LBR::T</a> and a hypothetical USD currency would be represented as Libra::T<a href="resources/USD::T">USD::T</a>. Libra::T has no special status in the language; every Move resource enjoys the same protections.</li>
+<li>All Diem currencies are implemented using the generic Diem::T type. For example: the LBR currency is represented as Diem::T<a href="resources/LBR::T">LBR::T</a> and a hypothetical USD currency would be represented as Diem::T<a href="resources/USD::T">USD::T</a>. Diem::T has no special status in the language; every Move resource enjoys the same protections.</li>
 </ol>
 </blockquote>
-<p>Just like the Libra currency, other currencies or other types of assets can be represented in Move.</p>
+<p>Just like the Diem currency, other currencies or other types of assets can be represented in Move.</p>
 <h3><a class="header" href="#further-reading-2" id="further-reading-2">Further reading</a></h3>
 <ul>
-<li><a href="https://developers.libra.org/docs/move-paper">Move whitepaper</a></li>
-<li><a href="https://developers.libra.org/docs/crates/move-language">Move language page on developers website</a></li>
-<li><a href="https://github.com/libra/libra/blob/master/language/stdlib/modules/LBR.move">Libra Coin in standard library</a></li>
+<li><a href="https://developers.diem.com/docs/technical-papers/move-paper/">Move whitepaper</a></li>
 </ul>
+<!-- - [Diem Coin in standard library](https://github.com/diem/diem/blob/master/language/stdlib/modules/LBR.move) -->
+<!-- - [Move language page on developers website](https://developers.diem.com/docs/crates/move-language) -->
 <h1><a class="header" href="#sender-as-signer" id="sender-as-signer">Sender as Signer</a></h1>
 <p>Before we get to how to use resources, you need to learn about <code>signer</code> type, and why this type exists.</p>
 <blockquote>
@@ -2061,12 +2068,12 @@ script {
     }
 }
 </code></pre>
-<p>Signer argument is put into your scripts automatically by VM, which means that there's no way nor need to pass it into script manually. One more thing - it's always a <em>reference</em>. Even though standard library (in case of Libra it's - <a href="https://github.com/libra/libra/blob/master/language/stdlib/modules/LibraAccount.move">LibraAccount</a>) has access to actual value of signer, functions using this value are private and there's no way to use or pass signer value anywhere else.</p>
+<p>Signer argument is put into your scripts automatically by VM, which means that there's no way nor need to pass it into script manually. One more thing - it's always a <em>reference</em>. Even though standard library (in case of Diem it's - <a href="https://github.com/diem/diem/blob/master/language/stdlib/modules/DiemAccount.move">DiemAccount</a>) has access to actual value of signer, functions using this value are private and there's no way to use or pass signer value anywhere else.</p>
 <blockquote>
 <p>Currently, canonical name of the variable holding signer type is <em>account</em></p>
 </blockquote>
 <h3><a class="header" href="#signer-module-in-standard-library" id="signer-module-in-standard-library">Signer module in standard library</a></h3>
-<p>Native types require native functions, and for signer type it is <code>0x1::Signer</code>. This module is fairly simple (<a href="https://github.com/libra/libra/blob/master/language/stdlib/modules/Signer.move">link to original module in libra</a>):</p>
+<p>Native types require native functions, and for signer type it is <code>0x1::Signer</code>. This module is fairly simple (<a href="https://github.com/diem/diem/blob/master/language/stdlib/modules/Signer.move">link to original module in diem</a>):</p>
 <pre><code class="language-Move">module Signer {
     // Borrows the address of the signer
     // Conceptually, you can think of the `signer`
@@ -2108,9 +2115,9 @@ script {
 <!--  MAYBE ADD HISTORY OF THIS TYPE? -->
 <h3><a class="header" href="#further-reading-and-prs" id="further-reading-and-prs">Further reading and PRs</a></h3>
 <ul>
-<li><a href="https://community.libra.org/t/signer-type-and-move-to/2894">Libra Community thread on signer</a></li>
-<li><a href="https://github.com/libra/libra/issues/3679">Issue in libra repository with reasoning</a></li>
-<li><a href="https://github.com/libra/libra/pull/3819">PR in libra repository</a></li>
+<li><a href="https://community.diem.com/t/signer-type-and-move-to/2894">Diem Community thread on signer</a></li>
+<li><a href="https://github.com/diem/diem/issues/3679">Issue in Diem repository with reasoning</a></li>
+<li><a href="https://github.com/diem/diem/pull/3819">PR in Diem repository</a></li>
 </ul>
 <h1><a class="header" href="#what-is-resource" id="what-is-resource">What is Resource</a></h1>
 <p>Resource is a defineable type with set of restrictions created to make this type safe enough to represent digital assets. That being said, resource must meet the requirements for these assets: it cannot be copied nor can it be discarded or reused. We've already <a href="resources//resources">been through</a> general description of its properties; let's see how these restrictions are implemented in the Move language.</p>
@@ -2324,7 +2331,7 @@ module Collection {
 <p>In this section you've seen how resource restrictions are represented in Move syntax. You've also learned how to create, check, access, modify and destroy resources. This part is supposed to be last in the book. However you can modify this module to your needs and think of these options:</p>
 <ol>
 <li>Try to modify this module to support any type with generics;</li>
-<li>Look through <a href="https://github.com/libra/libra/blob/master/language/stdlib/modules/Offer.move">Offer module</a> and think of a way to offer collection to another account.</li>
+<li>Look through <a href="https://github.com/diem/diem/blob/master/language/stdlib/modules/Offer.move">Offer module</a> and think of a way to offer collection to another account.</li>
 </ol>
 <p>Full code of module Collection can be found <a href="https://github.com/damirka/move-book/blob/master/samples/">on GitHub</a>.</p>
 <h1><a class="header" href="#tutorials" id="tutorials">Tutorials</a></h1>

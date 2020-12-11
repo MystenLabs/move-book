@@ -3,11 +3,11 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Sender as Signer - Libra's Move Book for beginners</title>
+        <title>Sender as Signer - The Move Book</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="First book about Libra's Move programming language and Move VM. Move documentation, Move tutorials and language reference">
+        <meta name="description" content="First book about Diem's Move programming language and Move VM. Move documentation, Move tutorials and language reference">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
@@ -113,7 +113,7 @@
                         
                     </div>
 
-                    <h1 class="menu-title">Libra's Move Book for beginners</h1>
+                    <h1 class="menu-title">The Move Book</h1>
 
                     <div class="right-buttons">
                         <a href="../print.html" title="Print this book" aria-label="Print this book">
@@ -167,12 +167,12 @@
     }
 }
 </code></pre>
-<p>Signer argument is put into your scripts automatically by VM, which means that there's no way nor need to pass it into script manually. One more thing - it's always a <em>reference</em>. Even though standard library (in case of Libra it's - <a href="https://github.com/libra/libra/blob/master/language/stdlib/modules/LibraAccount.move">LibraAccount</a>) has access to actual value of signer, functions using this value are private and there's no way to use or pass signer value anywhere else.</p>
+<p>Signer argument is put into your scripts automatically by VM, which means that there's no way nor need to pass it into script manually. One more thing - it's always a <em>reference</em>. Even though standard library (in case of Diem it's - <a href="https://github.com/diem/diem/blob/master/language/stdlib/modules/DiemAccount.move">DiemAccount</a>) has access to actual value of signer, functions using this value are private and there's no way to use or pass signer value anywhere else.</p>
 <blockquote>
 <p>Currently, canonical name of the variable holding signer type is <em>account</em></p>
 </blockquote>
 <h3><a class="header" href="#signer-module-in-standard-library" id="signer-module-in-standard-library">Signer module in standard library</a></h3>
-<p>Native types require native functions, and for signer type it is <code>0x1::Signer</code>. This module is fairly simple (<a href="https://github.com/libra/libra/blob/master/language/stdlib/modules/Signer.move">link to original module in libra</a>):</p>
+<p>Native types require native functions, and for signer type it is <code>0x1::Signer</code>. This module is fairly simple (<a href="https://github.com/diem/diem/blob/master/language/stdlib/modules/Signer.move">link to original module in diem</a>):</p>
 <pre><code class="language-Move">module Signer {
     // Borrows the address of the signer
     // Conceptually, you can think of the `signer`
@@ -214,9 +214,9 @@
 <!--  MAYBE ADD HISTORY OF THIS TYPE? -->
 <h3><a class="header" href="#further-reading-and-prs" id="further-reading-and-prs">Further reading and PRs</a></h3>
 <ul>
-<li><a href="https://community.libra.org/t/signer-type-and-move-to/2894">Libra Community thread on signer</a></li>
-<li><a href="https://github.com/libra/libra/issues/3679">Issue in libra repository with reasoning</a></li>
-<li><a href="https://github.com/libra/libra/pull/3819">PR in libra repository</a></li>
+<li><a href="https://community.diem.com/t/signer-type-and-move-to/2894">Diem Community thread on signer</a></li>
+<li><a href="https://github.com/diem/diem/issues/3679">Issue in Diem repository with reasoning</a></li>
+<li><a href="https://github.com/diem/diem/pull/3819">PR in Diem repository</a></li>
 </ul>
 
                     </main>
