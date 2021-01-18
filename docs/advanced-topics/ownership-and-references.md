@@ -260,7 +260,7 @@ We come to few conclusions:
 2. You can create reference from reference, so that original reference will *be borrowed* by the new one. Mutable and immutable can be created from mutable and only immutable from immutable.
 3. When reference *is borrowed* it cannot be *moved* because other values depend on it.
 
-### Deferencing
+### Dereferencing
 
 References can be dereferenced to get linked value - to do it use asterisk `*`.
 
