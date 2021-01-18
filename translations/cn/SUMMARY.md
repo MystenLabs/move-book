@@ -13,7 +13,7 @@
     - [常量](syntax-basics/constants.md)
     - [函数](syntax-basics/function.md)
     - [结构体](syntax-basics/struct.md)
-- [高级主题](advanced-topics/README.md)
+- [进阶主题](advanced-topics/README.md)
     - [所有权和引用](advanced-topics/ownership-and-references.md)
     - [泛型](advanced-topics/understanding-generics.md)
     - [数组](advanced-topics/managing-collections-with-vectors.md)
