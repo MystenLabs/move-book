@@ -17,7 +17,7 @@ jobs:
           mdbook-version: '0.3.7'
 
       - run: mdbook build
-      - run: mbdook build translations/cn
+      - run: mdbook build translations/cn
       - run: mv translations/cn/book book/cn
 
       - name: Deploy
