@@ -1,0 +1,413 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>控制流</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Move编程语言</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> 序言</a></li><li class="chapter-item expanded "><a href="../introduction/getting-started.html"><strong aria-hidden="true">3.</strong> 快速入门</a></li><li class="chapter-item expanded "><a href="../syntax-basics/index.html"><strong aria-hidden="true">4.</strong> 语法基础</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../syntax-basics/concept.html"><strong aria-hidden="true">4.1.</strong> 基础概念</a></li><li class="chapter-item expanded "><a href="../syntax-basics/primitives.html"><strong aria-hidden="true">4.2.</strong> 基本类型</a></li><li class="chapter-item expanded "><a href="../syntax-basics/comments.html"><strong aria-hidden="true">4.3.</strong> 注释</a></li><li class="chapter-item expanded "><a href="../syntax-basics/expression-and-scope.html"><strong aria-hidden="true">4.4.</strong> 表达式和作用域</a></li><li class="chapter-item expanded "><a href="../syntax-basics/control-flow.html" class="active"><strong aria-hidden="true">4.5.</strong> 控制流</a></li><li class="chapter-item expanded "><a href="../syntax-basics/module.html"><strong aria-hidden="true">4.6.</strong> 模块和导入</a></li><li class="chapter-item expanded "><a href="../syntax-basics/constants.html"><strong aria-hidden="true">4.7.</strong> 常量</a></li><li class="chapter-item expanded "><a href="../syntax-basics/function.html"><strong aria-hidden="true">4.8.</strong> 函数</a></li><li class="chapter-item expanded "><a href="../syntax-basics/struct.html"><strong aria-hidden="true">4.9.</strong> 结构体</a></li></ol></li><li class="chapter-item expanded "><a href="../advanced-topics/index.html"><strong aria-hidden="true">5.</strong> 进阶主题</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../advanced-topics/ownership-and-references.html"><strong aria-hidden="true">5.1.</strong> 所有权和引用</a></li><li class="chapter-item expanded "><a href="../advanced-topics/understanding-generics.html"><strong aria-hidden="true">5.2.</strong> 泛型</a></li><li class="chapter-item expanded "><a href="../advanced-topics/managing-collections-with-vectors.html"><strong aria-hidden="true">5.3.</strong> 数组</a></li></ol></li><li class="chapter-item expanded "><a href="../resources/index.html"><strong aria-hidden="true">6.</strong> 可编程的 Resource</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../resources/signer-type.html"><strong aria-hidden="true">6.1.</strong> 发送者和签署者</a></li><li class="chapter-item expanded "><a href="../resources/what-is-resource.html"><strong aria-hidden="true">6.2.</strong> 什么是 Resource</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example.html"><strong aria-hidden="true">6.3.</strong> Resource 举例</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../resources/storing-new-resource.html"><strong aria-hidden="true">6.3.1.</strong> 创建和转移</a></li><li class="chapter-item expanded "><a href="../resources/access-resource-with-borrow.html"><strong aria-hidden="true">6.3.2.</strong> 读取和修改</a></li><li class="chapter-item expanded "><a href="../resources/destroy-resource.html"><strong aria-hidden="true">6.3.3.</strong> 使用和销毁</a></li><li class="chapter-item expanded "><a href="../resources/furher-steps.html"><strong aria-hidden="true">6.3.4.</strong> 下一步</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../tutorials/index.html"><strong aria-hidden="true">7.</strong> 实例</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tutorials/erc20.html"><strong aria-hidden="true">7.1.</strong> ERC20 代币</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#控制流" id="控制流">控制流</a></h1>
+<p>通过控制流表达式，我们可以选择运行某个代码块，或者跳过某块代码而运行另一代码块。</p>
+<p>Move支持if表达式和循环表达式。</p>
+<!-- In Move you have two statme to control flow: by using loops (`while` and `loop`) or `if` expressions. -->
+<h2><a class="header" href="#if-表达式" id="if-表达式"><code>if</code> 表达式</a></h2>
+<p>if 表达式允许我们在条件为真时运行代码块，在条件为假时运行另一个代码块。</p>
+<pre><code class="language-Move">script {
+    use 0x1::Debug;
+
+    fun main() {
+
+        let a = true;
+
+        if (a) {
+            Debug::print&lt;u8&gt;(&amp;0);
+        } else {
+            Debug::print&lt;u8&gt;(&amp;99);
+        };
+    }
+}
+</code></pre>
+<p>这个例子中，当<code>a == true</code>时打印<code>0</code>，当a是<code>false</code>时打印<code>99</code>，语法非常简单：</p>
+<pre><code>if (&lt;布尔表达式&gt;) &lt;表达式&gt; else &lt;表达式&gt;;
+</code></pre>
+<p>if是一个表达式，我们可以在let声明中使用它。但是像所有其他表达式一样，它必须以分号结尾。</p>
+<pre><code class="language-Move">script {
+    use 0x1::Debug;
+
+    fun main() {
+
+        // try switching to false
+        let a = true;
+        let b = if (a) { // 1st branch
+            10
+        } else { // 2nd branch
+            20
+        };
+
+        Debug::print&lt;u8&gt;(&amp;b);
+    }
+}
+</code></pre>
+<p>现在，b将根据a表达式为变量分配不同的值。但是if的两个分支必须返回相同的类型！否则，变量b将会具有不同种类型，这在静态类型的语言中是不允许的。在编译器术语中，这称为分支兼容性 —— 两个分支必须返回兼容（相同）类型。</p>
+<p>if不一定非要和else一起使用，也可以单独使用。</p>
+<pre><code class="language-Move">script {
+    use 0x1::Debug;
+
+    fun main() {
+
+        let a = true;
+
+        // only one optional branch
+        // if a = false, debug won't be called
+        if (a) {
+            Debug::print&lt;u8&gt;(&amp;10);
+        };
+    }
+}
+</code></pre>
+<p>但是请记住，不能在let赋值语句中使用不带分支的表达式！因为如果if不满足条件，就会导致变量未被定义，这同样是不允许的。</p>
+<h2><a class="header" href="#循环表达式" id="循环表达式">循环表达式</a></h2>
+<p>在Move中定义循环有两种方法：</p>
+<ol>
+<li><code>while</code>条件循环</li>
+<li><code>loop</code>无限循环</li>
+</ol>
+<h3><a class="header" href="#while条件循环" id="while条件循环"><code>while</code>条件循环</a></h3>
+<p>while是定义循环的一种方法：在条件为真时执行表达式。只要条件为<code>true</code>，代码将一遍又一遍的执行。条件通常使用外部变量或计数器实现。</p>
+<pre><code class="language-Move">script {
+    fun main() {
+
+        let i = 0; // define counter
+
+        // iterate while i &lt; 5
+        // on every iteration increase i
+        // when i is 5, condition fails and loop exits
+        while (i &lt; 5) {
+            i = i + 1;
+        };
+    }
+}
+</code></pre>
+<p>需要指出的是，<code>while</code>表达式就像<code>if</code>表达式一样，也需要使用分号结束。while循环的通用语法是：</p>
+<pre><code class="language-Move">while (&lt;布尔表达式&gt;) &lt;表达式&gt;;
+</code></pre>
+<p>与<code>if</code>表达式不同的是，<code>while</code>表达式没有返回值，因而也就不能像<code>if</code>那样把自己赋值给某变量。</p>
+<h3><a class="header" href="#无法访问的代码" id="无法访问的代码">无法访问的代码</a></h3>
+<p>安全是Move最显著的特性。出于安全考虑，Move规定所有变量必须被使用。并且出于同样的原因，Move禁止使用无法访问的代码。由于数字资产是可编程的，因此可以在代码中使用它们（我们将在Resource一章中对其进行介绍）。而将资产放置在无法访问的代码中可能会带来问题，并造成损失。</p>
+<p>这就是为什么无法访问的代码如此重要的原因。</p>
+<h3><a class="header" href="#无限循环" id="无限循环">无限循环</a></h3>
+<p>Move提供了一种定义无限循环的方法，它没有条件判断，会一直执行。一旦执行该代码将消耗所有给定资源（gas），在大多数情况下，编译器也无法判断循环是否是无限的，也就无法阻止无限循环代码的发布。因此，使用无限循环时一定要注意安全，通常情况下建议使用<code>while</code>条件循环。</p>
+<p>无限循环用关键字<code>loop</code>定义。</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let i = 0;
+
+        loop {
+            i = i + 1;
+        };
+
+        // UNREACHABLE CODE
+        let _ = i;
+    }
+}
+</code></pre>
+<p>下面的代码也是可以编译通过的:</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let i = 0;
+
+        loop {
+            if (i == 1) { // i never changed
+                break // this statement breaks loop
+            }
+        };
+
+        // actually unreachable
+        0x1::Debug::print&lt;u8&gt;(&amp;i);
+    }
+}
+</code></pre>
+<p>对于编译器而言，要了解循环是否真的是无限的，这是一项艰巨的任务，因此，就目前而言，只有开发者自己可以帮助自己发现循环错误，避免资产损失。</p>
+<h3><a class="header" href="#通过-continue-和-break-控制循环" id="通过-continue-和-break-控制循环">通过 <code>continue</code> 和 <code>break</code> 控制循环</a></h3>
+<p><code>continue</code>和<code>break</code>关键字，分别允许程序跳过一轮或中断循环，可以在两种类型的循环中同时使用它们。</p>
+<p>例如，让我们在<code>loop</code>中添加两个条件，如果i是偶数，我们通过<code>continue</code>跳转到下一个迭代，而无需执行循环中<code>continue</code>之后的代码。当i等于5时，我们通过break停止迭代并退出循环。</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let i = 0;
+
+        loop {
+            i = i + 1;
+
+            if (i / 2 == 0) continue;
+            if (i == 5) break;
+
+            // assume we do something here
+         };
+
+        0x1::Debug::print&lt;u8&gt;(&amp;i);
+    }
+}
+</code></pre>
+<p>注意，如果break和continue是块中的最后一个关键字，则不能在其后加分号，因为后面的任何代码都不会被执行。请看这个例子：</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let i = 0;
+
+        loop {
+            i = i + 1;
+
+            if (i == 5) {
+                break; // will result in compiler error. correct is `break` without semi
+                       // Error: Unreachable code
+            };
+
+            // same with continue here: no semi, never;
+            if (true) {
+                continue
+            };
+
+            // however you can put semi like this, because continue and break here
+            // are single expressions, hence they &quot;end their own scope&quot;
+            if (true) continue;
+            if (i == 5) break;
+        }
+    }
+}
+</code></pre>
+<h3><a class="header" href="#有条件退出-abort" id="有条件退出-abort">有条件退出 <code>abort</code></a></h3>
+<p>有时，当某些条件失败时，您需要中止程序的执行。对于这种情况，Move提供了有键字abort。</p>
+<pre><code class="language-Move">script {
+    fun main(a: u8) {
+
+        if (a != 10) {
+            abort 0;
+        }
+
+        // code here won't be executed if a != 10
+        // transaction aborted
+    }
+}
+</code></pre>
+<p>关键字abort允许程序中止执行的同时报告错误代码。</p>
+<h3><a class="header" href="#使用-assert-内置方法" id="使用-assert-内置方法">使用 <code>assert</code> 内置方法</a></h3>
+<p>内置方法 <code>assert(&lt;condition&gt;, &lt;code&gt;)</code> 对 <code>abort</code>和条件进行了封装，你可以在代码中任何地方使用它。</p>
+<pre><code class="language-Move">script {
+
+    fun main(a: u8) {
+        assert(a == 10, 0);
+
+        // code here will be executed if (a == 10)
+    }
+}
+</code></pre>
+<p><code>assert()</code> 在不满足条件时将中止执行，在满足条件时将不执行任何操作。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../syntax-basics/expression-and-scope.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../syntax-basics/module.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../syntax-basics/expression-and-scope.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../syntax-basics/module.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

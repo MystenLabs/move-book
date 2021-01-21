@@ -1,0 +1,411 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>结构体</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Move编程语言</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> 序言</a></li><li class="chapter-item expanded "><a href="../introduction/getting-started.html"><strong aria-hidden="true">3.</strong> 快速入门</a></li><li class="chapter-item expanded "><a href="../syntax-basics/index.html"><strong aria-hidden="true">4.</strong> 语法基础</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../syntax-basics/concept.html"><strong aria-hidden="true">4.1.</strong> 基础概念</a></li><li class="chapter-item expanded "><a href="../syntax-basics/primitives.html"><strong aria-hidden="true">4.2.</strong> 基本类型</a></li><li class="chapter-item expanded "><a href="../syntax-basics/comments.html"><strong aria-hidden="true">4.3.</strong> 注释</a></li><li class="chapter-item expanded "><a href="../syntax-basics/expression-and-scope.html"><strong aria-hidden="true">4.4.</strong> 表达式和作用域</a></li><li class="chapter-item expanded "><a href="../syntax-basics/control-flow.html"><strong aria-hidden="true">4.5.</strong> 控制流</a></li><li class="chapter-item expanded "><a href="../syntax-basics/module.html"><strong aria-hidden="true">4.6.</strong> 模块和导入</a></li><li class="chapter-item expanded "><a href="../syntax-basics/constants.html"><strong aria-hidden="true">4.7.</strong> 常量</a></li><li class="chapter-item expanded "><a href="../syntax-basics/function.html"><strong aria-hidden="true">4.8.</strong> 函数</a></li><li class="chapter-item expanded "><a href="../syntax-basics/struct.html" class="active"><strong aria-hidden="true">4.9.</strong> 结构体</a></li></ol></li><li class="chapter-item expanded "><a href="../advanced-topics/index.html"><strong aria-hidden="true">5.</strong> 进阶主题</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../advanced-topics/ownership-and-references.html"><strong aria-hidden="true">5.1.</strong> 所有权和引用</a></li><li class="chapter-item expanded "><a href="../advanced-topics/understanding-generics.html"><strong aria-hidden="true">5.2.</strong> 泛型</a></li><li class="chapter-item expanded "><a href="../advanced-topics/managing-collections-with-vectors.html"><strong aria-hidden="true">5.3.</strong> 数组</a></li></ol></li><li class="chapter-item expanded "><a href="../resources/index.html"><strong aria-hidden="true">6.</strong> 可编程的 Resource</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../resources/signer-type.html"><strong aria-hidden="true">6.1.</strong> 发送者和签署者</a></li><li class="chapter-item expanded "><a href="../resources/what-is-resource.html"><strong aria-hidden="true">6.2.</strong> 什么是 Resource</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example.html"><strong aria-hidden="true">6.3.</strong> Resource 举例</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../resources/storing-new-resource.html"><strong aria-hidden="true">6.3.1.</strong> 创建和转移</a></li><li class="chapter-item expanded "><a href="../resources/access-resource-with-borrow.html"><strong aria-hidden="true">6.3.2.</strong> 读取和修改</a></li><li class="chapter-item expanded "><a href="../resources/destroy-resource.html"><strong aria-hidden="true">6.3.3.</strong> 使用和销毁</a></li><li class="chapter-item expanded "><a href="../resources/furher-steps.html"><strong aria-hidden="true">6.3.4.</strong> 下一步</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../tutorials/index.html"><strong aria-hidden="true">7.</strong> 实例</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tutorials/erc20.html"><strong aria-hidden="true">7.1.</strong> ERC20 代币</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#结构体" id="结构体">结构体</a></h1>
+<p>结构体是自定义类型，它可以包含复杂数据，也可以不包含任何数据。可以将其描述为简单的&quot;键-值&quot;存储，其中key是属性的名称，而value是存储的内容。结构体使用关键字struct定义。</p>
+<blockquote>
+<p>结构体（和Resource结构体）是在Move中创建自定义类型的唯一方法。</p>
+</blockquote>
+<p>定义</p>
+<h3><a class="header" href="#定义" id="定义">定义</a></h3>
+<p>结构体只能在模块内部定义。</p>
+<pre><code class="language-Move">module M {
+
+    // struct can be without fields
+    // but it is a new type
+    struct Empty {}
+
+    struct MyStruct {
+        field1: address,
+        field2: bool,
+        field3: Empty
+    }
+
+    struct Example {
+        field1: u8,
+        field2: address,
+        field3: u64,
+        field4: bool,
+        field5: bool,
+
+        // you can use another struct as type
+        field6: MyStruct
+    }
+}
+</code></pre>
+<p><em>一个结构体中的字段最多可以有65535个。</em>.</p>
+<p>每个定义的结构体都会成为新的类型。可以通过其模块访问此类型：</p>
+<pre><code>M::MyStruct;
+// or
+M::Example;
+</code></pre>
+<h3><a class="header" href="#定义递归结构体" id="定义递归结构体">定义递归结构体</a></h3>
+<blockquote>
+<p><em>定义递归结构体</em> 是不允许的。</p>
+</blockquote>
+<p>Move允许使用其它结构作为成员，但不能递归使用相同的结构体。Move编译器会检查递归定义，不允许下面这样的代码：</p>
+<pre><code class="language-Move">module M {
+    struct MyStruct {
+
+        // WON'T COMPILE
+        field: MyStruct
+    }
+}
+</code></pre>
+<h3><a class="header" href="#创建结构体实例" id="创建结构体实例">创建结构体实例</a></h3>
+<blockquote>
+<p>要使用某类型，需要先创建其实例。</p>
+</blockquote>
+<p>可以用结构体的定义来创建实例，不同的是传入具体的值而不是类型。</p>
+<pre><code class="language-Move">module M {
+    struct Country {
+        id: u8,
+        population: u64
+    }
+
+    // Contry is a return type of this function!
+    public fun new_country(c_id: u8, c_population: u64): Country {
+        // structure creation is an expression
+        let country = Country {
+            id: c_id,
+            population: c_population
+        };
+
+        country
+    }
+}
+</code></pre>
+<p>还可以通过传递与struct的字段名匹配的变量名来简化创建新实例的代码。下面的new_country()函数中使用了这个简化方法：</p>
+<pre><code class="language-Move">// ...
+public fun new_country(id: u8, population: u64): Country {
+    // id matches id: u8 field
+    // population matches population field
+    Country {
+        id,
+        population
+    }
+
+    // or even in one line: Country { id, population }
+}
+</code></pre>
+<p>要创建一个空结构（没有字段），只需使用花括号：</p>
+<pre><code class="language-Move">public fun empty(): Empty {
+    Empty {}
+}
+</code></pre>
+<h3><a class="header" href="#访问结构体成员字段" id="访问结构体成员字段">访问结构体成员字段</a></h3>
+<p>如果我们没有办法访问结构体的字段，那么它们几乎是无用的。</p>
+<blockquote>
+<p>只有在模块内可以访问其结构体的字段。在模块之外，该结构体字段是私有的。</p>
+</blockquote>
+<p>结构字段仅在其模块内部可见。在此模块之外（在脚本或其他模块中），它只是一种类型。要访问结构的字段，请使用&quot;.&quot;符号：</p>
+<pre><code class="language-Move">// ...
+public fun get_country_population(country: Country): u64 {
+    country.population // &lt;struct&gt;.&lt;property&gt;
+}
+</code></pre>
+<p>如果在同一模块中定义了嵌套结构类型，则可以用类似的方式对其进行访问，通常可以将其描述为：</p>
+<pre><code class="language-Move">&lt;struct&gt;.&lt;field&gt;
+// and field can be another struct so
+&lt;struct&gt;.&lt;field&gt;.&lt;nested_struct_field&gt;...
+</code></pre>
+<h3><a class="header" href="#为结构体字段实现getter方法" id="为结构体字段实现getter方法">为结构体字段实现getter方法</a></h3>
+<p>为了使结构体字段在外部可读，需要实现一些方法，这些方法将读取这些字段并将它们作为返回值传递。通常，getter方法的调用方式与struct的字段相同，但是如果你的模块定义了多个结构，则getter方法可能会带来不便。</p>
+<pre><code class="language-Move">module Country {
+
+    struct Country {
+        id: u8,
+        population: u64
+    }
+
+    public fun new_country(id: u8, population: u64): Country {
+        Country {
+            id, population
+        }
+    }
+
+    // don't forget to make these methods public!
+    public fun id(country: &amp;Country): u8 {
+        country.id
+    }
+
+    // don't mind ampersand here for now. you'll learn why it's put here
+    // in references chapter in next part of the book
+    public fun population(country: &amp;Country): u64 {
+        country.population
+    }
+}
+</code></pre>
+<p>通过getter方法，我们允许模块用户访问结构体的字段：</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::Country as C;
+    use 0x1::Debug;
+
+    fun main() {
+        // variable here is of type C::Country
+        let country = C::new_country(1, 10000000);
+
+        Debug::print&lt;u8&gt;(
+            &amp;C::id(&amp;country)
+        ); // print id
+
+        Debug::print&lt;u64&gt;(
+            &amp;C::population(&amp;country)
+        );
+
+        // however this is impossible and will lead to compile error
+        // let id = country.id;
+        // let population = country.population.
+    }
+}
+</code></pre>
+<h3><a class="header" href="#回收结构体" id="回收结构体">回收结构体</a></h3>
+<p>解构、或者说销毁结构体需要使用语法 <code>let &lt;STRUCT DEF&gt; = &lt;STRUCT&gt;</code>：</p>
+<pre><code class="language-Move">module Country {
+
+    // ...
+
+    // we'll return values of this struct outside
+    public fun destroy(country: Country): (u8, u64) {
+
+        // variables must match struct fields
+        // all struct fields must be specified
+        let Country { id, population } = country;
+
+        // after destruction country is dropped
+        // but its fields are now variables and
+        // can be used
+        (id, population)
+    }
+}
+</code></pre>
+<p>请注意，Move中禁止使用未被使用的变量，有时你可能需要在不使用其字段的情况下销毁该结构体。对于未使用的结构体字段，请使用下划线&quot;_&quot;：</p>
+<pre><code class="language-Move">module Country {
+    // ...
+
+    public fun destroy(country: Country) {
+
+        // this way you destroy struct and don't create unused variables
+        let Country { id: _, population: _ } = country;
+
+        // or take only id and don't init `population` variable
+        // let Country { id, population: _ } = country;
+    }
+}
+</code></pre>
+<p>销毁结构体并不是必需的，但是，我们即将介绍的Resource结构体则必需被销毁。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../syntax-basics/function.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../advanced-topics/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../syntax-basics/function.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../advanced-topics/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
