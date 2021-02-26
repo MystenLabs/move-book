@@ -17,6 +17,8 @@ jobs:
           mdbook-version: '0.3.7'
 
       - run: mdbook build
+      - run: mdbook build translations/cn
+      - run: mv translations/cn/book book/cn
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
