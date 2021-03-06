@@ -1,6 +1,6 @@
 # 目录
 
-- [Move编程语言](README.md)
+- [Move 编程语言](README.md)
 - [序言](introduction/foreword.md)
 - [快速入门](introduction/getting-started.md)
 - [语法基础](syntax-basics/README.md)
