@@ -4,7 +4,7 @@ This is a repository for [Move Book](https://move-book.com).
 
 ## Translations
 
-- Book is also available in Chinese. Go [https://move-book.com/cn] for this language.
+- Book is also available in Chinese. Go to https://move-book.com/cn for this language.
 
 ## Acknowledgments
 
