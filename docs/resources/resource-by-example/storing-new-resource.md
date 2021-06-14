@@ -7,11 +7,11 @@ First, let's create our module:
 module Collection {
 
 
-    struct Item {
+    struct Item has store {
         // we'll think of the properties later
     }
 
-    resource struct T {
+    struct T has store, key {
         items: vector<Item>
     }
 }
@@ -29,9 +29,9 @@ module Collection {
 
     use 0x1::Vector;
 
-    struct Item {}
+    struct Item has store {}
 
-    resource struct T {
+    struct T has store, key {
         items: vector<Item>
     }
 
@@ -47,7 +47,7 @@ module Collection {
 Remember [signer](/resources/signer-type.md)? Now you see how it in action! To *move* resource to account you have built-in function *move_to* which takes `signer` as a first argument and `T` as second. Signature of `move_to` function could be represented like:
 
 ```Move
-native fun move_to<T: resource>(account: &signer, value: T);
+native fun move_to<T: key>(account: &signer, value: T);
 ```
 
 That leads to two conclusions:
@@ -60,7 +60,7 @@ That leads to two conclusions:
 To check if resource exists at given address Move has `exists` function, which signature looks similar to this:
 
 ```Move
-native fun exists<T: resource>(addr: address): bool;
+native fun exists<T: key>(addr: address): bool;
 ```
 
 By using generics this function is made type-independent and you can use any resource type to check if it exists at address. Actually, anyone can check if resource exists at given address. But checking existence is not accessing stored value!
@@ -71,9 +71,9 @@ Let's write a function to check if user already has collection:
 // modules/Collection.move
 module Collection {
 
-    struct Item {}
+    struct Item has store, drop {}
 
-    resource struct T {
+    struct Collection has store, key {
         items: Item
     }
 
@@ -81,12 +81,10 @@ module Collection {
 
     /// this function will check if resource exists at address
     public fun exists_at(at: address): bool {
-        exists<T>(at)
+        exists<Collection>(at)
     }
 }
 ````
-
-<!-- Note that we've put `::` - double colon before `exists` function. This is the way to access global functions (such as `move_to` or `exists`) without having conflicts with local functions with the same name. -->
 
 ---
 

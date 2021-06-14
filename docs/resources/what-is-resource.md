@@ -1,20 +1,20 @@
 # What is Resource
 
-Resource is a defineable type with set of restrictions created to make this type safe enough to represent digital assets. That being said, resource must meet the requirements for these assets: it cannot be copied nor can it be discarded or reused. We've already [been through](/resources) general description of its properties; let's see how these restrictions are implemented in the Move language.
+Resource is a concept described in Move Whitepaper. Originally it was implemented as its own type but later, with addition of abilities, replaced with two abilities: `Key` and `Store`. Resource is meant to be a perfect type for storing digital assets, to achieve that it must to be non-copyable and non-droppable. At the same time it must be store-able and transferable between accounts. 
+
+<!-- Resource is a defineable type with set of restrictions created to make this type safe enough to represent digital assets. That being said, resource must meet the requirements for these assets: it cannot be copied nor can it be discarded or reused. We've already [been through](/resources) general description of its properties; let's see how these restrictions are implemented in the Move language. -->
 
 ### Definition
 
-Resource definition is similar to struct's:
+Resource is a struct with `key` and `store` abilities:
 
 ```Move
 module M {
-    resource struct T {
+    struct T has key, store {
         field: u8
     }
 }
 ```
-
-Just like struct it can be defined only in the module and can be managed only by functions of its module. Resource in some sence is a special kind of struct, so all of the properties of struct are inherited by resource.
 
 ### Resource restrictions
 

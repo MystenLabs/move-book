@@ -1,11 +1,12 @@
+address 0xA1 {
 module Collection {
 
     use 0x1::Vector;
     use 0x1::Signer;
 
-    struct Item {}
+    struct Item has store, drop {}
 
-    resource struct T {
+    struct T has key {
         items: vector<Item>
     }
 
@@ -40,4 +41,5 @@ module Collection {
         // now we must use resource value - we'll destructure it
         let T { items: _ } = collection;
     }
+}
 }

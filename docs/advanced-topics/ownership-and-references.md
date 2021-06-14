@@ -264,11 +264,11 @@ We come to few conclusions:
 
 References can be dereferenced to get linked value - to do it use asterisk `*`.
 
-> When dereferencing you're actually making a *copy* - avoid
+> When dereferencing you're making a *copy*. Make sure that value has Copy ability.
 
 ```Move
 module M {
-    struct T {}
+    struct T has copy {}
 
     // value t here is of reference type
     public fun deref(t: &T): T {
@@ -283,7 +283,7 @@ There's a technique in Move used to copy inner field of a struct: `*&` - derefer
 
 ```Move
 module M {
-    struct H {}
+    struct H has copy {}
     struct T { inner: H }
 
     // ...

@@ -14,8 +14,8 @@ module Collection {
     use 0x1::Signer;
     use 0x1::Vector;
 
-    struct Item {}
-    resource struct T {
+    struct Item has store, drop {}
+    struct Collection has key, store {
         items: vector<Item>
     }
 
@@ -23,9 +23,9 @@ module Collection {
 
     /// get collection size
     /// mind keyword acquires!
-    public fun size(account: &signer): u64 acquires T {
+    public fun size(account: &signer): u64 acquires Collection {
         let owner = Signer::address_of(account);
-        let collection = borrow_global<T>(owner);
+        let collection = borrow_global<Collection>(owner);
 
         Vector::length(&collection.items)
     }
@@ -35,7 +35,7 @@ module Collection {
 A lot has happened here. First, let's deal with method signature. Global function `borrow_global<T>` gives a immutable reference to resource T. It's signature is like:
 
 ```Move
-native fun borrow_global<T: resource>(addr: address): &T;
+native fun borrow_global<T: key>(addr: address): &T;
 ```
 
 By using this function we get *read access* to resource stored at specific address. Which means that module has capability to read any of its resources at any addresses (if this functionality is implemented).
@@ -76,7 +76,5 @@ Mutable reference to resource allows creating mutable references to its contents
 Signature for `borrow_global_mut` could be:
 
 ```Move
-native fun borrow_global_mut<T: resource>(addr: address): &mut T;
+native fun borrow_global_mut<T: key>(addr: address): &mut T;
 ```
-
-
