@@ -179,5 +179,5 @@ Vector::pop_back<E>(v: &mut vector<E>): E;
 
 Vector module in standard libraries:
 
-- Diem [diem/diem](https://github.com/diem/diem/blob/master/language/stdlib/modules/vector.move)
-- Dfinance [dfinance/dvm](https://github.com/dfinance/dvm/blob/master/lang/stdlib/vector.move)
+- Diem [diem/diem](https://github.com/diem/diem/blob/master/language/diem-framework/modules/Vector.move)
+- Starcoin [starcoinorg/starcoin](https://github.com/starcoinorg/starcoin/blob/master/vm/stdlib/modules/Vector.move)

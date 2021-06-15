@@ -55,7 +55,7 @@ module M {
 
 Of course, a quick workaround is to return a tuple with original variable and additional results (return value would have been `(T, u8)`), but Move has a better solution for that.
 
-## Move and Copy
+### Move and Copy
 
 First, you need to understand how Move VM works, and what happens when you pass your value into a function. There are two bytecode instructions in VM: *MoveLoc* and *CopyLoc* - both of them can be manually used with keywords `move` and `copy` respectively.
 
@@ -126,7 +126,7 @@ We added ampersand `&` to argument type T - and by doing that we've changed argu
 
 > Move supports two types of references: *immutable* - defined with `&` (e.g. `&T`) and *mutable* - `&mut` (e.g. `&mut T`).
 
-Immutable references allow reading value without changing it. Mutable - the opposite - give ability to read and change the value.
+Immutable references allow reading value without changing it. Mutable - the opposite - ability to read and change the value.
 
 ```Move
 module M {
@@ -314,13 +314,3 @@ script {
 ```
 
 This script will compile even though we didn't pass `a` as a reference. Adding `copy` is unnecessary - it's already put there by VM.
-
-
-<!--
-
-Notes:
-
- - blocks are simply syntax sugar to simplify scripting, they don't set restrictions to using
- - any non implicitly copyable type has to be copied via a copy or *, otherwise it is a move
-
--->

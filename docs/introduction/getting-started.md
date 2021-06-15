@@ -1,5 +1,9 @@
 # Getting started
 
+> **Warning:** Content on this page is outdated and requires rework. Newer version of Move IDE will be published soon. For now I recommend you to use [move-cli](https://github.com/diem/diem/tree/main/language/tools/move-cli).
+
+---
+
 As with any compiled language, you need a proper set of tools to compile, run and debug your Move applications. Since this language is created for blockchains and used only within them, running scripts off-chain is a non-trivial task: every module will require an environment, account handling and compile-publishing system.
 
 To simpify development of Move modules I've created [Move IDE](https://github.com/damirka/vscode-move-ide) extension for Visual Studio Code. This extension will help you cope with environment requirements. Use of this extension is highly recommended as it will handle the build/run environment for you, hence will let you focus on learning Move language instead of struggling with the CLI. This extension also includes Move syntax highlighting and executor to help debug your applications before going public.

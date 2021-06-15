@@ -45,6 +45,8 @@ module M {
 }
 ```
 
+### Summary
+
 What is important to know about constants:
 
 1. They are unchangeable once defined;

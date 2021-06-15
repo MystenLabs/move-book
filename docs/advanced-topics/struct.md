@@ -4,9 +4,19 @@ Structure is a custom type which contains complex data (or no data). It can be d
 
 > Struct is the only way to create custom type in Move.
 
-### Definition
+## Definition
 
-Structs can be defined only inside module.
+Struct definition is only allowed inside a module. It begins with keyword `struct`, followed by name and curly braces, where struct fields are defined:
+
+```Move
+struct NAME {
+    FIELD1: TYPE1,
+    FIELD2: TYPE2,
+    ...
+}
+```
+
+Look at these examples of struct definitions:
 
 ```Move
 module M {
@@ -35,7 +45,7 @@ module M {
 ```
 *Max number of fields in one struct is 65535*.
 
-Every defined struct becomes new a type. This type can be accessed through its module:
+Every defined struct becomes new a type. This type can be accessed through its module (just like you would access module functions):
 ```
 M::MyStruct;
 // or
@@ -60,7 +70,7 @@ module M {
 }
 ```
 
-### Create new struct
+## Create new struct
 
 To use this type you need to create its *instance*.
 
@@ -112,7 +122,7 @@ public fun empty(): Empty {
 }
 ```
 
-### Access struct fields
+## Access struct fields
 
 Structs would have been almost useless if we hadn't had a way to access their fields (though you can create struct without fields).
 
@@ -135,7 +145,7 @@ If nested struct type is defined in the same module it can be accessed in simila
 <struct>.<field>.<nested_struct_field>...
 ```
 
-### Destructing structures
+## Destructing structures
 
 To *destruct* a struct use `let <STRUCT DEF> = <STRUCT>` syntax:
 
@@ -176,7 +186,7 @@ module Country {
 }
 ```
 
-Destructuring may not be needed with structs. But remember it - it's going to play a huge part when we get to resources.
+Destructuring may not seem important right now. But remember it - it will play a huge part when we get to resources.
 
 ### Implementing getter-functions for struct fields
 
@@ -241,4 +251,4 @@ script {
 
 ---
 
-Now you know how to define custom type - a struct, but by default its functionality is limited. In the next chapter you will learn about abilities - a way to define how values of this type can be manipulated and used.
+Now you know how to define custom type - struct, but by default its functionality is limited. In the next chapter you will learn about abilities - a way to define how values of this type can be manipulated and used.

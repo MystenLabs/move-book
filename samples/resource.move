@@ -6,40 +6,40 @@ module Collection {
 
     struct Item has store, drop {}
 
-    struct T has key {
+    struct Collection has key {
         items: vector<Item>
     }
 
     public fun start_collection(account: &signer) {
-        move_to<T>(account, T {
+        move_to<Collection>(account, Collection {
             items: Vector::empty<Item>()
         });
     }
 
-    public fun size(account: &signer): u64 acquires T {
+    public fun size(account: &signer): u64 acquires Collection {
         let owner = Signer::address_of(account);
-        let collection = borrow_global<T>(owner);
+        let collection = borrow_global<Collection>(owner);
 
         Vector::length(&collection.items)
     }
 
-    public fun put_item(account: &signer) acquires T {
-        let collection = borrow_global_mut<T>(Signer::address_of(account));
+    public fun put_item(account: &signer) acquires Collection {
+        let collection = borrow_global_mut<Collection>(Signer::address_of(account));
 
         Vector::push_back(&mut collection.items, Item {});
     }
 
     public fun exists_at(at: address): bool {
-        exists<T>(at)
+        exists<Collection>(at)
     }
 
-    public fun destroy(account: &signer) acquires T {
+    public fun destroy(account: &signer) acquires Collection {
 
         // account no longer has resource attached
-        let collection = move_from<T>(Signer::address_of(account));
+        let collection = move_from<Collection>(Signer::address_of(account));
 
         // now we must use resource value - we'll destructure it
-        let T { items: _ } = collection;
+        let Collection { items: _ } = collection;
     }
 }
 }

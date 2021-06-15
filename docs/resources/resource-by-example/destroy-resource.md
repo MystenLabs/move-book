@@ -14,6 +14,7 @@ module Collection {
         let collection = move_from<Collection>(Signer::address_of(account));
 
         // now we must use resource value - we'll destructure it
+        // look carefully - Items must have drop ability
         let Collection { items: _ } = collection;
 
         // done. resource destroyed
@@ -26,5 +27,7 @@ Resource value must be used. So resource, when taken from account, must be eithe
 The very last signature:
 
 ```Move
+
 native fun move_from<T: key>(addr: address): T;
+
 ```

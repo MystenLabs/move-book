@@ -8,19 +8,19 @@ Simply described:
 
 - **Copy** - value can be *copied* (or cloned by value). 
 - **Drop** - value can be *dropped* by the end of scope.
-- **Key** - value can be *used as a key* for global storage operations
-- **Store** - value can be *stored* inside global storage 
+- **Key** - value can be *used as a key* for global storage operations.
+- **Store** - value can be *stored* inside global storage.
 
 On this page we will go through `Copy` and `Drop` abilities in detail; more context over `Key` and `Store` abilities will be given when we get to [Resources](/resources/index.html) chapter. 
 
-## Abilities syntax
+### Abilities syntax
 
 > Primitive and built-in types' abilities are pre-defined and unchangeable: integers, vector, addresses and boolean values have *copy*, *drop* and *store* abilities
 
 However when defining structs you can specify any set of abilities using this syntax:
 
 ```Move
-struct <name> has <ability> [, <ability>] { [<field definition>...] }
+struct NAME has ABILITY [, ABILITY] { [FIELDS] }
 ```
 
 Or by example:
@@ -31,7 +31,7 @@ module Library {
     // each ability has matching keyword
     // multiple abilities are listed with comma
     struct Book has store, copy, drop {
-        name: vector<u8>
+        year: u64
     }
 
     // single ability is also possible
@@ -46,7 +46,20 @@ module Library {
 
 ### Struct with no Abilities
 
-First, let's define struct without abilities.
+Before we jump into how to use abilities and what they bring into the language, let's see what happens if there's a type with no abilities.
+
+```Move
+module Country {
+    struct Country {
+        id: u8,
+        population: u64
+    }
+    
+    public fun new_country(id: u8, population: u64): Country {
+        Country { id, population }
+    }
+}
+```
 
 ```Move
 script {
@@ -134,6 +147,13 @@ module Country {
 ```
 
 With that change code above would compile and run.
+
+### Summary
+
+- Primitive types have store, copy and drop.
+- By default structs have no abilities. 
+- Copy and Drop abilities define whether value can be copied and dropped respectively.
+- It is possible to set up to 4 abilities for a struct.
 
 ### Further reading
 

@@ -35,7 +35,9 @@ module Collection {
 A lot has happened here. First, let's deal with method signature. Global function `borrow_global<T>` gives a immutable reference to resource T. It's signature is like:
 
 ```Move
+
 native fun borrow_global<T: key>(addr: address): &T;
+
 ```
 
 By using this function we get *read access* to resource stored at specific address. Which means that module has capability to read any of its resources at any addresses (if this functionality is implemented).
@@ -51,7 +53,9 @@ There's another detail worth explanation: keyword `acquires` which is put after 
 Syntax for function with `acquires` is like this:
 
 ```Move
+
 fun <name>(<args...>): <ret_type> acquires T, T1 ... {
+
 ```
 
 ## Mutable borrow with `borrow_global_mut`
@@ -73,8 +77,10 @@ module Collection {
 
 Mutable reference to resource allows creating mutable references to its contents. That is why we're able to modify inner vector `items` in this example.
 
-Signature for `borrow_global_mut` could be:
+Signature for `borrow_global_mut` is:
 
 ```Move
+
 native fun borrow_global_mut<T: key>(addr: address): &mut T;
+
 ```

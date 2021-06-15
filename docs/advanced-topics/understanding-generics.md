@@ -110,7 +110,7 @@ Before we go any further, let's take a step back. By adding generics to `Box` st
 
 ### Constraints to check Abilities
 
-We've learned about [abilities](/advanced-topics/abilities/README.md). They can be "checked" or *constrained* in generics; constraints are named as their abilities:
+We've learned about [abilities](/advanced-topics/abilities/README.md). They can be "checked" or *constrained* in generics; constraints are named after their abilities:
 
 ```Move
 fun name<T: copy>() {} // allow only values that can be copied
@@ -142,7 +142,6 @@ module Storage {
 It is also important to mention that inner types (or generic types) MUST have abilities of the container (for all abilities except `key`). If you think about it, everything is logical and intuitive: struct with **copy** ability must have contents that also have copy ability otherwise container object cannot be considered copyable. Move compiler will let you compile code that doesn't follow this logic but you won't be able to use these abilities. See this example: 
 
 ```Move
-address 0xA {
 module Storage {
     // non-copyable or droppable struct
     struct Error {}
@@ -157,7 +156,6 @@ module Storage {
         Box { contents: Error {} }
     }
 }
-}
 ```
 
 This code compiles and publishes successfully. But if you try to use it...
@@ -165,7 +163,7 @@ This code compiles and publishes successfully. But if you try to use it...
 ```Move
 script {
     fun main() {
-        0xA::Storage::create_box() // value is created and dropped
+        {{sender}}::Storage::create_box() // value is created and dropped
     }   
 }
 ```
@@ -179,9 +177,11 @@ You will get an error saying that Box is not droppable:
    │
 ```
 
-> To avoid mistakes always specify generic constraints. 
+That happens because inner value doesn't have drop ability. Container abilities automatically limited by its contents, so, for example if you have a container struct that has copy, drop and store, and inner struct has only drop, it will be impossible to copy or store this container. Another way to look at this is that container doesn't have to have constraints for inner types and can be flexible - used for any type inside.
 
-In this example correct (and safe) struct definition would be:
+> But to avoid mistakes always check and, if needed, specify generic constraints in functions and structs. 
+
+In this example safer struct definition could be:
 
 ```Move
 // we add parent's constraints

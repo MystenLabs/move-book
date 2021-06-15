@@ -8,6 +8,8 @@ We'll create a Collection contract, which will allow us to:
 - add and take items from collection
 - destroy collection
 
+Let's begin!
+
 <!-- - offer collectibles to other users
 - allow using this module with any type -->
 
