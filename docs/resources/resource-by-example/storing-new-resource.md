@@ -7,21 +7,21 @@ First, let's create our module:
 module Collection {
 
 
-    struct Item {
+    struct Item has store {
         // we'll think of the properties later
     }
 
-    resource struct T {
+    struct Collection has key {
         items: vector<Item>
     }
 }
 ```
 
-> There's a convention to call main resource of a module - **T**. If you follow it, your modules will be easy to read and use by other people.
+> There's a convention to call main resource of a module after the module (e.g. Collection::Collection). If you follow it, your modules will be easy to read and use by other people.
 
 ### Create and Move
 
-We've defined a resource struct `T`, which will hold vector of type `Item`. Now let's see how to start new collection and how *to store a resource under account*. Stored resource in this implementation will live forever under sender's address. No one can modify or take this resource from owner.
+We've defined a struct `Collection` with *Key* ability, which will hold vector of type `Item`. Now let's see how to start new collection and how *to store a resource under account*. Stored resource in this implementation will live forever under sender's address. No one can modify or take this resource from owner.
 
 ```Move
 // modules/Collection.move
@@ -29,25 +29,27 @@ module Collection {
 
     use 0x1::Vector;
 
-    struct Item {}
+    struct Item has store {}
 
-    resource struct T {
+    struct Collection has key {
         items: vector<Item>
     }
 
     /// note that &signer type is passed here!
     public fun start_collection(account: &signer) {
-        move_to<T>(account, T {
-            items: Vector::empty<T>()
+        move_to<Collection>(account, Collection {
+            items: Vector::empty<Collection>()
         })
     }
 }
 ```
 
-Remember [signer](/resources/signer-type.md)? Now you see how it in action! To *move* resource to account you have built-in function *move_to* which takes `signer` as a first argument and `T` as second. Signature of `move_to` function could be represented like:
+Remember [signer](/resources/signer-type.md)? Now you see how it in action! To *move* resource to account you have built-in function *move_to* which takes `signer` as a first argument and `Collection` as second. Signature of `move_to` function can be represented like:
 
 ```Move
-native fun move_to<T: resource>(account: &signer, value: T);
+
+native fun move_to<T: key>(account: &signer, value: T);
+
 ```
 
 That leads to two conclusions:
@@ -57,10 +59,12 @@ That leads to two conclusions:
 
 ### Check existence at address
 
-To check if resource exists at given address Move has `exists` function, which signature looks similar to this:
+To check if resource exists at given address Move has `exists` function, which signature looks similar to this.
 
 ```Move
-native fun exists<T: resource>(addr: address): bool;
+
+native fun exists<T: key>(addr: address): bool;
+    
 ```
 
 By using generics this function is made type-independent and you can use any resource type to check if it exists at address. Actually, anyone can check if resource exists at given address. But checking existence is not accessing stored value!
@@ -71,9 +75,9 @@ Let's write a function to check if user already has collection:
 // modules/Collection.move
 module Collection {
 
-    struct Item {}
+    struct Item has store, drop {}
 
-    resource struct T {
+    struct Collection has store, key {
         items: Item
     }
 
@@ -81,12 +85,10 @@ module Collection {
 
     /// this function will check if resource exists at address
     public fun exists_at(at: address): bool {
-        exists<T>(at)
+        exists<Collection>(at)
     }
 }
 ````
-
-<!-- Note that we've put `::` - double colon before `exists` function. This is the way to access global functions (such as `move_to` or `exists`) without having conflicts with local functions with the same name. -->
 
 ---
 

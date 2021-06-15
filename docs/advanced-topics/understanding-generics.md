@@ -4,7 +4,7 @@ Generics are essential to Move, they are what makes this language so unique to t
 
 To start I'll quote [Rust Book](https://doc.rust-lang.org/stable/book/ch10-00-generics.html): *Generics are abstract stand-ins for concrete types or other properties*. Practically speaking, they are the way of writing a single function, which can then be used for any type, they can also be called templates as this function can be used as a template handler for any type.
 
-In Move generics can be applied to signatures of `struct`, `function` and `resource`.
+In Move generics can be applied to signatures of `struct` and `function`.
 
 ### In struct definition
 
@@ -48,7 +48,7 @@ module Storage {
 }
 ```
 
-Generics have a bit more complicated definitions - since they need to have type parameters specified, and regular struct `Box` becomes `Box<u64>`. There are no restrictions in what types you can pass into generic's angle brackets. Let's make our `create_box` method more generic and let users specify any type. How do we do that? Using another generic, now in function signature!
+Generics have a bit more complicated definitions - since they need to have type parameters specified, and regular struct `Box` becomes `Box<u64>`. There are no restrictions in what types you can pass into generic's angle brackets. Let's make our `create_box` method more generic and let users specify any type. How do we do that? By using another generic, now in function signature!
 
 ```Move
 module Storage {
@@ -58,7 +58,7 @@ module Storage {
     }
 
     // we'll get to this a bit later, trust me
-    public fun value<T: copyable>(box: &Box<T>): T {
+    public fun value<T: copy>(box: &Box<T>): T {
         *&box.value
     }
 }
@@ -107,6 +107,89 @@ Here we have used Box struct with 3 types: `bool`, `u64` and with `Box<u64>` - l
 <!-- , Move opens in new way - the way you probably could never imagine in blockchains. -->
 
 Before we go any further, let's take a step back. By adding generics to `Box` struct we've made this box *abstract* - its definition is fairly simple compared to capacity it gave us. Now we can create `Box` with any type - be it `u64` or `address`, or even another box, or another struct.
+
+### Constraints to check Abilities
+
+We've learned about [abilities](/advanced-topics/abilities/README.md). They can be "checked" or *constrained* in generics; constraints are named after their abilities:
+
+```Move
+fun name<T: copy>() {} // allow only values that can be copied
+fun name<T: copy + drop>() {} // values can be copied and dropped
+fun name<T: key + store + drop + copy>() {} // all 4 abilities are present
+```
+
+...or with structs:
+
+```Move
+struct name<T: copy + drop> { value: T } // T can be copied and dropped
+struct name<T: stored> { value: T } // T can be stored in global storage
+```
+
+> Try to remember this syntax: `+` (plus) sign may not be intuitive first time; it is the only place in Move where `+` is used in keyword list.
+
+Here's an example of a system with constraints:
+
+```Move
+module Storage {
+
+    // contents of the box can be stored
+    struct Box<T: store> has key, store {
+        content: T
+    }
+}
+```
+
+It is also important to mention that inner types (or generic types) MUST have abilities of the container (for all abilities except `key`). If you think about it, everything is logical and intuitive: struct with **copy** ability must have contents that also have copy ability otherwise container object cannot be considered copyable. Move compiler will let you compile code that doesn't follow this logic but you won't be able to use these abilities. See this example: 
+
+```Move
+module Storage {
+    // non-copyable or droppable struct
+    struct Error {}
+    
+    // constraints are not specified
+    struct Box<T> has copy, drop {
+        contents: T
+    }
+
+    // this method creates box with non-copyable or droppable contents
+    public fun create_box(): Box<Error> {
+        Box { contents: Error {} }
+    }
+}
+```
+
+This code compiles and publishes successfully. But if you try to use it...
+
+```Move
+script {
+    fun main() {
+        {{sender}}::Storage::create_box() // value is created and dropped
+    }   
+}
+```
+
+You will get an error saying that Box is not droppable:
+```
+   ┌── scripts/main.move:5:9 ───
+   │
+ 5 │   Storage::create_box();
+   │   ^^^^^^^^^^^^^^^^^^^^^ Cannot ignore values without the 'drop' ability. The value must be used
+   │
+```
+
+That happens because inner value doesn't have drop ability. Container abilities automatically limited by its contents, so, for example if you have a container struct that has copy, drop and store, and inner struct has only drop, it will be impossible to copy or store this container. Another way to look at this is that container doesn't have to have constraints for inner types and can be flexible - used for any type inside.
+
+> But to avoid mistakes always check and, if needed, specify generic constraints in functions and structs. 
+
+In this example safer struct definition could be:
+
+```Move
+// we add parent's constraints
+// now inner type MUST be copyable and droppable
+struct Box<T: copy + drop> has copy, drop {
+    contents: T
+}
+```
 
 ### Multiple types in generics
 
@@ -179,7 +262,7 @@ module Storage {
 }
 ```
 
-In script this can be used :
+Sometimes it is nice to have generic as a constraint or constant for some action. See how it can be used in script:
 
 ```Move
 
@@ -200,15 +283,10 @@ script {
 }
 ```
 
-Here we use generics to mark type, but we don't actually use it. You'll soon learn why this definition matters when you get to know `resources`. For now it's just another way to use them.
+Here we use generics to mark type, but we don't actually use it. You'll soon learn why this definition matters when you get to know resources concept. For now it's just another way to use them.
 
-### Kind-matching and :copyable
 
-In the [ownership chapter](/advanced-topics/ownership-and-references.md) we learned about *copy* and *move* operations in VM. Not every value in Move can be copied (but all of them can be moved!) - in the [resources chapter](/resources/README.md) you'll study `resources`, which are not *copyable*. But before we jump there, let's learn what *Kind* is.
-
-Kind (in terms of VM) - is a group of types, there are only 2 kinds: `copyable` and `resource`. Kinds can be used to limit (or restrict) generic types passed into function.
-
-### Copyable
+<!-- ### Copyable
 
 *Copyable kind* - is a kind of types, value of which can be copied. `struct`, `vector` and primitive types - are three main groups of types fitting into this kind.
 
@@ -246,17 +324,4 @@ module M {
 }
 ```
 
-This example here is only needed to show syntax, we'll get to resources soon and you'll learn actual use cases for this constraint.
-
-<!--
-  + generics in general
-  + templating
-  + example
-  + back to types
-  + multiple type params
-
-  + unused type params
-  + trait-like bounds - introducing kinds
-
-  ? hard-coded types - no way
--->
+This example here is only needed to show syntax, we'll get to resources soon and you'll learn actual use cases for this constraint. -->
