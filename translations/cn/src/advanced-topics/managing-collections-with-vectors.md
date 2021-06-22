@@ -53,7 +53,8 @@ module Shelf {
         Box { value }
     }
 
-    public fun value<T: copyable>(box: &Box<T>): T {
+    // this method will be inaccessible for non-copyable contents
+    public fun value<T: copy>(box: &Box<T>): T {
         *&box.value
     }
 
@@ -178,5 +179,4 @@ Vector::pop_back<E>(v: &mut vector<E>): E;
 标准库中的 Vector 模块：
 
 - Diem [diem/diem](https://github.com/diem/diem/blob/master/language/stdlib/modules/vector.move)
-- Dfinance [dfinance/dvm](https://github.com/dfinance/dvm/blob/master/lang/stdlib/vector.move)
-
+- Starcoin [starcoinorg/starcoin](https://github.com/starcoinorg/starcoin/blob/master/vm/stdlib/modules/Vector.move)

@@ -4,7 +4,7 @@
 
 首先，让我来引用 [Rust Book](https://doc.rust-lang.org/stable/book/ch10-00-generics.html) 对于泛型得定义：*泛型是具体类型或其他属性的抽象替代品*。实际上，泛型允许我们只编写单个函数，而该函数可以应用于任何类型。这种函数也被称为模板 —— 一个可以应用于任何类型的模板处理程序。
 
-Move 中泛型可以应用于结构体，函数和 Resource 的定义中。
+Move 中泛型可以应用于结构体和函数的定义中。
 
 ### 结构体中的泛型
 
@@ -58,7 +58,7 @@ module Storage {
     }
 
     // we'll get to this a bit later, trust me
-    public fun value<T: copyable>(box: &Box<T>): T {
+    public fun value<T: copy>(box: &Box<T>): T {
         *&box.value
     }
 }
@@ -105,6 +105,89 @@ script {
 这里我们用三种类型使用了 Box：`bool`, `u64` 和 `Box<u64>`。最后一个看起来有些复杂，但是一旦你习惯了，并且理解了泛型是如何工作的，它成为你日常工作的好帮手。
 
 继续下一步之前，让我们做一个简单的回顾。我们通过将泛型添加到`Box`结构体中，使`Box`变得抽象了。与 Box 能提供的功能相比，它的定义相当简单。现在，我们可以使用任何类型创建`Box`，u64 或 address，甚至另一个 Box 或另一个结构体。
+
+### abilities 限制符
+
+我们已经学习了 [abilities](/advanced-topics/types-with-abilities.md)，它们可以作为泛型的限制符来使用，限制符的名称和 ability 相同。
+
+```Move
+fun name<T: copy>() {} // allow only values that can be copied
+fun name<T: copy + drop>() {} // values can be copied and dropped
+fun name<T: key + store + drop + copy>() {} // all 4 abilities are present
+```
+
+也可以在结构体泛型参数中使用:
+
+```Move
+struct name<T: copy + drop> { value: T } // T can be copied and dropped
+struct name<T: stored> { value: T } // T can be stored in global storage
+```
+
+> 请记住 `+` 这个语法符号，第一眼看上去可能不太适应，因为很少有语言在关键字列表中使用 `+`。
+
+下面是一个使用限制符的例子：
+
+```Move
+module Storage {
+
+    // contents of the box can be stored
+    struct Box<T: store> has key, store {
+        content: T
+    }
+}
+```
+
+另一个需要被提及的是结构体的成员必须和结构体具有相同的 abilities （除了`key`以外）。这个很容易理解，如果结构体具有 **copy** ability，那么它的成员也必须能被 **copy**，否则结构体作为一个整体不能被 **copy**。Move 编译器允许代码不遵守这样的逻辑，但是运行时会出问题。
+
+```Move
+module Storage {
+    // non-copyable or droppable struct
+    struct Error {}
+    
+    // constraints are not specified
+    struct Box<T> has copy, drop {
+        contents: T
+    }
+
+    // this method creates box with non-copyable or droppable contents
+    public fun create_box(): Box<Error> {
+        Box { contents: Error {} }
+    }
+}
+```
+
+这段代码可以成功编译和发布，但是如果你运行它就会出问题。
+
+```Move
+script {
+    fun main() {
+        {{sender}}::Storage::create_box() // value is created and dropped
+    }   
+}
+```
+
+运行结果是报错 Box 不能被 drop。
+```
+   ┌── scripts/main.move:5:9 ───
+   │
+ 5 │   Storage::create_box();
+   │   ^^^^^^^^^^^^^^^^^^^^^ Cannot ignore values without the 'drop' ability. The value must be used
+   │
+```
+
+原因是创建结构体时所使用的成员值没有 drop ability。也就是 contents 不具备 Box 所要求的 abilities - copy 和 drop。
+
+> 但是为了避免犯错，应该尽可能使泛型参数的限制符和结构体本身的 abilities 显式的保持一致。
+
+所以下面这种定义的方法更安全：
+
+```Move
+// we add parent's constraints
+// now inner type MUST be copyable and droppable
+struct Box<T: copy + drop> has copy, drop {
+    contents: T
+}
+```
 
 ### 泛型中包含多个类型
 
@@ -177,7 +260,7 @@ module Storage {
 }
 ```
 
-在脚本中可以使用 :
+也可以在脚本中使用 :
 
 ```Move
 
@@ -198,8 +281,8 @@ script {
 }
 ```
 
-在这里，我们使用泛型标记类型，但实际上并没有真正使用它。当你了解resources后，就会知道为什么这种定义很重要。目前，就当这只是使用泛型的一种方法。
-
+在这里，我们使用泛型标记类型，但实际上并没有真正使用它。当你了解resource概念后，就会知道为什么这种定义很重要。目前，就当这只是使用泛型的一种方法。
+<!--
 ### Kind 和 copyable
 
 在[所有权](/advanced-topics/ownership-and-references.md)一章中，我们了解了 VM 中的复制和移动操作。Move 中所有的值都可以移动，但是并非每个值都可以复制。在即将学习的`Resource`一章中，我们将了解哪些值不可复制。但是在学习它之前，让我们先来了解一下`Kind`是什么。
@@ -244,5 +327,5 @@ module M {
 }
 ```
 
-此处的示例仅用于展示语法，我们很快会接触到 Resource，并学习`resource`修饰符的实际使用。
+此处的示例仅用于展示语法，我们很快会接触到 Resource，并学习`resource`修饰符的实际使用。-->
 

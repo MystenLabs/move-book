@@ -14,8 +14,8 @@ module Collection {
     use 0x1::Signer;
     use 0x1::Vector;
 
-    struct Item {}
-    resource struct T {
+    struct Item has store, drop {}
+    struct Collection has key, store {
         items: vector<Item>
     }
 
@@ -23,9 +23,9 @@ module Collection {
 
     /// get collection size
     /// mind keyword acquires!
-    public fun size(account: &signer): u64 acquires T {
+    public fun size(account: &signer): u64 acquires Collection {
         let owner = Signer::address_of(account);
-        let collection = borrow_global<T>(owner);
+        let collection = borrow_global<Collection>(owner);
 
         Vector::length(&collection.items)
     }
@@ -35,7 +35,9 @@ module Collection {
 这里发生了很多事情。首先，让我们看一下函数的签名。全局函数 borrow_global<T> 返回了对 Resource T 的不可变引用。其签名如下：
 
 ```Move
-native fun borrow_global<T: resource>(addr: address): &T;
+
+native fun borrow_global<T: key>(addr: address): &T;
+
 ```
 
 通过使用此功能，我们可以读取存储在特定地址的 Resource。这意味着该模块（如果实现了此功能）具有读取任何地址上任何 Resource 的能力，当然这里的 Resource 指的是该模块内定义的任何 Resource。
@@ -74,7 +76,9 @@ module Collection {
 对 Resource 的可变引用允许创建对其内容的可变引用。这就是为什么我们可以在此示例中修改内部向量 items 的原因。
 
 ```Move
-native fun borrow_global_mut<T: resource>(addr: address): &mut T;
+
+native fun borrow_global_mut<T: key>(addr: address): &mut T;
+
 ```
 
 

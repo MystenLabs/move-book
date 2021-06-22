@@ -8,13 +8,14 @@ module Collection {
 
     // ... skipped ...
 
-    public fun destroy(account: &signer) acquires T {
+    public fun destroy(account: &signer) acquires Collection {
 
         // account no longer has resource attached
-        let collection = move_from<T>(Signer::address_of(account));
+        let collection = move_from<Collection>(Signer::address_of(account));
 
         // now we must use resource value - we'll destructure it
-        let T { items: _ } = collection;
+        // look carefully - Items must have drop ability
+        let Collection { items: _ } = collection;
 
         // done. resource destroyed
     }
@@ -25,5 +26,7 @@ Resource 必需被`使用`。因此，从账户下取出 Resource 时，要么�
 
 `move_from` 函数签名：
 ```Move
-native fun move_from<T: resource>(addr: address): T;
+
+native fun move_from<T: key>(addr: address): T;
+
 ```

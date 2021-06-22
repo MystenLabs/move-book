@@ -2,11 +2,19 @@
 
 结构体是自定义类型，它可以包含复杂数据，也可以不包含任何数据。结构体由字段组成，可以简单地理解成"key-value"存储，其中 key 是字段的名称，而 value 是存储的内容。结构体使用关键字 struct 定义。
 
-> 结构体（和 Resource 结构体）是在 Move 中创建自定义类型的唯一方法。
+> 结构体是在 Move 中创建自定义类型的唯一方法。
 
 ### 定义
 
-结构体只能在模块内部定义。
+结构体只能在模块内部定义，并且以关键字 `struct` 开头：
+```Move
+struct NAME {
+    FIELD1: TYPE1,
+    FIELD2: TYPE2,
+    ...
+}
+```
+我们来看一些例子：
 
 ```Move
 module M {
@@ -66,7 +74,7 @@ module M {
 可以用结构体的定义来创建实例，不同的是传入具体的值而不是类型。
 
 ```Move
-module M {
+module Country {
     struct Country {
         id: u8,
         population: u64
@@ -154,11 +162,13 @@ module Country {
         country.id
     }
 
-    // don't mind ampersand here for now. you'll learn why it's put here
-    // in references chapter in next part of the book
+    // don't mind ampersand here for now. you'll learn why it's 
+    // put here in references chapter 
     public fun population(country: &Country): u64 {
         country.population
     }
+
+    // ... fun destroy ... 
 }
 ```
 

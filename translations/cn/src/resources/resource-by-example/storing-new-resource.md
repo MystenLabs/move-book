@@ -7,17 +7,17 @@
 module Collection {
 
 
-    struct Item {
+    struct Item has store {
         // we'll think of the properties later
     }
 
-    resource struct T {
+    struct Collection has key {
         items: vector<Item>
     }
 }
 ```
 
-> 一个模块里最主要的 Resource 通常命名为**T**。遵循这个惯例，你的模块将易于阅读和使用。
+> 一个模块里最主要的 Resource 通常跟模块取相同的名称（例如这里的 Collection）。遵循这个惯例，你的模块将易于阅读和使用。
 
 ### 创建和移动
 
@@ -29,16 +29,16 @@ module Collection {
 
     use 0x1::Vector;
 
-    struct Item {}
+    struct Item has store {}
 
-    resource struct T {
+    struct Collection has key {
         items: vector<Item>
     }
 
     /// note that &signer type is passed here!
     public fun start_collection(account: &signer) {
-        move_to<T>(account, T {
-            items: Vector::empty<T>()
+        move_to<Collection>(account, Collection {
+            items: Vector::empty<Collection>()
         })
     }
 }
@@ -47,7 +47,9 @@ module Collection {
 还记得 `signer` 吗？现在，你将了解它的运作方式！移动 Resource 到 account 需要使用内建函数 *move_to*，需要 signer 作为第一个参数，T 作为第二个参数。move_to 函数的签名可以表示为：
 
 ```Move
-native fun move_to<T: resource>(account: &signer, value: T);
+
+native fun move_to<T: key>(account: &signer, value: T);
+
 ```
 
 总结一下上面所学的内容：
@@ -60,7 +62,9 @@ native fun move_to<T: resource>(account: &signer, value: T);
 Move 提供 `exists` 函数来查看某 Resource 是否存在于给定地址下，函数签名如下:
 
 ```Move
-native fun exists<T: resource>(addr: address): bool;
+
+native fun exists<T: key>(addr: address): bool;
+    
 ```
 
 通过使用泛型，此函数成为独立于类型的函数，你可以使用任何 Resource 类型来检查其是否存在于给定地址下。实际上，任何人都可以检查给定地址处是否存在 Resource。但是检查是否存在并不意味着能获取储 Resource ！
@@ -71,9 +75,9 @@ native fun exists<T: resource>(addr: address): bool;
 // modules/Collection.move
 module Collection {
 
-    struct Item {}
+    struct Item has store, drop {}
 
-    resource struct T {
+    struct Collection has store, key {
         items: Item
     }
 
@@ -81,7 +85,7 @@ module Collection {
 
     /// this function will check if resource exists at address
     public fun exists_at(at: address): bool {
-        exists<T>(at)
+        exists<Collection>(at)
     }
 }
 ````

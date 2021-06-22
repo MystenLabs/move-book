@@ -259,11 +259,11 @@ Borrow::change_b(mut_b, 100000);
 
 可以通过`取值`运算`*`来获取引用所指向的值。
 
-> 取值运算实际上是产生了一个副本。
+> 取值运算实际上是产生了一个副本，要确保这个值具有 `Copy` ability。
 
 ```Move
 module M {
-    struct T {}
+    struct T has copy {}
 
     // value t here is of reference type
     public fun deref(t: &T): T {
@@ -278,7 +278,7 @@ module M {
 
 ```Move
 module M {
-    struct H {}
+    struct H has copy {}
     struct T { inner: H }
 
     // ...
