@@ -6,16 +6,18 @@ Before we get to how to use resources, you need to learn about `signer` type, an
 
 Signer type represents sender authority. In other words - using signer means accessing sender's address and resources. It has no direct relation to *signatures* or literally *signing*, in terms of Move VM it simply represents sender.
 
+> Signer type has only one ability - Drop.
+
 <!-- Important! `0x1::Transaction::sender()` may soon be deprecated [as mentioned here](https://community.libra.org/t/signer-type-and-move-to/2894). So in the future using `signer` will be the only way to get sender's address. -->
 
 ### Signer in scripts
 
-Since signer is a native type, it has to be created. Though unlike `vector` it cannot be directly created in code, but can be received as script argument:
+Since signer is a native type, it has to be created. Though unlike `vector` it cannot be directly created in code, but can be received as a script argument:
 
 ```Move
 script {
-    // signer is a reference type here!
-    fun main(account: &signer) {
+    // signer is an owned value
+    fun main(account: signer) {
         let _ = account;
     }
 }
@@ -27,7 +29,7 @@ Signer argument is put into your scripts automatically by VM, which means that t
 
 ### Signer module in standard library
 
-Native types require native functions, and for signer type it is `0x1::Signer`. This module is fairly simple ([link to original module in diem](https://github.com/diem/diem/blob/master/language/stdlib/modules/Signer.move)):
+Native types require native functions, and for signer type it is `0x1::Signer`. This module is fairly simple ([link to original module in diem](https://github.com/diem/diem/blob/master/language/diem-framework/modules/Signer.move)):
 
 ```Move
 module Signer {
@@ -53,8 +55,8 @@ Usage of this module is just as simple:
 
 ```Move
 script {
-    fun main(account: &signer) {
-        let _ : address = 0x1::Signer::address_of(account);
+    fun main(account: signer) {
+        let _ : address = 0x1::Signer::address_of(&account);
     }
 }
 ```
@@ -66,15 +68,15 @@ module M {
     use 0x1::Signer;
 
     // let's proxy Signer::address_of
-    public fun get_address(account: &signer): address {
-        Signer::address_of(account)
+    public fun get_address(account: signer): address {
+        Signer::address_of(&account)
     }
 }
 ```
 
 > Methods using `&signer` type as argument explicitly show that they are using sender's address.
 
-One of the reasons for this type was to show which methods require sender authority and which ones do not. So method cannot trick user into unauthorized access to its resources.
+One of the reasons for this type was to show which methods require sender authority and which ones don't. So method cannot trick user into unauthorized access to its resources.
 
 <!--  MAYBE ADD HISTORY OF THIS TYPE? -->
 

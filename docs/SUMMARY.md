@@ -12,36 +12,23 @@
     - [Module and Import](syntax-basics/module.md)
     - [Constants](syntax-basics/constants.md)
     - [Function](syntax-basics/function.md)
-    - [Structures](syntax-basics/struct.md)
 - [Advanced Topics](advanced-topics/README.md)
+    - [Structures](advanced-topics/struct.md)
+    - [Types with Abilities](advanced-topics/types-with-abilities.md)
     - [Ownership and References](advanced-topics/ownership-and-references.md)
     - [Understanding Generics](advanced-topics/understanding-generics.md)
     - [Managing collections with Vectors](advanced-topics/managing-collections-with-vectors.md)
 - [Programmable Resources](resources/README.md)
     - [Sender as Signer](resources/signer-type.md)
     - [What is Resource](resources/what-is-resource.md)
-    - [Resource by Example](resources/resource-by-example.md)
-        - [Create and Move](resources/storing-new-resource.md)
-        - [Read and Modify](resources/access-resource-with-borrow.md)
-        - [Take and Destroy](resources/destroy-resource.md)
-        - [Further Steps](resources/furher-steps.md)
+    - [Resource by Example](resources/resource-by-example/README.md)
+        - [Create and Move](resources/resource-by-example/storing-new-resource.md)
+        - [Read and Modify](resources/resource-by-example/access-resource-with-borrow.md)
+        - [Take and Destroy](resources/resource-by-example/destroy-resource.md)
+        - [Further Steps](resources/resource-by-example/furher-steps.md)
 - [Tutorials](tutorials/README.md)
     - [Writing ERC20 Token](tutorials/erc20.md)
 
-<!--
-        - [Accessing Collection]
-    - [Understanding Resource safety](/)
-- [Move or Mvir](introduction/move.or.mvir.md)
-- [Move IDE](ide/readme.md)
-    - [Install & Configure](ide/setting-up.md)
--->
-
-
-<!--
-
-DON'T FORGET:
-
-- add 'return' to control flow or functions
-- add integer expressions and comparison operators
-
--->
+<!-- - [Types with Abilities](advanced-topics/abilities/README.md)
+    - [Copy and Drop](advanced-topics/abilities/copy-and-drop.md)
+    - [Key and Store](advanced-topics/abilities/key-and-store.md) -->

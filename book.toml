@@ -10,3 +10,14 @@ src = "docs"
 google-analytics = "UA-183817972-1"
 git-repository-url = "https://github.com/damirka/move-book"
 git-repository-icon = "fa-github"
+
+[output.html.redirect]
+"syntax-basics/struct.html" = "/advanced-topics/struct.html"
+# resource by example moved to separate folder
+"resources/resource-by-example.html" = "/resources/resource-by-example/README.html"
+"resources/storing-new-resource.html" = "/resources/resource-by-example/storing-new-resource.html"
+"resources/access-resource-with-borrow.html" = "/resources/resource-by-example/access-resource-with-borrow.html"
+"resources/destroy-resource.html" = "/resources/resource-by-example/destroy-resource.html"
+"resources/furher-steps.html" = "/resources/resource-by-example/furher-steps.html"
+
+# "resources/resource-by-example" = "/resources/resource-by-example/README.md"
