@@ -28,6 +28,7 @@
         - [Further Steps](resources/resource-by-example/furher-steps.md)
 - [Tutorials](tutorials/README.md)
     - [Writing ERC20 Token](tutorials/erc20.md)
+- [Translations](translations.md)
 
 <!-- - [Types with Abilities](advanced-topics/abilities/README.md)
     - [Copy and Drop](advanced-topics/abilities/copy-and-drop.md)
