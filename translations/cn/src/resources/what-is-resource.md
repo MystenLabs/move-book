@@ -1,20 +1,18 @@
 # 什么是 Resource
 
-Resource 是一种类型，它可以安全的表示数字资产。我们知道，不能被复制，也不能被丢弃或重新使用，是对资产属性的一般性描述。那么如何用 Move 语言来实现这些属性呢？下面我们就介绍给大家。
+Move 白皮书中详细描述了 Resource 这个概念。最初，它是作为一种名为 resource 的结构体类型被实现，自从引入 ability 以后，它被实现成拥有 `Key` 和 `Store` 两种 ability 的结构体。Resource 可以安全的表示数字资产，它不能被复制，也不能被丢弃或重新使用，但是它却可以被安全地存储和转移。
 
 ### 定义
 
-Resource 的定义与结构体类似:
+Resource 是一种用 `key` 和 `store` ability 限制了的结构体:
 
 ```Move
 module M {
-    resource struct T {
+    struct T has key, store {
         field: u8
     }
 }
 ```
-
-就像结构体一样，Resource 只能在模块中定义，并且只能被其模块里的函数操作。实际上，Resource 是一种特殊的结构体，因此结构的所有属性都被 Resource 继承。
 
 ### Resource 的限制
 

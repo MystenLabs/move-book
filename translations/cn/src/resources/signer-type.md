@@ -6,14 +6,16 @@
 
 Signer 类型代表了发送者权限。换句话说，使用 signer 意味着可以访问发送者的地址和 Resource。它与*signature*没有直接关系，就 Move VM 而言，它仅表示发送者。
 
+> Signer 只有一种 ability： Drop。
+
 ### 脚本的 Signer
 
 Signer 是原生类型，使用前必须先创建。与 vector 这样的原生类型不同，signer 不能直接在代码中创建，但是可以作为脚本参数传递：
 
 ```Move
 script {
-    // signer is a reference type here!
-    fun main(account: &signer) {
+    // signer is an owned value
+    fun main(account: signer) {
         let _ = account;
     }
 }
@@ -25,7 +27,7 @@ Signer 参数无需手动将其传递到脚本中，客户端（CLI）会自动�
 
 ### 标准库中的 Signer 模块
 
-原生类型离不开原生方法, signer 的原生方法包含在`0x1::Signer`模块中。这个模块相对比较简单，具体可以参考 Diem 标准库 Signer 模块的[实现](https://github.com/diem/diem/blob/master/language/stdlib/modules/Signer.move):
+原生类型离不开原生方法, signer 的原生方法包含在`0x1::Signer`模块中。这个模块相对比较简单，具体可以参考 Diem 标准库 Signer 模块的[实现](https://github.com/diem/diem/blob/master/language/diem-framework/modules/Signer.move):
 
 ```Move
 module Signer {
@@ -51,8 +53,8 @@ module Signer {
 
 ```Move
 script {
-    fun main(account: &signer) {
-        let _ : address = 0x1::Signer::address_of(account);
+    fun main(account: signer) {
+        let _ : address = 0x1::Signer::address_of(&account);
     }
 }
 ```
@@ -64,8 +66,8 @@ module M {
     use 0x1::Signer;
 
     // let's proxy Signer::address_of
-    public fun get_address(account: &signer): address {
-        Signer::address_of(account)
+    public fun get_address(account: signer): address {
+        Signer::address_of(&account)
     }
 }
 ```
