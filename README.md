@@ -8,7 +8,7 @@ This is a repository for [Move Book](https://move-book.com).
 
 ## Acknowledgments
 
-Thanks to [StarCoin](https://github.com/starcoinorg) team for making Chinese translation possible!
+Thanks to [Starcoin](https://github.com/starcoinorg) team for making Chinese translation possible!
 
 ---
 
