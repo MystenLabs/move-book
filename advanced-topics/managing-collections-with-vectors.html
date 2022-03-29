@@ -275,7 +275,7 @@
     }
 }
 </code></pre>
-<p>Simpler approach (which <a href="https://github.com/diem/diem/pull/4058">has become possible recently</a>) is to use bytestring literals:</p>
+<p>Simpler approach is to use bytestring literals:</p>
 <pre><code class="language-Move">script {
 
     fun main() {
@@ -311,11 +311,7 @@
 </ul>
 <pre><code>Vector::pop_back&lt;E&gt;(v: &amp;mut vector&lt;E&gt;): E;
 </code></pre>
-<p>Vector module in standard libraries:</p>
-<ul>
-<li>Diem <a href="https://github.com/diem/diem/blob/master/language/diem-framework/modules/Vector.move">diem/diem</a></li>
-<li>Starcoin <a href="https://github.com/starcoinorg/starcoin/blob/master/vm/stdlib/modules/Vector.move">starcoinorg/starcoin</a></li>
-</ul>
+<p>Vector module in the Move standard library: <a href="https://github.com/diem/move/blob/main/language/move-stdlib/sources/Vector.move">link</a></p>
 
                     </main>
 
