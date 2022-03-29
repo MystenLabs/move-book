@@ -139,7 +139,7 @@ script {
 }
 ```
 
-Simpler approach (which [has become possible recently](https://github.com/diem/diem/pull/4058)) is to use bytestring literals:
+Simpler approach is to use bytestring literals:
 
 ```Move
 script {
@@ -177,7 +177,4 @@ Vector::borrow_mut<E>(v: &mut vector<E>, i: u64): &E;
 Vector::pop_back<E>(v: &mut vector<E>): E;
 ```
 
-Vector module in standard libraries:
-
-- Diem [diem/diem](https://github.com/diem/diem/blob/master/language/diem-framework/modules/Vector.move)
-- Starcoin [starcoinorg/starcoin](https://github.com/starcoinorg/starcoin/blob/master/vm/stdlib/modules/Vector.move)
+Vector module in the Move standard library: [link](https://github.com/diem/move/blob/main/language/move-stdlib/sources/Vector.move)
