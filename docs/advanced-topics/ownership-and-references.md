@@ -1,16 +1,16 @@
 # Ownership and References
 
-Move VM implements Rust-like ownership system. And the best description of it is in [Rust Book](https://doc.rust-lang.org/stable/book/ch04-01-what-is-ownership.html). <!-- There's one main difference between two languages: Move does not have *heap*, and all of its variables are *put on stack*. -->
+Move VM implements Rust-like ownership system. And the best description of it is in the [Rust Book](https://doc.rust-lang.org/stable/book/ch04-01-what-is-ownership.html). 
 
-I recommend you reading ownership chapter in Rust Book even though Rust syntax differs and some of the examples may not be easy to understand. In this chapter we will go through main points anyway.
+I recommend you reading the ownership chapter in the Rust Book even though Rust syntax differs and some of the examples may not be easy to understand. In this chapter we will go through main points anyway.
 
 > Each variable has only one owner scope. When owner scope ends - owned variables are dropped.
 
-We've already seen this behavior in [expressions chapter](/syntax-basics/expression-and-scope.md). Remember that variable lives as long as its scope? Now is the perfect time to get under the hood and learn why it happens.
+We've already seen this behavior in the [expressions chapter](/syntax-basics/expression-and-scope.md). Remember that a variable lives as long as its scope? Now is the perfect time to get under the hood and learn why it happens.
 
-Owner is a scope which *owns* a variable. Variables either can be defined in this scope (e.g. with keyword `let` in script) or be passed into scope as argument. Since the only scope in Move is function's - there are no other ways to put variables into scope.
+Owner is a scope which *owns* a variable. Variables either can be defined in this scope (e.g. with keyword `let`) or be passed into the scope as arguments. Since the only scope in Move is function's - there are no other ways to put variables into scope.
 
-Each variable has only one owner, which means that when a variable is passed into function as argument, this function becomes the *new owner*, and variable no longer *owned* by the first function. Or you may say that function *takes ownership* of variable.
+Each variable has only one owner, which means that when a variable is passed into function as argument, this function becomes the *new owner*, and the variable is no longer *owned* by the first function. Or you may say that this other function *takes ownership* of the variable.
 
 ```Move
 script {
@@ -31,7 +31,7 @@ script {
 }
 ```
 
-Let's look at what happens inside `value()` when we pass our value into it:
+Let's look at what happens inside the `value()` function when we pass our value into it:
 
 ```Move
 module M {
@@ -53,7 +53,7 @@ module M {
 }
 ```
 
-Of course, a quick workaround is to return a tuple with original variable and additional results (return value would have been `(T, u8)`), but Move has a better solution for that.
+Of course, a quick workaround is to return a tuple with the original variable and additional results (return value would have been `(T, u8)`), but Move has a better solution for that.
 
 ### Move and Copy
 
@@ -96,17 +96,17 @@ script {
 }
 ```
 
-In this example we've passed a *copy* of variable (hence value) `a` into the first call of method `value` and saved `a` in local scope to use it again in second the call.
+In this example we've passed a *copy* of a variable (hence value) `a` into the first call of the method `value` and saved `a` in local scope to use it again in a second call.
 
-By copying value we've duplicated it and increased the memory size of our program, so it can be used - but when you copy huge data it may become pricey in terms of memory. Remember - in blockchains every byte counts and affects price of execution, so using `copy` all the time may cost you a lot.
+By copying a value we've duplicated it and increased the memory size of our program, so it can be used - but when you copy huge data it may become pricey in terms of memory. Remember - in blockchains every byte counts and affects the price of execution, so using `copy` all the time may cost you a lot.
 
-Now you are ready to learn about references which help you avoid unnecessary copying and literally save some money.
+Now you are ready to learn about references - a tool that will help you avoid unnecessary copying and literally save some money.
 
 ## References
 
-Many programming languages have implementation of references ([see Wikipedia](https://en.wikipedia.org/wiki/Reference_(computer_science))). *Reference* is a link to a variable (usually to a section in memory) which you can pass into other parts of the program instead of *moving* the value.
+Many programming languages have implementation of references ([see Wikipedia](https://en.wikipedia.org/wiki/Reference_(computer_science))). *Reference* is a link to a variable (usually to a section in the memory) which you can pass into other parts of the program instead of *moving* the value.
 
-> References (marked with &) allow you to *refer* to value without taking *ownership* of it.
+> References (marked with &) allow you to *refer* to a value without taking *ownership* of it.
 
 Let's modify our example and see how references can be used.
 

@@ -1,8 +1,8 @@
 # Managing collections with Vector
 
-You're already familiar with `struct` type which gives you ability to create your own types and to store complex data. But sometimes you need something more dynamic, extensible and manageable. And for that Move has Vectors.
+You're already familiar with the `struct` type which gives you the ability to create your own types and to store complex data. But sometimes you need something more dynamic, extensible and manageable. And for that Move has Vectors.
 
-Vector is a built-in type for storing *collections* of data. It is a generic solution for collection of any type (but only one). As its functionality is given to you by VM - not by actual Move language, the only way to work with it is by using standard library and `native` functions.
+Vector is a built-in type for storing *collections* of data. It is a generic solution for collection of any type (but only one). As its functionality is given to you by the VM; the only way to work with it is by using the [Move standard library](https://github.com/diem/move/tree/main/language/move-stdlib/sources) and `native` functions.
 
 ```Move
 script {
