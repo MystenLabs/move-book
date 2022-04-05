@@ -1,6 +1,6 @@
 # Control Flow
 
-Move is imperative language and like one it has *control flow* - a way to make schoice whether to run block of code or to skip or to run another one instead.
+Move is imperative language and like one it has *control flow* - a way to make choice whether to run block of code or to skip or to run another one instead.
 
 <!-- In Move you have two statme to control flow: by using loops (`while` and `loop`) or `if` expressions. -->
 
