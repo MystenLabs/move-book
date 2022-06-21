@@ -1687,7 +1687,7 @@ public fun get_country_population(country: Country): u64 {
 
     // create A with inner B
     public fun create(value: u64): A {
-        A { b: B { c: C { value } } }
+        A { b: B { value } }
     }
 
     // give a mutable reference to inner B
