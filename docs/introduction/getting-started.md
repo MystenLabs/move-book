@@ -1,6 +1,6 @@
 # Getting started
 
-> **Warning:** Content on this page is outdated and requires rework. Newer version of Move IDE will be published soon. For now I recommend you to use [move-cli](https://github.com/diem/diem/tree/main/language/tools/move-cli).
+> **Warning:** Content on this page is outdated and requires rework. Newer version of Move IDE will be published soon. For now I recommend you to use [move-cli](https://github.com/diem/move/tree/main/language/tools/move-cli).
 
 ---
 
