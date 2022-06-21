@@ -226,7 +226,7 @@
             )
         );
 
-        // you've already seed Debug::print&lt;T&gt; method
+        // you've already seen Debug::print&lt;T&gt; method
         // which also uses generics to print any type
         Debug::print&lt;u64&gt;(&amp;value);
     }
@@ -243,7 +243,7 @@ fun name&lt;T: key + store + drop + copy&gt;() {} // all 4 abilities are present
 </code></pre>
 <p>...or with structs:</p>
 <pre><code class="language-Move">struct name&lt;T: copy + drop&gt; { value: T } // T can be copied and dropped
-struct name&lt;T: stored&gt; { value: T } // T can be stored in global storage
+struct name&lt;T: store&gt; { value: T } // T can be stored in global storage
 </code></pre>
 <blockquote>
 <p>Try to remember this syntax: <code>+</code> (plus) sign may not be intuitive first time; it is the only place in Move where <code>+</code> is used in keyword list.</p>
