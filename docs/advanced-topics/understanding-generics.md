@@ -95,7 +95,7 @@ script {
             )
         );
 
-        // you've already seed Debug::print<T> method
+        // you've already seen Debug::print<T> method
         // which also uses generics to print any type
         Debug::print<u64>(&value);
     }
@@ -122,7 +122,7 @@ fun name<T: key + store + drop + copy>() {} // all 4 abilities are present
 
 ```Move
 struct name<T: copy + drop> { value: T } // T can be copied and dropped
-struct name<T: stored> { value: T } // T can be stored in global storage
+struct name<T: store> { value: T } // T can be stored in global storage
 ```
 
 > Try to remember this syntax: `+` (plus) sign may not be intuitive first time; it is the only place in Move where `+` is used in keyword list.
