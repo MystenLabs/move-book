@@ -190,7 +190,7 @@ module Borrow {
 
     // create A with inner B
     public fun create(value: u64): A {
-        A { b: B { c: C { value } } }
+        A { b: B { value } }
     }
 
     // give a mutable reference to inner B
