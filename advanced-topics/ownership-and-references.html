@@ -152,14 +152,14 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#ownership-and-references" id="ownership-and-references">Ownership and References</a></h1>
-<p>Move VM implements Rust-like ownership system. And the best description of it is in <a href="https://doc.rust-lang.org/stable/book/ch04-01-what-is-ownership.html">Rust Book</a>. <!-- There's one main difference between two languages: Move does not have *heap*, and all of its variables are *put on stack*. --></p>
-<p>I recommend you reading ownership chapter in Rust Book even though Rust syntax differs and some of the examples may not be easy to understand. In this chapter we will go through main points anyway.</p>
+<p>Move VM implements Rust-like ownership system. And the best description of it is in the <a href="https://doc.rust-lang.org/stable/book/ch04-01-what-is-ownership.html">Rust Book</a>. </p>
+<p>I recommend you reading the ownership chapter in the Rust Book even though Rust syntax differs and some of the examples may not be easy to understand. In this chapter we will go through main points anyway.</p>
 <blockquote>
 <p>Each variable has only one owner scope. When owner scope ends - owned variables are dropped.</p>
 </blockquote>
-<p>We've already seen this behavior in <a href="/syntax-basics/expression-and-scope.html">expressions chapter</a>. Remember that variable lives as long as its scope? Now is the perfect time to get under the hood and learn why it happens.</p>
-<p>Owner is a scope which <em>owns</em> a variable. Variables either can be defined in this scope (e.g. with keyword <code>let</code> in script) or be passed into scope as argument. Since the only scope in Move is function's - there are no other ways to put variables into scope.</p>
-<p>Each variable has only one owner, which means that when a variable is passed into function as argument, this function becomes the <em>new owner</em>, and variable no longer <em>owned</em> by the first function. Or you may say that function <em>takes ownership</em> of variable.</p>
+<p>We've already seen this behavior in the <a href="/syntax-basics/expression-and-scope.html">expressions chapter</a>. Remember that a variable lives as long as its scope? Now is the perfect time to get under the hood and learn why it happens.</p>
+<p>Owner is a scope which <em>owns</em> a variable. Variables either can be defined in this scope (e.g. with keyword <code>let</code>) or be passed into the scope as arguments. Since the only scope in Move is function's - there are no other ways to put variables into scope.</p>
+<p>Each variable has only one owner, which means that when a variable is passed into function as argument, this function becomes the <em>new owner</em>, and the variable is no longer <em>owned</em> by the first function. Or you may say that this other function <em>takes ownership</em> of the variable.</p>
 <pre><code class="language-Move">script {
     use {{sender}}::M;
 
@@ -177,7 +177,7 @@
     }
 }
 </code></pre>
-<p>Let's look at what happens inside <code>value()</code> when we pass our value into it:</p>
+<p>Let's look at what happens inside the <code>value()</code> function when we pass our value into it:</p>
 <pre><code class="language-Move">module M {
     // create_fun skipped
     struct T { value: u8 }
@@ -196,7 +196,7 @@
     // t no longer exists
 }
 </code></pre>
-<p>Of course, a quick workaround is to return a tuple with original variable and additional results (return value would have been <code>(T, u8)</code>), but Move has a better solution for that.</p>
+<p>Of course, a quick workaround is to return a tuple with the original variable and additional results (return value would have been <code>(T, u8)</code>), but Move has a better solution for that.</p>
 <h3><a class="header" href="#move-and-copy" id="move-and-copy">Move and Copy</a></h3>
 <p>First, you need to understand how Move VM works, and what happens when you pass your value into a function. There are two bytecode instructions in VM: <em>MoveLoc</em> and <em>CopyLoc</em> - both of them can be manually used with keywords <code>move</code> and <code>copy</code> respectively.</p>
 <p>When a variable is being passed into another function - it's being <em>moved</em> and <em>MoveLoc</em> OpCode is used. Let's see how our code would look if we've used keyword <code>move</code>:</p>
@@ -228,13 +228,13 @@
     }
 }
 </code></pre>
-<p>In this example we've passed a <em>copy</em> of variable (hence value) <code>a</code> into the first call of method <code>value</code> and saved <code>a</code> in local scope to use it again in second the call.</p>
-<p>By copying value we've duplicated it and increased the memory size of our program, so it can be used - but when you copy huge data it may become pricey in terms of memory. Remember - in blockchains every byte counts and affects price of execution, so using <code>copy</code> all the time may cost you a lot.</p>
-<p>Now you are ready to learn about references which help you avoid unnecessary copying and literally save some money.</p>
+<p>In this example we've passed a <em>copy</em> of a variable (hence value) <code>a</code> into the first call of the method <code>value</code> and saved <code>a</code> in local scope to use it again in a second call.</p>
+<p>By copying a value we've duplicated it and increased the memory size of our program, so it can be used - but when you copy huge data it may become pricey in terms of memory. Remember - in blockchains every byte counts and affects the price of execution, so using <code>copy</code> all the time may cost you a lot.</p>
+<p>Now you are ready to learn about references - a tool that will help you avoid unnecessary copying and literally save some money.</p>
 <h2><a class="header" href="#references" id="references">References</a></h2>
-<p>Many programming languages have implementation of references (<a href="https://en.wikipedia.org/wiki/Reference_(computer_science)">see Wikipedia</a>). <em>Reference</em> is a link to a variable (usually to a section in memory) which you can pass into other parts of the program instead of <em>moving</em> the value.</p>
+<p>Many programming languages have implementation of references (<a href="https://en.wikipedia.org/wiki/Reference_(computer_science)">see Wikipedia</a>). <em>Reference</em> is a link to a variable (usually to a section in the memory) which you can pass into other parts of the program instead of <em>moving</em> the value.</p>
 <blockquote>
-<p>References (marked with &amp;) allow you to <em>refer</em> to value without taking <em>ownership</em> of it.</p>
+<p>References (marked with &amp;) allow you to <em>refer</em> to a value without taking <em>ownership</em> of it.</p>
 </blockquote>
 <p>Let's modify our example and see how references can be used.</p>
 <pre><code class="language-Move">module M {

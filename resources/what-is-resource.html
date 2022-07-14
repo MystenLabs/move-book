@@ -152,8 +152,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#what-is-resource" id="what-is-resource">What is Resource</a></h1>
-<p>Resource is a concept described in Move Whitepaper. Originally it was implemented as its own type but later, with addition of abilities, replaced with two abilities: <code>Key</code> and <code>Store</code>. Resource is meant to be a perfect type for storing digital assets, to achieve that it must to be non-copyable and non-droppable. At the same time it must be storable and transferable between accounts. </p>
-<p>Resource is a concept described in Move Whitepaper, it is a type with set of restrictions created to make this type safe enough to represent digital assets. That being said, resource must meet the requirements for these assets: it cannot be copied nor can it be discarded or reused. We've already <a href="/resources">been through</a> general description of its properties; let's see how these restrictions are implemented in the Move language.</p>
+<p>Resource is a concept described in Move Whitepaper. Originally it was implemented as its own type but later, with addition of abilities, replaced with two abilities: <code>Key</code> and <code>Store</code>. Resource is meant to be a perfect type for storing digital assets, to achieve that it must to be non-copyable and non-droppable. At the same time it must be storable and transferable between accounts.</p>
 <h3><a class="header" href="#definition" id="definition">Definition</a></h3>
 <p>Resource is a struct that has only <code>key</code> and <code>store</code> abilities:</p>
 <pre><code class="language-Move">module M {
@@ -170,7 +169,7 @@
 <ol>
 <li>Resources is stored under account - therefore it <em>exists</em> only when assigned to account; and can only be <em>accessed</em> through this account;</li>
 <li>Account can hold <em>only one</em> resource of <em>one type</em>, and this resource must have <code>key</code> ability;</li>
-<li>Resource can't be copied nor dropped, but can be stored. </li>
+<li>Resource can't be copied nor dropped, but can be stored.</li>
 <li>Resource value <em>must be used</em>. When resource created or taken from account, it cannot be dropped and must be stored or destructured.</li>
 </ol>
 <p>Enough theory, let's get to action!</p>
