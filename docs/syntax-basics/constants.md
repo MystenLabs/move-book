@@ -11,7 +11,7 @@ script {
 
     use 0x1::Debug;
 
-    const RECEIVER : address = 0x999;
+    const RECEIVER : address = @0x999;
 
     fun main(account: &signer) {
         Debug::print<address>(&RECEIVER);
