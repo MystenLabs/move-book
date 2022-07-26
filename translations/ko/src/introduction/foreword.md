@@ -4,4 +4,4 @@
 
 제가 이 언어를 이토록 사랑하는 이유를 여러분께서 알게 되실 것을 기대합니다!
 
-- Damir Shamanaev
+\- Damir Shamanaev
