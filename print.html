@@ -360,7 +360,7 @@ out/
 <h1><a class="header" href="#expression-and-scope" id="expression-and-scope">Expression and Scope</a></h1>
 <p>In programming languages expression is a unit of code which returns a value. A function call with return value is an expression - it returns value; an integer (or bool or address) literal is also an expression - it has the value of its integer type and so on.</p>
 <blockquote>
-<p>Expressions must be separated by semicolon*</p>
+<p>Expressions must be sequenced (separated) by a semicolon*</p>
 </blockquote>
 <p><em>* When you put a semicolon, 'internally' it's treated as <code>; (empty_expression)</code>. If you put any expression after semi, it will replace the empty one.</em></p>
 <h3><a class="header" href="#empty-expression" id="empty-expression">Empty expression</a></h3>
@@ -723,7 +723,7 @@ To build a bool condition by comparing values you have these operators. All of t
     }
 }
 </code></pre>
-<p>It's a non-trivial task for the compiler to understand whether a loop is really infinite or not, so for now you and only you can help yourself avoid looping errors. As I described above, this can lead to assets loss.</p>
+<p>It's a non-trivial task for the compiler to understand whether a loop is really infinite or not, so for now you and only you can help yourself avoid looping errors.</p>
 <h3><a class="header" href="#control-loops-with-continue-and-break" id="control-loops-with-continue-and-break">Control loops with <code>continue</code> and <code>break</code></a></h3>
 <p>Keywords <code>continue</code> and <code>break</code> allow you to skip one round or break iteration respectively. You can use both of them in both types of loops.</p>
 <p>For example let's add two conditions into the <code>loop</code>. If <code>i</code> is even, we use <code>continue</code> to jump to the next iteration without going through code after <code>continue</code> call.</p>
@@ -745,7 +745,7 @@ To build a bool condition by comparing values you have these operators. All of t
     }
 }
 </code></pre>
-<p>About semicolons. If <code>break</code> and <code>continue</code> are the last keywords in block, you can't put a semicolon after them as any code after won't be executed. Somehow even semi can't be put. See this:</p>
+<p>About semicolons. If <code>break</code> and <code>continue</code> are the last keywords in a block, you can't put a semicolon after them as any code after won't be executed. Somehow even semi can't be put. See this:</p>
 <pre><code class="language-Move">script {
     fun main() {
         let i = 0;
@@ -787,11 +787,11 @@ To build a bool condition by comparing values you have these operators. All of t
 </code></pre>
 <p>Keyword <code>abort</code> allows you to <em>abort</em> execution with an error code which is placed right after.</p>
 <h3><a class="header" href="#use-assert-built-in" id="use-assert-built-in">Use <code>assert</code> built-in</a></h3>
-<p>Built-in <code>assert(&lt;condition&gt;, &lt;code&gt;)</code> method already wraps <code>abort</code> + condition and is accessible anywhere in code:</p>
+<p>Built-in <code>assert!(&lt;bool expression&gt;, &lt;code&gt;)</code> method already wraps <code>abort</code> + condition and is accessible anywhere in code:</p>
 <pre><code class="language-Move">script {
 
     fun main(a: u8) {
-        assert(a == 10, 0);
+        assert!(a == 10, 0);
 
         // code here will be executed if (a == 10)
     }
