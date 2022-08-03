@@ -158,7 +158,7 @@ script {
 }
 ```
 
-It's a non-trivial task for the compiler to understand whether a loop is really infinite or not, so for now you and only you can help yourself avoid looping errors. As I described above, this can lead to assets loss.
+It's a non-trivial task for the compiler to understand whether a loop is really infinite or not, so for now you and only you can help yourself avoid looping errors.
 
 ### Control loops with `continue` and `break`
 
@@ -187,7 +187,7 @@ script {
 }
 ```
 
-About semicolons. If `break` and `continue` are the last keywords in block, you can't put a semicolon after them as any code after won't be executed. Somehow even semi can't be put. See this:
+About semicolons. If `break` and `continue` are the last keywords in a block, you can't put a semicolon after them as any code after won't be executed. Somehow even semi can't be put. See this:
 
 ```Move
 script {
@@ -238,13 +238,13 @@ Keyword `abort` allows you to *abort* execution with an error code which is plac
 
 ### Use `assert` built-in
 
-Built-in `assert(<condition>, <code>)` method already wraps `abort` + condition and is accessible anywhere in code:
+Built-in `assert!(<bool expression>, <code>)` method already wraps `abort` + condition and is accessible anywhere in code:
 
 ```Move
 script {
 
     fun main(a: u8) {
-        assert(a == 10, 0);
+        assert!(a == 10, 0);
 
         // code here will be executed if (a == 10)
     }
