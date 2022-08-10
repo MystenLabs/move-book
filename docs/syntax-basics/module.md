@@ -49,12 +49,12 @@ You can use modules by their address directly in your code:
 ```Move
 script {
     fun main(a: u8) {
-        0x1::Offer::create(a == 10, 1);
+        0x1::Offer::assert!(a == 10, 1);
     }
 }
 ```
 
-In this example we've imported module `Offer` from address `0x1` (standard library) and used its method `assert(expr: bool, code: u8)`.
+In this example we've imported module `Offer` from address `0x1` (standard library) and used its method `assert!(expr: bool, code: u8)`.
 
 ### Keyword use
 
