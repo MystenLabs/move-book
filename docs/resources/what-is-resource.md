@@ -16,7 +16,7 @@ module M {
 
 ### Key and Store abilities
 
-Key ability allows struct to be used as a storage identifier. In other words, `key` is an ability to be stored as at top-level and be a storage; while `store` is the ability to be stored *under* key. You will see how it works in the next chapter. For now keep in mind that even primitive types have store ability - they can be stored, but yet they don't have `key` and cannot be used as a top-level containers.
+Key ability allows struct to be used as a storage identifier. In other words, `storage` is an ability to be stored as at top-level and be a storage; while `key` is the ability to be stored *under* key. You will see how it works in the next chapter. For now keep in mind that even primitive types have store ability - they can be stored, but yet they don't have `key` and cannot be used as a top-level containers.
 
 Store ability allows value to be stored. That simple.
 
