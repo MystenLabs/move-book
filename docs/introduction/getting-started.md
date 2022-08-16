@@ -67,7 +67,7 @@ module HelloWorld {
 
 ### Write script
 
-Then create a script, let's call it `me.move` inside `scripts/` directory:
+Then create a script, let's call it `run_hello.move` inside `scripts/` directory:
 ```Move
 // scripts/run_hello.move
 script {

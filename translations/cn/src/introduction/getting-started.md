@@ -63,7 +63,7 @@ module HelloWorld {
 
 ### 写脚本
 
-然后在 scripts/ 目录中创建一个脚本 me.move，调用上面的模块：
+然后在 scripts/ 目录中创建一个脚本 run_hello.move，调用上面的模块：
 
 ```Move
 // scripts/run_hello.move

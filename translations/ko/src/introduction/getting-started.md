@@ -68,7 +68,7 @@ module HelloWorld {
 
 ### 스크립트 작성
 
-다음으로 `scripts/` 디렉토리 안에 `me.move`라고 하는 스크립트를 생성합니다.
+다음으로 `scripts/` 디렉토리 안에 `run_hello.move`라고 하는 스크립트를 생성합니다.
 ```Move
 // scripts/run_hello.move
 script {
