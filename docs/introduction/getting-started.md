@@ -13,7 +13,7 @@ To simpify development of Move modules I've created [Move IDE](https://github.co
 To install it you'll need:
 
 1. VSCode (version 1.43.0 and above) - you can [get it here](https://code.visualstudio.com/download); if you already have one - proceed to the next step;
-2. Move IDE - once VSCode is installed, follow [this link](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide) to install the newest version of IDE.
+2. Move-Analyzer IDE - once VSCode is installed, follow [this link](https://marketplace.visualstudio.com/items?itemName=move.move-analyzer) to install the newest version of IDE.
 
 ### Setup environment
 
