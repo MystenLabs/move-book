@@ -10,14 +10,14 @@ script {
 
     fun main() {
         // use generics to create an emtpy vector
-        let a = Vector::empty<&u8>();
+        let a = Vector::empty<u8>();
         let i = 0;
 
         // let's fill it with data
         while (i < 10) {
             Vector::push_back(&mut a, i);
             i = i + 1;
-        }
+        };
 
         // now print vector length
         let a_len = Vector::length(&a);
