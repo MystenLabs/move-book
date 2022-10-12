@@ -67,8 +67,8 @@ module Collection {
 
     // ... skipped ...
 
-    public fun add_item(account: &signer) acquires T {
-        let collection = borrow_global_mut<T>(Signer::address_of(account));
+    public fun add_item(account: &signer) acquires Collection {
+        let collection = borrow_global_mut<Collection>(Signer::address_of(account));
 
         Vector::push_back(&mut collection.items, Item {});
     }
