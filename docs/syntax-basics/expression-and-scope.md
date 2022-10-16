@@ -228,7 +228,7 @@ script {
             // but we can define another C
             let c = b - 1;
 
-        }; // variable C dies, so does C
+        }; // variable B dies, so does C
 
         // this is impossible
         // let d = b + c;
