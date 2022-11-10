@@ -2478,7 +2478,7 @@ native fun borrow_global&lt;T: key&gt;(addr: address): &amp;T;
 <p>Since resource is a non-copyable type, it is impossible to use dereference operator '*' on it.</p>
 </blockquote>
 <h3><a class="header" href="#acquires-keyword" id="acquires-keyword">Acquires keyword</a></h3>
-<p>There's another detail worth explanation: keyword <code>acquires</code> which is put after function return value. This keyword explicitly defines all the resources <em>acquired</em> by this function. You must specify each acqured resource, even if it's a nested function call actually acquires resource - parent scope must have this resource specified in acquires list.</p>
+<p>There's another detail worth explanation: keyword <code>acquires</code> which is put after function return value. This keyword explicitly defines all the resources <em>acquired</em> by this function. You must specify each acquired resource, even if it's a nested function call actually acquires resource - parent scope must have this resource specified in acquires list.</p>
 <p>Syntax for function with <code>acquires</code> is like this:</p>
 <pre><code class="language-Move">
 fun &lt;name&gt;(&lt;args...&gt;): &lt;ret_type&gt; acquires T, T1 ... {
