@@ -838,11 +838,11 @@ module Math {
 <p>You can use modules by their address directly in your code:</p>
 <pre><code class="language-Move">script {
     fun main(a: u8) {
-        0x1::Offer::create(a == 10, 1);
+        0x1::Offer::assert!(a == 10, 1);
     }
 }
 </code></pre>
-<p>In this example we've imported module <code>Offer</code> from address <code>0x1</code> (standard library) and used its method <code>assert(expr: bool, code: u8)</code>.</p>
+<p>In this example we've imported module <code>Offer</code> from address <code>0x1</code> (standard library) and used its method <code>assert!(expr: bool, code: u8)</code>.</p>
 <h3><a class="header" href="#keyword-use" id="keyword-use">Keyword use</a></h3>
 <p>To make code shorter (remember that only 0x1 address is short, actual addresses are pretty long!) and to organize imports you can use keyword <code>use</code>:</p>
 <pre><code class="language-Move">use &lt;Address&gt;::&lt;ModuleName&gt;;
