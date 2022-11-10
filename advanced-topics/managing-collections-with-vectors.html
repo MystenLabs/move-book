@@ -159,14 +159,14 @@
 
     fun main() {
         // use generics to create an emtpy vector
-        let a = Vector::empty&lt;&amp;u8&gt;();
+        let a = Vector::empty&lt;u8&gt;();
         let i = 0;
 
         // let's fill it with data
         while (i &lt; 10) {
             Vector::push_back(&amp;mut a, i);
             i = i + 1;
-        }
+        };
 
         // now print vector length
         let a_len = Vector::length(&amp;a);
