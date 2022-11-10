@@ -202,8 +202,8 @@ fun &lt;name&gt;(&lt;args...&gt;): &lt;ret_type&gt; acquires T, T1 ... {
 
     // ... skipped ...
 
-    public fun add_item(account: &amp;signer) acquires T {
-        let collection = borrow_global_mut&lt;T&gt;(Signer::address_of(account));
+    public fun add_item(account: &amp;signer) acquires Collection {
+        let collection = borrow_global_mut&lt;Collection&gt;(Signer::address_of(account));
 
         Vector::push_back(&amp;mut collection.items, Item {});
     }

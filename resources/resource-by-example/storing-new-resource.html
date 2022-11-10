@@ -185,7 +185,7 @@ module Collection {
     /// note that &amp;signer type is passed here!
     public fun start_collection(account: &amp;signer) {
         move_to&lt;Collection&gt;(account, Collection {
-            items: Vector::empty&lt;Collection&gt;()
+            items: Vector::empty&lt;Item&gt;()
         })
     }
 }
