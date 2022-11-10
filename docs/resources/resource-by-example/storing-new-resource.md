@@ -38,7 +38,7 @@ module Collection {
     /// note that &signer type is passed here!
     public fun start_collection(account: &signer) {
         move_to<Collection>(account, Collection {
-            items: Vector::empty<Collection>()
+            items: Vector::empty<Item>()
         })
     }
 }
