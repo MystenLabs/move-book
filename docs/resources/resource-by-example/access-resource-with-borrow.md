@@ -48,7 +48,7 @@ Another conclusion: due to borrow checking you cannot return reference to resour
 
 ### Acquires keyword
 
-There's another detail worth explanation: keyword `acquires` which is put after function return value. This keyword explicitly defines all the resources *acquired* by this function. You must specify each acqured resource, even if it's a nested function call actually acquires resource - parent scope must have this resource specified in acquires list.
+There's another detail worth explanation: keyword `acquires` which is put after function return value. This keyword explicitly defines all the resources *acquired* by this function. You must specify each acquired resource, even if it's a nested function call actually acquires resource - parent scope must have this resource specified in acquires list.
 
 Syntax for function with `acquires` is like this:
 
@@ -67,8 +67,8 @@ module Collection {
 
     // ... skipped ...
 
-    public fun add_item(account: &signer) acquires T {
-        let collection = borrow_global_mut<T>(Signer::address_of(account));
+    public fun add_item(account: &signer) acquires Collection {
+        let collection = borrow_global_mut<Collection>(Signer::address_of(account));
 
         Vector::push_back(&mut collection.items, Item {});
     }

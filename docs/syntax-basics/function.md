@@ -23,7 +23,7 @@ script {
     use 0x1::Account;
 
     fun main(addr: address) {
-        assert(Account::exists(addr), 1);
+        assert!(Account::exists(addr), 1);
     }
 }
 ```
