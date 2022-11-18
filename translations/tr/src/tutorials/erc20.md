@@ -1,0 +1,3 @@
+# ERC20 Token Yazmak
+
+Yapılacak...
