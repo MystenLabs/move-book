@@ -254,8 +254,6 @@ Borrow::change_b(mut_b, 100000);
     │
 ```
 
-This code won't compile. Why? Because `&mut A` is *being borrowed* by `&mut B`. If we could change `A` while having mutable reference to its contents, we'd get into an odd situation where `A` can be changed but reference to its contents is still here. Where would `mut_b` point to if there was no actual `B`?
-
 코드가 컴파일되지 않을 것입니다. 그 이유는 `&mut A`가 `&mut B`에 의해 *차용되고 있기* 때문입니다. 만약 내용에 대한 가변 참조를 확보한 상태에서 `A`를 변경할 수 있게 된다면, 내용에 대한 참조가 여전히 여기 존재하는 상황에서 `A`가 변경된다는 이상한 상황이 발생하게 됩니다. `B`가 실제로 존재하지 않는데 `mut_b`가 어딜 지정해야 하는 걸까요?
 
 이로써 몇 가지 결론이 도출됩니다.
