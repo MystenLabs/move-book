@@ -1,0 +1,381 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>벡터로 집합 관리하기</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Move 프로그래밍 언어</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> 서문</a></li><li class="chapter-item expanded "><a href="../introduction/getting-started.html"><strong aria-hidden="true">3.</strong> 시작하기</a></li><li class="chapter-item expanded "><a href="../syntax-basics/index.html"><strong aria-hidden="true">4.</strong> 구문 기본사항</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../syntax-basics/concept.html"><strong aria-hidden="true">4.1.</strong> 개념</a></li><li class="chapter-item expanded "><a href="../syntax-basics/primitives.html"><strong aria-hidden="true">4.2.</strong> 기본형</a></li><li class="chapter-item expanded "><a href="../syntax-basics/comments.html"><strong aria-hidden="true">4.3.</strong> 주석</a></li><li class="chapter-item expanded "><a href="../syntax-basics/expression-and-scope.html"><strong aria-hidden="true">4.4.</strong> 표현식과 스코프</a></li><li class="chapter-item expanded "><a href="../syntax-basics/control-flow.html"><strong aria-hidden="true">4.5.</strong> 제어 흐름</a></li><li class="chapter-item expanded "><a href="../syntax-basics/module.html"><strong aria-hidden="true">4.6.</strong> 모듈과 불러오기</a></li><li class="chapter-item expanded "><a href="../syntax-basics/constants.html"><strong aria-hidden="true">4.7.</strong> 상수</a></li><li class="chapter-item expanded "><a href="../syntax-basics/function.html"><strong aria-hidden="true">4.8.</strong> 함수</a></li></ol></li><li class="chapter-item expanded "><a href="../advanced-topics/index.html"><strong aria-hidden="true">5.</strong> 고급 주제</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../advanced-topics/struct.html"><strong aria-hidden="true">5.1.</strong> 구조</a></li><li class="chapter-item expanded "><a href="../advanced-topics/types-with-abilities.html"><strong aria-hidden="true">5.2.</strong> 능력을 지니는 유형</a></li><li class="chapter-item expanded "><a href="../advanced-topics/ownership-and-references.html"><strong aria-hidden="true">5.3.</strong> 소유권과 참조</a></li><li class="chapter-item expanded "><a href="../advanced-topics/understanding-generics.html"><strong aria-hidden="true">5.4.</strong> 제네릭 이해하기</a></li><li class="chapter-item expanded "><a href="../advanced-topics/managing-collections-with-vectors.html" class="active"><strong aria-hidden="true">5.5.</strong> 벡터로 집합 관리하기</a></li></ol></li><li class="chapter-item expanded "><a href="../resources/index.html"><strong aria-hidden="true">6.</strong> 프로그래밍 가능한 자원</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../resources/signer-type.html"><strong aria-hidden="true">6.1.</strong> 서명자로서의 전송자</a></li><li class="chapter-item expanded "><a href="../resources/what-is-resource.html"><strong aria-hidden="true">6.2.</strong> 리소스란 무엇인가</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example/index.html"><strong aria-hidden="true">6.3.</strong> 리소스별 예시</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../resources/resource-by-example/storing-new-resource.html"><strong aria-hidden="true">6.3.1.</strong> 리소스 생성 및 이동</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example/access-resource-with-borrow.html"><strong aria-hidden="true">6.3.2.</strong> 리소스 읽기 및 수정</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example/destroy-resource.html"><strong aria-hidden="true">6.3.3.</strong> 리소스 이전 및 파괴</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example/furher-steps.html"><strong aria-hidden="true">6.3.4.</strong> 추가 단계</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../tutorials/index.html"><strong aria-hidden="true">7.</strong> 튜토리얼</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tutorials/erc20.html"><strong aria-hidden="true">7.1.</strong> ERC20 토큰 작성</a></li></ol></li><li class="chapter-item expanded "><a href="../translations.html"><strong aria-hidden="true">8.</strong> 번역본</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#벡터로-집합-관리하기" id="벡터로-집합-관리하기">벡터로 집합 관리하기</a></h1>
+<p>본인만의 유형을 생성하고 복잡한 데이터를 저장하도록 하는 <code>struct</code> 유형은 이미 익숙하실 것입니다. 하지만 가끔은 좀 더 동적이고, 확장성과 관리성이 좋은 유형이 필요할 때가 있습니다. Move에서는 벡터가 그러한 기능을 담당합니다.</p>
+<p>Vector is a built-in type for storing <em>collections</em> of data. It is a generic solution for collection of any type (but only one). As its functionality is given to you by the VM; the only way to work with it is by using the <a href="https://github.com/diem/move/tree/main/language/move-stdlib/sources">Move standard library</a> and <code>native</code> functions.</p>
+<p>벡터는 데이터 <em>집합</em>을 저장하는 역할을 맡는 내장된 유형입니다. 벡터는 모든 종류의 단일 유형에 대응하는 제네릭 솔루션입니다. 이 기능은 실제 Move 언어가 아니라 VM에서 제공하는 것이므로, <a href="https://github.com/diem/move/tree/main/language/move-stdlib/sources">Move standard library</a>와 <code>native</code> 함수를 사용해야만 작업할 수 있습니다.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Vector;
+
+    fun main() {
+        // use generics to create an emtpy vector
+        let a = Vector::empty&lt;&amp;u8&gt;();
+        let i = 0;
+
+        // let's fill it with data
+        while (i &lt; 10) {
+            Vector::push_back(&amp;mut a, i);
+            i = i + 1;
+        }
+
+        // now print vector length
+        let a_len = Vector::length(&amp;a);
+        0x1::Debug::print&lt;u64&gt;(&amp;a_len);
+
+        // then remove 2 elements from it
+        Vector::pop_back(&amp;mut a);
+        Vector::pop_back(&amp;mut a);
+
+        // and print length again
+        let a_len = Vector::length(&amp;a);
+        0x1::Debug::print&lt;u64&gt;(&amp;a_len);
+    }
+}
+</code></pre>
+<p>벡터는 단일 비참조 유형에 해당하는 값을 최대 <code>u64</code> 크기까지 저장할 수 있습니다. 대형 저장소를 관리함에 있어 벡터가 어떤 도움이 되는지를 살펴보기 위해 모듈을 작성해 보겠습니다.</p>
+<pre><code class="language-Move">module Shelf {
+
+    use 0x1::Vector;
+
+    struct Box&lt;T&gt; {
+        value: T
+    }
+
+    struct Shelf&lt;T&gt; {
+        boxes: vector&lt;Box&lt;T&gt;&gt;
+    }
+
+    public fun create_box&lt;T&gt;(value: T): Box&lt;T&gt; {
+        Box { value }
+    }
+
+    // this method will be inaccessible for non-copyable contents
+    public fun value&lt;T: copy&gt;(box: &amp;Box&lt;T&gt;): T {
+        *&amp;box.value
+    }
+
+    public fun create&lt;T&gt;(): Shelf&lt;T&gt; {
+        Shelf {
+            boxes: Vector::empty&lt;Box&lt;T&gt;&gt;()
+        }
+    }
+
+    // box value is moved to the vector
+    public fun put&lt;T&gt;(shelf: &amp;mut Shelf&lt;T&gt;, box: Box&lt;T&gt;) {
+        Vector::push_back&lt;Box&lt;T&gt;&gt;(&amp;mut shelf.boxes, box);
+    }
+
+    public fun remove&lt;T&gt;(shelf: &amp;mut Shelf&lt;T&gt;): Box&lt;T&gt; {
+        Vector::pop_back&lt;Box&lt;T&gt;&gt;(&amp;mut shelf.boxes)
+    }
+
+    public fun size&lt;T&gt;(shelf: &amp;Shelf&lt;T&gt;): u64 {
+        Vector::length&lt;Box&lt;T&gt;&gt;(&amp;shelf.boxes)
+    }
+}
+</code></pre>
+<p>우선 shelf와 이에 대응하는 box 몇 개를 생성하고 모듈에 벡터를 반영하여 작업을 진행해 보겠습니다.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::Shelf;
+
+    fun main() {
+
+        // create shelf and 2 boxes of type u64
+        let shelf = Shelf::create&lt;u64&gt;();
+        let box_1 = Shelf::create_box&lt;u64&gt;(99);
+        let box_2 = Shelf::create_box&lt;u64&gt;(999);
+
+        // put both boxes to shelf
+        Shelf::put(&amp;mut shelf, box_1);
+        Shelf::put(&amp;mut shelf, box_2);
+
+        // prints size - 2
+        0x1::Debug::print&lt;u64&gt;(&amp;Shelf::size&lt;u64&gt;(&amp;shelf));
+
+        // then take one from shelf (last one pushed)
+        let take_back = Shelf::remove(&amp;mut shelf);
+        let value     = Shelf::value&lt;u64&gt;(&amp;take_back);
+
+        // verify that the box we took back is one with 999
+        assert(value == 999, 1);
+
+        // and print size again - 1
+        0x1::Debug::print&lt;u64&gt;(&amp;Shelf::size&lt;u64&gt;(&amp;shelf));
+    }
+}
+</code></pre>
+<p>Vectors are very powerful. They allow you to store huge amounts of data (max length is <em>18446744073709551615</em>) and to work with it inside indexed storage.</p>
+<p>벡터는 아주 강력합니다. 최대 길이 <em>18446744073709551615</em> 에 해당하는 대규모의 데이터를 저장할 수 있도록 하며, 색인 처리된 저장소 내부에서 작업을 진행할 수 있습니다.</p>
+<h3><a class="header" href="#인라인-벡터-정의에-대응하는-hex-및-bytestring-리터럴" id="인라인-벡터-정의에-대응하는-hex-및-bytestring-리터럴">인라인 벡터 정의에 대응하는 Hex 및 Bytestring 리터럴</a></h3>
+<p>벡터는 또한 스트링을 대표하는 역할을 맡습니다. VM은 스크립트 상 <code>main</code> 함수에 <code>vector&lt;u8&gt;</code>을 인수로 전달하는 방법을 지원합니다.</p>
+<p>그러나16진법 리터럴을 사용하여 스크립트나 모듈에서 <code>vector&lt;u8&gt;</code>을 정의할 수도 있습니다.</p>
+<pre><code class="language-Move">script {
+
+    use 0x1::Vector;
+
+    // this is the way to accept arguments in main
+    fun main(name: vector&lt;u8&gt;) {
+        let _ = name;
+
+        // and this is how you use literals
+        // this is a &quot;hello world&quot; string!
+        let str = x&quot;68656c6c6f20776f726c64&quot;;
+
+        // hex literal gives you vector&lt;u8&gt; as well
+        Vector::length&lt;u8&gt;(&amp;str);
+    }
+}
+</code></pre>
+<p>Bytestring 리터럴을 사용하면 좀 더 단순하게 접근할 수 있습니다.</p>
+<pre><code class="language-Move">script {
+
+    fun main() {
+        let _ = b&quot;hello world&quot;;
+    }
+}
+</code></pre>
+<p>ASCII 스트링으로 취급되며 마찬가지로 <code>vector&lt;u8&gt;</code>로 해석됩니다.</p>
+<h3><a class="header" href="#벡터-공략집" id="벡터-공략집">벡터 공략집</a></h3>
+<p>표준 라이브러리에서 제공하는 벡터 메서드 관련 공략집입니다.</p>
+<ul>
+<li><code>&lt;E&gt;</code> 형 Empty 벡터 생성</li>
+</ul>
+<pre><code class="language-Move">Vector::empty&lt;E&gt;(): vector&lt;E&gt;;
+</code></pre>
+<ul>
+<li>벡터 길이 확인 </li>
+</ul>
+<pre><code class="language-Move">Vector::length&lt;E&gt;(v: &amp;vector&lt;E&gt;): u64;
+</code></pre>
+<ul>
+<li>벡터 끝으로 element 밀기:</li>
+</ul>
+<pre><code class="language-Move">Vector::push_back&lt;E&gt;(v: &amp;mut vector&lt;E&gt;, e: E);
+</code></pre>
+<ul>
+<li>벡터의 element에 대한 가변성 확보. 불변성 확인 필요 시 <code>Vector::borrow()</code> 사용</li>
+</ul>
+<pre><code>Vector::borrow_mut&lt;E&gt;(v: &amp;mut vector&lt;E&gt;, i: u64): &amp;E;
+</code></pre>
+<ul>
+<li>벡터 끝에서 element pop하기:</li>
+</ul>
+<pre><code>Vector::pop_back&lt;E&gt;(v: &amp;mut vector&lt;E&gt;): E;
+</code></pre>
+<p>Move 라이브러리 내 벡터 모듈 관련 사항: <a href="https://github.com/diem/move/blob/main/language/move-stdlib/sources/Vector.move">link</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../advanced-topics/understanding-generics.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../resources/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../advanced-topics/understanding-generics.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../resources/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Move 프로그래밍 언어</a></li><li class="chapter-item expanded "><a href="introduction/foreword.html"><strong aria-hidden="true">2.</strong> 서문</a></li><li class="chapter-item expanded "><a href="introduction/getting-started.html"><strong aria-hidden="true">3.</strong> 시작하기</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Move 프로그래밍 언어</a></li><li class="chapter-item expanded "><a href="introduction/foreword.html"><strong aria-hidden="true">2.</strong> 서문</a></li><li class="chapter-item expanded "><a href="introduction/getting-started.html"><strong aria-hidden="true">3.</strong> 시작하기</a></li><li class="chapter-item expanded "><a href="syntax-basics/index.html"><strong aria-hidden="true">4.</strong> 구문 기본사항</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="syntax-basics/concept.html"><strong aria-hidden="true">4.1.</strong> 개념</a></li><li class="chapter-item expanded "><a href="syntax-basics/primitives.html"><strong aria-hidden="true">4.2.</strong> 기본형</a></li><li class="chapter-item expanded "><a href="syntax-basics/comments.html"><strong aria-hidden="true">4.3.</strong> 주석</a></li><li class="chapter-item expanded "><a href="syntax-basics/expression-and-scope.html"><strong aria-hidden="true">4.4.</strong> 표현식과 스코프</a></li><li class="chapter-item expanded "><a href="syntax-basics/control-flow.html"><strong aria-hidden="true">4.5.</strong> 제어 흐름</a></li><li class="chapter-item expanded "><a href="syntax-basics/module.html"><strong aria-hidden="true">4.6.</strong> 모듈과 불러오기</a></li><li class="chapter-item expanded "><a href="syntax-basics/constants.html"><strong aria-hidden="true">4.7.</strong> 상수</a></li><li class="chapter-item expanded "><a href="syntax-basics/function.html"><strong aria-hidden="true">4.8.</strong> 함수</a></li></ol></li><li class="chapter-item expanded "><a href="advanced-topics/index.html"><strong aria-hidden="true">5.</strong> 고급 주제</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="advanced-topics/struct.html"><strong aria-hidden="true">5.1.</strong> 구조</a></li><li class="chapter-item expanded "><a href="advanced-topics/types-with-abilities.html"><strong aria-hidden="true">5.2.</strong> 능력을 지니는 유형</a></li><li class="chapter-item expanded "><a href="advanced-topics/ownership-and-references.html"><strong aria-hidden="true">5.3.</strong> 소유권과 참조</a></li><li class="chapter-item expanded "><a href="advanced-topics/understanding-generics.html"><strong aria-hidden="true">5.4.</strong> 제네릭 이해하기</a></li><li class="chapter-item expanded "><a href="advanced-topics/managing-collections-with-vectors.html"><strong aria-hidden="true">5.5.</strong> 벡터로 집합 관리하기</a></li></ol></li><li class="chapter-item expanded "><a href="resources/index.html"><strong aria-hidden="true">6.</strong> 프로그래밍 가능한 자원</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="resources/signer-type.html"><strong aria-hidden="true">6.1.</strong> 서명자로서의 전송자</a></li><li class="chapter-item expanded "><a href="resources/what-is-resource.html"><strong aria-hidden="true">6.2.</strong> 리소스란 무엇인가</a></li><li class="chapter-item expanded "><a href="resources/resource-by-example/index.html"><strong aria-hidden="true">6.3.</strong> 리소스별 예시</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="resources/resource-by-example/storing-new-resource.html"><strong aria-hidden="true">6.3.1.</strong> 리소스 생성 및 이동</a></li><li class="chapter-item expanded "><a href="resources/resource-by-example/access-resource-with-borrow.html"><strong aria-hidden="true">6.3.2.</strong> 리소스 읽기 및 수정</a></li><li class="chapter-item expanded "><a href="resources/resource-by-example/destroy-resource.html"><strong aria-hidden="true">6.3.3.</strong> 리소스 이전 및 파괴</a></li><li class="chapter-item expanded "><a href="resources/resource-by-example/furher-steps.html"><strong aria-hidden="true">6.3.4.</strong> 추가 단계</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="tutorials/index.html"><strong aria-hidden="true">7.</strong> 튜토리얼</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tutorials/erc20.html"><strong aria-hidden="true">7.1.</strong> ERC20 토큰 작성</a></li></ol></li><li class="chapter-item expanded "><a href="translations.html"><strong aria-hidden="true">8.</strong> 번역본</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -237,6 +237,2326 @@ out/
 <blockquote>
 <p>모듈 디렉토리에 둘 수 있는 모듈의 개수에는 제한이 없습니다. 해당 디렉토리에 있는 모든 모듈은 .mvconfig.json에서 명시해 둔 주소를 사용해서 스크립트에서 접근할 수 있습니다.</p>
 </blockquote>
+<h1><a class="header" href="#구문-기본사항" id="구문-기본사항">구문 기본사항</a></h1>
+<p>이 장에서는 Move 언어에 대해 다루겠습니다. 아주 간단하고 기초적인 문법 규칙으로 시작하여 진행하면서 점차 난이도를 높일 예정입니다. 실력 있는 개발자들에게는 너무 쉽게 느껴질 수 있는 내용들이지만, 그래도 꼼꼼하게 살펴보실 것을 권장합니다. 초심자라면 이 장을 통해 Move에 대해 알아야 할 기본 내용을 모두 숙지하길 바랍니다.</p>
+<h1><a class="header" href="#개념" id="개념">개념</a></h1>
+<p>Solidity 등의 다른 블록체인 언어와는 달리 Move는 스크립트 (또는 스크립트 형태의 트랜잭션(transaction-as-script)) 와 모듈을 분리합니다. 전자의 경우 트랜잭션에 더 많은 로직을 배치함으로써 시간과 자원을 절약함과 동시에 더욱 높은 유연성을 확보할 수 있으며, 후자는 블록체인 기능성을 확장하거나 다양한 선택지를 제공할 수 있는 맞춤형 스마트 컨트랙트를 구현할 수 있도록 합니다.</p>
+<p>기본사항에서는 초심자들에게 상당히 친근하게 다가올 스크립트를 다루면서 시작한 뒤 모듈을 진행하겠습니다.</p>
+<h1><a class="header" href="#기본형" id="기본형">기본형</a></h1>
+<p>Move에는 숫자, 주소 및 불리언(Boolean) 값을 나타낼 수 있도록 정수(u8, u64, u128), <code>boolean</code> 및 <code>address</code> 에 대응하는 기본형이 몇 가지 미리 탑재되어 있습니다.
+Move에 스트링 또는 부동소수점 숫자는 없습니다.</p>
+<h2><a class="header" href="#정수형" id="정수형">정수형</a></h2>
+<p>정수는 <code>u8</code>, <code>u64</code> 및 <code>u128</code> 로 나타나며, 몇 가지 정수 표기법이 아래와 같이 기재되어 있습니다.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        // define empty variable, set value later
+        let a: u8;
+        a = 10;
+
+        // define variable, set type
+        let a: u64 = 10;
+
+        // finally simple assignment
+        let a = 10;
+
+        // simple assignment with defined value type
+        let a = 10u128;
+
+        // in function calls or expressions you can use ints as constant values
+        if (a &lt; 10) {};
+
+        // or like this, with type
+        if (a &lt; 10u8) {}; // usually you don't need to specify type
+    }
+}
+</code></pre>
+<h3><a class="header" href="#as-연산자" id="as-연산자"><code>as</code> 연산자</a></h3>
+<p>값을 비교하거나 함수 인수에서 다양한 크기의 정수를 필요로 한다면 <code>as</code> 연산자를 사용해서정수 변수를 다른 크기로 캐스팅할 수 있습니다. </p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let a: u8 = 10;
+        let b: u64 = 100;
+
+        // we can only compare same size integers
+        if (a == (b as u8)) abort 11;
+        if ((a as u64) == b) abort 11;
+    }
+}
+</code></pre>
+<h2><a class="header" href="#불리언" id="불리언">불리언</a></h2>
+<p>모두에게 친숙한 불리언 유형은 <code>거짓</code>과 <code>참</code>에 해당하는 두 가지 상수가 존재하며 이 둘은 각각 논리형에 해당하는 한 가지 값만 의미할 수 있습니다.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        // these are all the ways to do it
+        let b : bool; b = true;
+        let b : bool = true;
+        let b = true
+        let b = false; // here's an example with false
+    }
+}
+</code></pre>
+<h2><a class="header" href="#주소" id="주소">주소</a></h2>
+<p>주소는 블록체인에서 발신자 (또는 지갑)의 식별자에 해당합니다. 주소 유형을 필요로 하는 기초적인 작동으로는 코인 전송과 모듈 불러오기가 있습니다.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let addr: address; // type identifier
+
+        // in this book I'll use {{sender}} notation;
+        // always replace `{{sender}}` in examples with VM specific address!!!
+        addr = {{sender}};
+
+        // in Diem's Move VM and Starcoin - 16-byte address in HEX
+        addr = 0x...;
+
+        // in dfinance's DVM - bech32 encoded address with `wallet1` prefix
+        addr = wallet1....;
+    }
+}
+</code></pre>
+<h1><a class="header" href="#주석" id="주석">주석</a></h1>
+<p>코드 중간에 추가 설명이 필요할 것 같다면 <em>주석</em>을 사용합니다. 주석 기능은 코드의 일부를 설명하는 것을 목적으로 하며, 해당 텍스트 구간 또는 문장은 실행되지 않습니다.</p>
+<h3><a class="header" href="#라인-주석" id="라인-주석">라인 주석</a></h3>
+<pre><code class="language-Move">script {
+    fun main() {
+        // this is a comment line
+    }
+}
+</code></pre>
+<p>라인 주석을 작성하려면 이중 사선 “<em>//</em>”을 사용합니다. 사용법은 매우 간단한데, “<em>//</em>” <strong>뒤에 오는 모든 내용</strong>은 해당 라인 끝부분에 추가된 주석으로 간주됩니다. 라인 주석을 사용하면 다른 개발자들에게 짧은 참고사항을 남겨두거나 실행 체인에서 일부 코드를 주석 처리하여 제외시킬 수 있습니다.</p>
+<pre><code class="language-Move">script {
+    // let's add a note to everything!
+    fun main() {
+        let a = 10;
+        // let b = 10 this line is commented and won't be executed
+        let b = 5; // here comment is placed after code
+        a + b // result is 15, not 10!
+    }
+}
+</code></pre>
+<h3><a class="header" href="#블록-주석" id="블록-주석">블록 주석</a></h3>
+<p>모든 라인 내용에 주석을 달 의향이 없거나 하나 이상의 라인을 주석 처리하여 제외하려는 경우 블록 주석을 사용합니다.</p>
+<p>블록 주석은 사선 별표 <em>/*</em> 로 시작하며 첫 번째 별표 사선 <em>*/</em> 표시 전까지 들어오는 모든 텍스트를 포함합니다. 블록 주석은 라인 1개에 한정되지 않으며 코드 중 모든 장소에 참고사항을 작성할 수 있는 장점이 있습니다.</p>
+<pre><code class="language-Move">script {
+    fun /* you can comment everywhere */ main() {
+        /* here
+           there
+           everywhere */ let a = 10;
+        let b = /* even here */ 10; /* and again */
+        a + b
+    }
+    /* you can use it to remove certain expressions or definitions
+    fun empty_commented_out() {
+
+    }
+    */
+}
+</code></pre>
+<p>물론 이 예시는 말도 안 되는 내용이지만, 블록 주석의 위력을 잘 보여주고 있습니다. 어느 곳에나 주석 처리를 할 수 있다는 점 명심하세요!</p>
+<!-- ### Documentation comments -->
+<h1><a class="header" href="#표현식과-스코프" id="표현식과-스코프">표현식과 스코프</a></h1>
+<p>프로그래밍 언어에서 표현식은 값을 반환하는 코드 뭉치입니다. 반환 값을 가지는 함수 호출은 표현식입니다. 이 함수가 반환하는 정수(또는 부울값이나 주소) 또한 표현식입니다. 반환 값은 정수 유형의 값을 가집니다.</p>
+<blockquote>
+<p>표현식은 세미콜론을 사용하여 반드시 분할해 줘야 합니다*</p>
+</blockquote>
+<p><em>* 세미콜론을 입력하는 경우 ‘내부적으로는‘ <code>; (empty_expression)</code>으로 취급됩니다. 세미콜론 이후에 표현식을 배치하는 경우 공백란을 대체할 것입니다.</em></p>
+<h3><a class="header" href="#공백-표현식" id="공백-표현식">공백 표현식</a></h3>
+<p>이 표현식을 직접 사용할 일은 아마 없을 것이지만 Move에서 공백 표현식은 (Rust와 유사한 방식에 해당하는) 빈 괄호로 표기합니다.</p>
+<pre><code class="language-Move">script {
+    fun empty() {
+        () // this is an empty expression
+    }
+}
+</code></pre>
+<p>공백 표현식은 VM이 자동으로 입력하므로 제외해도 무방합니다.</p>
+<h3><a class="header" href="#리터럴-표현식" id="리터럴-표현식">리터럴 표현식</a></h3>
+<p>아래의 코드를 살펴보시면 각 라인에 세미콜론으로 끝나는 표현식이 있는 것을 확인하실 수 있습니다. 마지막 라인에는 세미콜론으로 분리된 표현식이 3개 있습니다.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        10;
+        10 + 5;
+        true;
+        true != false;
+        0x1;
+        1; 2; 3
+    }
+}
+</code></pre>
+<p>좋습니다. 이제 가장 단순한 형태의 표현식들을 배워 보셨는데, 이것들이 필요한 이유는 무엇일까요? 그리고 어떻게 사용할 수 있을까요? <code>let</code> 키워드에 대해 알아볼 시간입니다.</p>
+<h3><a class="header" href="#변수와-let-키워드" id="변수와-let-키워드">변수와 'let' 키워드</a></h3>
+<p>(다른 곳으로 값을 전달하기 위해) 변수에 표현식의 값을 저장하려면 <code>let</code>이라는 키워드가 필요합니다(이미 <a href="syntax-basics//syntax-basics/primitives.html">기본형을 설명하는 장</a>에서 보셨을 것입니다). 이 키워드는 공백(undefined)이거나 표현식의 값이 반영된 새로운 변수를 생성합니다.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let a;
+        let b = true;
+        let c = 10;
+        let d = 0x1;
+        a = c;
+    }
+}
+</code></pre>
+<blockquote>
+<p><code>let</code> 키워드는 <em>현재 스코프</em> 내부에 새로운 변수를 생성하며 부가적으로 값을 반영하여 해당 변수를 <em>초기 설정</em>합니다. 이 표현식에 대응하는 구문은 <code>let &lt;VARIABLE&gt; : &lt;TYPE&gt;;</code> 또는 <code>let &lt;VARIABLE&gt; = &lt;EXPRESSION&gt;</code> 입니다.</p>
+</blockquote>
+<p>변수를 생성하여 초기 설정을 완료한 뒤에는 변수 이름을 사용하여 값을 <em>변경</em>하거나 <em>접근</em>할 수 있습니다. 상기 예시에서 변수 <code>a</code>는 함수 끝부분에서 초기 설정이 이루어졌으며 변수 <code>c</code>의 값을 <em>할당</em> 받았습니다.</p>
+<p>After you've created and initialized variable you're able to <em>modify</em> or <em>access</em> its value by using a variable name. In example above variable <code>a</code> was initialized in the end of function and was <em>assigned</em> a value of variable <code>c</code>.</p>
+<blockquote>
+<p>등호 <code>=</code>는 할당 연산자입니다. 우측 표현식을 좌측 변수에 할당하게 됩니다. 예를 들면 <code>a = 10</code> 이라는 식에서 변수 <code>a</code>는 <code>10</code>이라는 정수가 할당되었습니다</p>
+</blockquote>
+<h3><a class="header" href="#정수형-대응-연산자" id="정수형-대응-연산자">정수형 대응 연산자</a></h3>
+<p>Move에는 정수 값을 변형할 수 있는 다양한 종류의 연산자가 아래와 같이 있습니다.
+| Operator | Op     | Types |                                 |
+|----------|--------|-------|---------------------------------|
+| +        | sum    | uint  | Sum LHS and RHS                 |
+| -        | sub    | uint  | Subtract RHS from LHS           |
+| /        | div    | uint  | Divide LHS by RHS               |
+| *        | mul    | uint  | Multiply LHS times RHS          |
+| %        | mod    | uint  | Division remainder (LHS by RHS) |
+| &lt;&lt;       | lshift | uint  | Left bit shift LHS by RHS       |
+| &gt;&gt;       | rshift | uint  | Right bit shift LHS by RHS      |
+| &amp;        | and    | uint  | Bitwise AND                     |
+| ^        | xor    | uint  | Bitwise XOR                     |
+| |       | or     | uint  | Bitwise OR                      |</p>
+<p><em>LHS - 좌측 표현식, RHS - 우측표현식; uint: u8, u64, u128.</em></p>
+<!--
+
+### Comparison and boolean operators
+
+To build a bool condition by comparing values you have these operators. All of them return `bool` value and require LHS and RHS types match.
+
+| Operator | Op     | Types |                                |
+|----------|--------|-------|--------------------------------|
+| ==       | equal  | any   | Check if LHS equals RHS        |
+|----------|--------|-------|--------------------------------|
+| =<       | equal  | any   | Check if LHS equals RHS        |
+|----------|--------|-------|--------------------------------|
+
+-->
+<h3><a class="header" href="#밑줄-_-로-사용되지-않음을-표기" id="밑줄-_-로-사용되지-않음을-표기">밑줄 &quot;<code>_</code>&quot; 로 사용되지 않음을 표기</a></h3>
+<p>Move에서는 입력된 모든 변수가 사용되어야 합니다(그렇지 않으면 코드가 컴파일되지 않습니다). 따라서 초기 설정(initialize)을 한 변수를 방치해서는 안 되는데, 밑줄 <code>_</code>을 사용하면 의도적으로 <em>사용되지 않은 상태</em>로 표시할 수 있습니다.</p>
+<p>이 스크립트를 컴파일하려고 시도하는 경우 오류가 발생할 것입니다.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let a = 1;
+    }
+}
+</code></pre>
+<p>에러 내용:</p>
+<pre><code>
+    ┌── /scripts/script.move:3:13 ───
+    │
+ 33 │         let a = 1;
+    │             ^ Unused assignment or binding for local 'a'. Consider removing or replacing it with '_'
+    │
+</code></pre>
+<p>컴파일러 메시지가 명확함으로 이런 경우에는 대신 밑줄만 추가하면 되겠습니다.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let _ = 1;
+    }
+}
+</code></pre>
+<h3><a class="header" href="#섀도잉" id="섀도잉">섀도잉</a></h3>
+<p>Move에서는 동일한 변수를 두 번 정의하는 것이 가능한데, 한 가지 제한사항이 있습니다. 바로 계속 사용되어야 하는 상태여야 한다는 것입니다. 상기 예시에서는 두 번째 <code>a</code>변수만 사용되고 있으며, 첫 번째 변수 <code>let a = 1</code>은 사용되지 않은 상태입니다. 바로 다음 라인에서는 첫 번째 변수가 사용되지 않은 그 상태에서 <code>a</code>를 <em>재정의</em>하고 있습니다.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let a = 1;
+        let a = 2;
+        let _ = a;
+    }
+}
+</code></pre>
+<p>그러나 첫 번째 변수를 사용해 줌으로써 정상적으로 진행되도록 할 수 있습니다.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let a = 1;
+        let a = a + 2; // though let here is unnecessary
+        let _ = a;
+    }
+}
+</code></pre>
+<h2><a class="header" href="#블록-표현식" id="블록-표현식">블록 표현식</a></h2>
+<p>블록은 표현식이며, <em>중괄호</em> <code>{}</code>로 표시되어 있습니다. 블록에는 다른 표현식(및 다른 블록) 이 들어올 수도 있습니다. 약간의 제한은 있으나, 친숙한 중괄호가 등장하는 것에서 짐작할 수 있듯 함수 바디 또한 블록으로 분류할 수 있습니다.</p>
+<pre><code class="language-Move">script {
+    fun block() {
+        { };
+        { { }; };
+        true;
+        {
+            true;
+
+            { 10; };
+        };
+        { { { 10; }; }; };
+    }
+}
+</code></pre>
+<h3><a class="header" href="#스코프-이해하기" id="스코프-이해하기">스코프 이해하기</a></h3>
+<p>Scope (as it's said in <a href="https://en.wikipedia.org/wiki/Scope_(computer_science)">Wikipedia</a>) is a region of code where binding is valid. In other words - it's a part of code in which variable exists. In Move scope is a block of code surrounded by curly braces - basically a block.</p>
+<blockquote>
+<p>블록의 정의는 실제로 스코프를 정의하는 것입니다.</p>
+</blockquote>
+<pre><code class="language-Move">script {
+    fun scope_sample() {
+        // this is a function scope
+        {
+            // this is a block scope inside function scope
+            {
+                // and this is a scope inside scope
+                // inside functions scope... etc
+            };
+        };
+
+        {
+            // this is another block inside function scope
+        };
+    }
+}
+</code></pre>
+<p>이 샘플에 등장하는 주석에서 볼 수 있듯이 스코프는 블록(또는 함수)을 통해 정의되며, 중첩시키는 것도 가능하며 정의할 수 있는 스코프의 개수에는 제한이 없습니다. </p>
+<h3><a class="header" href="#변수의-지속시간과-가시성" id="변수의-지속시간과-가시성">변수의 지속시간과 가시성</a></h3>
+<p>Let 키워드는 변수를 생성한다는 점은 이미 알고 있지만, 정의된 변수는 해당 정의가 이루어진스코프 내부(즉 중첩된 스코프 내부)에서만 존속한다는 사실은 모르고 계셨을 것입니다. 요약하자면 소속된 스코프 외부에서는 접근할 수 없으며, 해당 스코프가 끝나는 지점에서 곧바로 변수도 수명을 다 합니다.</p>
+<pre><code class="language-Move">script {
+    fun let_scope_sample() {
+        let a = 1; // we've defined variable A inside function scope
+
+        {
+            let b = 2; // variable B is inside block scope
+
+            {
+                // variables A and B are accessible inside
+                // nested scopes
+                let c = a + b;
+
+            }; // in here C dies
+
+            // we can't write this line
+            // let d = c + b;
+            // as variable C died with its scope
+
+            // but we can define another C
+            let c = b - 1;
+
+        }; // variable C dies, so does C
+
+        // this is impossible
+        // let d = b + c;
+
+        // we can define any variables we want
+        // no name reservation happened
+        let b = a + 1;
+        let c = b + 1;
+
+    } // function scope ended - a, b and c are dropped and no longer accessible
+}
+</code></pre>
+<blockquote>
+<p>변수는 정의된 스코프(또는 블록) 내부에만 존재합니다. 소속된 스코프가 끝나는 시점에 변수도 수명이 끝납니다.</p>
+</blockquote>
+<h3><a class="header" href="#블록-반환값" id="블록-반환값">블록 반환값</a></h3>
+<p>앞서 블록은 표현식이라는 점을 배워보았는데, 왜 그런지, 그리고 블록의 반환값은 무엇인지에 대해서는 아직 다루지 않았습니다.</p>
+<blockquote>
+<p>블록은 값을 반환할 수 있는데, 이 때 반환되는 값은 세미콜론이 뒤에 붙지 않는다면 해당 블록 내부에 있는 마지막 표현식의 값에 해당합니다.</p>
+</blockquote>
+<p>조금 어려울 수 있으니 예시를 몇 개 들도록 하겠습니다.</p>
+<pre><code class="language-Move">script {
+    fun block_ret_sample() {
+
+        // since block is an expression, we can
+        // assign it's value to variable with let
+        let a = {
+
+            let c = 10;
+
+            c * 1000  // no semicolon!
+        }; // scope ended, variable a got value 10000
+
+        let b = {
+            a * 1000  // no semi!
+        };
+
+        // variable b got value 10000000
+
+        {
+            10; // see semi!
+        }; // this block does not return a value
+
+        let _ = a + b; // both a and b get their values from blocks
+    }
+}
+</code></pre>
+<blockquote>
+<p>(세미콜론 없는) 스코프 내부의 마지막 표현식이 바로 해당 스코프의 반환값입니다.</p>
+</blockquote>
+<h3><a class="header" href="#요약" id="요약">요약</a></h3>
+<p>이 장의 핵심을 요약해 보겠습니다.</p>
+<ol>
+<li>각 표현식은 블록의 반환값인 경우를 제외하고는 반드시 세미콜론으로 끝나야 합니다;</li>
+<li><code>let</code> 키워드는 값을 지니는 변수를 새로 생성하거나, 자신이 포함된 스코프와 동일한 지속시간을 지니는 우측 표현식을 생성합니다.</li>
+<li>블록은 반환값을 가지거나 가지지 않는 표현식입니다.</li>
+</ol>
+<p>다음으로 실행 흐름을 제어하는 방법과 논리 스위치에 블록을 사용하는 방법을 살펴보겠습니다.</p>
+<h3><a class="header" href="#추가-참고-자료" id="추가-참고-자료">추가 참고 자료</a></h3>
+<ul>
+<li><a href="https://community.diem.com/t/odd-error-when-semi-is-put-after-break-or-continue/2868">공백 표현식 및 세미콜론을 다룬 Diem 커뮤니티 게시글</a></li>
+</ul>
+<h1><a class="header" href="#제어-흐름" id="제어-흐름">제어 흐름</a></h1>
+<p>Move는 명령성을 지니는 언어이며, 그러한 언어 특성상 <em>제어 흐름</em>이라는 요소를 구비함으로써 코드 블록을 구동할지 또는 이를 건너뛰거나 다른 블록을 대신 실행할지를 선택할 수 있습니다.</p>
+<!-- In Move you have two statme to control flow: by using loops (`while` and `loop`) or `if` expressions. -->
+<p>Move에서는 루프 (<code>while</code> 및 <code>loop</code>)와 <code>if</code>표현식을 사용할 수 있습니다.</p>
+<h2><a class="header" href="#if-표현식" id="if-표현식"><code>if</code> 표현식</a></h2>
+<p><code>if</code>표현식을 사용하면 일부 조건이 참인 경우 특정 코드 블록을 실행하고, 조건이 거짓인 경우 다른 블록을 실행할 수 있습니다.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Debug;
+
+    fun main() {
+
+        let a = true;
+
+        if (a) {
+            Debug::print&lt;u8&gt;(&amp;0);
+        } else {
+            Debug::print&lt;u8&gt;(&amp;99);
+        };
+    }
+}
+</code></pre>
+<p>이 예시에서는 <code>if</code> + <code>block</code> 을 사용하여 <code>a == true</code> 인 경우 <code>0</code>을 출력하고 <code>a</code>가 <code>false</code> 인 경우 <code>99</code> 를 출력하도록 했습니다.</p>
+<pre><code>if (&lt;bool_expression&gt;) &lt;expression&gt; else &lt;expression&gt;;
+</code></pre>
+<p><code>if</code> 구문은 이처럼 간단하며, 표현식임과 동시에 세미콜론으로 끝나야 합니다. 이는 또한 <code>let</code> 명령문과 함께 사용해야 하는 이유이기도 합니다!</p>
+<pre><code class="language-Move">script {
+    use 0x1::Debug;
+
+    fun main() {
+
+        // try switching to false
+        let a = true;
+        let b = if (a) { // 1st branch
+            10
+        } else { // 2nd branch
+            20
+        };
+
+        Debug::print&lt;u8&gt;(&amp;b);
+    }
+}
+</code></pre>
+<p>이제 변수 <code>b</code>는 표현식에 따라 다른 값을 할당 받게 됩니다. 그러나 <code>if</code>의 두 분기점은 모두 동일한 유형을 반환해야 합니다! 그렇지 않은 경우 변수 <code>b</code>는 다른 유형(또는 미정의)이 될 가능성이 있으며 이는 통계적으로 입력된 언어에서는 불가능합니다. 컴파일러 용어로는 <em>분기 호환성</em> 이라고 하며, 양 분기가 모두 호환 가능한(동일한) 유형을 반환해야 함을 뜻합니다.</p>
+<p><code>if</code>는 <code>else</code> 없이 단독으로 사용될 수도 있습니다.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Debug;
+
+    fun main() {
+
+        let a = true;
+
+        // only one optional branch
+        // if a = false, debug won't be called
+        if (a) {
+            Debug::print&lt;u8&gt;(&amp;10);
+        };
+    }
+}
+</code></pre>
+<p>그러나 <code>else</code> 분기가 없는 <code>if</code> 표현식은 조건이 충족되지 않은 경우 할당에 사용될 수 없으며 변수가 정의되지 않을 가능성이 존재하게 되는데, 다시 말하지만 이는 불가능합니다.</p>
+<h2><a class="header" href="#루프를-사용한-반복" id="루프를-사용한-반복">루프를 사용한 반복</a></h2>
+<p>Move에서는 루프를 정의하는 방식이 두 가지 있습니다.</p>
+<ol>
+<li><code>while</code> 을 사용한 조건부 루프</li>
+<li>무한 <code>loop</code></li>
+</ol>
+<h3><a class="header" href="#while을-사용한-조건부-루프" id="while을-사용한-조건부-루프"><code>while</code>을 사용한 조건부 루프</a></h3>
+<p><code>while</code>은 루프를 정의할 수 있는 방법으로, 루프는 일부 조건이 참일 때 실행되는 표현식입니다. 즉 조건이 <code>참</code> 일 때 코드가 계속해서 반복된다는 것입니다. 어느 조건을 구현하려는 경우 주로 외부 변수(또는 집계기)를 사용합니다.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+
+        let i = 0; // define counter
+
+        // iterate while i &lt; 5
+        // on every iteration increase i
+        // when i is 5, condition fails and loop exits
+        while (i &lt; 5) {
+            i = i + 1;
+        };
+    }
+}
+</code></pre>
+<p>또한 알아 두면 좋은 점으로, <code>while</code>은 <code>if</code>와 마찬가지로 표현식이므로 끝에 세미콜론이 들어와야 합니다. While 루프의 일반 구문은 다음과 같습니다.</p>
+<pre><code class="language-Move">while (&lt;bool_expression&gt;) &lt;expression&gt;;
+</code></pre>
+<p><code>if</code>와는 달리 <code>while</code>은 값을 반환할 수 없으므로 (<code>if</code> 표현식에서 진행했던) 변수 할당은 실시할 수 없습니다.</p>
+<h3><a class="header" href="#접근-불가능한-코드" id="접근-불가능한-코드">접근 불가능한 코드</a></h3>
+<p>Move의 신뢰도는 보안성 확보와 직결되어 있습니다. 그렇기 때문에 모든 변수를 사용하는 것이 의무화되어 있으며 동일한 이유에서 접근 불가능한 코드를 사용하는 것을 금지합니다. 디지털 자산들은 프로그래밍이 가능하므로 코드 형태로 사용될 수 있고(이후 <a href="syntax-basics//chapters/resource.html">자원 장</a> 에서 배울 예정입니다), 접근 불가능한 영역에 이들을 두는 경우 불편과 궁극적으로는 이들의 손실까지도 이어질 수 있습니다.</p>
+<p>바로 그러한 이유에서 접근 불가능한 코드는 중대한 문제인 것입니다. 이제 이 부분을 분명히 했으니 다음으로 넘어가겠습니다.</p>
+<h3><a class="header" href="#무한-loop" id="무한-loop">무한 <code>loop</code></a></h3>
+<p>무한 루프를 정의하는 방법이 하나 있습니다. 비조건적이며 실제로 강제로 멈추지 않는 한 무한대로 진행됩니다. 아쉽게도 컴파일러는 대부분의 상황에서 루프의 유/무한 여부를 정의할 수 없으며 코드 발행을 막지 못합니다. 자칫 이를 실행하게 되는 경우 모든 확보 자원(블록체인 용어로는 가스)을 소모하게 되므로, 무한 루프를 사용할 때는 코드를 적절하게 테스트해 볼 필요가 있으며 조건부(<code>while</code>) 루프로 바꾸는 편이 훨씬 더 안전합니다.</p>
+<p>무한 루프는 <code>loop</code> 키워드로 정의됩니다.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let i = 0;
+
+        loop {
+            i = i + 1;
+        };
+
+        // UNREACHABLE CODE
+        let _ = i;
+    }
+}
+</code></pre>
+<p>그러나 컴파일러는 허용하더라도 이 키워드는 불가능합니다.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let i = 0;
+
+        loop {
+            if (i == 1) { // i never changed
+                break // this statement breaks loop
+            }
+        };
+
+        // actually unreachable
+        0x1::Debug::print&lt;u8&gt;(&amp;i);
+    }
+}
+</code></pre>
+<p>어느 루프가 실제로 무한인지를 이해하는 것은 컴파일러에게 있어서는 매우 복잡한 작업이기 때문에, 루프 오류를 피하는 것은 전적으로 코드 작성자인 여러분 본인에게 달려 있습니다. 앞서 말씀드렸듯이, 자산 손실로 이어질 수 있는 부분입니다.</p>
+<h3><a class="header" href="#continue-와-break-로-루프-제어하기" id="continue-와-break-로-루프-제어하기"><code>continue</code> 와 <code>break</code> 로 루프 제어하기</a></h3>
+<p><code>continue</code> 및 <code>break</code> 키워드를 사용하면 각각 반복을 한 라운드 건너뛰거나 정지할 수 있습니다. 두 키워드 모두 각 유형의 루프에서 자유롭게 사용할 수 있습니다. </p>
+<p>예를 들어 <code>loop</code>에 두 가지 조건을 추가해 보겠습니다. 만약 <code>i</code>가 짝수라면 <code>continue</code>를 사용함으로써 해당 키워드를 호출한 뒤 코드를 진행하는 일 없이 다음 번 반복으로 넘어 가겠습니다.</p>
+<p><code>break</code> 키워드를 사용하면 반복을 멈추고 루프를 끝내게 됩니다.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let i = 0;
+
+        loop {
+            i = i + 1;
+
+            if (i / 2 == 0) continue;
+            if (i == 5) break;
+
+            // assume we do something here
+         };
+
+        0x1::Debug::print&lt;u8&gt;(&amp;i);
+    }
+}
+</code></pre>
+<p>세미콜론 이야기를 하자면 <code>break</code>와 <code>continue</code>가 블록 내부의 마지막 키워드라면, 이 뒤에 오는 다른 코드가 실행될 일이 없으므로 세미콜론을 붙일 수 없습니다. Semi 조차도 사용할 수 없는데, 아래 내용을 참조해 주십시오.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let i = 0;
+
+        loop {
+            i = i + 1;
+
+            if (i == 5) {
+                break; // will result in compiler error. correct is `break` without semi
+                       // Error: Unreachable code
+            };
+
+            // same with continue here: no semi, never;
+            if (true) {
+                continue
+            };
+
+            // however you can put semi like this, because continue and break here
+            // are single expressions, hence they &quot;end their own scope&quot;
+            if (true) continue;
+            if (i == 5) break;
+        }
+    }
+}
+</code></pre>
+<h3><a class="header" href="#조건부-중단abort" id="조건부-중단abort">조건부 중단(<code>abort</code>)</a></h3>
+<p>어떤 조건이 실패한 경우 트랜잭션의 실행을 중단해야 할 필요가 간혹 발생합니다. 그러한 경우 <code>abort</code> 키워드를 사용할 수 있습니다.</p>
+<pre><code class="language-Move">script {
+    fun main(a: u8) {
+
+        if (a != 10) {
+            abort 0;
+        }
+
+        // code here won't be executed if a != 10
+        // transaction aborted
+    }
+}
+</code></pre>
+<p><code>abort</code> 키워드를 사용하면 바로 뒤에 오는 에러 코드를 출력하며 작업을 중단시키게 됩니다.</p>
+<h3><a class="header" href="#내장된-assert-사용하기" id="내장된-assert-사용하기">내장된 <code>assert</code> 사용하기</a></h3>
+<p>내장되어 있는 <code>assert(&lt;condition&gt;, &lt;code&gt;)</code> 메서드는 <code>abort</code> + 조건을 포괄하며 코드 상에서 위치를 불문하고 접근할 수 있습니다.</p>
+<pre><code class="language-Move">script {
+
+    fun main(a: u8) {
+        assert(a == 10, 0);
+
+        // code here will be executed if (a == 10)
+    }
+}
+</code></pre>
+<p><code>assert()</code>는 조건이 충족되지 않은 경우 실행을 중단하게 되며, 반대의 경우에는 아무 기능도 발휘하지 않습니다.</p>
+<h1><a class="header" href="#모듈과-불러오기" id="모듈과-불러오기">모듈과 불러오기</a></h1>
+<p>모듈은 개발자가 자신의 주소로 발행하게 되는 함수와 유형을 하나로 묶어 놓은 집합입니다. 앞서 우리는 스크립트만을 사용해 왔는데, 스크립트는 발행된 모듈이나 <code>0x1</code> 주소로 발행된 모듈의 집합인 표준 라이브러리만을 사용하여 작동할 수 있습니다.</p>
+<blockquote>
+<p>모듈은 발신자의 주소로 발행됩니다. 표준 라이브러리는 <code>0x1</code> 주소로 발행됩니다.</p>
+</blockquote>
+<blockquote>
+<p>모듈을 발행하는 경우 어떠한 함수도 실행되지 않습니다. 모듈을 사용하려면 스크립트를 사용하십시오.</p>
+</blockquote>
+<p>모듈은 <code>module</code> 키워드로 시작해서, 모듈의 이름과 중괄호가 뒤를 잇는 형태로 구성되어 있습니다. 이 중괄호 안에는 모듈의 내용이 위치하게 됩니다.</p>
+<pre><code class="language-Move">module Math {
+
+    // module contents
+
+    public fun sum(a: u64, b: u64): u64 {
+        a + b
+    }
+}
+</code></pre>
+<blockquote>
+<p>모듈은 다른 사람들이 접근할 수 있는 코드를 발행할 수 있는 유일한 방법입니다. 새로운 유형과 자원 또한 모듈 환경에서만 정의될 수 있습니다.</p>
+</blockquote>
+<p>초기값을 기준으로 했을 때 여러분의 모듈은 여러분의 주소를 사용하여 컴파일 및 발행됩니다. 그러나 어떤 모듈을 테스트 내지는 개발 용도 등을 목적으로 로컬 상에서 사용할 필요가 있거나 모듈 파일 내부에 주소를 명시하고 싶다면 <code>address &lt;ADDR&gt; {}</code> 구문을 사용하십시오.</p>
+<pre><code class="language-Move">address 0x1 {
+module Math {
+    // module contents
+
+    public fun sum(a: u64, b: u64): u64 {
+        a + b
+    }
+}
+}
+</code></pre>
+<p><em>이 예시에서 보신 바와 같이, 모듈 라인에는 들여쓰기를 사용하지 않는 것이 가장 좋습니다.</em></p>
+<h2><a class="header" href="#불러오기" id="불러오기">불러오기</a></h2>
+<p>Move의 초기값 환경은 비어 있습니다. 사용할 수 있는 유형은 기본형(정수형, 논리형 및 주소)이 유일하며, 공백 환경에서 진행할 수 있는 유일한 작업은 이러한 유형들과 변수를 작동시키는 것이지만 이것만으로는 의미있거나 유용한 작업을 진행할 수는 없습니다.</p>
+<p>이러한 상황을 변경하려면 발행된 모듈(또는 표준 라이브러리)을 불러와야 합니다.</p>
+<h3><a class="header" href="#직접-불러오기" id="직접-불러오기">직접 불러오기</a></h3>
+<p>모듈에 해당하는 주소를 코드로 직접 불러오는 형식으로 사용할 수 있습니다.</p>
+<pre><code class="language-Move">script {
+    fun main(a: u8) {
+        0x1::Offer::create(a == 10, 1);
+    }
+}
+</code></pre>
+<p>이 예시에서는 표준 라이브러리인 <code>Offer</code> 모듈을 <code>0x1</code> 주소에서 불러온 뒤 메서드 <code>assert(expr: bool, code: u8)</code>를 사용했습니다. </p>
+<h3><a class="header" href="#use-키워드" id="use-키워드">Use 키워드</a></h3>
+<p>코드를 더욱 짧게 하고 (0x1 주소는 짧지만 다른 주소들은 꽤 길다는 점을 기억해 주세요!) 불러오기 내용을 정리하려면 <code>use</code> 키워드를 사용하십시오.</p>
+<pre><code class="language-Move">use &lt;Address&gt;::&lt;ModuleName&gt;;
+</code></pre>
+<p>여기에서 <code>&lt;Address&gt;</code>항목은 발행자의 주소이며 <code>&lt;ModuleName&gt;</code>은 모듈의 이름입니다. 단순한 내용인데, 여기에서도 <code>Vector</code> 모듈을 <code>0x1</code>에서 불러올 것입니다.</p>
+<pre><code class="language-Move">use 0x1::Vector;
+</code></pre>
+<h3><a class="header" href="#모듈-내용에-접근하기" id="모듈-내용에-접근하기">모듈 내용에 접근하기</a></h3>
+<p>불러온 모듈의 메서드(또는 유형)에 접근하려면 <code>::</code> 기호를 사용하십시오. 모듈은 한 가지 수준의 정의만을 가질 수 있기 때문에 모듈에서 공개적으로 정의하는 모든 내용은 더블 콜론을 사용하여 접근할 수 있습니다.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Vector;
+
+    fun main() {
+        // here we use method empty() of module Vector
+        // the same way we'd access any other method of any other module
+        let _ = Vector::empty&lt;u64&gt;();
+    }
+}
+</code></pre>
+<h3><a class="header" href="#스크립트로-불러오기" id="스크립트로-불러오기">스크립트로 불러오기</a></h3>
+<p>스크립트에서 불러온 내용은 반드시 <code>script {}</code> 블록 내부에 위치해야 합니다.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Vector;
+
+    // in just the same way you can import any
+    // other module(s). as many as you want!
+
+    fun main() {
+        let _ = Vector::empty&lt;u64&gt;();
+    }
+}
+</code></pre>
+<h3><a class="header" href="#모듈로-불러오기" id="모듈로-불러오기">모듈로 불러오기</a></h3>
+<p>모듈로 불러온 내용은 반드시 <code>module {}</code> 블록 내부에 명시되어야 합니다.</p>
+<pre><code class="language-Move">module Math {
+    use 0x1::Vector;
+
+    // the same way as in scripts
+    // you are free to import any number of modules
+
+    public fun empty_vec(): vector&lt;u64&gt; {
+        Vector::empty&lt;u64&gt;();
+    }
+}
+</code></pre>
+<h3><a class="header" href="#멤버-불러오기" id="멤버-불러오기">멤버 불러오기</a></h3>
+<p>불러오기 명령문은 확장할 수 있습니다. 불러오고자 하는 모듈의 멤버를 명시하는 것도 가능합니다.</p>
+<pre><code class="language-Move">script {
+    // single member import
+    use 0x1::Signer::address_of;
+
+    // multi member import (mind braces)
+    use 0x1::Vector::{
+        empty,
+        push_back
+    };
+
+    fun main(acc: &amp;signer) {
+        // use functions without module access
+        let vec = empty&lt;u8&gt;();
+        push_back(&amp;mut vec, 10);
+
+        // same here
+        let _ = address_of(acc);
+    }
+}
+</code></pre>
+<h3><a class="header" href="#self를-사용하여-모듈과-멤버를-함께-불러오기" id="self를-사용하여-모듈과-멤버를-함께-불러오기"><code>Self</code>를 사용하여 모듈과 멤버를 함께 불러오기</a></h3>
+<p>멤버 불러오기 구문에 작은 익스텐션을 적용해 주면 전체 모듈과 멤버를 불러올 수 있습니다. 모듈의 경우 <code>Self</code>를 사용하십시오.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Vector::{
+        Self, // Self == Imported module
+        empty
+    };
+
+    fun main() {
+        // `empty` imported as `empty`
+        let vec = empty&lt;u8&gt;();
+
+        // Self means Vector
+        Vector::push_back(&amp;mut vec, 10);
+    }
+}
+</code></pre>
+<h3><a class="header" href="#use-와-as-의-만남" id="use-와-as-의-만남"><code>Use</code> 와 <code>as</code> 의 만남</a></h3>
+<p>(2개 이상의 모듈이 동일한 이름을 가졌을 때 발생할 수 있는) 이름 지정 관련 충돌을 해결하고 코드의 길이를 축약하려는 경우 <code>as</code>키워드를 사용하여 불러온 모듈의 이름을 변경하는 것도 좋습니다.</p>
+<p>구문:</p>
+<pre><code class="language-Move">use &lt;Address&gt;::&lt;ModuleName&gt; as &lt;Alias&gt;;
+</code></pre>
+<p>스크립트 내:</p>
+<pre><code class="language-Move">script {
+    use 0x1::Vector as V; // V now means Vector
+
+    fun main() {
+        V::empty&lt;u64&gt;();
+    }
+}
+</code></pre>
+<p>동일 모듈 내:</p>
+<pre><code class="language-Move">module Math {
+    use 0x1::Vector as Vec;
+
+    fun length(&amp;v: vector&lt;u8&gt;): u64 {
+        Vec::length(&amp;v)
+    }
+}
+</code></pre>
+<p>자기 자신과 <em>멤버 불러오기</em>의 경우(모듈 및 스크립트에 적용 가능):</p>
+<pre><code class="language-Move">script {
+    use 0x1::Vector::{
+        Self as V,
+        empty as empty_vec
+    };
+
+    fun main() {
+        // `empty` imported as `empty_vec`
+        let vec = empty_vec&lt;u8&gt;();
+
+        // Self as V = Vector
+        V::push_back(&amp;mut vec, 10);
+    }
+}
+</code></pre>
+<h1><a class="header" href="#상수" id="상수">상수</a></h1>
+<p><em>모듈</em> 또는 <em>스크립트 수준</em>의 상수를 정의할 수 있습니다. 일단 정의된 뒤에는 상수를 변경할 수 없으며, 특정 모듈 (예를 들면 역할 식별자 또는 체결 가격) 내지는 스크립트에 대해 <em>상수</em> 값을 정의하기 위해 사용합니다. </p>
+<p>상수는 기본형(정수, 논리형 및 주소)이나 <code>벡터</code>로 정의될 수 있습니다. 상수는 부여된 이름을 사용하여 접근할 수 있으며 정의된 스크립트/모듈 상 로컬 위치에 존재하게 됩니다.</p>
+<blockquote>
+<p>상수가 속한 모듈 외부로부터 상수에 접근하는 것은 불가능합니다.</p>
+</blockquote>
+<pre><code class="language-Move">script {
+
+    use 0x1::Debug;
+
+    const RECEIVER : address = 0x999;
+
+    fun main(account: &amp;signer) {
+        Debug::print&lt;address&gt;(&amp;RECEIVER);
+
+        // they can also be assigned to a variable
+
+        let _ = RECEIVER;
+
+        // but this code leads to compile error
+        // RECEIVER = 0x800;
+    }
+}
+</code></pre>
+<p>모듈에서도 동일한 용도입니다.</p>
+<pre><code class="language-Move">module M {
+
+    const MAX : u64 = 100;
+
+    // however you can pass constant outside using a function
+    public fun get_max(): u64 {
+        MAX
+    }
+
+    // or using
+    public fun is_max(num: u64): bool {
+        num == MAX
+    }
+}
+</code></pre>
+<h3><a class="header" href="#요약-1" id="요약-1">요약</a></h3>
+<p>상수에 관하여 알아야 할 중요한 내용은 다음과 같습니다.</p>
+<ol>
+<li>정의된 뒤에는 변경이 불가능합니다</li>
+<li>모듈 또는 스크립트에 로컬적으로 존재하며 외부에서는 사용할 수 없습니다</li>
+<li>일반적으로 실용적 목적을 지닌 모듈 수준 상수 값을 정의할 때 사용합니다</li>
+<li>또한 중괄호를 사용하여 상수를 표현식으로 정의하는 것도 가능하나 해당 표현식의 구문은 매우 제한적입니다.</li>
+</ol>
+<h3><a class="header" href="#추가-참고-자료-1" id="추가-참고-자료-1">추가 참고 자료</a></h3>
+<ul>
+<li><a href="https://github.com/diem/diem/pull/4653">상수 구문을 담은 PR</a></li>
+</ul>
+<h1><a class="header" href="#함수" id="함수">함수</a></h1>
+<p>함수는 Move 상에서 실행이 이루어지는 유일한 요소입니다. 함수는 <code>fun</code>키워드로 시작하여 함수 이름, 인수가 들어가는 소괄호 및 바디가 들어가는 중괄호가 뒤에 따라오는 구조입니다.</p>
+<pre><code class="language-Move">fun function_name(arg1: u64, arg2: bool): u64 {
+    // function body
+}
+</code></pre>
+<p>앞서 몇 가지 함수를 보셨을 텐데, 이제 사용법을 알아보도록 하겠습니다.</p>
+<blockquote>
+<p><strong>비고:</strong> Move에서 함수는 <em>snake_case</em> 형태, 즉 소문자를 사용하고 공백 대신 밑줄로 띄어쓰기를 대체하는 형태로 작성합니다.</p>
+</blockquote>
+<h2><a class="header" href="#스크립트의-함수" id="스크립트의-함수">스크립트의 함수</a></h2>
+<p>스크립트 블록은 메인으로 간주되는 하나의 함수만을 포함할 수 있습니다. 인수를 포함하는 경우도 있는 이 함수가 트랜잭션으로 실행됩니다. 아주 제한적인데, 값을 반환하는 것이 불가능하며 이미 발행된 모듈에 존재하는 다른 함수를 작동하기 위해서만 사용할 수 있습니다.</p>
+<p>주소가 존재하는지를 확인하는 간단한 스크립트의 예시입니다.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Account;
+
+    fun main(addr: address) {
+        assert(Account::exists(addr), 1);
+    }
+}
+</code></pre>
+<p>이 함수는 인수를 지닐 수 있는데, 이 경우 <code>addr</code> 인수와 유형 <code>address</code>를 가지며 불러온 모듈을 작동시킬 수도 있습니다.</p>
+<blockquote>
+<p><strong>비고:</strong> 함수가 단 하나 존재하기 때문에 이름은 자유롭게 붙이셔도 무방합니다. 그러나 일반적인 프로그래밍 개념을 따라 <strong>main</strong>이라고 칭하는 것이 좋습니다.</p>
+</blockquote>
+<h2><a class="header" href="#모듈에-있는-함수" id="모듈에-있는-함수">모듈에 있는 함수</a></h2>
+<p>스크립트 환경은 상당히 제한되어 있으며, 모듈에서 비로소 함수의 전체 잠재력이 발휘됩니다. 다시 복습해 보자면 모듈은 함수와 유형을 하나로 묶어 발행한 집합이며(다음 장에서 알아보겠습니다) 단일 또는 복수의 작업을 해결하게 됩니다.</p>
+<p>여기에서 우리는 간단한 수학 모듈을 생성하여 기본적인 수학적 함수와 몇 가지 도움 메서드를 사용자들에게 제공해 보도록 하겠습니다. 대부분의 요소들은 모듈 없이도 활용이 가능하지만 우리의 목적은 교육이니까요!</p>
+<pre><code class="language-Move">module Math {
+    fun zero(): u8 {
+        0
+    }
+}
+</code></pre>
+<p>먼저 <code>Math</code>라는 이름의 모듈을 정의하고 함수를 하나 넣어두었습니다. <code>zero()</code>라는 함수이며, <code>u8</code>유형의 값인 <code>0</code>을 반환합니다. <a href="syntax-basics//syntax-basics/expression-and-scope.html">표현식</a> 을 기억하시나요? <code>0</code>은 이 함수의 <em>반환값</em>이기 때문에 뒤에 세미콜론이 오지 않습니다. 블록에서도 마찬가지이죠. 즉 함수 바디는 블록과 매우 흡사합니다.</p>
+<p>First step: we've defined a module named <code>Math</code> with one function in it: <code>zero()</code>, which returns 0 - a value of type <code>u8</code>. Remember <a href="syntax-basics//syntax-basics/expression-and-scope.html">expressions</a>? There's no semicolon after <code>0</code> as it is the <em>return value</em> of this function. Just like you would do with block. Yeah, function body is very similar to block.</p>
+<h3><a class="header" href="#함수의-인수" id="함수의-인수">함수의 인수</a></h3>
+<p>이미 매우 잘 알고 계시겠지만 다시 반복합시다. 함수는 함수로 전달되는 값인 인수를 가져올 수 있습니다. 개수 제한 없이 필요한 만큼 가져올 수 있는데, 각 인수는 함수 바디 내부에서의 이름과 Move의 다른 변수들과 동일하게 유형을 두 가지 속성으로 가집니다.</p>
+<p>함수의 인수는 스코프 내부에서 정의되는 다른 모든 변수들과 마찬가지로 함수 바디 내부에만 존재합니다. 함수 블록이 끝난 시점에는 변수도 소멸됩니다.</p>
+<pre><code class="language-Move">module Math {
+
+    public fun sum(a: u64, b: u64): u64 {
+        a + b
+    }
+
+    fun zero(): u8 {
+        0
+    }
+}
+</code></pre>
+<p>우리가 보고 있는 Math의 경우 함수 <code>sum(a,b)</code>가 새로 등장하는데, 2개의 <code>u64</code>값을 합하여 결과인 <code>u64</code> 합을 반환합니다(유형은 변경할 수 없습니다).</p>
+<p>몇 가지 구문 규칙들을 살펴봅시다.</p>
+<ol>
+<li>인수에는 반드시 유형이 존재해야 하며 쉼표로 분리해야 합니다.</li>
+<li>함수의 반환 값은 소괄호 뒤에 위치하며 콜론이 뒤에 와야 합니다.</li>
+</ol>
+<p>이 함수를 스크립트에서는 어떻게 사용할 수 있을까요? 바로 불러오기 기능입니다!</p>
+<pre><code class="language-Move">script {
+    use 0x1::Math;  // used 0x1 here; could be your address
+    use 0x1::Debug; // this one will be covered later!
+
+    fun main(first_num: u64, second_num: u64) {
+
+        // variables names don't have to match the function's ones
+        let sum = Math::sum(first_num, second_num);
+
+        Debug::print&lt;u64&gt;(&amp;sum);
+    }
+}
+</code></pre>
+<h3><a class="header" href="#return-키워드" id="return-키워드"><code>return</code> 키워드</a></h3>
+<p><code>return</code> 키워드를 사용하면 함수의 실행을 종료하고 값을 반환하도록 만들 수 있습니다. 이 때 <code>if</code> 조건과 함께 사용해야 하는데, 제어 흐름에서 조건부 스위치를 만들 수 있는 유일한 방법이기 때문입니다.</p>
+<pre><code class="language-Move">module M {
+
+    public fun conditional_return(a: u8): bool {
+        if (a == 10) {
+            return true // semi is not put!
+        };
+
+        if (a &lt; 10) {
+            true
+        } else {
+            false
+        }
+    }
+}
+</code></pre>
+<h3><a class="header" href="#다수의-반환값" id="다수의-반환값">다수의 반환값</a></h3>
+<p>기존 예시에서는 반환값이 없거나 하나인 경우를 다루었습니다. 만약 유형을 불문하고 여러 개의 값을 반환할 수 있는 방법이 있다면 사용해 보고 싶지 않으신가요? 함께 진행해 보겠습니다!</p>
+<p>다수의 반환값을 명시하려면 소괄호를 사용해야 합니다.</p>
+<pre><code class="language-Move">module Math {
+
+    // ...
+
+    public fun max(a: u8, b: u8): (u8, bool) {
+        if (a &gt; b) {
+            (a, false)
+        } else if (a &lt; b) {
+            (b, false)
+        } else {
+            (a, true)
+        }
+    }
+}
+</code></pre>
+<p>이 함수는 <code>a</code>와 <code>b</code>라는 두 개의 인수를 가져다가 <em>두 개의 값</em>을 반환합니다. 첫 번째 값은 전달된 두 값 중 최댓값이며 두 번째 값은 논리값, 즉 입력된 숫자 두 개가 동일한지를 나타냅니다. 구문을 잘 살펴보시면 단일 반환 인수를 명시하는 대신에 <em>소괄호</em>를 추가하였고 반환 인수 유형들을 기재하였습니다.</p>
+<p>이제 이 함수의 결과를 스크립트 상 존재하는 다른 함수에서 어떻게 사용할 수 있는지를 보겠습니다.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Debug;
+    use 0x1::Math;
+
+    fun main(a: u8, b: u8)  {
+        let (max, is_equal) = Math::max(99, 100);
+
+        assert(is_equal, 1)
+
+        Debug::print&lt;u8&gt;(&amp;max);
+    }
+}
+</code></pre>
+<p>이 예시에서는 튜플을 <em>파괴</em>했는데, <em>max</em> 함수의 반환 값이 가지는 값과 유형을 토대로 새로운 변수를 두 개 생성했습니다. 순서는 보존되어 있으며 변수 <em>max</em>는 <em>u8</em> 유형을 가지게 되고 최댓값을 저장하는데, 이 때 <em>is_equal</em>은 <em>논리값</em>입니다.</p>
+<p>굳이 2개로 제한되지는 않습니다. 반환되는 인수의 개수는 전적으로 여러분에게 달려있는데, 데이터 구조에 대해 배우게 되면서 복잡한 데이터를 반환할 수 있는 다른 수단을 곧 알게 되실 것입니다.</p>
+<h3><a class="header" href="#함수의-가시성" id="함수의-가시성">함수의 가시성</a></h3>
+<p>모듈을 정의할 때는 어떤 함수들은 다른 개발자들이 접근할 수 있게 하고, 다른 함수들은 감춰둔 상태로 둘 필요가 있습니다. 이럴 때 <em>함수 가시성 제어자</em>를 사용하게 됩니다.</p>
+<p>초기 설정 상태의 경우 모듈에서 정의된 모든 함수는 개인, 즉 다른 모듈이나 스크립트에서 접근할 수 없습니다. 지금까지 집중해 오셨다면 우리가 Math 모듈에서 정의했던 함수들 중 몇몇은 정의 구간에 앞서 <code>public</code>이라는 키워드가 붙어 있었다는 걸 알고 계실 것입니다.</p>
+<pre><code class="language-Move">module Math {
+
+    public fun sum(a: u64, b: u64): u64 {
+        a + b
+    }
+
+    fun zero(): u8 {
+        0
+    }
+}
+</code></pre>
+<p>이 예시에서 <code>sum()</code> 함수는 모듈을 불러왔을 때 외부에서 접근할 수 있으나, <code>zero()</code> 함수는 초기 설정 상 개인 수준으로 정의되어 있어 접근할 수 없습니다.</p>
+<blockquote>
+<p><code>public</code> 키워드는 함수의 기본 가시성 수준인 <em>비공개</em> 를 변경하여 <em>공개</em>, 즉 외부에서 접근할 수 있도록 변경해 줍니다.</p>
+</blockquote>
+<p>즉 사실상 <code>sum()</code> 함수를 <em>공개</em>해 두지 않았다면 이 작업은 진행할 수 없을 것입니다.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Math;
+
+    fun main() {
+        Math::sum(10, 100); // won't compile!
+    }
+}
+</code></pre>
+<h3><a class="header" href="#로컬-함수-접근" id="로컬-함수-접근">로컬 함수 접근</a></h3>
+<p>접근이 불가능하다면 개인 함수를 생성하는 것에 아무런 의미가 없을 것입니다. 공개 함수가 호출되는 기능이 있는 반면 개인 함수는 <em>내부</em> 작업을 진행하는 역할을 맡습니다.</p>
+<blockquote>
+<p>개인 함수는 정의된 모듈 내부에서만 접근할 수 있습니다.</p>
+</blockquote>
+<p>그럼 동일한 모듈에 있는 함수들을 어떻게 접근할 수 있을까요? 불러왔을 때와 동일하게 해당 함수를 호출해 주기만 하면 됩니다!</p>
+<pre><code class="language-Move">module Math {
+
+    public fun is_zero(a: u8): bool {
+        a == zero()
+    }
+
+    fun zero(): u8 {
+        0
+    }
+}
+</code></pre>
+<p>모듈에 정의된 모든 함수는 동일한 모듈에서 접근할 수 있으며, 이 때 가시성 제어자의 유무나 종류는 전혀 관계없습니다. 이러한 방식을 통해 개인 함수는 개인 기능이나 지나치게 위험한 작업을 드러내는 일 없이 공개 함수 내부에서 호출되는 형태로 사용될 수 있습니다.</p>
+<h3><a class="header" href="#네이티브-함수" id="네이티브-함수">네이티브 함수</a></h3>
+<p><em>네이티브 함수</em>는 특별한 종류의 함수인데, Move가 제공하는 범위를 뛰어넘는 기능을 구현하여 추가적인 성능을 발휘할 수 있도록 합니다. 네이티브 함수는 VM에서 자체적으로 정의하면 다양한 구현마다 다르게 나타날 수 있습니다. 즉 이들은 Move 구문에서는 구현을 지니지 않으며 함수 바디를 가지는 대신 세미콜론으로 끝납니다. <code>native</code> 키워드를 사용하면 네이티브 함수를 표시할 수 있습니다. 함수 가시성 조정자와 충돌하지 않으며, 동일한 함수가 동시에 <code>native</code> 및 <code>public</code> 함수로 작동할 수도 있습니다.</p>
+<p>Diem의 표준 라이브러리에 등장하는 예시입니다.</p>
+<pre><code class="language-Move">module Signer {
+
+    native public fun borrow_address(s: &amp;signer): &amp;address;
+
+    // ... some other functions ...
+}
+</code></pre>
+<h1><a class="header" href="#고급-주제" id="고급-주제">고급 주제</a></h1>
+<p>이번에는 Move에서 널리 사용되고 있는 몇 가지 프로그래밍 개념들에 대해 살펴볼 예정입니다. 크게 분류해 보자면 고유의 유형 시스템 기능인 - <a href="advanced-topics//advanced-topics/types-with-abilities.html"><em>능력</em></a>, <a href="advanced-topics//advanced-topics/ownership-and-references.html"><em>소유권한</em></a> (and how it differs from Rust's one), <a href="advanced-topics//advanced-topics/understanding-generics.html"><em>제네릭</em></a> 및 <a href="advanced-topics//advanced-topics/managing-collections-with-vectors.html"><em>벡터</em></a> 가 있습니다. 이 개념들은 모두 Move 언어의 안전성과 유연성을 확보할 수 있는 든든한 토대가 됩니다.</p>
+<h1><a class="header" href="#구조" id="구조">구조</a></h1>
+<p>Structure is a custom type which contains complex data (or no data). It can be described as a simple key-value storage where key is a name of property and value is what's stored. Defined using keyword <code>struct</code>. Struct can have up to 4 abilities, they are specified with type definition.</p>
+<p>구조는 복잡한 데이터를 포함하는 맞춤설정형 유형입니다(데이터를 포함하지 않을 수도 있음). 이 개념은 키-값 저장소로 표현될 수도 있는데, 이 때 키는 어느 속성의 이름이며 값은 저장된 내용을 뜻합니다. <code>struct</code> 라는 키워드를 사용하여 정의되는데, 구조체는 유형 정의를 통해 명시되는 능력을 최대 4개까지 보유할 수 있습니다.</p>
+<blockquote>
+<p><code>struct</code> 는 Move에서 맞춤설정형 유형을 생성할 수 있는 유일한 방법입니다.</p>
+</blockquote>
+<h2><a class="header" href="#정의" id="정의">정의</a></h2>
+<p>구조체의 정의는 모듈 내부에서만 허용됩니다. <code>struct</code> 키워드로 시작하여 이름과 중괄호가 뒤를 잇는데, 이 때 구조체의 필드는 다음과 같이 정의됩니다.</p>
+<pre><code class="language-Move">struct NAME {
+    FIELD1: TYPE1,
+    FIELD2: TYPE2,
+    ...
+}
+</code></pre>
+<p>구조체의 정의에 관한 예시들을 참고하십시오.</p>
+<pre><code class="language-Move">module M {
+
+    // struct can be without fields
+    // but it is a new type
+    struct Empty {}
+
+    struct MyStruct {
+        field1: address,
+        field2: bool,
+        field3: Empty
+    }
+
+    struct Example {
+        field1: u8,
+        field2: address,
+        field3: u64,
+        field4: bool,
+        field5: bool,
+
+        // you can use another struct as type
+        field6: MyStruct
+    }
+}
+</code></pre>
+<p><em>단일 구조체의 최대 필드 수는 65535입니다.</em></p>
+<p>각각의 정의된 구조체는 새로운 유형이 됩니다. 이 유형은 모듈 함수를 접근할 때와 마찬가지로, 모듈을 통해 접근할 수 있습니다.</p>
+<pre><code>M::MyStruct;
+// or
+M::Example;
+</code></pre>
+<h3><a class="header" href="#반복된-정의" id="반복된-정의">반복된 정의</a></h3>
+<p>never 처럼 짧을 수 있습니다.</p>
+<blockquote>
+<p>반복적인 구조체 정의는 불가능합니다.</p>
+</blockquote>
+<p>다른 구조체를 유형으로 사용하는 것도 가능하지만 동일한 구조체를 반복적으로 사용할 수는 없습니다. Move 컴파일러는 반복되는 정의들을 점검하여 이러한 방식으로 코드를 컴파일할 수 없도록 합니다.</p>
+<pre><code class="language-Move">module M {
+    struct MyStruct {
+
+        // WON'T COMPILE
+        field: MyStruct
+    }
+}
+</code></pre>
+<h2><a class="header" href="#새-구조체-생성하기" id="새-구조체-생성하기">새 구조체 생성하기</a></h2>
+<p>이 유형을 사용하려면 <em>인스턴스</em>를 생성해야 합니다.</p>
+<blockquote>
+<p>신규 인스턴스는 정의된 모듈 내부에만 생성될 수 있습니다.</p>
+</blockquote>
+<p>신규 인스턴스를 생성하는 경우 정의를 사용하되, 유형을 전달하는 대신 해당 유형의 값을 전달합니다.</p>
+<pre><code class="language-Move">module Country {
+    struct Country {
+        id: u8,
+        population: u64
+    }
+
+    // Contry is a return type of this function!
+    public fun new_country(c_id: u8, c_population: u64): Country {
+        // structure creation is an expression
+        let country = Country {
+            id: c_id,
+            population: c_population
+        };
+
+        country
+    }
+}
+</code></pre>
+<p>Move also allows you to create new instances shorter - by passing variable name which matches struct's field (and type!). We can simplify our <code>new_country()</code> method using this rule:</p>
+<p>Move에서는 또한 구조체의 영역(및 유형!)에 일치하는 변수 이름을 전달함을 통해 신규 인스턴스를 더욱 짧게 생성할 수 있습니다. 이 규칙을 사용하면 <code>new_country()</code> 메서드를 좀 더 간단하개 표현할 수 있습니다.</p>
+<pre><code class="language-Move">// ...
+public fun new_country(id: u8, population: u64): Country {
+    // id matches id: u8 field
+    // population matches population field
+    Country {
+        id,
+        population
+    }
+
+    // or even in one line: Country { id, population }
+}
+</code></pre>
+<p>(필드가 없고) 비어 있는 구조체를 생성하려면 중괄호를 사용해 주면 간단하게 처리됩니다.</p>
+<pre><code class="language-Move">public fun empty(): Empty {
+    Empty {}
+}
+</code></pre>
+<h2><a class="header" href="#구조체-필드에-접근하기" id="구조체-필드에-접근하기">구조체 필드에 접근하기</a></h2>
+<p>(필드 없는 구조체를 생성하는 것이 가능하긴 하지만) 필드에 접근할 방법이 없었다면 구조체는 사실상 쓸모 없었을 것입니다.</p>
+<blockquote>
+<p>모듈만 해당 구조체의 필드에 접근할 수 있습니다. 모듈 필드 외부는 개인 영역입니다.</p>
+</blockquote>
+<p>구조체 필드는 모듈 내부에서만 확인할 수 있습니다. 해당 모듈 외부에서는 그저 한 유형으로 간주될 뿐입니다. 구조체의 영역에 접근하려면 <code>.</code> (마침표) 기호를 사용하십시오.</p>
+<pre><code class="language-Move">// ...
+public fun get_country_population(country: Country): u64 {
+    country.population // &lt;struct&gt;.&lt;property&gt;
+}
+</code></pre>
+<p>만약 중첩된 구조체 유형이 동일한 모듈에 정의되어 있다면, 다음과 같이 일반적으로 설명될 수 있는 유사한 방식을 통해 접근할 수 있습니다.</p>
+<pre><code class="language-Move">&lt;struct&gt;.&lt;field&gt;
+// and field can be another struct so
+&lt;struct&gt;.&lt;field&gt;.&lt;nested_struct_field&gt;...
+</code></pre>
+<h2><a class="header" href="#구조의-분해" id="구조의-분해">구조의 분해</a></h2>
+<p>구조를 <em>분해</em>하려면 <code>let &lt;STRUCT DEF&gt; = &lt;STRUCT&gt;</code> 구문을 사용합니다.</p>
+<pre><code class="language-Move">module Country {
+
+    // ...
+
+    // we'll return values of this struct outside
+    public fun destroy(country: Country): (u8, u64) {
+
+        // variables must match struct fields
+        // all struct fields must be specified
+        let Country { id, population } = country;
+
+        // after destruction country is dropped
+        // but its fields are now variables and
+        // can be used
+        (id, population)
+    }
+}
+</code></pre>
+<p>사용되지 않은 변수는 Move 에서 금지하고 있으며 필드를 사용하지 않고 어느 구조를 분해해야 할 필요가 있다는 점에 유념하십시오. 사용되지 않는 구조체 필드의 경우 밑줄 <code>_</code> 기호를 사용하십시오.</p>
+<pre><code class="language-Move">module Country {
+    // ...
+
+    public fun destroy(country: Country) {
+
+        // this way you destroy struct and don't create unused variables
+        let Country { id: _, population: _ } = country;
+
+        // or take only id and don't init `population` variable
+        // let Country { id, population: _ } = country;
+    }
+}
+</code></pre>
+<p>분해가 현재로서는 그리 중요하게 다가오지 않을 수 있으나, 자원 부분으로 넘어가게 되면 아주 중요하니까 꼭 기억해 두십시오.</p>
+<h3><a class="header" href="#구조체-필드에-획득자-함수-구현하기" id="구조체-필드에-획득자-함수-구현하기">구조체 필드에 획득자 함수 구현하기</a></h3>
+<p>구조체 필드를 외부에서 읽을 수 있게 하려면 해당 필드를 읽을 메서드들을 구현해서 반환 값으로 전달해야 합니다. 일반적으로 획득자 메서드는 구조체 필드와 동일한 방식으로 호출되나, 모듈이 하나 이상의 구조체를 정의하고 있는 경우 불편함을 유발할 수 있습니다.</p>
+<pre><code class="language-Move">module Country {
+
+    struct Country {
+        id: u8,
+        population: u64
+    }
+
+    public fun new_country(id: u8, population: u64): Country {
+        Country {
+            id, population
+        }
+    }
+
+    // don't forget to make these methods public!
+    public fun id(country: &amp;Country): u8 {
+        country.id
+    }
+
+    // don't mind ampersand here for now. you'll learn why it's 
+    // put here in references chapter 
+    public fun population(country: &amp;Country): u64 {
+        country.population
+    }
+
+    // ... fun destroy ... 
+}
+</code></pre>
+<p>획득자를 생성함으로써 모듈 사용자로 하여금 구조체의 필드에 접근할 수 있도록 합니다.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::Country as C;
+    use 0x1::Debug;
+
+    fun main() {
+        // variable here is of type C::Country
+        let country = C::new_country(1, 10000000);
+
+        Debug::print&lt;u8&gt;(
+            &amp;C::id(&amp;country)
+        ); // print id
+
+        Debug::print&lt;u64&gt;(
+            &amp;C::population(&amp;country)
+        );
+
+        // however this is impossible and will lead to compile error
+        // let id = country.id;
+        // let population = country.population.
+
+        C::destroy(country);
+    }
+}
+</code></pre>
+<hr />
+<p>이제 맞춤설정 유형의 구조체를 정의하는 방법을 알게 되셨는데, 초기 설정 상 해당 기능은 제한되어 있습니다. 다음 장에서는 이 유형의 값들을 어떻게 통제 및 사용하게 될지를 정의하는 방식인 능력에 대해 배워보도록 하겠습니다.</p>
+<h1><a class="header" href="#능력을-지니는-유형" id="능력을-지니는-유형">능력을 지니는 유형</a></h1>
+<p>Move는 아주 유연하고 맞춤 설정이 가능한 독특한 유형 체계를 가지고 있습니다. 각 유형은 최대 4개의 능력을 지닐 수 있으며, 능력을 사용함으로써 해당 유형의 값들이 어떻게 사용, 제외 또는 저장되는지를 정의하게 됩니다.</p>
+<blockquote>
+<p>능력에는 복사, 제외, 비축 및 키 저장에 해당하는 4가지 종류가 있습니다.</p>
+</blockquote>
+<p>간략하게 설명하자면 다음과 같은데,</p>
+<ul>
+<li><strong>Copy (복사)</strong> - 값이 <em>복사</em>(또는 어느 값에 의해 복제)될 수 있습니다.</li>
+<li><strong>Drop (제외)</strong> - 스코프 끝 부분에서 값을 <em>제외</em>할 수 있습니다.</li>
+<li><strong>Key (키)</strong> - 값을 전체 저장 작업에 <em>키</em>로 사용할 수 있습니다.</li>
+<li><strong>Store (저장)</strong> - 값을 전체 저장소 내부에 <em>저장</em>할 수 있습니다.</li>
+</ul>
+<p>이 페이지에서는 <code>copy</code>와 <code>drop</code> 능력을 자세하게 다루고, <code>key</code>와 <code>store</code> 능력에 대한 맥락은 <a href="advanced-topics//resources/index.html">자원</a> 장으로 넘어가면 더욱 상세하게 제공될 것입니다.</p>
+<h3><a class="header" href="#능력-구문" id="능력-구문">능력 구문</a></h3>
+<blockquote>
+<p>기본형 및 내재된 유형의 능력들은 사전에 정의되어 있으며 변경할 수 없습니다. 정수, 벡터, 주소 및 논리값에는 <em>복사</em>, <em>제외</em> 및 <em>저장</em> 능력이 있습니다.</p>
+</blockquote>
+<p>그러나 구조체를 정의하는 경우 이 구문을 사용하여 모든 조합의 능력을 자유롭게 명시할 수 있습니다.</p>
+<pre><code class="language-Move">struct NAME has ABILITY [, ABILITY] { [FIELDS] }
+</code></pre>
+<p>또는 예를 들자면 다음과 같습니다.</p>
+<pre><code class="language-Move">module Library {
+    
+    // each ability has matching keyword
+    // multiple abilities are listed with comma
+    struct Book has store, copy, drop {
+        year: u64
+    }
+
+    // single ability is also possible
+    struct Storage has key {
+        books: vector&lt;Book&gt;
+    }
+
+    // this one has no abilities 
+    struct Empty {}
+}
+</code></pre>
+<h3><a class="header" href="#능력이-없는-구조체" id="능력이-없는-구조체">능력이 없는 구조체</a></h3>
+<p>능력을 사용하는 방법이나 언어 상 불러오게 되는 요소들을 곧바로 살펴보기에 앞서, 능력이 없는 언어란 어떤 일이 일어나는지를 알아봅시다.</p>
+<pre><code class="language-Move">module Country {
+    struct Country {
+        id: u8,
+        population: u64
+    }
+    
+    public fun new_country(id: u8, population: u64): Country {
+        Country { id, population }
+    }
+}
+</code></pre>
+<pre><code class="language-Move">script {
+    use {{sender}}::Country;
+
+    fun main() {
+        Country::new_country(1, 1000000);
+    }   
+}
+</code></pre>
+<p>If you try to run this code, you'll get the following error:</p>
+<pre><code>error: 
+   ┌── scripts/main.move:5:9 ───
+   │
+ 5 │     Country::new_country(1, 1000000);
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Cannot ignore values without the 'drop' ability. The value must be used
+   │
+</code></pre>
+<p>메서드 <code>Country::new_country()</code>는 값을 하나 생성하는데, 이 값이 어디에도 전달되지 않고 함수가 끝날 때 자동으로 제외됩니다. 그러나 Country 유형에는 제외 능력이 없기 때문에 실패하게 되는 것입니다. 구조체 정의를 변경하여 제외 능력을 추가해 봅시다.</p>
+<h3><a class="header" href="#제외" id="제외">제외</a></h3>
+<p>능력 구문을 사용하면 이 구조체에 특정적인 <code>drop</code> 능력을 추가하게 됩니다. 이 구조체에 대응하는 모든 인스턴스가 제외 능력을 가지게 되며 <em>제외</em>가 가능해 질 것입니다.</p>
+<pre><code class="language-Move">module Country {
+    struct Country has drop { // has &lt;ability&gt;
+        id: u8,
+        population: u64
+    }
+    // ...
+}
+</code></pre>
+<p>이제 <code>Country</code> 구조체가 제외될 수 있으므로 스크립트를 실행할 수 있게 됩니다.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::Country;
+
+    fun main() {
+        Country::new_country(1, 1000000); // value is dropped
+    }   
+}
+</code></pre>
+<blockquote>
+<p><strong>비고:</strong> 제외 능력은 제외 동작만을 정의합니다. <a href="advanced-topics//advanced-topics/struct.html#destructing-structures"><em>분해</em></a> 는 제외 기능을 필요로 하지 않습니다.</p>
+</blockquote>
+<h3><a class="header" href="#복사" id="복사">복사</a></h3>
+<p><code>Country</code> 구조체의 신규 인스턴스를 생성하고 제외하는 방법을 알아보았는데, <em>사본</em>을 생성하려고 하면 어떻게 해야 할까요? 초기 설정 상 구조체들은 값을 통해 전달되며, 해당 구조체의 사본을 생성하려면 <code>copy</code> 키워드를 사용하면 됩니다. (<a href="advanced-topics//advanced-topics/ownership-and-references.html">다음 장</a>에서 상세하게 다룰 예정)</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::Country;
+
+    fun main() {
+        let country = Country::new_country(1, 1000000);
+        let _ = copy country;
+    }   
+}
+</code></pre>
+<pre><code>   ┌── scripts/main.move:6:17 ───
+   │
+ 6 │         let _ = copy country;
+   │                 ^^^^^^^^^^^^ Invalid 'copy' of owned value without the 'copy' ability
+   │
+</code></pre>
+<p>예상하셨겠지만 복사 능력이 없는 채로 유형의 사본을 만드는 것은 불가능합니다. 컴파일러 메시지는 분명합니다.</p>
+<pre><code class="language-Move">module Country {
+    struct Country has drop, copy { // see comma here!
+        id: u8,
+        population: u64
+    }
+    // ...
+}
+</code></pre>
+<p>해당 변경 사항을 바탕으로 상기 코드는 컴파일과 실행이 이루어질 것입니다.</p>
+<h3><a class="header" href="#요약-2" id="요약-2">요약</a></h3>
+<ul>
+<li>기본형에는 저장, 복사 및 제외 능력이 있습니다.</li>
+<li>초기 설정 상 구조체에는 능력이 없습니다.</li>
+<li>복사 및 제외 능력은 어떤 값들이 복사 및 제외될지를 각각 결정합니다.</li>
+<li>한 구조체는 최대 4개의 능력을 지닐 수 있습니다.</li>
+</ul>
+<h3><a class="header" href="#추가-참고-자료-2" id="추가-참고-자료-2">추가 참고 자료</a></h3>
+<ul>
+<li><a href="https://github.com/diem/diem/blob/main/language/changes/3-abilities.md">Move 능력 관련 설명</a></li>
+</ul>
+<h1><a class="header" href="#소유권과-참조" id="소유권과-참조">소유권과 참조</a></h1>
+<p>Move VM은 Rust와 유사한 소유권 체계를 구현합니다. 이를 가장 잘 설명하고 있는 자료가 바로 <a href="https://doc.rust-lang.org/stable/book/ch04-01-what-is-ownership.html">Rust Book</a> 입니다.</p>
+<p>Rust의 구문은 약간 다른 면도 있고 수록된 예시 중 일부를 이해하는 것도 쉽진 않지만, Rust Book에 수록된 소유권 장은 꼭 읽어 보시는 것을 추천 드립니다. 이 장에서도 핵심을 다룰 예정입니다.</p>
+<blockquote>
+<p>각 변수는 하나의 소유자 스코프만을 가집니다. 소유자 스코프가 끝나는 시점에 소유했던 변수들은 제외됩니다.</p>
+</blockquote>
+<p>이러한 행동 양상은 <a href="advanced-topics//syntax-basics/expression-and-scope.html">표현식</a> 장에서 앞서 살펴본 적이 있습니다. 스코프와 변수의 수명은 동일하다는 점 기억하시나요? 지금이야말로 왜 그런 일이 일어나는가를 파고들어 볼 시간입니다.</p>
+<p>소유자는 변수를 <em>갖고 있는</em> 스코프입니다. 변수는 해당 스코프 내부에서 정의되거나(예: 스크립트에서 <code>let</code>을 사용) 인수로서 스코프에 전달될 수 있습니다. Move에 존재하는 유일한 스코프는 함수이기 때문에, 변수를 스코프에 넣을 다른 방법은 존재하지 않습니다.</p>
+<p>각 변수에는 단 하나의 소유자만 존재하며, 즉 어느 변수가 인수 형태로 함수에 전달되었다면 해당 함수가 <em>새로운 소유자</em> 가 되어, 변수가 더 이상 첫 번째 함수의 <em>소유</em>가 아닌 것입니다. 또는 변수의 <em>소유권을 해당 함수가 가져왔다</em>고 말해도 무방할 것입니다.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::M;
+
+    fun main() {
+        // Module::T is a struct
+        let a : Module::T = Module::create(10);
+
+        // here variable `a` leaves scope of `main` function
+        // and is being put into new scope of `M::value` function
+        M::value(a);
+
+        // variable a no longer exists in this scope
+        // this code won't compile
+        M::value(a);
+    }
+}
+</code></pre>
+<p>우리가 값을 내부로 전달했을 때 <code>value()</code>안에서 어떤 일이 일어나는지 알아봅시다.</p>
+<pre><code class="language-Move">module M {
+    // create_fun skipped
+    struct T { value: u8 }
+
+    public fun create(value: u8): T {
+        T { value }
+    }
+
+    // variable t of type M::T passed
+    // `value()` function takes ownership
+    public fun value(t: T): u8 {
+        // we can use t as variable
+        t.value
+    }
+    // function scope ends, t dropped, only u8 result returned
+    // t no longer exists
+}
+</code></pre>
+<p>물론 임시방편으로 원본 변수와 추가적인 결과를 가지는 튜플을 반환하는 것이겠지만(이 때 반환 값은 <code>(T, u8)</code>), Move에는 더 나은 해결책이 있습니다. </p>
+<h3><a class="header" href="#move와-copy" id="move와-copy">Move와 Copy</a></h3>
+<p>먼저 Move VM의 작동 방식, 그리고 함수에 값을 전달하면 어떤 일이 일어나는가를 이해해 둘 필요가 있습니다. VM에는 <em>MoveLoc과</em> <em>CopyLoc</em>이라는 바이트코드 지침이 2개 존재하는데, 둘다 각각 <code>move</code>와 <code>copy</code>키워드를 통해 수동으로 사용할 수 있습니다. </p>
+<p>어느 변수를 다른 함수로 전달하는 경우, 해당 변수는 <em>이동</em> 중인 상태이며 <em>MoveLoc</em> OpCode가 사용됩니다. <code>move</code> 키워드를 사용하면 코드가 어떤 형태가 될 지 살펴봅시다.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::M;
+
+    fun main() {
+        let a : Module::T = Module::create(10);
+
+        M::value(move a); // variable a is moved
+
+        // local a is dropped
+    }
+}
+</code></pre>
+<p>이 경우는 유효한 Move 코드이지만, 해당 값이 여전히 이동될 것이라는 걸 알고 있는 상태에서 굳이 명시적으로 <em>이동</em>시킬 필요는 없습니다. 숙지하셨으면 이제 <em>Copy</em>로 넘어가겠습니다.</p>
+<p>This is a valid Move code, however, knowing that value will still be moved you don't need to explicitly <em>move</em> it. Now when it's clear we can get to <em>copy</em>.</p>
+<h3><a class="header" href="#copy-키워드" id="copy-키워드"><code>copy</code> 키워드</a></h3>
+<p>어느 값을 함수에 전달하고 (이동 지점에) 변수의 사본을 저장하려는 경우, <code>copy</code> 키워드를 사용하면 됩니다.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::M;
+
+    fun main() {
+        let a : Module::T = Module::create(10);
+
+        // we use keyword copy to clone structure
+        // can be used as `let a_copy = copy a`
+        M::value(copy a);
+        M::value(a); // won't fail, a is still here
+    }
+}
+</code></pre>
+<p>이 예시에서는 변수(즉 값) <code>a</code> 의 <em>사본</em>을 메서드 <code>value</code>의 첫 번째 호출로 전달하고 <code>a</code>를 로컬 스코프에 저장하여 두 번째로 호출이 진행될 경우 다시 사용할 수 있도록 처리했습니다.</p>
+<p>값을 복사함으로써 우리는 이를 복제하게 되었고 프로그램의 메모리 크기를 증가시켰는데, 이를 감안하면 해당 키워드는 사용할 수는 있겠으나 크기가 큰 데이터를 복사하게 되는 경우 메모리 측면에서 비싼 대가를 치를 수 있습니다. 블록체인에서는 낭비할 바이트라고는 하나도 없으며 실행 가격에 영향을 끼치기 때문에, <code>copy</code> 키워드를 매번 사용하게 되면 비용이 크게 올라갈 수 있습니다.</p>
+<p>이제 불필요한 복사를 피하고 실제로 돈을 절약할 수 있도록 돕는 기능인 참조에 대해 배워볼 준비가 되었습니다.</p>
+<h2><a class="header" href="#참조" id="참조">참조</a></h2>
+<p>여러 프로그래밍 언어에서는 참조 기능을 구현해 놓고 있습니다(<a href="https://en.wikipedia.org/wiki/Reference_(computer_science)">위키피디아 참조</a>). <em>참조</em>는 어느 변수(주로 메모리에서의 한 구획)로 이어지는 링크인데, <em>이동</em>할 값을 대신하여 프로그램의 다른 부분들로 전달할 수 있는 요소입니다.</p>
+<blockquote>
+<p>참조(&amp;로 표기)는 <em>소유권</em>을 확보하지 않고도 해당 값을 <em>인용</em>할 수 있도록 합니다.</p>
+</blockquote>
+<p>예시를 변경해서 참조가 어떻게 사용되었는가를 알아봅시다.</p>
+<pre><code class="language-Move">module M {
+    struct T { value: u8 }
+    // ...
+    // ...
+    // instead of passing a value, we'll pass a reference
+    public fun value(t: &amp;T): u8 {
+        t.value
+    }
+}
+</code></pre>
+<p><code>&amp;</code> 표시를 인수 유형 <code>T</code>에 추가하였는데, 이를 통해 인수 유형을 기존의 <code>T</code>로부터 <em>T 참조</em> 내지는 <code>&amp;T</code>로 변경하였습니다.</p>
+<blockquote>
+<p>Move에서는 두 가지 유형의 참조를 지원하는데, <code>&amp;</code> 로 정의되는 <em>불변 유형</em>(예: <code>&amp;T</code>)과 <code>&amp;mut</code>에 해당하는 <em>가변 유형</em>(예: <code>&amp;mut T</code>)이 있습니다.</p>
+</blockquote>
+<p>불변 참조는 값을 변경하지 않고 읽을 수 있게 합니다. 반면 가변 유형은 값을 읽고 변경할 수 있습니다.</p>
+<pre><code class="language-Move">module M {
+    struct T { value: u8 }
+
+    // returned value is of non-reference type
+    public fun create(value: u8): T {
+        T { value }
+    }
+
+    // immutable references allow reading
+    public fun value(t: &amp;T): u8 {
+        t.value
+    }
+
+    // mutable references allow reading and changing the value
+    public fun change(t: &amp;mut T, value: u8) {
+        t.value = value;
+    }
+}
+</code></pre>
+<p>이제 업그레이드된 모듈 M을 어떻게 사용할지를 보겠습니다.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::M;
+
+    fun main() {
+        let t = M::create(10);
+
+        // create a reference directly
+        M::change(&amp;mut t, 20);
+
+        // or write reference to a variable
+        let mut_ref_t = &amp;mut t;
+
+        M::change(mut_ref_t, 100);
+
+        // same with immutable ref
+        let value = M::value(&amp;t);
+
+        // this method also takes only references
+        // printed value will be 100
+        0x1::Debug::print&lt;u8&gt;(&amp;value);
+    }
+}
+</code></pre>
+<blockquote>
+<p>불변(&amp;) 참조를 사용하면 구조체로부터 데이터를 읽을 수 있으며, 가변(&amp;mut)을 사용하면 이를 변경할 수 있습니다. 적절한 참조 유형을 사용함을 통해 보안성을 유지할 수 있으며 모듈 판독을 보조하여 독자들로 하여금 해당 메서드가 값을 변경하는지 아니면 읽기만 진행하는지를 알 수 있게 합니다.</p>
+</blockquote>
+<h3><a class="header" href="#차용-확인" id="차용-확인">차용 확인</a></h3>
+<p>Move는 참조를 사용하는 방식을 제어하며 예기치 못한 참사가 일어나는 일을 막도록 도와줍니다. 예시를 통해 이해해 봅시다. 모듈과 스크립트를 보면서 무슨 일이 일어나는지, 그리고 그 이유는 무엇인지를 함께 생각해 보겠습니다.</p>
+<pre><code class="language-Move">module Borrow {
+
+    struct B { value: u64 }
+    struct A { b: B }
+
+    // create A with inner B
+    public fun create(value: u64): A {
+        A { b: B { value } }
+    }
+
+    // give a mutable reference to inner B
+    public fun ref_from_mut_a(a: &amp;mut A): &amp;mut B {
+        &amp;mut a.b
+    }
+
+    // change B
+    public fun change_b(b: &amp;mut B, value: u64) {
+        b.value = value;
+    }
+}
+</code></pre>
+<pre><code class="language-Move">script {
+    use {{sender}}::Borrow;
+
+    fun main() {
+        // create a struct A { b: B { value: u64 } }
+        let a = Borrow::create(0);
+
+        // get mutable reference to B from mut A
+        let mut_a = &amp;mut a;
+        let mut_b = Borrow::ref_from_mut_a(mut_a);
+
+        // change B
+        Borrow::change_b(mut_b, 100000);
+
+        // get another mutable reference from A
+        let _ = Borrow::ref_from_mut_a(mut_a);
+    }
+}
+</code></pre>
+<p>이 코드는 컴파일이 진행되며 오류 없이 작동합니다. 먼저 여기에서 일어나고 있는 일은 가변 참조를 <code>A</code>에 사용하여 내부 구조체인 <code>B</code>에 가변 참조를 적용할 수 있도록 합니다. 그 뒤에 B를 변경하고, 계속 작업을 반복할 수 있습니다.</p>
+<p>하지만 마지막 두 표현식을 바꾸어 <code>B</code>로의 가변 참조가 남아 있는 상태에서 <code>A</code>에 새로 가변 참조를 생성하려고 시도하면 어떻게 될까요?</p>
+<pre><code class="language-Move">let mut_a = &amp;mut a;
+let mut_b = Borrow::ref_from_mut_a(mut_a);
+
+let _ = Borrow::ref_from_mut_a(mut_a);
+
+Borrow::change_b(mut_b, 100000);
+</code></pre>
+<p>아마 오류가 발생했을 것입니다.</p>
+<pre><code class="language-Move">    ┌── /scripts/script.move:10:17 ───
+    │
+ 10 │         let _ = Borrow::ref_from_mut_a(mut_a);
+    │                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Invalid usage of reference as function argument. Cannot transfer a mutable reference that is being borrowed
+    ·
+  8 │         let mut_b = Borrow::ref_from_mut_a(mut_a);
+    │                     ----------------------------- It is still being mutably borrowed by this reference
+    │
+</code></pre>
+<p>코드가 컴파일되지 않을 것입니다. 그 이유는 <code>&amp;mut A</code>가 <code>&amp;mut B</code>에 의해 <em>차용되고 있기</em> 때문입니다. 만약 내용에 대한 가변 참조를 확보한 상태에서 <code>A</code>를 변경할 수 있게 된다면, 내용에 대한 참조가 여전히 여기 존재하는 상황에서 <code>A</code>가 변경된다는 이상한 상황이 발생하게 됩니다. <code>B</code>가 실제로 존재하지 않는데 <code>mut_b</code>가 어딜 지정해야 하는 걸까요?</p>
+<p>이로써 몇 가지 결론이 도출됩니다.</p>
+<ol>
+<li>컴파일 에러가 일어나게 되는데, 즉 Move 컴파일러는 이런 사례들을 방지한다는 것을 뜻합니다. 이는 <em>차용 확인</em>이라고 하는 기능입니다(원본은 Rust 언어의 개념). 컴파일러는 <em>차용 그래프</em>를 축적하여 <em>차용된 값을 이동</em>하는 것은 허용하지 않습니다. 이는 Move를 블록체인에서 사용하기에 안전한 이유 중 하나입니다. </li>
+<li>참조에서 참조를 생성하는 것도 가능하므로, 원본 참조는 신규 참조에서 <em>차용</em>하게 됩니다. 불변 및 가변 참조는 불변에서, 가변 참조는 가변에서만 생성할 수 있습니다.</li>
+<li>참조가 <em>차용된</em> 경우 다른 값들도 연결되어 있으므로 <em>이동</em>시킬 수 없습니다.</li>
+</ol>
+<h3><a class="header" href="#참조-해제" id="참조-해제">참조 해제</a></h3>
+<p>참조는 별표 <code>*</code>를 사용하여 연결된 값에서 참조 해제를 진행할 수 있습니다.</p>
+<blockquote>
+<p>참조를 해제하는 경우에는 <em>사본</em>을 생성하게 됩니다. 해당 값에 복사 능력이 있는지를 확인하세요.</p>
+</blockquote>
+<pre><code class="language-Move">module M {
+    struct T has copy {}
+
+    // value t here is of reference type
+    public fun deref(t: &amp;T): T {
+        *t
+    }
+}
+</code></pre>
+<blockquote>
+<p>참조 해제 연산자는 원본 값을 현재의 스코프로 이동해 주지 않습니다. 대신 이 값의 <em>사본</em>을 생성합니다.</p>
+</blockquote>
+<p>Move에서 구조체의 내부 필드를 복사하기 위해 사용할 수 있는 기법이 하나 있는데, 바로 <code>*&amp;</code>입니다. 필드에 대한 참조를 해제하는 것입니다. 여기 짧은 예시가 있습니다.</p>
+<pre><code class="language-Move">module M {
+    struct H has copy {}
+    struct T { inner: H }
+
+    // ...
+
+    // we can do it even from immutable reference!
+    public fun copy_inner(t: &amp;T): H {
+        *&amp;t.inner
+    }
+}
+</code></pre>
+<p>By using <code>*&amp;</code> (even compiler will advise you to do so) we've copied the inner value of a struct.</p>
+<p><code>*&amp;</code>를 사용하면 구조체의 내부 값을 복사하게 됩니다(컴파일러에서도 권장하는 기능입니다).</p>
+<h3><a class="header" href="#기본형의-참조" id="기본형의-참조">기본형의 참조</a></h3>
+<p>기본형은 단순하기 때문에 참조로 전달될 필요가 없으며 <em>복사</em> 작업을 대신 진행하게 됩니다. 해당 유형을 <em>값으로</em> 하여 함수에 전달한다 하더라도 현재 스코프에 남아있을 것입니다. 일부러 <code>move</code> 키워드를 사용할 수는 있으나, 기본형은 크기가 매우 작기 때문에 참조나 이동을 통해 전달하는 것보다 복사하는 것이 더 저렴할 수도 있습니다.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::M;
+
+    fun main() {
+        let a = 10;
+        M::do_smth(a);
+        let _ = a;
+    }
+}
+</code></pre>
+<p>이 스크립트는 <code>a</code>를 참조로 전달하지 않았음에도 컴파일 될 것입니다. VM에서 이미 배치해 두었기 때문에 <code>copy</code>를 추가할 필요는 없습니다.</p>
+<h1><a class="header" href="#제네릭-이해하기" id="제네릭-이해하기">제네릭 이해하기</a></h1>
+<p>제네릭은 블록체인 세계에서 Move 언어가 독특성을 지니게 하며 Move의 유연성의 근원으로 작용하기 때문에 Move에 필수불가결한 요소입니다.</p>
+<p>우선 <a href="https://doc.rust-lang.org/stable/book/ch10-00-generics.html">Rust Book</a> 에서 인용하자면 제네릭은 구체적인 유형 또는 기타 속성을 대신하는 추상적인 대역입니다. 실제적인 측면에서 이야기하자면 제네릭은 단일 함수를 작성할 때 사용되는 방법으로, 어떠한 유형에도 사용할 수 있으며 이렇게 작성한 함수는 모든 유형의 견본 취급자로 사용될 수 있기 때문에 견본이라고 칭하기도 합니다.</p>
+<p>Move에서 제네릭은 <code>struct</code>와 <code>function</code>의 서명에 적용될 수 있습니다.</p>
+<h3><a class="header" href="#구조체-내부에서의-정의" id="구조체-내부에서의-정의">구조체 내부에서의 정의</a></h3>
+<p>우선 <code>u64</code> 값을 저장하는 상자인 Box를 생성합시다. 이미 진행해 본 작업이므로 주석은 생략하겠습니다.</p>
+<pre><code class="language-Move">module Storage {
+    struct Box {
+        value: u64
+    }
+}
+</code></pre>
+<p>이 상자는 <code>u64</code> 유형의 값만 저장할 수 있다는 건 자명한 사실입니다. 그러나 동일한 상자를 <code>u8</code> 유형이나 <code>bool</code>형에 대응하도록 생성하고 싶다면 어떻게 할까요? <code>Box1</code>과 <code>Box2</code>를 생성하는 게 좋을까요? 아니면 다른 모듈을 발행해야 할까요? 둘 다 오답입니다. 제네릭을 사용하면 되니까요.</p>
+<pre><code class="language-Move">module Storage {
+    struct Box&lt;T&gt; {
+        value: T
+    }
+}
+</code></pre>
+<p>구조체 이름 옆에 <code>&lt;T&gt;</code>를 입력했습니다. 부등호 기호 <code>&lt;..&gt;</code>들은 제네릭의 유형을 정의하기 위해 사용하며, <code>T</code>는 이 구조체에서 우리가 견본으로 삼은 유형에 해당합니다. 구조체 바디 정의 내부에서는 <code>T</code>를 일반 유형으로 사용했습니다. <code>T</code>라는 유형은 실존하는 것이 아니라, <em>모든 유형</em>이 들어올 수 있도록 하는 문자입니다.</p>
+<h3><a class="header" href="#함수-내-서명" id="함수-내-서명">함수 내 서명</a></h3>
+<p>이제 <code>u64</code> 유형을 우선 값으로 사용할 이 구조체에 생성자를 생성하겠습니다.</p>
+<pre><code class="language-Move">module Storage {
+    struct Box&lt;T&gt; {
+        value: T
+    }
+
+    // type u64 is put into angle brackets meaning
+    // that we're using Box with type u64
+    public fun create_box(value: u64): Box&lt;u64&gt; {
+        Box&lt;u64&gt;{ value }
+    }
+}
+</code></pre>
+<p>제네릭은 명시된 유형 매개 변수를 가져야 하기 때문에 약간 더 복잡한 정의를 지니는데, 따라서 일반 구조체 <code>Box</code>는 <code>Box&lt;u64&gt;</code>가 됩니다. 제네릭의 부등호 기호 안에는 모든 유형을 전달할 수 있습니다. <code>create_box</code>메서드를 더욱 일반성을 띠도록 하여 사용자들이 유형을 명시할 수 있게 처리해 줍시다. 다른 제네릭을 함수 서명에 활용함으로써 말입니다</p>
+<pre><code class="language-Move">module Storage {
+    // ...
+    public fun create_box&lt;T&gt;(value: T): Box&lt;T&gt; {
+        Box&lt;T&gt; { value }
+    }
+
+    // we'll get to this a bit later, trust me
+    public fun value&lt;T: copy&gt;(box: &amp;Box&lt;T&gt;): T {
+        *&amp;box.value
+    }
+}
+</code></pre>
+<h3><a class="header" href="#함수-호출에서의-사용" id="함수-호출에서의-사용">함수 호출에서의 사용</a></h3>
+<p>우리는 방금 구조체에서 진행했던 방식과 동일하게, 부등호들을 함수 서명에서 함수의 이름 바로 뒤에 추가했습니다. 이제 이 함수를 어떻게 사용하면 좋을까요? 함수 호출 상에서 유형을 명시해 주면 됩니다.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::Storage;
+    use 0x1::Debug;
+
+    fun main() {
+        // value will be of type Storage::Box&lt;bool&gt;
+        let bool_box = Storage::create_box&lt;bool&gt;(true);
+        let bool_val = Storage::value(&amp;bool_box);
+
+        assert(bool_val, 0);
+
+        // we can do the same with integer
+        let u64_box = Storage::create_box&lt;u64&gt;(1000000);
+        let _ = Storage::value(&amp;u64_box);
+
+        // let's do the same with another box!
+        let u64_box_in_box = Storage::create_box&lt;Storage::Box&lt;u64&gt;&gt;(u64_box);
+
+        // accessing value of this box in box will be tricky :)
+        // Box&lt;u64&gt; is a type and Box&lt;Box&lt;u64&gt;&gt; is also a type
+        let value: u64 = Storage::value&lt;u64&gt;(
+            &amp;Storage::value&lt;Storage::Box&lt;u64&gt;&gt;( // Box&lt;u64&gt; type
+                &amp;u64_box_in_box // Box&lt;Box&lt;u64&gt;&gt; type
+            )
+        );
+
+        // you've already seen Debug::print&lt;T&gt; method
+        // which also uses generics to print any type
+        Debug::print&lt;u64&gt;(&amp;value);
+    }
+}
+</code></pre>
+<p>여기에서는 3가지 유형, 즉 <code>bool</code>형, <code>u64</code> 그리고 <code>Box&lt;u64&gt;</code>를 토대로 Box 구조체를 사용했습니다. 마지막 유형은 굉장히 복잡해 보이겠지만 작동 방식을 이해하고 좀 더 친숙해 진 다음에는 루틴의 일부가 될 것입니다.</p>
+<!-- , Move opens in new way - the way you probably could never imagine in blockchains. -->
+<p>더 진행하기에 앞서 잠시 되돌아갑시다. <code>Box</code> 구조체에 제네릭을 추가함으로써 이 상자는 <em>추상적</em>인 성격을 지니게 되었는데, 우리가 활용할 수 있는 용량에 비해 정의는 상당히 간단한 편입니다. 이제는 <code>u64</code>, <code>address</code>, 심지어 다른 <code>box</code>나 구조체를 아우르는 모든 유형을 가지는 Box를 생성할 수 있습니다.</p>
+<h3><a class="header" href="#능력-확인의-제약-사항" id="능력-확인의-제약-사항">능력 확인의 제약 사항</a></h3>
+<p><a href="advanced-topics//advanced-topics/abilities/README.html">능력</a> 에 대해 앞서 배웠는데, 제네릭에서는 능력을 “확인” 하거나 <em>제약</em>하게 됩니다. 제약의 경우 대응하는 능력에 따라 이름이 결정됩니다.</p>
+<pre><code class="language-Move">fun name&lt;T: copy&gt;() {} // allow only values that can be copied
+fun name&lt;T: copy + drop&gt;() {} // values can be copied and dropped
+fun name&lt;T: key + store + drop + copy&gt;() {} // all 4 abilities are present
+</code></pre>
+<p>...또는 구조체의 경우</p>
+<pre><code class="language-Move">struct name&lt;T: copy + drop&gt; { value: T } // T can be copied and dropped
+struct name&lt;T: store&gt; { value: T } // T can be stored in global storage
+</code></pre>
+<blockquote>
+<p>다음 구문을 숙지 바랍니다. <code>+</code>(plus)부호는 처음부터 직관적이지 않을 수 있으나, Move의 키워드 목록에서 유일하게 <code>+</code>를 사용하는 곳입니다.</p>
+</blockquote>
+<p>제약이 걸린 시스템의 예시입니다.</p>
+<pre><code class="language-Move">module Storage {
+
+    // contents of the box can be stored
+    struct Box&lt;T: store&gt; has key, store {
+        content: T
+    }
+}
+</code></pre>
+<p>또한 내부 유형(또는 제네릭 유형)은 반드시 컨테이너의 능력(<code>key</code>를 제외한 모든 능력이 해당)을 가져야 한다는 점도 숙지해 두십시오. 조금만 생각해 보면 모든 부분은 상식적이고 직관적입니다. <strong>copy(복사)</strong> 능력이 있는 구조체라면 내용 또한 복사 능력을 가져야 합니다. 그렇지 않다면 컨테이너 객체가 복사가능한 것으로 간주될 수 없을 것입니다. Move 컴파일러는 이 논리를 따르지 않는 코드도 컴파일하도록 허용하겠지만 해당 능력들은 사용할 수 없게 될 것입니다. 다음의 예시를 참조하십시오.</p>
+<pre><code class="language-Move">module Storage {
+    // non-copyable or droppable struct
+    struct Error {}
+    
+    // constraints are not specified
+    struct Box&lt;T&gt; has copy, drop {
+        contents: T
+    }
+
+    // this method creates box with non-copyable or droppable contents
+    public fun create_box(): Box&lt;Error&gt; {
+        Box { contents: Error {} }
+    }
+}
+</code></pre>
+<p>이 코드는 성공적으로 컴파일 및 발행이 진행되었습니다. 그러나 실행해 보게 되면…</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        {{sender}}::Storage::create_box() // value is created and dropped
+    }   
+}
+</code></pre>
+<p>Box가 제외할 수 없다는 오류가 출력됩니다.</p>
+<pre><code>   ┌── scripts/main.move:5:9 ───
+   │
+ 5 │   Storage::create_box();
+   │   ^^^^^^^^^^^^^^^^^^^^^ Cannot ignore values without the 'drop' ability. The value must be used
+   │
+</code></pre>
+<p>이런 일이 발생하는 이유는 내부 값에 제외 능력이 없기 때문입니다. 컨테이너의 능력은 내용에 의해 자동으로 제한이 되므로, 예를 들어 복사, 제외 및 저장 능력을 가진 컨테이너 구조체가 있고 내부 구조체에는 제외 능력밖에 없다면 해당 컨테이너를 복사하거나 저장하는 것은 불가능할 것입니다. 또 다른 관점에서 볼 때 이 컨테이너는 내부 유형에 대한 제약 사항을 가질 필요가 없이, 내부에 어떤 유형이 들어있든지 사용될 수 있는 유연성을 확보하는 것도 가능합니다.</p>
+<blockquote>
+<p>그러나 실수를 피하기 위해 항상 점검을 게을리하지 말고, 필요하다면 함수와 구조체에서 제네릭 관련 제약사항을 명시하는 것이 좋습니다.</p>
+</blockquote>
+<p>아래 구조체가 보다 안전한 예시가 되겠습니다.</p>
+<pre><code class="language-Move">// we add parent's constraints
+// now inner type MUST be copyable and droppable
+struct Box&lt;T: copy + drop&gt; has copy, drop {
+    contents: T
+}
+</code></pre>
+<h3><a class="header" href="#제네릭에서의-여러-유형" id="제네릭에서의-여러-유형">제네릭에서의 여러 유형</a></h3>
+<p>유형은 한 개에서 그치지 않고 여러 개를 사용하는 것도 가능합니다. 제네릭 유형들은 부등호 기호 내부에 입력되며 쉼표로 분리합니다. 2가지 다른 유형을 가지는 상자 2개를 포함하는 새로운 유형인 <code>Shelf</code>를 추가해 봅시다.</p>
+<pre><code class="language-Move">module Storage {
+
+    struct Box&lt;T&gt; {
+        value: T
+    }
+
+    struct Shelf&lt;T1, T2&gt; {
+        box_1: Box&lt;T1&gt;,
+        box_2: Box&lt;T2&gt;
+    }
+
+    public fun create_shelf&lt;Type1, Type2&gt;(
+        box_1: Box&lt;Type1&gt;,
+        box_2: Box&lt;Type2&gt;
+    ): Shelf&lt;Type1, Type2&gt; {
+        Shelf {
+            box_1,
+            box_2
+        }
+    }
+}
+</code></pre>
+<p><code>Shelf</code>에 대응하는 유형 매개 변수를 수록하여 구조체의 필드 정의에 대응시켰습니다. 또한 여기에서 볼 수 있듯 제네릭 내부에 위치한 유형 매개 변수의 이름은 관계없습니다. 적절한 이름만 선택해 주면 되겠고, 각 유형 매개 변수는 정의 내부에서만 유효하기 때문에 <code>T1</code>이나 <code>T2</code>를 <code>T</code>와 대응시킬 필요는 없습니다.</p>
+<p>다수의 제네릭 유형 매개 변수를 사용하는 것은 단일 변수의 사용 때와 크게 다르지 않습니다.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::Storage;
+
+    fun main() {
+        let b1 = Storage::create_box&lt;u64&gt;(100);
+        let b2 = Storage::create_box&lt;u64&gt;(200);
+
+        // you can use any types - so same ones are also valid
+        let _ = Storage::create_shelf&lt;u64, u64&gt;(b1, b2);
+    }
+}
+</code></pre>
+<p><em>하나의 정의에서는 최대 18,446,744,073,709,551,615 (u64 크기) 개의 제네릭을 사용할 수 있습니다. 물론 이런 제한에 도달할 일은 전혀 없으니, 제한 받을 염려 없이 마음껏 필요한 만큼 사용하시면 됩니다.</em></p>
+<h3><a class="header" href="#사용되지-않은-유형의-매개-변수" id="사용되지-않은-유형의-매개-변수">사용되지 않은 유형의 매개 변수</a></h3>
+<p>제네릭에서 명시된 모든 유형이 사용될 필요는 없습니다. 다음의 예시를 참고해 주십시오.</p>
+<pre><code class="language-Move">module Storage {
+
+    // these two types will be used to mark
+    // where box will be sent when it's taken from shelf
+    struct Abroad {}
+    struct Local {}
+
+    // modified Box will have target property
+    struct Box&lt;T, Destination&gt; {
+        value: T
+    }
+
+    public fun create_box&lt;T, Dest&gt;(value: T): Box&lt;T, Dest&gt; {
+        Box { value }
+    }
+}
+</code></pre>
+<p>때로는 작업에 제네릭을 제약 또는 상수로 사용하는 것도 적절한 선택입니다. 스크립트에서의 사용법을 함께 보도록 합시다.</p>
+<pre><code class="language-Move">
+script {
+    use {{sender}}::Storage;
+
+    fun main() {
+        // value will be of type Storage::Box&lt;bool&gt;
+        let _ = Storage::create_box&lt;bool, Storage::Abroad&gt;(true);
+        let _ = Storage::create_box&lt;u64, Storage::Abroad&gt;(1000);
+
+        let _ = Storage::create_box&lt;u128, Storage::Local&gt;(1000);
+        let _ = Storage::create_box&lt;address, Storage::Local&gt;(0x1);
+
+        // or even u64 destination!
+        let _ = Storage::create_box&lt;address, u64&gt;(0x1);
+    }
+}
+</code></pre>
+<p>여기에서는 제네릭을 사용하여 유형을 표시했지만, 실제로 사용하지는 않습니다. 왜 이러한 정의가 중요한지는 자원 개념을 배울 때 함께 습득하시게 될 것입니다. 우선 지금은 제네릭의 또 다른 사용법이라고만 이해하셔도 무방합니다.</p>
+<!-- ### Copyable
+
+*Copyable kind* - is a kind of types, value of which can be copied. `struct`, `vector` and primitive types - are three main groups of types fitting into this kind.
+
+To understand why Move needs this constraint let's see this example:
+
+```Move
+module M {
+    public fun deref<T>(t: &T): T {
+        *t
+    }
+}
+```
+
+By using *dereference* on a reference you can *copy* the original value and return it as a regular. But what if we've tried to use `resource` in this example? Resource can't be copied, hence this code would fail. Hopefully compiler won't let you compile this type, and kinds exist to manage cases like this.
+
+```Move
+module M {
+    public fun deref<T: copyable>(t: &T): T {
+        *t
+    }
+}
+```
+
+We've added `: copyable` constraint into generic definition, and now type `T` must be of kind *copyable*. So now function accepts only `struct`, `vector` and primitives as type parameters. This code compiles as constraint provides safety over used types and passing non-copyable value here is impossible.
+
+### Resource
+
+Another kind has only one type inside is a `resource` kind. It is used in the same manner:
+
+```Move
+module M {
+    public fun smth<T: resource>(t: &T) {
+        // do smth
+    }
+}
+```
+
+This example here is only needed to show syntax, we'll get to resources soon and you'll learn actual use cases for this constraint. -->
+<h1><a class="header" href="#벡터로-집합-관리하기" id="벡터로-집합-관리하기">벡터로 집합 관리하기</a></h1>
+<p>본인만의 유형을 생성하고 복잡한 데이터를 저장하도록 하는 <code>struct</code> 유형은 이미 익숙하실 것입니다. 하지만 가끔은 좀 더 동적이고, 확장성과 관리성이 좋은 유형이 필요할 때가 있습니다. Move에서는 벡터가 그러한 기능을 담당합니다.</p>
+<p>Vector is a built-in type for storing <em>collections</em> of data. It is a generic solution for collection of any type (but only one). As its functionality is given to you by the VM; the only way to work with it is by using the <a href="https://github.com/diem/move/tree/main/language/move-stdlib/sources">Move standard library</a> and <code>native</code> functions.</p>
+<p>벡터는 데이터 <em>집합</em>을 저장하는 역할을 맡는 내장된 유형입니다. 벡터는 모든 종류의 단일 유형에 대응하는 제네릭 솔루션입니다. 이 기능은 실제 Move 언어가 아니라 VM에서 제공하는 것이므로, <a href="https://github.com/diem/move/tree/main/language/move-stdlib/sources">Move standard library</a>와 <code>native</code> 함수를 사용해야만 작업할 수 있습니다.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Vector;
+
+    fun main() {
+        // use generics to create an emtpy vector
+        let a = Vector::empty&lt;&amp;u8&gt;();
+        let i = 0;
+
+        // let's fill it with data
+        while (i &lt; 10) {
+            Vector::push_back(&amp;mut a, i);
+            i = i + 1;
+        }
+
+        // now print vector length
+        let a_len = Vector::length(&amp;a);
+        0x1::Debug::print&lt;u64&gt;(&amp;a_len);
+
+        // then remove 2 elements from it
+        Vector::pop_back(&amp;mut a);
+        Vector::pop_back(&amp;mut a);
+
+        // and print length again
+        let a_len = Vector::length(&amp;a);
+        0x1::Debug::print&lt;u64&gt;(&amp;a_len);
+    }
+}
+</code></pre>
+<p>벡터는 단일 비참조 유형에 해당하는 값을 최대 <code>u64</code> 크기까지 저장할 수 있습니다. 대형 저장소를 관리함에 있어 벡터가 어떤 도움이 되는지를 살펴보기 위해 모듈을 작성해 보겠습니다.</p>
+<pre><code class="language-Move">module Shelf {
+
+    use 0x1::Vector;
+
+    struct Box&lt;T&gt; {
+        value: T
+    }
+
+    struct Shelf&lt;T&gt; {
+        boxes: vector&lt;Box&lt;T&gt;&gt;
+    }
+
+    public fun create_box&lt;T&gt;(value: T): Box&lt;T&gt; {
+        Box { value }
+    }
+
+    // this method will be inaccessible for non-copyable contents
+    public fun value&lt;T: copy&gt;(box: &amp;Box&lt;T&gt;): T {
+        *&amp;box.value
+    }
+
+    public fun create&lt;T&gt;(): Shelf&lt;T&gt; {
+        Shelf {
+            boxes: Vector::empty&lt;Box&lt;T&gt;&gt;()
+        }
+    }
+
+    // box value is moved to the vector
+    public fun put&lt;T&gt;(shelf: &amp;mut Shelf&lt;T&gt;, box: Box&lt;T&gt;) {
+        Vector::push_back&lt;Box&lt;T&gt;&gt;(&amp;mut shelf.boxes, box);
+    }
+
+    public fun remove&lt;T&gt;(shelf: &amp;mut Shelf&lt;T&gt;): Box&lt;T&gt; {
+        Vector::pop_back&lt;Box&lt;T&gt;&gt;(&amp;mut shelf.boxes)
+    }
+
+    public fun size&lt;T&gt;(shelf: &amp;Shelf&lt;T&gt;): u64 {
+        Vector::length&lt;Box&lt;T&gt;&gt;(&amp;shelf.boxes)
+    }
+}
+</code></pre>
+<p>우선 shelf와 이에 대응하는 box 몇 개를 생성하고 모듈에 벡터를 반영하여 작업을 진행해 보겠습니다.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::Shelf;
+
+    fun main() {
+
+        // create shelf and 2 boxes of type u64
+        let shelf = Shelf::create&lt;u64&gt;();
+        let box_1 = Shelf::create_box&lt;u64&gt;(99);
+        let box_2 = Shelf::create_box&lt;u64&gt;(999);
+
+        // put both boxes to shelf
+        Shelf::put(&amp;mut shelf, box_1);
+        Shelf::put(&amp;mut shelf, box_2);
+
+        // prints size - 2
+        0x1::Debug::print&lt;u64&gt;(&amp;Shelf::size&lt;u64&gt;(&amp;shelf));
+
+        // then take one from shelf (last one pushed)
+        let take_back = Shelf::remove(&amp;mut shelf);
+        let value     = Shelf::value&lt;u64&gt;(&amp;take_back);
+
+        // verify that the box we took back is one with 999
+        assert(value == 999, 1);
+
+        // and print size again - 1
+        0x1::Debug::print&lt;u64&gt;(&amp;Shelf::size&lt;u64&gt;(&amp;shelf));
+    }
+}
+</code></pre>
+<p>Vectors are very powerful. They allow you to store huge amounts of data (max length is <em>18446744073709551615</em>) and to work with it inside indexed storage.</p>
+<p>벡터는 아주 강력합니다. 최대 길이 <em>18446744073709551615</em> 에 해당하는 대규모의 데이터를 저장할 수 있도록 하며, 색인 처리된 저장소 내부에서 작업을 진행할 수 있습니다.</p>
+<h3><a class="header" href="#인라인-벡터-정의에-대응하는-hex-및-bytestring-리터럴" id="인라인-벡터-정의에-대응하는-hex-및-bytestring-리터럴">인라인 벡터 정의에 대응하는 Hex 및 Bytestring 리터럴</a></h3>
+<p>벡터는 또한 스트링을 대표하는 역할을 맡습니다. VM은 스크립트 상 <code>main</code> 함수에 <code>vector&lt;u8&gt;</code>을 인수로 전달하는 방법을 지원합니다.</p>
+<p>그러나16진법 리터럴을 사용하여 스크립트나 모듈에서 <code>vector&lt;u8&gt;</code>을 정의할 수도 있습니다.</p>
+<pre><code class="language-Move">script {
+
+    use 0x1::Vector;
+
+    // this is the way to accept arguments in main
+    fun main(name: vector&lt;u8&gt;) {
+        let _ = name;
+
+        // and this is how you use literals
+        // this is a &quot;hello world&quot; string!
+        let str = x&quot;68656c6c6f20776f726c64&quot;;
+
+        // hex literal gives you vector&lt;u8&gt; as well
+        Vector::length&lt;u8&gt;(&amp;str);
+    }
+}
+</code></pre>
+<p>Bytestring 리터럴을 사용하면 좀 더 단순하게 접근할 수 있습니다.</p>
+<pre><code class="language-Move">script {
+
+    fun main() {
+        let _ = b&quot;hello world&quot;;
+    }
+}
+</code></pre>
+<p>ASCII 스트링으로 취급되며 마찬가지로 <code>vector&lt;u8&gt;</code>로 해석됩니다.</p>
+<h3><a class="header" href="#벡터-공략집" id="벡터-공략집">벡터 공략집</a></h3>
+<p>표준 라이브러리에서 제공하는 벡터 메서드 관련 공략집입니다.</p>
+<ul>
+<li><code>&lt;E&gt;</code> 형 Empty 벡터 생성</li>
+</ul>
+<pre><code class="language-Move">Vector::empty&lt;E&gt;(): vector&lt;E&gt;;
+</code></pre>
+<ul>
+<li>벡터 길이 확인 </li>
+</ul>
+<pre><code class="language-Move">Vector::length&lt;E&gt;(v: &amp;vector&lt;E&gt;): u64;
+</code></pre>
+<ul>
+<li>벡터 끝으로 element 밀기:</li>
+</ul>
+<pre><code class="language-Move">Vector::push_back&lt;E&gt;(v: &amp;mut vector&lt;E&gt;, e: E);
+</code></pre>
+<ul>
+<li>벡터의 element에 대한 가변성 확보. 불변성 확인 필요 시 <code>Vector::borrow()</code> 사용</li>
+</ul>
+<pre><code>Vector::borrow_mut&lt;E&gt;(v: &amp;mut vector&lt;E&gt;, i: u64): &amp;E;
+</code></pre>
+<ul>
+<li>벡터 끝에서 element pop하기:</li>
+</ul>
+<pre><code>Vector::pop_back&lt;E&gt;(v: &amp;mut vector&lt;E&gt;): E;
+</code></pre>
+<p>Move 라이브러리 내 벡터 모듈 관련 사항: <a href="https://github.com/diem/move/blob/main/language/move-stdlib/sources/Vector.move">link</a></p>
+<h1><a class="header" href="#프로그래밍-가능한-자원" id="프로그래밍-가능한-자원">프로그래밍 가능한 자원</a></h1>
+<p>이제 드디어 Move의 핵심 기능인 자원에 대해 배워보도록 하겠습니다. Move를 독특하고, 안전하고 강력하게 만들어주는 요소입니다. </p>
+<p>우선 Diem 개발자 웹사이트(Libra에서 Diem으로 명칭이 변경된 뒤 소스 페이지를 제거하였음) 에서 핵심 요점들을 함께 보면서 시작하겠습니다.</p>
+<blockquote>
+<ol>
+<li>Move의 핵심 기능은 맞춤형 자원 유형을 정의할 수 있는 능력입니다. <em>자원 유형은 풍부한 프로그래밍 제작성을 토대로 안전한 디지털 자산을 인코딩하기 위해 사용됩니다.</em></li>
+<li><em>자원은 언어 상 일반적인 값들입니다.</em> 데이터 구조로 저장될 수 있고, 절차들에 인수 형태로 전달되거나 반환되는 등의 작업들을 진행할 수 있습니다.</li>
+</ol>
+</blockquote>
+<p>자원은 특별한 유형의 <em>구조</em>에 해당하는데, Move 코드에서 곧바로 자원을 정의하고 새로 생성하거나 기존의 자원을 사용하는 것 모두가 가능합니다. 따라서 다른 데이터(벡터나 구조체 등)를 사용할 때와 동일한 방법으로 디지털 자산을 관리할 수 있습니다.</p>
+<blockquote>
+<ol start="3">
+<li><em>Move 유형의 시스템은 자원에 대하여 특별한 안전 보장을 제공합니다.</em> Move의 자원은 절대로 복제, 재활용 또는 폐기될 수 없습니다. 모든 자원 유형은 해당 유형을 정의한 모듈을 통해서만 생성 또는 파괴할 수 있습니다. 이러한 보장은 Move 가상머신에서 바이트코드 인증을 거쳐 정적으로 진행됩니다. Move의 가상머신은 바이트코드 인증자를 통과하지 않은 코드를 실행하지 않습니다.</li>
+</ol>
+</blockquote>
+<p><a href="resources//advanced-topics/ownership-and-references.html">참조 및 소유권</a> 장에서 Move가 스코프의 보안을 확보하고 변수의 소유자 스코프를 제어하는 방식에 대해 함께 살펴보았습니다. 그리고 <a href="resources//advanced-topics/understanding-generics.html">제네릭</a> 장에서는 유형 일치에 관한 특별한 방법을 통해 <em>복사 가능</em>/<em>불가능</em> 유형을 분리할 수 있다는 점을 다루었습니다. 이러한 모든 기능은 자원 유형이 더욱 안전하도록 만들어 줍니다.</p>
+<blockquote>
+<ol start="4">
+<li>모든 Diem 화폐는 제네릭 Diem::T 유형을 사용하여 구현됩니다. 예를 들어 LBR 화폐는 <code>Diem::T&lt;LBR::T&gt;</code> 로 나타나며, 가상 USD 화폐는 <code>Diem::T&lt;USD::T&gt;</code>로 구현될 것입니다. <code>Diem::T</code> 는 언어 특성 상 특별한 계층적 지위가 없으며, 모든 Move 자원은 동일한 수준의 보호 혜택을 누리게 됩니다.</li>
+</ol>
+</blockquote>
+<p>Diem 화폐와 마찬가지로, 다른 화폐나 다른 자산 유형도 Move를 통해 구현할 수 있습니다.</p>
+<h3><a class="header" href="#추가-참고-자료-3" id="추가-참고-자료-3">추가 참고 자료</a></h3>
+<ul>
+<li><a href="https://developers.diem.com/docs/technical-papers/move-paper/">Move 백서</a></li>
+</ul>
+<h1><a class="header" href="#서명자로서의-전송자" id="서명자로서의-전송자">서명자로서의 전송자</a></h1>
+<p>리소스 사용에 대해 설명하기에 앞서 <code>서명자(signer)</code> 유형에 및 그 존재 이유에 대해서 이해가 선행되어야 합니다.</p>
+<blockquote>
+<p>signer는 네이티브 복사불가능한 (유사 리소스) 유형으로, 거래에서 전송자의 주소를 담고 있습니다.</p>
+</blockquote>
+<p>signer 유형은 전송 권한을 의미합니다. 다시 말하면, signer를 사용한다는 것은 전송자의 주소 및 리소스에 접근한다는 것을 의미합니다. 실제로 <em>서명</em>이나 <em>서명하는 행위</em>와는 관계가 없으며, Move VM에서는 단순히 전송자를 의미합니다. </p>
+<blockquote>
+<p>signer 유형은 오직 하나의 기능을 갖습니다 – 드롭(Drop)</p>
+</blockquote>
+<!-- Important! `0x1::Transaction::sender()` may soon be deprecated [as mentioned here](https://community.libra.org/t/signer-type-and-move-to/2894). So in the future using `signer` will be the only way to get sender's address. -->
+<h3><a class="header" href="#스크립트에서의-signer" id="스크립트에서의-signer">스크립트에서의 signer</a></h3>
+<p>Signer는 네이티브 유형이기에 생성이 필요하다. 하지만 <code>vector</code> 와는 다르게 코드로 직접 생성할 수는 없으며, 스크립트 인자(script argument)로 받아야 합니다:</p>
+<pre><code class="language-Move">script {
+    // signer is an owned value
+    fun main(account: signer) {
+        let _ = account;
+    }
+}
+</code></pre>
+<p>signer 인자는 VM이 자동적으로 스크립트에 추가되기에, 사용자가 직접 전송하거나 스크립트에 추가할 필요가 없으며 직접 추가할 방법도 없습니다. 나아가, signer 인자는 항상 *참조(reference)*입니다. 표준 라이브러리 (Diem의 경우 – <a href="https://github.com/diem/diem/blob/master/language/stdlib/modules/DiemAccount.move">DiemAccount</a>)는 실제 signer 값에 접근할 수 있지만, 해당 값을 사용하는 함수는 접근제한(private)이며, signer 값을 사용하거나 전송할 수 없습니다.</p>
+<blockquote>
+<p>현재로써 signer 유형을 담고 있는 변수의 정규 명칭(canonical name)은 *어카운트(account)*입니다.</p>
+</blockquote>
+<h3><a class="header" href="#표준-라이브러리에서의-signer-모듈" id="표준-라이브러리에서의-signer-모듈">표준 라이브러리에서의 signer 모듈</a></h3>
+<p>네이티브 유형은 네이티브 함수를 필요로 하고, signer 유형의 경우에는 <code>0x1::Signer</code> 입니다. 해당 모듈은 비교적 단순합니다. (<a href="https://github.com/diem/diem/blob/master/language/diem-framework/modules/Signer.move">Diem에서 원본 모듈에 대한 링크</a>):</p>
+<pre><code class="language-Move">module Signer {
+    // Borrows the address of the signer
+    // Conceptually, you can think of the `signer`
+    // as being a resource struct wrapper arround an address
+    // ```
+    // resource struct Signer { addr: address }
+    // ```
+    // `borrow_address` borrows this inner field
+    native public fun borrow_address(s: &amp;signer): &amp;address;
+
+    // Copies the address of the signer
+    public fun address_of(s: &amp;signer): address {
+        *borrow_address(s)
+    }
+}
+</code></pre>
+<p>보다시피 2개의 메소드가 있으며 그 중 하나는 네이티브이고, 다른 하나는 역참조 연산자를 사용하여 주소를 복사하기에 보다 간편합니다.</p>
+<p>모듈을 사용하는 것 역시 이처럼 단순합니다.</p>
+<pre><code class="language-Move">script {
+    fun main(account: signer) {
+        let _ : address = 0x1::Signer::address_of(&amp;account);
+    }
+}
+</code></pre>
+<h3><a class="header" href="#모듈-내-signer" id="모듈-내-signer">모듈 내 signer</a></h3>
+<pre><code class="language-Move">module M {
+    use 0x1::Signer;
+
+    // let's proxy Signer::address_of
+    public fun get_address(account: signer): address {
+        Signer::address_of(&amp;account)
+    }
+}
+</code></pre>
+<blockquote>
+<p><code>&amp;signer</code> 유형을 인자로 사용하는 메소드는 전송자의 주소를 사용한다는 점을 명시적으로 보여줍니다.</p>
+</blockquote>
+<p>해당 유형을 사용한 이유 중 하나는 전송 권한을 요구하는 메소드와 요구하지 않는 메소드를 구분하기 위함입니다. 따라서 메소드가 사용자를 기망하여 리소스에 대해 권한 없는 접근을 허용하지 않습니다.</p>
+<!--  MAYBE ADD HISTORY OF THIS TYPE? -->
+<h3><a class="header" href="#추가-자료-및-pr" id="추가-자료-및-pr">추가 자료 및 PR</a></h3>
+<ul>
+<li><a href="https://community.diem.com/t/signer-type-and-move-to/2894">signer에 대한 Diem 커뮤니티 스레드</a></li>
+<li><a href="https://github.com/diem/diem/issues/3679">Diem 저장소의 논리를 포함한 Issue</a></li>
+<li><a href="https://github.com/diem/diem/pull/3819">Diem 저장소의 PR</a></li>
+</ul>
+<h1><a class="header" href="#리소스란-무엇인가" id="리소스란-무엇인가">리소스란 무엇인가</a></h1>
+<p>리소스는 Move 백서에서 설명하는 개념입니다. 본래는 독자적인 유형으로 적용되었으나 이후 기능이 추가되면서 2개의 기능으로 대체되었습니다: <code>Key</code> 및 <code>Store</code>. 리소스는 디지털 자산을 저장하는데 있어 완벽한 유형을 목표로 하며, 복사불가하고 드롭이 불가능해야 합니다. 하지만 이와 동시에 저장 가능하고 계좌간 전송이 가능해야 합니다.</p>
+<h3><a class="header" href="#정의-1" id="정의-1">정의</a></h3>
+<p>리소스는 오직 <code>key</code> 및 <code>store</code> 기능만 갖는 구조체(struct)입니다.</p>
+<pre><code class="language-Move">module M {
+    struct T has key, store {
+        field: u8
+    }
+}
+</code></pre>
+<h3><a class="header" href="#키-및-스토어-기능" id="키-및-스토어-기능">키 및 스토어 기능</a></h3>
+<p>Key ability allows struct to be used as a storage identifier. In other words, <code>key</code> is an ability to be stored as at top-level and be a storage; while <code>store</code> is the ability to be stored <em>under</em> key. You will see how it works in the next chapter. For now keep in mind that even primitive types have store ability - they can be stored, but yet they don't have <code>key</code> and cannot be used as a top-level containers.</p>
+<p>Store ability allows value to be stored. That simple.</p>
+<p>키 기능은 구조체를 스토어 식별자로 사용할 수 있게 합니다. 다시 말하면, <code>key</code> 는 톱-레벨로 저장하며 저장소로 작동하는 기능이고; <code>store</code>는 키 <em>아래</em>에 저장될 수 있는 기능입니다. 다음 장에서 해당 구조가 어떻게 작동하는지 알 수 있습니다. 현재로서는 기본 유형도 스토어 기능을 갖고 있다는 점을 기억해야 합니다. – 저장은 가능하지만 <code>key</code> 가 없으며 톱-레벨 컨테이너(container)로 사용할 수는 없습니다.</p>
+<p>스토어 기능은 값을 저장할 수 있게 하여 그 정도로 간단합니다. </p>
+<h3><a class="header" href="#리소스-개념" id="리소스-개념">리소스 개념</a></h3>
+<p>본래 리소스는 Move에서 자체적인 유형이 있었으나, 기능이 추가되면서 <em>키</em> 및/또는 <em>스토어</em> 기능으로 적용하는 보다 추상적인 개념이 되었습니다. 리소스에 대한 설명은 다음과 같습니다:</p>
+<ol>
+<li>리소스는 계좌(account)에 저장된다 – 따라서 계좌에 배정되었을 시에만 존재하며, 해당 계좌를 통해서만 접근할 수 있습니다;</li>
+<li>계좌는 <em>하나의 유형</em>을 갖는 <em>하나</em>의 리소스만 담을 수 있으며, 그 리소스는 key  기능을 가져야 합니다;</li>
+<li>리소스는 복사하거나 드롭 할 수 없지만 저장할 수는 있습니다.</li>
+<li>리소스 값은 <em>반드시 사용되어야</em> 합니다. 리소스를 생성하거나 계좌에서 가져왔을 경우 드롭할 수 없으며 저장하거나 분해해야 합니다.</li>
+</ol>
+<p>이론은 이쯤으로 하고 실전으로 가보겠습니다!</p>
+<h1><a class="header" href="#리소스별-예시" id="리소스별-예시">리소스별 예시</a></h1>
+<p>여기서는 드디어 리소스 사용법을 배울 수 있습니다. 리소스 및 메소드를 정의하고 작업하는 과정을 설명할 것이며, 그 절차를 거치면 템플릿으로 사용할 수 있는 완전한 계약을 만들 수 있습니다.</p>
+<p>이제 컬렉션 계약을 생성하면 다음 작업이 가능합니다:</p>
+<ul>
+<li>컬렉션 시작</li>
+<li>컬렉션에서 아이템을 추가 또는 제거</li>
+<li>컬렉션을 파괴</li>
+</ul>
+<p>자, 이제 시작합시다!</p>
+<!-- - offer collectibles to other users
+- allow using this module with any type -->
+<!-- For better understanding of this chapter I recommend you using Move IDE (which has already been presented in [getting started chapter](/introduction/getting-started.md)) and running all of these modules and scripts in it. It will also highlight possible errors and will automatically sync with standard library to verify that you're using correct methods and addresses.
+
+Directory structure for your project would be:
+
+```
+modules/
+    Collection.move
+scripts/
+    use_collection.move
+.mvconfig.json
+```
+
+And recommended configuration in .mvconfig is:
+
+```json
+{
+    "sender": "0x1",
+    "network": "diem"
+}
+``` -->
+<h1><a class="header" href="#리소스-생성-및-이동" id="리소스-생성-및-이동">리소스 생성 및 이동</a></h1>
+<p>먼저 모듈을 생성합니다.</p>
+<pre><code class="language-Move">// modules/Collection.move
+module Collection {
+
+
+    struct Item has store {
+        // we'll think of the properties later
+    }
+
+    struct Collection has key {
+        items: vector&lt;Item&gt;
+    }
+}
+</code></pre>
+<blockquote>
+<p>모듈 다음의 모듈에서 주 리소스를 호출하기 위한 규칙이 있습니다(e.g. Collection::Collection). 규칙을 따른다면 여러분의 모듈을 다른 사람들이 쉽게 읽고 사용할 수 있습니다.</p>
+</blockquote>
+<h3><a class="header" href="#생성-및-이동" id="생성-및-이동">생성 및 이동</a></h3>
+<p><em>키</em> 기능을 갖는 <code>컬렉션</code> 구조체를 정의했으며, <code>Collection</code> 은 유형 <code>Item</code> 의 벡터를 담습니다. 신규 컬렉션을 시작하고 <em>계좌에 리소스를 저장하는지</em> 살펴봅니다. 여기서 저장되는 리소스는 전송자의 주소에 영원히 남아있습니다. 그 소유자로부터 리소스를 변조하거나 탈취할 수 없습니다.</p>
+<pre><code class="language-Move">// modules/Collection.move
+module Collection {
+
+    use 0x1::Vector;
+
+    struct Item has store {}
+
+    struct Collection has key {
+        items: vector&lt;Item&gt;
+    }
+
+    /// note that &amp;signer type is passed here!
+    public fun start_collection(account: &amp;signer) {
+        move_to&lt;Collection&gt;(account, Collection {
+            items: Vector::empty&lt;Collection&gt;()
+        })
+    }
+}
+</code></pre>
+<p>Remember <a href="resources/resource-by-example//resources/signer-type.html">signer</a>? Now you see how it in action! To <em>move</em> resource to account you have built-in function <em>move_to</em> which takes <code>signer</code> as a first argument and <code>Collection</code> as second. Signature of <code>move_to</code> function can be represented like:</p>
+<p><a href="resources/resource-by-example//resources/signer-type.html">signer</a>를 기억 하시나요? 이제 실전에서 사용해볼 때가 되었습니다. 계좌에 리소스를 <em>이동</em>시키려면 내장 함수인 <em>move_to</em> 를 사용하여 <code>signer</code> 를 첫 인자로, <code>Collection</code> 을 두 번째로 사용합니다. <code>move_to</code> 함수의 시그니처는 다음과 같이 표현될 수 있습니다:</p>
+<pre><code class="language-Move">
+native fun move_to&lt;T: key&gt;(account: &amp;signer, value: T);
+
+</code></pre>
+<p>이는 두 가지 결론으로 귀결됩니다.</p>
+<ol>
+<li>본인의 계좌에만 리소스를 넣을 수 있으며, 타인 계좌의 <code>signer</code> 값에 접근할 수 없기에 리소스를 넣을 수 없습니다다.</li>
+<li>하나의 계좌에는 하나의 유형을 갖는 하나의 리소스만을 저장할 수 있습니다. 동일한 작업을 두 번 하는 경우 기존 리소스를 파기하게 되고, 이는 발생해서는 안 됩니다. (코인이 저장되어 있는데 부주의로 인해 잔고 없음을 입력하여 저장된 모든 코인을 잃는 것을 생각해보면 됩니다!). 존재하는 리소스를 생성하려는 두 번째 시도는 에러와 함께 실패할 것입니다. </li>
+</ol>
+<h3><a class="header" href="#주소에서-존재-확인하기" id="주소에서-존재-확인하기">주소에서 존재 확인하기</a></h3>
+<p>To check if resource exists at given address Move has <code>exists</code> function, which signature looks similar to this.</p>
+<p>특정 주소에서 리소스가 존재하는지 확인하기 위해서는 <code>exists</code> 함수를 사용하며, 시그니쳐는 다음과 같습니다. </p>
+<pre><code class="language-Move">
+native fun exists&lt;T: key&gt;(addr: address): bool;
+    
+</code></pre>
+<p>제네릭 유형을 사용했기에 해당 함수는 유형에 독립적이며, 주소에 존재하는지 확인하기 위해 그 어떠한 리소스도 사용할 수 있습니다. 실제로 특정 주소에 리소스가 존재하는지 확인하는 것은 누구나 할 수 있습니다. 하지만 존재를 확인하는 것은 저장된 값에 접근하는 것을 의미하지 않습니다!</p>
+<p>사용자가 이미 컬렉션을 갖고 있는지 확인하는 함수를 작성해 봅시다.</p>
+<pre><code class="language-Move">// modules/Collection.move
+module Collection {
+
+    struct Item has store, drop {}
+
+    struct Collection has store, key {
+        items: Item
+    }
+
+    // ... skipped ...
+
+    /// this function will check if resource exists at address
+    public fun exists_at(at: address): bool {
+        exists&lt;Collection&gt;(at)
+    }
+}
+</code></pre>
+<hr />
+<p>리소스를 생성하고, 전송자에게 이동하며, 리소스가 이미 존재하는지 확인할 수 있습니다. 이제는 리소스를 읽고 수정하는 방법을 배울 시간입니다!</p>
+<h1><a class="header" href="#리소스-읽기-및-수정" id="리소스-읽기-및-수정">리소스 읽기 및 수정</a></h1>
+<p>To read and modify resource Move has two more built-in functions. Their names perfectly match their goals: <code>borrow_global</code> and <code>borrow_global_mut</code>.</p>
+<p>리소스를 읽고 수정하기 위해 Move는 2개의 내재 함수를 갖고 있으며, 함수들의 명칭은 그 목적을 다음과 같이 정확히 명시합니다: <code>borrow_global</code> 과 <code>borrow_global_mut</code>.</p>
+<h2><a class="header" href="#borrow_global를-사용한-불변형-대여" id="borrow_global를-사용한-불변형-대여"><code>borrow_global</code>를 사용한 불변형 대여</a></h2>
+<p><a href="resources/resource-by-example//advanced-topics/ownership-and-references.html">소유 및 참조</a>에 대한 부분에서 변형 (&amp;mut) 및 불변형 참조에 대해서 이미 학습하였습니다. 그 지식을 실전에 적용할 때입니다!</p>
+<pre><code class="language-Move">// modules/Collection.move
+module Collection {
+
+    // added a dependency here!
+    use 0x1::Signer;
+    use 0x1::Vector;
+
+    struct Item has store, drop {}
+    struct Collection has key, store {
+        items: vector&lt;Item&gt;
+    }
+
+    // ... skipped ...
+
+    /// get collection size
+    /// mind keyword acquires!
+    public fun size(account: &amp;signer): u64 acquires Collection {
+        let owner = Signer::address_of(account);
+        let collection = borrow_global&lt;Collection&gt;(owner);
+
+        Vector::length(&amp;collection.items)
+    }
+}
+</code></pre>
+<p>많은 일들이 일어난 것 같습니다. 먼저 메소드 시그니처부터 다룰텐데요, 전역 함수 <code>borrow_global&lt;T&gt;</code> 는 리소스 T에 대해 불변 참조를 갖습니다. 그 시그니처는 다음과 같습니다.</p>
+<pre><code class="language-Move">
+native fun borrow_global&lt;T: key&gt;(addr: address): &amp;T;
+
+</code></pre>
+<p>해당 함수를 사용하면 특정 주소에 저장된 리소스에 대해 <em>읽기 권한</em>을 얻습니다. 이는 해당 모듈은 그 어떠한 주소에 있는 리소스도 읽을 수 있다는 점을 의미합니다. (해당 기능을 적용할 경우)</p>
+<p>추가 결론: 대여 검사로 인해 리소스나 그 내용으로 참조를 되돌릴 수 없습니다. (원본 리소스 참조는 스코프 범위에서 막합니다.)</p>
+<blockquote>
+<p>리소스는 복사불가 유형이기에 역참조 연산자 <code>'*'</code> 를 사용하는 것은 불가능합니다.</p>
+</blockquote>
+<h3><a class="header" href="#키워드-확보" id="키워드-확보">키워드 확보</a></h3>
+<p>설명이 필요한 세부내용 하나가 더 있는데요, 바로 함수 반환값 이후에 넣는 키워드 <code>acquires</code> 입니다. 해당 키워드는 함수에서 <em>확보</em>한 모든 리소스를 명시적으로 정의합니다. 실제로는 중첩함수가 리소스를 확보하더라도 각 확보한 리소스를 구체화해야 합니다. 즉, 부모 스코프는 확보 목록에 리소스를 특정해야 합니다.</p>
+<p><code>acquires</code> 를 포함하는 함수에 대한 문법은 다음과 같습니다.</p>
+<pre><code class="language-Move">
+fun &lt;name&gt;(&lt;args...&gt;): &lt;ret_type&gt; acquires T, T1 ... {
+
+</code></pre>
+<h2><a class="header" href="#borrow_global_mut를-사용하는-변형-대여" id="borrow_global_mut를-사용하는-변형-대여"><code>borrow_global_mut</code>를 사용하는 변형 대여</a></h2>
+<p>리소스에 변형 참조를 하려면 <code>borrow_global</code> 에 add <code>_mut</code> 를 추가하면 된다. 컬렉션에 새로운 아이템 (현재는 비어 있는)을 추가하는 함수를 작성해봅시다.</p>
+<pre><code class="language-Move">module Collection {
+
+    // ... skipped ...
+
+    public fun add_item(account: &amp;signer) acquires T {
+        let collection = borrow_global_mut&lt;T&gt;(Signer::address_of(account));
+
+        Vector::push_back(&amp;mut collection.items, Item {});
+    }
+}
+</code></pre>
+<p>리소스에 대한 변형 참조는 그 내용에 변형 참조를 생성 가능하게 합니다. 따라서 예시 에서처럼 내부 벡터 <code>item</code>을 수정할 수 있습니다.</p>
+<p><code>borrow_global_mut</code> 의 시그니처는 다음과 같습니다:</p>
+<pre><code class="language-Move">
+native fun borrow_global_mut&lt;T: key&gt;(addr: address): &amp;mut T;
+
+</code></pre>
+<h1><a class="header" href="#리소스-이전-및-파괴" id="리소스-이전-및-파괴">리소스 이전 및 파괴</a></h1>
+<p>Final function of this section is <code>move_from</code> which takes resource from account. We'll implement <code>destroy</code> function which will move collection resource <em>from</em> account and will destroy its contents.</p>
+<p>이 장에서 다룰 마지막 함수는 <code>move_from</code> 으로, 계좌에서 리소스를 이전한다. <code>destroy</code> 함수는 계좌<em>에서</em> 컬렉션 리소스를 옮기고 그 내용을 파괴합니다.</p>
+<pre><code class="language-Move">// modules/Collection.move
+module Collection {
+
+    // ... skipped ...
+
+    public fun destroy(account: &amp;signer) acquires Collection {
+
+        // account no longer has resource attached
+        let collection = move_from&lt;Collection&gt;(Signer::address_of(account));
+
+        // now we must use resource value - we'll destructure it
+        // look carefully - Items must have drop ability
+        let Collection { items: _ } = collection;
+
+        // done. resource destroyed
+    }
+}
+</code></pre>
+<p>리소스 값은 사용되어야 합니다. 따라서 계좌로부터 가져온 리소스는 분해하거나 반환값으로 전달해야 합니다. 염두해야 할 점은 값을 외부로 전달하여 스크립트에 포함하더라도 할 수 있는 행동은 제한되는데, 스크립트는 구조체나 리소스를 다른 곳으로 전달하는 것 외에는 다른 작업을 허용하지 않습니다. 이를 염두에 두고 모듈을 적절하게 설계하여 사용자들이 반환된 리소스로 할 수 있는 선택지를 주어야 합니다. </p>
+<p>마지막 시그니처는 다음과 같습니다.</p>
+<pre><code class="language-Move">
+native fun move_from&lt;T: key&gt;(addr: address): T;
+
+</code></pre>
+<h1><a class="header" href="#추가-단계" id="추가-단계">추가 단계</a></h1>
+<p>이 장에서는 Move 문법에서 리소스 제한이 표현되는 방식을 살펴보았습니다. 나아가 리소스를 생성, 검증, 접근, 수정, 및 파괴하는 방법도 배웠습니다. 이 장은 백서에서 마지막 부분이지만,  해당 모듈을 수정하여 필요에 따라 다음 선택지를 고려할 수 있습니다.</p>
+<ol>
+<li>모듈을 수정하여 제네릭으로 모든 유형을 지원하도록 하기;</li>
+<li><a href="https://github.com/starcoinorg/starcoin/blob/master/vm/stdlib/modules/Offer.move">Offer module</a>을 검토하여 다른 계좌에 컬렉션을 제시하는 다른 방법을 생각하기.</li>
+</ol>
+<p><a href="https://github.com/damirka/move-book/blob/master/samples/">GitHub</a> 에서 모듈 컬렉션의 코드 원본을 확인할 수 있습니다. </p>
+<h1><a class="header" href="#튜토리얼" id="튜토리얼">튜토리얼</a></h1>
+<p>이 장에서는 Move언어의 기본 사용에 대한 튜토리얼 및 그 능력을 시현해 볼 수 있습니다. </p>
+<h1><a class="header" href="#erc20-토큰-작성" id="erc20-토큰-작성">ERC20 토큰 작성</a></h1>
+<p>예정...</p>
+<h1><a class="header" href="#번역본" id="번역본">번역본</a></h1>
+<p>타 언어로도 열람 가능합니다.:</p>
+<ul>
+<li><a href="https://move-book.com/cn">중국어 </a> (역자 <a href="https://starcoin.org/">Starcoin team</a>)</li>
+</ul>
+<h2><a class="header" href="#수정요청" id="수정요청">수정요청</a></h2>
+<p>오타, 오역 등 정정사항을 반영하고자 하실 경우 <a href="https://github.com/damirka/move-book">GitHub</a>를 통해 이슈제기 또는 PR을 제출하시기 바랍니다.</p>
 
                     </main>
 

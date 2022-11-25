@@ -1,0 +1,479 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>소유권과 참조</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Move 프로그래밍 언어</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> 서문</a></li><li class="chapter-item expanded "><a href="../introduction/getting-started.html"><strong aria-hidden="true">3.</strong> 시작하기</a></li><li class="chapter-item expanded "><a href="../syntax-basics/index.html"><strong aria-hidden="true">4.</strong> 구문 기본사항</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../syntax-basics/concept.html"><strong aria-hidden="true">4.1.</strong> 개념</a></li><li class="chapter-item expanded "><a href="../syntax-basics/primitives.html"><strong aria-hidden="true">4.2.</strong> 기본형</a></li><li class="chapter-item expanded "><a href="../syntax-basics/comments.html"><strong aria-hidden="true">4.3.</strong> 주석</a></li><li class="chapter-item expanded "><a href="../syntax-basics/expression-and-scope.html"><strong aria-hidden="true">4.4.</strong> 표현식과 스코프</a></li><li class="chapter-item expanded "><a href="../syntax-basics/control-flow.html"><strong aria-hidden="true">4.5.</strong> 제어 흐름</a></li><li class="chapter-item expanded "><a href="../syntax-basics/module.html"><strong aria-hidden="true">4.6.</strong> 모듈과 불러오기</a></li><li class="chapter-item expanded "><a href="../syntax-basics/constants.html"><strong aria-hidden="true">4.7.</strong> 상수</a></li><li class="chapter-item expanded "><a href="../syntax-basics/function.html"><strong aria-hidden="true">4.8.</strong> 함수</a></li></ol></li><li class="chapter-item expanded "><a href="../advanced-topics/index.html"><strong aria-hidden="true">5.</strong> 고급 주제</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../advanced-topics/struct.html"><strong aria-hidden="true">5.1.</strong> 구조</a></li><li class="chapter-item expanded "><a href="../advanced-topics/types-with-abilities.html"><strong aria-hidden="true">5.2.</strong> 능력을 지니는 유형</a></li><li class="chapter-item expanded "><a href="../advanced-topics/ownership-and-references.html" class="active"><strong aria-hidden="true">5.3.</strong> 소유권과 참조</a></li><li class="chapter-item expanded "><a href="../advanced-topics/understanding-generics.html"><strong aria-hidden="true">5.4.</strong> 제네릭 이해하기</a></li><li class="chapter-item expanded "><a href="../advanced-topics/managing-collections-with-vectors.html"><strong aria-hidden="true">5.5.</strong> 벡터로 집합 관리하기</a></li></ol></li><li class="chapter-item expanded "><a href="../resources/index.html"><strong aria-hidden="true">6.</strong> 프로그래밍 가능한 자원</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../resources/signer-type.html"><strong aria-hidden="true">6.1.</strong> 서명자로서의 전송자</a></li><li class="chapter-item expanded "><a href="../resources/what-is-resource.html"><strong aria-hidden="true">6.2.</strong> 리소스란 무엇인가</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example/index.html"><strong aria-hidden="true">6.3.</strong> 리소스별 예시</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../resources/resource-by-example/storing-new-resource.html"><strong aria-hidden="true">6.3.1.</strong> 리소스 생성 및 이동</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example/access-resource-with-borrow.html"><strong aria-hidden="true">6.3.2.</strong> 리소스 읽기 및 수정</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example/destroy-resource.html"><strong aria-hidden="true">6.3.3.</strong> 리소스 이전 및 파괴</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example/furher-steps.html"><strong aria-hidden="true">6.3.4.</strong> 추가 단계</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../tutorials/index.html"><strong aria-hidden="true">7.</strong> 튜토리얼</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tutorials/erc20.html"><strong aria-hidden="true">7.1.</strong> ERC20 토큰 작성</a></li></ol></li><li class="chapter-item expanded "><a href="../translations.html"><strong aria-hidden="true">8.</strong> 번역본</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#소유권과-참조" id="소유권과-참조">소유권과 참조</a></h1>
+<p>Move VM은 Rust와 유사한 소유권 체계를 구현합니다. 이를 가장 잘 설명하고 있는 자료가 바로 <a href="https://doc.rust-lang.org/stable/book/ch04-01-what-is-ownership.html">Rust Book</a> 입니다.</p>
+<p>Rust의 구문은 약간 다른 면도 있고 수록된 예시 중 일부를 이해하는 것도 쉽진 않지만, Rust Book에 수록된 소유권 장은 꼭 읽어 보시는 것을 추천 드립니다. 이 장에서도 핵심을 다룰 예정입니다.</p>
+<blockquote>
+<p>각 변수는 하나의 소유자 스코프만을 가집니다. 소유자 스코프가 끝나는 시점에 소유했던 변수들은 제외됩니다.</p>
+</blockquote>
+<p>이러한 행동 양상은 <a href="/syntax-basics/expression-and-scope.html">표현식</a> 장에서 앞서 살펴본 적이 있습니다. 스코프와 변수의 수명은 동일하다는 점 기억하시나요? 지금이야말로 왜 그런 일이 일어나는가를 파고들어 볼 시간입니다.</p>
+<p>소유자는 변수를 <em>갖고 있는</em> 스코프입니다. 변수는 해당 스코프 내부에서 정의되거나(예: 스크립트에서 <code>let</code>을 사용) 인수로서 스코프에 전달될 수 있습니다. Move에 존재하는 유일한 스코프는 함수이기 때문에, 변수를 스코프에 넣을 다른 방법은 존재하지 않습니다.</p>
+<p>각 변수에는 단 하나의 소유자만 존재하며, 즉 어느 변수가 인수 형태로 함수에 전달되었다면 해당 함수가 <em>새로운 소유자</em> 가 되어, 변수가 더 이상 첫 번째 함수의 <em>소유</em>가 아닌 것입니다. 또는 변수의 <em>소유권을 해당 함수가 가져왔다</em>고 말해도 무방할 것입니다.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::M;
+
+    fun main() {
+        // Module::T is a struct
+        let a : Module::T = Module::create(10);
+
+        // here variable `a` leaves scope of `main` function
+        // and is being put into new scope of `M::value` function
+        M::value(a);
+
+        // variable a no longer exists in this scope
+        // this code won't compile
+        M::value(a);
+    }
+}
+</code></pre>
+<p>우리가 값을 내부로 전달했을 때 <code>value()</code>안에서 어떤 일이 일어나는지 알아봅시다.</p>
+<pre><code class="language-Move">module M {
+    // create_fun skipped
+    struct T { value: u8 }
+
+    public fun create(value: u8): T {
+        T { value }
+    }
+
+    // variable t of type M::T passed
+    // `value()` function takes ownership
+    public fun value(t: T): u8 {
+        // we can use t as variable
+        t.value
+    }
+    // function scope ends, t dropped, only u8 result returned
+    // t no longer exists
+}
+</code></pre>
+<p>물론 임시방편으로 원본 변수와 추가적인 결과를 가지는 튜플을 반환하는 것이겠지만(이 때 반환 값은 <code>(T, u8)</code>), Move에는 더 나은 해결책이 있습니다. </p>
+<h3><a class="header" href="#move와-copy" id="move와-copy">Move와 Copy</a></h3>
+<p>먼저 Move VM의 작동 방식, 그리고 함수에 값을 전달하면 어떤 일이 일어나는가를 이해해 둘 필요가 있습니다. VM에는 <em>MoveLoc과</em> <em>CopyLoc</em>이라는 바이트코드 지침이 2개 존재하는데, 둘다 각각 <code>move</code>와 <code>copy</code>키워드를 통해 수동으로 사용할 수 있습니다. </p>
+<p>어느 변수를 다른 함수로 전달하는 경우, 해당 변수는 <em>이동</em> 중인 상태이며 <em>MoveLoc</em> OpCode가 사용됩니다. <code>move</code> 키워드를 사용하면 코드가 어떤 형태가 될 지 살펴봅시다.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::M;
+
+    fun main() {
+        let a : Module::T = Module::create(10);
+
+        M::value(move a); // variable a is moved
+
+        // local a is dropped
+    }
+}
+</code></pre>
+<p>이 경우는 유효한 Move 코드이지만, 해당 값이 여전히 이동될 것이라는 걸 알고 있는 상태에서 굳이 명시적으로 <em>이동</em>시킬 필요는 없습니다. 숙지하셨으면 이제 <em>Copy</em>로 넘어가겠습니다.</p>
+<p>This is a valid Move code, however, knowing that value will still be moved you don't need to explicitly <em>move</em> it. Now when it's clear we can get to <em>copy</em>.</p>
+<h3><a class="header" href="#copy-키워드" id="copy-키워드"><code>copy</code> 키워드</a></h3>
+<p>어느 값을 함수에 전달하고 (이동 지점에) 변수의 사본을 저장하려는 경우, <code>copy</code> 키워드를 사용하면 됩니다.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::M;
+
+    fun main() {
+        let a : Module::T = Module::create(10);
+
+        // we use keyword copy to clone structure
+        // can be used as `let a_copy = copy a`
+        M::value(copy a);
+        M::value(a); // won't fail, a is still here
+    }
+}
+</code></pre>
+<p>이 예시에서는 변수(즉 값) <code>a</code> 의 <em>사본</em>을 메서드 <code>value</code>의 첫 번째 호출로 전달하고 <code>a</code>를 로컬 스코프에 저장하여 두 번째로 호출이 진행될 경우 다시 사용할 수 있도록 처리했습니다.</p>
+<p>값을 복사함으로써 우리는 이를 복제하게 되었고 프로그램의 메모리 크기를 증가시켰는데, 이를 감안하면 해당 키워드는 사용할 수는 있겠으나 크기가 큰 데이터를 복사하게 되는 경우 메모리 측면에서 비싼 대가를 치를 수 있습니다. 블록체인에서는 낭비할 바이트라고는 하나도 없으며 실행 가격에 영향을 끼치기 때문에, <code>copy</code> 키워드를 매번 사용하게 되면 비용이 크게 올라갈 수 있습니다.</p>
+<p>이제 불필요한 복사를 피하고 실제로 돈을 절약할 수 있도록 돕는 기능인 참조에 대해 배워볼 준비가 되었습니다.</p>
+<h2><a class="header" href="#참조" id="참조">참조</a></h2>
+<p>여러 프로그래밍 언어에서는 참조 기능을 구현해 놓고 있습니다(<a href="https://en.wikipedia.org/wiki/Reference_(computer_science)">위키피디아 참조</a>). <em>참조</em>는 어느 변수(주로 메모리에서의 한 구획)로 이어지는 링크인데, <em>이동</em>할 값을 대신하여 프로그램의 다른 부분들로 전달할 수 있는 요소입니다.</p>
+<blockquote>
+<p>참조(&amp;로 표기)는 <em>소유권</em>을 확보하지 않고도 해당 값을 <em>인용</em>할 수 있도록 합니다.</p>
+</blockquote>
+<p>예시를 변경해서 참조가 어떻게 사용되었는가를 알아봅시다.</p>
+<pre><code class="language-Move">module M {
+    struct T { value: u8 }
+    // ...
+    // ...
+    // instead of passing a value, we'll pass a reference
+    public fun value(t: &amp;T): u8 {
+        t.value
+    }
+}
+</code></pre>
+<p><code>&amp;</code> 표시를 인수 유형 <code>T</code>에 추가하였는데, 이를 통해 인수 유형을 기존의 <code>T</code>로부터 <em>T 참조</em> 내지는 <code>&amp;T</code>로 변경하였습니다.</p>
+<blockquote>
+<p>Move에서는 두 가지 유형의 참조를 지원하는데, <code>&amp;</code> 로 정의되는 <em>불변 유형</em>(예: <code>&amp;T</code>)과 <code>&amp;mut</code>에 해당하는 <em>가변 유형</em>(예: <code>&amp;mut T</code>)이 있습니다.</p>
+</blockquote>
+<p>불변 참조는 값을 변경하지 않고 읽을 수 있게 합니다. 반면 가변 유형은 값을 읽고 변경할 수 있습니다.</p>
+<pre><code class="language-Move">module M {
+    struct T { value: u8 }
+
+    // returned value is of non-reference type
+    public fun create(value: u8): T {
+        T { value }
+    }
+
+    // immutable references allow reading
+    public fun value(t: &amp;T): u8 {
+        t.value
+    }
+
+    // mutable references allow reading and changing the value
+    public fun change(t: &amp;mut T, value: u8) {
+        t.value = value;
+    }
+}
+</code></pre>
+<p>이제 업그레이드된 모듈 M을 어떻게 사용할지를 보겠습니다.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::M;
+
+    fun main() {
+        let t = M::create(10);
+
+        // create a reference directly
+        M::change(&amp;mut t, 20);
+
+        // or write reference to a variable
+        let mut_ref_t = &amp;mut t;
+
+        M::change(mut_ref_t, 100);
+
+        // same with immutable ref
+        let value = M::value(&amp;t);
+
+        // this method also takes only references
+        // printed value will be 100
+        0x1::Debug::print&lt;u8&gt;(&amp;value);
+    }
+}
+</code></pre>
+<blockquote>
+<p>불변(&amp;) 참조를 사용하면 구조체로부터 데이터를 읽을 수 있으며, 가변(&amp;mut)을 사용하면 이를 변경할 수 있습니다. 적절한 참조 유형을 사용함을 통해 보안성을 유지할 수 있으며 모듈 판독을 보조하여 독자들로 하여금 해당 메서드가 값을 변경하는지 아니면 읽기만 진행하는지를 알 수 있게 합니다.</p>
+</blockquote>
+<h3><a class="header" href="#차용-확인" id="차용-확인">차용 확인</a></h3>
+<p>Move는 참조를 사용하는 방식을 제어하며 예기치 못한 참사가 일어나는 일을 막도록 도와줍니다. 예시를 통해 이해해 봅시다. 모듈과 스크립트를 보면서 무슨 일이 일어나는지, 그리고 그 이유는 무엇인지를 함께 생각해 보겠습니다.</p>
+<pre><code class="language-Move">module Borrow {
+
+    struct B { value: u64 }
+    struct A { b: B }
+
+    // create A with inner B
+    public fun create(value: u64): A {
+        A { b: B { value } }
+    }
+
+    // give a mutable reference to inner B
+    public fun ref_from_mut_a(a: &amp;mut A): &amp;mut B {
+        &amp;mut a.b
+    }
+
+    // change B
+    public fun change_b(b: &amp;mut B, value: u64) {
+        b.value = value;
+    }
+}
+</code></pre>
+<pre><code class="language-Move">script {
+    use {{sender}}::Borrow;
+
+    fun main() {
+        // create a struct A { b: B { value: u64 } }
+        let a = Borrow::create(0);
+
+        // get mutable reference to B from mut A
+        let mut_a = &amp;mut a;
+        let mut_b = Borrow::ref_from_mut_a(mut_a);
+
+        // change B
+        Borrow::change_b(mut_b, 100000);
+
+        // get another mutable reference from A
+        let _ = Borrow::ref_from_mut_a(mut_a);
+    }
+}
+</code></pre>
+<p>이 코드는 컴파일이 진행되며 오류 없이 작동합니다. 먼저 여기에서 일어나고 있는 일은 가변 참조를 <code>A</code>에 사용하여 내부 구조체인 <code>B</code>에 가변 참조를 적용할 수 있도록 합니다. 그 뒤에 B를 변경하고, 계속 작업을 반복할 수 있습니다.</p>
+<p>하지만 마지막 두 표현식을 바꾸어 <code>B</code>로의 가변 참조가 남아 있는 상태에서 <code>A</code>에 새로 가변 참조를 생성하려고 시도하면 어떻게 될까요?</p>
+<pre><code class="language-Move">let mut_a = &amp;mut a;
+let mut_b = Borrow::ref_from_mut_a(mut_a);
+
+let _ = Borrow::ref_from_mut_a(mut_a);
+
+Borrow::change_b(mut_b, 100000);
+</code></pre>
+<p>아마 오류가 발생했을 것입니다.</p>
+<pre><code class="language-Move">    ┌── /scripts/script.move:10:17 ───
+    │
+ 10 │         let _ = Borrow::ref_from_mut_a(mut_a);
+    │                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Invalid usage of reference as function argument. Cannot transfer a mutable reference that is being borrowed
+    ·
+  8 │         let mut_b = Borrow::ref_from_mut_a(mut_a);
+    │                     ----------------------------- It is still being mutably borrowed by this reference
+    │
+</code></pre>
+<p>코드가 컴파일되지 않을 것입니다. 그 이유는 <code>&amp;mut A</code>가 <code>&amp;mut B</code>에 의해 <em>차용되고 있기</em> 때문입니다. 만약 내용에 대한 가변 참조를 확보한 상태에서 <code>A</code>를 변경할 수 있게 된다면, 내용에 대한 참조가 여전히 여기 존재하는 상황에서 <code>A</code>가 변경된다는 이상한 상황이 발생하게 됩니다. <code>B</code>가 실제로 존재하지 않는데 <code>mut_b</code>가 어딜 지정해야 하는 걸까요?</p>
+<p>이로써 몇 가지 결론이 도출됩니다.</p>
+<ol>
+<li>컴파일 에러가 일어나게 되는데, 즉 Move 컴파일러는 이런 사례들을 방지한다는 것을 뜻합니다. 이는 <em>차용 확인</em>이라고 하는 기능입니다(원본은 Rust 언어의 개념). 컴파일러는 <em>차용 그래프</em>를 축적하여 <em>차용된 값을 이동</em>하는 것은 허용하지 않습니다. 이는 Move를 블록체인에서 사용하기에 안전한 이유 중 하나입니다. </li>
+<li>참조에서 참조를 생성하는 것도 가능하므로, 원본 참조는 신규 참조에서 <em>차용</em>하게 됩니다. 불변 및 가변 참조는 불변에서, 가변 참조는 가변에서만 생성할 수 있습니다.</li>
+<li>참조가 <em>차용된</em> 경우 다른 값들도 연결되어 있으므로 <em>이동</em>시킬 수 없습니다.</li>
+</ol>
+<h3><a class="header" href="#참조-해제" id="참조-해제">참조 해제</a></h3>
+<p>참조는 별표 <code>*</code>를 사용하여 연결된 값에서 참조 해제를 진행할 수 있습니다.</p>
+<blockquote>
+<p>참조를 해제하는 경우에는 <em>사본</em>을 생성하게 됩니다. 해당 값에 복사 능력이 있는지를 확인하세요.</p>
+</blockquote>
+<pre><code class="language-Move">module M {
+    struct T has copy {}
+
+    // value t here is of reference type
+    public fun deref(t: &amp;T): T {
+        *t
+    }
+}
+</code></pre>
+<blockquote>
+<p>참조 해제 연산자는 원본 값을 현재의 스코프로 이동해 주지 않습니다. 대신 이 값의 <em>사본</em>을 생성합니다.</p>
+</blockquote>
+<p>Move에서 구조체의 내부 필드를 복사하기 위해 사용할 수 있는 기법이 하나 있는데, 바로 <code>*&amp;</code>입니다. 필드에 대한 참조를 해제하는 것입니다. 여기 짧은 예시가 있습니다.</p>
+<pre><code class="language-Move">module M {
+    struct H has copy {}
+    struct T { inner: H }
+
+    // ...
+
+    // we can do it even from immutable reference!
+    public fun copy_inner(t: &amp;T): H {
+        *&amp;t.inner
+    }
+}
+</code></pre>
+<p>By using <code>*&amp;</code> (even compiler will advise you to do so) we've copied the inner value of a struct.</p>
+<p><code>*&amp;</code>를 사용하면 구조체의 내부 값을 복사하게 됩니다(컴파일러에서도 권장하는 기능입니다).</p>
+<h3><a class="header" href="#기본형의-참조" id="기본형의-참조">기본형의 참조</a></h3>
+<p>기본형은 단순하기 때문에 참조로 전달될 필요가 없으며 <em>복사</em> 작업을 대신 진행하게 됩니다. 해당 유형을 <em>값으로</em> 하여 함수에 전달한다 하더라도 현재 스코프에 남아있을 것입니다. 일부러 <code>move</code> 키워드를 사용할 수는 있으나, 기본형은 크기가 매우 작기 때문에 참조나 이동을 통해 전달하는 것보다 복사하는 것이 더 저렴할 수도 있습니다.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::M;
+
+    fun main() {
+        let a = 10;
+        M::do_smth(a);
+        let _ = a;
+    }
+}
+</code></pre>
+<p>이 스크립트는 <code>a</code>를 참조로 전달하지 않았음에도 컴파일 될 것입니다. VM에서 이미 배치해 두었기 때문에 <code>copy</code>를 추가할 필요는 없습니다.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../advanced-topics/types-with-abilities.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../advanced-topics/understanding-generics.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../advanced-topics/types-with-abilities.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../advanced-topics/understanding-generics.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
