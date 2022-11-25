@@ -1,0 +1,415 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Kontrol Akışı</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Move Programlama Dili</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Önsöz</a></li><li class="chapter-item expanded "><a href="../introduction/getting-started.html"><strong aria-hidden="true">3.</strong> Giriş</a></li><li class="chapter-item expanded "><a href="../syntax-basics/index.html"><strong aria-hidden="true">4.</strong> Temel Syntax Kavramları</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../syntax-basics/concept.html"><strong aria-hidden="true">4.1.</strong> Konsept</a></li><li class="chapter-item expanded "><a href="../syntax-basics/primitives.html"><strong aria-hidden="true">4.2.</strong> İlkel Veri Tipleri</a></li><li class="chapter-item expanded "><a href="../syntax-basics/comments.html"><strong aria-hidden="true">4.3.</strong> Comment (Yorum)</a></li><li class="chapter-item expanded "><a href="../syntax-basics/expression-and-scope.html"><strong aria-hidden="true">4.4.</strong> ifade ve Kapsam</a></li><li class="chapter-item expanded "><a href="../syntax-basics/control-flow.html" class="active"><strong aria-hidden="true">4.5.</strong> Kontrol Akışı</a></li><li class="chapter-item expanded "><a href="../syntax-basics/module.html"><strong aria-hidden="true">4.6.</strong> Modüller ve İçe Aktarım (Import)</a></li><li class="chapter-item expanded "><a href="../syntax-basics/constants.html"><strong aria-hidden="true">4.7.</strong> Sabitler (Constants)</a></li><li class="chapter-item expanded "><a href="../syntax-basics/function.html"><strong aria-hidden="true">4.8.</strong> Fonksiyonlar</a></li></ol></li><li class="chapter-item expanded "><a href="../advanced-topics/index.html"><strong aria-hidden="true">5.</strong> Gelişmiş Başlıklar</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../advanced-topics/struct.html"><strong aria-hidden="true">5.1.</strong> Yapılar (Structures)</a></li><li class="chapter-item expanded "><a href="../advanced-topics/types-with-abilities.html"><strong aria-hidden="true">5.2.</strong> Yetenekli Tipler</a></li><li class="chapter-item expanded "><a href="../advanced-topics/ownership-and-references.html"><strong aria-hidden="true">5.3.</strong> Sahiplik ve Referanslar</a></li><li class="chapter-item expanded "><a href="../advanced-topics/understanding-generics.html"><strong aria-hidden="true">5.4.</strong> Jenerikler (Generics)</a></li><li class="chapter-item expanded "><a href="../advanced-topics/managing-collections-with-vectors.html"><strong aria-hidden="true">5.5.</strong> Vektör ile Koleksiyonları Kontrol Etmek</a></li></ol></li><li class="chapter-item expanded "><a href="../resources/index.html"><strong aria-hidden="true">6.</strong> Programlanabilir Kaynaklar</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../resources/signer-type.html"><strong aria-hidden="true">6.1.</strong> Göndericinin Signer Olması</a></li><li class="chapter-item expanded "><a href="../resources/what-is-resource.html"><strong aria-hidden="true">6.2.</strong> Kaynak Nedir</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example/index.html"><strong aria-hidden="true">6.3.</strong> Kaynak Örnekleri</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../resources/resource-by-example/storing-new-resource.html"><strong aria-hidden="true">6.3.1.</strong> Kaynak Yaratma ve Taşıma</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example/access-resource-with-borrow.html"><strong aria-hidden="true">6.3.2.</strong> Kaynak Okuyup Değiştirme</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example/destroy-resource.html"><strong aria-hidden="true">6.3.3.</strong> Kaynakları Alıp Yok Etme</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example/furher-steps.html"><strong aria-hidden="true">6.3.4.</strong> Sonraki Adımlar</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../tutorials/index.html"><strong aria-hidden="true">7.</strong> Öğretici (Tutorial)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tutorials/erc20.html"><strong aria-hidden="true">7.1.</strong> ERC20 Token Yazmak</a></li></ol></li><li class="chapter-item expanded "><a href="../translations.html"><strong aria-hidden="true">8.</strong> Çeviriler</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#kontrol-akışı" id="kontrol-akışı">Kontrol Akışı</a></h1>
+<p>Move bir emir dilidir ve her emir dili gibi bir <em>kontrol akışı</em> vardır. Kontrol akışı, bir kod blokunun çalıştırılıp çalıştırılmayacağını ya da hangi kodun çalışacağını seçmenin bir yoludur.</p>
+<!-- In Move you have two statme to control flow: by using loops (`while` and `loop`) or `if` expressions. -->
+<p>Move dilinde döngüler (loop) vardır. Bunlar <code>while</code>, <code>loop</code> ve <code>if</code> ifadeleridir.</p>
+<h2><a class="header" href="#if-ifadesi" id="if-ifadesi"><code>if</code> ifadesi</a></h2>
+<p><code>if</code> ifadesi bir koşul doğruysa bir kod blokunun çalıştırılmasını veya yanlışsa farklı bir kod blokunun çalıştırılmasını sağlayan ifadedir.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Debug;
+
+    fun main() {
+
+        let a = true;
+
+        if (a) {
+            Debug::print&lt;u8&gt;(&amp;0);
+        } else {
+            Debug::print&lt;u8&gt;(&amp;99);
+        };
+    }
+}
+</code></pre>
+<p>Bu örnekte <code>if</code> ve <code>block</code>u kullanarak <code>a == true</code> ise <code>0</code>, a <code>false</code> ise <code>99</code> printlemesini sağladık. İşte bu kadar basit. if syntaxı aşağıdaki gibidir:</p>
+<pre><code>if (&lt;bool_ifadesi&gt;) &lt;ifade&gt; else &lt;ifade&gt;;
+</code></pre>
+<p><code>if</code> bir ifadedir ve her ifade gibi noktalı virgül ile bitmelidir. Bu da “if”i <code>let</code> deyimiyle kullanmamız için bir sebeptir.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Debug;
+
+    fun main() {
+
+        // try switching to false
+        let a = true;
+        let b = if (a) { // ilk branch
+            10
+        } else { // ikinci branch
+            20
+        };
+
+        Debug::print&lt;u8&gt;(&amp;b);
+    }
+}
+</code></pre>
+<p>Burada <code>a</code> ifadesine göre <code>b</code> değişkenine farklı bir değer atanacak. Ama <code>if</code> fonksiyonundaki iki branch de aynı tipi döndürmeli. 
+Aksi halde <code>b</code> değişkeninin farklı bir tür olma (ya da tanımsız olma) seçeneği olacaktır ve bu statik dillerde imkansızdır. Compiler terimlerine göre buna branch uyumluluğu deriz. İki branch de uyumlu (aynı) tipi döndürmek zorundadır.</p>
+<p><code>if</code>, <code>else</code> kullanmadan solo olarak kullanılabilir.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Debug;
+
+    fun main() {
+
+        let a = true;
+
+        // sadece bir adet seçimli branch
+        // eğer a = false olursa debug çağrısı olmaz
+        if (a) {
+            Debug::print&lt;u8&gt;(&amp;10);
+        };
+    }
+}
+</code></pre>
+<p>But keep in mind that <code>if</code> expression without <code>else</code> branch cannot be used in assignment as when condition is not met - alternative branch is not called and variable may be undefined which is, again, impossible.</p>
+<h2><a class="header" href="#döngülerle-yineleme-iterating-yapmak" id="döngülerle-yineleme-iterating-yapmak">Döngülerle yineleme (iterating) yapmak</a></h2>
+<p>Move dilinde loopları tanımlamanın iki yolu vardır</p>
+<ol>
+<li><code>while</code> kullanarak yapılan koşullu (conditional) loop</li>
+<li>Sonsuz (infinite) loop</li>
+</ol>
+<h3><a class="header" href="#while-kullanarak-yapılan-koşullu-conditional-loop" id="while-kullanarak-yapılan-koşullu-conditional-loop"><code>while</code> kullanarak yapılan koşullu (conditional) loop</a></h3>
+<p><code>while</code> bir loopu tanımlamanın yollarından biridir. While kullanarak belli koşullar sağlandığında çalıştırılan bir ifade elde etmiş oluruz. Bu looplarda <em>while</em> koşulu <code>true</code> olduğu sürece kod yineleyerek tekrar çalıştırılmaya devam eder. Koşul koymak için genellikle dış değişkenler ya da sayaçlar (counter) kullanılır.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+
+        let i = 0; // sayacı tanımlayın
+
+        // while i &lt; 5'i yineleyin
+        // her yinelemede i değerini arttırın
+        // i 5 olduğunda koşul karşılanmaz ve loop sonlanır
+        while (i &lt; 5) {
+            i = i + 1;
+        };
+    }
+}
+</code></pre>
+<p><code>while</code>ın aynı <code>if</code> gibi bir ifade olduğunu belirtmemiz oldukça önemli. <code>while</code>ın sonuna da noktalı virgül koymamız gerekir. Bu yüzden while looplarının genel syntaxı şöyledir:</p>
+<pre><code class="language-Move">while (&lt;bool_expression&gt;) &lt;expression&gt;;
+</code></pre>
+<p><code>if</code>in aksine <code>while</code> bir değer döndüremez bu yüzden değişken ataması (<code>if</code> ifadesiyle yaptığımız gibi) yapmamız mümkün değildir.</p>
+<h3><a class="header" href="#erişilemeyen-kod-unreachable-code" id="erişilemeyen-kod-unreachable-code">Erişilemeyen kod (Unreachable code)</a></h3>
+<p>Move dilinin güvenilir olması için emniyetli de olması gerekir. Bu yüzden Move tüm değişkenleri kullanmanızı zorunlu kılar ve erişilemeyen kod bulunmasına izin vermez. Dijital varlıklar programlanabilir ve kodlarda kullanılabilirler (<a href="/chapters/resource.html">resources bölümünde bundan daha ayrıntılı bir şekilde bahsedeceğiz</a>), Onları erişilemeyen yerlere koymamız sorunlara yol açabilir ve onları kaybetmemizle sonuçlanabilir.</p>
+<p>Bu yüzden erişelemeyen kodlar çok ciddi bir problemdir. Artık bunu netleştirdiğimize göre devam edebiliriz.</p>
+<h3><a class="header" href="#sonsuz-loop" id="sonsuz-loop">Sonsuz <code>loop</code></a></h3>
+<p>Move dilinde sonsuz loopları tanımlamanın bir yolu vardır. Koşulsuzlardır ve siz onları durmaya zorlayana kadar çalışırlar. Maalesef compiler bir loopun sonsuz olup olmadığını saptama özelliğine (çoğu durumda) sahip değildir ve bu yüzden sizin kodu yayınlamanızı durdurma yetisine sahip değildir. Bu durumda kodun çalıştırılması tüm kaynaklarınızı tüketecektir (blockchain terimleriyle – gas). Bu sebeple kodunuzu düzgün bir şekilde test etmek veya daha güvenli olan koşullu <code>while</code> looplarını kullanma sorumluluğu tamamen size düşüyor.</p>
+<p>Sonsuz looplar <code>loop</code> anahtar kelimesiyle tanımlanırlar.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let i = 0;
+
+        loop {
+            i = i + 1;
+        };
+
+        // ERİŞİLEMEYEN KOD
+        let _ = i;
+    }
+}
+</code></pre>
+<p>Fakat aşağıdakini yapmanız mümkün (yani compiler bunu yapmanıza izin verir):</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let i = 0;
+
+        loop {
+            if (i == 1) { // bunu hiç değiştirmedim
+                break // bu deyim loopu bozuyor
+            }
+        };
+
+        // burası aslında erişilemez
+        0x1::Debug::print&lt;u8&gt;(&amp;i);
+    }
+}
+</code></pre>
+<p>Compiler’ın bir loopun sonsuz olup olmadığını saptamasını sağlamak oldukça zorlayıcı bir durum. Bu yüzden şimdilik loop hatalarından kendinizi korumak sizin sorumluluğunuzda.</p>
+<h3><a class="header" href="#loopları-continue-ve-break-ile-yönetmek" id="loopları-continue-ve-break-ile-yönetmek">Loopları <code>continue</code> ve <code>break</code> ile yönetmek</a></h3>
+<p><code>continue</code> anahtar sözcüğü bir roundun atlama emri vermenize, <code>break</code> anahtar sözcüğüyse bir yinelemeyi durdurmanızı sağlar. İkisini de bahsettiğimiz iki loop türü için kullanabilirsiniz.</p>
+<p>Örneğin <code>loop</code>a iki koşul koyalım. Eğer <code>i</code> çift sayıysa <code>continue</code> kullanarak okuma işleminin bir sonraki yinelemeye atlamasını ve <code>continue</code> çağrısının kapsadığı kodu çalıştırmamasını sağlar.</p>
+<p>Eğer <code>break</code> kullanırsak yinelemeyi durdururuz ve döngüden çıkarız.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let i = 0;
+
+        loop {
+            i = i + 1;
+
+            if (i / 2 == 0) continue;
+            if (i == 5) break;
+
+            // burada bir şeyler yaptığımızı varsayalım
+         };
+
+        0x1::Debug::print&lt;u8&gt;(&amp;i);
+    }
+}
+</code></pre>
+<p>Noktalı virgüllere gelirsek, eğer <code>break</code> ya da <code>continue</code> bir bloktaki son anahtar kelimeyse onların ardından noktalı virgül koymamalısınız çünkü bu onlardan sonra olan kodların çalıştırılmasını önler. Aşağıdaki örneğe bakalım:</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let i = 0;
+
+        loop {
+            i = i + 1;
+
+            if (i == 5) {
+                break; // böyle yaparsak hata verir, doğrusu `break` noktalı virgül olmadan kullanmak
+                       // Error: Unreachable code
+            };
+
+            // continue için de aynısı geçerli: asla noktalı virgül koymayın;
+            if (true) {
+                continue
+            };
+
+            // fakat noktalı virgülü aşağıdaki gibi kullanabilirsiniz çünkü continue ve break burada basit ifade, 
+            // bu yüzden zaten “kendi kapsamlarını sonlandırıyorlar” 
+            if (true) continue;
+            if (i == 5) break;
+        }
+    }
+}
+</code></pre>
+<h3><a class="header" href="#koşullu-abort-durdurma" id="koşullu-abort-durdurma">Koşullu <code>abort</code> (Durdurma)</a></h3>
+<p>Koşulların sağlanmadığı bazı durumlarda bir hareketin (transaction) çalıştırmasını durdurmanız gerekebilir. Bunu yapmamızı sağlayan anahtar sözcük <code>abort</code>tur.</p>
+<pre><code class="language-Move">script {
+    fun main(a: u8) {
+
+        if (a != 10) {
+            abort 0;
+        }
+
+        // buradaki kod a != 10 ise çalıştırılmayacak
+        // transaction durduruldu
+    }
+}
+</code></pre>
+<p><code>abort</code> anahtar sözcüğü bir kodun çalışmasını <em>durdurmanızı</em> ve hemen sonrasında bir hata kodu verilmesini sağlar.</p>
+<h3><a class="header" href="#yerleşik-assert-fonksiyonunun-kullanımı" id="yerleşik-assert-fonksiyonunun-kullanımı">Yerleşik <code>assert</code> fonksiyonunun kullanımı</a></h3>
+<p>Move dilinde yerleşik olarak bulunan <code>assert! (&lt;bool ifadesi&gt;, &lt;kod&gt;)</code> metodu <code>abort</code> ve <code>koşulu</code> birleştirir ve kodun her yerinde kullanılabilir:</p>
+<pre><code class="language-Move">script {
+
+    fun main(a: u8) {
+        assert!(a == 10, 0);
+
+        // buradaki kod (a == 10) ise çalıştırılacak
+    }
+}
+</code></pre>
+<p><code>assert()</code> bir koşul sağlanmadığında kodun çalıştırılmasını durdurur, koşul karşılanıyorsa da işlevde bulunmaz.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../syntax-basics/expression-and-scope.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../syntax-basics/module.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../syntax-basics/expression-and-scope.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../syntax-basics/module.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
