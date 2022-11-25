@@ -11,6 +11,7 @@ This is a repository for [Move Book](https://move-book.com).
 
 Thanks to [Starcoin](https://github.com/starcoinorg) team for making Chinese translation possible!
 Thanks to [Astro Space](https://github.com/AstroSpaceHQ) for working on Korean version!
+Thanks to [Students from Yildiz Technical University in Istanbul](https://yildiz.edu.tr/en) for working on the Turkish translation!
 
 ---
 
