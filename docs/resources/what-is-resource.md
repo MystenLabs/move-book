@@ -1,6 +1,6 @@
 # What is Resource
 
-Resource is a concept described in Move Whitepaper. Originally it was implemented as its own type but later, with addition of abilities, replaced with two abilities: `Key` and `Store`. Resource is meant to be a perfect type for storing digital assets, to achieve that it must to be non-copyable and non-droppable. At the same time it must be storable and transferable between accounts.
+Resource is a concept described in Move Whitepaper. Originally it was implemented as its own type but later, with addition of abilities, replaced with two abilities: `Key` and `Store`. Resource is meant to be a perfect type for storing digital assets, to achieve that it must be non-copyable and non-droppable. At the same time it must be storable and transferable between accounts.
 
 ### Definition
 
