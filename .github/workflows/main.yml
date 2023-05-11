@@ -14,23 +14,27 @@ jobs:
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@v1
         with:
-          mdbook-version: '0.3.7'
+          mdbook-version: "0.3.7"
 
       - run: mdbook build
 
       # Chinese version of the book
+      - run: cp -rf theme/ translations/cn/theme/
       - run: mdbook build translations/cn
       - run: mv translations/cn/book book/cn
 
       # Korean translation
+      - run: cp -rf theme/ translations/ko/theme/
       - run: mdbook build translations/ko
       - run: mv translations/ko/book book/ko
 
       # Turkish version of the book
+      - run: cp -rf theme/ translations/tr/theme/
       - run: mdbook build translations/tr
       - run: mv translations/tr/book book/tr
 
       # Russian version of the book
+      - run: cp -rf theme/ translations/ru/theme/
       - run: mdbook build translations/ru
       - run: mv translations/ru/book book/ru
 
