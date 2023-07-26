@@ -8,10 +8,9 @@ Constants can be defined as primitive types (integers, bool and address) and as 
 
 ```Move
 script {
-
     use 0x1::Debug;
 
-    const RECEIVER : address = 0x999;
+    const RECEIVER: address = 0x999;
 
     fun main(account: &signer) {
         Debug::print<address>(&RECEIVER);
@@ -20,18 +19,17 @@ script {
 
         let _ = RECEIVER;
 
-        // but this code leads to compile error
+        // but this code leads to compile error - constant value can't be changed
         // RECEIVER = 0x800;
     }
 }
 ```
 
-Same usage in module:
+Same usage in a module:
 
 ```Move
 module M {
-
-    const MAX : u64 = 100;
+    const MAX: u64 = 100;
 
     // however you can pass constant outside using a function
     public fun get_max(): u64 {
@@ -52,8 +50,9 @@ What is important to know about constants:
 1. They are unchangeable once defined;
 2. They are local to their module or script and cannot be used outside;
 3. Usually they are used to define module-level constant value which serves some business purpose;
-4. It is also possible to define constant as an expression (with curly braces) but syntax of this expression is very limited.
+4. It is also possible to define a constant as an expression (with curly braces) but syntax of this expression is very limited.
 
 ### Further reading
 
 - [PR with constant syntax](https://github.com/diem/diem/pull/4653)
+- [Constants in Move Docs](https://move-language.github.io/move/constants.html)
