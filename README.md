@@ -1,6 +1,6 @@
 # Move Book
 
-This is a repository for [Move Book](https://move-book.com).
+This is the repository for the [Move Book](https://move-book.com).
 
 ## Translations
 
@@ -15,4 +15,4 @@ Thanks to [YTU Blockchain community Istanbul](https://yildizblockchain.com) for 
 
 ---
 
-Originally started by me in [dfinance](https://github.com/dfinance/move-book).
+Originally started by [me](https://github.com/damirka) while working at [dfinance](https://github.com/dfinance/move-book).
