@@ -1,13 +1,13 @@
 [book]
 title = "The Move Book"
-description = "First book about Diem's Move programming language and Move VM. Move documentation, Move tutorials and language reference"
+description = "First book about the Move programming language and the Move VM. Move documentation, Move tutorials and language reference"
 authors = ["Damir Shamanaev"]
 language = "en"
 multilingual = false
 src = "docs"
 
 [output.html]
-google-analytics = "UA-183817972-1"
+google-analytics = "G-86NNK4G2L9"
 git-repository-url = "https://github.com/damirka/move-book"
 git-repository-icon = "fa-github"
 
