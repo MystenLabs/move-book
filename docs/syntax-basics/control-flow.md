@@ -1,6 +1,6 @@
 # Control Flow
 
-Move is imperative language and like one it has *control flow* - a way to make choice whether to run block of code or to skip or to run another one instead.
+Move is an imperative language and like one it has *control flow* - a way to make choice whether to run a block of code or to skip or to run another one instead.
 
 <!-- In Move you have two statme to control flow: by using loops (`while` and `loop`) or `if` expressions. -->
 
@@ -8,14 +8,13 @@ In Move you have loops (`while` and `loop`) and `if` expressions.
 
 ## The `if` expression
 
-`if` expression allows you to run a block of code if some condition is true, and to run another block instead if condition resulted in false.
+The `if` expression allows you to run a block of code if a condition is `true`, and to run another block instead if the condition resulted in `false`.
 
 ```Move
 script {
     use 0x1::Debug;
 
     fun main() {
-
         let a = true;
 
         if (a) {
@@ -33,7 +32,7 @@ In this example we've used `if` + `block` to print `0` if `a == true` and if a i
 if (<bool_expression>) <expression> else <expression>;
 ```
 
-`if` is an expression, and like all of them it must end with semicolon. This is also a reason to use it with `let` statement!
+`if` is an expression, and like all of them it must end with semicolon. This is also a reason to use it with the `let` statement!
 
 ```Move
 script {
@@ -75,7 +74,7 @@ script {
 }
 ```
 
-But keep in mind that `if` expression without `else` branch cannot be used in assignment as when condition is not met - alternative branch is not called and variable may be undefined which is, again, impossible.
+But keep in mind that the `if` expression without `else` branch cannot be used in assignment as when condition is not met - alternative branch is not called and variable may be "undefined" which is, again, impossible.
 
 ## Iterating with loops
 
@@ -86,7 +85,7 @@ There're two ways of defining loops in Move:
 
 ### Conditional loop with `while`
 
-`while` is a way to define loop - expression which will be executed while some condition is true. So simply: code will be run over and over *while* condition is `true`. To implement condition usually an external variable (or counter) is used.
+`while` is a way to define a loop - an expression which will be executed repeatedly *while* the condition evaluates to `true`. To implement a condition usually an external variable (or a counter) is used.
 
 ```Move
 script {
@@ -104,25 +103,25 @@ script {
 }
 ```
 
-It's worth mentioning that `while` is an expression - just like `if` is, and it too requires a semicolon afterwards. Generic syntax for while loop is:
+It's worth mentioning that `while` is an expression - just like `if`, and it too requires a semicolon afterwards. Syntax for the while loop can be expressed as:
 
 ```Move
-while (<bool_expression>) <expression>;
+while (<expression: bool>) <expression>;
 ```
 
-Unlike `if`, `while` cannot return a value, so variable assignment (like we did with `if` expression) is impossible.
+Unlike `if`, `while` cannot return a value, so a variable assignment (like we did with `if` expression) is impossible.
 
 ### Unreachable code
 
-To be reliable Move must be secure. This is why it obliges you to use all your variables and for the same reason it forbids having unreachable code. As digital assets are programmable, they can be used in code (you'll learn about it in [resources chapter](/chapters/resource.md)), and placing them in unreachable areas may lead to inconvenience and their loss as the result.
+To be reliable Move must be secure. This is why it obliges you to use all your variables and for the same reason it forbids having unreachable code. As digital assets are programmable, they can be used in code (you'll learn about it in [resources chapter](/chapters/resource.md)), and placing them in unreachable areas may lead to their loss as the result.
 
 This is why unreachable code is such a big issue. Now that is clear, we can proceed.
 
 ### Infinite `loop`
 
-There is a way to define infinite loops. They're non-conditional and actually infinite (unless you force them to stop). Unfortunately the compiler cannot define whether a loop is infinite (in most of the cases) and cannot stop you from publishing code, execution of which will consume all given resources (in blockchain terms - gas). So it's on you to test your code properly when using them or just switch to conditional `while` as it's way more secure.
+There is a way to define infinite loops. They're non-conditional and actually infinite (unless you force them to stop). Unfortunately, the compiler cannot define whether a loop is infinite (in most of the cases) and cannot stop you from publishing the code, execution of which will consume all given resources (in blockchain terms - gas). So it's on you to test your code properly when using them or just switch to a conditional `while` as it's way more secure.
 
-Infinite loops are defined with keyword `loop`.
+Infinite loops are defined with the keyword `loop`.
 
 ```Move
 script {
@@ -158,15 +157,21 @@ script {
 }
 ```
 
+Syntax for the `loop` is:
+
+```Move
+loop <expression>;
+```
+
 It's a non-trivial task for the compiler to understand whether a loop is really infinite or not, so for now you and only you can help yourself avoid looping errors.
 
 ### Control loops with `continue` and `break`
 
-Keywords `continue` and `break` allow you to skip one round or break iteration respectively. You can use both of them in both types of loops.
+Keywords `continue` and `break` allow you to skip an iteration or break it respectively. You can use them in both types of loops.
 
-For example let's add two conditions into the `loop`. If `i` is even, we use `continue` to jump to the next iteration without going through code after `continue` call.
+For example let's add two conditions into the `loop`. If `i` is even, we use `continue` to jump to the next iteration without going through code after the `continue` call.
 
-With `break` we stop iteration and exit loop.
+With `break` we exit the loop ignoring the rest of the block.
 
 ```Move
 script {
@@ -187,7 +192,7 @@ script {
 }
 ```
 
-About semicolons. If `break` and `continue` are the last keywords in a block, you can't put a semicolon after them as any code after won't be executed. Somehow even semi can't be put. See this:
+About semicolons. If `break` and `continue` are the last in a block, you can't put a semicolon after them as any code after won't be executed. Somehow even the semicolon can't be put. See this:
 
 ```Move
 script {
@@ -218,7 +223,7 @@ script {
 
 ### Conditional `abort`
 
-Sometimes you need to abort execution of transaction when some condition has failed. For that case there's keyword `abort`.
+Sometimes you need to abort an execution of a transaction when some condition has failed. For that case there's the `abort` keyword.
 
 ```Move
 script {
@@ -238,11 +243,10 @@ Keyword `abort` allows you to *abort* execution with an error code which is plac
 
 ### Use `assert` built-in
 
-Built-in `assert!(<bool expression>, <code>)` method already wraps `abort` + condition and is accessible anywhere in code:
+Built-in `assert!(<expression: bool>, <code>)` method already wraps `abort` + condition and is accessible anywhere in code:
 
 ```Move
 script {
-
     fun main(a: u8) {
         assert!(a == 10, 0);
 
@@ -251,4 +255,10 @@ script {
 }
 ```
 
-`assert()` will abort execution when condition is not met, or it will do nothing in the opposite case.
+`assert!()` will abort execution when condition is not met, or it will do nothing in the opposite case.
+
+### Further reading
+
+- [While and Loop in the Documentation](https://move-language.github.io/move/loops.html)
+- [Conditionals in the Documentation](https://move-language.github.io/move/conditionals.html)
+- [Abort and Assert in the Documentation](https://move-language.github.io/move/abort-and-assert.html)

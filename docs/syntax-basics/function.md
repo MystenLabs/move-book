@@ -1,6 +1,6 @@
 # Function
 
-Function is the only place of execution in Move. Function starts with the `fun` keyword which is followed by function name, parentheses for arguments and curly braces for body.
+Function is the only place of execution in Move. Function starts with the `fun` keyword which is followed by the function name, parentheses for arguments and curly braces for body.
 
 ```Move
 fun function_name(arg1: u64, arg2: bool): u64 {
@@ -14,9 +14,9 @@ You have already seen some in previous chapters. And now you will learn how to u
 
 ## Function in script
 
-Script block can contain only one function which is considered *main*. This function (possibly with arguments) will be executed as a transaction. It is very limited: it cannot return value and should be used to operate other functions in already published modules.
+Script block can contain only one function which is considered *main*. This function (possibly with arguments) will be executed as a transaction. It is very limited: it cannot return a value and should be used to call and use other functions in already published modules.
 
-Here's an example of simple script which checks if address exists:
+Here's an example of a simple script which checks if a given address exists:
 
 ```Move
 script {
@@ -28,7 +28,7 @@ script {
 }
 ```
 
-This function can have arguments: in this case it is `addr` argument with type `address`, also it can operate imported modules.
+This function can have arguments: in this case it is the `addr` argument with the type `address`, also it can operate imported modules.
 
 > **Note:** as there's only one function, you can call it any way you want. Though you may want to follow general programming concepts and call it **main**
 

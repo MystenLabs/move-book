@@ -1,6 +1,6 @@
 # Expression and Scope
 
-In programming languages expression is a unit of code which returns a value. A function call with return value is an expression - it returns value; an integer (or bool or address) literal is also an expression - it has the value of its integer type and so on.
+In programming languages an expression is a unit of code which returns a value. A function call with a return value is an expression - it returns value; an integer (or bool or address) literal is also an expression - it has the value of its integer type and so on.
 
 > Expressions must be sequenced (separated) by a semicolon*
 
@@ -8,7 +8,7 @@ In programming languages expression is a unit of code which returns a value. A f
 
 ### Empty expression
 
-You probably will never use it directly but empty expression in Move (in this way it's similar to Rust) is marked with empty parentheses:
+You probably will never use it directly but an empty expression in Move (in this way it's similar to Rust) is marked with empty parentheses:
 
 ```Move
 script {
@@ -18,7 +18,7 @@ script {
 }
 ```
 
-Empty expression can be omitted as it's automatically put by VM.
+An empty expression can be omitted as it's automatically inserted by the VM.
 
 ### Literal expressions
 
@@ -41,7 +41,7 @@ Good. You now know the simplest expressions there are. But why do we need them? 
 
 ### Variables and `let` keyword
 
-To store expression value inside a variable (to pass it somewhere) you have a keyword `let` (you've already seen it in [primitives chapter](/syntax-basics/primitives.md)). It creates a new variable either empty (undefined) or with value of expression.
+To store the expression value inside a variable (to pass it somewhere or structure code better) you have the `let` keyword (you've already seen it in the [primitives chapter](/syntax-basics/primitives.md)). It creates a new variable either empty (not yet defined) or with value of the assigned expression.
 
 ```Move
 script {
@@ -55,7 +55,7 @@ script {
 }
 ```
 
-> Keyword `let` creates new variable inside *current scope* and optionally *initializes* this variable with value. Syntax for this expression is: `let <VARIABLE> : <TYPE>;` or `let <VARIABLE> = <EXPRESSION>`.
+> Keyword `let` creates a new variable inside the *current scope* and optionally *initializes* this variable with a value. Syntax for the expression is: `let <VARIABLE> : <TYPE>;` or `let <VARIABLE> = <EXPRESSION>`.
 
 After you've created and initialized variable you're able to *modify* or *access* its value by using a variable name. In example above variable `a` was initialized in the end of function and was *assigned* a value of variable `c`.
 
@@ -119,12 +119,12 @@ The error:
     │
 ```
 
-Compiler message is pretty clear, so all you have to do in this case is put underscore instead:
+Compiler message is pretty clear, so all you have to do in this case is put an underscore (or prefix with an underscore):
 
 ```Move
 script {
     fun main() {
-        let _ = 1;
+        let _a = 1;
     }
 }
 ```
@@ -149,7 +149,7 @@ Though we still can make it work by using first one:
 script {
     fun main() {
         let a = 1;
-        let a = a + 2; // though let here is unnecessary
+        let a = a + 2; // let here is unnecessary
         let _ = a;
     }
 }
@@ -157,7 +157,7 @@ script {
 
 ## Block expression
 
-A block is an expression; it's marked with *curly braces* - `{}`. Block can contain other expressions (and other blocks). Function body (as you can see by already familiar curly-braces) is also a block in some sense (with few limitations).
+A block is an expression; it's marked with *curly braces* - `{}`. Block can contain other expressions (and other blocks). Function body (as you can see by already familiar curly-braces) is also a block in some sense (with a few limitations).
 
 ```Move
 script {
@@ -177,9 +177,9 @@ script {
 
 ### Understanding scopes
 
-Scope (as it's said in [Wikipedia](https://en.wikipedia.org/wiki/Scope_(computer_science))) is a region of code where binding is valid. In other words - it's a part of code in which variable exists. In Move scope is a block of code surrounded by curly braces - basically a block.
+Scope (as it's said in [Wikipedia](https://en.wikipedia.org/wiki/Scope_(computer_science))) is a region of code where a binding is valid. In other words - it's a part of code in which a variable exists. In Move - a scope is a block of code surrounded by curly braces.
 
-> When defining block you actually define a scope.
+> When defining a block you create a new scope.
 
 ```Move
 script {
@@ -194,7 +194,7 @@ script {
         };
 
         {
-            // this is another block inside function scope
+            // this is another block inside the function scope
         };
     }
 }
@@ -204,7 +204,7 @@ As you can see from comments in this sample, scopes are defined by blocks (or fu
 
 ### Variable lifetime and visibility
 
-Keyword let creates a variable - you already know that. Though you probably don't know that defined variable will live only inside the scope where it's defined (hence inside nested scopes); simply put - it's unaccessible outside its scope and dies right after this scope's end.
+Keyword `let` creates a variable - you already know that. Though you probably don't know that the defined variable will live only inside the scope where it is defined (hence inside nested scopes); simply put - it's unaccessible outside its scope and dies right after this scope's end.
 
 ```Move
 script {
@@ -242,15 +242,15 @@ script {
 }
 ```
 
-> Variable lives only within scope (or block) where it's defined. When its scope ends, the variable dies.
+> Variable only lives only within scope (or block) where it's defined. When its scope ends, the variable dies.
 
 ### Block return values
 
-In the previous part you've learned that block is an expression but we didn't cover why it is an expression and what is the block's return value.
+In the previous part you've learned that a block is an expression but we didn't cover why it is an expression and what is the block's return value.
 
-> Block can return a value, it's the value of the last expression inside this block if it's not followed by semicolon
+> Block can return a value, it's the value of the last expression inside this block if it's not followed by a semicolon
 
-May sound hard, so I'll give you few examples:
+May sound hard, so I'll give you a few examples:
 
 ```Move
 script {
@@ -280,11 +280,11 @@ script {
 }
 ```
 
-> Last expression in scope (without semicolon) is the return value of this scope.
+> The last expression in scope (without semicolon) is the return value of this scope.
 
 ### Summary
 
-Let's keynote the main points of this chapter.
+Let's summarize the main points of this chapter.
 
 1. Every expression must end with semicolon unless it's the return value of block;
 2. Keyword `let` creates new variable with value or right-hand-side expression which lives as long as the scope in which it's been created;
@@ -294,4 +294,4 @@ How to control execution flow and how to use blocks for logic switches - on the 
 
 ### Further reading
 
-- [Diem Community thread on empty expressions and semicolon](https://community.diem.com/t/odd-error-when-semi-is-put-after-break-or-continue/2868)
+- [Local Variables and Scope in the Move Documentation](https://move-language.github.io/move/variables.html)
