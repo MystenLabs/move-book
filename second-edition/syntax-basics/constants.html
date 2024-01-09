@@ -170,6 +170,45 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="constants"><a class="header" href="#constants">Constants</a></h1>
+<p>Constants are immutable values that are defined at the module level, known at compile time and do not change for the duration of a program's execution. Constants are declared with the <code>const</code> keyword and must be annotated with a type in cases where compiler cannot infer it.</p>
+<pre><code class="language-move">module book::constants {
+
+    /// Annotated constant
+    const MAX_VALUE: u64 = 100;
+
+    /// The literal contains the type - no need to annotate
+    const MIN_VALUE = 0u64;
+
+    /// Const supports simple expressions
+    const HOUR: u64 = 60 * 60;
+
+    /// Consts can't reference other consts
+    const DAY: u64 = 60 * 60 * 24;
+}
+</code></pre>
+<ul>
+<li>Constants must start with a capital letter.</li>
+<li>Constants are private to the module and can't be imported.</li>
+<li>Constants can be used in expressions.</li>
+<li>Constants can contain simple expressions and literals.</li>
+</ul>
+<h2 id="config-pattern"><a class="header" href="#config-pattern">Config pattern</a></h2>
+<p>While the constants themselves can not be imported, functions can. This allows us to create a config pattern, where we define a module that contains all the constants and functions that return them. This allows us to change the constants in one place and have all the functions that use them updated.</p>
+<pre><code class="language-move">module book::config {
+
+    /// Max value for the app
+    const MIN_PRICE: u64 = 100;
+
+    /// Constants support vectors but don't support String type
+    const APP_NAME: vector&lt;u8&gt; = b&quot;My Simple App&quot;;
+
+    /// Returns the min price
+    public fun min_price(): u64 { MIN_PRICE }
+
+    /// Returns the app name
+    public fun app_name(): String { std::string::utf8(APP_NAME) }
+}
+</code></pre>
 
                     </main>
 

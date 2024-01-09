@@ -206,6 +206,7 @@ BUILDING Book Samples
 <p>Alternatively, you can use <code>move test --doc</code> - this can be useful if you want to test and generate documentation at the same time. For example, as a part of your CI/CD pipeline.</p>
 </blockquote>
 <p>Once the build is complete, the documentation will be available in the <code>build/docs</code> directory. Each modile will have its own <code>.md</code> file. The documentation for the <code>hello_world</code> module will be available in the <code>build/docs/hello_world.md</code> file.</p>
+<p><em>For Aptos, the documentation will be available in the <code>docs</code> directory at the root of the package. And the path will be <code>docs/hello_world.md</code>.</em></p>
 <details>
 <summary><a style="cursor: pointer">Click to see an example of the `hello_world.md` contents</a></summary>
 <pre><code class="language-move">&lt;a name=&quot;0x0_hello_world&quot;&gt;&lt;/a&gt;
@@ -233,7 +234,7 @@ As the name says: returns a string &quot;Hello, World!&quot;.
 &lt;/details&gt;
 </code></pre>
 </details>
-<h2 id="differences-in-aptos-implementation"><a class="header" href="#differences-in-aptos-implementation">Differences in Aptos implementation</a></h2>
+<h2 id="notes-on-aptos-implementation"><a class="header" href="#notes-on-aptos-implementation">Notes on Aptos implementation</a></h2>
 <p>There are a few differences in the implementation of the documentation generator in Aptos:</p>
 <ul>
 <li>The command to generate documentation is top-level <code>aptos move document</code></li>

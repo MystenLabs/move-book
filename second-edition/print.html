@@ -185,7 +185,7 @@
 <div style="break-before: page; page-break-before: always;"></div><h1 id="choose-a-network"><a class="header" href="#choose-a-network">Choose a Network</a></h1>
 <p>Originally, the language was developed as part of the Diem blockchain. However, the project was shut down and the language was moved to a <a href="https://github.com/move-language/move">public, chain-agnotic repository</a>. Today, to use Move you need to choose one of the available implementations. Each of the implementations has its own binary and specifics, but the language itself is the same.</p>
 <p>These 3 commands is all you need to start developing Move programs:</p>
-<pre><code>move new &lt;name&gt;   # creates a new project
+<pre><code class="language-bash">move new &lt;name&gt;   # creates a new project
 move build        # compiles the modules (Aptos uses `compile` instead)
 move test         # runs the tests
 </code></pre>
@@ -405,7 +405,10 @@ MyPackage = { local = &quot;../my-package&quot; }
 <div style="break-before: page; page-break-before: always;"></div><h1 id="your-first-move"><a class="header" href="#your-first-move">Your first Move</a></h1>
 <p>In this section you'll get to experience the Move language first-hand. You'll learn how to create a package, write a simple module, test it, generate documentation and publish it on-chain. While the guide is not complete on the last part (as every network has specifics on how to publish a package), it will give you a good idea of how to work with Move.</p>
 <p>This guide will reference topics which you will learn later in this book. If you are not familiar with some of the concepts, don't worry, you'll learn them later. Try to focus on the task at hand and don't get distracted by the details.</p>
-<p>This section is divided into the following parts:</p>
+<blockquote>
+<p>It is important that you have a working Move environment. If you haven't set it up yet, please refer to the <a href="your-first-move/../getting-started/choose-a-network.html">Choose a Network</a> section. The commands are given for the Move CLI, for Sui use <code>sui move</code> instead of <code>move</code>, and for Aptos commands are specified separately.</p>
+</blockquote>
+<p>This section is divided into the following parts (in order):</p>
 <ul>
 <li><a href="your-first-move/./hello-world.html">Hello World</a></li>
 <li><a href="your-first-move/./adding-tests.html">Adding Tests</a></li>
@@ -630,6 +633,7 @@ BUILDING Book Samples
 <p>Alternatively, you can use <code>move test --doc</code> - this can be useful if you want to test and generate documentation at the same time. For example, as a part of your CI/CD pipeline.</p>
 </blockquote>
 <p>Once the build is complete, the documentation will be available in the <code>build/docs</code> directory. Each modile will have its own <code>.md</code> file. The documentation for the <code>hello_world</code> module will be available in the <code>build/docs/hello_world.md</code> file.</p>
+<p><em>For Aptos, the documentation will be available in the <code>docs</code> directory at the root of the package. And the path will be <code>docs/hello_world.md</code>.</em></p>
 <details>
 <summary><a style="cursor: pointer">Click to see an example of the `hello_world.md` contents</a></summary>
 <pre><code class="language-move">&lt;a name=&quot;0x0_hello_world&quot;&gt;&lt;/a&gt;
@@ -657,7 +661,7 @@ As the name says: returns a string &quot;Hello, World!&quot;.
 &lt;/details&gt;
 </code></pre>
 </details>
-<h2 id="differences-in-aptos-implementation"><a class="header" href="#differences-in-aptos-implementation">Differences in Aptos implementation</a></h2>
+<h2 id="notes-on-aptos-implementation"><a class="header" href="#notes-on-aptos-implementation">Notes on Aptos implementation</a></h2>
 <p>There are a few differences in the implementation of the documentation generator in Aptos:</p>
 <ul>
 <li>The command to generate documentation is top-level <code>aptos move document</code></li>
@@ -1287,6 +1291,45 @@ To build a bool condition by comparing values you have these operators. All of t
 <li><a href="https://move-language.github.io/move/abort-and-assert.html">Abort and Assert in the Documentation</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="constants"><a class="header" href="#constants">Constants</a></h1>
+<p>Constants are immutable values that are defined at the module level, known at compile time and do not change for the duration of a program's execution. Constants are declared with the <code>const</code> keyword and must be annotated with a type in cases where compiler cannot infer it.</p>
+<pre><code class="language-move">module book::constants {
+
+    /// Annotated constant
+    const MAX_VALUE: u64 = 100;
+
+    /// The literal contains the type - no need to annotate
+    const MIN_VALUE = 0u64;
+
+    /// Const supports simple expressions
+    const HOUR: u64 = 60 * 60;
+
+    /// Consts can't reference other consts
+    const DAY: u64 = 60 * 60 * 24;
+}
+</code></pre>
+<ul>
+<li>Constants must start with a capital letter.</li>
+<li>Constants are private to the module and can't be imported.</li>
+<li>Constants can be used in expressions.</li>
+<li>Constants can contain simple expressions and literals.</li>
+</ul>
+<h2 id="config-pattern"><a class="header" href="#config-pattern">Config pattern</a></h2>
+<p>While the constants themselves can not be imported, functions can. This allows us to create a config pattern, where we define a module that contains all the constants and functions that return them. This allows us to change the constants in one place and have all the functions that use them updated.</p>
+<pre><code class="language-move">module book::config {
+
+    /// Max value for the app
+    const MIN_PRICE: u64 = 100;
+
+    /// Constants support vectors but don't support String type
+    const APP_NAME: vector&lt;u8&gt; = b&quot;My Simple App&quot;;
+
+    /// Returns the min price
+    public fun min_price(): u64 { MIN_PRICE }
+
+    /// Returns the app name
+    public fun app_name(): String { std::string::utf8(APP_NAME) }
+}
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="function"><a class="header" href="#function">Function</a></h1>
 <p>Function is the only place of execution in Move. Function starts with the <code>fun</code> keyword which is followed by the function name, parentheses for arguments and curly braces for body.</p>
 <pre><code class="language-Move">fun function_name(arg1: u64, arg2: bool): u64 {
