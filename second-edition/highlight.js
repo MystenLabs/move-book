@@ -376,7 +376,7 @@ hljs.registerLanguage('move', function(hljs) {
   var NUMBERS = {
     className: 'number',
     variants: [
-      { begin: hljs.C_NUMBER_RE + '[us]?' },
+      { begin: hljs.C_NUMBER_RE + '(u(8|16|32|64|128|256))?' },
       { begin: '\\b0x[0-9a-fA-F]+' }
     ],
     relevance: 0
@@ -394,26 +394,34 @@ hljs.registerLanguage('move', function(hljs) {
     ]
   };
 
+  let IDENTIFIER = {
+    scope: 'title.class',
+    match: /[a-z][a-z0-9_]*/,
+  };
+
+  let ENTITY = {
+    scope: 'title.class',
+    match: /[A-Z][a-z0-9_]*/,
+  };
+
 
   let LINE_COMMENT = {
     // block comment
     scope: 'comment',
-    begin: '//*',
+    begin: '//',
     end: '$',
   };
 
-  let BLOCK_COMMENT = {
-    scope: 'comment',
-    begin: '/\\*',
-    end: '\\*/',
+  let BLOCK_COMMENT = hljs.COMMENT('/\\*', '\\*/', { contains: [ 'self' ] });
+
+  let TYPES = {
+    scope: 'type',
+    match: 'bool|u8|u16|u32|u64|u128|u256|address|vector|signer'
   };
 
-  let TYPES = 'bool u8 u16 u32 u64 u128 u256 address vector signer';
-
-
   let KEYWORDS = [
-    ...'public native friend entry struct has module use friend'.split(' '),
-    ...'let const mut'.split(' '),
+    ...'public native friend entry'.split(' '),
+    ...'let mut abort'.split(' '),
     ...'if else while loop break continue'.split(' '),
   ];
 
@@ -423,7 +431,7 @@ hljs.registerLanguage('move', function(hljs) {
 
       keyword: KEYWORDS,
       literal: 'true false',
-      type: TYPES,
+      // type: TYPES,
       built_in: BUILTINS,
     },
     contains: [
@@ -439,7 +447,7 @@ hljs.registerLanguage('move', function(hljs) {
           BLOCK_COMMENT,
           {
             scope: 'attr',
-            match: /[a-z_]+(?=::)/,
+            match: /[a-z0-9][a-z0-9]*(?=::)/,
             relevance: 10,
           },
           {
@@ -453,9 +461,16 @@ hljs.registerLanguage('move', function(hljs) {
         // const declaration
         scope: 'const',
         beginKeywords: 'const',
-        end: /;/,
+        end: /(?=;)/,
         contains: [
           BLOCK_COMMENT,
+          STRINGS,
+          NUMBERS,
+          TYPES,
+          {
+            scope: 'variable.constant',
+            match: /[A-Z][a-zA-Z0-9_]+/,
+          },
         ]
       },
       {
@@ -465,8 +480,27 @@ hljs.registerLanguage('move', function(hljs) {
         end: /;/,
         keywords: 'use',
         contains: [
-          BLOCK_COMMENT
+          BLOCK_COMMENT,
+          ENTITY,
+          {
+            scope: 'literal',
+            match: '0x[0-9a-fA-F]+',
+          }
           // parse address + module members + Self
+        ]
+      },
+      {
+        // friend declaration
+        scope: 'friend',
+        beginKeywords: 'friend',
+        end: /;/,
+        contains: [
+          BLOCK_COMMENT,
+          {
+            scope: 'title.class',
+            match: /[a-z][a-z0-9_]+/,
+            relevance: 0,
+          }
         ]
       },
       {
@@ -479,9 +513,10 @@ hljs.registerLanguage('move', function(hljs) {
         contains: [
           BLOCK_COMMENT,
           LINE_COMMENT,
+          TYPES,
           {
             scope: 'keyword',
-            match: /has/,
+            match: /has|phantom/,
           },
           {
             scope: 'param',
@@ -514,14 +549,49 @@ hljs.registerLanguage('move', function(hljs) {
             relevance: 0,
           },
           {
+            scope: 'generics',
+            begin: /(?<=<)/,
+            end: /(?=>)/,
+            contains: [
+              {
+                scope: 'title.class',
+                match: /\bcopy|drop|store|key\b/
+              }
+            ]
+          },
+          {
             scope: 'parens',
             begin: /\(/,
-            end: /\)/,
+            end: /(?=\))/,
             contains: [
-              // TYPES
+              TYPES,
+              ENTITY,
+              {
+                scope: 'keyword.mut',
+                match: /\bmut\b/,
+              }
             ]
-          }
+          },
+          ENTITY
         ]
+      },
+      // {
+      //   scope: 'address-script-block',
+      //   begin: /\baddress|script\b\s*{/,
+      //   end: /\{/,
+      //   relevance: 10,
+      //   keywords: ['address', 'script'],
+      //   contains: [
+      //     IDENTIFIER
+      //   ]
+      // },
+      NUMBERS,
+      ENTITY,
+      TYPES,
+      {
+        // address literal
+        scope: 'literal',
+        match: /@0x[A-Fa-f0-9]+/
       },
       {
         // literals
@@ -536,14 +606,8 @@ hljs.registerLanguage('move', function(hljs) {
         match: /\b[a-z_][a-z_0-9]*(?=\()/,
       },
       {
-        scope: 'address-block',
-        begin: /\baddress\b/,
-        end: /\{/,
-        keywords: 'address',
-      },
-      {
         // assert built-in
-        scope: 'literal',
+        scope: 'built-in',
         match: /\bassert|borrow_global|borrow_global_mut|move_to|move_from|exists\b/,
       },
     ]

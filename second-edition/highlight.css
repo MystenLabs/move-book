@@ -142,8 +142,15 @@ hue-6-2: #c18401
   color: #e45649
 }
 .hljs-literal {
+  color: #986801
+}
+
+.hljs-built-in,
+.hljs-type {
   color: #0184bb
 }
+
+
 .hljs-string,
 .hljs-regexp,
 .hljs-addition,
@@ -154,7 +161,6 @@ hue-6-2: #c18401
 .hljs-attr,
 .hljs-variable,
 .hljs-template-variable,
-.hljs-type,
 .hljs-selector-class,
 .hljs-selector-attr,
 .hljs-selector-pseudo,
