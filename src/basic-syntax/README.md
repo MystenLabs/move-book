@@ -1,3 +1,7 @@
+# Basic Syntax
+
+This chapter is all about the basic syntax of the Move language. It covers the basics of the language, such as types, modules, functions, and control flow. It focuses on the language without a storage model or a blockchain, and explains the essential concepts of the language.
+
 <!--
 
 
@@ -130,7 +134,7 @@ Every transaction has a sender - an account that signed the transaction. The sen
     some bits can be illustrated upfront to create this anticipation for what is possible.
 -->
 
-## Getting Ready
+<!-- ## Getting Ready
 
 Now that we know what a package, account and storage are, let's get to the basics and learn to write some code.
 
@@ -141,6 +145,6 @@ This section covers:
 - structs
 - constants
 - control flow
-- tests
+- tests -->
 
 <!-- TODO: rewrite the intro for the chapter -->
