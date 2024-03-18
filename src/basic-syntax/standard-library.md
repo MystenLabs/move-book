@@ -10,15 +10,15 @@ In this book we go into detail about most of the modules in the standard library
 
 | Module | Description | Chapter |
 | ------ | ----------- | ------- |
-| `std::debug` | Contains debugging functions | [Debugging](../basic-syntax/debugging.md) |
-| `std::type_name` | Allows runtime *type reflection* | [Generics](../syntax-basics/generics.md) |
-| `std::string` | Provides basic string operations | [Strings](../basic-syntax/string.md) |
-| `std::ascii` | Provides basic ASCII operations | [Strings](../basic-syntax/string.md) |
-| `std::option` | Implements an `Option<T>` | [Option](../basic-syntax/option.md) |
-| `std::vector` | Native operations on the vector type | [Vector](../basic-syntax/vector.md) |
+| `std::debug` | Contains debugging functions | [Debugging](./debugging.md) |
+| `std::type_name` | Allows runtime *type reflection* | [Generics](./type-reflection.md) |
+| `std::string` | Provides basic string operations | [Strings](./string.md) |
+| `std::ascii` | Provides basic ASCII operations | [Strings](./string.md) |
+| `std::option` | Implements an `Option<T>` | [Option](./option.md) |
+| `std::vector` | Native operations on the vector type | [Vector](./vector.md) |
 | `std::hash` | Hashing functions: `sha2_256` and `sha3_256` | [Cryptography and Hashing](../programmability/cryptography-and-hashing.md) |
 | `std::bcs` | Contains the `bcs::to_bytes()` function | [BCS](../basic-syntax/bcs.md) |
-| `std::address` | Contains a single `address::length` function | [Address](../basic-syntax/address.md) |
+| `std::address` | Contains a single `address::length` function | [Address](./address.md) |
 | `std::bit_vector` | Provides operations on bit vectors | - |
 | `std::fixed_point32` | Provides the `FixedPoint32` type | - |
 

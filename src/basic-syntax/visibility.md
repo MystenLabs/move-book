@@ -35,12 +35,75 @@ module book::try_calling_internal {
 
 ## Public Visibility
 
-TODO: public visibility
+A struct or a function can be made *public* by adding the `public` keyword before the `fun` or `struct` keyword.
+
+```move
+module book::public_visibility {
+    // This function can be called from other modules
+    public fun public() { /* ... */ }
+}
+```
+
+A public function can be imported and called from other modules. The following code will compile:
+
+```move
+module book::try_calling_public {
+    use book::public_visibility;
+
+    // Different module -> can call public()
+    fun try_calling_public() {
+        public_visibility::public();
+    }
+}
+```
 
 ## Friend Visibility
 
-TODO: friend visibility
+Modules within the same package can be declared as *friends* to each other, and that enables the *friend visibility* modifier. A function with *friend visibility* can be called by friend modules. However, to the rest of the packages and non-friend modules, it is *private*.
+
+```move
+module book::friend_visibility {
+    friend book::try_calling_friend;
+
+    // This function can be called from friend modules
+    public(friend) fun friend_only() { /* ... */ }
+}
+```
+
+A friend function can be called from a friend module, but not from a non-friend module:
+
+```move
+module book::try_calling_friend {
+    use book::friend_visibility;
+
+    // Same package, friend module -> can call friend()
+    fun try_calling_friend() {
+        friend_visibility::friend_only();
+    }
+}
+```
 
 ## Package Visibility
 
-TODO: 2024 `public(package)`
+> This feature of Move 2024 is not yet implemented.
+
+Move 2024 introduces the *package visibility* modifier. A function with *package visibility* can be called from any module within the same package. It can't be called from other packages.
+
+```move
+module book::package_visibility {
+    public(package) fun package_only() { /* ... */ }
+}
+```
+
+A package function can be called from any module within the same package:
+
+```move
+module book::try_calling_package {
+    use book::package_visibility;
+
+    // Same package `book` -> can call package_only()
+    fun try_calling_package() {
+        package_visibility::package_only();
+    }
+}
+```

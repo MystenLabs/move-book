@@ -4,12 +4,9 @@ module postcard::postcard {
 // ANCHOR_END: module
     // ANCHOR: imports
     use std::string::String;
-    use sui::object::UID;
-    use sui::transfer;
-    use sui::tx_context::TxContext;
     // ANCHOR_END: imports
 
-    use fun sui::object::new as TxContext.new;
+    use fun sui::object::new as TxContext.fresh_uid;
 
     // ANCHOR: struct
     /// The Postcard object.
@@ -26,7 +23,7 @@ module postcard::postcard {
     /// Create a new Postcard with a message.
     public fun new(message: String, ctx: &mut TxContext): Postcard {
         Postcard {
-            id: ctx.new(),
+            id: ctx.fresh_uid(),
             message,
         }
     }

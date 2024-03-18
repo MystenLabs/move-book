@@ -12,10 +12,7 @@ First line of the file is the module declaration. The address of the module is `
 
 ## Imports
 
-In the top of the module we import types and other modules from the [Standard Library](./../basic-syntax/standard-library.md) (std) and from the [Sui Framework](./../programmability/sui-framework.md) (sui). The Sui Framework is required to define and create objects as it contains the `UID` and `TxContext` types - two essential types for objects.
-
-We also import the `sui::transfer` module - this module contains storage and transfer functions.
-
+In the top of the module we import [String](./../basic-syntax/string.md) type from the [Standard Library](./../basic-syntax/standard-library.md) (std). The rest of the types used in this module are *implicitly imported* from the [Sui Framework](./../programmability/sui-framework.md).
 ```move
 {{#include ../../postcard/sources/postcard.move:imports}}
 ```
@@ -40,7 +37,7 @@ The `new` function is a public function that creates a new instance of the `Post
 {{#include ../../postcard/sources/postcard.move:new}}
 ```
 
-When initializing an instance of `Postcard` we pass the fields of the struct as arguments, the `id` is generated from the `TxContext` argument via the `ctx.new()` call. And the `message` is taken as-is from the `message` argument.
+When initializing an instance of `Postcard` we pass the fields of the struct as arguments, the `id` is generated from the `TxContext` argument via the `ctx.fresh_uid()` call. And the `message` is taken as-is from the `message` argument.
 
 ## Sending a Postcard
 
