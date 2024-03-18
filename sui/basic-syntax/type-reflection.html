@@ -214,7 +214,7 @@
 }
 </code></pre>
 <h2 id="further-reading"><a class="header" href="#further-reading">Further reading</a></h2>
-<p>Type reflection is an important part of the language, and it is a crucial part of some of the advanced patterns.</p>
+<p>Type reflection is an important part of the language, and it is a crucial part of some of the more advanced patterns.</p>
 
                     </main>
 
@@ -245,6 +245,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 
