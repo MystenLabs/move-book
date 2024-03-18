@@ -1,0 +1,6 @@
+[book]
+authors = ["Damir Shamanaev"]
+language = "en"
+multilingual = false
+src = "src"
+title = "The Move Book"
