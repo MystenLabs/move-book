@@ -1703,9 +1703,9 @@ Local = { local = "../my_other_package" }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="standard-library"><a class="header" href="#standard-library">Standard Library</a></h1>
 <!-- The Move standard library provides a set of modules  -->
-<p>The Move Standard Library provides functionality for native types and operations. It is a standard collection of modules which does utilize the storage model, and operates on native types. It is the only dependency of the <a href="basic-syntax/../programmability/sui-framework.html">Sui Framework</a>, and is imported together with it.</p>
+<p>The Move Standard Library provides functionality for native types and operations. It is a standard collection of modules which do not interact with the storage, but provide basic tools for working and manipulating the data. It is the only dependency of the <a href="basic-syntax/../programmability/sui-framework.html">Sui Framework</a>, and is imported together with it.</p>
 <h2 id="most-common-modules"><a class="header" href="#most-common-modules">Most Common Modules</a></h2>
-<p>In this book we go into detail about most of the modules in the standard library, however, it is also helpful to give an overview of the features, so that you can get a sense of what is available and which module implements that.</p>
+<p>In this book we go into detail about most of the modules in the Standard Library, however, it is also helpful to give an overview of the features, so that you can get a sense of what is available and which module implements it.</p>
 <!-- Custom CSS addition in the theme/chrome.css  -->
 <div class="modules-table">
 <div class="table-wrapper"><table><thead><tr><th>Module</th><th>Description</th><th>Chapter</th></tr></thead><tbody>
@@ -3584,6 +3584,22 @@ module book::upgradable {
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 
