@@ -2,11 +2,11 @@
 
 <!-- The Move standard library provides a set of modules  -->
 
-The Move Standard Library provides functionality for native types and operations. It is a standard collection of modules which does utilize the storage model, and operates on native types. It is the only dependency of the [Sui Framework](../programmability/sui-framework.md), and is imported together with it.
+The Move Standard Library provides functionality for native types and operations. It is a standard collection of modules which do not interact with the storage, but provide basic tools for working and manipulating the data. It is the only dependency of the [Sui Framework](../programmability/sui-framework.md), and is imported together with it.
 
 ## Most Common Modules
 
-In this book we go into detail about most of the modules in the standard library, however, it is also helpful to give an overview of the features, so that you can get a sense of what is available and which module implements that.
+In this book we go into detail about most of the modules in the Standard Library, however, it is also helpful to give an overview of the features, so that you can get a sense of what is available and which module implements it.
 
 <!-- Custom CSS addition in the theme/chrome.css  -->
 <div class="modules-table">
