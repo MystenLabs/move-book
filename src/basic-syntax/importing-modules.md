@@ -27,13 +27,13 @@ Modules defined in the same package can import each other. The `use` keyword is 
 
 ```move
 // File: sources/module_one.move
-{{#include ../../samples/sources/syntax-basics/importing_modules.move:module_one}}
+{{#include ../../samples/sources/basic-syntax/importing_modules.move:module_one}}
 ```
 
 File: sources/module_two.move
 ```move
 // File: sources/module_two.move
-{{#include ../../samples/sources/syntax-basics/importing_modules.move:module_two}}
+{{#include ../../samples/sources/basic-syntax/importing_modules.move:module_two}}
 ```
 
 ## Importing Members
@@ -41,7 +41,7 @@ File: sources/module_two.move
 You can also import specific members from a module. This is useful when you only need a single function or a single type from a module. The syntax is the same as for importing a module, but you add the member name after the module path.
 
 ```move
-{{#include ../../samples/sources/syntax-basics/importing_modules.move:members}}
+{{#include ../../samples/sources/basic-syntax/importing_modules.move:members}}
 ```
 
 ## Grouping Imports
@@ -49,7 +49,7 @@ You can also import specific members from a module. This is useful when you only
 Imports can be grouped into a single `use` statement using the curly braces `{}`. This is useful when you need to import multiple members from the same module. Move allows grouping imports from the same module and from the same package.
 
 ```move
-{{#include ../../samples/sources/syntax-basics/importing_modules.move:grouped}}
+{{#include ../../samples/sources/basic-syntax/importing_modules.move:grouped}}
 ```
 
 Single function imports are less common in Move, since the function names can overlap and cause confusion. A recommended practice is to import the entire module and use the module path to access the function. Types have unique names and should be imported individually.
@@ -57,7 +57,7 @@ Single function imports are less common in Move, since the function names can ov
 To import members and the module itself in the group import, you can use the `Self` keyword. The `Self` keyword refers to the module itself and can be used to import the module and its members.
 
 ```move
-{{#include ../../samples/sources/syntax-basics/importing_modules.move:self}}
+{{#include ../../samples/sources/basic-syntax/importing_modules.move:self}}
 ```
 
 ## Resolving Name Conflicts
@@ -65,7 +65,7 @@ To import members and the module itself in the group import, you can use the `Se
 When importing multiple members from different modules, it is possible to have name conflicts. For example, if you import two modules that both have a function with the same name, you will need to use the module path to access the function. It is also possible to have modules with the same name in different packages. To resolve the conflict and avoid ambiguity, Move offers the `as` keyword to rename the imported member.
 
 ```move
-{{#include ../../samples/sources/syntax-basics/importing_modules.move:conflict}}
+{{#include ../../samples/sources/basic-syntax/importing_modules.move:conflict}}
 ```
 
 ## Adding an External Dependency
@@ -89,5 +89,5 @@ Normally, packages define their addresses in the `[addresses]` section, so you c
 To import a module from another package, you use the `use` keyword followed by the module path. The module path consists of the package address (or alias) and the module name separated by `::`.
 
 ```move
-{{#include ../../samples/sources/syntax-basics/importing_modules.move:external}}
+{{#include ../../samples/sources/basic-syntax/importing_modules.move:external}}
 ```

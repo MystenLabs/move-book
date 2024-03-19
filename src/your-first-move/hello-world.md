@@ -90,7 +90,7 @@ Let's take a closer look at the code we just wrote:
 {{#include ../../samples/sources/your-first-move/hello_world.move:16:16}}
 ```
 
-The first line of code declares a module called `hello_world` stored at the address `book`. The contents of the module go inside the curly braces `{}`. The last line closes the module declaration with a closing curly brace `}`. We will go through the module declaration in more detail in the [Modules](../syntax-basics/modules.md) section.
+The first line of code declares a module called `hello_world` stored at the address `book`. The contents of the module go inside the curly braces `{}`. The last line closes the module declaration with a closing curly brace `}`. We will go through the module declaration in more detail in the [Modules](../basic-syntax/modules.md) section.
 
 Then we import two members of the `std::string` module (which is part of the `std` package). The `string` module contains the `String` type, and the `Self` keyword imports the module itself, so we can use its functions.
 
@@ -100,7 +100,7 @@ Then we import two members of the `std::string` module (which is part of the `st
 
 Then we define a `hello_world` function using the keyword `fun` which takes no arguments and returns a `String` type. The `public` keyword marks the visibility of the function - "public" functions can be accessed by other modules. The function body is inside the curly braces `{}`.
 
-> In the [Function](../syntax-basics/function.md) section we will learn more about functions.
+> In the [Function](../basic-syntax/function.md) section we will learn more about functions.
 
 ```Move
 {{#include ../../samples/sources/your-first-move/hello_world.move:7:9}}

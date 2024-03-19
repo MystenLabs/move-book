@@ -1,6 +1,6 @@
 # Testing
 
-A crucial part of any software development, and even more - blockchain development, is testing. In this chapter, we will cover the basics of testing in Move and how to write and organize tests for your Move code.
+A crucial part of any software development, and even more - blockchain development, is testing. Here, we will cover the basics of testing in Move and how to write and organize tests for your Move code.
 
 ## The `#[test]` attribute
 
@@ -72,31 +72,3 @@ module book::testing {
 ```
 
 Functions marked with the `#[test_only]` will be available to the test environment, and to the other modules if their visibility is set so.
-
-## Topics not covered
-
-- Unit Testing with Dummy Context
-- Utilizing the Test Scenario
-- Building custom testing frameworks
-- Adding Examples
-
-<!-- <!-- ## Unit Testing with Dummy Context
-
-## Utilizing the Test Scenario -->
-
-<!-- ## Adding Examples
-
-When publishing a package that is intented to be used (an NFT protocol or a library), it is important to showcase how this package can be used. This is where examples come in handy. There's no special functionality for examples in Move, however, there are some conventions that are used to mark examples. First of all, only sources are included into the package bytecode, so any code placed in a different directory will not be included, but will be tested!
-
-This is why placing examples into a separate `examples/` directory is a good idea.
-
-```bash
-sources/
-    protocol.move
-    library.move
-tests/
-    protocol_test.move
-examples/
-    my_example.move
-Move.toml
-``` -->

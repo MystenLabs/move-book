@@ -102,6 +102,7 @@ comparison to docs.sui.io
     - [References](./basic-syntax/references.md)
     - [Generics](./basic-syntax/generics.md)
     - [Type Reflection](./basic-syntax/type-reflection.md)
+    - [Testing](./programmability/testing.md)
     <!-- - [Enums]() (./basic-syntax/enums.md) -->
     <!-- - [Macro Functions]() (./basic-syntax/macro-functions.md) -->
     <!--
@@ -141,7 +142,6 @@ comparison to docs.sui.io
     - [Authorization Patterns]()<!-- (./programmability/authorization-patterns.md) -->
     - [Cryptography and Hashing]()<!-- (./programmability/cryptography-and-hashing.md) -->
     - [Randomness]()<!-- (./programmability/randomness.md) -->
-    - [Testing](./programmability/testing.md)
 - [Standards]()
     - [Coin]()
     - [Transfer Policy]()

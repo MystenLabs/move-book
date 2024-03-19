@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 #[allow(unused_variable)]
-module book::address_type {
+module book::address {
 
 #[test] fun address_literal() {
 

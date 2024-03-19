@@ -17,13 +17,13 @@ Comments are a way to add notes or document your code. They are ignored by the c
 ## Line comment
 
 ```Move
-{{#include ../../samples/sources/syntax-basics/comments.move:line}}
+{{#include ../../samples/sources/basic-syntax/comments.move:line}}
 ```
 
 You can use double slash `//` to comment out the rest of the line. Everything after `//` will be ignored by the compiler.
 
 ```Move
-{{#include ../../samples/sources/syntax-basics/comments.move:line_2}}
+{{#include ../../samples/sources/basic-syntax/comments.move:line_2}}
 ```
 
 ## Block comment
@@ -31,7 +31,7 @@ You can use double slash `//` to comment out the rest of the line. Everything af
 Block comments are used to comment out a block of code. They start with `/*` and end with `*/`. Everything between `/*` and `*/` will be ignored by the compiler. You can use block comments to comment out a single line or multiple lines. You can even use them to comment out a part of a line.
 
 ```Move
-{{#include ../../samples/sources/syntax-basics/comments.move:block}}
+{{#include ../../samples/sources/basic-syntax/comments.move:block}}
 ```
 
 This example is a bit extreme, but it shows how you can use block comments to comment out a part of a line.
@@ -41,7 +41,7 @@ This example is a bit extreme, but it shows how you can use block comments to co
 Documentation comments are special comments that are used to generate documentation for your code. They are similar to block comments, but they start with three slashes `///` and are placed before the definition of the item they document.
 
 ```Move
-{{#include ../../samples/sources/syntax-basics/comments.move:doc}}
+{{#include ../../samples/sources/basic-syntax/comments.move:doc}}
 ```
 
 <!-- TODO: docgen, which members are in the documentation -->

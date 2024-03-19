@@ -75,7 +75,7 @@ Move.toml
 
 The module path will be `book::my_module`, and **not** `book::basics::my::module`.
 
-Modules can import other modules and access public functions and types. The dependency needs to be declared in the package manifest, so that the compiler knows where to find it. We will learn more about imports in the [Import](../syntax-basics/import.md) section.
+Modules can import other modules and access public functions and types. The dependency needs to be declared in the package manifest, so that the compiler knows where to find it. We will learn more about imports in the [Import](../basic-syntax/import.md) section.
 
 Directories other than `sources` will not be compiled by default and hence won't be published. You can use them to store tests, documentation, examples, and other files. Though all folders are scanned when compiling in "test mode", so examples and tests can be checked for compilation errors.
 
@@ -88,7 +88,7 @@ Function is a block of code that contains a sequence of statements and expressio
 
 Like any module member, functions are accessed via a path. The path consists of the module path and the function name separated by `::`. For example, if you have a function called `my_function` in the `my_module` module in the `book` package, the path to it will be `book::my_module::my_function`.
 
-Functions can be called in a transaction. User can send a transaction containing a call to a function, and the function will be executed on the blockchain. We will learn more about transactions in the [Transaction](../syntax-basics/transaction.md) section. Any public function can be called in a transaction.
+Functions can be called in a transaction. User can send a transaction containing a call to a function, and the function will be executed on the blockchain. We will learn more about transactions in the [Transaction](../basic-syntax/transaction.md) section. Any public function can be called in a transaction.
 
 So, if we made the `my_function` public, we can call it in a transaction:
 
