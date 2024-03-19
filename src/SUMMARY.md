@@ -24,6 +24,33 @@
 
  -->
 
+
+<!--
+
+comparison to docs.sui.io
+    - strings (+)
+    - collections (+)
+    - module initializer (+)
+    - entry functions (+)
+    - one-time-witness (+)
+    - patterns
+        - capability
+        - witness
+        - transferable witness
+        - hot potato
+        - id pointer
+    - conventions
+
+- wrapped objects ???
+- shared objects
+- table and bag
+- gas considerations
+- custom transfer rules
+- object and package versioning
+
+
+-->
+
 - [Introduction](introduction.md)
 - [Foreword]() <!-- foreword.md) -->
 - [History](history.md)
@@ -86,6 +113,12 @@
     Don't forget to give an explainer on what an asset is and how it translates
     to Move and Sui. A reminder to the reader why we are learning all this.
      -->
+- [Programming Digital Assets]()
+    <!-- - [What is an Asset]()
+    - [Asset Lifecycle]()
+    - [Asset Transfer]()
+    - [Asset Ownership]()
+    - [Asset Metadata]() -->
 - [It starts with an Object](./object/README.md)
     - [The Key Ability]() <!-- (./object/key-ability.md) -->
     - [What is an Object]() <!-- (./object/what-is-an-object.md) -->
@@ -94,19 +127,21 @@
     - [Shared State]() <!-- (./object/shared-state.md) -->
     - [Transfer to Object?]()<!-- (./object/transfer-to-object.md) -->
 - [Advanced Programmability](./programmability/README.md)
-    - [Fast Path](./programmability/fast-path.md)
     - [Transaction Context](./programmability/transaction-context.md)
+    - [Pattern: Capability](./programmability/capability.md)
+    - [Fast Path](./programmability/fast-path.md)
     - [Collections](./programmability/collections.md)
     - [Dynamic Fields](./programmability/dynamic-fields.md)
     - [Dynamic Collections]() <!-- (./programmability/dynamic-collections.md) -->
-    - [Testing](./programmability/testing.md)
     - [Epoch and Time](./programmability/epoch-and-time.md)
     - [Package Upgrades]()<!-- (./programmability/package-upgrades.md) -->
     - [Witness and Abstract Implementation](./programmability/witness-and-abstract-implementation.md)
+    - [One Time Witness]()
     - [Transaction Blocks]()<!-- (./programmability/transaction-blocks.md) -->
     - [Authorization Patterns]()<!-- (./programmability/authorization-patterns.md) -->
     - [Cryptography and Hashing]()<!-- (./programmability/cryptography-and-hashing.md) -->
     - [Randomness]()<!-- (./programmability/randomness.md) -->
+    - [Testing](./programmability/testing.md)
 - [Standards]()
     - [Coin]()
     - [Transfer Policy]()
@@ -114,14 +149,15 @@
     - [Closed Loop Token]()
 - [Special Topics]()
     - [BCS]()
-    - [Coding Conventions]()
 - [Guides](./guides/README.md)
     - [2024 Migration Guide](./guides/2024-migration-guide.md)
     - [Upgradability Practices](./guides/upgradeability-practices.md)
     - [Building against Limits](./guides/building-against-limits.md)
     - [Better error handling](./guides/better-error-handling.md)
+    - [Open-sourcing Libraries]()
     - [Testing]()<!-- (./guides/testing.md) -->
     - [Debugging]()<!-- (./guides/debugging.md) -->
+    - [Coding Conventions]()
 - [Appendix]()
     - [Glossary](./appendix/glossary.md)
     - [References]() <!-- (./appendix/references.md) -->
