@@ -7,7 +7,7 @@ Move 2024 is the new edition of the Move language that is maintained by Mysten L
 To use the new edition, you need to specify the edition in the `move` file. The edition is specified in the `move` file using the `edition` keyword. Currently, the only available edition is `2024.alpha`.
 
 ```ini
-edition = "2024.alpha";
+edition = "2024.beta";
 ```
 
 ## Struct Visibility

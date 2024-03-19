@@ -75,6 +75,8 @@ There's a common pattern in Sui which allows changing the stored configuration o
 
 ```move
 module book::versioned_config {
+    use sui::vec_map::VecMap;
+    use std::string::String;
 
     /// The base object
     struct Config has key {

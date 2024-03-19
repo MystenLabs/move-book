@@ -25,7 +25,7 @@
  -->
 
 - [Introduction](introduction.md)
-- [Foreword](foreword.md)
+- [Foreword]() <!-- foreword.md) -->
 - [History](history.md)
 - [Before we begin](before-we-begin/README.md)
     - [Install Sui](before-we-begin/install-sui.md)
@@ -86,7 +86,7 @@
     Don't forget to give an explainer on what an asset is and how it translates
     to Move and Sui. A reminder to the reader why we are learning all this.
      -->
-- [It starts with an Object]() <!-- (./object/README.md) -->
+- [It starts with an Object](./object/README.md)
     - [The Key Ability]() <!-- (./object/key-ability.md) -->
     - [What is an Object]() <!-- (./object/what-is-an-object.md) -->
     - [True Ownership]() <!-- (./object/true-ownership.md) -->

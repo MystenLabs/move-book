@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "f1108956ffd5fbdb",
+        "id": "38d8b57879ef2e76",
         "type": "tabs",
         "children": [
           {
-            "id": "dfe41340e960c604",
+            "id": "c0212517573d3f4b",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -106,8 +106,26 @@
       "markdown-importer:Open format converter": false
     }
   },
-  "active": "dfe41340e960c604",
+  "active": "c0212517573d3f4b",
   "lastOpenFiles": [
+    "src/concepts/manifest.md",
+    "src/basic-syntax/module.md",
+    "book/mark.min.js",
+    "book/searcher.js",
+    "src/concepts/user-interaction.md",
+    "src/basic-syntax/function.md",
+    "src/basic-syntax/expression.md",
+    "src/basic-syntax/control-flow.md",
+    "src/basic-syntax/constants.md",
+    "src/basic-syntax/comments.md",
+    "src/guides/better-error-handling.md",
+    "src/basic-syntax/assert-and-abort.md",
+    "src/basic-syntax/address.md",
+    "src/concepts/address.md",
+    "src/appendix/references.md",
+    "src/appendix/glossary.md",
+    "src/appendix/contributing.md",
+    "src/appendix/acknowledgements.md",
     "src/your-first-move/hello-world.md",
     "src/if.md",
     "src/ide-support.md",
@@ -121,8 +139,6 @@
     "samples/build/book/source_maps/dependencies/Sui/zklogin_verified_id.mvsm",
     "samples/build/book/bytecode_modules/dependencies/Sui/zklogin_verified_id.mv",
     "samples/build/book/sources/dependencies/Sui/token.move",
-    "samples/build/book/source_maps/dependencies/Sui/token.mvsm",
-    "samples/build/book/bytecode_modules/dependencies/Sui/token.mv",
     "book/FontAwesome/fonts/fontawesome-webfont.svg",
     "book/favicon.svg",
     "book/favicon.png",
@@ -131,23 +147,7 @@
     "src/SUMMARY.md",
     "src/your-first-move/your-first-move.md",
     "src/what-is-sui.md",
-    "src/what-is-move.md",
-    "src/option.md",
-    "src/managing-collections-with-vectors.md",
-    "Kiosk Permissions.md",
     "Untitled.canvas",
-    "Kiosk/Kiosk Extensions & Security Analysis.md",
-    "Kiosk/Architecture Philosophy.md",
-    "Kiosk/Trading Framework.md",
-    "Topics to cover.md",
-    "Planning an app.md",
-    "Writeups/Adding Rules to the TransferPolicy.md",
-    "Writeups/Dynamic fields and careful use.md",
-    "Writeups/Utilizing Display for speed and efficiency.md",
-    "Writeups/SuiFrens Architecture.md",
-    "Writeups/Kiosk - a trading tool with rich transfer configuration.md",
-    "Writeups/Transaction Block FAQ.md",
-    "Images/kiosk_scheme.jpg",
-    "Display/Sui Object Display Proposal.md"
+    "Images/kiosk_scheme.jpg"
   ]
 }

@@ -21,23 +21,7 @@ Links:
 Constants are immutable values that are defined at the module level. They often serve as a way to give names to values that are used throughout a module. For example, if there's a default price for a product, you might define a constant for it. Constants are *internal* to the module and can not be accessed from other modules.
 
 ```move
-module book::shop_price {
-    use sui::coin::{Self, Coin};
-    use sui::sui::SUI;
-
-    /// The price of an item in the shop.
-    const ITEM_PRICE: u64 = 100;
-
-    /// An item sold in the shop.
-    struct Item { /* ... */ }
-
-    /// Purchase an item from the shop.
-    public fun purchase(coin: Coin<SUI>): Item {
-        assert!(coin.value() == ITEM_PRICE, 0);
-
-        Item { /* ... */ }
-    }
-}
+{{#include ../../samples/sources/syntax-basics/constants.move:shop_price}}
 ```
 
 ## Naming Convention

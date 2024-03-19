@@ -484,7 +484,7 @@ hljs.registerLanguage('move', function(hljs) {
           ENTITY,
           {
             scope: 'keyword',
-            match: '(fun|as)'
+            match: /\b(fun|as)\b/
           },
           {
             scope: 'literal',
@@ -599,12 +599,7 @@ hljs.registerLanguage('move', function(hljs) {
         // function call
         scope: 'title.function.invoke',
         match: /\b[a-z_][a-z_0-9]*(?=\()/,
-      },
-      {
-        // assert built-in
-        scope: 'built-in',
-        match: /\bassert|borrow_global|borrow_global_mut|move_to|move_from|exists\b/,
-      },
+      }
     ]
   };
 });

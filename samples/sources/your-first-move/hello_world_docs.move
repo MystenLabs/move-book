@@ -1,5 +1,5 @@
-// Copyright (c) Damir Shamanaev 2023
-// Licensed under the MIT License - https://opensource.org/licenses/MIT
+// Copyright (c) Mysten Labs, Inc.
+// SPDX-License-Identifier: Apache-2.0
 
 /// This module contains a function that returns a string "Hello, World!".
 module book::hello_world_docs {

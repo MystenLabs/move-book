@@ -1,5 +1,5 @@
-// Copyright (c) Damir Shamanaev 2023
-// Licensed under the MIT License - https://opensource.org/licenses/MIT
+// Copyright (c) Mysten Labs, Inc.
+// SPDX-License-Identifier: Apache-2.0
 
 module book::hello_world {
     use std::string::{Self, String};

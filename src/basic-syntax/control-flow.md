@@ -40,35 +40,13 @@ if (<bool_expression>) <expression> else <expression>;
 Just like any other expression, `if` requires a semicolon, if there are other expressions following it. The `else` keyword is optional, except for the case when the resulting value is assigned to a variable. We will cover this below.
 
 ```move
-module book::if_condition {
-    #[test]
-    fun test_if() {
-        let x = 5;
-
-        // `x > 0` is a boolean expression.
-        if (x > 0) {
-            std::debug::print(&b"X is bigger than 0".to_string())
-        };
-    }
-}
+{{#include ../../samples/sources/syntax-basics/control_flow.move:if_condition}}
 ```
 
 Let's see how we can use `if` and `else` to assign a value to a variable:
 
 ```move
-module book::if_else {
-    #[test]
-    fun test_if_else() {
-        let x = 5;
-        let y = if (x > 0) {
-            1
-        } else {
-            0
-        };
-
-        assert!(y == 1, 0);
-    }
-}
+{{#include ../../samples/sources/syntax-basics/control_flow.move:if_else}}
 ```
 
 Here we assign the value of the `if` expression to the variable `y`. If `x` is greater than 0, `y` will be assigned the value 1, otherwise 0. The `else` block is necessary, because both branches must return a value of the same type. If we omit the `else` block, the compiler will throw an error.
@@ -96,32 +74,7 @@ while (<bool_expression>) <expression>;
 Here is an example of a `while` loop with a very simple condition:
 
 ```move
-module book::while_loop {
-
-    // This function iterates over the `x` variable until it reaches 10, the
-    // return value is the number of iterations it took to reach 10.
-    //
-    // If `x` is 0, then the function will return 10.
-    // If `x` is 5, then the function will return 5.
-    fun while_loop(x: u8): u8 {
-        let mut y = 0;
-
-        // This will loop until `x` is 10.
-        // And will never run if `x` is 10 or more.
-        while (x < 10) {
-            y = y + 1;
-        };
-
-        y
-    }
-
-    #[test]
-    fun test_while() {
-        assert!(while_loop(0) == 10, 0); // 10 times
-        assert!(while_loop(5) == 5, 0);  // 5 times
-        assert!(while_loop(10) == 0, 0); // loop never executed
-    }
-}
+{{#include ../../samples/sources/syntax-basics/control_flow.move:while_loop}}
 ```
 
 ## Infinite `loop`
@@ -129,20 +82,7 @@ module book::while_loop {
 Now let's imagine a scenario where the boolean expression is always `true`. For example, if we literally passed `true` to the `while` condition. As you might expect, this would create an infinite loop, and this is almost what the `loop` statement works like.
 
 ```move
-module book::infinite_while {
-    #[test]
-    fun test_infinite_while() {
-        let mut x = 0;
-
-        // This will loop forever.
-        while (true) {
-            x = x + 1;
-        };
-
-        // This line will never be executed.
-        assert!(x == 5, 0);
-    }
-}
+{{#include ../../samples/sources/syntax-basics/control_flow.move:infinite_while}}
 ```
 
 An infinite `while`, or `while` without a condition, is a `loop`. The syntax for it is simple:
@@ -154,20 +94,7 @@ loop <expression>;
 Let's rewrite the previous example using `loop` instead of `while`:
 
 ```move
-module book::infinite_loop {
-    #[test]
-    fun test_infinite_loop() {
-        let mut x = 0;
-
-        // This will loop forever.
-        loop {
-            x = x + 1;
-        };
-
-        // This line will never be executed.
-        assert!(x == 5, 0);
-    }
-}
+{{#include ../../samples/sources/syntax-basics/control_flow.move:infinite_loop}}
 ```
 
 <!-- TODO: that's a weak point lmao -->
@@ -187,24 +114,7 @@ break;
 The `break` statement is used to stop the execution of a loop and exit it early. It is often used in combination with a conditional statement to exit the loop when a certain condition is met. To illustrate this point, let's turn the infinite `loop` from the previous example into something that looks and behaves more like a `while` loop:
 
 ```move
-module book::break_loop {
-    #[test]
-    fun test_break_loop() {
-        let mut x = 0;
-
-        // This will loop until `x` is 5.
-        loop {
-            x = x + 1;
-
-            // If `x` is 5, then exit the loop.
-            if (x == 5) {
-                break; // Exit the loop.
-            }
-        };
-
-        assert!(x == 5, 0);
-    }
-}
+{{#include ../../samples/sources/syntax-basics/control_flow.move:break_loop}}
 ```
 
 Almost identical to the `while` loop, right? The `break` statement is used to exit the loop when `x` is 5. If we remove the `break` statement, the loop will run forever, just like the previous example.
@@ -221,31 +131,7 @@ continue;
 The example below skips odd numbers and prints only even numbers from 0 to 10:
 
 ```move
-module book::continue_loop {
-    #[test]
-    fun test_continue_loop() {
-        let mut x = 0;
-
-        // This will loop until `x` is 10.
-        loop {
-            x = x + 1;
-
-            // If `x` is odd, then skip the rest of the iteration.
-            if (x % 2 == 1) {
-                continue; // Skip the rest of the iteration.
-            }
-
-            std::debug::print(&x);
-
-            // If `x` is 10, then exit the loop.
-            if (x == 10) {
-                break; // Exit the loop.
-            }
-        };
-
-        assert!(x == 10, 0); // 10
-    }
-}
+{{#include ../../samples/sources/syntax-basics/control_flow.move:continue_loop}}
 ```
 
 `break` and `continue` statements can be used in both `while` and `loop` loops.
@@ -261,27 +147,7 @@ return <expression>;
 Here is an example of a function that returns a value when a certain condition is met:
 
 ```move
-module book::return_statement {
-    // This function returns `true` if `x` is greater than 0 and not 5,
-    // otherwise it returns `false`.
-    fun is_positive(x: u8): bool {
-        if (x == 5) {
-            return false;
-        }
-
-        if (x > 0) {
-            return true;
-        };
-
-        false
-    }
-
-    #[test]
-    fun test_return() {
-        assert!(is_positive(5), false);
-        assert!(is_positive(0), false);
-    }
-}
+{{#include ../../samples/sources/syntax-basics/control_flow.move:return_statement}}
 ```
 
 Unlike in other languages, the `return` statement is not required for the last expression in a function. The last expression in a function block is automatically returned. However, the `return` statement is useful when we want to exit a function early if a certain condition is met.

@@ -9,38 +9,9 @@ Type reflection is implemented in the [Standard Library](./standard-library.md) 
 The module is pretty straightforward, and operations allowed on the result are limited to getting a string representation and extracting the module and address of the type.
 
 ```move
-module book::type_reflection {
-    use std::type_name;
-
-    /// A function that returns the name of the type `T` and its module and address.
-    public fun i_dont_know_you<T>(): (String, String, String) {
-        let type_name: TypeName = type_name::get<T>();
-
-        // there's a way to borrow
-        let str: &String = type_name.borrow_string();
-
-        let module_name: String = type_name.get_module();
-        let address_str: String = type_name.get_address();
-
-        // and a way to consume the value
-        let str = type_name.into_string();
-
-        (str, module_name, address_str)
-    }
-
-    #[test_only]
-    struct MyType {}
-
-    #[test]
-    fun test_type_reflection() {
-        let (type_name, module_name, address_str) = i_dont_know_you<MyType>();
-
-        //
-        assert!(module_name == b"type_reflection".to_string(), 1);
-    }
-}
+{{#include ../../samples/sources/syntax-basics/type_reflection.move:main}}
 ```
 
 ## Further reading
 
-Type reflection is an important part of the language, and it is a crucial part of some of the more advanced patterns. 
+Type reflection is an important part of the language, and it is a crucial part of some of the more advanced patterns.
