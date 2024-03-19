@@ -2630,17 +2630,20 @@ Notes:
     - unpacking a reference (mutable and immutable)
 
  -->
-<p>In <a href="basic-syntax/./ownership-and-scope.html">the previous section</a> we explained the ownership and scope in Move. We showed how the value is <em>moved</em> to a new scope, and how it changes the owner. In this section, we will explain how to <em>borrow</em> a reference to a value to avoid moving it, and how Move's <em>borrow checker</em> ensures that the references are used correctly.</p>
-<h2 id="reference"><a class="header" href="#reference">Reference</a></h2>
-<p>References are a way to borrow a value without changing its owner. Immutable references allow the function to read the value without changing it or moving it. And mutable references allow the function to read and modify the value without moving it. To illustrate this, let's consider a simple example - an application for a metro (subway) pass. We will look at 4 different scenarios:</p>
+<p>In the <a href="basic-syntax/./ownership-and-scope.html">Ownership and Scope</a> section, we explained that when a value is passed to a function, it is <em>moved</em> to the function's scope. This means that the function becomes the owner of the value, and the original scope (owner) can no longer use it. This is an important concept in Move, as it ensures that the value is not used in multiple places at the same time. However, there are use cases when we want to pass a value to a function but retain the ownership. This is where references come into play.</p>
+<p>To illustrate this, let's consider a simple example - an application for a metro (subway) pass. We will look at 4 different scenarios:</p>
 <ol>
 <li>Card can be purchased at the kiosk for a fixed price</li>
 <li>Card can be shown to inspectors to prove that the passenger has a valid pass</li>
 <li>Card can be used at the turnstile to enter the metro, and spend a ride</li>
 <li>Card can be recycled once it's empty</li>
 </ol>
-<pre><code class="language-move">module book::references {
-
+<blockquote>
+<p>On this page we use pre-2024 syntax for better visibility. The result utilizing the 2024 syntax is shown in <a href="basic-syntax/references.html#move-2024">the end of the page</a>.</p>
+</blockquote>
+<h2 id="layout"><a class="header" href="#layout">Layout</a></h2>
+<p>The initial layout of the metro pass application is simple. We define the <code>Card</code> type and the <code>USES</code> <a href="basic-syntax/./constants.html">constant</a> that represents the number of rides for a single card. We also add an <a href="basic-syntax/./assert-and-abort.html#error-constants">error constant</a> for the case when the card is empty.</p>
+<pre><code class="language-move">module book::metro_pass {
     /// Error code for when the card is empty.
     const ENoUses: u64 = 0;
 
@@ -2648,55 +2651,86 @@ Notes:
     const USES: u8 = 3;
 
     /// A metro pass card
-    struct Card { uses: u8 }
+    public struct Card { uses: u8 }
 
     /// Purchase a metro pass card.
     public fun purchase(/* pass a Coin */): Card {
         Card { uses: USES }
     }
-
-    /// Show the metro pass card to the inspector.
-    public fun show(card: &amp;Card): bool {
+}
+</code></pre>
+<!-- In [the previous section](./ownership-and-scope.md) we explained the ownership and scope in Move. We showed how the value is *moved* to a new scope, and how it changes the owner. In this section, we will explain how to *borrow* a reference to a value to avoid moving it, and how Move's *borrow checker* ensures that the references are used correctly. -->
+<h2 id="reference"><a class="header" href="#reference">Reference</a></h2>
+<p>References are a way to <em>show</em> a value to a function without giving up the ownership. In our case, when we show the Card to the inspector, we don't want to give up the ownership of it, and we don't allow them to spend the rides. We just want to allow <em>reading</em> the value of the Card and prove its ownership.</p>
+<p>To do so, in the function signature, we use the <code>&amp;</code> symbol to indicate that we are passing a reference to the value, not the value itself.</p>
+<pre><code class="language-move">    /// Show the metro pass card to the inspector.
+    public fun is_valid(card: &amp;Card): bool {
         card.uses &gt; 0
     }
-
-    /// Use the metro pass card at the turnstile to enter the metro.
+</code></pre>
+<p>Now the function can't take the ownership of the card, and it can't spend the rides. But it can read its value. Worth noting, that a signature like this makes it impossible to call the function without a Card at all. This is an important property which allows the <a href="basic-syntax/./../programmability/capability.html">Capability Pattern</a> which we will cover in the next chapters.</p>
+<h2 id="mutable-reference"><a class="header" href="#mutable-reference">Mutable Reference</a></h2>
+<p>In some cases, we want to allow the function to change the value of the Card. For example, when we use the Card at the turnstile, we want to spend a ride. To implement it, we use the <code>&amp;mut</code> keyword in the function signature.</p>
+<pre><code class="language-move">    /// Use the metro pass card at the turnstile to enter the metro.
     public fun enter_metro(card: &amp;mut Card) {
         assert!(card.uses &gt; 0, ENoUses);
         card.uses = card.uses - 1;
     }
-
-    /// Recycle the metro pass card.
+</code></pre>
+<p>As you can see in the function body, the <code>&amp;mut</code> reference allows mutating the value, and the function can spend the rides.</p>
+<h2 id="passing-by-value-1"><a class="header" href="#passing-by-value-1">Passing by Value</a></h2>
+<p>Lastly, let's give an illustration of what happens when we pass the value itself to the function. In this case, the function takes the ownership of the value, and the original scope can no longer use it. The owner of the Card can recycle it, and, hence, lose the ownership.</p>
+<pre><code class="language-move">    /// Recycle the metro pass card.
     public fun recycle(card: Card) {
         assert!(card.uses == 0, ENoUses);
         let Card { uses: _ } = card;
     }
-
-    #[test]
-    fun test_card() {
+</code></pre>
+<p>In the <code>recycle</code> function, the Card is <em>taken by value</em> and can be unpacked and destroyed. The original scope can't use it anymore.</p>
+<h2 id="full-example"><a class="header" href="#full-example">Full Example</a></h2>
+<p>To illustrate the full flow of the application, let's put all the pieces together in a test.</p>
+<pre><code class="language-move">    #[test]
+    fun test_card_2024() {
         // declaring variable as mutable because we modify it
         let mut card = purchase();
 
         card.enter_metro(); // modify the card but don't move it
-        assert!(card.show(), true); // read the card!
+        assert!(card.is_valid(), 0); // read the card!
 
         card.enter_metro(); // modify the card but don't move it
         card.enter_metro(); // modify the card but don't move it
 
         card.recycle(); // move the card out of the scope
     }
-}
 </code></pre>
-<h2 id="mutable-references"><a class="header" href="#mutable-references">Mutable References</a></h2>
-<!-- TODO: talk about the number of references at a time -->
-<h2 id="dereference-and-copy"><a class="header" href="#dereference-and-copy">Dereference and Copy</a></h2>
+<!-- ## Dereference and Copy -->
 <!-- TODO: defer and copy, *& -->
-<h2 id="notes"><a class="header" href="#notes">Notes</a></h2>
+<!-- ## Notes -->
 <!--
     Move 2024 is great but it's better to show the example with explicit &t and &mut t
     ...and then say that the example could be rewritten with the new syntax
 
 
+-->
+<!-- ## Move 2024
+
+Here's the test from this page written with the Move 2024 syntax:
+
+```move
+    #[test]
+    fun test_card_2024() {
+        // declaring variable as mutable because we modify it
+        let mut card = purchase();
+
+        card.enter_metro(); // modify the card but don't move it
+        assert!(card.is_valid(), 0); // read the card!
+
+        card.enter_metro(); // modify the card but don't move it
+        card.enter_metro(); // modify the card but don't move it
+
+        card.recycle(); // move the card out of the scope
+    }
+```
 -->
 <div style="break-before: page; page-break-before: always;"></div><h1 id="generics"><a class="header" href="#generics">Generics</a></h1>
 <p>Generics are a way to define a type or function that can work with any type. This is useful when you want to write a function which can be used with different types, or when you want to define a type that can hold any other type. Generics are the foundation of many advanced features in Move, such as collections, abstract implementations, and more.</p>
@@ -3550,22 +3584,6 @@ module book::upgradable {
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 
