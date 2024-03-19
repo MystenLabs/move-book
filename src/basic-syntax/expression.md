@@ -4,13 +4,14 @@ In programming languages expression is a unit of code which returns a value, in 
 
 > Expressions are sequenced with semicolons `;`. If there's "no expression" after the semicolon, the compiler will insert an empty expression `()`.
 
-## Empty Expression
+<!-- ## Empty Expression
 
 The very base of the expression is the empty expression. It is a valid expression that does nothing and returns nothing. An empty expression is written as empty parentheses `()`. It's rarely the case when you need to use an empty expression. The compiler automatically inserts empty expressions where needed, for example in an empty [Scope](#scope). Though, it may be helpful to know that it exists. Parentheses are also used to group expressions to control the order of evaluation.
 
 ```move
 {{#include ../../samples/sources/syntax-basics/expression.move:empty}}
 ```
+-->
 
 ## Literals
 
@@ -55,13 +56,5 @@ We go into detail about functions in the [Functions](./functions.md) section. Ho
 Control flow expressions are used to control the flow of the program. They are also expressions, so they return a value. We cover control flow expressions in the [Control Flow](./control-flow.md) section. Here's a very brief overview:
 
 ```move
-// if is an expression, so it returns a value; if there are 2 branches,
-// the types of the branches must match.
-if (bool_expr) expr1 else expr2;
-
-// while is an expression, but it returns `()`.
-while (bool_expr) expr;
-
-// loop is an expression, but returns `()` as well.
-loop expr;
+{{#include ../../samples/sources/syntax-basics/expression.move:control_flow}}
 ```

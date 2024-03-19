@@ -543,3 +543,10 @@ ul#searchresults span.teaser em {
     margin-left: -14px;
     width: 14px;
 }
+
+
+/* Custom Parts */
+
+.modules-table table td {
+    height: 50px;
+}

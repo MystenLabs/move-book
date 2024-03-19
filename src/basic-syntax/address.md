@@ -21,12 +21,7 @@ Links:
 To represent [addresses](./../concepts/address.md), Move uses a special type called `address`. It is a 32 byte value that can be used to represent any address on the blockchain. Addresses are used in two syntax forms: hexadecimal addresses prefixed with `0x` and named addresses.
 
 ```move
-// address literal
-let value: address = @0x1;
-
-// named address registered in Move.toml
-let value = @std;
-let other = @sui;
+{{#include ../../samples/sources/syntax-basics/address_type.move:address_literal}}
 ```
 
 An address literal starts with the `@` symbol followed by a hexadecimal number or an identifier. The hexadecimal number is interpreted as a 32 byte value. The identifier is looked up in the [Move.toml](./../concepts/manifest.md) file and replaced with the corresponding address by the compiler. If the identifier is not found in the Move.toml file, the compiler will throw an error.
@@ -37,24 +32,15 @@ Sui Framework offers a set of helper functions to work with addresses. Given tha
 
 Example: Convert an address to a `u256` type and back.
 ```move
-use sui::address;
-
-let addr_as_u256: u256 = address::to_u256(@0x1);
-let addr = address::from_u256(addr_as_u256);
+{{#include ../../samples/sources/syntax-basics/address_type.move:to_u256}}
 ```
 
 Example: Convert an address to a `vector<u8>` type and back.
 ```move
-use sui::address;
-
-let addr_as_u8: vector<u8> = address::to_bytes(@0x1);
-let addr = address::from_bytes(addr_as_u8);
+{{#include ../../samples/sources/syntax-basics/address_type.move:to_bytes}}
 ```
 
 Example: Convert an address into a string.
 ```move
-use sui::address;
-use std::string;
-
-let addr_as_string: String = address::to_string(@0x1);
+{{#include ../../samples/sources/syntax-basics/address_type.move:to_string}}
 ```

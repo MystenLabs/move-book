@@ -68,7 +68,7 @@ The `while` statement is used to execute a block of code as long as a boolean ex
 The syntax for the `while` loop is:
 
 ```move
-while (<bool_expression>) <expression>;
+while (<bool_expression>) { <expressions>; };
 ```
 
 Here is an example of a `while` loop with a very simple condition:
@@ -88,7 +88,7 @@ Now let's imagine a scenario where the boolean expression is always `true`. For 
 An infinite `while`, or `while` without a condition, is a `loop`. The syntax for it is simple:
 
 ```move
-loop <expression>;
+loop { <expressions>; };
 ```
 
 Let's rewrite the previous example using `loop` instead of `while`:
@@ -105,9 +105,9 @@ Infinite loops on their own are not very useful in Move, since every operation i
 
 As we already mentioned, infinite loops are rather useless on their own. And that's where we introduce the `break` and `continue` statements. They are used to exit a loop early, and to skip the rest of the current iteration, respectively.
 
-Syntax for the `break` statement is:
+Syntax for the `break` statement is (without a semicolon):
 ```move
-break;
+break
 ```
 
 
@@ -123,9 +123,9 @@ Almost identical to the `while` loop, right? The `break` statement is used to ex
 
 The `continue` statement is used to skip the rest of the current iteration and start the next one. Similarly to `break`, it is used in combination with a conditional statement to skip the rest of the iteration when a certain condition is met.
 
-Syntax for the `continue` statement is
+Syntax for the `continue` statement is (without a semicolon):
 ```move
-continue;
+continue
 ```
 
 The example below skips odd numbers and prints only even numbers from 0 to 10:
@@ -136,12 +136,12 @@ The example below skips odd numbers and prints only even numbers from 0 to 10:
 
 `break` and `continue` statements can be used in both `while` and `loop` loops.
 
-## Return
+## Early Return
 
 The `return` statement is used to exit a [function](./function.md) early and return a value. It is often used in combination with a conditional statement to exit the function when a certain condition is met. The syntax for the `return` statement is:
 
 ```move
-return <expression>;
+return <expression>
 ```
 
 Here is an example of a function that returns a value when a certain condition is met:

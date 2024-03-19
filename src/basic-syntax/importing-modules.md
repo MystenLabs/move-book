@@ -25,28 +25,15 @@ Move achieves high modularity and code reuse by allowing module imports. Modules
 
 Modules defined in the same package can import each other. The `use` keyword is followed by the module path, which consists of the package address (or alias) and the module name separated by `::`.
 
-File: sources/module_one.move
 ```move
 // File: sources/module_one.move
-module book::module_one {
-    /// Struct defined in the same module.
-    public struct Character has drop {}
-
-    /// Simple function that creates a new `Character` instance.
-    public fun new(): Character { Character {} }
-}
+{{#include ../../samples/sources/syntax-basics/importing_modules.move:module_one}}
 ```
 
 File: sources/module_two.move
 ```move
-module book::module_two {
-    use book::module_one; // importing module_one from the same package
-
-    /// Calls the `new` function from the `module_one` module.
-    public fun create_and_ignore() {
-        let _ = module_one::new();
-    }
-}
+// File: sources/module_two.move
+{{#include ../../samples/sources/syntax-basics/importing_modules.move:module_two}}
 ```
 
 ## Importing Members
@@ -54,15 +41,7 @@ module book::module_two {
 You can also import specific members from a module. This is useful when you only need a single function or a single type from a module. The syntax is the same as for importing a module, but you add the member name after the module path.
 
 ```move
-module book::more_imports {
-    use book::module_one::new;       // imports the `new` function from the `module_one` module
-    use book::module_one::Character; // importing the `Character` struct from the `module_one` module
-
-    /// Calls the `new` function from the `module_one` module.
-    public fun create_character(): Character {
-        new()
-    }
-}
+{{#include ../../samples/sources/syntax-basics/importing_modules.move:members}}
 ```
 
 ## Grouping Imports
@@ -70,16 +49,7 @@ module book::more_imports {
 Imports can be grouped into a single `use` statement using the curly braces `{}`. This is useful when you need to import multiple members from the same module. Move allows grouping imports from the same module and from the same package.
 
 ```move
-module book::grouped_imports {
-    // imports the `new` function and the `Character` struct from
-    /// the `module_one` module
-    use book::module_one::{new, Character};
-
-    /// Calls the `new` function from the `module_one` module.
-    public fun create_character(): Character {
-        new()
-    }
-}
+{{#include ../../samples/sources/syntax-basics/importing_modules.move:grouped}}
 ```
 
 Single function imports are less common in Move, since the function names can overlap and cause confusion. A recommended practice is to import the entire module and use the module path to access the function. Types have unique names and should be imported individually.
@@ -87,15 +57,7 @@ Single function imports are less common in Move, since the function names can ov
 To import members and the module itself in the group import, you can use the `Self` keyword. The `Self` keyword refers to the module itself and can be used to import the module and its members.
 
 ```move
-module book::self_imports {
-    // imports the `Character` struct, and the `module_one` module
-    use book::module_one::{Self, Character};
-
-    /// Calls the `new` function from the `module_one` module.
-    public fun create_character(): Character {
-        module_one::new()
-    }
-}
+{{#include ../../samples/sources/syntax-basics/importing_modules.move:self}}
 ```
 
 ## Resolving Name Conflicts
@@ -103,15 +65,7 @@ module book::self_imports {
 When importing multiple members from different modules, it is possible to have name conflicts. For example, if you import two modules that both have a function with the same name, you will need to use the module path to access the function. It is also possible to have modules with the same name in different packages. To resolve the conflict and avoid ambiguity, Move offers the `as` keyword to rename the imported member.
 
 ```move
-module book::conflict_resolution {
-    // `as` can be placed after any import, including group imports
-    use book::module_one::{Self as mod, Character as Char};
-
-    /// Calls the `new` function from the `module_one` module.
-    public fun create(): Char {
-        mod::new_two()
-    }
-}
+{{#include ../../samples/sources/syntax-basics/importing_modules.move:conflict}}
 ```
 
 ## Adding an External Dependency
@@ -135,8 +89,5 @@ Normally, packages define their addresses in the `[addresses]` section, so you c
 To import a module from another package, you use the `use` keyword followed by the module path. The module path consists of the package address (or alias) and the module name separated by `::`.
 
 ```move
-module book::imports {
-    use std::string; // std = 0x1, string is a module in the standard library
-    use sui::coin;   // sui = 0x2, coin is a module in the Sui Framework
-}
+{{#include ../../samples/sources/syntax-basics/importing_modules.move:external}}
 ```
