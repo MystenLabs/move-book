@@ -58,7 +58,7 @@ module book::control_flow {
     }
     // ANCHOR_END: while_loop
     // ANCHOR: infinite_while
-    #[test]
+    #[test, expected_failure(out_of_gas, location=Self)]
     fun test_infinite_while() {
         let mut x = 0;
 
@@ -73,7 +73,7 @@ module book::control_flow {
     // ANCHOR_END: infinite_while
     #[allow(dead_code)]
     // ANCHOR: infinite_loop
-    #[test]
+    #[test, expected_failure(out_of_gas, location=Self)]
     fun test_infinite_loop() {
         let mut x = 0;
 

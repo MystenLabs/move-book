@@ -61,5 +61,25 @@ fun some_other() {
 // ANCHOR_END: fun_call
 
 
+#[test] fun control_flow() {
 
+let expr = false;
+let expr1 = false;
+let expr2 = false;
+let bool_expr = false;
+
+// ANCHOR: control_flow
+// if is an expression, so it returns a value; if there are 2 branches,
+// the types of the branches must match.
+if (bool_expr) expr1 else expr2;
+
+// while is an expression, but it returns `()`.
+while (bool_expr) { expr; };
+
+// loop is an expression, but returns `()` as well.
+loop { expr; break };
+// ANCHOR_END: control_flow
+
+
+}
 }
