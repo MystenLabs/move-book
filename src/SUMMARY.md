@@ -61,6 +61,8 @@ comparison to docs.sui.io
 - [Your First Move](your-first-move/README.md)
     - [Hello World!](your-first-move/hello-world.md)
     - [Adding Tests](your-first-move/adding-tests.md)
+    - [Publishing]()
+    - [Send a Transaction]()
     - [Debugging](your-first-move/debugging.md)
     - [Generating Docs](your-first-move/generating-docs.md)
 - [Concepts](./concepts/README.md)
@@ -107,8 +109,6 @@ comparison to docs.sui.io
     <!-- - [Macro Functions]() (./basic-syntax/macro-functions.md) -->
     <!--
     Somewhere here we should mention that Move does not enforce a storage model
-    and can be used with different storage models like UTXO, account-based, or
-    object-based. And then it's okay to proceed to how Sui does it.
     -->
     <!--
     Don't forget to give an explainer on what an asset is and how it translates
@@ -138,17 +138,29 @@ comparison to docs.sui.io
     - [Package Upgrades]()<!-- (./programmability/package-upgrades.md) -->
     - [Witness and Abstract Implementation](./programmability/witness-and-abstract-implementation.md)
     - [One Time Witness]()
+    - [Pattern: Request]()
+    - [Pattern: Hot Potato]()
+    - [Pattern: Object Capability]()
     - [Transaction Blocks]()<!-- (./programmability/transaction-blocks.md) -->
     - [Authorization Patterns]()<!-- (./programmability/authorization-patterns.md) -->
     - [Cryptography and Hashing]()<!-- (./programmability/cryptography-and-hashing.md) -->
     - [Randomness]()<!-- (./programmability/randomness.md) -->
+    - [BCS]()
+- [Patterns (?)]()
+    - [Getters and Setters]()
+    - [Capability]()
+    - [Witness]()
+    - [Abstract Class]()
+    - [Hot Potato]()
+    - [Request]()
+    - [Object Capability]()
+    - [Witness Registry]()
 - [Standards]()
+    - [Balance]()
     - [Coin]()
+    - [Closed Loop Token]()
     - [Transfer Policy]()
     - [Kiosk]()
-    - [Closed Loop Token]()
-- [Special Topics]()
-    - [BCS]()
 - [Guides](./guides/README.md)
     - [2024 Migration Guide](./guides/2024-migration-guide.md)
     - [Upgradability Practices](./guides/upgradeability-practices.md)
