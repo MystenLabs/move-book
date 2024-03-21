@@ -1,6 +1,51 @@
 [book]
+title = "The Move Book"
+description = "First book about the Move programming language and the Move VM. Move documentation, Move tutorials and language reference."
 authors = ["Damir Shamanaev"]
 language = "en"
 multilingual = false
 src = "src"
-title = "The Move Book"
+repository = "damirka/move-book"
+
+[output.html]
+additional-css = ["theme/css/custom.css"]
+git-repository-url = "https://github.com/MystenLabs/move-book"
+git-repository-icon = "fa-github"
+edit-url-template = "https://github.com/MystenLabs/move-book/edit/second-edition/{path}"
+
+[output.html.redirect]
+# optional = true
+"introduction/foreword" = "foreword"
+"introduction/getting-started" = "before-we-begin"
+
+"syntax-basics/index.html" = "/basic-syntax/index.html"
+"syntax-basics/concept.html" = "/basic-syntax/module.html"
+"syntax-basics/comments.html" = "/basic-syntax/comments.html"
+"syntax-basics/expression.html" = "/basic-syntax/expression.html"
+"syntax-basics/module.html" = "/basic-syntax/importing-modules.html"
+"syntax-basics/constants.html" = "/basic-syntax/constants.html"
+"syntax-basics/function.html" = "/basic-syntax/function.html"
+"advanced-topics/struct.html" = "/basic-syntax/struct.html"
+
+"advanced-topics/index.html" = "/programmability/index.html"
+
+# TBD Redirects
+
+"advanced-topics/types-with-abilities/index.html" = "/index.html"
+"advanced-topics/ownership-and-references.html" = "/index.html"
+"advanced-topics/understanding-generics.html" = "/index.html"
+"advanced-topics/advanced-topics/managing-collections-with-vectors.html" = "/index.html"
+
+"resources/index.html" = "/index.html"
+"resources/signer-type.html" = "/index.html"
+"resources/what-is-resource.html" = "/index.html"
+"resources/resource-by-example/index.html" = "/index.html"
+"resources/resource-by-example/storing-new-resource.html" = "/index.html"
+"resources/resource-by-example/access-resource-with-borrow.html" = "/index.html"
+"resources/resource-by-example/destroy-resource.html" = "/index.html"
+"resources/resource-by-example/furher-steps.html" = "/index.html"
+
+
+"tutorials/index.html" = "/index.html"
+"tutorials/erc20.html" = "/index.html"
+"translations.html" = "/index.html"

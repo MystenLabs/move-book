@@ -13,50 +13,12 @@ Consensus is only required for mutating the shared state. If the object is immut
 ## In practice
 
 ```move
-module book::coffee_machine {
-    use sui::object::{Self, UID};
-    use sui::tx_context::TxContext;
-
-    /// Coffee machine is a shared object, hence requires `key` ability.
-    struct CoffeeMachine has key { id: UID, counter: u16 }
-
-    /// Cup is an owned object.
-    struct Cup has key, store { id: UID, has_coffee: bool }
-
-    /// Initialize the module and share the `CoffeeMachine` object.
-    fun init(ctx: &mut TxContext) {
-        transfer::share_object(CoffeeMachine {
-            id: object::new(ctx),
-            counter: 0
-        });
-    }
-
-    /// Take a cup out of thin air. This is a fast path operation.
-    public fun take_cup(ctx: &mut TxContext): Cup {
-        Cup { id: object::new(ctx), has_coffee: false }
-    }
-
-    /// Make coffee and pour it into the cup. Requires consensus.
-    public fun make_coffee(mut machine: &mut CoffeeMachine, mut cup: &mut Cup) {
-        machine.counter = machine.counter + 1;
-        cup.has_coffee = true;
-    }
-
-    /// Drink coffee from the cup. This is a fast path operation.
-    public fun drink_coffee(mut cup: &mut Cup) {
-        cup.has_coffee = false;
-    }
-
-    /// Put the cup back. This is a fast path operation.
-    public fun put_back(cup: Cup) {
-        let Cup { id, has_coffee: _ } = cup;
-        object::delete(id);
-    }
-}
+{{#include ../../samples/sources/programmability/fast-path.move:main}}
 ```
 
 ## Special case: Clock
 
-The `Clock` object with the reserved address `0x6` is a special case of a shared object which maintains the fast path. While being a shared object, it cannot be passed by a mutable reference in a regular transaction. An attempt to do so will not succeed, and the transaction will be rejected.
+The `Clock` object with the reserved address `0x6` is a special case of a shared object which cannot be passed by a mutable reference in a regular transaction. An attempt to do so will not succeed, and the transaction will be rejected. Because of this limitation, the `Clock` object can only be accessed immutably, which makes it a fast path operation.
+
 
 <!-- Add more on why and how -->

@@ -17,10 +17,5 @@ public native fun to_bytes<T>(t: &T): vector<u8>;
 
 
 ```move
-use sui::bcs;
-
-let mut bcs = bcs::new(bytes);
-let num = bcs.peel_u8();
-let string = bcs.peel_vec_u8();
-// ... and so on
+{{#include ../../samples/sources/programmability/bcs.move:using_bcs}}
 ```

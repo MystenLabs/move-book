@@ -48,7 +48,6 @@ comparison to docs.sui.io
 - custom transfer rules
 - object and package versioning
 
-
 -->
 
 - [Introduction](introduction.md)
@@ -61,10 +60,10 @@ comparison to docs.sui.io
 - [Your First Move](your-first-move/README.md)
     - [Hello World!](your-first-move/hello-world.md)
     - [Adding Tests](your-first-move/adding-tests.md)
-    <!-- - [Publishing]() -->
-    <!-- - [Send a Transaction]() -->
     - [Debugging](your-first-move/debugging.md)
     - [Generating Docs](your-first-move/generating-docs.md)
+    <!-- - [Publishing]() -->
+    <!-- - [Send a Transaction]() -->
 - [Concepts](./concepts/README.md)
     - [What is a Package](./concepts/packages.md)
     - [Manifest](./concepts/manifest.md)
@@ -139,6 +138,8 @@ comparison to docs.sui.io
     - [Package Upgrades]()<!-- (./programmability/package-upgrades.md) -->
     - [Sui Framework](./programmability/sui-framework.md)
     - [Witness and Abstract Implementation](./programmability/witness-and-abstract-implementation.md)
+    - [Events](./programmability/events.md)
+    - [Display]()
     - [One Time Witness]()
     - [Pattern: Request]()
     - [Pattern: Hot Potato]()
@@ -173,10 +174,11 @@ comparison to docs.sui.io
     - [Debugging]()<!-- (./guides/debugging.md) -->
     - [Coding Conventions]()
 - [Appendix]()
-    - [Glossary](./appendix/glossary.md)
-    - [References]() <!-- (./appendix/references.md) -->
-    - [Contributing]() <!-- (./appendix/contributing.md) -->
-    - [Acknowledgements]() <!-- (./appendix/acknowledgements.md) -->
+    - [A - Glossary](./appendix/glossary.md)
+    - [B - Publications]() <!-- ./appendix/publications.md) -->
+    - [C - References]() <!-- (./appendix/references.md) -->
+    - [D - Contributing](./appendix/contributing.md)
+    - [E - Acknowledgements]() <!-- (./appendix/acknowledgements.md) -->
 
 
 

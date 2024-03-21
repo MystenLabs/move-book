@@ -6,48 +6,10 @@ In programming, a *capability* is a token that gives the owner the right to perf
 
 In the [Sui Object Model](./../concepts/object-model.md), capabilities are represented as objects. An owner of an object can pass this object to a function to prove that they have the right to perform a specific action. Due to strict typing, the function taking a capability as an argument can only be called with the correct capability.
 
+> There's a convention to name capabilities with the `Cap` suffix, for example, `AdminCap` or `KioskOwnerCap`.
+
 ```move
-module book::capability {
-    use std::string::String;
-    use sui::event;
-
-    use sui::object::new as TxContext.fresh_uid;
-
-    /// The capability granting the application admin the right to create new
-    /// accounts in the system.
-    struct AdminCap has key, store { id: UID }
-
-    /// The user account in the system.
-    struct Account has key, store {
-        id: UID,
-        name: String
-    }
-
-    /// A simple `Ping` event with no data.
-    struct Ping has copy, drop { by: ID }
-
-    /// Creates a new account in the system. Requires the `AdminCap` capability
-    /// to be passed as the first argument.
-    public fun new(_: &AdminCap, name: String, ctx: &mut TxContext): Account {
-        Account {
-            id: ctx.fresh_uid(),
-            name,
-        }
-    }
-
-    /// Account, and any other objects, can also be used as a Capability in the
-    /// application. For example, to emit an event.
-    public fun send_ping(acc: &Account) {
-        event::emit(Ping {
-            by: acc.id.to_inner()
-        })
-    }
-
-    /// Updates the account name. Can only be called by the `Account` owner.
-    public fun update(account: &mut Account, name: String) {
-        account.name = name;
-    }
-}
+{{#include ../../samples/sources/programmability/capability.move:main}}
 ```
 
 ## Using `init` for Admin Capability

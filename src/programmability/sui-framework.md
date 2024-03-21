@@ -5,6 +5,7 @@ Sui Framework is a default dependency set in the [Package Manifest](./../concept
 | Module | Description | Chapter |
 | ------ | ----------- | ------- |
 | sui::address | Adds conversion methods to the [address type](./../basic-syntax/address.md) | [Address](./../basic-syntax/address.md) |
+| sui::transfer | Implements the storage operations for Objects | [It starts with an Object](./../object) |
 | - | - | - |
 
 ## Implicit Imports

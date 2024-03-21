@@ -33,12 +33,7 @@ Transaction context cannot be constructed manually or directly modified. It is c
 With only exception of the `ids_created`, all of the fields in the `TxContext` have getters. The getters are defined in the `sui::tx_context` module and are available to the program. The getters don't require `&mut` because they don't modify the context.
 
 ```move
-public fun some_action(ctx: &TxContext) {
-    let _me = ctx.sender()
-    let _epoch = ctx.epoch();
-    let _digest = ctx.digest();
-    // ...
-}
+{{#include ../../samples/sources/programmability/transaction-context.move:reading}}
 ```
 
 ## Mutability

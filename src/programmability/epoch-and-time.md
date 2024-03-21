@@ -9,19 +9,13 @@ Epochs are used to separate the system into operational periods. During an epoch
 Epoch can be read from the [transaction context](./transaction-context.md):
 
 ```move
-public fun current_epoch(ctx: &TxContext) {
-    let epoch = ctx.epoch();
-    // ...
-}
+{{#include ../../samples/sources/programmability/epoch-and-time.move:epoch}}
 ```
 
 It is also possible to get the unix timestamp of the epoch start:
 
 ```move
-public fun current_epoch_start(ctx: &TxContext) {
-    let epoch_start = ctx.epoch_timestamp_ms();
-    // ...
-}
+{{#include ../../samples/sources/programmability/epoch-and-time.move:epoch_start}}
 ```
 
 Normally, epochs are used in staking and system operations, however, in custom scenarios they can be used to emulate 24h periods. They are cricital if an application relies on the staking logic or needs to know the current validator set.
@@ -30,7 +24,7 @@ Normally, epochs are used in staking and system operations, however, in custom s
 
 For a more precise time measurement, Sui provides the `Clock` object. It is a system object that is updated during checkpoints by the system, which stores the current time in milliseconds since the Unix Epoch. The `Clock` object is defined in the `sui::clock` module and has a reserved address `0x6`.
 
-Clock is a shared object and normally would require consensus to access. However, `Clock` is special, and the system won't allow accessing it mutably, so that the only way to access it is immutably. This limitation allows parallel access to the `Clock` object and makes it a [fast path operation](./fast-path.md).
+Clock is a shared object, but it a transaction attempting to access it mutably will fail. This limitation allows parallel access to the `Clock` object, which is important for maintaining performance.
 
 File: sui-framework/clock.move
 ```move
@@ -55,13 +49,11 @@ struct Clock has key {
 There is only one public function available in the `Clock` module - `timestamp_ms`. It returns the current time in milliseconds since the Unix Epoch.
 
 ```move
-/// Clock needs to be passed as an immutable reference.
-public fun current_time(clock: &Clock) {
-    let _time = clock.timestamp_ms();
-    // ...
-}
+{{#include ../../samples/sources/programmability/epoch-and-time.move:clock}}
 ```
+
+<!-- TODO:
 
 ## Testing
 
-TODO: how to use Clock in tests.
+TODO: how to use Clock in tests. -->
