@@ -61,8 +61,8 @@ comparison to docs.sui.io
 - [Your First Move](your-first-move/README.md)
     - [Hello World!](your-first-move/hello-world.md)
     - [Adding Tests](your-first-move/adding-tests.md)
-    - [Publishing]()
-    - [Send a Transaction]()
+    <!-- - [Publishing]() -->
+    <!-- - [Send a Transaction]() -->
     - [Debugging](your-first-move/debugging.md)
     - [Generating Docs](your-first-move/generating-docs.md)
 - [Concepts](./concepts/README.md)
@@ -129,6 +129,7 @@ comparison to docs.sui.io
     - [Transfer to Object?]()<!-- (./object/transfer-to-object.md) -->
 - [Advanced Programmability](./programmability/README.md)
     - [Transaction Context](./programmability/transaction-context.md)
+    - [Module Initializer](./programmability/module-initializer.md)
     - [Pattern: Capability](./programmability/capability.md)
     - [Fast Path](./programmability/fast-path.md)
     - [Collections](./programmability/collections.md)
@@ -136,6 +137,7 @@ comparison to docs.sui.io
     - [Dynamic Collections]() <!-- (./programmability/dynamic-collections.md) -->
     - [Epoch and Time](./programmability/epoch-and-time.md)
     - [Package Upgrades]()<!-- (./programmability/package-upgrades.md) -->
+    - [Sui Framework](./programmability/sui-framework.md)
     - [Witness and Abstract Implementation](./programmability/witness-and-abstract-implementation.md)
     - [One Time Witness]()
     - [Pattern: Request]()
@@ -145,7 +147,7 @@ comparison to docs.sui.io
     - [Authorization Patterns]()<!-- (./programmability/authorization-patterns.md) -->
     - [Cryptography and Hashing]()<!-- (./programmability/cryptography-and-hashing.md) -->
     - [Randomness]()<!-- (./programmability/randomness.md) -->
-    - [BCS]()
+    - [BCS](./programmability/bcs.md)
 - [Patterns (?)]()
     - [Getters and Setters]()
     - [Capability]()

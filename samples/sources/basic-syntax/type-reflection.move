@@ -10,7 +10,7 @@ module book::type_reflection {
     use fun std::ascii::string as vector.to_ascii_string;
 
     /// A function that returns the name of the type `T` and its module and address.
-    public fun i_dont_know_you<T>(): (String, String, String) {
+    public fun do_i_know_you<T>(): (String, String, String) {
         let type_name: TypeName = type_name::get<T>();
 
         // there's a way to borrow
@@ -30,7 +30,7 @@ module book::type_reflection {
 
     #[test]
     fun test_type_reflection() {
-        let (type_name, module_name, _address_str) = i_dont_know_you<MyType>();
+        let (type_name, module_name, _address_str) = do_i_know_you<MyType>();
 
         //
         assert!(module_name == b"type_reflection".to_ascii_string(), 1);

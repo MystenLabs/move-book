@@ -40,13 +40,13 @@ if (<bool_expression>) <expression> else <expression>;
 Just like any other expression, `if` requires a semicolon, if there are other expressions following it. The `else` keyword is optional, except for the case when the resulting value is assigned to a variable. We will cover this below.
 
 ```move
-{{#include ../../samples/sources/basic-syntax/control_flow.move:if_condition}}
+{{#include ../../samples/sources/basic-syntax/control-flow.move:if_condition}}
 ```
 
 Let's see how we can use `if` and `else` to assign a value to a variable:
 
 ```move
-{{#include ../../samples/sources/basic-syntax/control_flow.move:if_else}}
+{{#include ../../samples/sources/basic-syntax/control-flow.move:if_else}}
 ```
 
 Here we assign the value of the `if` expression to the variable `y`. If `x` is greater than 0, `y` will be assigned the value 1, otherwise 0. The `else` block is necessary, because both branches must return a value of the same type. If we omit the `else` block, the compiler will throw an error.
@@ -74,7 +74,7 @@ while (<bool_expression>) { <expressions>; };
 Here is an example of a `while` loop with a very simple condition:
 
 ```move
-{{#include ../../samples/sources/basic-syntax/control_flow.move:while_loop}}
+{{#include ../../samples/sources/basic-syntax/control-flow.move:while_loop}}
 ```
 
 ## Infinite `loop`
@@ -82,7 +82,7 @@ Here is an example of a `while` loop with a very simple condition:
 Now let's imagine a scenario where the boolean expression is always `true`. For example, if we literally passed `true` to the `while` condition. As you might expect, this would create an infinite loop, and this is almost what the `loop` statement works like.
 
 ```move
-{{#include ../../samples/sources/basic-syntax/control_flow.move:infinite_while}}
+{{#include ../../samples/sources/basic-syntax/control-flow.move:infinite_while}}
 ```
 
 An infinite `while`, or `while` without a condition, is a `loop`. The syntax for it is simple:
@@ -94,7 +94,7 @@ loop { <expressions>; };
 Let's rewrite the previous example using `loop` instead of `while`:
 
 ```move
-{{#include ../../samples/sources/basic-syntax/control_flow.move:infinite_loop}}
+{{#include ../../samples/sources/basic-syntax/control-flow.move:infinite_loop}}
 ```
 
 <!-- TODO: that's a weak point lmao -->
@@ -114,7 +114,7 @@ break
 The `break` statement is used to stop the execution of a loop and exit it early. It is often used in combination with a conditional statement to exit the loop when a certain condition is met. To illustrate this point, let's turn the infinite `loop` from the previous example into something that looks and behaves more like a `while` loop:
 
 ```move
-{{#include ../../samples/sources/basic-syntax/control_flow.move:break_loop}}
+{{#include ../../samples/sources/basic-syntax/control-flow.move:break_loop}}
 ```
 
 Almost identical to the `while` loop, right? The `break` statement is used to exit the loop when `x` is 5. If we remove the `break` statement, the loop will run forever, just like the previous example.
@@ -131,7 +131,7 @@ continue
 The example below skips odd numbers and prints only even numbers from 0 to 10:
 
 ```move
-{{#include ../../samples/sources/basic-syntax/control_flow.move:continue_loop}}
+{{#include ../../samples/sources/basic-syntax/control-flow.move:continue_loop}}
 ```
 
 `break` and `continue` statements can be used in both `while` and `loop` loops.
@@ -147,7 +147,7 @@ return <expression>
 Here is an example of a function that returns a value when a certain condition is met:
 
 ```move
-{{#include ../../samples/sources/basic-syntax/control_flow.move:return_statement}}
+{{#include ../../samples/sources/basic-syntax/control-flow.move:return_statement}}
 ```
 
 Unlike in other languages, the `return` statement is not required for the last expression in a function. The last expression in a function block is automatically returned. However, the `return` statement is useful when we want to exit a function early if a certain condition is met.

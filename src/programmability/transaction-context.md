@@ -47,7 +47,7 @@ The `TxContext` is required to create new objects (or just `UID`s) in the system
 
 Internally, it is represented as the `derive_id` function:
 
-*File: sui-framework/tx_context.move*
+File: sui-framework/tx_context.move
 ```move
 native fun derive_id(tx_hash: vector<u8>, ids_created: u64): address;
 ```
