@@ -15,7 +15,9 @@
 
  -->
 
-To run a Move program there needs to be an environment which stores packages and executes transactions. The best way to test a Move program is to write some tests and run them locally. Move has built-in testing functionality, and the tests are written in Move as well. In this section, we will learn how to write tests for our `hello_world` module.
+<!-- Perhaps explain that a production environment would be mainnet, and development would be testnet, but use local for this... -->
+
+To run a Move program there needs to be an environment that stores packages and executes transactions. The best way to test a Move program is to write some tests and run them locally. Move has built-in testing functionality, and the tests are written in Move as well. This section teaches you how to write tests for our `hello_world` module.
 
 First, let's try to run tests. All of the Move binaries support the `test` command, and this is the command we will use to run tests:
 
@@ -32,11 +34,13 @@ Running Move unit tests
 Test result: OK. Total tests: 0; passed: 0; failed: 0
 ```
 
-As you can see, the test command has run successfully, but it didn't find any tests. Let's add some tests to our module.
+As you can see, the test command ran successfully but didn't find any tests. Let's add some tests to our module.
 
 ## Your first test
 
-When the test command runs, it looks for all tests in all files in the directory. Tests can be either placed separate modules or in the same module as the code they test. First, let's add a test function to the `hello_world` module:
+<!-- Should the tests be in the same section if all in module, or place anywhere? --> 
+
+When the test command runs, it looks for all tests in all files in the directory. You can place tests either in separate modules or in the same module as the code they test. First, let's add a test function to the `hello_world` module:
 
 ```Move
 {{#include ../../samples/sources/your-first-move/hello_world.move:4:}}
@@ -63,6 +67,7 @@ You should see this output, which means that the test has run successfully:
 Test result: OK. Total tests: 1; passed: 1; failed: 0
 ```
 
+<!-- nice -->
 ## Failed experiment
 
 Try replacing the equality operator  `==` inside the `assert!` with the inequality operator `!=` and run the test command again.
@@ -99,4 +104,4 @@ Test result: FAILED. Total tests: 1; passed: 0; failed: 1
 
 Tests are used to verify the execution of the code. If the code is correct, the test should pass, otherwise it should fail. In this case, the test failed because we intentionally made a mistake in the test code. However, normally you should write tests that check the correctness of the code, not the other way around!
 
-In the next section, we will learn how to debug Move programs and print intermediate values to the console.
+The next section teaches you how to debug Move programs and print intermediate values to the console.

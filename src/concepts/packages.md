@@ -16,12 +16,12 @@
 
 -->
 
-Move is a language for writing smart contracts - programs that stored and run on the blockchain. A single program is organized into a package. A package is published on the blockchain and is identified by an [address](./address.md). A published package can be interacted with by sending [transactions](./what-is-a-transaction.md) calling its functions. It can also act as a dependency for other packages.
+Move is a language for writing smart contracts - programs that are stored and run on the blockchain. A single program is organized into a package. A package is published on the blockchain and is identified by an [address](./address.md). A published package can be interacted with by sending [transactions](./what-is-a-transaction.md) calling its functions. It can also act as a dependency for other packages.
 
 > To create a new package, use the `sui move new` command.
 > To learn more about the command, run `sui move new --help`.
 
-Package consists of modules - separate scopes that contain functions, types, and other items.
+Packages consist of modules - separate scopes that contain functions, types and other items.
 
 ```
 package 0x...
@@ -35,7 +35,7 @@ package 0x...
 
 ## Package Structure
 
-Locally, a package is a directory with a `Move.toml` file and a `sources` directory. The `Move.toml` file - called the "package manifest" - contains metadata about the package, and the `sources` directory contains the source code for the modules. Packages usually looks like this:
+Locally, a package is a directory with a [`Move.toml`](./manifest.md) file and a `sources` directory. The `Move.toml` file - called the "package manifest" - contains metadata about the package, and the `sources` directory contains the source code for the modules. Packages usually looks like this:
 
 ```
 sources/
@@ -49,7 +49,8 @@ examples/
 Move.toml
 ```
 
-The `tests` directory is optional and contains tests for the package. Code placed into the `tests` directory is not published on-chain and is only availably in tests. The `examples` directory can be used for code examples, and is also not published on-chain.
+<!-- What is meant by "not published on chain"? Not pub'd on chain because you're supposed to remove it or automatically not published on chain? -->
+The `tests` directory is optional and contains tests for the package. Code placed into the `tests` directory is not published on-chain and is only available in tests. The `examples` directory can be used for code examples, and is also not published on-chain.
 
 ## Published Package
 

@@ -30,6 +30,10 @@ It reads not to worry about details and to wait until later, but then provides h
 
 I like this being at the top of the nav. Jump right in before getting bogged down with concepts.
 
+I think the title needs some tweaking.
+
+I was expecting a full experience, including publishing. Maybe set expectations better of what reader can expect to have accomplished at the end of the chapter.
+
 [Hello World!](your-first-move/hello-world.md)
 
 > Revisit, decide if we should go that deep and detailed; Expect the user to know how to use a terminal and a text editor?
@@ -40,18 +44,62 @@ That said, I think there are still some opportunities to provide more details.
 
 [Adding Tests](your-first-move/adding-tests.md)
 
+Likey.
 
-    - [Debugging](your-first-move/debugging.md)
-    - [Generating Docs](your-first-move/generating-docs.md)
-- [Concepts](./concepts/README.md)
-    - [What is a Package](./concepts/packages.md)
-    - [Manifest](./concepts/manifest.md)
-    - [Addresses](./concepts/address.md)
-    - [Module](./concepts/modules.md)
-    - [Interacting with a Package](./concepts/user-interaction.md)
-    - [Account](./concepts/what-is-an-account.md)
-    - [Transaction](./concepts/what-is-a-transaction.md)
-    - [Object Model](./concepts/object-model.md)
+[Debugging](your-first-move/debugging.md)
+
+Nice.
+
+[Generating Docs](your-first-move/generating-docs.md)
+
+This seems to kind of come out of nowhere. Probably just me. I think adding some words to the top section about this being here would help (set expectations comment above).
+
+[Concepts](./concepts/README.md)
+
+This is one of those areas where we need to consider what info goes where. Should it all live on one or the other? Briefly describe here and link to sui docs? 
+
+Even though there's a nav on the left and a forward back option, I feel like a hyperlinked list would be beneficial here. Reader may have the nav closed. The list would help skip to the content of interest if they are familiar with some of the concepts.
+
+I feel like a Move compiler topic would be useful here. How does it interact with the move code you write and what is actually published on chain?
+
+[What is a Package](./concepts/packages.md)
+
+I believe this was the first mention of bytecode. Maybe I missed it. Added a move compiler topic suggestion ^.
+
+[Manifest](./concepts/manifest.md)
+
+Good info. Could use some more info on requirements, if any, and scenarios of using local deps versus on-chain ones.
+
+[Addresses](./concepts/address.md)
+
+This might should go above Manifest as Manifest uses addresses (since this is in book format).  
+
+[Module](./concepts/modules.md)
+
+I'm assuming there'll be more? It doesn't explicitly mention that it's just Move code. 
+
+[Interacting with a Package](./concepts/user-interaction.md)
+
+Assuming there'll be more. I think you can describe how packages ultimately end up on a block chain and how you interact with their bytecode there. Could also mention different networks (mainnet/testnet) and how they're completely separate. Transactions are mentioned, but not PTBs.
+
+[Account](./concepts/what-is-an-account.md)
+
+Is an account an object? Do you have to have an account to publish a package? Are accounts the same across blockchains? 
+
+This should go above Interacting/Package, as accounts are mentioned there.
+
+[Transaction](./concepts/what-is-a-transaction.md)
+
+Are there different kinds of transactions or are they always initiated by an address?  PTBs? 
+
+Should go after module as it's used in other topics.
+
+[Object Model](./concepts/object-model.md)
+
+Definitely could use more here.
+
+
+
 - [Your First Sui App](./hello-sui/README.md)
     - [Hello Sui!](./hello-sui/hello-sui.md)
     - [Using Objects](./hello-sui/module-structure.md)

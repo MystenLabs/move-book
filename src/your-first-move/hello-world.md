@@ -126,8 +126,9 @@ To compile the package, run the following command:
 $ sui move build
 ```
 
+<!-- Worth mentioning what happens if you don't see this output? -->
 
-If you see output similar to the following, then everything is fine, and the code compiled successfully:
+If you see output similar to the following, then the code compiled successfully:
 
 ```bash
 > UPDATING GIT DEPENDENCY https://github.com/move-language/move.git
