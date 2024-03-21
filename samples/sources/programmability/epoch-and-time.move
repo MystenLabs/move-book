@@ -3,8 +3,6 @@
 
 #[allow(unused_variable)]
 module book::epoch_and_time {
-    use sui::clock::Clock;
-
 
 // ANCHOR: epoch
 public fun current_epoch(ctx: &TxContext) {
@@ -21,9 +19,11 @@ public fun current_epoch_start(ctx: &TxContext) {
 // ANCHOR_END: epoch_start
 
 // ANCHOR: clock
+use sui::clock::Clock;
+
 /// Clock needs to be passed as an immutable reference.
 public fun current_time(clock: &Clock) {
-    let _time = clock.timestamp_ms();
+    let time = clock.timestamp_ms();
     // ...
 }
 // ANCHOR_END: clock

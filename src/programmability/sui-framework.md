@@ -2,11 +2,36 @@
 
 Sui Framework is a default dependency set in the [Package Manifest](./../concepts/manifest.md). It depends on the [Standard Library](./../basic-syntax/standard-library.md) and provides Sui-specific features, including the interaction with the storage, and Sui-specific native types and modules.
 
+<!-- Custom CSS addition in the theme/custom.css  -->
+<div class="modules-table">
+
 | Module | Description | Chapter |
 | ------ | ----------- | ------- |
 | sui::address | Adds conversion methods to the [address type](./../basic-syntax/address.md) | [Address](./../basic-syntax/address.md) |
 | sui::transfer | Implements the storage operations for Objects | [It starts with an Object](./../object) |
+| sui::tx_context | Contains the `TxContext` struct and methods to read it | [Transaction Context](./transaction-context.md) |
+| sui::object | Defines the `UID` and `ID` type, required for creating objects | [It starts with an Object](./../object) |
+| sui::clock | Defines the `Clock` type and its methods | [Epoch and Time](./epoch-and-time.md) |
+| sui::dynamic_field | Implements methods to add, use and remove dynamic fields | [Dynamic Fields](./dynamic-fields.md) |
+| sui::dynamic_object_field | Implements methods to add, use and remove dynamic object fields | [Dynamic Fields](./dynamic-fields.md) |
+| sui::vec_map | Implements a map with vector keys | [Collections](./collections.md) |
+| sui::vec_set | Implements a set type | [Collections](./collections.md) |
+| sui::event | Allows emitting events for off-chain listeners | [Events](./events.md) |
 | - | - | - |
+
+</div>
+
+## Exported Addresses
+
+Sui Framework exports two named addresses: `sui = 0x2` and `std = 0x1` from the std dependency.
+
+```toml
+[addresses]
+sui = "0x2"
+
+# Exported from the MoveStdlib dependency
+std = "0x1"
+```
 
 ## Implicit Imports
 
@@ -23,13 +48,13 @@ Just like with [Standard Library](./../basic-syntax/standard-library.md), some o
 
 Modules:
 
-- sui::address
++ sui::address
 - sui::authethicator_state
 - sui::bag
 - sui::balance
 - sui::bcs
 - sui::borrow
-- sui::clock
++ sui::clock
 - sui::coin
 - sui::deny_list
 - sui::display

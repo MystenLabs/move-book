@@ -130,11 +130,11 @@ comparison to docs.sui.io
     - [Transaction Context](./programmability/transaction-context.md)
     - [Module Initializer](./programmability/module-initializer.md)
     - [Pattern: Capability](./programmability/capability.md)
+    - [Epoch and Time](./programmability/epoch-and-time.md)
     - [Fast Path](./programmability/fast-path.md)
     - [Collections](./programmability/collections.md)
     - [Dynamic Fields](./programmability/dynamic-fields.md)
     - [Dynamic Collections]() <!-- (./programmability/dynamic-collections.md) -->
-    - [Epoch and Time](./programmability/epoch-and-time.md)
     - [Package Upgrades]()<!-- (./programmability/package-upgrades.md) -->
     - [Sui Framework](./programmability/sui-framework.md)
     - [Witness and Abstract Implementation](./programmability/witness-and-abstract-implementation.md)

@@ -8,7 +8,7 @@ The Move Standard Library provides functionality for native types and operations
 
 In this book we go into detail about most of the modules in the Standard Library, however, it is also helpful to give an overview of the features, so that you can get a sense of what is available and which module implements it.
 
-<!-- Custom CSS addition in the theme/chrome.css  -->
+<!-- Custom CSS addition in the theme/custom.css  -->
 <div class="modules-table">
 
 | Module | Description | Chapter |
@@ -26,6 +26,15 @@ In this book we go into detail about most of the modules in the Standard Library
 | std::fixed_point32 | Provides the `FixedPoint32` type | - |
 
 </div>
+
+## Exported Addresses
+
+Standard Library exports one named address - `std = 0x1`.
+
+```toml
+[addresses]
+std = "0x1"
+```
 
 ## Implicit Imports
 

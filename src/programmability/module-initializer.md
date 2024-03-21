@@ -5,53 +5,13 @@ A common case in many applications is to run some just once when the package is 
 > All of the modules' `init` functions are called during publish. Currently, this only applies to publish command and not to [package upgrades](./package-upgrades.md).
 
 ```move
-module book::store {
-    use fun object.new as TxContext.fresh_uid;
-
-    /// The Capability which grants the store owner the right to manage
-    /// the store.
-    struct StoreOwnerCap has key, store { id: UID }
-
-    /// The store itself, one and only, created in the `init` function.
-    struct Store has key {
-        id: UID,
-        /* ... */
-    }
-
-    // Will be called only once, when the module is published. Has to be
-    // private, so it is not callable from the outside.
-    fun init(ctx: &mut TxContext) {
-        // transfer the StoreOwnerCap to the sender (publisher)
-        transer::transfer(StoreOwnerCap {
-            id: ctx.fresh_uid()
-        }, ctx.sender());
-
-        // share the Store object
-        transfer::share_object(Store {
-            id: ctx.fresh_uid()
-        })
-    }
-}
+{{#include ../../samples/sources/programmability/module-initializer.move:main}}
 ```
 
 In the same package another module can have its own `init` function with its own logic.
 
 ```move
-// same package with the `store` module
-module book::bank {
-    use fun object.new as TxContext.fresh_uid;
-
-    struct Bank has key {
-        id: UID,
-        /* ... */
-    }
-
-    fun init(ctx: &mut TxContext) {
-        transfer::share_object(Bank {
-            id: ctx.fresh_uid()
-        })
-    }
-}
+{{#include ../../samples/sources/programmability/module-initializer.move:other}}
 ```
 
 ## `init` features
@@ -66,7 +26,12 @@ fun init(ctx: &mut TxContext) { /* ... */}
 fun init(otw: OTW, ctx: &mut TxContext) { /* ... */ }
 ```
 
-TxContext can also be passed as immutable reference: `&TxContext`. However, practically speaking, it should always be `&mut TxContext` since the `init` function is the only place where new objects can be created, and it does not have access to existing objects.
+TxContext can also be passed as immutable reference: `&TxContext`. However, practically speaking, it should always be `&mut TxContext` since the `init` function can't access the onchain state and to create new objects it requires the mutable reference to the context.
+
+```move
+fun init(ctx: &TxContext) { /* ... */}
+fun init(otw: OTW, ctx: &TxContext) { /* ... */ }
+```
 
 ## Trust and security
 

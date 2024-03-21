@@ -6,7 +6,6 @@ module book::capability {
     use std::string::String;
     use sui::event;
 
-    use fun sui::object::new as TxContext.fresh_uid;
     use fun sui::object::uid_to_inner as UID.to_inner;
 
     /// The capability granting the application admin the right to create new
@@ -26,7 +25,7 @@ module book::capability {
     /// to be passed as the first argument.
     public fun new(_: &AdminCap, name: String, ctx: &mut TxContext): Account {
         Account {
-            id: ctx.fresh_uid(),
+            id: object::new(ctx),
             name,
         }
     }
