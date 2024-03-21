@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <meta http-equiv="refresh" content="0; URL=before-we-begin">
+    <link rel="canonical" href="before-we-begin">
+  </head>
+  <body>
+      <p>Redirecting to... <a href="before-we-begin">before-we-begin</a>.</p>
+  </body>
+</html>
