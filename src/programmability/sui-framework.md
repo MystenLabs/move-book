@@ -93,7 +93,7 @@ Modules:
 - sui::ecdsa_r1
 - sui::ecvrf
 - sui::ed25519
-- sui::"groth16"
+(also mention verifier 16 growth)
 - sui::group_ops
 - sui::hash
 - sui::hmac

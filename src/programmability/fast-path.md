@@ -8,7 +8,7 @@ The same principle applies to Sui. If a transaction only touches the private sta
 
 ## Frozen objects
 
-Consensus is only required for mutating the shared state. If the object is immutable, it is treated as a "constant" and can be accessed in parallel. Frozen objects can be used to share unchangable data between multiple parties without requiring consensus.
+Consensus is only required for mutating the shared state. If the object is immutable, it is treated as a "constant" and can be accessed in parallel. Frozen objects can be used to share unchangeable data between multiple parties without requiring consensus.
 
 ## In practice
 
