@@ -2,6 +2,27 @@
 // SPDX-License-Identifier: Apache-2.0
 
 #[allow(unused_field)]
+module book::backround {
+    use std::string::String;
+
+// ANCHOR: background
+/// An attempt to standardize the object structure for display.
+public struct CounterWithDisplay has key {
+    id: UID,
+    /// If this field is present it will be displayed in the UI as `name`.
+    name: String,
+    /// If this field is present it will be displayed in the UI as `description`.
+    description: String,
+    // ...
+    image: String,
+    /// Actual fields of the object.
+    counter: u64,
+    // ...
+}
+// ANCHOR_END: background
+}
+
+#[allow(unused_field)]
 // ANCHOR: hero
 module book::arena {
     use std::string::String;

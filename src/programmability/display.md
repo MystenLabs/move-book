@@ -4,25 +4,13 @@ Objects on Sui are explicit in their structure and behavior and can be displayed
 
 ## Background
 
-Historically, there were different attempts to define a standard structure of an object so it can be displayed in a user interface. One of the approaches was to define certain fields in the object struct which, when present, would be used in the UI. This approach was not flexible enough and required developers to define the same fields in every object, and sometimes the fields did not make sense for the object.
+Historically, there were different attempts to agree on a standard structure of an object so it can be displayed in a user interface. One of the approaches was to define certain fields in the object struct which, when present, would be used in the UI. This approach was not flexible enough and required developers to define the same fields in every object, and sometimes the fields did not make sense for the object.
 
 ```move
-/// An attempt to standardize the object structure for display.
-public struct OldWays has key {
-    id: UID,
-    /// If this field is present it will be displayed in the UI as `name`.
-    name: String,
-    /// If this field is present it will be displayed in the UI as `description`.
-    description: String,
-    // ...
-    image: String,
-    /// Other fields that are not displayed in the UI.
-    counter: u64,
-    // ...
-}
+{{#include ../../samples/sources/programmability/display.move:background}}
 ```
 
-Also, if any of the fields contained static data, it would be duplicated in every object. And, since Move does not have interfaces, it is not possible to know if an object has a specific field without "manually" checking the object's type, which makes the client fetching more complex.
+If any of the fields contained static data, it would be duplicated in every object. And, since Move does not have interfaces, it is not possible to know if an object has a specific field without "manually" checking the object's type, which makes the client fetching more complex.
 
 ## Object Display
 
@@ -54,7 +42,7 @@ The fields that are supported most widely are:
 
 > Please, refer to the [Sui Documentation](https://docs.sui.io/standards/display) for the most up-to-date list of supported fields.
 
-While there's a standard set of fields, the Display object does not enforce them. The developer can define any fields they need, and the client can use them as they see fit. Some applications may require additional fields, and the Display object is flexible enough to support them.
+While there's a standard set of fields, the Display object does not enforce them. The developer can define any fields they need, and the client can use them as they see fit. Some applications may require additional fields, and omit other, and the Display is flexible enough to support them.
 
 ## Working with Display
 
