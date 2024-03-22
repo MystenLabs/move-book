@@ -7,7 +7,7 @@ Every module member has a visibility. By default, all module members are *privat
 A function or a struct defined in a module which has no visibility modifier is *private* to the module. It can't be called from other modules.
 
 ```move
-module book::internal_visbility {
+module book::internal_visibility {
     // This function can be called from other functions in the same module
     fun internal() { /* ... */ }
 
@@ -24,11 +24,11 @@ module book::internal_visbility {
 
 ```move
 module book::try_calling_internal {
-    use book::internal_visbility;
+    use book::internal_visibility;
 
     // Different module -> can't call internal()
     fun try_calling_internal() {
-        internal_visbility::internal();
+        internal_visibility::internal();
     }
 }
 ```

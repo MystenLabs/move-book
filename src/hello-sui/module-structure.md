@@ -51,7 +51,7 @@ The function takes the `Postcard` as the first argument and a value of the `addr
 
 ## Keeping the Object
 
-A very common scenario is transfering the object to the caller. This can be done by calling the `send_to` function with the sender address. It can be read from the `ctx` argument, which is a `TxContext` type.
+A very common scenario is transferring the object to the caller. This can be done by calling the `send_to` function with the sender address. It can be read from the `ctx` argument, which is a `TxContext` type.
 
 ```move
 {{#include ../../postcard/sources/postcard.move:keep}}

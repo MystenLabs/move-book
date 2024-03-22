@@ -18,7 +18,7 @@ It is also possible to get the unix timestamp of the epoch start:
 {{#include ../../samples/sources/programmability/epoch-and-time.move:epoch_start}}
 ```
 
-Normally, epochs are used in staking and system operations, however, in custom scenarios they can be used to emulate 24h periods. They are cricital if an application relies on the staking logic or needs to know the current validator set.
+Normally, epochs are used in staking and system operations, however, in custom scenarios they can be used to emulate 24h periods. They are critical if an application relies on the staking logic or needs to know the current validator set.
 
 ## Time
 

@@ -39,7 +39,7 @@ hello_world
     Expect the user to know how to use a terminal and a text editor?
 -->
 
-If the output looks like this, then everything is fine, and we can proceed. The folder structure of the package is the folowing:
+If the output looks like this, then everything is fine, and we can proceed. The folder structure of the package is the following:
 
 ```bash
 hello_world

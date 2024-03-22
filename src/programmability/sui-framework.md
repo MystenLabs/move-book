@@ -49,7 +49,7 @@ Just like with [Standard Library](./../basic-syntax/standard-library.md), some o
 Modules:
 
 + sui::address
-- sui::authethicator_state
+- sui::authenticator
 - sui::bag
 - sui::balance
 - sui::bcs
@@ -93,7 +93,7 @@ Modules:
 - sui::ecdsa_r1
 - sui::ecvrf
 - sui::ed25519
-- sui::groth16
+- sui::"groth16"
 - sui::group_ops
 - sui::hash
 - sui::hmac

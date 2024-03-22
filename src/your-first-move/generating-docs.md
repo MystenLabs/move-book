@@ -51,7 +51,7 @@ BUILDING Book Samples
 
 > Alternatively, you can use `move test --doc` - this can be useful if you want to test and generate documentation at the same time. For example, as a part of your CI/CD pipeline.
 
-Once the build is complete, the documentation will be available in the `build/docs` directory. Each modile will have its own `.md` file. The documentation for the `hello_world` module will be available in the `build/docs/hello_world.md` file.
+Once the build is complete, the documentation will be available in the `build/docs` directory. Each module will have its own `.md` file. The documentation for the `hello_world` module will be available in the `build/docs/hello_world.md` file.
 
 <details>
 <summary><a style="cursor: pointer">Click to see an example of the `hello_world.md` contents</a></summary>
