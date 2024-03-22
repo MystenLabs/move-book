@@ -1,0 +1,387 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Modüller ve İçe Aktarım (Import)</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Move Programlama Dili</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Önsöz</a></li><li class="chapter-item expanded "><a href="../introduction/getting-started.html"><strong aria-hidden="true">3.</strong> Giriş</a></li><li class="chapter-item expanded "><a href="../syntax-basics/index.html"><strong aria-hidden="true">4.</strong> Temel Syntax Kavramları</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../syntax-basics/concept.html"><strong aria-hidden="true">4.1.</strong> Konsept</a></li><li class="chapter-item expanded "><a href="../syntax-basics/primitives.html"><strong aria-hidden="true">4.2.</strong> İlkel Veri Tipleri</a></li><li class="chapter-item expanded "><a href="../syntax-basics/comments.html"><strong aria-hidden="true">4.3.</strong> Comment (Yorum)</a></li><li class="chapter-item expanded "><a href="../syntax-basics/expression-and-scope.html"><strong aria-hidden="true">4.4.</strong> ifade ve Kapsam</a></li><li class="chapter-item expanded "><a href="../syntax-basics/control-flow.html"><strong aria-hidden="true">4.5.</strong> Kontrol Akışı</a></li><li class="chapter-item expanded "><a href="../syntax-basics/module.html" class="active"><strong aria-hidden="true">4.6.</strong> Modüller ve İçe Aktarım (Import)</a></li><li class="chapter-item expanded "><a href="../syntax-basics/constants.html"><strong aria-hidden="true">4.7.</strong> Sabitler (Constants)</a></li><li class="chapter-item expanded "><a href="../syntax-basics/function.html"><strong aria-hidden="true">4.8.</strong> Fonksiyonlar</a></li></ol></li><li class="chapter-item expanded "><a href="../advanced-topics/index.html"><strong aria-hidden="true">5.</strong> Gelişmiş Başlıklar</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../advanced-topics/struct.html"><strong aria-hidden="true">5.1.</strong> Yapılar (Structures)</a></li><li class="chapter-item expanded "><a href="../advanced-topics/types-with-abilities.html"><strong aria-hidden="true">5.2.</strong> Yetenekli Tipler</a></li><li class="chapter-item expanded "><a href="../advanced-topics/ownership-and-references.html"><strong aria-hidden="true">5.3.</strong> Sahiplik ve Referanslar</a></li><li class="chapter-item expanded "><a href="../advanced-topics/understanding-generics.html"><strong aria-hidden="true">5.4.</strong> Jenerikler (Generics)</a></li><li class="chapter-item expanded "><a href="../advanced-topics/managing-collections-with-vectors.html"><strong aria-hidden="true">5.5.</strong> Vektör ile Koleksiyonları Kontrol Etmek</a></li></ol></li><li class="chapter-item expanded "><a href="../resources/index.html"><strong aria-hidden="true">6.</strong> Programlanabilir Kaynaklar</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../resources/signer-type.html"><strong aria-hidden="true">6.1.</strong> Göndericinin Signer Olması</a></li><li class="chapter-item expanded "><a href="../resources/what-is-resource.html"><strong aria-hidden="true">6.2.</strong> Kaynak Nedir</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example/index.html"><strong aria-hidden="true">6.3.</strong> Kaynak Örnekleri</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../resources/resource-by-example/storing-new-resource.html"><strong aria-hidden="true">6.3.1.</strong> Kaynak Yaratma ve Taşıma</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example/access-resource-with-borrow.html"><strong aria-hidden="true">6.3.2.</strong> Kaynak Okuyup Değiştirme</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example/destroy-resource.html"><strong aria-hidden="true">6.3.3.</strong> Kaynakları Alıp Yok Etme</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example/furher-steps.html"><strong aria-hidden="true">6.3.4.</strong> Sonraki Adımlar</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../tutorials/index.html"><strong aria-hidden="true">7.</strong> Öğretici (Tutorial)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tutorials/erc20.html"><strong aria-hidden="true">7.1.</strong> ERC20 Token Yazmak</a></li></ol></li><li class="chapter-item expanded "><a href="../translations.html"><strong aria-hidden="true">8.</strong> Çeviriler</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#modüller-ve-İçe-aktarım-import" id="modüller-ve-İçe-aktarım-import">Modüller ve İçe aktarım (Import)</a></h1>
+<p>Modüller geliştiricinin birkaç fonksiyonu paketleyerek kendi adresi adı altında paylaştığı birime verilen addır. Önceki bölümlerde sadece script kullandık ancak script sadece paylaşılmış olan modüllerle ya da standart kütüphane ile çalışabilir. Zaten standart kütüphane de aslen <code>0x1</code> adresi altında paylaşılan bir modüldür.</p>
+<blockquote>
+<p>Modüller göndericinin adresinin adı altında paylaşılır. Standart kütüphane <code>0x1</code> adresi adı altında paylaşılır.</p>
+</blockquote>
+<blockquote>
+<p>Bir modül paylaşılırken hiçbir fonksiyonu çalıştırılmaz. Bir modül kullanmak için scriptlere ihtiyacınız vardır.</p>
+</blockquote>
+<p>Modüller <code>module</code> anahtar sözcüğüyle başlarlar. Ardından modül adı yazılır ve küme parantezi koyulur. Ardından modülün içerikleri küme parantezlerinin içerisine yazılır.</p>
+<pre><code class="language-Move">module Math {
+
+    // modül içerikleri
+
+    public fun sum(a: u64, b: u64): u64 {
+        a + b
+    }
+}
+</code></pre>
+<blockquote>
+<p>Modüller başkalarının erişebileceği kodları paylaşmanın tek yoludur. Yeni tipler ve kaynaklar sadece bir modülün içindeki bağlam sayesinde tanımlanabilirler.</p>
+</blockquote>
+<p>Varsayılan ayarlara göre modülünüz derlenir ve sizin adresinizin adı atlında paylaşılır. Fakat modülleri yerel olarak kullanmak istiyorsanız (örn. Test etme ya da geliştirme durumlarında) ya da adresinizi modülünüzün içinde belirtmek istiyorsanız <code>adress &lt;ADDR&gt; {}</code> syntaxını kullanın:</p>
+<pre><code class="language-Move">address 0x1 {
+module Math {
+    // modül içerikleri
+
+    public fun sum(a: u64, b: u64): u64 {
+        a + b
+    }
+}
+}
+</code></pre>
+<p><em>Modülde gösterildiği gibi en doğrusu modül satırını girintisiz tutmaktır.</em></p>
+<h2><a class="header" href="#İçe-aktarım" id="İçe-aktarım">İçe Aktarım</a></h2>
+<p>Move dilinde Default context boştur. Kullanabileceğiniz sadece ilkel tipler (integer, bool ve adres) vardır ve boş bir bağlam içerisinde yapabileceğiniz tek şey bu tipleri ve değişkenleri kullanmaktır. Bu durum da anlamlı ya da işe yarar bir şey yapmamızın önüne geçer.</p>
+<p>Bunu değiştirmek için paylaşılmış modülleri (ya da standart kütüphaneden) içeri aktarabilirsiniz.</p>
+<h3><a class="header" href="#doğrudan-İçe-aktarım" id="doğrudan-İçe-aktarım">Doğrudan İçe Aktarım</a></h3>
+<p>Kodunuzda modülleri doğrudan adreslerini yazarak kullanabilirsiniz:</p>
+<pre><code class="language-Move">script {
+    fun main(a: u8) {
+        0x1::Offer::create(a == 10, 1);
+    }
+}
+</code></pre>
+<p>Bu örnekte <code>0x1</code> adresinden (standart kütüphane) <code>Offer</code> modülünü içeri aktardık ve <code>assert(expr: bool, code: u8)</code> metodunu kullandık.</p>
+<h3><a class="header" href="#anahtar-sözcük-kullanımı" id="anahtar-sözcük-kullanımı">Anahtar sözcük kullanımı</a></h3>
+<p>Yazdığınız kodları daha kısa tutmak için (0x1 adresinin kısa olduğunu hatırlatmak isterim, aslında adresler oldukça uzun oluyor!) ve içeri aktardıklarınızı organize etmek istiyorsanız <code>use</code> anahtar sözcüğünü kullanın:</p>
+<pre><code class="language-Move">use &lt;Address&gt;::&lt;ModuleName&gt;;
+</code></pre>
+<p>Burada <code>&lt;Address&gt;</code> paylaşanın adresi ve <code>&lt;ModuleName&gt;</code> modülün ismi oluyor. Oldukça basit. Aşağıda da aynısını uygulayalım. <code>Vector</code> modülünü <code>0x1</code> adresinden içeri aktaralım.</p>
+<pre><code class="language-Move">use 0x1::Vector;
+</code></pre>
+<h3><a class="header" href="#modülün-içeriğine-erişim" id="modülün-içeriğine-erişim">Modül'ün içeriğine erişim</a></h3>
+<p>İçe aktardığınız bir modülün metodlarına (veya tiplerine) erişmek için <code>::</code> gösterimini kullanın. İşte bu kadar basit. Modüller sadece tek bir katmanda tanım barındırabilir. Bundan dolayı paylaştığınız bir modüldeki yaptığınız tüm tanımlamalara iki adet iki nokta üst üste gösterimiyle erişilebilir.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Vector;
+
+    fun main() {
+        // Vector modülünün empty() metodunu kullanıyoruz
+        // her modülün tüm metodlarına aynı bu şekilde ulaşabilirsiniz
+        let _ = Vector::empty&lt;u64&gt;();
+    }
+}
+</code></pre>
+<h3><a class="header" href="#scriptlerin-içeri-aktarımı" id="scriptlerin-içeri-aktarımı">Scriptlerin içeri aktarımı</a></h3>
+<p>Scriptlerde içeri aktarımlar <code>script {}</code> blokunun içine koyulmalıdır.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Vector;
+
+    // aynı modül içeri aktarımı gibi
+    // istediğiniz kadar aktarabilirsiniz!
+
+    fun main() {
+        let _ = Vector::empty&lt;u64&gt;();
+    }
+}
+</code></pre>
+<h3><a class="header" href="#modüllerin-içeri-aktarımı" id="modüllerin-içeri-aktarımı">Modüllerin içeri aktarımı</a></h3>
+<p>Modül içeri aktarımları <code>module {}</code> blokunun içine koyulmalıdır.</p>
+<pre><code class="language-Move">module Math {
+    use 0x1::Vector;
+
+    // scriptlerle aynı şekilde
+    // istediğiniz sayıda modülü içeri aktarabilirsiniz
+
+    public fun empty_vec(): vector&lt;u64&gt; {
+        Vector::empty&lt;u64&gt;();
+    }
+}
+</code></pre>
+<h3><a class="header" href="#member-import" id="member-import">Member import</a></h3>
+<p>Import deyiminin anlamı genişletilebilir. Modülün hangi üyelerini içeri aktarmak istediğinizi belirtebilirsiniz.</p>
+<pre><code class="language-Move">script {
+    // tek üyenin içeri aktarımı
+    use 0x1::Signer::address_of;
+
+    // birden fazla üyenin içeri aktarımı (mind braces)
+    use 0x1::Vector::{
+        empty,
+        push_back
+    };
+
+    fun main(acc: &amp;signer) {
+        // modül erişimi olmadan fonksiyon kullanımı
+        let vec = empty&lt;u8&gt;();
+        push_back(&amp;mut vec, 10);
+
+        // same here
+        let _ = address_of(acc);
+    }
+}
+</code></pre>
+<h3><a class="header" href="#self-kullanarak-modülü-üyeleriyle-birlikte-içeri-aktarmak" id="self-kullanarak-modülü-üyeleriyle-birlikte-içeri-aktarmak">&quot;Self&quot; kullanarak modülü üyeleriyle birlikte içeri aktarmak</a></h3>
+<p>Üye içe aktarımı syntaxını biraz genişletirseniz tüm modülü ve üyelerini içeri aktarabilirsiniz. <code>Self</code>in modül için kullanımı aşağıdadır:</p>
+<pre><code class="language-Move">script {
+    use 0x1::Vector::{
+        Self, // Self == içeri aktarılmış modül
+        empty
+    };
+
+    fun main() {
+        // `empty`,`empty` olarak içeri aktarılıyor
+        let vec = empty&lt;u8&gt;();
+
+        // Self burada Vector anlamına geliyor
+        Vector::push_back(&amp;mut vec, 10);
+    }
+}
+</code></pre>
+<h3><a class="header" href="#use-ve-asin-birlikte-kullanımı" id="use-ve-asin-birlikte-kullanımı">Use ve as’in birlikte kullanımı</a></h3>
+<p>İsimlendirme çelişkilerini (2 ya da daha fazla modülün aynı isme sahip olması) önlemek için ya da kodunuzu kısaltmak için içeri aktardığınız modülün adını <code>as</code> anahtar sözcüğüyle değiştirebilirsiniz.</p>
+<p>Syntax:</p>
+<pre><code class="language-Move">use &lt;Address&gt;::&lt;ModuleName&gt; as &lt;Alias&gt;;
+</code></pre>
+<p>In script:</p>
+<pre><code class="language-Move">script {
+    use 0x1::Vector as V; // Vector’un adı V olarak değiştirildi
+
+    fun main() {
+        V::empty&lt;u64&gt;();
+    }
+}
+</code></pre>
+<p>Modülde de aynı şekilde:</p>
+<pre><code class="language-Move">module Math {
+    use 0x1::Vector as Vec;
+
+    fun length(&amp;v: vector&lt;u8&gt;): u64 {
+        Vec::length(&amp;v)
+    }
+}
+</code></pre>
+<p>Self kullanarak <em>üyeleri içe aktarırken</em>:</p>
+<pre><code class="language-Move">script {
+    use 0x1::Vector::{
+        Self as V,
+        empty as empty_vec
+    };
+
+    fun main() {
+        // `empty`, `empty_vec` olarak içeri aktarılır
+        let vec = empty_vec&lt;u8&gt;();
+
+        // Self V = Vector olarak
+        V::push_back(&amp;mut vec, 10);
+    }
+}
+</code></pre>
+<p>Yukarıdaki örnek, modül ve scriptlerde de çalışmaktadır.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../syntax-basics/control-flow.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../syntax-basics/constants.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../syntax-basics/control-flow.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../syntax-basics/constants.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

@@ -1,0 +1,3198 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>The Move Book</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="First book about the Move programming language and the Move VM. Move documentation, Move tutorials and language reference">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="getting-started/index.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting-started/choose-a-network.html"><strong aria-hidden="true">3.1.</strong> Choose a Network</a></li><li class="chapter-item expanded "><a href="getting-started/ide-support.html"><strong aria-hidden="true">3.2.</strong> Set up your IDE</a></li><li class="chapter-item expanded "><a href="getting-started/project-setup.html"><strong aria-hidden="true">3.3.</strong> Project Setup</a></li><li class="chapter-item expanded "><a href="getting-started/package-manifest.html"><strong aria-hidden="true">3.4.</strong> Package Manifest</a></li><li class="chapter-item expanded "><a href="getting-started/what-is-a-package.html"><strong aria-hidden="true">3.5.</strong> What is a Package?</a></li></ol></li><li class="chapter-item expanded "><a href="your-first-move/index.html"><strong aria-hidden="true">4.</strong> Your first Move</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="your-first-move/hello-world.html"><strong aria-hidden="true">4.1.</strong> Hello World</a></li><li class="chapter-item expanded "><a href="your-first-move/adding-tests.html"><strong aria-hidden="true">4.2.</strong> Adding Tests</a></li><li class="chapter-item expanded "><a href="your-first-move/debugging.html"><strong aria-hidden="true">4.3.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="your-first-move/generating-docs.html"><strong aria-hidden="true">4.4.</strong> Generating Docs</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.5.</strong> Publishing</div></li></ol></li><li class="chapter-item expanded "><a href="syntax-basics/index.html"><strong aria-hidden="true">5.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="syntax-basics/modules.html"><strong aria-hidden="true">5.1.</strong> Module</a></li><li class="chapter-item expanded "><a href="syntax-basics/comments.html"><strong aria-hidden="true">5.2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="syntax-basics/primitive-types.html"><strong aria-hidden="true">5.3.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="syntax-basics/expression-and-scope.html"><strong aria-hidden="true">5.4.</strong> Expression and Scope</a></li><li class="chapter-item expanded "><a href="syntax-basics/control-flow.html"><strong aria-hidden="true">5.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="syntax-basics/constants.html"><strong aria-hidden="true">5.6.</strong> Constants</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.7.</strong> Error Handling</div></li><li class="chapter-item expanded "><a href="syntax-basics/function.html"><strong aria-hidden="true">5.8.</strong> Function</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.9.</strong> Function Visibility</div></li><li class="chapter-item expanded "><a href="advanced-topics/managing-collections-with-vectors.html"><strong aria-hidden="true">5.10.</strong> Vector</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.11.</strong> String</div></li><li class="chapter-item expanded "><a href="advanced-topics/struct.html"><strong aria-hidden="true">5.12.</strong> Struct</a></li><li class="chapter-item expanded "><a href="syntax-basics/imports.html"><strong aria-hidden="true">5.13.</strong> Imports</a></li></ol></li><li class="chapter-item expanded "><a href="advanced-topics/index.html"><strong aria-hidden="true">6.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="advanced-topics/types-with-abilities.html"><strong aria-hidden="true">6.1.</strong> Abilities</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.</strong> A Friend of a Friend</div></li><li class="chapter-item expanded "><a href="advanced-topics/ownership-and-references.html"><strong aria-hidden="true">6.3.</strong> Ownership and References</a></li><li class="chapter-item expanded "><a href="advanced-topics/understanding-generics.html"><strong aria-hidden="true">6.4.</strong> Understanding Generics</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.5.</strong> Testing</div></li></ol></li><li class="chapter-item expanded "><a href="storage-models/index.html"><strong aria-hidden="true">7.</strong> Storage Models</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="resources/index.html"><strong aria-hidden="true">7.1.</strong> Core Move Model</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="resources/signer-type.html"><strong aria-hidden="true">7.1.1.</strong> Sender as Signer</a></li><li class="chapter-item expanded "><a href="resources/what-is-resource.html"><strong aria-hidden="true">7.1.2.</strong> What is Resource</a></li><li class="chapter-item expanded "><a href="resources/resource-by-example/index.html"><strong aria-hidden="true">7.1.3.</strong> Resource by Example</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="resources/resource-by-example/storing-new-resource.html"><strong aria-hidden="true">7.1.3.1.</strong> Create and Move</a></li><li class="chapter-item expanded "><a href="resources/resource-by-example/access-resource-with-borrow.html"><strong aria-hidden="true">7.1.3.2.</strong> Read and Modify</a></li><li class="chapter-item expanded "><a href="resources/resource-by-example/destroy-resource.html"><strong aria-hidden="true">7.1.3.3.</strong> Take and Destroy</a></li><li class="chapter-item expanded "><a href="resources/resource-by-example/furher-steps.html"><strong aria-hidden="true">7.1.3.4.</strong> Further Reading</a></li></ol></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.2.</strong> Object Model (Sui)</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.2.1.</strong> What is Object</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.2.2.</strong> Object by Example</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.2.2.1.</strong> Single Owner</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.2.2.2.</strong> Shared Objects</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.2.2.3.</strong> Immutable Objects</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.2.2.4.</strong> Further Reading</div></li></ol></li></ol></li></ol></li><li class="chapter-item expanded "><a href="patterns/index.html"><strong aria-hidden="true">8.</strong> Design Patterns</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="patterns/autorization.html"><strong aria-hidden="true">8.1.</strong> Authorization</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="patterns/capability.html"><strong aria-hidden="true">8.1.1.</strong> Capability</a></li><li class="chapter-item expanded "><a href="patterns/witness.html"><strong aria-hidden="true">8.1.2.</strong> Witness</a></li></ol></li><li class="chapter-item expanded "><a href="patterns/composability.html"><strong aria-hidden="true">8.2.</strong> Composability</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="patterns/getters-and-setters.html"><strong aria-hidden="true">8.2.1.</strong> Getters and Setters</a></li><li class="chapter-item expanded "><a href="patterns/hot-potato.html"><strong aria-hidden="true">8.2.2.</strong> Hot Potato</a></li><li class="chapter-item expanded "><a href="patterns/policy.html"><strong aria-hidden="true">8.2.3.</strong> Policy</a></li></ol></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.</strong> Special Topics</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="special/coding-conventions.html"><strong aria-hidden="true">9.1.</strong> Coding Conventions</a></li><li class="chapter-item expanded "><a href="special/compatibility-table.html"><strong aria-hidden="true">9.2.</strong> Compatibility Table</a></li><li class="chapter-item expanded "><a href="special/scripts.html"><strong aria-hidden="true">9.3.</strong> Scripts</a></li><li class="chapter-item expanded "><a href="special/bcs.html"><strong aria-hidden="true">9.4.</strong> BCS</a></li></ol></li><li class="chapter-item expanded "><a href="translations.html"><strong aria-hidden="true">10.</strong> Translations</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The Move Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/damirka/move-book" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="the-move-programming-language"><a class="header" href="#the-move-programming-language">The Move Programming Language</a></h1>
+<p>Move is a safe and reliable language for digital assets originally created by <a href="https://diem.com/">Diem</a> in 2019.</p>
+<p>You can read language white paper <a href="https://developers.diem.com/docs/move-paper">here</a>.</p>
+<p>This book is a collection of all the information which I found and shaped into a single source of knowledge about Move language.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="foreword"><a class="header" href="#foreword">Foreword</a></h1>
+<h2 id="second-edition"><a class="header" href="#second-edition">Second Edition</a></h2>
+<p>TBD </p>
+<h2 id="first-edition"><a class="header" href="#first-edition">First Edition</a></h2>
+<p>When I wrote this book, there was no documentation (or other references) on the Move language and the goal I pursued was to give people a chance to see the hidden gem of crypto world - the Move language. Currently, <a href="https://move-language.github.io/move/">there is a Move documentation</a> written by the language developers. Yet I still think that the flow given in this book is more intuitive and more friendly for a newcomer, I once was a newcomer too and Move is one tricky and interesting language some concepts of which might be mind-blowing.</p>
+<p>I deeply love this language and hope you'll see why!</p>
+<p>- <em>Damir Shamanaev, May 2020</em></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started"><a class="header" href="#getting-started">Getting Started</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="choose-a-network"><a class="header" href="#choose-a-network">Choose a Network</a></h1>
+<p>Originally, the language was developed as part of the Diem blockchain. However, the project was shut down and the language was moved to a <a href="https://github.com/move-language/move">public, chain-agnotic repository</a>. Today, to use Move you need to choose one of the available implementations. Each of the implementations has its own binary and specifics, but the language itself is the same.</p>
+<p>These 3 commands is all you need to start developing Move programs:</p>
+<pre><code class="language-bash">move new &lt;name&gt;   # creates a new project
+move build        # compiles the modules (Aptos uses `compile` instead)
+move test         # runs the tests
+</code></pre>
+<h2 id="sui-network"><a class="header" href="#sui-network">Sui Network</a></h2>
+<p>Sui is a layer one blockchain which adds the Object Model to the language and leverages type security and resource management to provide a safe and reliable environment for digital assets. The Sui Nework is live and you can start developing your own programs today.</p>
+<ul>
+<li><a href="https://sui.io/">Sui Network</a></li>
+<li><a href="https://github.com/MystenLabs/sui/releases">Sui Binary Releases</a></li>
+<li><a href="https://docs.sui.io/guides/developer/getting-started/sui-install">Installation Guide</a></li>
+</ul>
+<p>Once installed, the binary provides a <code>sui move</code> command which can be used to initialize, build, and run Move programs.</p>
+<pre><code>Usage: sui move [OPTIONS] &lt;COMMAND&gt;
+
+Commands:
+  build
+  coverage     Inspect test coverage for this package. A previous test run with the `--coverage` flag must have previously been run
+  new          Create a new Move package with name `name` at `path`. If `path` is not provided the package will be created in the directory `name`
+  prove        Run the Move Prover on the package at `path` (Warning: Move Prover support for Sui is currently limited)
+  test         Run Move unit tests in this package
+  help         Print this message or the help of the given subcommand(s)
+  disassemble
+</code></pre>
+<h2 id="aptos-network"><a class="header" href="#aptos-network">Aptos Network</a></h2>
+<p>TBD</p>
+<ul>
+<li><a href="https://aptosfoundation.org/">Aptos Network</a></li>
+<li><a href="https://github.com/aptos-labs/aptos-core/releases">Aptos Binary Releases</a></li>
+<li><a href="https://aptos.dev/tools/aptos-cli/install-cli/">Installation Guide</a></li>
+</ul>
+<p>Once installed, the binary provides an <code>aptos move</code> command which can be used to initialize, build, and run Move programs.</p>
+<pre><code>USAGE:
+    aptos move &lt;SUBCOMMAND&gt;
+
+SUBCOMMANDS:
+    compile         Compiles a package and returns the associated ModuleIds
+    compile-script  Compiles a Move script into bytecode
+    coverage        Computes coverage for a package
+    disassemble     Disassemble the Move bytecode pointed to
+    document        Documents a Move package
+    help            Print this message or the help of the given subcommand(s)
+    init            Creates a new Move package at the given location
+    prove           Proves a Move package
+    run             Run a Move function
+    run-script      Run a Move script
+    test            Runs Move unit tests for a package
+    view            Run a view function
+    ...
+</code></pre>
+<h2 id="move-cli"><a class="header" href="#move-cli">Move CLI</a></h2>
+<p>The Move CLI is a legacy implementation of the compiler. It can be used to run old Diem-style programs.
+It can be installed from the git repository:</p>
+<ul>
+<li><a href="https://github.com/move-language/move/tree/main/language/tools/move-cli">Installation guide</a></li>
+</ul>
+<p>Once installed, the tool provides a <code>move</code> command which can be used to initialize, build, and run Move programs.</p>
+<pre><code>move
+Move 0.1.0
+CLI frontend for Move compiler and VM
+
+USAGE:
+    move [FLAGS] [OPTIONS] &lt;SUBCOMMAND&gt;
+  ...
+</code></pre>
+<h2 id="other-networks-and-implementations"><a class="header" href="#other-networks-and-implementations">Other Networks and Implementations</a></h2>
+<p>There are other networks and implementations of the Move language. However, it is not clear what their status is and how to use them. If you know more about them, please <a href="getting-started/">open an issue</a> or <a href="getting-started/">submit a PR</a>.</p>
+<ul>
+<li><a href="https://starcoin.org">Starcoin</a></li>
+<li><a href="https://0l.network">0L</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ide-support"><a class="header" href="#ide-support">IDE Support</a></h1>
+<p>There are two most popular IDEs for Move development: VSCode and IntelliJ IDEA. Both of them provide basic features like syntax highlighting and error messages, though they differ in their additional features. Whatever IDE you choose, you'll need to use the terminal to run the Move CLI.</p>
+<h2 id="vscode"><a class="header" href="#vscode">VSCode</a></h2>
+<ul>
+<li><a href="https://code.visualstudio.com/">VSCode</a> is a free and open source IDE from Microsoft.</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=move.move-analyzer">Move Analyzer</a> is a language server extension for Move maintained by <a href="https://mystenlabs.com">MystenLabs</a>.</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=damirka.move-syntax">Move Syntax</a> a simple syntax highlighting extension for Move by <a href="https://github.com/damirka/">Damir Shamanaev</a>.</li>
+</ul>
+<h2 id="intellij-idea"><a class="header" href="#intellij-idea">IntelliJ IDEA</a></h2>
+<ul>
+<li><a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a> is a commercial IDE from JetBrains.</li>
+<li><a href="https://plugins.jetbrains.com/plugin/14721-move-language">Move Language Plugin</a> provides a Move language extension for IntelliJ IDEA by <a href="https://pontem.network/">Pontem Network</a>.</li>
+</ul>
+<h2 id="emacs"><a class="header" href="#emacs">Emacs</a></h2>
+<ul>
+<li><a href="https://www.gnu.org/software/emacs/">Emacs</a> is a free and open source text editor.</li>
+<li><a href="https://github.com/amnn/move-mode">move-mode</a> is a Move mode for Emacs by <a href="https://github.com/amnn">Ashok Menon</a>.</li>
+</ul>
+<h2 id="github-codespaces"><a class="header" href="#github-codespaces">Github Codespaces</a></h2>
+<p>Web based IDE from Github, can be run right in the browser and provides almost a full-featured VSCode experience.</p>
+<ul>
+<li><a href="https://github.com/features/codespaces">Github Codespaces</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=damirka.move-syntax">Move Syntax</a> is also available in the extensions marketplace.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="project-setup"><a class="header" href="#project-setup">Project Setup</a></h1>
+<p>No matter what network you are using, the project structure will be the similar: every Move package has a <code>Move.toml</code> file that describes the package and its dependencies, and the <code>sources</code> folder that contains the source code of the package.</p>
+<h2 id="initialize-the-project"><a class="header" href="#initialize-the-project">Initialize the project</a></h2>
+<blockquote>
+<p>Please refer to <a href="getting-started/./choose-a-network.html">the previous section</a> to learn how to install the CLI for the network you are building on.</p>
+</blockquote>
+<p>To initialize a new project, run the following command (<code>move</code> - for Move CLI and <code>sui move</code> - for Sui):</p>
+<pre><code class="language-bash">$ move new my_project # or `sui move new my_project`
+$ cd my_project
+</code></pre>
+<p>For Aptos, you need to create a directory first, and then run the <code>init</code> command inside this directory:</p>
+<pre><code class="language-bash">$ mkdir my_project
+$ cd my_project
+$ aptos move init --name my_project
+</code></pre>
+<h2 id="project-structure"><a class="header" href="#project-structure">Project structure</a></h2>
+<p>The resulting folder structure will look like this:</p>
+<pre><code class="language-bash">sources/   # contains the source code of the project
+Move.toml  # package manifest
+</code></pre>
+<p>Optionally, there can be additional directories:</p>
+<pre><code class="language-bash">tests/     # contains modules for testing
+scripts/   # contains scripts (Aptos)
+sources/
+Move.toml
+</code></pre>
+<p><em>For Aptos, <code>tests</code> and <code>scripts</code> will be created automatically.</em></p>
+<p>The <code>sources</code> folder should contain the source code of the project. The <code>Move.toml</code> file is a manifest file that describes the project and its dependencies.</p>
+<h2 id="building-a-project"><a class="header" href="#building-a-project">Building a project</a></h2>
+<p>To build a project, run the following command:</p>
+<pre><code class="language-bash">$ move build # or `sui move build`
+</code></pre>
+<p>For Aptos, you need to use a different command:</p>
+<pre><code class="language-bash">$ aptos move compile
+</code></pre>
+<h2 id="build-directory"><a class="header" href="#build-directory">Build directory</a></h2>
+<p>The artifacts of the build process are stored in the <code>build</code> directory. If you're using a version control system, you should add this directory to the ignore list.</p>
+<pre><code class="language-bash"># .gitignore
+build/
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="package-manifest"><a class="header" href="#package-manifest">Package Manifest</a></h1>
+<p>The <code>Move.toml</code> file is a manifest file that describes the project and its dependencies. It has the following structure (varies depending on the network):</p>
+<pre><code class="language-toml">[package]
+name = &quot;my_project&quot;
+version = &quot;0.0.0&quot;
+
+[dependencies]
+MoveStdlib = { git = &quot;https://github.com/move-language/move.git&quot;, subdir = &quot;language/move-stdlib&quot;, rev = &quot;main&quot; }
+
+[addresses]
+std =  &quot;0x1&quot;
+</code></pre>
+<p>Each section can have multiple fields, and some of them are optional.</p>
+<ul>
+<li>
+<p><code>[package]</code> section describes the project metadata. It supports the following fields:</p>
+<ul>
+<li><code>name</code> - the name of the project. It should be unique within the network.</li>
+<li><code>description</code> - the description of the project.</li>
+<li><code>version</code> - the version of the project. It should be unique within the network.</li>
+<li><code>authors</code> - the list of authors of the project.</li>
+</ul>
+</li>
+<li>
+<p><code>[dependencies]</code> section describes the project dependencies. Each dependency should have a name and a git repository URL (or a path to the local directory). Each</p>
+</li>
+<li>
+<p><code>[addresses]</code> section adds aliases for the addresses. Any address can be specified in this section, and then used in the code as an alias. For example, if you add <code>std = &quot;0x1&quot;</code> to this section, you can use <code>0x1</code> as <code>std</code> in the code.</p>
+</li>
+<li>
+<p><code>[dev-addresses]</code> - the same as <code>[addresses]</code>, but only works for the test and dev modes.</p>
+</li>
+<li>
+<p><code>[dev-dependencies]</code> - the same as <code>[dependencies]</code>, but only works for the test and dev modes.</p>
+</li>
+</ul>
+<h2 id="further-reading"><a class="header" href="#further-reading">Further reading</a></h2>
+<ul>
+<li><a href="https://move-language.github.io/move/packages.html">Packages in the Move Documentation</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="what-is-a-package"><a class="header" href="#what-is-a-package">What is a Package?</a></h1>
+<p>Move is created to be used in blockchains. Programs - we call them &quot;packages&quot; - are published on-chain and executed in transactions. Packages consist of modules, which are a little bit similar to classes (eg JavaScript) or modules in other languages. Modules consist of type definitions and functions, functions consist of statements and expressions.</p>
+<pre><code>package x
+    module a
+        struct S {}
+        function a() {}
+        function b() {}
+    module b
+        function c() {}
+        function d() {}
+    module c
+        ...
+</code></pre>
+<h2 id="path-resolution"><a class="header" href="#path-resolution">Path resolution</a></h2>
+<p>Every package has an address. Depending on the implementation, the address can be a sender's address or a freshly generated one. Packages are accessed by their addresses. For example, <code>std</code> typically refers to the standard library package and has <code>0x1</code> address.</p>
+<pre><code class="language-toml">[addresses]
+std = &quot;0x1&quot;
+</code></pre>
+<blockquote>
+<p>Always remember: <code>package</code> :: <code>module</code> :: <code>(type | function)</code></p>
+</blockquote>
+<p>Modules are accessed through their package and by their names. For example, <code>std::vector</code> refers to the <code>vector</code> module in the <code>std</code> package.</p>
+<pre><code class="language-Move">// an example of an import statement
+use std::vector;
+</code></pre>
+<p>Functions and structs are accessed by their names through the module. For example, <code>std::vector::push_back</code> refers to the <code>push_back</code> function in the <code>vector</code> module in the &quot;std&quot; package.</p>
+<pre><code class="language-Move">// example of a function path
+use std::vector::push_back;
+
+// example of a struct path
+use std::string::String;
+</code></pre>
+<h2 id="package-dependencies"><a class="header" href="#package-dependencies">Package dependencies</a></h2>
+<p>Packages can declare dependencies on other packages. Dependencies are resolved by the blockchain during publish, so you don't need to worry about them. The only thing you need to do is to specify the dependencies in the package manifest. During local development, dependencies are pulled and resolved by the Move CLI.</p>
+<p>For example, after calling the <code>move new</code> command using the Move CLI, the following dependencies will be added to the package manifest:</p>
+<pre><code class="language-toml">[dependencies]
+MoveStdlib = { git = &quot;https://github.com/move-language/move.git&quot;, subdir = &quot;language/move-stdlib&quot;, rev = &quot;main&quot; }
+</code></pre>
+<p>Local dependencies can be specified using the <code>local</code> property:</p>
+<pre><code class="language-toml">[dependencies]
+MyPackage = { local = &quot;../my-package&quot; }
+</code></pre>
+<p>In the next section, we will learn how to create a package, test it, generate documentation and publish it on-chain.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="your-first-move"><a class="header" href="#your-first-move">Your first Move</a></h1>
+<p>In this section you'll get to experience the Move language first-hand. You'll learn how to create a package, write a simple module, test it, generate documentation and publish it on-chain. While the guide is not complete on the last part (as every network has specifics on how to publish a package), it will give you a good idea of how to work with Move.</p>
+<p>This guide will reference topics which you will learn later in this book. If you are not familiar with some of the concepts, don't worry, you'll learn them later. Try to focus on the task at hand and don't get distracted by the details.</p>
+<blockquote>
+<p>It is important that you have a working Move environment. If you haven't set it up yet, please refer to the <a href="your-first-move/../getting-started/choose-a-network.html">Choose a Network</a> section. The commands are given for the Move CLI, for Sui use <code>sui move</code> instead of <code>move</code>, and for Aptos commands are specified separately.</p>
+</blockquote>
+<p>This section is divided into the following parts (in order):</p>
+<ul>
+<li><a href="your-first-move/./hello-world.html">Hello World</a></li>
+<li><a href="your-first-move/./adding-tests.html">Adding Tests</a></li>
+<li><a href="your-first-move/./debugging.html">Debugging</a></li>
+<li><a href="your-first-move/">Generating Docs</a></li>
+<li><a href="your-first-move/./publish-a-package.html">Publish a package</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hello-world"><a class="header" href="#hello-world">Hello World</a></h1>
+<p>It's time to write your first Move program. We'll start with the classic &quot;Hello World&quot; program which returns a String. First, you need to initialize a new project, the process was previously described on the <a href="your-first-move/../getting-started/project-setup.html">Project Setup</a> page.</p>
+<p>By running a Move CLI <code>new</code> function, you get this folder structure:</p>
+<pre><code class="language-bash">sources/
+Move.toml
+</code></pre>
+<p>The address I'm using in this book is always <code>0x0</code> and the name for it is &quot;book&quot;. You can use any address you want, but make sure to change it in the examples. To make the examples work as is, please, add the following address to the <code>[addresses]</code> section in the <code>Move.toml</code>:</p>
+<pre><code class="language-toml"># Move.toml
+[addresses]
+std = &quot;0x1&quot;
+book = &quot;0x0&quot;
+</code></pre>
+<h2 id="create-a-module"><a class="header" href="#create-a-module">Create a module</a></h2>
+<p>Let's create a new module called <code>hello_world</code>. To do so, create a new file in the <code>sources</code> folder called <code>hello_world.move</code>. So that the structure looks like this:</p>
+<pre><code class="language-bash">sources/
+    hello_world.move
+Move.toml
+</code></pre>
+<p>And then add the following code to the <code>hello_world.move</code> file:</p>
+<pre><code class="language-Move">// sources/hello_world.move
+module book::hello_world {
+    use std::string::{Self, String};
+
+    public fun hello_world(): String {
+        string::utf8(b&quot;Hello, World!&quot;)
+    }
+}
+</code></pre>
+<p>While it's not a hard restriction, it's is considered a good practice to name the module the same as the file. So, in our case, the module name is <code>hello_world</code> and the file name is <code>hello_world.move</code>.</p>
+<p>The module name and function names should be in <code>snake_case</code> - all lowercase letters with underscores between words. You can read more about coding conventions in the <a href="your-first-move/../special-topics/coding-conventions.html">Coding Conventions</a> section.</p>
+<h2 id="dive-into-the-code"><a class="header" href="#dive-into-the-code">Dive into the code</a></h2>
+<p>Let's take a closer look at the code we just wrote:</p>
+<pre><code class="language-Move">module book::hello_world {
+}
+</code></pre>
+<p>The first line of code declares a module called <code>hello_world</code> stored at the address <code>book</code>. The contents of the module go inside the curly braces <code>{}</code>. The last line closes the module declaration with a closing curly brace <code>}</code>. We will go through the module declaration in more detail in the <a href="your-first-move/../syntax-basics/modules.html">Modules</a> section.</p>
+<p>Then we import two members of the <code>std::string</code> module (which is part of the <code>std</code> package). The <code>string</code> module contains the <code>String</code> type, and the <code>Self</code> keyword imports the module itself, so we can use its functions.</p>
+<pre><code class="language-Move">    use std::string::{Self, String};
+</code></pre>
+<p>Then we define a <code>hello_world</code> function using the keyword <code>fun</code> which takes no arguments and returns a <code>String</code> type. The <code>public</code> keyword marks the visibility of the function - &quot;public&quot; functions can be accessed by other modules. The function body is inside the curly braces <code>{}</code>.</p>
+<blockquote>
+<p>In the <a href="your-first-move/../syntax-basics/function.html">Function</a> section we will learn more about functions.</p>
+</blockquote>
+<pre><code class="language-Move">    public fun hello_world(): String {
+        string::utf8(b&quot;Hello, World!&quot;)
+    }
+</code></pre>
+<p>The function body consists of a single function call to the <code>string::utf8</code> function and returns a <code>String</code> type. The expression is a bytestring literal <code>b&quot;Hello World!&quot;</code>.</p>
+<h2 id="compile-the-package"><a class="header" href="#compile-the-package">Compile the package</a></h2>
+<p>To compile the package, run the following command:</p>
+<pre><code class="language-bash">$ move build # or `sui move build` for Sui
+</code></pre>
+<p><em>For Aptos, you need to use a different command: <code>aptos move compile</code></em></p>
+<p>If you see this (or - for other binaries - similar) output, then everything is fine, and the code compiled successfully:</p>
+<pre><code class="language-bash">&gt; UPDATING GIT DEPENDENCY https://github.com/move-language/move.git
+&gt; INCLUDING DEPENDENCY MoveStdlib
+&gt; BUILDING Book
+</code></pre>
+<p>Congratulations! You've just compiled your first Move program. Now, let's add a test and some logging so we see that it works.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="adding-tests"><a class="header" href="#adding-tests">Adding Tests</a></h1>
+<p>To run a Move program there needs to be an environment which stores packages and executes transactions. The best way to test a Move program is to write some tests and run them locally. Move has built-in testing functionality, and the tests are written in Move as well. In this section, we will learn how to write tests for our <code>hello_world</code> module.</p>
+<p>First, let's try to run tests. All of the Move binaries support the <code>test</code> command, and this is the command we will use to run tests:</p>
+<pre><code class="language-bash">$ move test
+</code></pre>
+<p>If you see similar output, then everything is fine, and the test command has run successfully:</p>
+<pre><code class="language-bash">INCLUDING DEPENDENCY MoveStdlib
+BUILDING Book Samples
+Running Move unit tests
+Test result: OK. Total tests: 0; passed: 0; failed: 0
+</code></pre>
+<p>As you can see, the test command has run successfully, but it didn't find any tests. Let's add some tests to our module.</p>
+<h2 id="your-first-test"><a class="header" href="#your-first-test">Your first test</a></h2>
+<p>When the test command runs, it looks for all tests in all files in the directory. Tests can be either placed separate modules or in the same module as the code they test. First, let's add a test function to the <code>hello_world</code> module:</p>
+<pre><code class="language-Move">module book::hello_world {
+    use std::string::{Self, String};
+
+    public fun hello_world(): String {
+        string::utf8(b&quot;Hello, World!&quot;)
+    }
+
+    #[test]
+    fun test_is_hello_world() {
+        let expected = string::utf8(b&quot;Hello, World!&quot;);
+        assert!(hello_world() == expected, 0)
+    }
+}
+</code></pre>
+<p>The test function is a function with a <code>#[test]</code> attribute. Normally it takes no arguments (but it can take arguments in some cases - you'll learn more about it closer to the end of this book) and returns nothing. Tests placed in the same module as the code they test are called &quot;unit tests&quot;. They can access all functions and types in the module. We'll go through them in more detail in the <a href="your-first-move/../syntax-basics/test.html">Test</a> section.</p>
+<pre><code class="language-Move">    #[test]
+    fun test_is_hello_world() {
+        let expected = string::utf8(b&quot;Hello, World!&quot;);
+        assert!(hello_world() == expected, 0)
+    }
+</code></pre>
+<p>Inside the test function, we define the expected outcome by creating a String with the expected value and assign it to the <code>expected</code> variable. Then we use the special built-in <code>assert!()</code> which takes two arguments: a conditional expression and an error code. If the expression evaluates to <code>false</code>, then the test fails with the given error code. The equality operator <code>==</code> compares the <code>actual</code> and <code>expected</code> values and returns <code>true</code> if they are equal. We'll learn more about expressions in the <a href="your-first-move/../syntax-basics/expression-and-scope.html">Expression and Scope</a> section.</p>
+<p>Now let's run the test command again:</p>
+<pre><code class="language-bash">$ move test
+</code></pre>
+<p>You should see this output, which means that the test has run successfully:</p>
+<pre><code class="language-bash">...
+Test result: OK. Total tests: 1; passed: 1; failed: 0
+</code></pre>
+<h2 id="failed-experiment"><a class="header" href="#failed-experiment">Failed experiment</a></h2>
+<p>Try replacing the equality operator  <code>==</code> inside the <code>assert!</code> with the inequality operator <code>!=</code> and run the test command again.</p>
+<pre><code class="language-Move">    assert!(hello_world() != expected, 0)
+</code></pre>
+<p>You should see this output, which means that the test has failed:</p>
+<pre><code class="language-bash">Running Move unit tests
+[ FAIL    ] 0x0::hello_world::test_is_hello_world
+
+Test failures:
+
+Failures in 0x0::hello_world:
+
+┌── test_is_hello_world ──────
+│ error[E11001]: test failure
+│    ┌─ ./sources/your-first-move/hello_world.move:14:9
+│    │
+│ 12 │     fun test_is_hello_world() {
+│    │         ------------------- In this function in 0x0::hello_world
+│ 13 │         let expected = string::utf8(b&quot;Hello, World!&quot;);
+│ 14 │         assert!(hello_world() != expected, 0)
+│    │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Test was not expected to error, but it aborted with code 0 originating in the module 00000000000000000000000000000000::hello_world rooted here
+│
+│
+└──────────────────
+
+Test result: FAILED. Total tests: 1; passed: 0; failed: 1
+</code></pre>
+<p>Tests are used to verify the execution of the code. If the code is correct, the test should pass, otherwise it should fail. In this case, the test failed because we intentionally made a mistake in the test code. However, normally you should write tests that check the correctness of the code, not the other way around!</p>
+<p>In the next section, we will learn how to debug Move programs and print intermediate values to the console.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="debugging"><a class="header" href="#debugging">Debugging</a></h1>
+<p>Now that we have a package with a module and a test, let's take a slight detour and learn how to debug Move programs. Move Compiler has a built-in debugging tool that allows you to print intermediate values to the console. This is especially useful when you are writing tests and want to see what's going on inside the program.</p>
+<h2 id="supporting-debug-in-move-cli"><a class="header" href="#supporting-debug-in-move-cli">Supporting Debug in Move CLI</a></h2>
+<p><em>If you are using Aptos or Sui binaries, you can skip this section. The <code>debug</code> module is included in the standard library by default.</em></p>
+<p>Default implementation of the Standard library in Move CLI tool does not include the <code>std::debug</code> module. To enable it, we need to add an additional dependency to the <code>Move.toml</code> file:</p>
+<pre><code class="language-toml">[dependencies]
+MoveStdlib = { git = &quot;https://github.com/move-language/move.git&quot;, subdir = &quot;language/move-stdlib&quot;, rev = &quot;main&quot; }
+MoveNursery = { git = &quot;https://github.com/move-language/move.git&quot;, subdir = &quot;language/move-stdlib/nursery&quot;, rev = &quot;main&quot; }
+
+[addresses]
+std = &quot;0x1&quot;
+book = &quot;0x0&quot;
+</code></pre>
+<h2 id="new-import"><a class="header" href="#new-import">New import</a></h2>
+<p>To use the <code>debug</code> module, we need to import it in our module. Imports are usually grouped together for readability and they are placed at the top of the module. Let's add the import statement to the <code>hello_world</code> module:</p>
+<pre><code class="language-Move">module book::hello_world {
+    use std::string::{Self, String};
+    use std::debug; // the added import!
+</code></pre>
+<p>Having imported the <code>std::debug</code> module, we can now use its functions. Let's add a <code>debug::print</code> function call to the <code>hello_world</code> function. To achieve that we need to change the function body. Instead of returning the value right away we will assign it to a variable, print it to the console and then return it:</p>
+<pre><code class="language-Move">    public fun hello_world(): String {
+        let result = string::utf8(b&quot;Hello, World!&quot;);
+        debug::print(&amp;result);
+        result
+    }
+</code></pre>
+<p>First, run the build command:</p>
+<pre><code class="language-bash">$ move build
+</code></pre>
+<p>The output does not contain anything unusual, because our code was never executed. But running <code>build</code> is an important part of the routine - this way we make sure that the changes we added can compile. Let's run the test command now:</p>
+<pre><code class="language-bash">$ move test
+</code></pre>
+<p>The output of the test command now contains the &quot;Hello, World!&quot; string:</p>
+<pre><code class="language-bash">INCLUDING DEPENDENCY MoveNursery
+INCLUDING DEPENDENCY MoveStdlib
+BUILDING Book Samples
+Running Move unit tests
+[debug] &quot;Hello, World!&quot;
+[ PASS    ] 0x0::hello_world::test_is_hello_world
+Test result: OK. Total tests: 1; passed: 1; failed: 0
+</code></pre>
+<p>Now every time the <code>hello_world</code> function is run in tests, you'll see the &quot;Hello, World!&quot; string in the output.</p>
+<h2 id="correct-usage"><a class="header" href="#correct-usage">Correct usage</a></h2>
+<p>Debug should only be used in local environment and never published on-chain. Usually, during the publish, the <code>debug</code> module is either removed from the package or the publishing fails with an error. There's no way to use this functionality on-chain.</p>
+<h2 id="hint"><a class="header" href="#hint">Hint</a></h2>
+<p>There's one trick that allows you to save some time while debugging. Instead of adding a module-level import, use a fully qualified function name. This way you don't need to add an import statement to the module, but you can still use the <code>debug::print</code> function:</p>
+<pre><code class="language-Move">    std::debug::print(&amp;my_variable);
+</code></pre>
+<p>Be mindful that the value passed into debug should be a reference (the <code>&amp;</code> symbol in front of the variable name). If you pass a value, the compiler will emit an error.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="generating-documentation"><a class="header" href="#generating-documentation">Generating Documentation</a></h1>
+<p>Move CLI has a built-in tool for generating documentation for Move modules. The tool is included into the binary and available out of the box. In this section we will learn how to generate documentation for our <code>hello_world</code> module.</p>
+<h2 id="adding-documentation-comments"><a class="header" href="#adding-documentation-comments">Adding documentation comments</a></h2>
+<p>To generate documentation for a module, we need to add documentation comments to the module and its functions. Documentation comments are written in Markdown and start with <code>///</code> (three slashes). For example, let's add a documentation comment to the <code>hello_world</code> module:</p>
+<pre><code class="language-Move">/// This module contains a function that returns a string &quot;Hello, World!&quot;.
+module book::hello_world {
+</code></pre>
+<p>Doc comments placed above the module are linked to the module itself, while doc comments placed above the function are linked to the function.</p>
+<pre><code class="language-Move">    /// As the name says: returns a string &quot;Hello, World!&quot;.
+    public fun hello_world(): String {
+        string::utf8(b&quot;Hello, World!&quot;)
+    }
+</code></pre>
+<p>If a documented member has an attribute, such as <code>#[test]</code> in the example below, the doc comment must be placed <em>after</em> the attribute:</p>
+<blockquote>
+<p>While it is possible to document <code>#[test]</code> functions, doc comments for tests will not be included in the generated documentation.</p>
+</blockquote>
+<pre><code class="language-Move">    #[test]
+    /// This is a test for the `hello_world` function.
+    fun test_is_hello_world() {
+        let expected = string::utf8(b&quot;Hello, World!&quot;);
+        let actual = hello_world();
+
+        assert!(actual == expected, 0)
+    }
+</code></pre>
+<h2 id="generating-documentation-1"><a class="header" href="#generating-documentation-1">Generating documentation</a></h2>
+<p>To generate documentation for a module, we need to run the <code>move build</code> command with a <code>--doc</code> flag. For Aptos, it's <code>aptos move document</code>. Let's run the command:</p>
+<pre><code class="language-bash">$ move build --doc
+...
+...
+BUILDING Book Samples
+</code></pre>
+<blockquote>
+<p>Alternatively, you can use <code>move test --doc</code> - this can be useful if you want to test and generate documentation at the same time. For example, as a part of your CI/CD pipeline.</p>
+</blockquote>
+<p>Once the build is complete, the documentation will be available in the <code>build/docs</code> directory. Each modile will have its own <code>.md</code> file. The documentation for the <code>hello_world</code> module will be available in the <code>build/docs/hello_world.md</code> file.</p>
+<p><em>For Aptos, the documentation will be available in the <code>docs</code> directory at the root of the package. And the path will be <code>docs/hello_world.md</code>.</em></p>
+<details>
+<summary><a style="cursor: pointer">Click to see an example of the `hello_world.md` contents</a></summary>
+<pre><code class="language-move">&lt;a name=&quot;0x0_hello_world&quot;&gt;&lt;/a&gt;
+
+# Module `0x0::hello_world`
+This module contains a function that returns a string &quot;Hello, World!&quot;.
+-  [Function `hello_world`](#0x0_hello_world_hello_world)
+&lt;pre&gt;&lt;code&gt;&lt;b&gt;use&lt;/b&gt; &lt;a href=&quot;&quot;&gt;0x1::debug&lt;/a&gt;;
+&lt;b&gt;use&lt;/b&gt; &lt;a href=&quot;&quot;&gt;0x1::string&lt;/a&gt;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;a name=&quot;0x0_hello_world_hello_world&quot;&gt;&lt;/a&gt;
+
+## Function `hello_world`
+As the name says: returns a string &quot;Hello, World!&quot;.
+&lt;pre&gt;&lt;code&gt;&lt;b&gt;fun&lt;/b&gt; &lt;a href=&quot;hello_world.md#0x0_hello_world&quot;&gt;hello_world&lt;/a&gt;(): &lt;a href=&quot;_String&quot;&gt;string::String&lt;/a&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;details&gt;
+&lt;summary&gt;Implementation&lt;/summary&gt;
+&lt;pre&gt;&lt;code&gt;&lt;b&gt;fun&lt;/b&gt; &lt;a href=&quot;hello_world.md#0x0_hello_world&quot;&gt;hello_world&lt;/a&gt;(): String {
+    &lt;b&gt;let&lt;/b&gt; result = &lt;a href=&quot;_utf8&quot;&gt;string::utf8&lt;/a&gt;(b&quot;Hello, World!&quot;);
+    &lt;a href=&quot;_print&quot;&gt;debug::print&lt;/a&gt;(&amp;result);
+    result
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/details&gt;
+</code></pre>
+</details>
+<h2 id="notes-on-aptos-implementation"><a class="header" href="#notes-on-aptos-implementation">Notes on Aptos implementation</a></h2>
+<p>There are a few differences in the implementation of the documentation generator in Aptos:</p>
+<ul>
+<li>The command to generate documentation is top-level <code>aptos move document</code></li>
+<li>The output is placed in the <code>docs</code> directory at the root of the package</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="syntax-basics"><a class="header" href="#syntax-basics">Syntax Basics</a></h1>
+<p>In this chapter, you will become familiar with the Move language. We will go through every aspect of the language, from general concepts to specific details. This chapter can also be used as a reference guide. If you are looking for a specific topic, you can use the table of contents to navigate to the desired section, if you want to learn the language from scratch, you can read the chapter from start to finish.</p>
+<p>The order of sections is not random. Every new topic builds on top of the previous ones.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="module"><a class="header" href="#module">Module</a></h1>
+<p>Module is the base unit of code organization in Move. Modules are used to group and isolate code, and most of the members of the module are private to the module by default. In this section you will learn how to create a module.</p>
+<h2 id="module-declaration"><a class="header" href="#module-declaration">Module declaration</a></h2>
+<p>Modules are declared using the <code>module</code> keyword followed by the package address, module name and the module body inside the curly braces <code>{}</code>. The module name should be in <code>snake_case</code> - all lowercase letters with underscores between words. Modules names must be unique in the package.</p>
+<p>Usually, a single file in the <code>sources/</code> folder contains a single module. The file name should match the module name - for example, a <code>donut_shop</code> module should be stored in the <code>donut_shop.move</code> file. You can read more about coding conventions in the <a href="syntax-basics/../special-topics/coding-conventions.html">Coding Conventions</a> section.</p>
+<pre><code class="language-Move">module book::my_module {
+    // module body
+}
+</code></pre>
+<p>Structs, functions and constants, imports and friend declarations are all part of the module:</p>
+<ul>
+<li><a href="syntax-basics/../syntax-basics/struct.html">Structs</a></li>
+<li><a href="syntax-basics/../syntax-basics/function.html">Functions</a></li>
+<li><a href="syntax-basics/../syntax-basics/constant.html">Constants</a></li>
+<li><a href="syntax-basics/../syntax-basics/import.html">Imports</a></li>
+<li><a href="syntax-basics/../advanced-topics/a-friend-of-a-friend.html">Friend declarations</a></li>
+</ul>
+<h2 id="address--named-address"><a class="header" href="#address--named-address">Address / Named address</a></h2>
+<p>Module address can be specified as both: an address &quot;literal&quot; (does not require <code>@</code> prefix) or a named address specified in the <a href="syntax-basics/../getting-started/package-manifest.html">Package Manifest</a>. In the example below, both are identical because there's a <code>book = &quot;0x0&quot;</code> record in the <code>[addresses]</code> section of the <code>Move.toml</code>.</p>
+<pre><code class="language-Move">module book::my_module {
+    // module body
+}
+
+module 0x0::address_literal_example {
+    // module body
+}
+</code></pre>
+<h2 id="address-block"><a class="header" href="#address-block">Address block</a></h2>
+<p>Before the introduction of the <code>address::module_name</code> syntax, modules were organized into <code>address {}</code> blocks. This way of code organization is still available today, but is not used widely. Modern practices imply having a single module per file, so the <code>address {}</code> block is rather a redundant construct.</p>
+<blockquote>
+<p>Module addresses can be omitted if modules are organized into <code>address {}</code> blocks.</p>
+</blockquote>
+<pre><code class="language-Move">address book { // address block
+
+module another_module {
+    // module body
+}
+
+module yet_another_module {
+    // module body
+}
+}
+</code></pre>
+<p>The modules defined in this code sample will be accessible as:</p>
+<ul>
+<li><code>book::another_module</code></li>
+<li><code>book::yet_another_module</code></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="comments"><a class="header" href="#comments">Comments</a></h1>
+<p>Comments are a way to add notes to your code. They are ignored by the compiler and don't result in the Move bytecode. You can use comments to explain what your code does, to add notes to yourself or other developers, to temporarily remove a part of your code, or to generate documentation. There are three types of comments in Move: line comment, block comment, and doc comment.</p>
+<h2 id="line-comment"><a class="header" href="#line-comment">Line comment</a></h2>
+<pre><code class="language-Move">module book::comments_line {
+    fun some_function() {
+        // this is a comment line
+    }
+}
+</code></pre>
+<p>You can use double slash <code>//</code> to comment out the rest of the line. Everything after <code>//</code> will be ignored by the compiler.</p>
+<pre><code class="language-Move">module book::comments_line_2 {
+    // let's add a note to everything!
+    fun some_function_with_numbers() {
+        let a = 10;
+        // let b = 10 this line is commented and won't be executed
+        let b = 5; // here comment is placed after code
+        a + b; // result is 15, not 10!
+    }
+}
+</code></pre>
+<h2 id="block-comment"><a class="header" href="#block-comment">Block comment</a></h2>
+<p>Block comments are used to comment out a block of code. They start with <code>/*</code> and end with <code>*/</code>. Everything between <code>/*</code> and <code>*/</code> will be ignored by the compiler. You can use block comments to comment out a single line or multiple lines. You can even use them to comment out a part of a line.</p>
+<pre><code class="language-Move">module book::comments_block {
+    fun /* you can comment everywhere */ go_wild() {
+        /* here
+           there
+           everywhere */ let a = 10;
+        let b = /* even here */ 10; /* and again */
+        a + b;
+    }
+    /* you can use it to remove certain expressions or definitions
+    fun empty_commented_out() {
+
+    }
+    */
+}
+</code></pre>
+<p>This example is a bit extreme, but it shows how you can use block comments to comment out a part of a line.</p>
+<h2 id="doc-comment"><a class="header" href="#doc-comment">Doc comment</a></h2>
+<p>Documentation comments are special comments that are used to generate documentation for your code. They are similar to block comments, but they start with three slashes <code>///</code> and are placed before the definition of the item they document.</p>
+<pre><code class="language-Move">/// Module has documentation!
+module book::comments_doc {
+
+    /// This is a 0x0 address constant!
+    const AN_ADDRESS: address = @0x0;
+
+    /// This is a struct!
+    struct AStruct {
+        /// This is a field of a struct!
+        a_field: u8,
+    }
+
+    /// This function does something!
+    /// And it's documented!
+    fun do_something() {}
+}
+</code></pre>
+<h2 id="further-reading-1"><a class="header" href="#further-reading-1">Further reading</a></h2>
+<ul>
+<li><a href="https://move-language.github.io/move/coding-conventions.html?highlight=comment#comments">Comments in the Move Documentation</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="primitive-types"><a class="header" href="#primitive-types">Primitive Types</a></h1>
+<p>Move has a set of primitive types that are used to represent values in the language. These types are:</p>
+<ul>
+<li><a href="syntax-basics/primitive-types.html#integers">Integer</a></li>
+<li><a href="syntax-basics/primitive-types.html#boolean">Boolean</a></li>
+<li><a href="syntax-basics/primitive-types.html#address">Address</a></li>
+</ul>
+<p><em>The language does not have built-in floating point types nor a string type at the moment.</em></p>
+<h2 id="integers"><a class="header" href="#integers">Integers</a></h2>
+<p>Integers are represented by <code>u8</code>, <code>u16</code>, <code>u32</code>, <code>u64</code>, <code>u128</code> and <code>u256</code>. The number in the type name represents the number of bits used to store the value. The <code>u</code> prefix means that the integer is unsigned - it can only store positive values. Possible integer notations are illustrated in the following example:</p>
+<pre><code class="language-Move">module book::integers {
+    fun main() {
+        let a = 10;
+        let b = 0x10; // hexadecimal, 16
+        let c =
+    }
+}
+</code></pre>
+<h3 id="operator-as"><a class="header" href="#operator-as">Operator <code>as</code></a></h3>
+<p>The <code>as</code> operator is used to convert values from one integer type to another. The following example illustrates the use of the <code>as</code> operator:</p>
+<pre><code class="language-Move">module examples::integers_as {
+    fun main() {
+        let a: u8 = 10;
+        let b: u64 = 100;
+        let c: u256 = (b as u256); // convert b to u256
+        let d: u8 = (c as u8);     // convert c to u8 (fails if c &gt; 255)
+    }
+}
+</code></pre>
+<h2 id="boolean"><a class="header" href="#boolean">Boolean</a></h2>
+<p>Boolean is a special type that represents a value that can be either <code>true</code> or <code>false</code>. It is the type returned by comparison operators. The following example illustrates the use of the boolean type:</p>
+<pre><code class="language-Move">module examples::boolean {
+    fun main() {
+        // these are all the ways to do it
+        let b: bool;
+        b = true;
+
+        let c: bool = true;
+        let c = true;
+        let c = false; // here's an example with false
+        let c = !true; // here's an example with negation
+    }
+}
+</code></pre>
+<h2 id="address"><a class="header" href="#address">Address</a></h2>
+<p>Address is a special type that represents &quot;location&quot;. It can be used to represent account address or package address or some other address. For example, on Sui every object's <code>UID</code> is an address. In different Move implementations address can have different sizes.</p>
+<pre><code class="language-Move">module examples::addresses {
+    fun main() {
+        let addr: address; // type identifier
+
+        addr = @0x0; // set address value
+    }
+}
+</code></pre>
+<h2 id="address-length-table"><a class="header" href="#address-length-table">Address Length Table</a></h2>
+<p>This table represents the address length for different Move implementations. Move Compiler supports 16, 20 and 32 bytes address lengths. However, each network has a fixed address length.</p>
+<div class="table-wrapper"><table><thead><tr><th>Implementation</th><th>Address length</th></tr></thead><tbody>
+<tr><td>Diem</td><td>16 bytes</td></tr>
+<tr><td>Aptos</td><td>32 bytes</td></tr>
+<tr><td>Sui</td><td>32 bytes</td></tr>
+</tbody></table>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="expression-and-scope"><a class="header" href="#expression-and-scope">Expression and Scope</a></h1>
+<p>In programming languages an expression is a piece of code that returns a value of some type. In Move, expressions are used to build logic, to store values and to control execution flow. In this chapter you'll learn how to use expressions and how to control execution flow.</p>
+<blockquote>
+<p>Expressions must be sequenced (separated) by a semicolon*</p>
+</blockquote>
+<!-- *\* When you put a semicolon, 'internally' it's treated as `; (empty_expression)`. If you put any expression after semi, it will replace the empty one.* -->
+<h3 id="empty-expression"><a class="header" href="#empty-expression">Empty expression</a></h3>
+<p>You probably will never use it directly but an empty expression in Move (in this way it's similar to Rust) is marked with empty parentheses:</p>
+<pre><code class="language-Move">module examples::expression {
+    fun empty() {
+        () // this is an empty expression
+    }
+}
+</code></pre>
+<p>An empty expression can be omitted as it's automatically inserted by the VM.</p>
+<h3 id="literal-expressions"><a class="header" href="#literal-expressions">Literal expressions</a></h3>
+<p>Look at the code below. Every line contains an expression which ends with a semicolon. Last line has three expressions separated by semicolons.</p>
+<pre><code class="language-Move">module examples::expression {
+    fun main() {
+        10;
+        10 + 5;
+        true;
+        true != false;
+        0x1;
+        1; 2; 3
+    }
+}
+</code></pre>
+<p>Good. You now know the simplest expressions there are. But why do we need them? And how to use it? It's time to know the <code>let</code> keyword.</p>
+<h3 id="variables-and-let-keyword"><a class="header" href="#variables-and-let-keyword">Variables and <code>let</code> keyword</a></h3>
+<p>To store the expression value inside a variable (to pass it somewhere or structure code better) you have the <code>let</code> keyword (you've already seen it in the <a href="syntax-basics//syntax-basics/primitives.html">primitives chapter</a>). It creates a new variable either empty (not yet defined) or with value of the assigned expression.</p>
+<pre><code class="language-Move">module examples::expression {
+    fun main() {
+        let a;
+        let b = true;
+        let c = 10;
+        let d = 0x1;
+        a = c;
+    }
+}
+</code></pre>
+<blockquote>
+<p>Keyword <code>let</code> creates a new variable inside the <em>current scope</em> and optionally <em>initializes</em> this variable with a value. Syntax for the expression is: <code>let &lt;VARIABLE&gt; : &lt;TYPE&gt;;</code> or <code>let &lt;VARIABLE&gt; = &lt;EXPRESSION&gt;</code>.</p>
+</blockquote>
+<p>After you've created and initialized variable you're able to <em>modify</em> or <em>access</em> its value by using a variable name. In example above variable <code>a</code> was initialized in the end of function and was <em>assigned</em> a value of variable <code>c</code>.</p>
+<blockquote>
+<p>Equality sign <code>=</code> is an assignment operator. It assigns right-hand-side expression to the left-hand-side variable. Example: <code>a = 10</code> - variable <code>a</code> is assigned an integer value of <code>10</code>.</p>
+</blockquote>
+<h3 id="operators-for-integer-types"><a class="header" href="#operators-for-integer-types">Operators for integer types</a></h3>
+<p>Move has a variety of operators to modify integer values. Here's a list:</p>
+<div class="table-wrapper"><table><thead><tr><th>Operator</th><th>Op</th><th>Types</th><th></th></tr></thead><tbody>
+<tr><td>+</td><td>sum</td><td>uint</td><td>Sum LHS and RHS</td></tr>
+<tr><td>-</td><td>sub</td><td>uint</td><td>Subtract RHS from LHS</td></tr>
+<tr><td>/</td><td>div</td><td>uint</td><td>Divide LHS by RHS</td></tr>
+<tr><td>*</td><td>mul</td><td>uint</td><td>Multiply LHS times RHS</td></tr>
+<tr><td>%</td><td>mod</td><td>uint</td><td>Division remainder (LHS by RHS)</td></tr>
+<tr><td>&lt;&lt;</td><td>lshift</td><td>uint</td><td>Left bit shift LHS by RHS</td></tr>
+<tr><td>&gt;&gt;</td><td>rshift</td><td>uint</td><td>Right bit shift LHS by RHS</td></tr>
+<tr><td>&amp;</td><td>and</td><td>uint</td><td>Bitwise AND</td></tr>
+<tr><td>^</td><td>xor</td><td>uint</td><td>Bitwise XOR</td></tr>
+<tr><td>|</td><td>or</td><td>uint</td><td>Bitwise OR</td></tr>
+</tbody></table>
+</div>
+<p><em>LHS - left-hand-side expression, RHS - right-hand-side expression; uint: u8, u64, u128.</em></p>
+<!--
+
+### Comparison and boolean operators
+
+To build a bool condition by comparing values you have these operators. All of them return `bool` value and require LHS and RHS types match.
+
+| Operator | Op     | Types |                                |
+|----------|--------|-------|--------------------------------|
+| ==       | equal  | any   | Check if LHS equals RHS        |
+|----------|--------|-------|--------------------------------|
+| =<       | equal  | any   | Check if LHS equals RHS        |
+|----------|--------|-------|--------------------------------|
+
+-->
+<h3 id="underscore-_-to-mark-unused"><a class="header" href="#underscore-_-to-mark-unused">Underscore &quot;_&quot; to mark unused</a></h3>
+<p>In Move every variable must be used (otherwise your code won't compile), hence you can't initialize one and leave it untouched. Though you have one way to mark variable as <em>intentionally unused</em> - by using underscore <code>_</code>.</p>
+<p>You'll get an error if you try to compile this script:</p>
+<pre><code class="language-Move">module examples::expression {
+    fun main() {
+        let a = 1;
+    }
+}
+</code></pre>
+<p>The error:</p>
+<pre><code>
+    ┌── /scripts/script.move:3:13 ───
+    │
+ 33 │         let a = 1;
+    │             ^ Unused assignment or binding for local 'a'. Consider removing or replacing it with '_'
+    │
+</code></pre>
+<p>Compiler message is pretty clear, so all you have to do in this case is put an underscore (or prefix with an underscore):</p>
+<pre><code class="language-Move">module examples::expression {
+    fun main() {
+        let _a = 1;
+    }
+}
+</code></pre>
+<h3 id="shadowing"><a class="header" href="#shadowing">Shadowing</a></h3>
+<p>Move allows you to define the same variable twice with one limitation - it still needs to be used. In the example above only second <code>a</code> is used. The first one: <code>let a = 1</code> is actually unused as on the next line we <em>redefine</em> <code>a</code> while leaving the first one unused.</p>
+<pre><code class="language-Move">module examples::expression {
+    fun main() {
+        let a = 1;
+        let a = 2;
+        let _ = a;
+    }
+}
+</code></pre>
+<p>Though we still can make it work by using first one:</p>
+<pre><code class="language-Move">module examples::expression {
+    fun main() {
+        let a = 1;
+        let a = a + 2; // let here is unnecessary
+        let _ = a;
+    }
+}
+</code></pre>
+<h2 id="block-expression"><a class="header" href="#block-expression">Block expression</a></h2>
+<p>A block is an expression; it's marked with <em>curly braces</em> - <code>{}</code>. Block can contain other expressions (and other blocks). Function body (as you can see by already familiar curly-braces) is also a block in some sense (with a few limitations).</p>
+<pre><code class="language-Move">module examples::expression {
+    fun block() {
+        { };
+        { { }; };
+        true;
+        {
+            true;
+
+            { 10; };
+        };
+        { { { 10; }; }; };
+    }
+}
+</code></pre>
+<h3 id="understanding-scopes"><a class="header" href="#understanding-scopes">Understanding scopes</a></h3>
+<p>Scope (as it's said in <a href="https://en.wikipedia.org/wiki/Scope_(computer_science)">Wikipedia</a>) is a region of code where a binding is valid. In other words - it's a part of code in which a variable exists. In Move - a scope is a block of code surrounded by curly braces.</p>
+<blockquote>
+<p>When defining a block you create a new scope.</p>
+</blockquote>
+<pre><code class="language-Move">module examples::expression {
+    fun scope_sample() {
+        // this is a function scope
+        {
+            // this is a block scope inside function scope
+            {
+                // and this is a scope inside scope
+                // inside functions scope... etc
+            };
+        };
+
+        {
+            // this is another block inside the function scope
+        };
+    }
+}
+</code></pre>
+<p>As you can see from comments in this sample, scopes are defined by blocks (or functions), they can be nested and there's no limit to how many scopes you can define.</p>
+<h3 id="variable-lifetime-and-visibility"><a class="header" href="#variable-lifetime-and-visibility">Variable lifetime and visibility</a></h3>
+<p>Keyword <code>let</code> creates a variable - you already know that. Though you probably don't know that the defined variable will live only inside the scope where it is defined (hence inside nested scopes); simply put - it's unaccessible outside its scope and dies right after this scope's end.</p>
+<pre><code class="language-Move">module examples::expression {
+    fun let_scope_sample() {
+        let a = 1; // we've defined variable A inside function scope
+
+        {
+            let b = 2; // variable B is inside block scope
+
+            {
+                // variables A and B are accessible inside
+                // nested scopes
+                let c = a + b;
+
+            }; // in here C dies
+
+            // we can't write this line
+            // let d = c + b;
+            // as variable C died with its scope
+
+            // but we can define another C
+            let c = b - 1;
+
+        }; // variable B dies, so does C
+
+        // this is impossible
+        // let d = b + c;
+
+        // we can define any variables we want
+        // no name reservation happened
+        let b = a + 1;
+        let c = b + 1;
+
+    } // function scope ended - a, b and c are dropped and no longer accessible
+}
+</code></pre>
+<blockquote>
+<p>Variable only lives only within scope (or block) where it's defined. When its scope ends, the variable dies.</p>
+</blockquote>
+<h3 id="block-return-values"><a class="header" href="#block-return-values">Block return values</a></h3>
+<p>In the previous part you've learned that a block is an expression but we didn't cover why it is an expression and what is the block's return value.</p>
+<blockquote>
+<p>Block can return a value, it's the value of the last expression inside this block if it's not followed by a semicolon</p>
+</blockquote>
+<p>May sound hard, so I'll give you a few examples:</p>
+<pre><code class="language-Move">module examples::expression {
+    fun block_ret_sample() {
+
+        // since block is an expression, we can
+        // assign it's value to variable with let
+        let a = {
+
+            let c = 10;
+
+            c * 1000  // no semicolon!
+        }; // scope ended, variable a got value 10000
+
+        let b = {
+            a * 1000  // no semi!
+        };
+
+        // variable b got value 10000000
+
+        {
+            10; // see semi!
+        }; // this block does not return a value
+
+        let _ = a + b; // both a and b get their values from blocks
+    }
+}
+</code></pre>
+<blockquote>
+<p>The last expression in scope (without semicolon) is the return value of this scope.</p>
+</blockquote>
+<h3 id="summary"><a class="header" href="#summary">Summary</a></h3>
+<p>Let's summarize the main points of this chapter.</p>
+<ol>
+<li>Every expression must end with semicolon unless it's the return value of block;</li>
+<li>Keyword <code>let</code> creates new variable with value or right-hand-side expression which lives as long as the scope in which it's been created;</li>
+<li>Block is an expression that may or may not have return value.</li>
+</ol>
+<p>How to control execution flow and how to use blocks for logic switches - on the next page.</p>
+<h3 id="further-reading-2"><a class="header" href="#further-reading-2">Further reading</a></h3>
+<ul>
+<li><a href="https://move-language.github.io/move/variables.html">Local Variables and Scope in the Move Documentation</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="control-flow"><a class="header" href="#control-flow">Control Flow</a></h1>
+<p>Move is an imperative language and like one it has <em>control flow</em> - a way to make choice whether to run a block of code or to skip or to run another one instead. f</p>
+<!-- In Move you have two statme to control flow: by using loops (`while` and `loop`) or `if` expressions. -->
+<p>In Move you have loops (<code>while</code> and <code>loop</code>) and <code>if</code> expressions.</p>
+<h2 id="the-if-expression"><a class="header" href="#the-if-expression">The <code>if</code> expression</a></h2>
+<p>The <code>if</code> expression allows you to run a block of code if a condition is <code>true</code>, and to run another block instead if the condition resulted in <code>false</code>.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Debug;
+
+    fun main() {
+        let a = true;
+
+        if (a) {
+            Debug::print&lt;u8&gt;(&amp;0);
+        } else {
+            Debug::print&lt;u8&gt;(&amp;99);
+        };
+    }
+}
+</code></pre>
+<p>In this example we've used <code>if</code> + <code>block</code> to print <code>0</code> if <code>a == true</code> and if a is <code>false</code> - then <code>99</code> is printed. Simple as that, if syntax is:</p>
+<pre><code>if (&lt;bool_expression&gt;) &lt;expression&gt; else &lt;expression&gt;;
+</code></pre>
+<p><code>if</code> is an expression, and like all of them it must end with semicolon. This is also a reason to use it with the <code>let</code> statement!</p>
+<pre><code class="language-Move">script {
+    use 0x1::Debug;
+
+    fun main() {
+
+        // try switching to false
+        let a = true;
+        let b = if (a) { // 1st branch
+            10
+        } else { // 2nd branch
+            20
+        };
+
+        Debug::print&lt;u8&gt;(&amp;b);
+    }
+}
+</code></pre>
+<p>Now variable <code>b</code> will be assigned a different value depending on the <code>a</code> expression. But both of the branches in <code>if</code> must return the same type! Otherwise variable <code>b</code> will have an option to be of different kind (or undefined) and this is impossible in statically typed language. In compiler terms it's called <em>branch compatibility</em> - both of the branches must return compatible (same) type.</p>
+<p><code>if</code> can be used in-solo - without <code>else</code>.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Debug;
+
+    fun main() {
+
+        let a = true;
+
+        // only one optional branch
+        // if a = false, debug won't be called
+        if (a) {
+            Debug::print&lt;u8&gt;(&amp;10);
+        };
+    }
+}
+</code></pre>
+<p>But keep in mind that the <code>if</code> expression without <code>else</code> branch cannot be used in assignment as when condition is not met - alternative branch is not called and variable may be &quot;undefined&quot; which is, again, impossible.</p>
+<h2 id="iterating-with-loops"><a class="header" href="#iterating-with-loops">Iterating with loops</a></h2>
+<p>There're two ways of defining loops in Move:</p>
+<ol>
+<li>Conditional loop with <code>while</code></li>
+<li>Inifinite <code>loop</code></li>
+</ol>
+<h3 id="conditional-loop-with-while"><a class="header" href="#conditional-loop-with-while">Conditional loop with <code>while</code></a></h3>
+<p><code>while</code> is a way to define a loop - an expression which will be executed repeatedly <em>while</em> the condition evaluates to <code>true</code>. To implement a condition usually an external variable (or a counter) is used.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+
+        let i = 0; // define counter
+
+        // iterate while i &lt; 5
+        // on every iteration increase i
+        // when i is 5, condition fails and loop exits
+        while (i &lt; 5) {
+            i = i + 1;
+        };
+    }
+}
+</code></pre>
+<p>It's worth mentioning that <code>while</code> is an expression - just like <code>if</code>, and it too requires a semicolon afterwards. Syntax for the while loop can be expressed as:</p>
+<pre><code class="language-Move">while (&lt;expression: bool&gt;) &lt;expression&gt;;
+</code></pre>
+<p>Unlike <code>if</code>, <code>while</code> cannot return a value, so a variable assignment (like we did with <code>if</code> expression) is impossible.</p>
+<h3 id="unreachable-code"><a class="header" href="#unreachable-code">Unreachable code</a></h3>
+<p>To be reliable Move must be secure. This is why it obliges you to use all your variables and for the same reason it forbids having unreachable code. As digital assets are programmable, they can be used in code (you'll learn about it in <a href="syntax-basics//chapters/resource.html">resources chapter</a>), and placing them in unreachable areas may lead to their loss as the result.</p>
+<p>This is why unreachable code is such a big issue. Now that is clear, we can proceed.</p>
+<h3 id="infinite-loop"><a class="header" href="#infinite-loop">Infinite <code>loop</code></a></h3>
+<p>There is a way to define infinite loops. They're non-conditional and actually infinite (unless you force them to stop). Unfortunately, the compiler cannot define whether a loop is infinite (in most of the cases) and cannot stop you from publishing the code, execution of which will consume all given resources (in blockchain terms - gas). So it's on you to test your code properly when using them or just switch to a conditional <code>while</code> as it's way more secure.</p>
+<p>Infinite loops are defined with the keyword <code>loop</code>.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let i = 0;
+
+        loop {
+            i = i + 1;
+        };
+
+        // UNREACHABLE CODE
+        let _ = i;
+    }
+}
+</code></pre>
+<p>However this is possible (compiler will let you do this):</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let i = 0;
+
+        loop {
+            if (i == 1) { // i never changed
+                break // this statement breaks loop
+            }
+        };
+
+        // actually unreachable
+        0x1::Debug::print&lt;u8&gt;(&amp;i);
+    }
+}
+</code></pre>
+<p>Syntax for the <code>loop</code> is:</p>
+<pre><code class="language-Move">loop &lt;expression&gt;;
+</code></pre>
+<p>It's a non-trivial task for the compiler to understand whether a loop is really infinite or not, so for now you and only you can help yourself avoid looping errors.</p>
+<h3 id="control-loops-with-continue-and-break"><a class="header" href="#control-loops-with-continue-and-break">Control loops with <code>continue</code> and <code>break</code></a></h3>
+<p>Keywords <code>continue</code> and <code>break</code> allow you to skip an iteration or break it respectively. You can use them in both types of loops.</p>
+<p>For example let's add two conditions into the <code>loop</code>. If <code>i</code> is even, we use <code>continue</code> to jump to the next iteration without going through code after the <code>continue</code> call.</p>
+<p>With <code>break</code> we exit the loop ignoring the rest of the block.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let i = 0;
+
+        loop {
+            i = i + 1;
+
+            if (i / 2 == 0) continue;
+            if (i == 5) break;
+
+            // assume we do something here
+         };
+
+        0x1::Debug::print&lt;u8&gt;(&amp;i);
+    }
+}
+</code></pre>
+<p>About semicolons. If <code>break</code> and <code>continue</code> are the last in a block, you can't put a semicolon after them as any code after won't be executed. Somehow even the semicolon can't be put. See this:</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let i = 0;
+
+        loop {
+            i = i + 1;
+
+            if (i == 5) {
+                break; // will result in compiler error. correct is `break` without semi
+                       // Error: Unreachable code
+            };
+
+            // same with continue here: no semi, never;
+            if (true) {
+                continue
+            };
+
+            // however you can put semi like this, because continue and break here
+            // are single expressions, hence they &quot;end their own scope&quot;
+            if (true) continue;
+            if (i == 5) break;
+        }
+    }
+}
+</code></pre>
+<h3 id="conditional-abort"><a class="header" href="#conditional-abort">Conditional <code>abort</code></a></h3>
+<p>Sometimes you need to abort an execution of a transaction when some condition has failed. For that case there's the <code>abort</code> keyword.</p>
+<pre><code class="language-Move">script {
+    fun main(a: u8) {
+
+        if (a != 10) {
+            abort 0;
+        }
+
+        // code here won't be executed if a != 10
+        // transaction aborted
+    }
+}
+</code></pre>
+<p>Keyword <code>abort</code> allows you to <em>abort</em> execution with an error code which is placed right after.</p>
+<h3 id="use-assert-built-in"><a class="header" href="#use-assert-built-in">Use <code>assert</code> built-in</a></h3>
+<p>Built-in <code>assert!(&lt;expression: bool&gt;, &lt;code&gt;)</code> method already wraps <code>abort</code> + condition and is accessible anywhere in code:</p>
+<pre><code class="language-Move">script {
+    fun main(a: u8) {
+        assert!(a == 10, 0);
+
+        // code here will be executed if (a == 10)
+    }
+}
+</code></pre>
+<p><code>assert!()</code> will abort execution when condition is not met, or it will do nothing in the opposite case.</p>
+<h3 id="further-reading-3"><a class="header" href="#further-reading-3">Further reading</a></h3>
+<ul>
+<li><a href="https://move-language.github.io/move/loops.html">While and Loop in the Documentation</a></li>
+<li><a href="https://move-language.github.io/move/conditionals.html">Conditionals in the Documentation</a></li>
+<li><a href="https://move-language.github.io/move/abort-and-assert.html">Abort and Assert in the Documentation</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="constants"><a class="header" href="#constants">Constants</a></h1>
+<p>Constants are immutable values that are defined at the module level, known at compile time and do not change for the duration of a program's execution. Constants are declared with the <code>const</code> keyword and must be annotated with a type in cases where compiler cannot infer it.</p>
+<pre><code class="language-move">module book::constants {
+
+    /// Annotated constant
+    const MAX_VALUE: u64 = 100;
+
+    /// The literal contains the type - no need to annotate
+    const MIN_VALUE = 0u64;
+
+    /// Const supports simple expressions
+    const HOUR: u64 = 60 * 60;
+
+    /// Consts can't reference other consts
+    const DAY: u64 = 60 * 60 * 24;
+}
+</code></pre>
+<ul>
+<li>Constants must start with a capital letter.</li>
+<li>Constants are private to the module and can't be imported.</li>
+<li>Constants can be used in expressions.</li>
+<li>Constants can contain simple expressions and literals.</li>
+</ul>
+<h2 id="config-pattern"><a class="header" href="#config-pattern">Config pattern</a></h2>
+<p>While the constants themselves can not be imported, functions can. This allows us to create a config pattern, where we define a module that contains all the constants and functions that return them. This allows us to change the constants in one place and have all the functions that use them updated.</p>
+<pre><code class="language-move">module book::config {
+
+    /// Max value for the app
+    const MIN_PRICE: u64 = 100;
+
+    /// Constants support vectors but don't support String type
+    const APP_NAME: vector&lt;u8&gt; = b&quot;My Simple App&quot;;
+
+    /// Returns the min price
+    public fun min_price(): u64 { MIN_PRICE }
+
+    /// Returns the app name
+    public fun app_name(): String { std::string::utf8(APP_NAME) }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="function"><a class="header" href="#function">Function</a></h1>
+<p>Function is the only place of execution in Move. Function starts with the <code>fun</code> keyword which is followed by the function name, parentheses for arguments and curly braces for body.</p>
+<pre><code class="language-Move">fun function_name(arg1: u64, arg2: bool): u64 {
+    // function body
+}
+</code></pre>
+<p>You have already seen some in previous chapters. And now you will learn how to use them.</p>
+<blockquote>
+<p><strong>Note:</strong> in Move functions should be named in <em>snake_case</em> - lowercase with underscores as word separators.</p>
+</blockquote>
+<h2 id="function-in-script"><a class="header" href="#function-in-script">Function in script</a></h2>
+<p>Script block can contain only one function which is considered <em>main</em>. This function (possibly with arguments) will be executed as a transaction. It is very limited: it cannot return a value and should be used to call and use other functions in already published modules.</p>
+<p>Here's an example of a simple script which checks if a given address exists:</p>
+<pre><code class="language-Move">script {
+    use 0x1::Account;
+
+    fun main(addr: address) {
+        assert!(Account::exists(addr), 1);
+    }
+}
+</code></pre>
+<p>This function can have arguments: in this case it is the <code>addr</code> argument with the type <code>address</code>, also it can operate imported modules.</p>
+<blockquote>
+<p><strong>Note:</strong> as there's only one function, you can call it any way you want. Though you may want to follow general programming concepts and call it <strong>main</strong></p>
+</blockquote>
+<h2 id="function-in-module"><a class="header" href="#function-in-module">Function in module</a></h2>
+<p>While script context is fairly limited, full potential of functions can only be seen in a module. Let's go through it again: module is a published set of functions and types (we'll get to it in the next chapter) which solves one or many tasks.</p>
+<p>In this part we'll create a simple Math module which will provide users with a basic set of mathematical functions and a few helper methods. Most of this could be done without using a module, but our goal is education!</p>
+<pre><code class="language-Move">module Math {
+    fun zero(): u8 {
+        0
+    }
+}
+</code></pre>
+<p>First step: we've defined a module named <code>Math</code> with one function in it: <code>zero()</code>, which returns 0 - a value of type <code>u8</code>. Remember <a href="syntax-basics//syntax-basics/expression-and-scope.html">expressions</a>? There's no semicolon after <code>0</code> as it is the <em>return value</em> of this function. Just like you would do with block. Yeah, function body is very similar to block.</p>
+<h3 id="function-arguments"><a class="header" href="#function-arguments">Function arguments</a></h3>
+<p>This should be clear by now, but let's repeat. Function can take arguments (values passed into function). As many as needed. Every argument has 2 properties: name - its name within a function body, and type - just like any other variable in Move.</p>
+<p>Function arguments - just like any other variables defined within a scope - live only within function body. When the function block ends, no variables remain.</p>
+<pre><code class="language-Move">module Math {
+
+    public fun sum(a: u64, b: u64): u64 {
+        a + b
+    }
+
+    fun zero(): u8 {
+        0
+    }
+}
+</code></pre>
+<p>What's new in our Math: function <code>sum(a,b)</code> which sums two <code>u64</code> values and returns a result - <code>u64</code> sum (type can't change).</p>
+<p>Let's state few syntax rules:</p>
+<ol>
+<li>Arguments must have types and must be separated by comma</li>
+<li>Function return value is placed after parentheses and must follow a colon</li>
+</ol>
+<p>Now how would we use this function in script? Through import!</p>
+<pre><code class="language-Move">script {
+    use 0x1::Math;  // used 0x1 here; could be your address
+    use 0x1::Debug; // this one will be covered later!
+
+    fun main(first_num: u64, second_num: u64) {
+
+        // variables names don't have to match the function's ones
+        let sum = Math::sum(first_num, second_num);
+
+        Debug::print&lt;u64&gt;(&amp;sum);
+    }
+}
+</code></pre>
+<h3 id="keyword-return"><a class="header" href="#keyword-return">Keyword <code>return</code></a></h3>
+<p>Keyword <code>return</code> allows you to stop function execution and return value. It is supposed to be used with <code>if</code> condition, as that is the only way to make conditional switch in control flow.</p>
+<pre><code class="language-Move">module M {
+
+    public fun conditional_return(a: u8): bool {
+        if (a == 10) {
+            return true // semi is not put!
+        };
+
+        if (a &lt; 10) {
+            true
+        } else {
+            false
+        }
+    }
+}
+</code></pre>
+<h3 id="multiple-return-values"><a class="header" href="#multiple-return-values">Multiple return values</a></h3>
+<p>In previous examples we've experimented with functions with no return value or with single. But what if I told you that you can return multiple values of any type? Curious? Let's proceed!</p>
+<p>To specify multiple return values you need to use parentheses:</p>
+<pre><code class="language-Move">module Math {
+
+    // ...
+
+    public fun max(a: u8, b: u8): (u8, bool) {
+        if (a &gt; b) {
+            (a, false)
+        } else if (a &lt; b) {
+            (b, false)
+        } else {
+            (a, true)
+        }
+    }
+}
+</code></pre>
+<p>This function takes two arguments: <code>a</code> and <code>b</code> and <em>returns two values</em>: first is the max value from two passed and second is a bool - whether numbers entered are equal. Take closer look at the syntax: instead of specifying single return argument we've added <em>parenteses</em> and have listed return argument types.</p>
+<p>Now let's see how we can use the result of this function in another function in the script.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Debug;
+    use 0x1::Math;
+
+    fun main(a: u8, b: u8)  {
+        let (max, is_equal) = Math::max(99, 100);
+
+        assert(is_equal, 1)
+
+        Debug::print&lt;u8&gt;(&amp;max);
+    }
+}
+</code></pre>
+<p>In this example we've <em>destructed</em> a tuple: created two new variables with values and types of return values of function <em>max</em>. Order is preserved and variable <em>max</em> here gets type <em>u8</em> and now stores max value, whereas <em>is_equal</em> is a <em>bool</em>.</p>
+<p>Two is not the limit - number of returned arguments is up to you, though you'll soon learn about structs and see alternative way to return complex data.</p>
+<h3 id="function-visibility"><a class="header" href="#function-visibility">Function visibility</a></h3>
+<p>When defining a module you may want to make some functions accessible by other developers and some to remain hidden. This is when <em>function visibility modifiers</em> come to play.</p>
+<p>By default every function defined in a module is private - it cannot be accessed in other modules or scripts. If you've been attentive, you may have noticed that some of the functions that we've defined in our Math module have keyword <code>public</code> before their definition:</p>
+<pre><code class="language-Move">module Math {
+
+    public fun sum(a: u64, b: u64): u64 {
+        a + b
+    }
+
+    fun zero(): u8 {
+        0
+    }
+}
+</code></pre>
+<p>In this example function <code>sum()</code> is accessible from outside when module is imported, however function <code>zero()</code> is not - it is private by default.</p>
+<blockquote>
+<p>Keyword <code>public</code> changes function's default <em>private</em> visibility and makes it <em>public</em> - i.e. accessible from outside.</p>
+</blockquote>
+<p>So basically if you didn't make <code>sum()</code> function <em>public</em>, this wouldn't be possible:</p>
+<pre><code class="language-Move">script {
+    use 0x1::Math;
+
+    fun main() {
+        Math::sum(10, 100); // won't compile!
+    }
+}
+</code></pre>
+<h3 id="access-local-functions"><a class="header" href="#access-local-functions">Access local functions</a></h3>
+<p>There would not be any sense in making private functions if they could not be accessed at all. Private functions exist to do some <em>internal</em> work when public functions are called.</p>
+<blockquote>
+<p>Private functions can only be accessed in the module where they're defined.</p>
+</blockquote>
+<p>So how do you access functions in the same module? By simply calling this function like it was imported!</p>
+<pre><code class="language-Move">module Math {
+
+    public fun is_zero(a: u8): bool {
+        a == zero()
+    }
+
+    fun zero(): u8 {
+        0
+    }
+}
+</code></pre>
+<p>Any function defined in a module is accessible by any function in the same module no matter what visibility modifiers any of them has. This way private functions can still be used as calls inside public ones without exposing some private features or too risky operations.</p>
+<h3 id="native-functions"><a class="header" href="#native-functions">Native functions</a></h3>
+<p>There's a special kind of functions - <em>native</em> ones. <em>Native functions</em> implement functionality which goes beyond Move's possibilities and give you extra power. Native functions are defined by VM itself and may vary in different implementations. Which means they don't have implementation in Move syntax and instead of having function body they end with a semicolon. Keyword <code>native</code> is used to mark native functions. It does not conflict with function visibility modifiers and the same function can be <code>native</code> and <code>public</code> at the same time.</p>
+<p>Here's an example from Diem's standard library.</p>
+<pre><code class="language-Move">module Signer {
+
+    native public fun borrow_address(s: &amp;signer): &amp;address;
+
+    // ... some other functions ...
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="managing-collections-with-vector"><a class="header" href="#managing-collections-with-vector">Managing collections with Vector</a></h1>
+<p>You're already familiar with the <code>struct</code> type which gives you the ability to create your own types and to store complex data. But sometimes you need something more dynamic, extensible and manageable. And for that Move has Vectors.</p>
+<p>Vector is a built-in type for storing <em>collections</em> of data. It is a generic solution for collection of any type (but only one). As its functionality is given to you by the VM; the only way to work with it is by using the <a href="https://github.com/diem/move/tree/main/language/move-stdlib/sources">Move standard library</a> and <code>native</code> functions.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Vector;
+
+    fun main() {
+        // use generics to create an emtpy vector
+        let a = Vector::empty&lt;u8&gt;();
+        let i = 0;
+
+        // let's fill it with data
+        while (i &lt; 10) {
+            Vector::push_back(&amp;mut a, i);
+            i = i + 1;
+        };
+
+        // now print vector length
+        let a_len = Vector::length(&amp;a);
+        0x1::Debug::print&lt;u64&gt;(&amp;a_len);
+
+        // then remove 2 elements from it
+        Vector::pop_back(&amp;mut a);
+        Vector::pop_back(&amp;mut a);
+
+        // and print length again
+        let a_len = Vector::length(&amp;a);
+        0x1::Debug::print&lt;u64&gt;(&amp;a_len);
+    }
+}
+</code></pre>
+<p>Vector can store up to <code>u64</code> number of values of a single non-reference type. To see how it helps managing huge storages let's write a module with it.</p>
+<pre><code class="language-Move">module Shelf {
+
+    use 0x1::Vector;
+
+    struct Box&lt;T&gt; {
+        value: T
+    }
+
+    struct Shelf&lt;T&gt; {
+        boxes: vector&lt;Box&lt;T&gt;&gt;
+    }
+
+    public fun create_box&lt;T&gt;(value: T): Box&lt;T&gt; {
+        Box { value }
+    }
+
+    // this method will be inaccessible for non-copyable contents
+    public fun value&lt;T: copy&gt;(box: &amp;Box&lt;T&gt;): T {
+        *&amp;box.value
+    }
+
+    public fun create&lt;T&gt;(): Shelf&lt;T&gt; {
+        Shelf {
+            boxes: Vector::empty&lt;Box&lt;T&gt;&gt;()
+        }
+    }
+
+    // box value is moved to the vector
+    public fun put&lt;T&gt;(shelf: &amp;mut Shelf&lt;T&gt;, box: Box&lt;T&gt;) {
+        Vector::push_back&lt;Box&lt;T&gt;&gt;(&amp;mut shelf.boxes, box);
+    }
+
+    public fun remove&lt;T&gt;(shelf: &amp;mut Shelf&lt;T&gt;): Box&lt;T&gt; {
+        Vector::pop_back&lt;Box&lt;T&gt;&gt;(&amp;mut shelf.boxes)
+    }
+
+    public fun size&lt;T&gt;(shelf: &amp;Shelf&lt;T&gt;): u64 {
+        Vector::length&lt;Box&lt;T&gt;&gt;(&amp;shelf.boxes)
+    }
+}
+</code></pre>
+<p>We'll create a shelf, few boxes for it and see how to work with vector in module:</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::Shelf;
+
+    fun main() {
+
+        // create shelf and 2 boxes of type u64
+        let shelf = Shelf::create&lt;u64&gt;();
+        let box_1 = Shelf::create_box&lt;u64&gt;(99);
+        let box_2 = Shelf::create_box&lt;u64&gt;(999);
+
+        // put both boxes to shelf
+        Shelf::put(&amp;mut shelf, box_1);
+        Shelf::put(&amp;mut shelf, box_2);
+
+        // prints size - 2
+        0x1::Debug::print&lt;u64&gt;(&amp;Shelf::size&lt;u64&gt;(&amp;shelf));
+
+        // then take one from shelf (last one pushed)
+        let take_back = Shelf::remove(&amp;mut shelf);
+        let value     = Shelf::value&lt;u64&gt;(&amp;take_back);
+
+        // verify that the box we took back is one with 999
+        assert(value == 999, 1);
+
+        // and print size again - 1
+        0x1::Debug::print&lt;u64&gt;(&amp;Shelf::size&lt;u64&gt;(&amp;shelf));
+    }
+}
+</code></pre>
+<p>Vectors are very powerful. They allow you to store huge amounts of data (max length is <em>18446744073709551615</em>) and to work with it inside indexed storage.</p>
+<h3 id="hex-and-bytestring-literal-for-inline-vector-definitions"><a class="header" href="#hex-and-bytestring-literal-for-inline-vector-definitions">Hex and Bytestring literal for inline vector definitions</a></h3>
+<p>Vector is also <em>meant</em> to represent strings. VM supports way of passing <code>vector&lt;u8&gt;</code> as argument into <code>main</code> function in script.</p>
+<p>But you can also use hexadecimal literal do define a <code>vector&lt;u8&gt;</code> in your script or a module:</p>
+<pre><code class="language-Move">script {
+
+    use 0x1::Vector;
+
+    // this is the way to accept arguments in main
+    fun main(name: vector&lt;u8&gt;) {
+        let _ = name;
+
+        // and this is how you use literals
+        // this is a &quot;hello world&quot; string!
+        let str = x&quot;68656c6c6f20776f726c64&quot;;
+
+        // hex literal gives you vector&lt;u8&gt; as well
+        Vector::length&lt;u8&gt;(&amp;str);
+    }
+}
+</code></pre>
+<p>Simpler approach is to use bytestring literals:</p>
+<pre><code class="language-Move">script {
+
+    fun main() {
+        let _ = b&quot;hello world&quot;;
+    }
+}
+</code></pre>
+<p>They are treated as ASCII strings and are also interpreted as <code>vector&lt;u8&gt;</code>.</p>
+<h3 id="vector-cheatsheet"><a class="header" href="#vector-cheatsheet">Vector cheatsheet</a></h3>
+<p>Here's a short cheatsheet for Vector methods from standard library:</p>
+<ul>
+<li>Create an empty vector of type <code>&lt;E&gt;</code></li>
+</ul>
+<pre><code class="language-Move">Vector::empty&lt;E&gt;(): vector&lt;E&gt;;
+</code></pre>
+<ul>
+<li>Get length of a vector</li>
+</ul>
+<pre><code class="language-Move">Vector::length&lt;E&gt;(v: &amp;vector&lt;E&gt;): u64;
+</code></pre>
+<ul>
+<li>Push element to the end of the vector:</li>
+</ul>
+<pre><code class="language-Move">Vector::push_back&lt;E&gt;(v: &amp;mut vector&lt;E&gt;, e: E);
+</code></pre>
+<ul>
+<li>Get mutable reference to element of vector. For immutable borrow use <code>Vector::borrow()</code></li>
+</ul>
+<pre><code>Vector::borrow_mut&lt;E&gt;(v: &amp;mut vector&lt;E&gt;, i: u64): &amp;E;
+</code></pre>
+<ul>
+<li>Pop an element from the end of vector:</li>
+</ul>
+<pre><code>Vector::pop_back&lt;E&gt;(v: &amp;mut vector&lt;E&gt;): E;
+</code></pre>
+<p>Vector module in the Move standard library: <a href="https://github.com/diem/move/blob/main/language/move-stdlib/sources/Vector.move">link</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="structures"><a class="header" href="#structures">Structures</a></h1>
+<p>Structure is a custom type which contains complex data (or no data). It can be described as a simple key-value storage where key is a name of property and value is what's stored. Defined using keyword <code>struct</code>. Struct can have up to 4 abilities, they are specified with type definition.</p>
+<blockquote>
+<p>Struct is the only way to create custom type in Move.</p>
+</blockquote>
+<h2 id="definition"><a class="header" href="#definition">Definition</a></h2>
+<p>Struct definition is only allowed inside a module. It begins with keyword <code>struct</code>, followed by name and curly braces, where struct fields are defined:</p>
+<pre><code class="language-Move">struct NAME {
+    FIELD1: TYPE1,
+    FIELD2: TYPE2,
+    ...
+}
+</code></pre>
+<p>Look at these examples of struct definitions:</p>
+<pre><code class="language-Move">module M {
+
+    // struct can be without fields
+    // but it is a new type
+    struct Empty {}
+
+    struct MyStruct {
+        field1: address,
+        field2: bool,
+        field3: Empty
+    }
+
+    struct Example {
+        field1: u8,
+        field2: address,
+        field3: u64,
+        field4: bool,
+        field5: bool,
+
+        // you can use another struct as type
+        field6: MyStruct
+    }
+}
+</code></pre>
+<p><em>Max number of fields in one struct is 65535</em>.</p>
+<p>Every defined struct becomes new a type. This type can be accessed through its module (just like you would access module functions):</p>
+<pre><code>M::MyStruct;
+// or
+M::Example;
+</code></pre>
+<h3 id="recursive-definition"><a class="header" href="#recursive-definition">Recursive definition</a></h3>
+<p>Short as never:</p>
+<blockquote>
+<p>Recursive struct definition is impossible.</p>
+</blockquote>
+<p>You are allowed to use another struct as type but you can't recursively use the same struct. Move compiler checks recursive definitions and won't let you compile code like this:</p>
+<pre><code class="language-Move">module M {
+    struct MyStruct {
+
+        // WON'T COMPILE
+        field: MyStruct
+    }
+}
+</code></pre>
+<h2 id="create-new-struct"><a class="header" href="#create-new-struct">Create new struct</a></h2>
+<p>To use this type you need to create its <em>instance</em>.</p>
+<blockquote>
+<p>New instances can only be created inside the module where they're defined.</p>
+</blockquote>
+<p>To create new instance use it's definition, but instead of passing types pass values of these types:</p>
+<pre><code class="language-Move">module Country {
+    struct Country {
+        id: u8,
+        population: u64
+    }
+
+    // Contry is a return type of this function!
+    public fun new_country(c_id: u8, c_population: u64): Country {
+        // structure creation is an expression
+        let country = Country {
+            id: c_id,
+            population: c_population
+        };
+
+        country
+    }
+}
+</code></pre>
+<p>Move also allows you to create new instances shorter - by passing variable name which matches struct's field (and type!). We can simplify our <code>new_country()</code> method using this rule:</p>
+<pre><code class="language-Move">// ...
+public fun new_country(id: u8, population: u64): Country {
+    // id matches id: u8 field
+    // population matches population field
+    Country {
+        id,
+        population
+    }
+
+    // or even in one line: Country { id, population }
+}
+</code></pre>
+<p>To create an empty struct (with no fields) simply use curly braces:</p>
+<pre><code class="language-Move">public fun empty(): Empty {
+    Empty {}
+}
+</code></pre>
+<h2 id="access-struct-fields"><a class="header" href="#access-struct-fields">Access struct fields</a></h2>
+<p>Structs would have been almost useless if we hadn't had a way to access their fields (though you can create struct without fields).</p>
+<blockquote>
+<p>Only module can access its struct's fields. Outside of module fields are private.</p>
+</blockquote>
+<p>Struct fields are only visible inside its module. Outside of this module (in script or another module) it's just a type. To access struct's fields use <code>.</code> (dot) notation:</p>
+<pre><code class="language-Move">// ...
+public fun get_country_population(country: Country): u64 {
+    country.population // &lt;struct&gt;.&lt;property&gt;
+}
+</code></pre>
+<p>If nested struct type is defined in the same module it can be accessed in similar manner which can be generally described as:</p>
+<pre><code class="language-Move">&lt;struct&gt;.&lt;field&gt;
+// and field can be another struct so
+&lt;struct&gt;.&lt;field&gt;.&lt;nested_struct_field&gt;...
+</code></pre>
+<h2 id="destructing-structures"><a class="header" href="#destructing-structures">Destructing structures</a></h2>
+<p>To <em>destruct</em> a struct use <code>let &lt;STRUCT DEF&gt; = &lt;STRUCT&gt;</code> syntax:</p>
+<pre><code class="language-Move">module Country {
+
+    // ...
+
+    // we'll return values of this struct outside
+    public fun destroy(country: Country): (u8, u64) {
+
+        // variables must match struct fields
+        // all struct fields must be specified
+        let Country { id, population } = country;
+
+        // after destruction country is dropped
+        // but its fields are now variables and
+        // can be used
+        (id, population)
+    }
+}
+</code></pre>
+<p>You should remember that unused variables are prohibited in Move and sometimes you may need to destruct a structure without using its fields. For unused struct fields use <code>_</code> - underscore:</p>
+<pre><code class="language-Move">module Country {
+    // ...
+
+    public fun destroy(country: Country) {
+
+        // this way you destroy struct and don't create unused variables
+        let Country { id: _, population: _ } = country;
+
+        // or take only id and don't init `population` variable
+        // let Country { id, population: _ } = country;
+    }
+}
+</code></pre>
+<p>Destructuring may not seem important right now. But remember it - it will play a huge part when we get to resources.</p>
+<h3 id="implementing-getter-functions-for-struct-fields"><a class="header" href="#implementing-getter-functions-for-struct-fields">Implementing getter-functions for struct fields</a></h3>
+<p>To make struct fields readable outside, you need to implement methods which will read these fields and pass them as return values. Usually the getter method is called the same way as struct's field but it may cause inconvenience if your module defines more than one struct.</p>
+<pre><code class="language-Move">module Country {
+
+    struct Country {
+        id: u8,
+        population: u64
+    }
+
+    public fun new_country(id: u8, population: u64): Country {
+        Country {
+            id, population
+        }
+    }
+
+    // don't forget to make these methods public!
+    public fun id(country: &amp;Country): u8 {
+        country.id
+    }
+
+    // don't mind ampersand here for now. you'll learn why it's 
+    // put here in references chapter 
+    public fun population(country: &amp;Country): u64 {
+        country.population
+    }
+
+    // ... fun destroy ... 
+}
+</code></pre>
+<p>By making getters we've allowed module users access fields of our struct:</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::Country as C;
+    use 0x1::Debug;
+
+    fun main() {
+        // variable here is of type C::Country
+        let country = C::new_country(1, 10000000);
+
+        Debug::print&lt;u8&gt;(
+            &amp;C::id(&amp;country)
+        ); // print id
+
+        Debug::print&lt;u64&gt;(
+            &amp;C::population(&amp;country)
+        );
+
+        // however this is impossible and will lead to compile error
+        // let id = country.id;
+        // let population = country.population.
+
+        C::destroy(country);
+    }
+}
+</code></pre>
+<hr />
+<p>Now you know how to define custom type - struct, but by default its functionality is limited. In the next chapter you will learn about abilities - a way to define how values of this type can be manipulated and used.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="module-and-import"><a class="header" href="#module-and-import">Module and Import</a></h1>
+<p>Module is a set of functions and types packed together which the developer publishes under his address. In the previous chapters we only used scripts, though script can only operate with published modules or standard library which itself is a set of modules published under <code>0x1</code> address.</p>
+<blockquote>
+<p>Module is published under its sender's address. Standard library is published under <code>0x1</code> address.</p>
+</blockquote>
+<blockquote>
+<p>When publishing a module, none of its functions are executed. To use module - use scripts.</p>
+</blockquote>
+<p>Module starts with <code>module</code> keyword, which is followed by module name and curly braces - inside them module contents are placed.</p>
+<pre><code class="language-Move">module Math {
+
+    // module contents
+
+    public fun sum(a: u64, b: u64): u64 {
+        a + b
+    }
+}
+</code></pre>
+<blockquote>
+<p>Module is the only way to publish code accessible for others; new types and resources can too only be defined within module context.</p>
+</blockquote>
+<p>By default your module will be compiled and published from your address. However if you need to use some modules locally (e.g. for testing or developing) or want to specify your address inside module file, use <code>address &lt;ADDR&gt; {}</code> syntax:</p>
+<pre><code class="language-Move">address 0x1 {
+module Math {
+    // module contents
+
+    public fun sum(a: u64, b: u64): u64 {
+        a + b
+    }
+}
+}
+</code></pre>
+<p><em>Like shown in example: best practice is to keep module line without indentation</em></p>
+<h2 id="imports"><a class="header" href="#imports">Imports</a></h2>
+<p>Default context in Move is empty: the only types you can use are primitives (integers, bool and address), and the only thing you can do within empty context is operate these types and variables while being unable to do something meaningful or useful.</p>
+<p>To change that you can import published modules (or standard library).</p>
+<h3 id="direct-import"><a class="header" href="#direct-import">Direct import</a></h3>
+<p>You can use modules by their address directly in your code:</p>
+<pre><code class="language-Move">script {
+    fun main(a: u8) {
+        0x1::Offer::assert!(a == 10, 1);
+    }
+}
+</code></pre>
+<p>In this example we've imported module <code>Offer</code> from address <code>0x1</code> (standard library) and used its method <code>assert!(expr: bool, code: u8)</code>.</p>
+<h3 id="keyword-use"><a class="header" href="#keyword-use">Keyword use</a></h3>
+<p>To make code shorter (remember that only 0x1 address is short, actual addresses are pretty long!) and to organize imports you can use keyword <code>use</code>:</p>
+<pre><code class="language-Move">use &lt;Address&gt;::&lt;ModuleName&gt;;
+</code></pre>
+<p>Here <code>&lt;Address&gt;</code> is a publisher's address and <code>&lt;ModuleName&gt;</code> is a name of a module. Pretty simple. Same here, we'll import <code>Vector</code> module from <code>0x1</code>.</p>
+<pre><code class="language-Move">use 0x1::Vector;
+</code></pre>
+<h3 id="accessing-modules-contents"><a class="header" href="#accessing-modules-contents">Accessing module's contents</a></h3>
+<p>To access imported module's methods (or types) use <code>::</code> notation. Simple as that - modules can only have one level of definitions so everything you define in the module (publicly) can be accessed via double colon.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Vector;
+
+    fun main() {
+        // here we use method empty() of module Vector
+        // the same way we'd access any other method of any other module
+        let _ = Vector::empty&lt;u64&gt;();
+    }
+}
+</code></pre>
+<h3 id="import-in-script"><a class="header" href="#import-in-script">Import in script</a></h3>
+<p>In scripts imports must be placed inside <code>script {}</code> block:</p>
+<pre><code class="language-Move">script {
+    use 0x1::Vector;
+
+    // in just the same way you can import any
+    // other module(s). as many as you want!
+
+    fun main() {
+        let _ = Vector::empty&lt;u64&gt;();
+    }
+}
+</code></pre>
+<h3 id="import-in-module"><a class="header" href="#import-in-module">Import in module</a></h3>
+<p>Module imports must be specified inside <code>module {}</code> block:</p>
+<pre><code class="language-Move">module Math {
+    use 0x1::Vector;
+
+    // the same way as in scripts
+    // you are free to import any number of modules
+
+    public fun empty_vec(): vector&lt;u64&gt; {
+        Vector::empty&lt;u64&gt;();
+    }
+}
+</code></pre>
+<h3 id="member-import"><a class="header" href="#member-import">Member import</a></h3>
+<p>Import statement can be extended - you can specify which members of the module you want to import:</p>
+<pre><code class="language-Move">script {
+    // single member import
+    use 0x1::Signer::address_of;
+
+    // multi member import (mind braces)
+    use 0x1::Vector::{
+        empty,
+        push_back
+    };
+
+    fun main(acc: &amp;signer) {
+        // use functions without module access
+        let vec = empty&lt;u8&gt;();
+        push_back(&amp;mut vec, 10);
+
+        // same here
+        let _ = address_of(acc);
+    }
+}
+</code></pre>
+<h3 id="using-self-to-import-module-alongside-its-members"><a class="header" href="#using-self-to-import-module-alongside-its-members">Using <code>Self</code> to import module alongside its members</a></h3>
+<p>Small extension to member import syntax allows you to import whole module and its members. Use <code>Self</code> for module.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Vector::{
+        Self, // Self == Imported module
+        empty
+    };
+
+    fun main() {
+        // `empty` imported as `empty`
+        let vec = empty&lt;u8&gt;();
+
+        // Self means Vector
+        Vector::push_back(&amp;mut vec, 10);
+    }
+}
+</code></pre>
+<h3 id="use-meets-as"><a class="header" href="#use-meets-as">Use meets as</a></h3>
+<p>To resolve naming conflicts (when 2 or more modules have same names) and to shorten you code you can change name of the imported module using keyword <code>as</code>.</p>
+<p>Syntax:</p>
+<pre><code class="language-Move">use &lt;Address&gt;::&lt;ModuleName&gt; as &lt;Alias&gt;;
+</code></pre>
+<p>In script:</p>
+<pre><code class="language-Move">script {
+    use 0x1::Vector as V; // V now means Vector
+
+    fun main() {
+        V::empty&lt;u64&gt;();
+    }
+}
+</code></pre>
+<p>The same in module:</p>
+<pre><code class="language-Move">module Math {
+    use 0x1::Vector as Vec;
+
+    fun length(&amp;v: vector&lt;u8&gt;): u64 {
+        Vec::length(&amp;v)
+    }
+}
+</code></pre>
+<p>For Self and <em>member import</em> (works in modules and scripts):</p>
+<pre><code class="language-Move">script {
+    use 0x1::Vector::{
+        Self as V,
+        empty as empty_vec
+    };
+
+    fun main() {
+        // `empty` imported as `empty_vec`
+        let vec = empty_vec&lt;u8&gt;();
+
+        // Self as V = Vector
+        V::push_back(&amp;mut vec, 10);
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="advanced-topics"><a class="header" href="#advanced-topics">Advanced Topics</a></h1>
+<p>In this section you'll learn few programming concepts which are widely used in Move: unique type system feature - <a href="advanced-topics//advanced-topics/types-with-abilities.html"><em>abilities</em></a>, <a href="advanced-topics//advanced-topics/ownership-and-references.html"><em>ownership</em></a> (and how it differs from Rust's one), <a href="advanced-topics//advanced-topics/understanding-generics.html"><em>generics</em></a> and <a href="advanced-topics//advanced-topics/managing-collections-with-vectors.html"><em>vector</em></a>. All of them provide solid foundation for safety and flexibility of Move language.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="types-with-abilities"><a class="header" href="#types-with-abilities">Types with Abilities</a></h1>
+<p>Move has unique type system which is very flexible and customizable. Each type can have up to 4 abilities which define how values of this type can be used, dropped or stored.</p>
+<blockquote>
+<p>Move has 4 abilities: Copy, Drop, Store and Key.</p>
+</blockquote>
+<p>Simply described:</p>
+<ul>
+<li><strong>Copy</strong> - value can be <em>copied</em> (or cloned by value).</li>
+<li><strong>Drop</strong> - value can be <em>dropped</em> by the end of scope.</li>
+<li><strong>Key</strong> - value can be <em>used as a key</em> for global storage operations.</li>
+<li><strong>Store</strong> - value can be <em>stored</em> inside global storage.</li>
+</ul>
+<p>On this page we will go through <code>Copy</code> and <code>Drop</code> abilities in detail; more context over <code>Key</code> and <code>Store</code> abilities will be given when we get to <a href="advanced-topics//resources/index.html">Resources</a> chapter.</p>
+<h3 id="abilities-syntax"><a class="header" href="#abilities-syntax">Abilities syntax</a></h3>
+<blockquote>
+<p>Primitive and built-in types' abilities are pre-defined and unchangeable: integers, vector, addresses and boolean values have <em>copy</em>, <em>drop</em> and <em>store</em> abilities</p>
+</blockquote>
+<p>However when defining structs you can specify any set of abilities using this syntax:</p>
+<pre><code class="language-Move">struct NAME has ABILITY [, ABILITY] { [FIELDS] }
+</code></pre>
+<p>Or by example:</p>
+<pre><code class="language-Move">module Library {
+
+    // each ability has matching keyword
+    // multiple abilities are listed with comma
+    struct Book has store, copy, drop {
+        year: u64
+    }
+
+    // single ability is also possible
+    struct Storage has key {
+        books: vector&lt;Book&gt;
+    }
+
+    // this one has no abilities
+    struct Empty {}
+}
+</code></pre>
+<h3 id="struct-with-no-abilities"><a class="header" href="#struct-with-no-abilities">Struct with no Abilities</a></h3>
+<p>Before we jump into how to use abilities and what they bring into the language, let's see what happens if there's a type with no abilities.</p>
+<pre><code class="language-Move">module Country {
+    struct Country {
+        id: u8,
+        population: u64
+    }
+
+    public fun new_country(id: u8, population: u64): Country {
+        Country { id, population }
+    }
+}
+</code></pre>
+<pre><code class="language-Move">script {
+    use {{sender}}::Country;
+
+    fun main() {
+        Country::new_country(1, 1000000);
+    }
+}
+</code></pre>
+<p>If you try to run this code, you'll get the following error:</p>
+<pre><code>error:
+   ┌── scripts/main.move:5:9 ───
+   │
+ 5 │     Country::new_country(1, 1000000);
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Cannot ignore values without the 'drop' ability. The value must be used
+   │
+</code></pre>
+<p>Method <code>Country::new_country()</code> creates a value; this value is not passed anywhere and automatically dropped when function ends; but Country type doesn't have <em>Drop</em> ability, and it fails. Now let's change our struct definition and add <strong>Drop</strong> Ability.</p>
+<h3 id="drop"><a class="header" href="#drop">Drop</a></h3>
+<p>Using abilities syntax we add <code>has drop</code> specifying <code>drop</code> ability for this struct. All of the instances of this struct will have drop ability and hence will be <em>droppable</em>.</p>
+<pre><code class="language-Move">module Country {
+    struct Country has drop { // has &lt;ability&gt;
+        id: u8,
+        population: u64
+    }
+    // ...
+}
+</code></pre>
+<p>Now, when struct <code>Country</code> can be dropped, our script can be run.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::Country;
+
+    fun main() {
+        Country::new_country(1, 1000000); // value is dropped
+    }
+}
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> Drop ability only defines <em>drop</em> behavior. <a href="advanced-topics//advanced-topics/struct.html#destructing-structures"><em>Destructuring</em></a> does not require Drop.</p>
+</blockquote>
+<h3 id="copy"><a class="header" href="#copy">Copy</a></h3>
+<p>We learned how to create new instances of struct <code>Country</code> and drop them. But what if we wanted to create a <em>copy</em>? By default, structs are passed by value; and to create a copy of this struct we will use keyword <code>copy</code> (you will learn more about this behavior <a href="advanced-topics//advanced-topics/ownership-and-references.html">in the next chapter</a>):</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::Country;
+
+    fun main() {
+        let country = Country::new_country(1, 1000000);
+        let _ = copy country;
+    }
+}
+</code></pre>
+<pre><code>   ┌── scripts/main.move:6:17 ───
+   │
+ 6 │         let _ = copy country;
+   │                 ^^^^^^^^^^^^ Invalid 'copy' of owned value without the 'copy' ability
+   │
+</code></pre>
+<p>As you could expect, making a copy of type without copy ability failed. Compiler message is clear:</p>
+<pre><code class="language-Move">module Country {
+    struct Country has drop, copy { // see comma here!
+        id: u8,
+        population: u64
+    }
+    // ...
+}
+</code></pre>
+<p>With that change code above would compile and run.</p>
+<h3 id="summary-1"><a class="header" href="#summary-1">Summary</a></h3>
+<ul>
+<li>Primitive types have store, copy and drop.</li>
+<li>By default structs have no abilities.</li>
+<li>Copy and Drop abilities define whether value can be copied and dropped respectively.</li>
+<li>It is possible to set up to 4 abilities for a struct.</li>
+</ul>
+<h3 id="further-reading-4"><a class="header" href="#further-reading-4">Further reading</a></h3>
+<ul>
+<li><a href="https://github.com/diem/diem/blob/main/language/changes/3-abilities.md">Move Abilities Description</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ownership-and-references"><a class="header" href="#ownership-and-references">Ownership and References</a></h1>
+<p>Move VM implements Rust-like ownership system. And the best description of it is in the <a href="https://doc.rust-lang.org/stable/book/ch04-01-what-is-ownership.html">Rust Book</a>. </p>
+<p>I recommend you reading the ownership chapter in the Rust Book even though Rust syntax differs and some of the examples may not be easy to understand. In this chapter we will go through main points anyway.</p>
+<blockquote>
+<p>Each variable has only one owner scope. When owner scope ends - owned variables are dropped.</p>
+</blockquote>
+<p>We've already seen this behavior in the <a href="advanced-topics//syntax-basics/expression-and-scope.html">expressions chapter</a>. Remember that a variable lives as long as its scope? Now is the perfect time to get under the hood and learn why it happens.</p>
+<p>Owner is a scope which <em>owns</em> a variable. Variables either can be defined in this scope (e.g. with keyword <code>let</code>) or be passed into the scope as arguments. Since the only scope in Move is function's - there are no other ways to put variables into scope.</p>
+<p>Each variable has only one owner, which means that when a variable is passed into function as argument, this function becomes the <em>new owner</em>, and the variable is no longer <em>owned</em> by the first function. Or you may say that this other function <em>takes ownership</em> of the variable.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::M;
+
+    fun main() {
+        // Module::T is a struct
+        let a : Module::T = Module::create(10);
+
+        // here variable `a` leaves scope of `main` function
+        // and is being put into new scope of `M::value` function
+        M::value(a);
+
+        // variable a no longer exists in this scope
+        // this code won't compile
+        M::value(a);
+    }
+}
+</code></pre>
+<p>Let's look at what happens inside the <code>value()</code> function when we pass our value into it:</p>
+<pre><code class="language-Move">module M {
+    // create_fun skipped
+    struct T { value: u8 }
+
+    public fun create(value: u8): T {
+        T { value }
+    }
+
+    // variable t of type M::T passed
+    // `value()` function takes ownership
+    public fun value(t: T): u8 {
+        // we can use t as variable
+        t.value
+    }
+    // function scope ends, t dropped, only u8 result returned
+    // t no longer exists
+}
+</code></pre>
+<p>Of course, a quick workaround is to return a tuple with the original variable and additional results (return value would have been <code>(T, u8)</code>), but Move has a better solution for that.</p>
+<h3 id="move-and-copy"><a class="header" href="#move-and-copy">Move and Copy</a></h3>
+<p>First, you need to understand how Move VM works, and what happens when you pass your value into a function. There are two bytecode instructions in VM: <em>MoveLoc</em> and <em>CopyLoc</em> - both of them can be manually used with keywords <code>move</code> and <code>copy</code> respectively.</p>
+<p>When a variable is being passed into another function - it's being <em>moved</em> and <em>MoveLoc</em> OpCode is used. Let's see how our code would look if we've used keyword <code>move</code>:</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::M;
+
+    fun main() {
+        let a : Module::T = Module::create(10);
+
+        M::value(move a); // variable a is moved
+
+        // local a is dropped
+    }
+}
+</code></pre>
+<p>This is a valid Move code, however, knowing that value will still be moved you don't need to explicitly <em>move</em> it. Now when it's clear we can get to <em>copy</em>.</p>
+<h3 id="keyword-copy"><a class="header" href="#keyword-copy">Keyword <code>copy</code></a></h3>
+<p>If you need to pass a value to the function (where it's being moved) and save a copy of your variable, you can use keyword <code>copy</code>.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::M;
+
+    fun main() {
+        let a : Module::T = Module::create(10);
+
+        // we use keyword copy to clone structure
+        // can be used as `let a_copy = copy a`
+        M::value(copy a);
+        M::value(a); // won't fail, a is still here
+    }
+}
+</code></pre>
+<p>In this example we've passed a <em>copy</em> of a variable (hence value) <code>a</code> into the first call of the method <code>value</code> and saved <code>a</code> in local scope to use it again in a second call.</p>
+<p>By copying a value we've duplicated it and increased the memory size of our program, so it can be used - but when you copy huge data it may become pricey in terms of memory. Remember - in blockchains every byte counts and affects the price of execution, so using <code>copy</code> all the time may cost you a lot.</p>
+<p>Now you are ready to learn about references - a tool that will help you avoid unnecessary copying and literally save some money.</p>
+<h2 id="references"><a class="header" href="#references">References</a></h2>
+<p>Many programming languages have implementation of references (<a href="https://en.wikipedia.org/wiki/Reference_(computer_science)">see Wikipedia</a>). <em>Reference</em> is a link to a variable (usually to a section in the memory) which you can pass into other parts of the program instead of <em>moving</em> the value.</p>
+<blockquote>
+<p>References (marked with &amp;) allow you to <em>refer</em> to a value without taking <em>ownership</em> of it.</p>
+</blockquote>
+<p>Let's modify our example and see how references can be used.</p>
+<pre><code class="language-Move">module M {
+    struct T { value: u8 }
+    // ...
+    // ...
+    // instead of passing a value, we'll pass a reference
+    public fun value(t: &amp;T): u8 {
+        t.value
+    }
+}
+</code></pre>
+<p>We added ampersand <code>&amp;</code> to argument type T - and by doing that we've changed argument type from <code>T</code> to <em>reference to T</em> or simply <code>&amp;T</code>.</p>
+<blockquote>
+<p>Move supports two types of references: <em>immutable</em> - defined with <code>&amp;</code> (e.g. <code>&amp;T</code>) and <em>mutable</em> - <code>&amp;mut</code> (e.g. <code>&amp;mut T</code>).</p>
+</blockquote>
+<p>Immutable references allow reading value without changing it. Mutable - the opposite - ability to read and change the value.</p>
+<pre><code class="language-Move">module M {
+    struct T { value: u8 }
+
+    // returned value is of non-reference type
+    public fun create(value: u8): T {
+        T { value }
+    }
+
+    // immutable references allow reading
+    public fun value(t: &amp;T): u8 {
+        t.value
+    }
+
+    // mutable references allow reading and changing the value
+    public fun change(t: &amp;mut T, value: u8) {
+        t.value = value;
+    }
+}
+</code></pre>
+<p>Now let's see how to use our upgraded module M.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::M;
+
+    fun main() {
+        let t = M::create(10);
+
+        // create a reference directly
+        M::change(&amp;mut t, 20);
+
+        // or write reference to a variable
+        let mut_ref_t = &amp;mut t;
+
+        M::change(mut_ref_t, 100);
+
+        // same with immutable ref
+        let value = M::value(&amp;t);
+
+        // this method also takes only references
+        // printed value will be 100
+        0x1::Debug::print&lt;u8&gt;(&amp;value);
+    }
+}
+</code></pre>
+<blockquote>
+<p>Use immutable (&amp;) references to read data from structs, use mutable (&amp;mut) to modify them. By using proper type of references you help maintaining security and help reading your modules so the reader will know whether this method changes the value or only reads.</p>
+</blockquote>
+<h3 id="borrow-checking"><a class="header" href="#borrow-checking">Borrow checking</a></h3>
+<p>Move controls the way you use references and helps you prevent unexpected bullet in your foot. To understand that let's see an example. I'll give you a module and a script and then will comment on what's going on and why.</p>
+<pre><code class="language-Move">module Borrow {
+
+    struct B { value: u64 }
+    struct A { b: B }
+
+    // create A with inner B
+    public fun create(value: u64): A {
+        A { b: B { value } }
+    }
+
+    // give a mutable reference to inner B
+    public fun ref_from_mut_a(a: &amp;mut A): &amp;mut B {
+        &amp;mut a.b
+    }
+
+    // change B
+    public fun change_b(b: &amp;mut B, value: u64) {
+        b.value = value;
+    }
+}
+</code></pre>
+<pre><code class="language-Move">script {
+    use {{sender}}::Borrow;
+
+    fun main() {
+        // create a struct A { b: B { value: u64 } }
+        let a = Borrow::create(0);
+
+        // get mutable reference to B from mut A
+        let mut_a = &amp;mut a;
+        let mut_b = Borrow::ref_from_mut_a(mut_a);
+
+        // change B
+        Borrow::change_b(mut_b, 100000);
+
+        // get another mutable reference from A
+        let _ = Borrow::ref_from_mut_a(mut_a);
+    }
+}
+</code></pre>
+<p>This code compiles and runs without errors. First, what happens here: we use mutable reference to <code>A</code> to get mutable reference to its inner struct <code>B</code>. Then we change <code>B</code>. Then operation can be repeated.</p>
+<p>But what if we've swapped two last expressions and first tried to create a new mutable reference to <code>A</code> while mutable reference to <code>B</code> is still alive?</p>
+<pre><code class="language-Move">let mut_a = &amp;mut a;
+let mut_b = Borrow::ref_from_mut_a(mut_a);
+
+let _ = Borrow::ref_from_mut_a(mut_a);
+
+Borrow::change_b(mut_b, 100000);
+</code></pre>
+<p>We would have gotten an error:</p>
+<pre><code class="language-Move">    ┌── /scripts/script.move:10:17 ───
+    │
+ 10 │         let _ = Borrow::ref_from_mut_a(mut_a);
+    │                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Invalid usage of reference as function argument. Cannot transfer a mutable reference that is being borrowed
+    ·
+  8 │         let mut_b = Borrow::ref_from_mut_a(mut_a);
+    │                     ----------------------------- It is still being mutably borrowed by this reference
+    │
+</code></pre>
+<p>This code won't compile. Why? Because <code>&amp;mut A</code> is <em>being borrowed</em> by <code>&amp;mut B</code>. If we could change <code>A</code> while having mutable reference to its contents, we'd get into an odd situation where <code>A</code> can be changed but reference to its contents is still here. Where would <code>mut_b</code> point to if there was no actual <code>B</code>?</p>
+<p>We come to few conclusions:</p>
+<ol>
+<li>We get a compilation error which means that the Move compiler prevents these cases. It's called <em>borrow checking</em> (originally concept from Rust language). Compiler builds a <em>borrow graph</em> and disallows <em>moving borrowed values</em>. This is one of the reasons why Move is so safe to use in blockchains.</li>
+<li>You can create reference from reference, so that original reference will <em>be borrowed</em> by the new one. Mutable and immutable can be created from mutable and only immutable from immutable.</li>
+<li>When reference <em>is borrowed</em> it cannot be <em>moved</em> because other values depend on it.</li>
+</ol>
+<h3 id="dereferencing"><a class="header" href="#dereferencing">Dereferencing</a></h3>
+<p>References can be dereferenced to get linked value - to do it use asterisk <code>*</code>.</p>
+<blockquote>
+<p>When dereferencing you're making a <em>copy</em>. Make sure that value has Copy ability.</p>
+</blockquote>
+<pre><code class="language-Move">module M {
+    struct T has copy {}
+
+    // value t here is of reference type
+    public fun deref(t: &amp;T): T {
+        *t
+    }
+}
+</code></pre>
+<blockquote>
+<p>Dereference operator does not move original value into current scope. It creates a <em>copy</em> of this value instead.</p>
+</blockquote>
+<p>There's a technique in Move used to copy inner field of a struct: <code>*&amp;</code> - dereference a reference to the field. Here's a quick example:</p>
+<pre><code class="language-Move">module M {
+    struct H has copy {}
+    struct T { inner: H }
+
+    // ...
+
+    // we can do it even from immutable reference!
+    public fun copy_inner(t: &amp;T): H {
+        *&amp;t.inner
+    }
+}
+</code></pre>
+<p>By using <code>*&amp;</code> (even compiler will advise you to do so) we've copied the inner value of a struct.</p>
+<h3 id="referencing-primitive-types"><a class="header" href="#referencing-primitive-types">Referencing primitive types</a></h3>
+<p>Primitive types (due to their simplicity) do not need to be passed as references and <em>copy</em> operation is done instead. Even if you pass them into function <em>by value</em> they will remain in current scope. You can intentionally use <code>move</code> keyword, but since primitives are very small in size copying them may even be cheaper than passing them by reference or even moving.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::M;
+
+    fun main() {
+        let a = 10;
+        M::do_smth(a);
+        let _ = a;
+    }
+}
+</code></pre>
+<p>This script will compile even though we didn't pass <code>a</code> as a reference. Adding <code>copy</code> is unnecessary - it's already put there by VM.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="understanding-generics"><a class="header" href="#understanding-generics">Understanding Generics</a></h1>
+<p>Generics are essential to Move, they are what makes this language so unique to the blockchain world, and they are the source of Move's flexibility.</p>
+<p>To start I'll quote <a href="https://doc.rust-lang.org/stable/book/ch10-00-generics.html">Rust Book</a>: <em>Generics are abstract stand-ins for concrete types or other properties</em>. Practically speaking, they are the way of writing a single function, which can then be used for any type, they can also be called templates as this function can be used as a template handler for any type.</p>
+<p>In Move generics can be applied to signatures of <code>struct</code> and <code>function</code>.</p>
+<h3 id="in-struct-definition"><a class="header" href="#in-struct-definition">In struct definition</a></h3>
+<p>First, we'll create a Box which will hold <code>u64</code> value. We've already been through this, so no need for comments.</p>
+<pre><code class="language-Move">module Storage {
+    struct Box {
+        value: u64
+    }
+}
+</code></pre>
+<p>This box can only contain value of <code>u64</code> type - this is clear. But what if we wanted to make the same box for <code>u8</code> type or a <code>bool</code>? Would we create type <code>Box1</code> and then <code>Box2</code>? Or would we publish another module for that? The answer is no - use generics instead.</p>
+<pre><code class="language-Move">module Storage {
+    struct Box&lt;T&gt; {
+        value: T
+    }
+}
+</code></pre>
+<p>Next to the struct name we've placed <code>&lt;T&gt;</code>. Where angle brackets <code>&lt;..&gt;</code> is a place to define generic types, and <code>T</code> is a type we've <em>templated</em> in this struct. Inside the struct body definition we've used <code>T</code> as a regular type. Type T does not exist, it is a placeholder for <em>any type</em>.</p>
+<h3 id="in-function-signature"><a class="header" href="#in-function-signature">In function signature</a></h3>
+<p>Now let's create a constructor for this struct which will first use type <code>u64</code> for value.</p>
+<pre><code class="language-Move">module Storage {
+    struct Box&lt;T&gt; {
+        value: T
+    }
+
+    // type u64 is put into angle brackets meaning
+    // that we're using Box with type u64
+    public fun create_box(value: u64): Box&lt;u64&gt; {
+        Box&lt;u64&gt;{ value }
+    }
+}
+</code></pre>
+<p>Generics have a bit more complicated definitions - since they need to have type parameters specified, and regular struct <code>Box</code> becomes <code>Box&lt;u64&gt;</code>. There are no restrictions in what types you can pass into generic's angle brackets. Let's make our <code>create_box</code> method more generic and let users specify any type. How do we do that? By using another generic, now in function signature!</p>
+<pre><code class="language-Move">module Storage {
+    // ...
+    public fun create_box&lt;T&gt;(value: T): Box&lt;T&gt; {
+        Box&lt;T&gt; { value }
+    }
+
+    // we'll get to this a bit later, trust me
+    public fun value&lt;T: copy&gt;(box: &amp;Box&lt;T&gt;): T {
+        *&amp;box.value
+    }
+}
+</code></pre>
+<h3 id="in-function-calls"><a class="header" href="#in-function-calls">In function calls</a></h3>
+<p>What we did is we added angle brackets into function signature right after function name. Just the same way as we did with struct. Now how would we use this function? By specifying type in function call.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::Storage;
+    use 0x1::Debug;
+
+    fun main() {
+        // value will be of type Storage::Box&lt;bool&gt;
+        let bool_box = Storage::create_box&lt;bool&gt;(true);
+        let bool_val = Storage::value(&amp;bool_box);
+
+        assert(bool_val, 0);
+
+        // we can do the same with integer
+        let u64_box = Storage::create_box&lt;u64&gt;(1000000);
+        let _ = Storage::value(&amp;u64_box);
+
+        // let's do the same with another box!
+        let u64_box_in_box = Storage::create_box&lt;Storage::Box&lt;u64&gt;&gt;(u64_box);
+
+        // accessing value of this box in box will be tricky :)
+        // Box&lt;u64&gt; is a type and Box&lt;Box&lt;u64&gt;&gt; is also a type
+        let value: u64 = Storage::value&lt;u64&gt;(
+            &amp;Storage::value&lt;Storage::Box&lt;u64&gt;&gt;( // Box&lt;u64&gt; type
+                &amp;u64_box_in_box // Box&lt;Box&lt;u64&gt;&gt; type
+            )
+        );
+
+        // you've already seen Debug::print&lt;T&gt; method
+        // which also uses generics to print any type
+        Debug::print&lt;u64&gt;(&amp;value);
+    }
+}
+</code></pre>
+<p>Here we have used Box struct with 3 types: <code>bool</code>, <code>u64</code> and with <code>Box&lt;u64&gt;</code> - last one may seem way too complicated but once you've gotten used to it and understood how it works, it becomes part of your routine.</p>
+<!-- , Move opens in new way - the way you probably could never imagine in blockchains. -->
+<p>Before we go any further, let's take a step back. By adding generics to <code>Box</code> struct we've made this box <em>abstract</em> - its definition is fairly simple compared to capacity it gave us. Now we can create <code>Box</code> with any type - be it <code>u64</code> or <code>address</code>, or even another box, or another struct.</p>
+<h3 id="constraints-to-check-abilities"><a class="header" href="#constraints-to-check-abilities">Constraints to check Abilities</a></h3>
+<p>We've learned about <a href="advanced-topics//advanced-topics/abilities/README.html">abilities</a>. They can be &quot;checked&quot; or <em>constrained</em> in generics; constraints are named after their abilities:</p>
+<pre><code class="language-Move">fun name&lt;T: copy&gt;() {} // allow only values that can be copied
+fun name&lt;T: copy + drop&gt;() {} // values can be copied and dropped
+fun name&lt;T: key + store + drop + copy&gt;() {} // all 4 abilities are present
+</code></pre>
+<p>...or with structs:</p>
+<pre><code class="language-Move">struct name&lt;T: copy + drop&gt; { value: T } // T can be copied and dropped
+struct name&lt;T: store&gt; { value: T } // T can be stored in global storage
+</code></pre>
+<blockquote>
+<p>Try to remember this syntax: <code>+</code> (plus) sign may not be intuitive first time; it is the only place in Move where <code>+</code> is used in keyword list.</p>
+</blockquote>
+<p>Here's an example of a system with constraints:</p>
+<pre><code class="language-Move">module Storage {
+
+    // contents of the box can be stored
+    struct Box&lt;T: store&gt; has key, store {
+        content: T
+    }
+}
+</code></pre>
+<p>It is also important to mention that inner types (or generic types) MUST have abilities of the container (for all abilities except <code>key</code>). If you think about it, everything is logical and intuitive: struct with <strong>copy</strong> ability must have contents that also have copy ability otherwise container object cannot be considered copyable. Move compiler will let you compile code that doesn't follow this logic but you won't be able to use these abilities. See this example: </p>
+<pre><code class="language-Move">module Storage {
+    // non-copyable or droppable struct
+    struct Error {}
+    
+    // constraints are not specified
+    struct Box&lt;T&gt; has copy, drop {
+        contents: T
+    }
+
+    // this method creates box with non-copyable or droppable contents
+    public fun create_box(): Box&lt;Error&gt; {
+        Box { contents: Error {} }
+    }
+}
+</code></pre>
+<p>This code compiles and publishes successfully. But if you try to use it...</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        {{sender}}::Storage::create_box() // value is created and dropped
+    }   
+}
+</code></pre>
+<p>You will get an error saying that Box is not droppable:</p>
+<pre><code>   ┌── scripts/main.move:5:9 ───
+   │
+ 5 │   Storage::create_box();
+   │   ^^^^^^^^^^^^^^^^^^^^^ Cannot ignore values without the 'drop' ability. The value must be used
+   │
+</code></pre>
+<p>That happens because inner value doesn't have drop ability. Container abilities automatically limited by its contents, so, for example if you have a container struct that has copy, drop and store, and inner struct has only drop, it will be impossible to copy or store this container. Another way to look at this is that container doesn't have to have constraints for inner types and can be flexible - used for any type inside.</p>
+<blockquote>
+<p>But to avoid mistakes always check and, if needed, specify generic constraints in functions and structs. </p>
+</blockquote>
+<p>In this example safer struct definition could be:</p>
+<pre><code class="language-Move">// we add parent's constraints
+// now inner type MUST be copyable and droppable
+struct Box&lt;T: copy + drop&gt; has copy, drop {
+    contents: T
+}
+</code></pre>
+<h3 id="multiple-types-in-generics"><a class="header" href="#multiple-types-in-generics">Multiple types in generics</a></h3>
+<p>Just like you can use a single type, you can use many. Generic types are put into angle brackets and separated by comma. Let's add a new type <code>Shelf</code> which will hold two boxes of two different types.</p>
+<pre><code class="language-Move">module Storage {
+
+    struct Box&lt;T&gt; {
+        value: T
+    }
+
+    struct Shelf&lt;T1, T2&gt; {
+        box_1: Box&lt;T1&gt;,
+        box_2: Box&lt;T2&gt;
+    }
+
+    public fun create_shelf&lt;Type1, Type2&gt;(
+        box_1: Box&lt;Type1&gt;,
+        box_2: Box&lt;Type2&gt;
+    ): Shelf&lt;Type1, Type2&gt; {
+        Shelf {
+            box_1,
+            box_2
+        }
+    }
+}
+</code></pre>
+<p>Type parameters for <code>Shelf</code> are listed and matched inside struct's fields definition. Also, as you can see, name of the type parameter inside generics does not matter - it's up to you to choose a proper one. And each type parameter is only valid within definition so no need to match <code>T1</code> or <code>T2</code> with <code>T</code>.</p>
+<p>Using multiple generic type parameters is similar to using single:</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::Storage;
+
+    fun main() {
+        let b1 = Storage::create_box&lt;u64&gt;(100);
+        let b2 = Storage::create_box&lt;u64&gt;(200);
+
+        // you can use any types - so same ones are also valid
+        let _ = Storage::create_shelf&lt;u64, u64&gt;(b1, b2);
+    }
+}
+</code></pre>
+<p><em>You can have up to 18,446,744,073,709,551,615 (u64 size) generics in one definition. You definitely will never reach this limit, so feel free to use as many as you need without worrying about limits.</em></p>
+<h3 id="unused-type-params"><a class="header" href="#unused-type-params">Unused type params</a></h3>
+<p>Not every type specified in generic must be used. Look at this example:</p>
+<pre><code class="language-Move">module Storage {
+
+    // these two types will be used to mark
+    // where box will be sent when it's taken from shelf
+    struct Abroad {}
+    struct Local {}
+
+    // modified Box will have target property
+    struct Box&lt;T, Destination&gt; {
+        value: T
+    }
+
+    public fun create_box&lt;T, Dest&gt;(value: T): Box&lt;T, Dest&gt; {
+        Box { value }
+    }
+}
+</code></pre>
+<p>Sometimes it is nice to have generic as a constraint or constant for some action. See how it can be used in script:</p>
+<pre><code class="language-Move">
+script {
+    use {{sender}}::Storage;
+
+    fun main() {
+        // value will be of type Storage::Box&lt;bool&gt;
+        let _ = Storage::create_box&lt;bool, Storage::Abroad&gt;(true);
+        let _ = Storage::create_box&lt;u64, Storage::Abroad&gt;(1000);
+
+        let _ = Storage::create_box&lt;u128, Storage::Local&gt;(1000);
+        let _ = Storage::create_box&lt;address, Storage::Local&gt;(0x1);
+
+        // or even u64 destination!
+        let _ = Storage::create_box&lt;address, u64&gt;(0x1);
+    }
+}
+</code></pre>
+<p>Here we use generics to mark type, but we don't actually use it. You'll soon learn why this definition matters when you get to know resources concept. For now it's just another way to use them.</p>
+<!-- ### Copyable
+
+*Copyable kind* - is a kind of types, value of which can be copied. `struct`, `vector` and primitive types - are three main groups of types fitting into this kind.
+
+To understand why Move needs this constraint let's see this example:
+
+```Move
+module M {
+    public fun deref<T>(t: &T): T {
+        *t
+    }
+}
+```
+
+By using *dereference* on a reference you can *copy* the original value and return it as a regular. But what if we've tried to use `resource` in this example? Resource can't be copied, hence this code would fail. Hopefully compiler won't let you compile this type, and kinds exist to manage cases like this.
+
+```Move
+module M {
+    public fun deref<T: copyable>(t: &T): T {
+        *t
+    }
+}
+```
+
+We've added `: copyable` constraint into generic definition, and now type `T` must be of kind *copyable*. So now function accepts only `struct`, `vector` and primitives as type parameters. This code compiles as constraint provides safety over used types and passing non-copyable value here is impossible.
+
+### Resource
+
+Another kind has only one type inside is a `resource` kind. It is used in the same manner:
+
+```Move
+module M {
+    public fun smth<T: resource>(t: &T) {
+        // do smth
+    }
+}
+```
+
+This example here is only needed to show syntax, we'll get to resources soon and you'll learn actual use cases for this constraint. -->
+<div style="break-before: page; page-break-before: always;"></div><h1 id="storage-models"><a class="header" href="#storage-models">Storage Models</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="programmable-resources"><a class="header" href="#programmable-resources">Programmable Resources</a></h1>
+<p>In this section we'll finally learn key feature of Move - resources. They are what makes Move unique, safe and powerful.</p>
+<p>To start, let's go through key points from diem developers website (source page was removed after renaming Libra to Diem):</p>
+<blockquote>
+<ol>
+<li>The key feature of Move is the ability to define custom resource types. <em>Resource types are used to encode safe digital assets with rich programmability</em>.</li>
+<li><em>Resources are ordinary values in the language</em>. They can be stored as data structures, passed as arguments to procedures, returned from procedures, and so on.</li>
+</ol>
+</blockquote>
+<p>Resource is a special type of <em>structure</em>, and it is possible to define and create new (or use existing) resource right in the Move code. Therefore you're able to manage digital assets the same way you use any other data (like vector or struct).</p>
+<blockquote>
+<ol start="3">
+<li><em>The Move type system provides special safety guarantees for resources</em>. Move resources can never be duplicated, reused, or discarded. A resource type can only be created or destroyed by the module that defines the type. These guarantees are enforced statically by the Move virtual machine via bytecode verification. The Move virtual machine will refuse to run code that has not passed through the bytecode verifier.</li>
+</ol>
+</blockquote>
+<p>In <a href="resources//advanced-topics/ownership-and-references.html">references and ownership chapter</a> you've seen how Move secures scopes and controls variable's owner scope. And in <a href="resources//advanced-topics/understanding-generics.html">generics chapter</a> you've learned that there's a special way of kind-matching to separate <em>copyable</em> and <em>non-copyable</em> types. All of these features provide safety for resource type.</p>
+<blockquote>
+<ol start="4">
+<li>All Diem currencies are implemented using the generic Diem::T type. For example: the LBR currency is represented as <code>Diem::T&lt;LBR::T&gt;</code> and a hypothetical USD currency would be represented as <code>Diem::T&lt;USD::T&gt;</code>. Diem::T has no special status in the language; every Move resource enjoys the same protections.</li>
+</ol>
+</blockquote>
+<p>Just like the Diem currency, other currencies or other types of assets can be represented in Move.</p>
+<h3 id="further-reading-5"><a class="header" href="#further-reading-5">Further reading</a></h3>
+<ul>
+<li><a href="https://developers.diem.com/docs/technical-papers/move-paper/">Move whitepaper</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sender-as-signer"><a class="header" href="#sender-as-signer">Sender as Signer</a></h1>
+<p>Before we get to how to use resources, you need to learn about <code>signer</code> type, and why this type exists.</p>
+<blockquote>
+<p>Signer is a native non-copyable (resource-like) type which holds address of transaction sender.</p>
+</blockquote>
+<p>Signer type represents sender authority. In other words - using signer means accessing sender's address and resources. It has no direct relation to <em>signatures</em> or literally <em>signing</em>, in terms of Move VM it simply represents sender.</p>
+<blockquote>
+<p>Signer type has only one ability - Drop.</p>
+</blockquote>
+<!-- Important! `0x1::Transaction::sender()` may soon be deprecated [as mentioned here](https://community.libra.org/t/signer-type-and-move-to/2894). So in the future using `signer` will be the only way to get sender's address. -->
+<h3 id="signer-in-scripts"><a class="header" href="#signer-in-scripts">Signer in scripts</a></h3>
+<p>Since signer is a native type, it has to be created. Though unlike <code>vector</code> it cannot be directly created in code, but can be received as a script argument:</p>
+<pre><code class="language-Move">script {
+    // signer is an owned value
+    fun main(account: signer) {
+        let _ = account;
+    }
+}
+</code></pre>
+<p>Signer argument is put into your scripts automatically by VM, which means that there's no way nor need to pass it into script manually. One more thing - it's always a <em>reference</em>. Even though standard library (in case of Diem it's - <a href="https://github.com/diem/diem/blob/master/language/stdlib/modules/DiemAccount.move">DiemAccount</a>) has access to actual value of signer, functions using this value are private and there's no way to use or pass signer value anywhere else.</p>
+<blockquote>
+<p>Currently, canonical name of the variable holding signer type is <em>account</em></p>
+</blockquote>
+<h3 id="signer-module-in-standard-library"><a class="header" href="#signer-module-in-standard-library">Signer module in standard library</a></h3>
+<p>Native types require native functions, and for signer type it is <code>0x1::Signer</code>. This module is fairly simple (<a href="https://github.com/diem/diem/blob/master/language/diem-framework/modules/Signer.move">link to original module in diem</a>):</p>
+<pre><code class="language-Move">module Signer {
+    // Borrows the address of the signer
+    // Conceptually, you can think of the `signer`
+    // as being a resource struct wrapper arround an address
+    // ```
+    // resource struct Signer { addr: address }
+    // ```
+    // `borrow_address` borrows this inner field
+    native public fun borrow_address(s: &amp;signer): &amp;address;
+
+    // Copies the address of the signer
+    public fun address_of(s: &amp;signer): address {
+        *borrow_address(s)
+    }
+}
+</code></pre>
+<p>As you can see, there're 2 methods, one of which is native and the other one is more handy as it copies address with dereference operator.</p>
+<p>Usage of this module is just as simple:</p>
+<pre><code class="language-Move">script {
+    fun main(account: signer) {
+        let _ : address = 0x1::Signer::address_of(&amp;account);
+    }
+}
+</code></pre>
+<h3 id="signer-in-module"><a class="header" href="#signer-in-module">Signer in module</a></h3>
+<pre><code class="language-Move">module M {
+    use 0x1::Signer;
+
+    // let's proxy Signer::address_of
+    public fun get_address(account: signer): address {
+        Signer::address_of(&amp;account)
+    }
+}
+</code></pre>
+<blockquote>
+<p>Methods using <code>&amp;signer</code> type as argument explicitly show that they are using sender's address.</p>
+</blockquote>
+<p>One of the reasons for this type was to show which methods require sender authority and which ones don't. So method cannot trick user into unauthorized access to its resources.</p>
+<!--  MAYBE ADD HISTORY OF THIS TYPE? -->
+<h3 id="further-reading-and-prs"><a class="header" href="#further-reading-and-prs">Further reading and PRs</a></h3>
+<ul>
+<li><a href="https://community.diem.com/t/signer-type-and-move-to/2894">Diem Community thread on signer</a></li>
+<li><a href="https://github.com/diem/diem/issues/3679">Issue in Diem repository with reasoning</a></li>
+<li><a href="https://github.com/diem/diem/pull/3819">PR in Diem repository</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="what-is-resource"><a class="header" href="#what-is-resource">What is Resource</a></h1>
+<p>Resource is a concept described in Move Whitepaper. Originally it was implemented as its own type but later, with addition of abilities, replaced with two abilities: <code>Key</code> and <code>Store</code>. Resource is meant to be a perfect type for storing digital assets, to achieve that it must be non-copyable and non-droppable. At the same time it must be storable and transferable between accounts.</p>
+<h3 id="definition-1"><a class="header" href="#definition-1">Definition</a></h3>
+<p>Resource is a struct that has only <code>key</code> and <code>store</code> abilities:</p>
+<pre><code class="language-Move">module M {
+    struct T has key, store {
+        field: u8
+    }
+}
+</code></pre>
+<h3 id="key-and-store-abilities"><a class="header" href="#key-and-store-abilities">Key and Store abilities</a></h3>
+<p>Key ability allows struct to be used as a storage identifier. In other words, <code>key</code> is an ability to be stored as at top-level and be a storage; while <code>store</code> is the ability to be stored <em>under</em> key. You will see how it works in the next chapter. For now keep in mind that even primitive types have store ability - they can be stored, but yet they don't have <code>key</code> and cannot be used as a top-level containers.</p>
+<p>Store ability allows value to be stored. That simple.</p>
+<h3 id="resource-concept"><a class="header" href="#resource-concept">Resource concept</a></h3>
+<p>Originally resource had its own type in Move, but with addition of abilities it became a more abstract concept that can be implemented with <em>key</em> and/or <em>store</em> abilities. Let's still go through description for a resource:</p>
+<ol>
+<li>Resources is stored under account - therefore it <em>exists</em> only when assigned to account; and can only be <em>accessed</em> through this account;</li>
+<li>Account can hold <em>only one</em> resource of <em>one type</em>, and this resource must have <code>key</code> ability;</li>
+<li>Resource can't be copied nor dropped, but can be stored.</li>
+<li>Resource value <em>must be used</em>. When resource created or taken from account, it cannot be dropped and must be stored or destructured.</li>
+</ol>
+<p>Enough theory, let's get to action!</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="resource-by-example"><a class="header" href="#resource-by-example">Resource by Example</a></h1>
+<p>In this section you'll finally learn how to use resources. We'll go through the process of defining a resource and methods to work with it, and in the end you'll get a full contract which you can then use as a template.</p>
+<p>We'll create a Collection contract, which will allow us to:</p>
+<ul>
+<li>start a collection</li>
+<li>add and take items from collection</li>
+<li>destroy collection</li>
+</ul>
+<p>Let's begin!</p>
+<!-- - offer collectibles to other users
+- allow using this module with any type -->
+<!-- For better understanding of this chapter I recommend you using Move IDE (which has already been presented in [getting started chapter](/introduction/getting-started.md)) and running all of these modules and scripts in it. It will also highlight possible errors and will automatically sync with standard library to verify that you're using correct methods and addresses.
+
+Directory structure for your project would be:
+
+```
+modules/
+    Collection.move
+scripts/
+    use_collection.move
+.mvconfig.json
+```
+
+And recommended configuration in .mvconfig is:
+
+```json
+{
+    "sender": "0x1",
+    "network": "diem"
+}
+``` -->
+<div style="break-before: page; page-break-before: always;"></div><h1 id="creating-and-moving-resource"><a class="header" href="#creating-and-moving-resource">Creating and Moving Resource</a></h1>
+<p>First, let's create our module:</p>
+<pre><code class="language-Move">// modules/Collection.move
+module Collection {
+
+
+    struct Item has store {
+        // we'll think of the properties later
+    }
+
+    struct Collection has key {
+        items: vector&lt;Item&gt;
+    }
+}
+</code></pre>
+<blockquote>
+<p>There's a convention to call main resource of a module after the module (e.g. Collection::Collection). If you follow it, your modules will be easy to read and use by other people.</p>
+</blockquote>
+<h3 id="create-and-move"><a class="header" href="#create-and-move">Create and Move</a></h3>
+<p>We've defined a struct <code>Collection</code> with <em>Key</em> ability, which will hold vector of type <code>Item</code>. Now let's see how to start new collection and how <em>to store a resource under account</em>. Stored resource in this implementation will live forever under sender's address. No one can modify or take this resource from owner.</p>
+<pre><code class="language-Move">// modules/Collection.move
+module Collection {
+
+    use 0x1::Vector;
+
+    struct Item has store {}
+
+    struct Collection has key {
+        items: vector&lt;Item&gt;
+    }
+
+    /// note that &amp;signer type is passed here!
+    public fun start_collection(account: &amp;signer) {
+        move_to&lt;Collection&gt;(account, Collection {
+            items: Vector::empty&lt;Item&gt;()
+        })
+    }
+}
+</code></pre>
+<p>Remember <a href="resources/resource-by-example//resources/signer-type.html">signer</a>? Now you see how it in action! To <em>move</em> resource to account you have built-in function <em>move_to</em> which takes <code>signer</code> as a first argument and <code>Collection</code> as second. Signature of <code>move_to</code> function can be represented like:</p>
+<pre><code class="language-Move">
+native fun move_to&lt;T: key&gt;(account: &amp;signer, value: T);
+
+</code></pre>
+<p>That leads to two conclusions:</p>
+<ol>
+<li>You can only put a resource under your account. You cannot have access to <code>signer</code> value of another account, hence cannot put resource there.</li>
+<li>Only one resource of single type can be stored under one address. Doing the same operation twice would lead to discarding existing resource and this must not happen (imagine you have your coins stored and by inaccurate action you discard all your savings by pushing empty balance!). Second attempt to create existing resource will fail with error.</li>
+</ol>
+<h3 id="check-existence-at-address"><a class="header" href="#check-existence-at-address">Check existence at address</a></h3>
+<p>To check if resource exists at given address Move has <code>exists</code> function, which signature looks similar to this.</p>
+<pre><code class="language-Move">
+native fun exists&lt;T: key&gt;(addr: address): bool;
+    
+</code></pre>
+<p>By using generics this function is made type-independent and you can use any resource type to check if it exists at address. Actually, anyone can check if resource exists at given address. But checking existence is not accessing stored value!</p>
+<p>Let's write a function to check if user already has collection:</p>
+<pre><code class="language-Move">// modules/Collection.move
+module Collection {
+
+    struct Item has store, drop {}
+
+    struct Collection has store, key {
+        items: Item
+    }
+
+    // ... skipped ...
+
+    /// this function will check if resource exists at address
+    public fun exists_at(at: address): bool {
+        exists&lt;Collection&gt;(at)
+    }
+}
+</code></pre>
+<hr />
+<p>Now you know how to create a resource, how to move it to sender and how to check if resource already exists. It's time to learn to read this resource and to modify it!</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="read-and-modify-resource"><a class="header" href="#read-and-modify-resource">Read and Modify Resource</a></h1>
+<p>To read and modify resource Move has two more built-in functions. Their names perfectly match their goals: <code>borrow_global</code> and <code>borrow_global_mut</code>.</p>
+<h2 id="immutable-borrow-with-borrow_global"><a class="header" href="#immutable-borrow-with-borrow_global">Immutable borrow with <code>borrow_global</code></a></h2>
+<p>In <a href="resources/resource-by-example//advanced-topics/ownership-and-references.html">ownership and references chapter</a> you've got to know mutable (&amp;mut) and immutable references. It's time to put this knowledge to practice!</p>
+<pre><code class="language-Move">// modules/Collection.move
+module Collection {
+
+    // added a dependency here!
+    use 0x1::Signer;
+    use 0x1::Vector;
+
+    struct Item has store, drop {}
+    struct Collection has key, store {
+        items: vector&lt;Item&gt;
+    }
+
+    // ... skipped ...
+
+    /// get collection size
+    /// mind keyword acquires!
+    public fun size(account: &amp;signer): u64 acquires Collection {
+        let owner = Signer::address_of(account);
+        let collection = borrow_global&lt;Collection&gt;(owner);
+
+        Vector::length(&amp;collection.items)
+    }
+}
+</code></pre>
+<p>A lot has happened here. First, let's deal with method signature. Global function <code>borrow_global&lt;T&gt;</code> gives a immutable reference to resource T. It's signature is like:</p>
+<pre><code class="language-Move">
+native fun borrow_global&lt;T: key&gt;(addr: address): &amp;T;
+
+</code></pre>
+<p>By using this function we get <em>read access</em> to resource stored at specific address. Which means that module has capability to read any of its resources at any addresses (if this functionality is implemented).</p>
+<p>Another conclusion: due to borrow checking you cannot return reference to resource nor to its contents (as original reference to resource will die on scope end).</p>
+<blockquote>
+<p>Since resource is a non-copyable type, it is impossible to use dereference operator '*' on it.</p>
+</blockquote>
+<h3 id="acquires-keyword"><a class="header" href="#acquires-keyword">Acquires keyword</a></h3>
+<p>There's another detail worth explanation: keyword <code>acquires</code> which is put after function return value. This keyword explicitly defines all the resources <em>acquired</em> by this function. You must specify each acquired resource, even if it's a nested function call actually acquires resource - parent scope must have this resource specified in acquires list.</p>
+<p>Syntax for function with <code>acquires</code> is like this:</p>
+<pre><code class="language-Move">
+fun &lt;name&gt;(&lt;args...&gt;): &lt;ret_type&gt; acquires T, T1 ... {
+
+</code></pre>
+<h2 id="mutable-borrow-with-borrow_global_mut"><a class="header" href="#mutable-borrow-with-borrow_global_mut">Mutable borrow with <code>borrow_global_mut</code></a></h2>
+<p>To get mutable reference to resource, add <code>_mut</code> to your <code>borrow_global</code> and that's all. Let's add a function to add new (currently empty) item to collection.</p>
+<pre><code class="language-Move">module Collection {
+
+    // ... skipped ...
+
+    public fun add_item(account: &amp;signer) acquires Collection {
+        let collection = borrow_global_mut&lt;Collection&gt;(Signer::address_of(account));
+
+        Vector::push_back(&amp;mut collection.items, Item {});
+    }
+}
+</code></pre>
+<p>Mutable reference to resource allows creating mutable references to its contents. That is why we're able to modify inner vector <code>items</code> in this example.</p>
+<p>Signature for <code>borrow_global_mut</code> is:</p>
+<pre><code class="language-Move">
+native fun borrow_global_mut&lt;T: key&gt;(addr: address): &amp;mut T;
+
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="take-and-destroy-resource"><a class="header" href="#take-and-destroy-resource">Take and Destroy Resource</a></h1>
+<p>Final function of this section is <code>move_from</code> which takes resource from account. We'll implement <code>destroy</code> function which will move collection resource <em>from</em> account and will destroy its contents.</p>
+<pre><code class="language-Move">// modules/Collection.move
+module Collection {
+
+    // ... skipped ...
+
+    public fun destroy(account: &amp;signer) acquires Collection {
+
+        // account no longer has resource attached
+        let collection = move_from&lt;Collection&gt;(Signer::address_of(account));
+
+        // now we must use resource value - we'll destructure it
+        // look carefully - Items must have drop ability
+        let Collection { items: _ } = collection;
+
+        // done. resource destroyed
+    }
+}
+</code></pre>
+<p>Resource value must be used. So resource, when taken from account, must be either destructured or passed as return value. However keep in mind that even if you pass this value outside and get it in the script, there are limited options of what to do next as script context does not allow you to do anything with struct or resource except passing it somewhere else. Knowing that - design your modules properly and give user an option to do something with returned resource.</p>
+<p>The very last signature:</p>
+<pre><code class="language-Move">
+native fun move_from&lt;T: key&gt;(addr: address): T;
+
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="further-steps"><a class="header" href="#further-steps">Further Steps</a></h1>
+<p>In this section you've seen how resource restrictions are represented in Move syntax. You've also learned how to create, check, access, modify and destroy resources. This part is supposed to be last in the book. However you can modify this module to your needs and think of these options:</p>
+<ol>
+<li>Try to modify this module to support any type with generics;</li>
+<li>Look through <a href="https://github.com/starcoinorg/starcoin/blob/master/vm/stdlib/modules/Offer.move">Offer module</a> and think of a way to offer collection to another account.</li>
+</ol>
+<p>Full code of module Collection can be found <a href="https://github.com/damirka/move-book/blob/master/samples/">on GitHub</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="design-patterns"><a class="header" href="#design-patterns">Design Patterns</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="authorization"><a class="header" href="#authorization">Authorization</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="capability"><a class="header" href="#capability">Capability</a></h1>
+<p>Capability pattern is a way to perform dynamic authorization by passing a reference to a struct. The features that make this pattern possible are: references support (both mutable and immutable) and the <code>key</code> / <code>store</code> abilities.</p>
+<h2 id="implementation"><a class="header" href="#implementation">Implementation</a></h2>
+<p>Capability is a struct that belongs to an application, but is passed to a module that needs to perform authorization. In other words, methods can be gated by the presence of a capability.</p>
+<pre><code class="language-move">module book::capability {
+    /// Capability needs to have either `store` or `key` to be
+    /// storable.
+    struct Capability has store {}
+
+    /// Protected functions require a `Capability` as an argument
+    /// making them inaccessible without it.
+    public fun protected(_cap: &amp;Capability) {
+        // ...
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="witness"><a class="header" href="#witness">Witness</a></h1>
+<p>Witness pattern is a way to perform dynamic &quot;module authorization&quot; which usually ignores the storage state. This pattern stems from the struct packing restriction (only module defining the type can instantiate it) and from the <a href="patterns/../advanced-topics/types-with-abilities.html#drop-ability">drop ability</a>.</p>
+<h2 id="implementation-1"><a class="header" href="#implementation-1">Implementation</a></h2>
+<p>Witness is typically represented by a &quot;witness type&quot; - a struct without fields that has the <code>drop</code> ability. The module that wants to perform authorization needs to instantiate the witness type and pass it to the function that expects a witness.</p>
+<pre><code class="language-move">module book::witness {
+    /// The Witness type for the `witness` module.
+    struct Witness has drop {}
+}
+</code></pre>
+<h2 id="factory-design"><a class="header" href="#factory-design">Factory Design</a></h2>
+<p>The most common case for the witness patten is instantiating a generic base type with a concrete subtype, allowing the module to control protected features of the base type. This is similar to the <a href="https://en.wikipedia.org/wiki/Factory_method_pattern">factory design pattern</a>.</p>
+<p>In the example below, <code>mint</code> and <code>burn</code> functions require a witness - this way only the module that instantiated the witness can perform these operations. However, other two methods: <code>split</code> and <code>join</code> are available publicly.</p>
+<pre><code class="language-move">module book::witness_coin {
+
+    /// Emitted when trying to split and there is not enough value.
+    const ENotEnough: u64 = 0;
+
+    /// A base type that can be instantiated with a Witness.
+    struct Coin&lt;phantom T&gt; has store {
+        value: u64,
+    }
+
+    /// Mint a Coin with a given amount. Requires a Witness.
+    /// `_witness` argument is not used and discarded, but on the type
+    /// level it ensures that the caller controls the `T`.
+    public fun mint&lt;T: drop&gt;(_witness: T, amount: u64): Coin&lt;T&gt; {
+        Coin { value: amount }
+    }
+
+    /// A Witness type for the `witness_coin` module. Requires a Witness.
+    public fun burn&lt;T: drop&gt;(_witness: T, coin: Coin&lt;T&gt;) {
+        let Coin { value } = coin;
+    }
+
+    /// Join two Coins together.
+    public fun join&lt;T&gt;(self: &amp;mut Coin&lt;T&gt;, other: Coin&lt;T&gt;) {
+        let Coin { value } = other;
+        self.value = self.value + value;
+    }
+
+    /// Split a Coin into two Coins.
+    public fun split&lt;T&gt;(self: &amp;mut Coin&lt;T&gt;, amount: u64): Coin&lt;T&gt; {
+        assert!(self.value &gt;= amount, ENotEnough);
+        self.value = self.value - amount;
+        Coin { value: amount }
+    }
+}
+</code></pre>
+<p>Due to specifics of the witness approach, module often needs to implement witness-protected methods. To make the <code>witness_coin</code> example work, the module needs to implement <code>mint</code> and <code>burn</code> methods.</p>
+<pre><code class="language-move">module book::witness_my_coin {
+    use book::witness_coin::{Self as coin, Coin};
+
+    /// The coin witness.
+    struct MyCoin has drop {}
+
+    /// Mints a new `Coin&lt;MyCoin&gt;` with the given amount.
+    public fun mint(amount: u64): Coin&lt;MyCoin&gt; {
+        coin::mint(MyCoin {}, amount)
+    }
+
+    /// Burns the `Coin&lt;MyCoin&gt;`.
+    public fun burn(coin: Coin&lt;MyCoin&gt;) {
+        coin::burn(MyCoin {}, coin)
+    }
+}
+</code></pre>
+<p>If you're familiar with design patterns, you may notice that this is similar to the abstract class. However, Move doesn't have inheritance, so this is the closest you can get.</p>
+<h2 id="delayed-witness"><a class="header" href="#delayed-witness">Delayed Witness</a></h2>
+<p>A slight variation of the witness pattern is the delayed witness. In this case, the witness is not passed to the function directly, but is stored in the storage and can be taken and used later. To achieve that, the witness type needs to have a <code>store</code> ability.</p>
+<pre><code class="language-move">module book::delayed_witness {
+    /// Unlike a regular witness, a delayed witness can be stored and
+    /// accessed later. It is useful when you a party needs to perform
+    /// authorization at a later time or when there's multiple
+    /// confirmations required.
+    struct DelayedWitness has store, drop {}
+}
+</code></pre>
+<h2 id="other-variations"><a class="header" href="#other-variations">Other variations</a></h2>
+<p>Other combinations of abilities on the witness type, given the requirement of the <code>drop</code> ability, are either impossible or lead to potentially insecure solutions:</p>
+<ul>
+<li>A &quot;copyable witness&quot; shouldn't be exposed to a third party, and if it's not exposed, then the module can just use the witness directly. Alternatively, if the idea is to expose it to a third party, then <a href="patterns/./capability.html">Capability</a> pattern is a better fit.</li>
+<li>Addition of the <code>key</code> ability is also impossible due to its incompatible semantics with the <code>drop</code> ability.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="composability"><a class="header" href="#composability">Composability</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="getters-and-setters"><a class="header" href="#getters-and-setters">Getters and Setters</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hot-potato"><a class="header" href="#hot-potato">Hot Potato</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="policy"><a class="header" href="#policy">Policy</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="coding-conventions"><a class="header" href="#coding-conventions">Coding Conventions</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="compatibility-table"><a class="header" href="#compatibility-table">Compatibility Table</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="scripts"><a class="header" href="#scripts">Scripts</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="bcs"><a class="header" href="#bcs">BCS</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="translations"><a class="header" href="#translations">Translations</a></h1>
+<p>Book is also available in other languages:</p>
+<ul>
+<li><a href="https://move-book.com/cn">Chinese</a> (by <a href="https://starcoin.org/">Starcoin team</a>)</li>
+<li><a href="https://move-book.com/ko">Korean</a> (by <a href="https://github.com/AstroSpaceHQ">Astro Space</a>)</li>
+<li><a href="https://move-book.com/tr">Turkish</a> (by <a href="https://yildizblockchain.com">YTU Blockchain Community Istanbul</a>)</li>
+<li><a href="https://move-book.com/ru">Russian (incomplete)</a> (by <a href="https://github.com/Sr20dem">Sr20dem</a>)</li>
+</ul>
+<h2 id="contribute"><a class="header" href="#contribute">Contribute</a></h2>
+<p>If you notice any typos or mistakes or willing to contribute, feel free to submit an issue or a PR on <a href="https://github.com/damirka/move-book">GitHub</a>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,2598 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title></title>
+        
+        <meta name="robots" content="noindex" />
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Move Programlama Dili</a></li><li class="chapter-item expanded "><a href="introduction/foreword.html"><strong aria-hidden="true">2.</strong> Önsöz</a></li><li class="chapter-item expanded "><a href="introduction/getting-started.html"><strong aria-hidden="true">3.</strong> Giriş</a></li><li class="chapter-item expanded "><a href="syntax-basics/index.html"><strong aria-hidden="true">4.</strong> Temel Syntax Kavramları</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="syntax-basics/concept.html"><strong aria-hidden="true">4.1.</strong> Konsept</a></li><li class="chapter-item expanded "><a href="syntax-basics/primitives.html"><strong aria-hidden="true">4.2.</strong> İlkel Veri Tipleri</a></li><li class="chapter-item expanded "><a href="syntax-basics/comments.html"><strong aria-hidden="true">4.3.</strong> Comment (Yorum)</a></li><li class="chapter-item expanded "><a href="syntax-basics/expression-and-scope.html"><strong aria-hidden="true">4.4.</strong> ifade ve Kapsam</a></li><li class="chapter-item expanded "><a href="syntax-basics/control-flow.html"><strong aria-hidden="true">4.5.</strong> Kontrol Akışı</a></li><li class="chapter-item expanded "><a href="syntax-basics/module.html"><strong aria-hidden="true">4.6.</strong> Modüller ve İçe Aktarım (Import)</a></li><li class="chapter-item expanded "><a href="syntax-basics/constants.html"><strong aria-hidden="true">4.7.</strong> Sabitler (Constants)</a></li><li class="chapter-item expanded "><a href="syntax-basics/function.html"><strong aria-hidden="true">4.8.</strong> Fonksiyonlar</a></li></ol></li><li class="chapter-item expanded "><a href="advanced-topics/index.html"><strong aria-hidden="true">5.</strong> Gelişmiş Başlıklar</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="advanced-topics/struct.html"><strong aria-hidden="true">5.1.</strong> Yapılar (Structures)</a></li><li class="chapter-item expanded "><a href="advanced-topics/types-with-abilities.html"><strong aria-hidden="true">5.2.</strong> Yetenekli Tipler</a></li><li class="chapter-item expanded "><a href="advanced-topics/ownership-and-references.html"><strong aria-hidden="true">5.3.</strong> Sahiplik ve Referanslar</a></li><li class="chapter-item expanded "><a href="advanced-topics/understanding-generics.html"><strong aria-hidden="true">5.4.</strong> Jenerikler (Generics)</a></li><li class="chapter-item expanded "><a href="advanced-topics/managing-collections-with-vectors.html"><strong aria-hidden="true">5.5.</strong> Vektör ile Koleksiyonları Kontrol Etmek</a></li></ol></li><li class="chapter-item expanded "><a href="resources/index.html"><strong aria-hidden="true">6.</strong> Programlanabilir Kaynaklar</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="resources/signer-type.html"><strong aria-hidden="true">6.1.</strong> Göndericinin Signer Olması</a></li><li class="chapter-item expanded "><a href="resources/what-is-resource.html"><strong aria-hidden="true">6.2.</strong> Kaynak Nedir</a></li><li class="chapter-item expanded "><a href="resources/resource-by-example/index.html"><strong aria-hidden="true">6.3.</strong> Kaynak Örnekleri</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="resources/resource-by-example/storing-new-resource.html"><strong aria-hidden="true">6.3.1.</strong> Kaynak Yaratma ve Taşıma</a></li><li class="chapter-item expanded "><a href="resources/resource-by-example/access-resource-with-borrow.html"><strong aria-hidden="true">6.3.2.</strong> Kaynak Okuyup Değiştirme</a></li><li class="chapter-item expanded "><a href="resources/resource-by-example/destroy-resource.html"><strong aria-hidden="true">6.3.3.</strong> Kaynakları Alıp Yok Etme</a></li><li class="chapter-item expanded "><a href="resources/resource-by-example/furher-steps.html"><strong aria-hidden="true">6.3.4.</strong> Sonraki Adımlar</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="tutorials/index.html"><strong aria-hidden="true">7.</strong> Öğretici (Tutorial)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tutorials/erc20.html"><strong aria-hidden="true">7.1.</strong> ERC20 Token Yazmak</a></li></ol></li><li class="chapter-item expanded "><a href="translations.html"><strong aria-hidden="true">8.</strong> Çeviriler</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#move-programlama-dili" id="move-programlama-dili">Move Programlama Dili</a></h1>
+<p>Aslen <a href="https://diem.com/">Diem</a> tarafından geliştirilmiş olan Move, emniyetli ve güvenilir bir programlama dilidir. <a href="https://diem-developers-components.netlify.app/papers/diem-move-a-language-with-programmable-resources/2020-05-26.pdf">Diem geliştiricileri web sitesinden</a> Move dilinin whitepaper'ına ulaşabilirsiniz.</p>
+<p>Move dili hakkında bulduğum tüm bilgileri bu kılavuzda topladım ve bu programlama dili üzerine bilinen her tür bilgiye ulaşabilmenizi sağlayan tek bir kaynak haline getirdim.</p>
+<h1><a class="header" href="#Önsöz" id="Önsöz">Önsöz</a></h1>
+<p>Bu kılavuzu yazdığımda Move dili hakkında başka bir kaynak ya da referans bulunmuyordu. Bu kılavuzu yazmamın asıl amacı insanlara kripto dünyasının gizli cevheri olan Move dilini görmeleri için bir imkân tanımaktı. Şu anda Move dili üzerine dil geliştiricileri tarafından yazılmış olan bir <a href="https://diem.github.io/move/introduction.html">dokümantasyon</a> mevcut fakat halen bu kılavuzun yeni başlayanlar için daha uygun ve anlaşılır olduğunu düşünüyorum. Çünkü bir zamanlar ben de bir acemiydim ve Move’un ne kadar karmaşık, ilginç ve insanı hayretler içinde bırakan özellikleri olan bir programlama dili olduğunu biliyorum.</p>
+<p>Bu dili gerçekten çok seviyorum ve sizin de sevmenizi umuyorum!</p>
+<p>- Damir Shamanaev</p>
+<h1><a class="header" href="#giriş" id="giriş">Giriş</a></h1>
+<blockquote>
+<p><strong>Uyarı:</strong> Bu sayfada bulunan içerik güncel değildir ve yeniden düzenlenmesi gerekmektedir. Move IDE için daha yeni bir sürüm yakın zamanda yayınlanacaktır. Şimdilik <a href="https://github.com/diem/move/tree/main/language/tools/move-cli">move-cli</a> kullanmanızı öneriyorum.</p>
+</blockquote>
+<hr />
+<p>Her derlenmiş dilde olduğu gibi Move uygulamalarını derlememiz (compile), çalıştırmamız (run) ve hata ayıklaması (debug) yapmamız için gereken birtakım araçlara ihtiyacımız vardır. Move, blockchainler için oluşturulduğu ve sadece blockchainler içerisinde kullanıldığı için kodları zincir dışında çalıştırmak pek de basit değildir. Her modülün bir ortama, hesap yönetimi özelliğine ve compile-publishing sistemine ihtiyacı vardır.</p>
+<p>Move modüllerinin geliştirilmesini basitleştirmek adına Visual Studio Code için bir <a href="https://github.com/damirka/vscode-move-ide">Move IDE</a> uzantısı oluşturdum. Bu uzantı ortamın gereksinimleriyle başa çıkmanızı kolaylaştıracaktır. Bu uzantıyı kullanmanızı şiddetle tavsiye ediyorum çünkü build ve run ortamlarını sizin için halledecektir ve bu sayede CLI ile uğraşmanıza gerek kalmadan Move dilini öğrenmeye odaklanmanızı sağlayacaktır. Bu uzantı aynı zamanda hata ayıklamanızı kolaylaştıran Move syntax highlighter ve yürütücü özelliklerine de sahiptir.</p>
+<h2><a class="header" href="#move-ide-kurulumu" id="move-ide-kurulumu">Move IDE Kurulumu</a></h2>
+<p>Kurulum için aşağıdakilere ihtiyacınız vardır</p>
+<ol>
+<li>VSCode (1.43.0 sürümü veya daha iyisi) - <a href="https://code.visualstudio.com/download">buradan indirebilirsiniz;</a>; zaten kuruluysa 2. adıma geçiniz;</li>
+<li>Move IDE – VSCode’u kurduktan sonra Move IDE’nin en güncel sürümünü indirmek için <a href="https://marketplace.visualstudio.com/items?itemName=damirka.move-ide">bu linke tıklayınız.</a> .</li>
+</ol>
+<h3><a class="header" href="#kurulum-ortamı" id="kurulum-ortamı">Kurulum Ortamı</a></h3>
+<p>Move IDE dizin yapınızı düzenlemeniz için size tek bir yol sunar. Projeniz için yeni bir dizin oluşturun ve VSCode ile açın. Ardından bu dizin yapısını kurun.</p>
+<pre><code>modules/   - modüllerimiz için kullanacağımız dizin
+scripts/   - transaction scriptleri için kullanacağımız dizin
+out/       - derlediğimiz kaynaklar (source) bu dizinde toplanacaktır
+
+</code></pre>
+<p>Ayrıca <code>.mvconfig.json</code> adlı bir dosya yaratmanız gerekmektedir. Bu dosya çalışma ortamınızı yapılandıracaktır. Aşağıda <code>libra</code> için bir örnek bulunmaktadır:</p>
+<pre><code class="language-json">{
+    &quot;network&quot;: &quot;libra&quot;,
+    &quot;sender&quot;: &quot;0x1&quot;
+}
+</code></pre>
+<p>Alternatif olarak ağınız için <code>dfinance</code> de kullanabilirsiniz:</p>
+<pre><code class="language-json">{
+    &quot;network&quot;: &quot;dfinance&quot;,
+    &quot;sender&quot;: &quot;0x1&quot;
+}
+</code></pre>
+<blockquote>
+<p>dfinance bech32 ‘wallet1…’ adreslerini, libra da 16-byte ‘0x…’ adreslerini kullanmaktadır. Yerel olarak çalıştırmak ve denemek istiyorsanız basit ve kısa olan 0x1 adresi yeterli olacaktır. Fakat gerçek blockchainlerle testnet ya da üretim ortamlarında çalışacaksanız seçtiğiniz network için uygun olan adresi kullanmanız gerekmektedir.</p>
+</blockquote>
+<h2><a class="header" href="#İlk-move-uygulamanız" id="İlk-move-uygulamanız">İlk Move uygulamanız</a></h2>
+<p>Move IDE kodlarınızı test ortamlarında çalıştırmanıza olanak sunar. Gelin <code>gimme_five()</code> fonksiyonunu VSCode’da çalıştırarak nasıl yapıldığına bir göz atalım.</p>
+<h3><a class="header" href="#module-oluşturmak" id="module-oluşturmak">Module oluşturmak</a></h3>
+<p>Projenizin <code>modules/</code> dizininde <code>hello_world.move</code> adlı bir dosya oluşturun.</p>
+<pre><code class="language-Move">// modules/hello_world.move
+address 0x1 {
+module HelloWorld {
+    public fun gimme_five(): u8 {
+        5
+    }
+}
+}
+</code></pre>
+<blockquote>
+<p>0x1 yerine kendi adresinizi kullanmaya karar verdiyseniz bu ve bunun ardından göreceğiniz dosyada da 0x1 yazan kısmı doğru adresle değiştirmeyi unutmayın.</p>
+</blockquote>
+<h3><a class="header" href="#script-yazmak" id="script-yazmak">Script Yazmak</a></h3>
+<p>Daha sonra <code>scripts/</code> dizininin içinde bir script oluşturun. Adını <code>me.move</code> koyalım:</p>
+<pre><code class="language-Move">// scripts/run_hello.move
+script {
+    use 0x1::HelloWorld;
+    use 0x1::Debug;
+
+    fun main() {
+        let five = HelloWorld::gimme_five();
+
+        Debug::print&lt;u8&gt;(&amp;five);
+    }
+}
+</code></pre>
+<p>Sonra kodunuzu açık bırakarak aşağıdaki adımları takip edin:</p>
+<ol>
+<li><code>⌘+Shift+P</code> (on Mac) or <code>Ctrl+Shift+P</code> (on Linux/Windows) tuşlarına basarak VSCode'un command palette özelliğini açın.</li>
+<li><code>&gt;Move: Run Script</code> yazın ve Enter'a basın ya da doğru seçeneği gördüğünüzde üzerine tıklayın.</li>
+</ol>
+<p>İşte bu kadar! Debug kısmında printlenen değerin ‘5’ olduğu bir log mesajı olan yürütme sonucununu görüyor olmanız lazım. Karşınıza çıkan pencere bu değilse bu kısmı bir daha gözden geçirin.</p>
+<p>Dizin yapınızın aşağıdaki gibi gözükmesi gerekmektedir:</p>
+<pre><code>modules/
+  hello_world.move
+scripts/
+  run_hello.move
+out/
+.mvconfig.json
+</code></pre>
+<blockquote>
+<p>Modüllerinizi koyduğunuz ‘modules’ dizinine istediğiniz kadar modül koyabilirsiniz. Modüllerinizin hepsine script’inizde erişebileceksiniz. Her biri. mvconfig.json dosyasında belirttiğiniz adreslerde bulunacaktır.</p>
+</blockquote>
+<h1><a class="header" href="#temel-syntax-kavramları" id="temel-syntax-kavramları">Temel Syntax Kavramları</a></h1>
+<p>Bu bölümde Move dilini öğrenmeye başlayacaksınız. Oldukça basit ve kolay olan gramer kurallarıyla başlayacağız ve bölümler ilerledikçe zorluk da kademe kademe artacak. Eğer tecrübeli bir geliştiriciyseniz ilk bakışta bunların hepsi size fazla kolay görünebilir fakat yine de dikkatli bir şekilde incelemenizi öneriyorum. Eğer başlangıç aşamasındaysanız bu bölümde Move hakkındaki tüm temel bilgileri öğreneceksiniz.</p>
+<h1><a class="header" href="#konsept" id="konsept">Konsept</a></h1>
+<p>Diğer blockchain dillerinin (örn. Solidity) aksine Move scriptlerin ve modüllerin ayrılması (bir diğer adıyla transaction-as-script) fikrini öneriyor. Scriptlerin ayrık olması transactionlarınıza daha fazla mantık entegre ederek ve onları daha esnek hale getirerek zaman ve kaynaktan tasarruf etmenizi sağlar. Modüllerin ayrık olmasıysa geliştiricilerin blockchain işlevselliğini arttırmasını veya çeşitli seçenekler sunan, isteğe göre şekillendirilebilen akıllı sözleşmeler (smart-contracts) oluşturmalarına olanak verir.</p>
+<p>Bu bölümde başlangıç seviyesindeki okuyucuların daha kolay anlayabileceği scriptlerle başlayacağız. Ardından modüllerden bahsedeceğiz.</p>
+<h1><a class="header" href="#İlkel-veri-tipleri" id="İlkel-veri-tipleri">İlkel Veri Tipleri</a></h1>
+<p>Move’un yapısında yerleşik olarak birkaç ilkel veri tipi mevcuttur. Bu ilkel veri tipleri (u8, u64, u128), <code>boolean</code> ve <code>address</code> gibi sayılar, adresler ve boolean değerleri temsil etmemizi sağlarlar.</p>
+<p>Move dilinde string veri tipi veya floating point sayıları bulunmaz.</p>
+<h2><a class="header" href="#integer-türleri" id="integer-türleri">Integer Türleri</a></h2>
+<p>Integer’lar <code>u8</code>, <code>u64</code> ve <code>u128</code> değerleriyle temsil edilirler. Move dilinde mümkün olan tam sayı formülleri aşağıdaki gibidir:</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        // boş değişkeni tanımla, daha sonra değeri belirle
+        let a: u8;
+        a = 10;
+
+        // değişkeni tanımla, tipi belirle
+        let a: u64 = 10;
+
+        // ve sonunda basit bir değer atanmasına ulaşırız
+        let a = 10;
+
+        // tanımlanmış bir değer tipiyle basit bir atama
+        let a = 10u128;
+
+        // fonksiyon çağrısı (function call) veya fonksiyon ifadelerinde (function expression) integerları sabit değer olarak kullanabilirsiniz 
+        if (a &lt; 10) {};
+
+        // ya da tipi belirterek yapabilirsiniz
+        if (a &lt; 10u8) {}; // genellikle tipi belirtmeniz gerekmez
+    }
+}
+</code></pre>
+<h3><a class="header" href="#as-operatörü" id="as-operatörü"><code>as</code> Operatörü</a></h3>
+<p>Değer karşılaştırması yapmanız gerektiğinde veya fonksiyon argümanınız için farklı boyutlarda integerlar gerekiyorsa <code>as</code> operatörünü kullanarak integer değişkeninizi farklı bir boyuta dönüştürebilirsiniz:</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let a: u8 = 10;
+        let b: u64 = 100;
+
+        // sadece aynı boyuttaki integarları karşılaştırabiliriz
+        if (a == (b as u8)) abort 11;
+        if ((a as u64) == b) abort 11;
+    }
+}
+</code></pre>
+<h2><a class="header" href="#boolean" id="boolean">Boolean</a></h2>
+<p>Boolean tipi zaten bildiğiniz boolean’in aynısıdır. İki sabit değer vardır: <code>false</code> ve <code>true</code>. Bunların ikisi de tek bir anlama gelebilir: <code>bool</code> veri tipinin bir değeri.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        // tüm uygulama yolları aşşağıda yer almaktadır
+        let b : bool; b = true;
+        let b : bool = true;
+        let b = true;
+        let b = false; // false değeri için örnek
+    }
+}
+</code></pre>
+<h2><a class="header" href="#address" id="address">Address</a></h2>
+<p>Address, blockchainde gönderenin ya da cüzdanın tanımlayıcısıdır. Adres tipi gerektiren en basit işlemler coin gönderimi ve modüllerin içeri aktarımıdır.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let addr: address; // type identifier
+
+        // bu kitapta {{sender}} gösterimini kullanacağım
+        // örneklerdeki `{{sender}}` gösterimini sanal makine adresiyle değiştirmeyi unutmayın !!! 
+        addr = {{sender}};
+
+        // Diem’in Move Sanal Makinesi (Move VM) ve Starcoin’de  – HEX’te 16-bit adres kullanılır 
+        addr = 0x...;
+
+        // dfinance’in DVM’inde - &quot;wallet1&quot; önekiyle bech32 kodlu adres kullanılır
+        addr = wallet1....;
+    }
+}
+</code></pre>
+<h1><a class="header" href="#comments-yorum" id="comments-yorum">Comments (Yorum)</a></h1>
+<p>Eğer kodunuzda bazı kısımlarda ek olarak açıklamalar koymak istiyorsanız <em>comment</em> kullanın. Comment, bir kodda çalıştırılmayan bloklar ya da satırlara verilen addır. Kodun belli kısımlarını açıklamak amacıyla yazılırlar.</p>
+<h3><a class="header" href="#yorum-satırları" id="yorum-satırları">Yorum satırları</a></h3>
+<pre><code class="language-Move">script {
+    fun main() {
+        // bu bir yorum satırıdır
+    }
+}
+</code></pre>
+<p>Yorum satırı yapmak için iki eğik çizgi &quot;<em>//</em>&quot; kullanabilirsiniz. Kural oldukça basit: &quot;<em>//</em>&quot; ardından <strong>tüm satır</strong> artık yorum sayılır. Bu yorum satırlarını geliştiriciler için kısa notlar bırakmak için ya da kodunuzda bir satırı devre dışı bırakmak için – bir diğer deyişle <em>comment out</em> yapmak için – kullanabilirsiniz.</p>
+<pre><code class="language-Move">script {
+    // haydi gelin her yere birer not ekleyelim!
+    fun main() {
+        let a = 10;
+        // let b = 10 bu satır commentlendiği için artık devre dışı yani çalıştırılmayacak
+        let b = 5; // işte bu şekilde bir kodun ardından yorum ekleyebilirsiniz
+        a + b // cevap 15, 10 değil!
+    }
+}
+</code></pre>
+<h3><a class="header" href="#blok-yorum-satırı" id="blok-yorum-satırı">Blok Yorum Satırı</a></h3>
+<p>Eğer her satırın tamamını comment yaparak devre dışı bırakmak istemiyorsanız ya da yorumunuz birden fazla satırdan oluşuyorsa blok comment kullanabilirsiniz. </p>
+<p>Blok yorum satırları, eğik çizgi ve yıldız işaretinden <em>/*</em> başlar ve tam tersi olan **/ işaretine kadar devam eder. Blok yorum satırları, bir satıra kısıtlı olmadıkları için kodunuzda dilediğiniz herhangi bir yere not yazmanızı sağlarlar.</p>
+<pre><code class="language-Move">script {
+    fun /*istediğiniz yere yorum yapabilirsiniz*/ main() {
+        /* buraya
+           şuraya
+           her yere */ let a = 10;
+        let b = /* buraya bile */ 10; /* burası da var */
+        a + b
+    }
+    /* blok yorum satırları belli ifadeleri ya da tanımları devre dışı bırakmak için kullanabilirsiniz
+    fun empty_commented_out() {
+
+    }
+    */
+}
+</code></pre>
+<p>Elbette bu gerçek dışı bir örnek fakat blok yorum satırlarının gücünü görebiliyorsunuz. Dilediğiniz her yere yorum yapın!</p>
+<!-- ### Documentation comments -->
+<h1><a class="header" href="#İfade-ve-kapsam" id="İfade-ve-kapsam">İfade ve Kapsam</a></h1>
+<p>Programlama dillerinde ifade, bir kodu bir değere dönüştüren unsurdur. Geri döndürülen değer içeren tüm fonksiyon çağrıları ifadedir. Bu değer bir integer literal (tamsayı değişmezi) - ya da boolean veya adres -  olabilir çünkü integer tipinin de belli bir değeri vardır.</p>
+<blockquote>
+<p>İfadeler noktalı virgül ‘;’ ile ayrılmalıdırlar.*</p>
+</blockquote>
+<p>** Noktalı virgül koyduğunuzda kodun içerisinde <code>; (empty_expression)</code> yani boş ifade oluşturmuş olursunuz. Noktalı virgülün ardından bir ifade belirtirseniz o ifade, oluşturulan boş ifadenin yerine geçer.</p>
+<h3><a class="header" href="#boş-İfade" id="boş-İfade">Boş İfade</a></h3>
+<p>Boş ifadeleri büyük ihtimalle doğrudan kullanmayacaksınız fakat Move dilinde (Rust diline benzer bir şekilde) boş ifadeler, içi boş olan parantezlerle belirtilir:</p>
+<pre><code class="language-Move">script {
+    fun empty() {
+        () // bu bir boş ifadedir
+    }
+}
+</code></pre>
+<p>Boş ifadeler VM tarafından otomatik olarak koyulduğu için atlanılabilir niteliktedirler.</p>
+<h3><a class="header" href="#literal-değişmez-İfade" id="literal-değişmez-İfade">Literal (Değişmez) İfade</a></h3>
+<p>Aşağıdaki koda bakın. Her satır, noktalı virgül ile biten bir ifade içeriyor. Son satırdaysa noktalı virgüllerle ayrılmış üç farklı ifade var.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        10;
+        10 + 5;
+        true;
+        true != false;
+        0x1;
+        1; 2; 3
+    }
+}
+</code></pre>
+<p>Güzel. Böylece en basit ifadeleri öğrenmiş oldunuz. Ama ifadeler ne işimize yarıyor ve onları nasıl kullanıyoruz? İşte şimdi <code>let</code> anahtar sözcüğünü öğrenme vaktimiz geldi.</p>
+<h3><a class="header" href="#değişkenler-ve-let-anahtar-sözcüğü" id="değişkenler-ve-let-anahtar-sözcüğü">Değişkenler ve <code>let</code> anahtar sözcüğü</a></h3>
+<p>Bir değişkenin içerisinde bir ifade değeri depolamak istiyorsak (bir yere geçirmek için) <code>let</code> sözcüğünü kullanabiliriz (daha önce <a href="syntax-basics//syntax-basics/primitives.html">primitives bölümünde</a> karşınıza çıktı). Bu sözcük boş (tanımlanmamış) ya da bir değer içeren ifade değişkeni oluşturur.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let a;
+        let b = true;
+        let c = 10;
+        let d = 0x1;
+        a = c;
+    }
+}
+</code></pre>
+<p><code>let</code> anahtar sözcüğü, mevcut kapsam içerisinde yeni bir değişken oluşturur ve geliştiricinin isteğine göre bu değişkeni bir değer kullanarak başlatabilir. Bu ifade için gereken syntax: <code>let &lt;VARIABLE&gt; : &lt;TYPE&gt;;</code> ya da <code>let &lt;VARIABLE&gt; = &lt;EXPRESSION&gt;</code> şeklinde yazılır.</p>
+<p>Bir değişken yaratıp başlattıktan sonra bir değişken ismi kullanarak onun değerine değiştirme (modify) yapabilir ya da erişim (access) sağlayabilirsiniz. Yukarıdaki örnekte <code>a</code> değişkeni fonksiyonun sonunda başlatıldı ve ardından ona <code>c</code> değeri atandı.</p>
+<p>Eşittir işareti <code>=</code> bir atama (assignment) operatörüdür. Sağ taraftaki ifadeyi sol taraftaki değişkene atar. Örneğin: <code>a = 10</code> – <code>a</code> değişkenine <code>10</code> integer değerini atamış olur.</p>
+<h3><a class="header" href="#İnteger-tipleri-için-kullanılan-operatörler" id="İnteger-tipleri-için-kullanılan-operatörler">İnteger tipleri için kullanılan operatörler</a></h3>
+<p>Move dilinde integer değerlerini değiştirmek için çeşitli operatörler vardır. Bu operatörlerin listesi aşağıda verilmiştir:</p>
+<table><thead><tr><th>Operator</th><th>Op</th><th>Types</th><th></th></tr></thead><tbody>
+<tr><td>+</td><td>sum</td><td>uint</td><td>Sol taraf ve Sağ tarafı toplamak</td></tr>
+<tr><td>-</td><td>sub</td><td>uint</td><td>Sağ tarafı Sol taraftan çıkarmak</td></tr>
+<tr><td>/</td><td>div</td><td>uint</td><td>Sol tarafı Sağ tarafa bölmek</td></tr>
+<tr><td>*</td><td>mul</td><td>uint</td><td>Sol taraf ve Sağ tarafı çarpmak</td></tr>
+<tr><td>%</td><td>mod</td><td>uint</td><td>Bölme kalanı (Sol bölü Sağ)</td></tr>
+<tr><td>&lt;&lt;</td><td>lshift</td><td>uint</td><td>Sol bit shift (Soldan Sağa)</td></tr>
+<tr><td>&gt;&gt;</td><td>rshift</td><td>uint</td><td>Sağ bit shift (Soldan Sağa)</td></tr>
+<tr><td>&amp;</td><td>and</td><td>uint</td><td>Bitwise AND</td></tr>
+<tr><td>^</td><td>xor</td><td>uint</td><td>Bitwise XOR</td></tr>
+<tr><td>|</td><td>or</td><td>uint</td><td>Bitwise OR</td></tr>
+</tbody></table>
+<p><em>uint: u8, u64, u128.</em></p>
+<!--
+
+### Comparison and boolean operators
+
+To build a bool condition by comparing values you have these operators. All of them return `bool` value and require LHS and RHS types match.
+
+| Operator | Op     | Types |                                |
+|----------|--------|-------|--------------------------------|
+| ==       | equal  | any   | Check if LHS equals RHS        |
+|----------|--------|-------|--------------------------------|
+| =<       | equal  | any   | Check if LHS equals RHS        |
+|----------|--------|-------|--------------------------------|
+
+-->
+<h3><a class="header" href="#kullanılmayan-olarak-işaretlemek-için-alt-tire-_-kullanımı" id="kullanılmayan-olarak-işaretlemek-için-alt-tire-_-kullanımı">Kullanılmayan olarak işaretlemek için alt tire “_” kullanımı</a></h3>
+<p>Move dilinde her değişken kullanılmalıdır yoksa kod derlenemez. Bu yüzden bir değişkeni başlattıktan sonra onun öylece bırakamazsınız. Fakat alt tire <code>_</code> kullanarak bir değişkeni kasıtlı olarak kullanılmıyor olarak işaretleyebilirsiniz.</p>
+<p>Bu kodu derlemek isterseniz hata verir:</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let a = 1;
+    }
+}
+</code></pre>
+<p>Hata mesajı:</p>
+<pre><code>
+    ┌── /scripts/script.move:3:13 ───
+    │
+ 33 │         let a = 1;
+    │             ^ Unused assignment or binding for local 'a'. Consider removing or replacing it with '_'
+    │
+</code></pre>
+<p>Compiler mesajı oldukça net ve yapmamız gereken şey belli. Değişken yerine alt tire koyacağız.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let _ = 1;
+    }
+}
+</code></pre>
+<h3><a class="header" href="#gölgeleme-shadowing" id="gölgeleme-shadowing">Gölgeleme (Shadowing)</a></h3>
+<p>Move bir değişkeni iki kere tanımlamanıza izin verir fakat bir adet kısıtlaması vardır. Değişkenin kesinlikle kullanılması gerekir. Yukarıdaki örnekte sadece ikinci <code>a</code> kullanılmış. <code>let a = 1</code> olan diğeriyse kullanılmamakta çünkü sonraki satırda <code>a</code> yeniden tanımlanmış ve ilk kullanıldığı tanımı devre dışı hale getirmiş.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let a = 1;
+        let a = 2;
+        let _ = a;
+    }
+}
+</code></pre>
+<p>İlk değişkeni kullanarak da çalıştırabiliriz:</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let a = 1;
+        let a = a + 2; // burada let kullanmamıza gerek yoktu
+        let _ = a;
+    }
+}
+</code></pre>
+<h2><a class="header" href="#block-ifade" id="block-ifade">Block ifade</a></h2>
+<p>Bloklar birer ifadedir ve küme parantezleri <code>{}</code> kullanarak işaretlenirler. Bir blok farklı ifadeler (hatta farklı bloklar( içerebilir. Fonksiyon gövdesi de - gördüğünüz üzere o da küme parantezleriyle işaretlenmiş - bir bakıma blok sayılır fakat birtakım kısıtlamaları vardır.</p>
+<pre><code class="language-Move">script {
+    fun block() {
+        { };
+        { { }; };
+        true;
+        {
+            true;
+
+            { 10; };
+        };
+        { { { 10; }; }; };
+    }
+}
+</code></pre>
+<h3><a class="header" href="#kapsamları-anlamak" id="kapsamları-anlamak">Kapsamları anlamak</a></h3>
+<p>Kapsam (<a href="https://en.wikipedia.org/wiki/Scope_(computer_science)">Wikipedia'ye göre</a>) bir bağlanmanın (binding) geçerli olduğu bir kod bölümüne verilen addır. Bir diğer deyişle değişkenler içeren kod parçasıdır. Move dilinde kapsam, küme parantezleriyle çevrelenmiş bir kod bloku, yani bir bloktur.</p>
+<p>Yani blok kelimesini tanımlarken aynı zamanda kapsamı tanımlamış oluruz.</p>
+<pre><code class="language-Move">script {
+    fun scope_sample() {
+        // bu bir fonksiyon kapsamıdır
+        {
+            // this is a block scope inside function scope
+            {
+                // bu da kapsam içerisinde bulunan bir kapsamdır
+                // fonksiyon kapsamlarının içerisinde vs.
+            };
+        };
+
+        {
+            // bu bir fonksiyon kapsamının içinde bulunan bir bloktur
+        };
+    }
+}
+</code></pre>
+<p>Örnekteki yorumlarda gördüğünüz gibi kapsamlar, bloklar ya da fonksiyonlarla tanımlanırlar. Yuvalanabilirler ve tanımlayabileceğiniz kapsam sayısının bir limiti yoktur.</p>
+<h3><a class="header" href="#değişken-ömrü-ve-görünülebilirliği" id="değişken-ömrü-ve-görünülebilirliği">Değişken ömrü ve görünülebilirliği</a></h3>
+<p>let anahtar sözcüğünün bir değişken yarattığını biliyoruz. Ancak tanımlanmış değişkenlerin sadece tanımlandıkları kapsam içerisinde (yani yuvalandıkları kapsam içerisinde) canlı olduklarını büyük ihtimalle bilmiyordunuz. Basitleştirmem gerekirse: Değişkenler sadece kapsamları içindeyken canlı kalırlar ve kapsamları bittiği anda ölürler.</p>
+<pre><code class="language-Move">script {
+    fun let_scope_sample() {
+        let a = 1; // A değişkenini fonksiyon kapsamı içerisinde tanımladık
+
+        {
+            let b = 2; // B değişkeni blok kapsamı içerisinde
+
+            {
+                // A ve B değişkenleri bunların içerisindeyken erişilebilir durumdalar
+                // yuvalanmış kapsamlar
+                let c = a + b;
+
+            }; // C burada ölüyor
+
+            // bu satırı artık yazamayız
+            // let d = c + b;
+            // çünkü C kapsamı bitince öldü
+
+            // ama farklı bir C tanımlayabiliriz
+            let c = b - 1;
+
+        }; // C değişkeni ve C ölür
+
+        // bu imkansızdır
+        // let d = b + c;
+
+        // fakat istediğimiz değişkeni tanımlayabiliriz
+        // isimler özel olarak ayrılmadı
+        let b = a + 1;
+        let c = b + 1;
+
+    } // fonksiyon kapsamı sona erdi – a, b ve c bırakıldı ve artık erişilemez haldeler
+}
+</code></pre>
+<blockquote>
+<p>Değişkenler sadece tanımlandıkları kapsamlar (ya da bloklar) içerisinde canlı kalırlar. Kapsam bittiği anda değişken de ölmüş olur.</p>
+</blockquote>
+<h3><a class="header" href="#blok-dönüş-değerleri" id="blok-dönüş-değerleri">Blok dönüş değerleri</a></h3>
+<p>Önceki bölümde blokların bir ifade olduğundan bahsettik fakat bunun sebebini açıklamadık ve blokların dönüş değerlerinin ne olduklarını tam olarak açıklamadık. </p>
+<blockquote>
+<p>Blok bir değer döndürebilir. Ardından noktalı virgül gelmiyorsa bu değer bloktaki son ifadenin değeridir.</p>
+</blockquote>
+<p>Biraz karmaşık gelmiş olabilir. Bu yüzden size birkaç örnek veriyorum:</p>
+<pre><code class="language-Move">script {
+    fun block_ret_sample() {
+
+        // blok bir ifade olduğu için değerini
+        // let kullanarak bir değişkene atayabiliriz
+        let a = {
+
+            let c = 10;
+
+            c * 1000  // noktalı virgül yok!!
+        }; // kapsam sona erdi, a değişkeni 10000 değerini aldı
+
+        let b = {
+            a * 1000  // noktalı virgül yok!
+        };
+
+        // b değişkeni 10000000 değerini aldı
+
+        {
+            10; // işte burada noktalı virgül var
+        }; // bu blok bir değer döndürmez
+
+        let _ = a + b; // hem a hem b değerlerini bloktan alırlar
+    }
+}
+</code></pre>
+<blockquote>
+<p>Kapsamdaki son ifade, (noktalı virgül olmayan) kapsamın döndürülen değeridir.</p>
+</blockquote>
+<h3><a class="header" href="#Özet" id="Özet">Özet</a></h3>
+<p>Bu bölümün ana fikirlerini sınıflandıralım.</p>
+<ol>
+<li>Her ifade, blokun dönüş değeri olmadığı sürece noktalı virgülle bitmelidir;</li>
+<li><code>let</code> anahtar sözcüğü bir değer ya da sağ taraf ifadesi barındıran bir değişken oluşturur ve bu değişkenler içinde tanımlandıkları kapsamları sonlanana kadar canlı kalırlar.</li>
+<li>Blok, bir değer verme veya vermeme ihtimali olan bir ifadedir.</li>
+</ol>
+<p>Yürütme akışının nasıl kontrol edileceği ve mantık anahtarları için blokların nasıl kullanılacağını sonraki sayfada işleyeceğiz.</p>
+<h3><a class="header" href="#daha-fazla-bilgi-için" id="daha-fazla-bilgi-için">Daha fazla bilgi için</a></h3>
+<ul>
+<li><a href="https://community.diem.com/t/odd-error-when-semi-is-put-after-break-or-continue/2868">Boş ifadeler ve noktalı virgül üzerine yazılan Diem topluluğu paylaşımı</a></li>
+</ul>
+<h1><a class="header" href="#kontrol-akışı" id="kontrol-akışı">Kontrol Akışı</a></h1>
+<p>Move bir emir dilidir ve her emir dili gibi bir <em>kontrol akışı</em> vardır. Kontrol akışı, bir kod blokunun çalıştırılıp çalıştırılmayacağını ya da hangi kodun çalışacağını seçmenin bir yoludur.</p>
+<!-- In Move you have two statme to control flow: by using loops (`while` and `loop`) or `if` expressions. -->
+<p>Move dilinde döngüler (loop) vardır. Bunlar <code>while</code>, <code>loop</code> ve <code>if</code> ifadeleridir.</p>
+<h2><a class="header" href="#if-ifadesi" id="if-ifadesi"><code>if</code> ifadesi</a></h2>
+<p><code>if</code> ifadesi bir koşul doğruysa bir kod blokunun çalıştırılmasını veya yanlışsa farklı bir kod blokunun çalıştırılmasını sağlayan ifadedir.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Debug;
+
+    fun main() {
+
+        let a = true;
+
+        if (a) {
+            Debug::print&lt;u8&gt;(&amp;0);
+        } else {
+            Debug::print&lt;u8&gt;(&amp;99);
+        };
+    }
+}
+</code></pre>
+<p>Bu örnekte <code>if</code> ve <code>block</code>u kullanarak <code>a == true</code> ise <code>0</code>, a <code>false</code> ise <code>99</code> printlemesini sağladık. İşte bu kadar basit. if syntaxı aşağıdaki gibidir:</p>
+<pre><code>if (&lt;bool_ifadesi&gt;) &lt;ifade&gt; else &lt;ifade&gt;;
+</code></pre>
+<p><code>if</code> bir ifadedir ve her ifade gibi noktalı virgül ile bitmelidir. Bu da “if”i <code>let</code> deyimiyle kullanmamız için bir sebeptir.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Debug;
+
+    fun main() {
+
+        // try switching to false
+        let a = true;
+        let b = if (a) { // ilk branch
+            10
+        } else { // ikinci branch
+            20
+        };
+
+        Debug::print&lt;u8&gt;(&amp;b);
+    }
+}
+</code></pre>
+<p>Burada <code>a</code> ifadesine göre <code>b</code> değişkenine farklı bir değer atanacak. Ama <code>if</code> fonksiyonundaki iki branch de aynı tipi döndürmeli. 
+Aksi halde <code>b</code> değişkeninin farklı bir tür olma (ya da tanımsız olma) seçeneği olacaktır ve bu statik dillerde imkansızdır. Compiler terimlerine göre buna branch uyumluluğu deriz. İki branch de uyumlu (aynı) tipi döndürmek zorundadır.</p>
+<p><code>if</code>, <code>else</code> kullanmadan solo olarak kullanılabilir.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Debug;
+
+    fun main() {
+
+        let a = true;
+
+        // sadece bir adet seçimli branch
+        // eğer a = false olursa debug çağrısı olmaz
+        if (a) {
+            Debug::print&lt;u8&gt;(&amp;10);
+        };
+    }
+}
+</code></pre>
+<p>But keep in mind that <code>if</code> expression without <code>else</code> branch cannot be used in assignment as when condition is not met - alternative branch is not called and variable may be undefined which is, again, impossible.</p>
+<h2><a class="header" href="#döngülerle-yineleme-iterating-yapmak" id="döngülerle-yineleme-iterating-yapmak">Döngülerle yineleme (iterating) yapmak</a></h2>
+<p>Move dilinde loopları tanımlamanın iki yolu vardır</p>
+<ol>
+<li><code>while</code> kullanarak yapılan koşullu (conditional) loop</li>
+<li>Sonsuz (infinite) loop</li>
+</ol>
+<h3><a class="header" href="#while-kullanarak-yapılan-koşullu-conditional-loop" id="while-kullanarak-yapılan-koşullu-conditional-loop"><code>while</code> kullanarak yapılan koşullu (conditional) loop</a></h3>
+<p><code>while</code> bir loopu tanımlamanın yollarından biridir. While kullanarak belli koşullar sağlandığında çalıştırılan bir ifade elde etmiş oluruz. Bu looplarda <em>while</em> koşulu <code>true</code> olduğu sürece kod yineleyerek tekrar çalıştırılmaya devam eder. Koşul koymak için genellikle dış değişkenler ya da sayaçlar (counter) kullanılır.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+
+        let i = 0; // sayacı tanımlayın
+
+        // while i &lt; 5'i yineleyin
+        // her yinelemede i değerini arttırın
+        // i 5 olduğunda koşul karşılanmaz ve loop sonlanır
+        while (i &lt; 5) {
+            i = i + 1;
+        };
+    }
+}
+</code></pre>
+<p><code>while</code>ın aynı <code>if</code> gibi bir ifade olduğunu belirtmemiz oldukça önemli. <code>while</code>ın sonuna da noktalı virgül koymamız gerekir. Bu yüzden while looplarının genel syntaxı şöyledir:</p>
+<pre><code class="language-Move">while (&lt;bool_expression&gt;) &lt;expression&gt;;
+</code></pre>
+<p><code>if</code>in aksine <code>while</code> bir değer döndüremez bu yüzden değişken ataması (<code>if</code> ifadesiyle yaptığımız gibi) yapmamız mümkün değildir.</p>
+<h3><a class="header" href="#erişilemeyen-kod-unreachable-code" id="erişilemeyen-kod-unreachable-code">Erişilemeyen kod (Unreachable code)</a></h3>
+<p>Move dilinin güvenilir olması için emniyetli de olması gerekir. Bu yüzden Move tüm değişkenleri kullanmanızı zorunlu kılar ve erişilemeyen kod bulunmasına izin vermez. Dijital varlıklar programlanabilir ve kodlarda kullanılabilirler (<a href="syntax-basics//chapters/resource.html">resources bölümünde bundan daha ayrıntılı bir şekilde bahsedeceğiz</a>), Onları erişilemeyen yerlere koymamız sorunlara yol açabilir ve onları kaybetmemizle sonuçlanabilir.</p>
+<p>Bu yüzden erişelemeyen kodlar çok ciddi bir problemdir. Artık bunu netleştirdiğimize göre devam edebiliriz.</p>
+<h3><a class="header" href="#sonsuz-loop" id="sonsuz-loop">Sonsuz <code>loop</code></a></h3>
+<p>Move dilinde sonsuz loopları tanımlamanın bir yolu vardır. Koşulsuzlardır ve siz onları durmaya zorlayana kadar çalışırlar. Maalesef compiler bir loopun sonsuz olup olmadığını saptama özelliğine (çoğu durumda) sahip değildir ve bu yüzden sizin kodu yayınlamanızı durdurma yetisine sahip değildir. Bu durumda kodun çalıştırılması tüm kaynaklarınızı tüketecektir (blockchain terimleriyle – gas). Bu sebeple kodunuzu düzgün bir şekilde test etmek veya daha güvenli olan koşullu <code>while</code> looplarını kullanma sorumluluğu tamamen size düşüyor.</p>
+<p>Sonsuz looplar <code>loop</code> anahtar kelimesiyle tanımlanırlar.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let i = 0;
+
+        loop {
+            i = i + 1;
+        };
+
+        // ERİŞİLEMEYEN KOD
+        let _ = i;
+    }
+}
+</code></pre>
+<p>Fakat aşağıdakini yapmanız mümkün (yani compiler bunu yapmanıza izin verir):</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let i = 0;
+
+        loop {
+            if (i == 1) { // bunu hiç değiştirmedim
+                break // bu deyim loopu bozuyor
+            }
+        };
+
+        // burası aslında erişilemez
+        0x1::Debug::print&lt;u8&gt;(&amp;i);
+    }
+}
+</code></pre>
+<p>Compiler’ın bir loopun sonsuz olup olmadığını saptamasını sağlamak oldukça zorlayıcı bir durum. Bu yüzden şimdilik loop hatalarından kendinizi korumak sizin sorumluluğunuzda.</p>
+<h3><a class="header" href="#loopları-continue-ve-break-ile-yönetmek" id="loopları-continue-ve-break-ile-yönetmek">Loopları <code>continue</code> ve <code>break</code> ile yönetmek</a></h3>
+<p><code>continue</code> anahtar sözcüğü bir roundun atlama emri vermenize, <code>break</code> anahtar sözcüğüyse bir yinelemeyi durdurmanızı sağlar. İkisini de bahsettiğimiz iki loop türü için kullanabilirsiniz.</p>
+<p>Örneğin <code>loop</code>a iki koşul koyalım. Eğer <code>i</code> çift sayıysa <code>continue</code> kullanarak okuma işleminin bir sonraki yinelemeye atlamasını ve <code>continue</code> çağrısının kapsadığı kodu çalıştırmamasını sağlar.</p>
+<p>Eğer <code>break</code> kullanırsak yinelemeyi durdururuz ve döngüden çıkarız.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let i = 0;
+
+        loop {
+            i = i + 1;
+
+            if (i / 2 == 0) continue;
+            if (i == 5) break;
+
+            // burada bir şeyler yaptığımızı varsayalım
+         };
+
+        0x1::Debug::print&lt;u8&gt;(&amp;i);
+    }
+}
+</code></pre>
+<p>Noktalı virgüllere gelirsek, eğer <code>break</code> ya da <code>continue</code> bir bloktaki son anahtar kelimeyse onların ardından noktalı virgül koymamalısınız çünkü bu onlardan sonra olan kodların çalıştırılmasını önler. Aşağıdaki örneğe bakalım:</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let i = 0;
+
+        loop {
+            i = i + 1;
+
+            if (i == 5) {
+                break; // böyle yaparsak hata verir, doğrusu `break` noktalı virgül olmadan kullanmak
+                       // Error: Unreachable code
+            };
+
+            // continue için de aynısı geçerli: asla noktalı virgül koymayın;
+            if (true) {
+                continue
+            };
+
+            // fakat noktalı virgülü aşağıdaki gibi kullanabilirsiniz çünkü continue ve break burada basit ifade, 
+            // bu yüzden zaten “kendi kapsamlarını sonlandırıyorlar” 
+            if (true) continue;
+            if (i == 5) break;
+        }
+    }
+}
+</code></pre>
+<h3><a class="header" href="#koşullu-abort-durdurma" id="koşullu-abort-durdurma">Koşullu <code>abort</code> (Durdurma)</a></h3>
+<p>Koşulların sağlanmadığı bazı durumlarda bir hareketin (transaction) çalıştırmasını durdurmanız gerekebilir. Bunu yapmamızı sağlayan anahtar sözcük <code>abort</code>tur.</p>
+<pre><code class="language-Move">script {
+    fun main(a: u8) {
+
+        if (a != 10) {
+            abort 0;
+        }
+
+        // buradaki kod a != 10 ise çalıştırılmayacak
+        // transaction durduruldu
+    }
+}
+</code></pre>
+<p><code>abort</code> anahtar sözcüğü bir kodun çalışmasını <em>durdurmanızı</em> ve hemen sonrasında bir hata kodu verilmesini sağlar.</p>
+<h3><a class="header" href="#yerleşik-assert-fonksiyonunun-kullanımı" id="yerleşik-assert-fonksiyonunun-kullanımı">Yerleşik <code>assert</code> fonksiyonunun kullanımı</a></h3>
+<p>Move dilinde yerleşik olarak bulunan <code>assert! (&lt;bool ifadesi&gt;, &lt;kod&gt;)</code> metodu <code>abort</code> ve <code>koşulu</code> birleştirir ve kodun her yerinde kullanılabilir:</p>
+<pre><code class="language-Move">script {
+
+    fun main(a: u8) {
+        assert!(a == 10, 0);
+
+        // buradaki kod (a == 10) ise çalıştırılacak
+    }
+}
+</code></pre>
+<p><code>assert()</code> bir koşul sağlanmadığında kodun çalıştırılmasını durdurur, koşul karşılanıyorsa da işlevde bulunmaz.</p>
+<h1><a class="header" href="#modüller-ve-İçe-aktarım-import" id="modüller-ve-İçe-aktarım-import">Modüller ve İçe aktarım (Import)</a></h1>
+<p>Modüller geliştiricinin birkaç fonksiyonu paketleyerek kendi adresi adı altında paylaştığı birime verilen addır. Önceki bölümlerde sadece script kullandık ancak script sadece paylaşılmış olan modüllerle ya da standart kütüphane ile çalışabilir. Zaten standart kütüphane de aslen <code>0x1</code> adresi altında paylaşılan bir modüldür.</p>
+<blockquote>
+<p>Modüller göndericinin adresinin adı altında paylaşılır. Standart kütüphane <code>0x1</code> adresi adı altında paylaşılır.</p>
+</blockquote>
+<blockquote>
+<p>Bir modül paylaşılırken hiçbir fonksiyonu çalıştırılmaz. Bir modül kullanmak için scriptlere ihtiyacınız vardır.</p>
+</blockquote>
+<p>Modüller <code>module</code> anahtar sözcüğüyle başlarlar. Ardından modül adı yazılır ve küme parantezi koyulur. Ardından modülün içerikleri küme parantezlerinin içerisine yazılır.</p>
+<pre><code class="language-Move">module Math {
+
+    // modül içerikleri
+
+    public fun sum(a: u64, b: u64): u64 {
+        a + b
+    }
+}
+</code></pre>
+<blockquote>
+<p>Modüller başkalarının erişebileceği kodları paylaşmanın tek yoludur. Yeni tipler ve kaynaklar sadece bir modülün içindeki bağlam sayesinde tanımlanabilirler.</p>
+</blockquote>
+<p>Varsayılan ayarlara göre modülünüz derlenir ve sizin adresinizin adı atlında paylaşılır. Fakat modülleri yerel olarak kullanmak istiyorsanız (örn. Test etme ya da geliştirme durumlarında) ya da adresinizi modülünüzün içinde belirtmek istiyorsanız <code>adress &lt;ADDR&gt; {}</code> syntaxını kullanın:</p>
+<pre><code class="language-Move">address 0x1 {
+module Math {
+    // modül içerikleri
+
+    public fun sum(a: u64, b: u64): u64 {
+        a + b
+    }
+}
+}
+</code></pre>
+<p><em>Modülde gösterildiği gibi en doğrusu modül satırını girintisiz tutmaktır.</em></p>
+<h2><a class="header" href="#İçe-aktarım" id="İçe-aktarım">İçe Aktarım</a></h2>
+<p>Move dilinde Default context boştur. Kullanabileceğiniz sadece ilkel tipler (integer, bool ve adres) vardır ve boş bir bağlam içerisinde yapabileceğiniz tek şey bu tipleri ve değişkenleri kullanmaktır. Bu durum da anlamlı ya da işe yarar bir şey yapmamızın önüne geçer.</p>
+<p>Bunu değiştirmek için paylaşılmış modülleri (ya da standart kütüphaneden) içeri aktarabilirsiniz.</p>
+<h3><a class="header" href="#doğrudan-İçe-aktarım" id="doğrudan-İçe-aktarım">Doğrudan İçe Aktarım</a></h3>
+<p>Kodunuzda modülleri doğrudan adreslerini yazarak kullanabilirsiniz:</p>
+<pre><code class="language-Move">script {
+    fun main(a: u8) {
+        0x1::Offer::create(a == 10, 1);
+    }
+}
+</code></pre>
+<p>Bu örnekte <code>0x1</code> adresinden (standart kütüphane) <code>Offer</code> modülünü içeri aktardık ve <code>assert(expr: bool, code: u8)</code> metodunu kullandık.</p>
+<h3><a class="header" href="#anahtar-sözcük-kullanımı" id="anahtar-sözcük-kullanımı">Anahtar sözcük kullanımı</a></h3>
+<p>Yazdığınız kodları daha kısa tutmak için (0x1 adresinin kısa olduğunu hatırlatmak isterim, aslında adresler oldukça uzun oluyor!) ve içeri aktardıklarınızı organize etmek istiyorsanız <code>use</code> anahtar sözcüğünü kullanın:</p>
+<pre><code class="language-Move">use &lt;Address&gt;::&lt;ModuleName&gt;;
+</code></pre>
+<p>Burada <code>&lt;Address&gt;</code> paylaşanın adresi ve <code>&lt;ModuleName&gt;</code> modülün ismi oluyor. Oldukça basit. Aşağıda da aynısını uygulayalım. <code>Vector</code> modülünü <code>0x1</code> adresinden içeri aktaralım.</p>
+<pre><code class="language-Move">use 0x1::Vector;
+</code></pre>
+<h3><a class="header" href="#modülün-içeriğine-erişim" id="modülün-içeriğine-erişim">Modül'ün içeriğine erişim</a></h3>
+<p>İçe aktardığınız bir modülün metodlarına (veya tiplerine) erişmek için <code>::</code> gösterimini kullanın. İşte bu kadar basit. Modüller sadece tek bir katmanda tanım barındırabilir. Bundan dolayı paylaştığınız bir modüldeki yaptığınız tüm tanımlamalara iki adet iki nokta üst üste gösterimiyle erişilebilir.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Vector;
+
+    fun main() {
+        // Vector modülünün empty() metodunu kullanıyoruz
+        // her modülün tüm metodlarına aynı bu şekilde ulaşabilirsiniz
+        let _ = Vector::empty&lt;u64&gt;();
+    }
+}
+</code></pre>
+<h3><a class="header" href="#scriptlerin-içeri-aktarımı" id="scriptlerin-içeri-aktarımı">Scriptlerin içeri aktarımı</a></h3>
+<p>Scriptlerde içeri aktarımlar <code>script {}</code> blokunun içine koyulmalıdır.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Vector;
+
+    // aynı modül içeri aktarımı gibi
+    // istediğiniz kadar aktarabilirsiniz!
+
+    fun main() {
+        let _ = Vector::empty&lt;u64&gt;();
+    }
+}
+</code></pre>
+<h3><a class="header" href="#modüllerin-içeri-aktarımı" id="modüllerin-içeri-aktarımı">Modüllerin içeri aktarımı</a></h3>
+<p>Modül içeri aktarımları <code>module {}</code> blokunun içine koyulmalıdır.</p>
+<pre><code class="language-Move">module Math {
+    use 0x1::Vector;
+
+    // scriptlerle aynı şekilde
+    // istediğiniz sayıda modülü içeri aktarabilirsiniz
+
+    public fun empty_vec(): vector&lt;u64&gt; {
+        Vector::empty&lt;u64&gt;();
+    }
+}
+</code></pre>
+<h3><a class="header" href="#member-import" id="member-import">Member import</a></h3>
+<p>Import deyiminin anlamı genişletilebilir. Modülün hangi üyelerini içeri aktarmak istediğinizi belirtebilirsiniz.</p>
+<pre><code class="language-Move">script {
+    // tek üyenin içeri aktarımı
+    use 0x1::Signer::address_of;
+
+    // birden fazla üyenin içeri aktarımı (mind braces)
+    use 0x1::Vector::{
+        empty,
+        push_back
+    };
+
+    fun main(acc: &amp;signer) {
+        // modül erişimi olmadan fonksiyon kullanımı
+        let vec = empty&lt;u8&gt;();
+        push_back(&amp;mut vec, 10);
+
+        // same here
+        let _ = address_of(acc);
+    }
+}
+</code></pre>
+<h3><a class="header" href="#self-kullanarak-modülü-üyeleriyle-birlikte-içeri-aktarmak" id="self-kullanarak-modülü-üyeleriyle-birlikte-içeri-aktarmak">&quot;Self&quot; kullanarak modülü üyeleriyle birlikte içeri aktarmak</a></h3>
+<p>Üye içe aktarımı syntaxını biraz genişletirseniz tüm modülü ve üyelerini içeri aktarabilirsiniz. <code>Self</code>in modül için kullanımı aşağıdadır:</p>
+<pre><code class="language-Move">script {
+    use 0x1::Vector::{
+        Self, // Self == içeri aktarılmış modül
+        empty
+    };
+
+    fun main() {
+        // `empty`,`empty` olarak içeri aktarılıyor
+        let vec = empty&lt;u8&gt;();
+
+        // Self burada Vector anlamına geliyor
+        Vector::push_back(&amp;mut vec, 10);
+    }
+}
+</code></pre>
+<h3><a class="header" href="#use-ve-asin-birlikte-kullanımı" id="use-ve-asin-birlikte-kullanımı">Use ve as’in birlikte kullanımı</a></h3>
+<p>İsimlendirme çelişkilerini (2 ya da daha fazla modülün aynı isme sahip olması) önlemek için ya da kodunuzu kısaltmak için içeri aktardığınız modülün adını <code>as</code> anahtar sözcüğüyle değiştirebilirsiniz.</p>
+<p>Syntax:</p>
+<pre><code class="language-Move">use &lt;Address&gt;::&lt;ModuleName&gt; as &lt;Alias&gt;;
+</code></pre>
+<p>In script:</p>
+<pre><code class="language-Move">script {
+    use 0x1::Vector as V; // Vector’un adı V olarak değiştirildi
+
+    fun main() {
+        V::empty&lt;u64&gt;();
+    }
+}
+</code></pre>
+<p>Modülde de aynı şekilde:</p>
+<pre><code class="language-Move">module Math {
+    use 0x1::Vector as Vec;
+
+    fun length(&amp;v: vector&lt;u8&gt;): u64 {
+        Vec::length(&amp;v)
+    }
+}
+</code></pre>
+<p>Self kullanarak <em>üyeleri içe aktarırken</em>:</p>
+<pre><code class="language-Move">script {
+    use 0x1::Vector::{
+        Self as V,
+        empty as empty_vec
+    };
+
+    fun main() {
+        // `empty`, `empty_vec` olarak içeri aktarılır
+        let vec = empty_vec&lt;u8&gt;();
+
+        // Self V = Vector olarak
+        V::push_back(&amp;mut vec, 10);
+    }
+}
+</code></pre>
+<p>Yukarıdaki örnek, modül ve scriptlerde de çalışmaktadır.</p>
+<h1><a class="header" href="#sabitler-constants" id="sabitler-constants">Sabitler (Constants)</a></h1>
+<p>Move dilinde <em>module</em> ve <em>script-level</em> sabitlerini tanımlayabilirsiniz. Bu unsurlar tanımlandıktan sonra değiştirilemezler. Bu yüzden bir modülde sabit kalacak değerler için sabitleri kullanmalısınız. Örnek olarak bir rol tanımlayıcısı ya da bir price action için veya bir script için sabitleri kullanabilirsiniz.</p>
+<p>Sabitler ilkel tiplerle (integer, bool ve adresler) ya da <code>vector</code> olarak tanımlanabilirler. İsimleri kullanılarak erişilirler ve içinde tanımlandıkları script ya da modüle yerel halde bulunurlar.</p>
+<blockquote>
+<p>Modülün dışından sabit değerlere erişmek imkansızdır</p>
+</blockquote>
+<pre><code class="language-Move">script {
+
+    use 0x1::Debug;
+
+    const RECEIVER : address = 0x999;
+
+    fun main(account: &amp;signer) {
+        Debug::print&lt;address&gt;(&amp;RECEIVER);
+
+        // aynı zamanda bir değişkene atanabilirler
+
+        let _ = RECEIVER;
+
+        // fakat bu kod derleme hatası verir
+        // RECEIVER = 0x800;
+    }
+}
+</code></pre>
+<p>Modüllerde:</p>
+<pre><code class="language-Move">module M {
+
+    const MAX : u64 = 100;
+
+    // fakat fonksiyon kullanarak bir sabit değeri dışarıya geçirebilirsiniz
+    public fun get_max(): u64 {
+        MAX
+    }
+
+    // ya da aşağıdakini kullanarak
+    public fun is_max(num: u64): bool {
+        num == MAX
+    }
+}
+</code></pre>
+<h3><a class="header" href="#Özet-1" id="Özet-1">Özet</a></h3>
+<p>Sabitler hakkında bilinmesi gereken önemli noktalar:</p>
+<ol>
+<li>Tanımlandıktan sonra değiştirilemezler</li>
+<li>Tanımlandıkları modül ya da scriptte yerel olarak bulunurlar ve onların dışarısında kullanılamazlar.</li>
+<li>Genellikle modül seviyesinde bulunan ve iş bağlamında işlevleri olan, değişmeyen değerleri tanımlamak için kullanılırlar.</li>
+<li>Sabitleri ifade olarak tanımlamak mümkündür (küme parantezleriyle) fakat bu ifadenin syntaxı oldukça sınırlıdır.</li>
+</ol>
+<h3><a class="header" href="#daha-fazla-bilgi-için-1" id="daha-fazla-bilgi-için-1">Daha fazla bilgi için</a></h3>
+<ul>
+<li><a href="https://github.com/diem/diem/pull/4653">Sabit syntax ile PR</a></li>
+</ul>
+<h1><a class="header" href="#function" id="function">Function</a></h1>
+<p>Fonksiyonlar, Move’da yürütme işleminin gerçekleştiği tek alanlardır. Fonksiyonlar <code>fun</code> anahtar sözcükleriyle başlarlar. Ardından fonksiyon ismi, argümanları içeren parantezler ve son olarak gövde oluşturmak amacıyla küme parantezleri koyulur.</p>
+<pre><code class="language-Move">fun function_name(arg1: u64, arg2: bool): u64 {
+    // fonksiyon gövdesi
+}
+</code></pre>
+<p>Önceki bölümlerde fonksiyonları zaten görmüştünüz. Şimdi onları nasıl kullanacağınızı öğreneceksiniz.</p>
+<blockquote>
+<p><strong>Not:</strong> Move dilinde fonksiyonlara isim verirken <em>snake_case</em> tarzını kullanmamız, yani küçük harflerle yazmamız ve kelimeler arasına <code>_</code> koymamız gerekir.</p>
+</blockquote>
+<h2><a class="header" href="#scriptlerde-fonksiyonlar" id="scriptlerde-fonksiyonlar">Scriptlerde fonksiyonlar</a></h2>
+<p>Bir script bloku sadece bir adet <em>main</em> (ana) fonksiyon barındırabilir. Bu fonksiyon (argüman da içermesi ihtimali göz önünde bulundurularak) bir hareket (transaction) olarak yürütülür. Oldukça kısıtlıdır ve değer döndüremez. Halihazırda paylaşılmış olan modüllerdeki diğer fonksiyonları çalıştırmak için kullanılmalıdır.</p>
+<p>Adresin var olup olmadığını kontrol eden basit bir script örneği:</p>
+<pre><code class="language-Move">script {
+    use 0x1::Account;
+
+    fun main(addr: address) {
+        assert(Account::exists(addr), 1);
+    }
+}
+</code></pre>
+<p>Bahsettiğimiz gibi bu fonksiyona argüman koyulabilir. Bu örnekte argüman: <code>adress</code> tipi <code>addr</code> argümanı. Bu fonksiyon aynı zamanda içeri aktarılmış modülleri çalıştırabilir.</p>
+<blockquote>
+<p><strong>Not:</strong> Sadece bir adet fonksiyon olduğu için ona istediğiniz adı verebilirsiniz ama genel programlama konseptlerini takip etmek istiyorsanız onu <strong>main</strong> olarak adlandırın.</p>
+</blockquote>
+<h2><a class="header" href="#modüllerde-fonksiyonlar" id="modüllerde-fonksiyonlar">Modüllerde fonksiyonlar</a></h2>
+<p>Script bağlamında fonksiyonlar oldukça kısıtlı olsalar da modüllerde tüm potansiyellerini kullanabilirsiniz. Bir daha tekrar edelim: Modüller birkaç fonksiyon ve tipin (bir sonraki bölümde bunu detaylı inceleyeceğiz) paketlenmiş ve paylaşılmış halleridir. Modüller bir veya birden fazla görevi yerine getirirler.</p>
+<p>Şimdi basit bir Matematik modülü yapacağız. Bu modül kullanıcılara basit matematiksel fonksiyonlar ve birkaç yardım edici metodlar sunacak. Bunların çoğu modül kullanılmadan da yapılabilir fakat buradaki amacımız öğrenmek!</p>
+<pre><code class="language-Move">module Math {
+    fun zero(): u8 {
+        0
+    }
+}
+</code></pre>
+<p>İlk adım: <code>Math</code> adlı bir modül tanımladık ve içerisine <code>zero()</code> fonksiyonunu koyduk. Bu fonksiyon <code>u8</code> tipinde olan 0 değerini bize verir. İfadeleri hatırladınız mı? <code>0</code>dan sonra noktalı virgül yok çünkü zaten fonksiyonun döndürdüğü değerin ta kendisi. Burada da bloklarla yaptığımız gibi yapıyoruz. Bloklar ve fonksiyon gövdeleri birbirlerine oldukça benzerler.</p>
+<h3><a class="header" href="#fonksiyon-argümanları" id="fonksiyon-argümanları">Fonksiyon argümanları</a></h3>
+<p>Bunun artık kafanızda oldukça net olması lazım fakat bir daha tekrar edelim. Fonksiyonlar argüman (değerlerin fonksiyonlara geçmesi) alabilirler ve sınırsız sayıda argüman barındırabilirler. Her argümanın 2 özelliği vardır: ismi ve tipi.</p>
+<p>Fonksiyon argümanları, bir kapsam içerisinde tanımlanan her değişken gibi, sadece fonksiyon gövdesi içerisinde canlı kalırlar. Fonksiyon bloku bittiğinde ortada değişken kalmaz.</p>
+<pre><code class="language-Move">module Math {
+
+    public fun sum(a: u64, b: u64): u64 {
+        a + b
+    }
+
+    fun zero(): u8 {
+        0
+    }
+}
+</code></pre>
+<p>Math fonksiyonumuzda değişiklikler yapalım. İki <code>u64</code> değerini toplayan <code>sum(a,b)</code> fonksiyonu bir <code>u64</code> tipinde bir sonuç döndürüyor (tipi değişemez).</p>
+<p>Birkaç syntax kuralı belirtelim:</p>
+<ol>
+<li>Argümanların tipleri olmalıdır ve aralarına virgül koyulmalıdır</li>
+<li>Fonksiyon dönüş değeri parantezden sonra gelir ve öncesinde iki nokta üst üste işareti olması gereklidir.</li>
+</ol>
+<p>Peki bu fonksiyonu bir scriptte nasıl görebiliriz? Import yaparak.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Math;  // burada 0x1 kullandım; kendi adresinizi koyabilirsiniz
+    use 0x1::Debug; // bundan sonra bahsedeceğiz
+
+    fun main(first_num: u64, second_num: u64) {
+
+        // değişken ismi ve fonksiyon ismi aynı olması gerekmiyor
+        let sum = Math::sum(first_num, second_num);
+
+        Debug::print&lt;u64&gt;(&amp;sum);
+    }
+}
+</code></pre>
+<h3><a class="header" href="#return-anahtar-sözcüğü" id="return-anahtar-sözcüğü"><code>return</code> anahtar sözcüğü</a></h3>
+<p><code>return</code> anahtar sözcüğü fonksiyon yürütmesini durdurmanızı ve bir değer döndürülmesini sağlar. <code>if</code> koşuluyla kullanılması gerekmektedir çünkü kontrol akışını koşullu bir şekilde değiştirmenin tek yolu budur.</p>
+<pre><code class="language-Move">module M {
+
+    public fun conditional_return(a: u8): bool {
+        if (a == 10) {
+            return true // noktalı virgül yok!
+        };
+
+        if (a &lt; 10) {
+            true
+        } else {
+            false
+        }
+    }
+}
+</code></pre>
+<h3><a class="header" href="#birden-fazla-değer-döndürmek" id="birden-fazla-değer-döndürmek">Birden fazla değer döndürmek</a></h3>
+<p>Önceki örneklerde dönüş değeri olmayan ya da single fonksiyonlarla birkaç deney yaptık. Peki size her tipten birden fazla değer döndürebileceğimizi söylesem? İlginizi çekti mi? Haydi bir inceleyelim!</p>
+<p>Birden fazla dönüş değeri belirtmek için parantez kullanmanız gerekir:</p>
+<pre><code class="language-Move">module Math {
+
+    // ...
+
+    public fun max(a: u8, b: u8): (u8, bool) {
+        if (a &gt; b) {
+            (a, false)
+        } else if (a &lt; b) {
+            (b, false)
+        } else {
+            (a, true)
+        }
+    }
+}
+</code></pre>
+<p>Bu fonksiyon <code>a</code> ve <code>b</code> olan iki argüman almaktadır ve iki değer döndürmektedir. İlki, ikisi arasındaki değerin en büyüğü hangisiyse geçirir, ikincisiyse bir booldur. Girilen sayıların aynı olması bir şey değiştirmez. Syntaxa daha detaylı bir bakalım: tek dönüş argümanı belirtmek yerine parantez ekledik ve argüman dönüş tiplerini listeledik.</p>
+<p>Aşağıdaki örnekte bu fonksiyonun sonucunu scriptteki farklı bir fonksiyonda nasıl kullanacağımızı göreceksiniz:</p>
+<pre><code class="language-Move">script {
+    use 0x1::Debug;
+    use 0x1::Math;
+
+    fun main(a: u8, b: u8)  {
+        let (max, is_equal) = Math::max(99, 100);
+
+        assert(is_equal, 1)
+
+        Debug::print&lt;u8&gt;(&amp;max);
+    }
+}
+</code></pre>
+<p>Bu örnekte bir veri grubunu <em>yok ettik</em>: max fonksiyonunun dönüş değerlerini değerlerini ve tiplerini içeren iki değişken oluşturduk. Böylece düzen korunuyor ve max değişkeni u8 tipini alıyor ve artık maksimum değeri barındırıyor. Öteki yandn <em>is_equal</em> bir <em>bool</em>dur.</p>
+<p>Burada sınırımız iki değildir. Döndürülen argümanların sayısı tamamen size kalmış. Fakat ileride structlar hakkında öğrendiğinizde kompleks verileri döndürmek için alternatif bir yol göreceksiniz.</p>
+<h3><a class="header" href="#fonksiyon-görülebilirliği" id="fonksiyon-görülebilirliği">Fonksiyon görülebilirliği</a></h3>
+<p>Bir modül tanımlarken diğer geliştiricilerin bazı fonksiyonları görebilmelerini, bazılarını da görmemelerini isteyebilirsiniz. İşte bu durumda <em>fonksiyon görünülebilirlik değiştiricileri</em> devreye girer.</p>
+<p>Varsayılan ayarlara göre modüllerde tanımlanan her fonksiyon gizlidir. Farklı modüllerden veya scriptlerden erişilemezler. Ancak dikkatli birisiyseniz Math modülümüzde tanımladığımız bazı fonksiyonların <code>public</code> anahtar sözcüğü taşıdığını görmüş olabilirsiniz.</p>
+<pre><code class="language-Move">module Math {
+
+    public fun sum(a: u64, b: u64): u64 {
+        a + b
+    }
+
+    fun zero(): u8 {
+        0
+    }
+}
+</code></pre>
+<p>Bu örnekte <code>sum()</code> fonksiyonu, modül içeri aktarıldığında dışarıdan erişilebilir halde. Ancak <code>zero()</code> fonksiyonu varsayılan ayarlardan dolayı gizlidir.</p>
+<blockquote>
+<p><code>public</code> anahtar sözcüğü, fonksiyonun varsayılan gizlilik ayarını değiştirir ve onu açık hale getirir.</p>
+</blockquote>
+<p>Kısacası <code>sum()</code> fonksiyonunu <em>public</em> yapmadıysanız bu mümkün olmazdı.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Math;
+
+    fun main() {
+        Math::sum(10, 100); // derlemiyor!
+    }
+}
+</code></pre>
+<h3><a class="header" href="#yerel-fonksiyonlara-erişim" id="yerel-fonksiyonlara-erişim">Yerel fonksiyonlara erişim</a></h3>
+<p>Eğer asla erişilemiyorsa gizli fonksiyon yapmanın hiçbir anlamı olmazdı. Gizli fonksiyonların var olma sebebi, açık fonksiyonlara çağrı yapıldığında <em>iç çalışma</em> yapmalarını sağlamaktır.</p>
+<blockquote>
+<p>Gizli fonksiyonlar sadece içerisinde tanımlandıkları modüllerde erişime açıktırlar.</p>
+</blockquote>
+<p>Peki aynı modülde bu fonksiyonlara nasıl erişebiliriz? Fonksiyonu sanki içeri aktarım yapılıyormuş gibi çağırarak!</p>
+<pre><code class="language-Move">module Math {
+
+    public fun is_zero(a: u8): bool {
+        a == zero()
+    }
+
+    fun zero(): u8 {
+        0
+    }
+}
+</code></pre>
+<p>Bir modül içerisinde tanımlanan her fonksiyon, gizlilik ayarı fark etmeksizin, aynı modülde yer alan her fonksiyon tarafından erişilebilir haldedir. Bu şekilde gizli fonksiyonlar, açık fonksiyonlar içerisinde çağrı yaparak kullanılabilirler. Böylece gizli özellikleri ya da riskli operasyonları ortaya çıkarmamış, yani gizlemiş oluruz.</p>
+<h3><a class="header" href="#yerli-fonksiyonlar" id="yerli-fonksiyonlar">Yerli fonksiyonlar</a></h3>
+<p>Bir de yerli fonksiyon adı verilen özel fonksiyonlar var. Yerli fonksiyonlar, kodumuza Move’un içinde mümkün olmayan işlevsellikler katmamızı sağlarlar ve bizim kodlama gücümüzü arttırırlar. Yerel fonksiyonlar VM tarafından tanımlanırlar ve çeşitli kullanım çeşitleri vardır. Bu da Move syntaxı bağlamında kullanılmadıkları anlamına geliyor. Bu nedenle fonksiyon gövdesi içinde bulunmak yerine sadece noktalı virgülle biterler. <code>native</code> anahtar kelimesi, yerel fonksiyonları işaretlemek amacıyla kullanılır. Fonksiyon görülebilirliğiyle çelişmezler ve bir fonksiyon aynı anda hem <code>native</code> hem <code>public</code> olabilir.</p>
+<p>Diem’in standart kütüphanesinden bir örnek:</p>
+<pre><code class="language-Move">module Signer {
+
+    native public fun borrow_address(s: &amp;signer): &amp;address;
+
+    // ... ve farklı fonksiyonlar ...
+}
+</code></pre>
+<h1><a class="header" href="#advanced-topics" id="advanced-topics">Advanced Topics</a></h1>
+<p>Bu bölümde Move’da sıklıkla kullanılan bazı programlama konseptlerini öğreneceksiniz: <a href="advanced-topics//advanced-topics/types-with-abilities.html"><em>yetenekler (abilities)</em></a>, <a href="advanced-topics//advanced-topics/ownership-and-references.html"><em>sahiplik (ownership)</em></a> (ve Rust'tan nasıl farklı olduğunu), <a href="advanced-topics//advanced-topics/understanding-generics.html"><em>jenerikler (generics)</em></a> ve <a href="advanced-topics//advanced-topics/managing-collections-with-vectors.html"><em>vektörler</em></a>. Bu özelliklerin hepsi Move dilinin esnek ve güvenli temelini oluşturuyor.</p>
+<h1><a class="header" href="#yapılar-structures" id="yapılar-structures">Yapılar (Structures)</a></h1>
+<p>Yapı, karmaşık veri içeren (veya hiç veri içermeyen) özgün bir tiptir. Anahtarın, niteliğin ismi; değerin ise depolanan şey olduğu basit bir anahtar-değer deposu olarak açıklanabilir. <code>struct</code> anahtar kelimesi ile tanımlanır. Yapılara 4’e kadar yetenek atanabilir ve bunlar tip tanımıyla belirtilir. </p>
+<blockquote>
+<p>Move’da özel tip oluşturmanın tek yolu “struct” (yapı) kullanmaktır.</p>
+</blockquote>
+<h2><a class="header" href="#tanım-definition" id="tanım-definition">Tanım (Definition)</a></h2>
+<p>Struct tanımına sadece bir modül içerisinde izin verilir. <code>struct</code> anahtar kelimesiyle başlar, yapı alanlarının tanımlandığı isim ve küme parantezleri koyulur: </p>
+<pre><code class="language-Move">struct NAME {
+    FIELD1: TYPE1,
+    FIELD2: TYPE2,
+    ...
+}
+</code></pre>
+<p>Aşağıdaki yapı örneklerini inceleyin:</p>
+<pre><code class="language-Move">module M {
+
+    // yapı alansız olabilir
+    // ama farklı bir tip olur
+    struct Empty {}
+
+    struct MyStruct {
+        field1: address,
+        field2: bool,
+        field3: Empty
+    }
+
+    struct Example {
+        field1: u8,
+        field2: address,
+        field3: u64,
+        field4: bool,
+        field5: bool,
+
+        // başka bir yapıyı tip olarak kullanabilirsiniz
+        field6: MyStruct
+    }
+}
+</code></pre>
+<p><em>Bir yapıdaki en fazla alan sayısı 65535’dir</em>.</p>
+<p>Her tanımlanmış yapı farklı bir tip olur. Bu tipe içinde bulunduğu modülünden ulaşabilirsiniz (aynı modül fonksiyonlarına ulşatığınız gibi):</p>
+<pre><code>M::MyStruct;
+// or
+M::Example;
+</code></pre>
+<h3><a class="header" href="#Özyineli-tanım-recursive-definition" id="Özyineli-tanım-recursive-definition">Özyineli tanım (Recursive definition)</a></h3>
+<p>Hiç olmadığı kadar kısa:</p>
+<blockquote>
+<p>Özyineli yapı tanımı imkansızdır.</p>
+</blockquote>
+<p>Başka bir yapıyı tip olarak kullanabilirsiniz ama aynı yapıyı tekrarlı bir şekilde kullanamazsınız. Move derleyicisi kendini tekrar eden tanımları kontrol eder ve sizin böyle bir kod yazmanıza izin vermez:</p>
+<pre><code class="language-Move">module M {
+    struct MyStruct {
+
+        // DERLENMEZ
+        field: MyStruct
+    }
+}
+</code></pre>
+<h2><a class="header" href="#yeni-bir-yapı-oluşturmak" id="yeni-bir-yapı-oluşturmak">Yeni bir yapı oluşturmak</a></h2>
+<p>Bu tipi kullanmak için <em>instance</em>ını oluşturmanız lazım.</p>
+<blockquote>
+<p>Yeni instancelar yalnızca tanımlandıkları modülün içinde oluşturulabilirler.</p>
+</blockquote>
+<p>Yeni bir instance oluşturmak için tanımı kullanırız ama tipin kendisini geçirmek yerine bu tiplerin değerlerini geçiririz:</p>
+<pre><code class="language-Move">module Country {
+    struct Country {
+        id: u8,
+        population: u64
+    }
+
+    // Bu fonksiyonda Country dönüş tipi!
+    public fun new_country(c_id: u8, c_population: u64): Country {
+        // yapı oluşturmak bir ifadedir (expression).
+        let country = Country {
+            id: c_id,
+            population: c_population
+        };
+
+        country
+    }
+}
+</code></pre>
+<p>Move, aynı zamanda yapının alanıyla (ve tipiyle!) eşleşen değişken ismi geçirerek, yeni instanceları daha kısa yapmanıza olanak verir. Bu kuralı <code>new_country()</code>  metodumuzu kullanarak basitleştirebiliriz:</p>
+<pre><code class="language-Move">// ...
+public fun new_country(id: u8, population: u64): Country {
+    // id ve id: u8 alanı eşleşiyor
+    // population ve population alanı eşleşiyor
+    Country {
+        id,
+        population
+    }
+
+    // ya da sadece bir satırda: Country { id, population }
+}
+</code></pre>
+<p>Boş (ve alansız) bir yapı oluşturmak için sadece süslü parantez kullanın:</p>
+<pre><code class="language-Move">public fun empty(): Empty {
+    Empty {}
+}
+</code></pre>
+<h2><a class="header" href="#yapı-alanlarına-erişim" id="yapı-alanlarına-erişim">Yapı alanlarına erişim</a></h2>
+<p>Yapıların alanlarına ulaşamasaydık neredeyse hiçbir işimize yaramazlardı (ama alansız yapılar oluşturmamız mümkün).</p>
+<blockquote>
+<p>Sadece modüller yapılarının alanlarına erişebilir. Alanlar modül dışındayken gizlidirler.</p>
+</blockquote>
+<p>Yapı alanları sadece modüllerinin içerisindeyken görülür (açık) hale gelirler. Modülün dışında (farklı scriptte veya modülde) sadece bir tip olarak görülürler. Yapının alanlarına erişmeniz için “.” (nokta) göstermesini kullanın:</p>
+<pre><code class="language-Move">// ...
+public fun get_country_population(country: Country): u64 {
+    country.population // &lt;struct&gt;.&lt;property&gt;
+}
+</code></pre>
+<p>Eğer bir yuvalanmış yapı tipi aynı modülde tanımlanmışsa, ona da benzer bir yol izleyerek ulaşabiliriz:</p>
+<pre><code class="language-Move">&lt;struct&gt;.&lt;field&gt;
+// ve alan başka bir yapı olabilir, yani
+&lt;struct&gt;.&lt;field&gt;.&lt;nested_struct_field&gt;...
+</code></pre>
+<h2><a class="header" href="#yapıları-yok-etmek" id="yapıları-yok-etmek">Yapıları yok etmek</a></h2>
+<p>Bir yapıyı <em>yok etmek</em> için <code>let &lt;STRUCT DEF&gt; = &lt;STRUCT&gt;</code> syntax’ını kullanın:</p>
+<pre><code class="language-Move">module Country {
+
+    // ...
+
+    // bu yapının değerlerini dışarı döndüreceğiz
+    public fun destroy(country: Country): (u8, u64) {
+
+        // değişkenler yapı alanlarına uymalı
+        // tüm yapı alanları belirtilmeli
+        let Country { id, population } = country;
+
+        // yok etmeden sonra Country atılır
+        // ama alanları şimdi değişken oldular
+        // ve kullanılabilirler
+        (id, population)
+    }
+}
+</code></pre>
+<p>Move’da kullanılmamış değişkenlere izin verilmediğini hatırlamalısınız ve bazen bir yapıyı, alanlarını kullanmadan yok etmeniz gerekebilir. Kullanılmamış yapı alanları için <code>_</code>  (alttan tire) kullanın:</p>
+<pre><code class="language-Move">module Country {
+    // ...
+
+    public fun destroy(country: Country) {
+
+        // böylece yapıyı yok edersiniz ve kullanılmamış değişken bırakmazsınız
+        let Country { id: _, population: _ } = country;
+
+        // ya da sadece bir id al ve “population” değişkenini başlatma
+        // let Country { id, population: _ } = country;
+    }
+}
+</code></pre>
+<p>Yok etme işlemi şu an size önemsiz gelmiş olabilir fakat kaynaklara geldiğimizde çok önemli bir rolü olacak.</p>
+<h3><a class="header" href="#yapı-alanları-için-alıcı-fonksiyonlar-getter-functions-kullanmak" id="yapı-alanları-için-alıcı-fonksiyonlar-getter-functions-kullanmak">Yapı alanları için alıcı fonksiyonlar (getter functions) kullanmak</a></h3>
+<p>Yapı alanlarını dışarıda okunabilir kılmak için, bu alanları okuyacak ve dönüş değeri olarak geçirecek metotlar uygulamanız lazım. Getter metodu genellikle yapı alanları gibi çağırılırlar fakat modülünüz birden fazla yapı tanımlıyorsa bu sorun yaratabilir.</p>
+<pre><code class="language-Move">module Country {
+
+    struct Country {
+        id: u8,
+        population: u64
+    }
+
+    public fun new_country(id: u8, population: u64): Country {
+        Country {
+            id, population
+        }
+    }
+
+    // metodları public yapmayı unutma!
+    public fun id(country: &amp;Country): u8 {
+        country.id
+    }
+
+    // &amp; işaretinin neden burada olduğunu ileride öğreneceksiniz
+    public fun population(country: &amp;Country): u64 {
+        country.population
+    }
+
+    // ... fun destroy ... 
+}
+</code></pre>
+<p>Getters oluşturarak modül kullanıcılarının yapımızın alanına erişmelerini sağladık:</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::Country as C;
+    use 0x1::Debug;
+
+    fun main() {
+        // buradaki değişken C::Country tipinden
+        let country = C::new_country(1, 10000000);
+
+        Debug::print&lt;u8&gt;(
+            &amp;C::id(&amp;country)
+        ); // id yazdır
+
+        Debug::print&lt;u64&gt;(
+            &amp;C::population(&amp;country)
+        );
+
+        // fakat bu imkansız ve derleme hatasına sebep olacak
+        // let id = country.id;
+        // let population = country.population.
+
+        C::destroy(country);
+    }
+}
+</code></pre>
+<hr />
+<p>Artık 'structure' özel tipini tanımlamayı biliyorsunuz fakat varsayılan ayarlara göre işlevsellikleri oldukça sınırlı. Bir sonraki kısımda, bu tipdeki değerleri manipüle etmenize ve kullanmanıza yarayan yetenekleri öğreneceksiniz</p>
+<h1><a class="header" href="#yetenekli-tipler" id="yetenekli-tipler">Yetenekli Tipler</a></h1>
+<p>Move dili özelleştirilebilir ve esnek bir tip sistemine sahiptir. Tiplerdeki değerlerin nasıl kullanılabildiğini, atılabildiğini ya da depolanabildiğini tanımlayan 4 adet yetenek vardır:</p>
+<blockquote>
+<p>“Copy” (Kopyala), “Drop” (At), “Store” (Depola), “Key” (Anahtar)</p>
+</blockquote>
+<p>Basitçe tarif:</p>
+<ul>
+<li><strong>Copy</strong> - değer <em>kopyalanabilir</em> (ya da klonlanabilir).</li>
+<li><strong>Drop</strong> - değer kapsamın dışına varana kadar <em>atılabilir</em>.</li>
+<li><strong>Key</strong> - değer genel depolama operasyonları için <em>bir anahtar olarak kullanılabilir</em>.</li>
+<li><strong>Store</strong> - değer genel bir depoda <em>depolanabilir</em>.</li>
+</ul>
+<p>Bu sayfada <code>Copy</code> ve <code>Drop</code> yeteneklerini detaylıca göreceğiz; <code>Key</code> ve <code>Store</code> yeteneklerini <a href="advanced-topics//resources/index.html">Kaynaklar</a> bölümünde daha detaylı bir şekilde işleyeceğiz.</p>
+<h3><a class="header" href="#yetenekler-syntaxı" id="yetenekler-syntaxı">Yetenekler Syntax’ı</a></h3>
+<blockquote>
+<p>İlkel ve yerleşik tiplerin yetenekleri önceden tanımlanmış ve değiştirilemezdir: integer, vektör, adres ve boolean değerleri <em>copy</em>, <em>drop</em>, ve <em>store</em> yeteneklerine sahiptir</p>
+</blockquote>
+<p>Ancak struct'ları tanımlarken bu syntax'ı kullanarak herhangi bir yetenek kümesi belirleyebilirsiniz:</p>
+<pre><code class="language-Move">struct NAME has ABILITY [, ABILITY] { [FIELDS] }
+</code></pre>
+<p>Örnek:</p>
+<pre><code class="language-Move">module Library {
+
+    // her yeteneğin eşleşen anahtar kelimesi vardır
+    // birden fazla yetenek virgülle listelenir
+    struct Book has store, copy, drop {
+        year: u64
+    }
+
+    // tek yetenek de mümkündür
+    struct Storage has key {
+        books: vector&lt;Book&gt;
+    }
+
+    // bunun hiç yeteneği yok
+    struct Empty {}
+}
+</code></pre>
+<h3><a class="header" href="#yeteneği-olmayan-yapılar" id="yeteneği-olmayan-yapılar">Yeteneği olmayan Yapılar</a></h3>
+<p>Yeteneklerin nasıl kullanılacağına ve dile ne getirdiklerine girmeden önce, yeteneksiz tiplerin ne olduklarına bakalım.</p>
+<pre><code class="language-Move">module Country {
+    struct Country {
+        id: u8,
+        population: u64
+    }
+
+    public fun new_country(id: u8, population: u64): Country {
+        Country { id, population }
+    }
+}
+</code></pre>
+<pre><code class="language-Move">script {
+    use {{sender}}::Country;
+
+    fun main() {
+        Country::new_country(1, 1000000);
+    }
+}
+</code></pre>
+<p>Eğer bu kodu çalıştırırsanız, bu hatayı alırsınız:</p>
+<pre><code>error:
+   ┌── scripts/main.move:5:9 ───
+   │
+ 5 │     Country::new_country(1, 1000000);
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Cannot ignore values without the 'drop' ability. The value must be used
+   │
+</code></pre>
+<p><code>Country::new_country()</code> metodu bir değer oluşturur, bu değer hiçbir yerde geçirilmediği için fonksiyon bittiğinde otomatik olarak atılır. Ama Country tipinin <em>Drop</em> yeteneği yok ve başarısızı oluyor. Şimdi yapı tanımımızı değiştirip <strong>Drop</strong> yeteneğini ekleyelim.</p>
+<h3><a class="header" href="#drop" id="drop">Drop</a></h3>
+<p>Yetenek syntax’ını kullanarak <code>has drop</code> ekleyip bu yapının <code>drop</code> yeteneğini belirtiyoruz. Bu yapının tüm durumları drop yeteneğine sahip olacak ve böylece <em>atılabilir</em> olacak.</p>
+<pre><code class="language-Move">module Country {
+    struct Country has drop { // has &lt;ability&gt;
+        id: u8,
+        population: u64
+    }
+    // ...
+}
+</code></pre>
+<p>Şimdi <code>Country</code> yapısı atılabildiğinde kodumuz çalıştırılabilir.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::Country;
+
+    fun main() {
+        Country::new_country(1, 1000000); // değer atıldı
+    }
+}
+</code></pre>
+<blockquote>
+<p><strong>Not</strong>: Drop yeteneği <em>atma</em> hareketini tanımlar, <a href="advanced-topics//advanced-topics/struct.html#destructing-structures"><em>Yok etmek</em></a> Drop gerektirmez.</p>
+</blockquote>
+<h3><a class="header" href="#copy" id="copy">Copy</a></h3>
+<p><code>Country</code> yapısının yeni instancelarını oluşturmayı ve atmayı öğrendik. Peki bir <em>kopya</em> oluşturmak isteseydik ne yapardık? Varsayılan ayarlara göre yapılar değerle geçirilir, bu yapının bir kopyasını oluşturmak için <code>copy</code> anahtar kelimesini kullanacağız (<a href="advanced-topics//advanced-topics/ownership-and-references.html">bir sonraki kısımda</a> bu hareketi daha detaylı bir şekilde öğreneceksiniz:</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::Country;
+
+    fun main() {
+        let country = Country::new_country(1, 1000000);
+        let _ = copy country;
+    }
+}
+</code></pre>
+<pre><code>   ┌── scripts/main.move:6:17 ───
+   │
+ 6 │         let _ = copy country;
+   │                 ^^^^^^^^^^^^ Invalid 'copy' of owned value without the 'copy' ability
+   │
+</code></pre>
+<p>Bekleyebildiğiniz üzere, copy yeteneği olmadan bir tipin kopyasını yapmak başarısız oldu. Derleyenin mesajı da oldukça açık:</p>
+<pre><code class="language-Move">module Country {
+    struct Country has drop, copy { // burdaki virgüle dikkat edin!
+        id: u8,
+        population: u64
+    }
+    // ...
+}
+</code></pre>
+<p>Bu değişimi yaparsak üstteki kod derlenir ve çalışır.</p>
+<h3><a class="header" href="#Özet-2" id="Özet-2">Özet</a></h3>
+<ul>
+<li>İlkel tipler store, copy ve drop’a sahiptir.</li>
+<li>Varsayılan olarak yapıların hiçbir yeteneği yoktur.</li>
+<li>Copy ve Drop yetenekleri bir değerin kopyalanabilmesini ve atılabilmesini tanımlar.</li>
+<li>Bir yapı için 4 yetenek kurmak mümkün.</li>
+</ul>
+<h3><a class="header" href="#daha-fazla-bilgi-için-2" id="daha-fazla-bilgi-için-2">Daha fazla bilgi için</a></h3>
+<ul>
+<li><a href="https://github.com/diem/diem/blob/main/language/changes/3-abilities.md">Move Yetenekleri Tanımları</a></li>
+</ul>
+<h1><a class="header" href="#sahiplik-ve-referanslar" id="sahiplik-ve-referanslar">Sahiplik ve Referanslar</a></h1>
+<p>Move VM, Rust’a benzeyen bir sahiplik sistemi uygular ve bu konseptin en iyi açıklaması <a href="https://doc.rust-lang.org/stable/book/ch04-01-what-is-ownership.html">Rust kitabındadır.</a>. </p>
+<p>Rust syntax’ının farklı olması ve bazı örneklerinin anlaşılması daha zor olmasına rağmen Rust Kitabı’ndaki sahiplik kısmını okumanızı tavsiye ediyorum. Bu bölümde ana kısımlara değineceğim.</p>
+<blockquote>
+<p>Her değişkenin sadece bir sahip kapsamı vardır. Sahip kapsamı bittiğinde sahip değişkenleri atılır.</p>
+</blockquote>
+<p>Bu hareketi daha önce <a href="advanced-topics//syntax-basics/expression-and-scope.html">ifadeler</a> bölümünde gördük. Bir değişkenin, kapsamı bitene kadar yaşadığını hatırlayalım. Şimdi işin derinliklerine inip neden böyle olduğunu anlama zamanı.</p>
+<p>Owner (sahip), bir değişkene sahip olan bir kapsama verilen addır. Değişkenler bu kapsamda tanımlanabilir (örn. <code>let</code>) ya da kapsama argüman olarak geçirilebilirler. Move dilindeki tek kapsam fonksiyonlar olduğu için kapsamlara değişken koymanın başka bir yolu yoktur. </p>
+<p>Her değişkenin sadece tek sahibi vardır. Bu da demek oluyor ki; bir değişken fonksiyona argüman olarak geçirildiğinde bu fonksiyon <em>yeni owner</em>’a dönüşüyor ve artık eski fonksiyon değişkenin sahibi olarak görülmüyor. Kısacası, diğer fonksiyonun <em>değişkenin sahipliğini aldığını</em> söyleyebilirsiniz.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::M;
+
+    fun main() {
+        // Module::T is a struct
+        let a : Module::T = Module::create(10);
+
+        // burada değişken 'a' 'main' fonksiyonunun bölgesinden ayrılıyor
+        // ve `M::value` fonksiyonunun yeni bölgesine koyuluyor
+        M::value(a);
+
+        // bu bölgede artık bir değişken yok
+        // bu kod derlenmeyecek
+        M::value(a);
+    }
+}
+</code></pre>
+<p>Değerimizi içine geçirince <code>value()</code> fonksiyonuna ne olduğuna bakalım</p>
+<pre><code class="language-Move">module M {
+    // create_fun atlandı
+    struct T { value: u8 }
+
+    public fun create(value: u8): T {
+        T { value }
+    }
+
+    // M::T tipinin t değişkeni geçirildi
+    // `value()` fonksiyonu sahipliği alıyor
+    public fun value(t: T): u8 {
+        // t değişken olarak kullanılabilir
+        t.value
+    }
+    // fonksiyon bölgesi bitiyor, t atılıyor, sadece u8 sonucu dönüş yaptı
+    // t artık yok
+}
+</code></pre>
+<p>Hızlı çözüm olarak orijinal değişken ve ek sonuçlarla bir veri grubu döndürebilirdik. (dönüş değeri <code>(T, u8)</code> olurdu) ama Move’un daha iyi bir çözümü var</p>
+<h3><a class="header" href="#move-taşı-ve-copy-kopyala" id="move-taşı-ve-copy-kopyala">Move (taşı) ve Copy (kopyala)</a></h3>
+<p>Öncelikle Move VM’sinin nasıl çalıştığını ve değerinizi bir fonksiyondan geçirdiğinizde ne olduğunu anlamanız gerekiyor. VM’de iki bytecode talimatı vardır: <em>MoveLoc</em> ve <em>CopyLoc</em> - <code>move</code> ve <code>copy</code> anahtar sözcükleriyle kullanılabilirler. </p>
+<p>Bir değişken başka bir fonksiyona geçirildiğinde <em>taşınmış (moved)</em> olur ve <em>MoveLoc</em> OpCode kullanılmış olur. <code>move</code> anahtar kelimesini kullanınca kodumuzun nasıl olacağına bakalım:</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::M;
+
+    fun main() {
+        let a : Module::T = Module::create(10);
+
+        M::value(move a); // a değişkeni taşındı
+
+        // yerel a droplandı
+    }
+}
+</code></pre>
+<p>Bu geçerli bir Move kodu fakat değerin zaten taşınacağını bildiğiniz için <em>taşımanıza</em> gerek yok. Bunu anladığımıza göre <em>copy</em> anahtar sözcüğüne geçiyoruz.</p>
+<h3><a class="header" href="#copy-anahtar-sözcüğü" id="copy-anahtar-sözcüğü"><code>copy</code> anahtar sözcüğü</a></h3>
+<p>Eğer bir değeri fonksiyona (taşındığı yere) geçirmek ve değişkeninizin bir kopyasın kaydetmek isterseniz, <code>copy</code> anahtar kelimesini kullanabilirsiniz.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::M;
+
+    fun main() {
+        let a : Module::T = Module::create(10);
+
+        // copy anahtar kelimesini bu yapıyı kopyalamak için kullanıyoruz
+        // `let a_copy = copy a` olarak kullanılabilir
+        M::value(copy a);
+        M::value(a); // başarısız olmayacak, a hala orada
+    }
+}
+</code></pre>
+<p>Bu örnekte <code>a</code> değişkeninin (yani değerin) <em>kopyasını</em> <code>value</code>  metodunun ilk çağrısına geçirdik ve <code>a</code>‘yı yerel kapsamda ikinci bir çağırıda kullanmak için muhafaza ettik.</p>
+<p>Bir değeri, kullanılabilmesi amacıyla, kopyalayarak çoğalttık ve programımızın hafıza büyüklüğünü arttırmış olduk. Fakat büyük boyutlu veriler kopyalarsanız fazla hafıza kullanabilir. Unutmayın – blockchainlerde her byte bizim için önemlidir ve işlemin bedelini büyük oranda etkiler. Yani her zaman <code>copy</code> kullanmak pahalıya patlayabilir.</p>
+<p>Şimdi referansları öğrenmeye hazırsınız – Sizi gereksiz kopyalamadan kurtaracak ve para kaybetmemenizi sağlayacak bir araç.</p>
+<h2><a class="header" href="#referenslar" id="referenslar">Referenslar</a></h2>
+<p>Birçok programlama dili referansların uygulanmasına sahiptir (<a href="https://en.wikipedia.org/wiki/Reference_(computer_science)">Wikipedia'dan bakınız</a>) Referans, bir değişkene (genelde hafızadaki bir bölüme) bağlanan bir bağlantıdır. <em>Referansları</em> kullanarak bir değeri taşımak yerine, değerleri programın diğer parçalarına geçirebilirsiniz.</p>
+<blockquote>
+<p>&amp; ile işaretli referanslar sizin bir değerin sahipliğini almadan o değere başvurmanızı sağlar.</p>
+</blockquote>
+<p>Hadi örneğimizi değiştirelim ve referanların nasıl kullanılabileceğini görelim.</p>
+<pre><code class="language-Move">module M {
+    struct T { value: u8 }
+    // ...
+    // ...
+    // değeri taşımak yerine bir referans geçireceğiz
+    public fun value(t: &amp;T): u8 {
+        t.value
+    }
+}
+</code></pre>
+<p>T argüman tipine &amp; ekledik ve bunu yaparak argüman tipini T yerine <em>T’nin referansına</em> yani &amp;T‘ye değiştirmiş olduk.</p>
+<blockquote>
+<p>Move dili iki tür referans destekler: s<em>usturulamaz (immutable)</em> - &amp; ile tanımlanır(örneğin &amp;T ). Ve <em>susturulabilir (mutable)</em> - &amp;mut (örneğin &amp;mut T ).</p>
+</blockquote>
+<p>Susturulamaz referanslar değerin değiştirmeden okunmasını sağlarken susturulabilir referanslar tam tersi olarak değerin okunmasını ve değiştirilmesini sağlar</p>
+<pre><code class="language-Move">module M {
+    struct T { value: u8 }
+
+    // dönüş yapan değer referans olmayan tipten
+    public fun create(value: u8): T {
+        T { value }
+    }
+
+    // susturulamaz referanslar okumaya izin verir
+    public fun value(t: &amp;T): u8 {
+        t.value
+    }
+
+    // susturulabilir referanslar değerin okunmasını ve değiştirilmesini sağlar
+    public fun change(t: &amp;mut T, value: u8) {
+        t.value = value;
+    }
+}
+</code></pre>
+<p>Şimdi geliştirilmiş M modülümüzü nasıl kullanacağımıza bakalım.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::M;
+
+    fun main() {
+        let t = M::create(10);
+
+        // doğrudan bir referans oluştur
+        M::change(&amp;mut t, 20);
+
+        // ya da bir değişkene referans yaz
+        let mut_ref_t = &amp;mut t;
+
+        M::change(mut_ref_t, 100);
+
+        // susturulamaz referansla da aynı
+        let value = M::value(&amp;t);
+
+        // bu metot sadece referansları alır
+        // yazılan değer 100 olacak
+
+        0x1::Debug::print&lt;u8&gt;(&amp;value);
+    }
+}
+</code></pre>
+<blockquote>
+<p>Yapılardan veri okumak için susturulamaz (&amp;) referans kullanın. Değiştirmek için susturulabilir (mut&amp;) referans kullanın. Uygun türde referanslar kullanarak güvenliğin sağlanmasına ve modüllerin okunmasına yardım edersiniz. Böylece okuyucu metodun değeri sadece okunacağını ya da değerde değiştirme yapılacağını anlar.</p>
+</blockquote>
+<h3><a class="header" href="#Ödünç-borrow-kontrolü" id="Ödünç-borrow-kontrolü">Ödünç (borrow) kontrolü</a></h3>
+<p>Move dili referansları nasıl kullandığınızı kontrol eder ve beklenmedik zorlukları engellemenizi sağlar. Bunu nasıl yaptığını anlamak için bir örneğe bakalım. Bir modül ve yazı vereceğim ve sonrasında ne olduğuna ve neden olduğuna yorum yapacağız.</p>
+<pre><code class="language-Move">module Borrow {
+
+    struct B { value: u64 }
+    struct A { b: B }
+
+    // içteki B ile A’yı oluştur
+    public fun create(value: u64): A {
+        A { b: B { value } }
+    }
+
+    // içteki B’ye susturulabilir referans ver
+    public fun ref_from_mut_a(a: &amp;mut A): &amp;mut B {
+        &amp;mut a.b
+    }
+
+    // B’yi değiştir
+    public fun change_b(b: &amp;mut B, value: u64) {
+        b.value = value;
+    }
+}
+</code></pre>
+<pre><code class="language-Move">script {
+    use {{sender}}::Borrow;
+
+    fun main() {
+        // yapı oluştur A { b: B { value: u64 } }
+        let a = Borrow::create(0);
+
+        // susturulabilir referansı mut A’dan mut B’ye getir
+        let mut_a = &amp;mut a;
+        let mut_b = Borrow::ref_from_mut_a(mut_a);
+
+        // B'yi değiştir
+        Borrow::change_b(mut_b, 100000);
+
+        // A'dan başka bir susturulabilir referans al
+        let _ = Borrow::ref_from_mut_a(mut_a);
+    }
+}
+</code></pre>
+<p>Bu kod hatasız bir şekilde çalışır ve derlenir. <code>A</code>’da susturulabilir referans kullanıyoruz ki susturulabilir referansı iç yapısındaki <code>B</code>’ye getirelim. Sonra <code>B</code>’yi değiştiriyoruz. Bunun ardından işlem tekrarlanabilir.</p>
+<p>Peki ya son iki ifadenin yerini değiştirip önce <code>B</code> hala canlıyken <code>A</code>’ya yeni bir susturulabilir referans açmaya çalışsaydık?</p>
+<pre><code class="language-Move">let mut_a = &amp;mut a;
+let mut_b = Borrow::ref_from_mut_a(mut_a);
+
+let _ = Borrow::ref_from_mut_a(mut_a);
+
+Borrow::change_b(mut_b, 100000);
+</code></pre>
+<p>Şu hatayı alırdık:</p>
+<pre><code class="language-Move">    ┌── /scripts/script.move:10:17 ───
+    │
+ 10 │         let _ = Borrow::ref_from_mut_a(mut_a);
+    │                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Invalid usage of reference as function argument. Cannot transfer a mutable reference that is being borrowed
+    ·
+  8 │         let mut_b = Borrow::ref_from_mut_a(mut_a);
+    │                     ----------------------------- It is still being mutably borrowed by this reference
+    │
+</code></pre>
+<p>Bu kod derlenemez. Niye? Çünkü <code>&amp;mut A</code> , <code>&amp;mut B</code> tarafından ödünç (borrow) alınıyor. Eğer içindekilere susturulabilir bir referansa sahipken <code>A</code>’yı değiştirebilseydik, içindekilere referansların hala var olduğu ama A’nın değiştirilebilir olduğu garip bir duruma girerdik. Eğer gerçek bir <code>B </code>olmasaydı <code>mut_b</code> nereyi gösterirdi? </p>
+<p>Özetle:</p>
+<ol>
+<li>Bir derleme sorunu alıyoruz, bu demek ki Move derleyicisi bu olayları engelliyor. Buna <em>ödünç kontrolü</em> deniyor (Aslında Rust dilinden bir konsept). Derleyici bir ödünç grafiği inşa ediyor ve <em>ödünç alınan değerlerin taşınmasına</em> izin vermiyor. Bu Move’un blokchainlerde kullanılmasının bu kadar güvenli olmasının bir sebebi de budur.</li>
+<li>Referanstan referans üretebilirsiniz. Böylece asıl referans yeni bir referansa <em>ödünç alınabilir</em>. Susturulabilir referanslardan iki tür referansı da oluşturabiliriz. Susturulamaz fonksiyonlardansa sadece başka bir susturulamaz fonksiyon oluşturabiliriz.</li>
+<li>Referanslar <em>ödünç alındığıklarında</em> taşınamazlar çünkü başka değerler onlara bağlıdır.</li>
+</ol>
+<h3><a class="header" href="#referanstan-ayırmak-dereference" id="referanstan-ayırmak-dereference">Referanstan ayırmak (Dereference)</a></h3>
+<p>Referanslar, bağlantılı değeri almak için referanstan ayrılabilir bunu yapmak için <code>*</code> kullanın.</p>
+<blockquote>
+<p>Referans ayrımı yaparken bir kopya yaparız. Bu yüzden değerin Copy yeteneğine sahip olduğundan emin olun.</p>
+</blockquote>
+<pre><code class="language-Move">module M {
+    struct T has copy {}
+
+    // burdaki t değeri referans türünden
+    public fun deref(t: &amp;T): T {
+        *t
+    }
+}
+</code></pre>
+<blockquote>
+<p>Referans ayırma operatörü orijinal değeri aktif kapsama taşımaz, onun yerine bu değerin bir kopyasını oluşturur.</p>
+</blockquote>
+<p>Move’da bir yapının iç alanını kopyalamak için bu tekniği kullanırız: <code>*&amp;</code></p>
+<p>Kısa bir örnek:</p>
+<pre><code class="language-Move">module M {
+    struct H has copy {}
+    struct T { inner: H }
+
+    // ...
+
+    // Susturulamaz bir referanstan bile yapabiliriz!
+    public fun copy_inner(t: &amp;T): H {
+        *&amp;t.inner
+    }
+}
+</code></pre>
+<p><code>*&amp;</code> kullanarak (derleyici bile böyle yapmanızı önerecektir) bir yapının iç değerini kopyaladık.</p>
+<h3><a class="header" href="#İlkel-tipleri-referanslamak-referencing-primitive-types" id="İlkel-tipleri-referanslamak-referencing-primitive-types">İlkel tipleri referanslamak (Referencing primitive types)</a></h3>
+<p>İlkel tiplerin (basitliklerinden dolayı) referans olarak geçirilmelerine gerek yoktur. Onun yerine kopyalama operasyonu yapılır. Onları bir fonksiyona değerleriyle geçirseniz bile o anki kapsamlarında kalırlar. <code>move</code> anahtar sözcüğünü kullanabilirsiniz fakat ilkel tipler çok küçük boyutta oldukları için onları kopyalamak, referansla geçirmekten veya taşımaktan daha hesaplı olabilir.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::M;
+
+    fun main() {
+        let a = 10;
+        M::do_smth(a);
+        let _ = a;
+    }
+}
+</code></pre>
+<p>Bu kod <code>a</code>‘yı referans olarak geçirmememize rağmen derlenir. <code>Copy</code> eklemek gereksizdir- VM zaten oraya onu koyuyor.</p>
+<h1><a class="header" href="#jenerikler-generics" id="jenerikler-generics">Jenerikler (Generics)</a></h1>
+<p>Jenerikler Move için esastır. Jenerik, Move’un esnekliğinin kaynağıdır ve blockchain dünyasında bu dili bu kadar özgün yapan unsurdur.</p>
+<p><a href="https://doc.rust-lang.org/stable/book/ch10-00-generics.html">Rust Kitabı</a>’ndan bir kesitle başlayalım: Jenerikler somut tipler ve diğer özellikler için oluşturulan soyut yedeklerdir. Bir fonksiyonu yazmamızı sağlayan unsurlardır. Bu fonksiyonlar da sonradan her tip için kullanılabilirler. Her tip için kalıp işleyicisi (template handler) olarak kullanılabildikleri için onlara kalıp (template) da diyebiliriz.</p>
+<p>Move’da jenerikler, <code>struct</code> ve <code>function</code> imzalarına uygulanabilir.</p>
+<h3><a class="header" href="#struct-tanımında-jenerikler" id="struct-tanımında-jenerikler">Struct tanımında jenerikler</a></h3>
+<p>Önce <code>u64</code> değerini tutan bir kutu oluşturacağız. Bunları daha önce de gördük.</p>
+<pre><code class="language-Move">module Storage {
+    struct Box {
+        value: u64
+    }
+}
+</code></pre>
+<p>Bu kutu sadece <code>u64</code> tipinde değer içerebilir. Peki ya aynı kutuyu <code>u8</code> ya da <code>bool</code> tipleri için yapmak isteseydik? <code>Box1</code> sonra <code>Box2</code> mı yapmamız gerekirdi? Yoksa farklı bir modül mü üretirdik? Hayır, jenerik kullanırdık.</p>
+<pre><code class="language-Move">module Storage {
+    struct Box&lt;T&gt; {
+        value: T
+    }
+}
+</code></pre>
+<p>Struct adının yanına <code>&lt;T&gt;</code> koyduk. Açılı ayraçların <code>&lt;..&gt; </code>olduğu yer jenerik tiplerini tanımlama yeridir. <code>T</code>, bu struct'da kalıba çevirdiğimiz bir tiptir. Struct gövdesi tanımımızın içinde <code>T</code>‘yi sıradan bir tip olarak kullandık. <code>T</code> tipi diye bir şey yok. Sadece <em>herhangi bir tip</em> için bir yer tutucu (placeholder) olarak orada duruyor.</p>
+<h3><a class="header" href="#fonksiyon-imzasında-function-signature-jenerikler" id="fonksiyon-imzasında-function-signature-jenerikler">Fonksiyon imzasında (function signature) jenerikler</a></h3>
+<p>Şimdi <code>u64</code>‘yi değer olarak kullanacak bu struct için bir yapıcı metod (constructor) oluşturalım.</p>
+<pre><code class="language-Move">module Storage {
+    struct Box&lt;T&gt; {
+        value: T
+    }
+
+    // u64 tipi açılı ayraçların içince koyulmuş
+    // demek ki u64 tipinde Box kullanıyoruz
+    public fun create_box(value: u64): Box&lt;u64&gt; {
+        Box&lt;u64&gt;{ value }
+    }
+}
+</code></pre>
+<p>Jenerikleri tanımlamak biraz daha karışık bir işlemdir. Çünkü belirtilen parametrelerine ihtiyaç duyarlar ve sıradan <code>Box</code> sturct'ı <code>Box&lt;u64&gt;</code>’a dönüşür. Jenerikleri tanımlarken açılı ayraçlara istediğiniz tipi geçirebilirsiniz. Bunun üzerine bir kısıtlama yoktur. <code>create_box</code> metodumuzu genelleştirmek ve kullanıcıların her tipi belirtmesi için başka bir jenerik kullanırız. Bu sefer bunu fonksiyon imzasının içinde yapalım!</p>
+<pre><code class="language-Move">module Storage {
+    // ...
+    public fun create_box&lt;T&gt;(value: T): Box&lt;T&gt; {
+        Box&lt;T&gt; { value }
+    }
+
+    // Buna biraz sonra gireceğiz bana güvenin
+    public fun value&lt;T: copy&gt;(box: &amp;Box&lt;T&gt;): T {
+        *&amp;box.value
+    }
+}
+</code></pre>
+<h3><a class="header" href="#fonksiyon-çağrılarında-jenerikler" id="fonksiyon-çağrılarında-jenerikler">Fonksiyon çağrılarında jenerikler</a></h3>
+<p>Yaptığımız şey fonksiyon isminden hemen sonra fonksiyona açılı ayraç eklemekti. Aynı struct'larda yaptığımız gibi. Peki bu fonksiyonu nasıl kullanırız? Fonksiyon çağrısında tip belirterek.</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::Storage;
+    use 0x1::Debug;
+
+    fun main() {
+        // değer Storage::Box&lt;bool&gt; tipinde olacak
+        let bool_box = Storage::create_box&lt;bool&gt;(true);
+        let bool_val = Storage::value(&amp;bool_box);
+
+        assert(bool_val, 0);
+
+        // integerla da aynısını yapabiliriz
+        let u64_box = Storage::create_box&lt;u64&gt;(1000000);
+        let _ = Storage::value(&amp;u64_box);
+
+        // başka bir kutuyla da aynısını yapalım!
+        let u64_box_in_box = Storage::create_box&lt;Storage::Box&lt;u64&gt;&gt;(u64_box);
+
+        // bu kutunun değerine ulaşmak zorlu olacak :)
+        // Box&lt;u64&gt; bir tip ve Box&lt;Box&lt;u64&gt;&gt; de bir tip
+        let value: u64 = Storage::value&lt;u64&gt;(
+            &amp;Storage::value&lt;Storage::Box&lt;u64&gt;&gt;( // Box&lt;u64&gt; type
+                &amp;u64_box_in_box // Box&lt;Box&lt;u64&gt;&gt; type
+            )
+        );
+
+        // şimdi Debug::print&lt;T&gt; metodunu gördünüz
+        // o da herhangi bir tipi yazdırmak için jenerik kullanıyor
+        Debug::print&lt;u64&gt;(&amp;value);
+    }
+}
+</code></pre>
+<p>Burada Box struct'ını 3 tiple kullandık <code>bool</code> , <code>u64</code> ve <code>Box&lt;u64&gt;</code> - sonuncusu çok karmaşık gelebilir fakat alıştığınız ve nasıl çalıştığını anladığınız zaman rutininizin pir parçası oluyor.</p>
+<!-- , Move opens in new way - the way you probably could never imagine in blockchains. -->
+<p>Daha fazla ileri gitmeden önce bir adım geri gidelim. <code>Box</code> struct'ına jenerik ekleyerek bu kutuyu <em>soyut</em> yaptık. Tanımı, bize verdiği kapasiteyle karşılaştırıldığına oldukça basit. Artık herhangi bir tiple <code>Box</code> oluşturmayı biliyoruz. Bu <code>u64</code>, <code>adress</code>, başka bir box ya da başka bir struct olabilir.</p>
+<h3><a class="header" href="#yetenekleri-kontrol-etmeye-dair-kısıtlamalar" id="yetenekleri-kontrol-etmeye-dair-kısıtlamalar">Yetenekleri kontrol etmeye dair kısıtlamalar</a></h3>
+<p><a href="advanced-topics//advanced-topics/abilities/README.html">Yetenekleri</a> öğrendik. Jeneriklerle “kontrol edilebilir” ya da <em>kısıtlanabilirler</em>. Kısıtlamalar, isimlerini yeteneklerinden alırlar:</p>
+<pre><code class="language-Move">fun name&lt;T: copy&gt;() {} // sadece kopyalanabilir değerlere izin ver
+fun name&lt;T: copy + drop&gt;() {} // değerler kopyalanabilir ya da atılabilir
+fun name&lt;T: key + store + drop + copy&gt;() {} // 4 yetenek birden var
+</code></pre>
+<p>...ya da struct ile:</p>
+<pre><code class="language-Move">struct name&lt;T: copy + drop&gt; { value: T } // T kopyalanabilir a da atılabilir
+struct name&lt;T: store&gt; { value: T } // T genel depoda depolanabilir
+</code></pre>
+<blockquote>
+<p>Bu syntax’ı unutmamaya çalışın: <code>+</code> (artı) işaretini ilk başta garipseyebilirsiniz. Çünkü Move’un anahtar kelime listesinde <code>+</code> kullanılan tek yer burası.</p>
+</blockquote>
+<p>Kısıtlamalarla bir sistem örneği:</p>
+<pre><code class="language-Move">module Storage {
+
+    // kutunun içerikleri depolanabilir
+    struct Box&lt;T: store&gt; has key, store {
+        content: T
+    }
+}
+</code></pre>
+<p>İç tipler (ya da jenerik tipler) kapsayıcılarının tüm yeteneklerine (<code>key</code> hariç) sahip olmaları ZORUNLUDUR. Düşündüğünüzde her şey mantıklı ve sezgisel işliyor: kopyalama yeteneği olan bir yapının içeriği de <strong>kopyalama</strong> yeteneğine sahip olmalı. Öbür türlü kapsayan obje kopyalanabilir olamaz. Move derleyicisi bu mantığı takip etmeyen kodlar yazmanıza izin verir fakat bu yetenekleri kullanamazsınız.Örnek:</p>
+<pre><code class="language-Move">module Storage {
+    // kopyalanamaz ya da atılamaz yapı
+    struct Error {}
+
+    // kısıtlamalar belirtilmemiş
+    struct Box&lt;T&gt; has copy, drop {
+        contents: T
+    }
+
+    // bu metod kopyalanamayan veya atılamayan (not droppable) içerikli bir kutu oluşturuyor
+    public fun create_box(): Box&lt;Error&gt; {
+        Box { contents: Error {} }
+    }
+}
+</code></pre>
+<p>Bu kod başarılı bir şekilde yazılır ve derlenir, ama kullanmaya çalışırsanız...</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        {{sender}}::Storage::create_box() // değer oluşturuldu ve atıldı
+    }
+}
+</code></pre>
+<p>Box’nun atılamaz (not droppable) olduğunu söyleyen bir hatayla karşılaşacaksınız:</p>
+<pre><code>   ┌── scripts/main.move:5:9 ───
+   │
+ 5 │   Storage::create_box();
+   │   ^^^^^^^^^^^^^^^^^^^^^ Cannot ignore values without the 'drop' ability. The value must be used
+   │
+</code></pre>
+<p>Bu durum iç değerin atma yeteneğine sahip olmamasından kaynaklanıyor. Kapsayıcı otomatik olarak içindekiler tarafından kısıtlanıyor, yani, örneğin eğer kopyalama, atma ve depolama yeteneğine sahip bir kapsayıcınız ve içinde sadece atma yeteneği olan bir yapınız varsa bu kapsayıcıyı kopyalamak ya da depolamak imkansız olacaktır. Kısacası, bir kapsayıcının içindeki tiplere dair kısıtlayıcıları olmak zorunda değildir, esnek olabilir - içindeki her tip için kullanılabilir.</p>
+<blockquote>
+<p>Fakat hatalardan kaçınmak için fonksiyonlarda ve yapılarda jenerik kısıtlamalarını kontrol edin ve gerekiyorsa belirtin.</p>
+</blockquote>
+<p>Bu örnekte daha güvenli bir yapı tanımı şu olabilirdi:</p>
+<pre><code class="language-Move">// ebeveynin kısıtlamalarını yazıyoruz
+// şimdi iç tip kopyalanabilir ve atılabilir OLMALI
+struct Box&lt;T: copy + drop&gt; has copy, drop {
+    contents: T
+}
+</code></pre>
+<h3><a class="header" href="#jeneriklerde-çoklu-tipler" id="jeneriklerde-çoklu-tipler">Jeneriklerde çoklu tipler</a></h3>
+<p>Sadece bir tip kullanabildiğiniz gibi isterseniz birden fazla tip de kullanabilirsiniz. Jenerik tipler açılı ayraçların içine konup virgülle ayrılır. Şimdi yeni bir tip olan <code>Shelf</code>’i ekleyelim. İki farklı tipteki iki kutuyu tutacak.</p>
+<pre><code class="language-Move">module Storage {
+
+    struct Box&lt;T&gt; {
+        value: T
+    }
+
+    struct Shelf&lt;T1, T2&gt; {
+        box_1: Box&lt;T1&gt;,
+        box_2: Box&lt;T2&gt;
+    }
+
+    public fun create_shelf&lt;Type1, Type2&gt;(
+        box_1: Box&lt;Type1&gt;,
+        box_2: Box&lt;Type2&gt;
+    ): Shelf&lt;Type1, Type2&gt; {
+        Shelf {
+            box_1,
+            box_2
+        }
+    }
+}
+</code></pre>
+<p><code>Shelf</code> için tip parametreleri yapının bölgesinin tanımının içinde listelenip eşlenmiştir. Ayrıca görebildiğiniz gibi jeneriklerin içindeki tip parametrelerinin ismi önemli değil, düzgün bir tane seçmek size bağlı. Ve her bir tip parametre tanım içinde geçerli yani <code>T1</code> veya <code>T2‘yi</code> <code>T</code> ile eşleştirmeye gerek yok.</p>
+<p>Birden fazla jenerik tip parametresi kullanmak, bir tane kullanmaya benzer:</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::Storage;
+
+    fun main() {
+        let b1 = Storage::create_box&lt;u64&gt;(100);
+        let b2 = Storage::create_box&lt;u64&gt;(200);
+
+        // herhangi bir tip kullanabilirsin – yani aynı olanlar da geçerli
+        let _ = Storage::create_shelf&lt;u64, u64&gt;(b1, b2);
+    }
+}
+</code></pre>
+<p><em>Bir tanımda 18,446,744,073,709,551,615 (u64 boyutu) sayısına kadar jeneriğe sahip olabilirsiniz. Bu sınıra kesinlikle varmayacaksınız, o yüzden istediğiniz kadar kullanın.</em></p>
+<h3><a class="header" href="#kullanılmamış-tip-parametreleri" id="kullanılmamış-tip-parametreleri">Kullanılmamış tip parametreleri</a></h3>
+<p>Jeneriklerde belirtilmiş her tip kullanılmak zorunda değildir. Bu örneğe bakınız:</p>
+<pre><code class="language-Move">module Storage {
+
+    // bu iki tip kutunun shelf’ten alındığında
+    // nereye gönderileceğini işaretlemek için kullanılacak
+    struct Abroad {}
+    struct Local {}
+
+    // düzenlenmiş Box aynı hedef niteliğe sahip olacak
+    struct Box&lt;T, Destination&gt; {
+        value: T
+    }
+
+    public fun create_box&lt;T, Dest&gt;(value: T): Box&lt;T, Dest&gt; {
+        Box { value }
+    }
+}
+</code></pre>
+<p>Bazen jenerikleri kısıtlamak ya da sabit olarak kullanmak faydalı oluyor. Kodda nasıl kullanılabildiğine bakalım:</p>
+<pre><code class="language-Move">
+script {
+    use {{sender}}::Storage;
+
+    fun main() {
+        // değer Storage::Box&lt;bool&gt; tipinde olacak
+        let _ = Storage::create_box&lt;bool, Storage::Abroad&gt;(true);
+        let _ = Storage::create_box&lt;u64, Storage::Abroad&gt;(1000);
+
+        let _ = Storage::create_box&lt;u128, Storage::Local&gt;(1000);
+        let _ = Storage::create_box&lt;address, Storage::Local&gt;(0x1);
+
+        // or even u64 destination!
+        let _ = Storage::create_box&lt;address, u64&gt;(0x1);
+    }
+}
+</code></pre>
+<p>Burada jeneriği tipi işaretlemek için kullanıyoruz ama aslında kullanmıyoruz. İlerde, kaynaklar konseptine geldiğimizde bu tanımın neden önemli olduğunu öğreneceksiniz. Şimdilik bu, sadece onları kullanmanın farklı bir yolu.</p>
+<!-- ### Copyable
+
+*Copyable kind* - is a kind of types, value of which can be copied. `struct`, `vector` and primitive types - are three main groups of types fitting into this kind.
+
+To understand why Move needs this constraint let's see this example:
+
+```Move
+module M {
+    public fun deref<T>(t: &T): T {
+        *t
+    }
+}
+```
+
+By using *dereference* on a reference you can *copy* the original value and return it as a regular. But what if we've tried to use `resource` in this example? Resource can't be copied, hence this code would fail. Hopefully compiler won't let you compile this type, and kinds exist to manage cases like this.
+
+```Move
+module M {
+    public fun deref<T: copyable>(t: &T): T {
+        *t
+    }
+}
+```
+
+We've added `: copyable` constraint into generic definition, and now type `T` must be of kind *copyable*. So now function accepts only `struct`, `vector` and primitives as type parameters. This code compiles as constraint provides safety over used types and passing non-copyable value here is impossible.
+
+### Resource
+
+Another kind has only one type inside is a `resource` kind. It is used in the same manner:
+
+```Move
+module M {
+    public fun smth<T: resource>(t: &T) {
+        // do smth
+    }
+}
+```
+
+This example here is only needed to show syntax, we'll get to resources soon and you'll learn actual use cases for this constraint. -->
+<h1><a class="header" href="#vektör-ile-koleksiyonları-kontrol-etmek" id="vektör-ile-koleksiyonları-kontrol-etmek">Vektör ile Koleksiyonları Kontrol Etmek</a></h1>
+<p><code>Struct</code> tipiyle halihazırda aşinasınız ki bu size kendi tiplerinizi oluşturma ve karmaşık verileri depolama kabiliyetini veriyor. Ama bazen daha dinamik, genişletilebilir ve kontrol edilebilir bir şeye ihtiyacınız oluyor. Bu ihtiyaç için Move’un vektörlerini kullanabilirsiniz.</p>
+<p>Vektör veri <em>koleksiyonları</em> depolamak için yerleşik bir tiptir. Biri hariç her tipin toplanması için genel bir çözümdür. Fonksiyonelliği size VM tarafından verildiği gibi; beraberinde çalışmanın tek yolu <a href="https://github.com/diem/move/tree/main/language/move-stdlib/sources">Move standard library</a>’yi ve <code>native</code> fonksiyonlarını kullanmaktır.</p>
+<pre><code class="language-Move">script {
+    use 0x1::Vector;
+
+    fun main() {
+        // boş bir vektör oluşturmak için jenerik kullanın
+        let a = Vector::empty&lt;&amp;u8&gt;();
+        let i = 0;
+
+        // veri ile dolduralım
+        while (i &lt; 10) {
+            Vector::push_back(&amp;mut a, i);
+            i = i + 1;
+        }
+
+        // şimdi vektör uzunluğunu yazdırın
+        let a_len = Vector::length(&amp;a);
+        0x1::Debug::print&lt;u64&gt;(&amp;a_len);
+
+        // sonra 2 unsurunu çıkarın
+        Vector::pop_back(&amp;mut a);
+        Vector::pop_back(&amp;mut a);
+
+        // ve uzunluğu bir daha yazdır
+        let a_len = Vector::length(&amp;a);
+        0x1::Debug::print&lt;u64&gt;(&amp;a_len);
+    }
+}
+</code></pre>
+<p>Vektörler tek bir referans olmayan tipten <code>u64</code> sayısına kadar değer depolayabilirler. Kocaman depoları nasıl kontrol altında tuttuğunu görmek için hadi bir modül yazalım.</p>
+<pre><code class="language-Move">module Shelf {
+
+    use 0x1::Vector;
+
+    struct Box&lt;T&gt; {
+        value: T
+    }
+
+    struct Shelf&lt;T&gt; {
+        boxes: vector&lt;Box&lt;T&gt;&gt;
+    }
+
+    public fun create_box&lt;T&gt;(value: T): Box&lt;T&gt; {
+        Box { value }
+    }
+
+    // bu metot kopyalanamaz içerikler için erişilemez olacak
+    public fun value&lt;T: copy&gt;(box: &amp;Box&lt;T&gt;): T {
+        *&amp;box.value
+    }
+
+    public fun create&lt;T&gt;(): Shelf&lt;T&gt; {
+        Shelf {
+            boxes: Vector::empty&lt;Box&lt;T&gt;&gt;()
+        }
+    }
+
+    // kutu değeri vektöre taşındı
+    public fun put&lt;T&gt;(shelf: &amp;mut Shelf&lt;T&gt;, box: Box&lt;T&gt;) {
+        Vector::push_back&lt;Box&lt;T&gt;&gt;(&amp;mut shelf.boxes, box);
+    }
+
+    public fun remove&lt;T&gt;(shelf: &amp;mut Shelf&lt;T&gt;): Box&lt;T&gt; {
+        Vector::pop_back&lt;Box&lt;T&gt;&gt;(&amp;mut shelf.boxes)
+    }
+
+    public fun size&lt;T&gt;(shelf: &amp;Shelf&lt;T&gt;): u64 {
+        Vector::length&lt;Box&lt;T&gt;&gt;(&amp;shelf.boxes)
+    }
+}
+</code></pre>
+<p>Bir shelf ve bu shelf için birkaç kutu oluşturacağız ki modülde vektörle nasıl çalışıldığını görelim:</p>
+<pre><code class="language-Move">script {
+    use {{sender}}::Shelf;
+
+    fun main() {
+
+        // shelf ve u64 tipinde iki kutu oluştur
+        let shelf = Shelf::create&lt;u64&gt;();
+        let box_1 = Shelf::create_box&lt;u64&gt;(99);
+        let box_2 = Shelf::create_box&lt;u64&gt;(999);
+
+        // iki kutuya shlef’e koy
+        Shelf::put(&amp;mut shelf, box_1);
+        Shelf::put(&amp;mut shelf, box_2);
+
+        // boyutunu yazdırır - 2
+        0x1::Debug::print&lt;u64&gt;(&amp;Shelf::size&lt;u64&gt;(&amp;shelf));
+
+        // sonra shelf’ten bir tane al (son push'lanan)
+        let take_back = Shelf::remove(&amp;mut shelf);
+        let value     = Shelf::value&lt;u64&gt;(&amp;take_back);
+
+        // geri aldığımız kutunun 999’lu olduğunu onayla
+        assert(value == 999, 1);
+
+        // ve boyutu bir daha yazdır - 1
+        0x1::Debug::print&lt;u64&gt;(&amp;Shelf::size&lt;u64&gt;(&amp;shelf));
+    }
+}
+</code></pre>
+<p>Vektörler oldukça güçlü araçlardır. Çok fazla veri depolamanıza (en fazla <em>18446744073709551615</em>) ve dizinlenmiş depo içinde bu veriyle çalışmana izin veriyorlar.</p>
+<h3><a class="header" href="#inline-vektör-tanımları-için-hex-ve-bytestring-değişmezi" id="inline-vektör-tanımları-için-hex-ve-bytestring-değişmezi">Inline vektör tanımları için Hex ve Bytestring değişmezi</a></h3>
+<p>Vektörler, ayrıca string’leri de temsil etme amacıyla oluşturulmuş unsurlardır. VM yazıda <code>vector&lt;u8&gt;</code>’ü argüman olarak <code>main</code> fonksiyonuna geçirmeyi de destekler.</p>
+<p>Ama Hexdecimal değişmezini scriptinizde <code>vector&lt;u8&gt;</code> tanımlamak için de kullanabilirsiniz:</p>
+<pre><code class="language-Move">script {
+
+    use 0x1::Vector;
+
+    // main’de argümanları kabul etmek için bir yol
+    fun main(name: vector&lt;u8&gt;) {
+        let _ = name;
+
+        // sabitler böyle kullanılır
+        // &quot;hello world&quot; stringi!
+        let str = x&quot;68656c6c6f20776f726c64&quot;;
+
+        // hex sabiti size vector&lt;u8&gt;’i de verir
+        Vector::length&lt;u8&gt;(&amp;str);
+    }
+}
+</code></pre>
+<p>Bytestring sabitlerini kullanmak için benzer bir yaklaşım:</p>
+<pre><code class="language-Move">script {
+
+    fun main() {
+        let _ = b&quot;hello world&quot;;
+    }
+}
+</code></pre>
+<p>Onlara ASCII olarak davranılır ve <code>vector&lt;u8&gt;</code> olarak yorumlanırlar.</p>
+<h3><a class="header" href="#vektör-kopya-kağıdı" id="vektör-kopya-kağıdı">Vektör kopya kağıdı</a></h3>
+<p>Standart kütüphaneden vektör metodlarına dair küçük bir kopya kağıdı:</p>
+<ul>
+<li><code>&lt;E&gt;</code> tipinde boş vektör oluştur</li>
+</ul>
+<pre><code class="language-Move">Vector::empty&lt;E&gt;(): vector&lt;E&gt;;
+</code></pre>
+<ul>
+<li>Vektörün uzunluğunu al</li>
+</ul>
+<pre><code class="language-Move">Vector::length&lt;E&gt;(v: &amp;vector&lt;E&gt;): u64;
+</code></pre>
+<ul>
+<li>Elementi vektörün sonuna at:</li>
+</ul>
+<pre><code class="language-Move">Vector::push_back&lt;E&gt;(v: &amp;mut vector&lt;E&gt;, e: E);
+</code></pre>
+<ul>
+<li>Susturulabilir referans al, susturulabilir için <code>Vector::borrow()</code> kullan</li>
+</ul>
+<pre><code>Vector::borrow_mut&lt;E&gt;(v: &amp;mut vector&lt;E&gt;, i: u64): &amp;E;
+</code></pre>
+<ul>
+<li>Vektörün sonundan bir element çıkar:</li>
+</ul>
+<pre><code>Vector::pop_back&lt;E&gt;(v: &amp;mut vector&lt;E&gt;): E;
+</code></pre>
+<p>Move standart kütüphanesinde vektör modülü: <a href="https://github.com/diem/move/blob/main/language/move-stdlib/sources/Vector.move">link</a></p>
+<h1><a class="header" href="#programlanabilir-kaynaklar" id="programlanabilir-kaynaklar">Programlanabilir Kaynaklar</a></h1>
+<p>Bu kısımda Move’un anahtar özelliklerinden birini öğreneceğiz: Kaynaklar (Resources). Kaynaklar Move’u özel, güvenli ve güçlü yapan yegâne özelliktir.</p>
+<p>Başlangıç için, diem geliştiricileri web sitesindeki önemli noktaları gözden geçirelim (Libra'yı Diem olarak yeniden adlandırdıktan sonra kaynak sayfa kaldırılmıştır):</p>
+<blockquote>
+<ol>
+<li>Move'un temel özelliği, özel kaynak türlerini tanımlama yeteneğidir. Kaynak tipleri, zengin programlanabilirlik ile güvenli dijital varlıkları kodlamak için kullanılır.</li>
+<li>Kaynaklar dilde sıradan değerlerdir. Veri yapıları olarak saklanabilir, prosedürlere argüman olarak iletilebilir, prosedürlerden döndürülebilir vb.</li>
+</ol>
+</blockquote>
+<p>Kaynak özel bir yapı tipidir ve Move kodunda yeni (veya mevcut) kaynak tanımlamak ve oluşturmak mümkündür. Bu nedenle, dijital varlıkları diğer verileri (vektör veya yapı gibi) kullandığınız şekilde yönetebilirsiniz.</p>
+<blockquote>
+<ol start="3">
+<li>Move tip sistemi, kaynaklar için özel güvenlik garantileri sağlar. Move kaynakları asla çoğaltılamaz, yeniden kullanılamaz veya ıskarta edilemez. Bir kaynak tipi yalnızca tipi tanımlayan modül tarafından oluşturulabilir veya yok edilebilir. Bunun garantisi Move sanal makinesinin bytecode doğrulaması sayesinde istatistiksel olarak verilebilir. Move sanal makinesi, bytecode doğrulayıcısından geçmeyen kodu çalıştırmayı reddedecektir.</li>
+</ol>
+</blockquote>
+<p><a href="resources//advanced-topics/ownership-and-references.html">Referanslar ve sahiplik bölümünde</a> Move'un kapsamları nasıl güvence altına aldığını ve değişkenin sahip kapsamını nasıl kontrol ettiğini gördünüz. Ayrıca <a href="resources//advanced-topics/understanding-generics.html">jenerikler bölümünde</a>, kopyalanabilir ve kopyalanamaz türleri ayırmak için tip eşleştirmenin özel bir yolu olduğunu öğrendiniz. Bu özelliklerin tümü, kaynak tipi için güvenlik sağlar.</p>
+<blockquote>
+<ol start="4">
+<li>Tüm Diem para birimleri, genel Diem::T türü kullanılarak uygulanır. Örneğin: LBR para birimi, <code>Diem::T&lt;LBR::T&gt;</code> olarak temsil edilir ve varsayımsal bir USD para birimi, <code>Diem::T&lt;USD::T&gt;</code> olarak temsil edilir. Diem::T'nin dilde özel bir statüsü yoktur; her Move kaynağı aynı korumalardan yararlanır.</li>
+</ol>
+</blockquote>
+<p>Tıpkı Diem para birimi gibi, diğer para birimleri veya diğer varlık türleri de Move'da temsil edilebilir.</p>
+<h3><a class="header" href="#daha-fazla-bilgi-için-3" id="daha-fazla-bilgi-için-3">Daha fazla bilgi için</a></h3>
+<ul>
+<li><a href="https://developers.diem.com/docs/technical-papers/move-paper/">Move whitepaper</a></li>
+</ul>
+<h1><a class="header" href="#göndericinin-signer-olması" id="göndericinin-signer-olması">Göndericinin Signer Olması</a></h1>
+<p>Kaynakların nasıl kullanılacağına geçmeden önce, <code>signer</code> tipinin ne olduğunu ve bu tipin neden var olduğunu bilmemiz gerekir.</p>
+<blockquote>
+<p>Signer, transaction göndericisinin adresini tutan yerel, kopyalanamaz (kaynak benzeri) bir tiptir.</p>
+</blockquote>
+<p>Signer tipi gönderici yetkisini temsil eder. Diğer bir deyişle- signer kullanmak, gönderenin adresine ve kaynaklarına erişim anlamına gelir. İmzalarla veya kelimenin tam anlamıyla imzalama ile doğrudan bir ilgisi yoktur, Move VM açısından sadece göndericiyi temsil eder.</p>
+<blockquote>
+<p>Signer türünün yalnızca bir yeteneği vardır – Atmak.</p>
+</blockquote>
+<!-- Important! `0x1::Transaction::sender()` may soon be deprecated [as mentioned here](https://community.libra.org/t/signer-type-and-move-to/2894). So in the future using `signer` will be the only way to get sender's address. -->
+<h3><a class="header" href="#scriptlerde-signer" id="scriptlerde-signer">Scriptlerde Signer</a></h3>
+<p>Signer yerleşik bir tip olduğundan, yaratılması gerekir. <code>Vektörden</code> farklı olarak, doğrudan kodda oluşturulamaz, ancak bir komut dosyası ile oluşturulabilir:</p>
+<pre><code class="language-Move">script {
+    // signer, sahibi olan bir değerdir
+    fun main(account: signer) {
+        let _ = account;
+    }
+}
+</code></pre>
+<p>Signer bağımsız değişkeni, komut dosyalarınıza VM tarafından otomatik olarak eklenir; bu, komut dosyasına manuel olarak aktarmanın bir yolu olmadığı ve/veya buna gerek olmadığı anlamına gelir. Bir şey daha - bu her zaman bir referanstır. Standart kitaplığın (Diem için- <a href="https://github.com/diem/diem/blob/master/language/stdlib/modules/DiemAccount.move">DiemAccount</a>) signerın gerçek değerine erişimi olmasına rağmen, bu değeri kullanan fonksiyonlar özeldir ve signer değerini başka hiçbir yerde kullanmanın veya iletmenin bir yolu yoktur.</p>
+<blockquote>
+<p>Şu anda, signer türü tutan değişkenin kurallı adı <em>account</em>’tur.</p>
+</blockquote>
+<h3><a class="header" href="#standart-kütüphanede-signer-modülü" id="standart-kütüphanede-signer-modülü">Standart kütüphanede signer modülü</a></h3>
+<p>Yerleşik türler yerel işlevler gerektirir ve signer türü için <code>0x1::Signer</code>'dır. Bu modül oldukça basittir (<a href="https://github.com/diem/diem/blob/master/language/diem-framework/modules/Signer.move">diem'deki orijinal modül</a>):</p>
+<pre><code class="language-Move">module Signer {
+    // signer adresini ödünç alır
+    // signer’ı bir adrese kaynak yapısı wrapleyen
+    // bir unsur olarak düşünebilirsiniz
+    // ```
+    // kaynak yapısı Signer’ı { addr: address }
+    // ```
+    // `borrow_address` bu iç bölgeyi ödünç alır
+    native public fun borrow_address(s: &amp;signer): &amp;address;
+
+    // signer adresini kopyalar
+    public fun address_of(s: &amp;signer): address {
+        *borrow_address(s)
+    }
+}
+</code></pre>
+<p>Gördüğünüz gibi, biri yerel diğeri dereference operatörü ile adresi kopyaladığı için daha kullanışlı olan 2 yöntem var.</p>
+<p>Bu modülün kullanımı da aynı derecede basittir:</p>
+<pre><code class="language-Move">script {
+    fun main(account: signer) {
+        let _ : address = 0x1::Signer::address_of(&amp;account);
+    }
+}
+</code></pre>
+<h3><a class="header" href="#modüllerde-signer" id="modüllerde-signer">Modüllerde signer</a></h3>
+<pre><code class="language-Move">module M {
+    use 0x1::Signer;
+
+    // proxyleyelim Signer::address_of
+    public fun get_address(account: signer): address {
+        Signer::address_of(&amp;account)
+    }
+}
+</code></pre>
+<blockquote>
+<p><code>&amp;signer</code> tipini bağımsız değişken olarak kullanan yöntemler, gönderenin adresini kullandıklarını açıkça gösterir.</p>
+</blockquote>
+<p>Bu tipin asıl nedenlerinden biri, hangi yöntemlerin gönderen yetkisi gerektirdiğini ve hangilerinin gerektirmediğini göstermekti. Bu nedenle yöntem, kullanıcıyı kaynaklarına yetkisiz erişim için kandıramaz.</p>
+<!--  MAYBE ADD HISTORY OF THIS TYPE? -->
+<h3><a class="header" href="#daha-fazla-bilgi-için-4" id="daha-fazla-bilgi-için-4">Daha fazla bilgi için</a></h3>
+<ul>
+<li><a href="https://community.diem.com/t/signer-type-and-move-to/2894">Signer üzerine yazılan bir Diem topluluğu paylaşımı</a></li>
+<li><a href="https://github.com/diem/diem/issues/3679">Diem veri havuzu</a></li>
+<li><a href="https://github.com/diem/diem/pull/3819">Diem veri havuzunda PR</a></li>
+</ul>
+<h1><a class="header" href="#kaynak-nedir" id="kaynak-nedir">Kaynak Nedir</a></h1>
+<p>Kaynak, Move Whitepaper'da açıklanan bir kavramdır. Başlangıçta kendi başına bir tür olarak uygulandı, ancak daha sonra yeteneklerin eklenmesiyle iki yetenekle değiştirildi: <code>Key</code> (Anahtar) ve <code>Store</code> (Depo). Kaynak, kopyalanamaz ve bırakılamaz olmak için dijital varlıkları depolamada mükemmel bir tiptir. Aynı zamanda depolanabilir ve hesaplar arasında aktarılabilir olmalıdır.</p>
+<h3><a class="header" href="#tanım" id="tanım">Tanım</a></h3>
+<p>Kaynak, yalnızca <code>key</code> ve <code>store</code> yeteneklerine sahip bir yapıdır:</p>
+<pre><code class="language-Move">module M {
+    struct T has key, store {
+        field: u8
+    }
+}
+</code></pre>
+<h3><a class="header" href="#key-ve-store-becerileri" id="key-ve-store-becerileri">Key ve Store Becerileri</a></h3>
+<p>Key yeteneği, yapının bir depolama tanımlayıcısı olarak kullanılmasına izin verir. Diğer bir deyişle <code>key</code>, en üst düzeyde depolanabilme ve <code>store</code> olabilme yeteneğidir; mağaza ise keyin altında saklanabilme yeteneğidir. Bir sonraki bölümde nasıl çalıştığını göreceksiniz. Şimdilik, ilkel tilerin bile depolama yeteneğine sahip olduğunu unutmayın- bunlar depolanabilir, ancak yine de <code>key</code>leri yoktur ve üst düzey kapsayıcı olarak kullanılamazlar.</p>
+<p>Store yeteneği, değerin depolanmasına izin verir. Bu kadar basit.</p>
+<h3><a class="header" href="#kaynak-kavramı" id="kaynak-kavramı">Kaynak Kavramı</a></h3>
+<p>Başlangıçta kaynağın Move'da kendi türü vardı, ancak yeteneklerin eklenmesiyle, <em>key</em> ve/veya <em>store</em> yetenekleriyle uygulanabilen daha soyut bir kavram haline geldi. Yine de bir kaynak için açıklamayı inceleyelim:</p>
+<ol>
+<li>Kaynaklar hesap altında saklanır - bu nedenle yalnızca hesaba atandığında <em>var</em> <em>olur</em>; ve yalnızca bu hesap üzerinden <em>erişilebilir</em>;</li>
+<li>Hesap, <em>bir tipten yalnızca bir</em> kaynağı tutabilir ve bu kaynağın <code>anahtar</code> yeteneğe sahip olması gerekir;</li>
+<li>Kaynak kopyalanamaz veya bırakılamaz, ancak saklanabilir.</li>
+<li>Kaynak değeri <em>kullanılmalıdır</em>. Kaynak oluşturulduğunda veya hesaptan alındığında bırakılamaz ve depolanması veya yok edilmesi gerekir.</li>
+</ol>
+<p>Bu kadar teori yeter, hadi harekete geçelim!</p>
+<h1><a class="header" href="#kaynak-Örnekleri" id="kaynak-Örnekleri">Kaynak Örnekleri</a></h1>
+<p>Bu bölümde nihayet kaynakları nasıl kullanacağınızı öğreneceksiniz. Bir kaynak ve onunla çalışmak için yöntemler tanımlama sürecinden geçeceğiz ve sonunda şablon olarak kullanabileceğiniz tam bir sözleşme alacaksınız.</p>
+<p>Aşağıdakileri yapmamızı sağlayacak bir Koleksiyon sözleşmesi oluşturacağız:</p>
+<ul>
+<li>koleksiyon başlatmak</li>
+<li>koleksiyondan öğeler ekleyip almak</li>
+<li>koleksiyonu yok etmek</li>
+</ul>
+<p>Hadi başlayalım!</p>
+<!-- - offer collectibles to other users
+- allow using this module with any type -->
+<!-- For better understanding of this chapter I recommend you using Move IDE (which has already been presented in [getting started chapter](/introduction/getting-started.md)) and running all of these modules and scripts in it. It will also highlight possible errors and will automatically sync with standard library to verify that you're using correct methods and addresses.
+
+Directory structure for your project would be:
+
+```
+modules/
+    Collection.move
+scripts/
+    use_collection.move
+.mvconfig.json
+```
+
+And recommended configuration in .mvconfig is:
+
+```json
+{
+    "sender": "0x1",
+    "network": "diem"
+}
+``` -->
+<h1><a class="header" href="#kaynak-yaratma-ve-taşıma" id="kaynak-yaratma-ve-taşıma">Kaynak Yaratma ve Taşıma</a></h1>
+<p>Öncelikle modülümüzü oluşturalım:</p>
+<pre><code class="language-Move">// modules/Collection.move
+module Collection {
+
+
+    struct Item has store {
+        // özelliklerini sonra düşünürüz
+    }
+
+    struct Collection has key {
+        items: vector&lt;Item&gt;
+    }
+}
+</code></pre>
+<blockquote>
+<p>Modülden sonra bir modülün ana kaynağını çağırmak için bir kural vardır (örneğin, Collection::Collection). Bunu takip ederseniz, modüllerinizin başkaları tarafından okunması ve kullanılması kolay olacaktır.</p>
+</blockquote>
+<h3><a class="header" href="#oluşturma-ve-taşıma" id="oluşturma-ve-taşıma">Oluşturma ve Taşıma</a></h3>
+<p><code>Item</code> tipi vektörü tutacak olan <em>Key</em> yeteneği ile bir <code>Collection</code> yapısı tanımladık. Şimdi yeni koleksiyona nasıl başlayacağımızı ve <em>bir kaynağın hesap altında nasıl saklanacağını</em> görelim. Bu uygulamada depolanan kaynak, gönderenin adresi altında sonsuza kadar yaşayacaktır. Hiç kimse bu kaynağı değiştiremez veya sahibinden alamaz</p>
+<pre><code class="language-Move">// modules/Collection.move
+module Collection {
+
+    use 0x1::Vector;
+
+    struct Item has store {}
+
+    struct Collection has key {
+        items: vector&lt;Item&gt;
+    }
+
+    /// &amp;signer tipinin geçirildiğine dikkat edin!
+    public fun start_collection(account: &amp;signer) {
+        move_to&lt;Collection&gt;(account, Collection {
+            items: Vector::empty&lt;Collection&gt;()
+        })
+    }
+}
+</code></pre>
+<p><a href="resources/resource-by-example//resources/signer-type.html">Signer'ı</a> hatırlıyor musunuz? Şimdi nasıl çalıştığını görüyorsunuz! Kaynağı hesaba <em>taşımak</em> için, ilk argüman olarak <code>signer</code>ı ve ikinci olarak <code>Collection</code>u alan yerleşik <em>move_to</em> fonksiyonuna sahipsiniz. <code>move_to</code> fonksiyonunun imzası şu şekilde temsil edilebilir:</p>
+<pre><code class="language-Move">
+native fun move_to&lt;T: key&gt;(account: &amp;signer, value: T);
+
+</code></pre>
+<p>Bu iki sonuca yol açar:</p>
+<ol>
+<li>Yalnızca hesabınızın altına bir kaynak koyabilirsiniz. Başka bir hesabın <code>signer</code> değerine erişiminiz olamaz, dolayısıyla oraya kaynak koyamazsınız.</li>
+<li>Tek bir adres altında yalnızca tek bir tür kaynak saklanabilir. Aynı işlemi iki kez yapmak, mevcut kaynağın atılmasına yol açacaktır ve bu olmamalıdır (coinlerinizi depoladığınızı ve yanlış bir işlemle boş bakiyeyi iterek tüm birikimlerinizi attığınızı hayal edin!). Varolan kaynağı oluşturmaya yönelik ikinci deneme, hatayla başarısız olur.</li>
+</ol>
+<h3><a class="header" href="#adreste-varlığı-kontrol-etme" id="adreste-varlığı-kontrol-etme">Adreste Varlığı Kontrol Etme</a></h3>
+<p>Belirtilen adreste kaynağın olup olmadığını kontrol etmek için <code>exists</code> fonksiyonu vardır, imza da buna benzer.</p>
+<pre><code class="language-Move">
+native fun exists&lt;T: key&gt;(addr: address): bool;
+
+</code></pre>
+<p>Jenerik kullanarak bu fonksiyon, tipten bağımsız hale getirilir ve adreste bulunup bulunmadığını kontrol etmek için herhangi bir kaynak türünü kullanabilirsiniz. Aslında, verilen adreste kaynağın olup olmadığını herkes kontrol edebilir. Ancak varlığını kontrol etmek, depolanan değere erişmiyor!</p>
+<p>Kullanıcının zaten koleksiyonu olup olmadığını kontrol etmek için bir fonksiyon yazalım:</p>
+<pre><code class="language-Move">// modules/Collection.move
+module Collection {
+
+    struct Item has store, drop {}
+
+    struct Collection has store, key {
+        items: Item
+    }
+
+    // ... atlandı ...
+
+    /// bu fonksiyon kaynağın adreste olup olmadığını kontrol edecek
+    public fun exists_at(at: address): bool {
+        exists&lt;Collection&gt;(at)
+    }
+}
+</code></pre>
+<hr />
+<p>Artık bir kaynağı nasıl oluşturacağınızı, onu gönderene nasıl taşıyacağınızı ve kaynağın zaten var olup olmadığını nasıl kontrol edeceğinizi biliyorsunuz. Bu kaynağı okumayı ve değiştirmeyi öğrenmenin zamanı geldi!</p>
+<h1><a class="header" href="#kaynak-okuyup-değiştirme" id="kaynak-okuyup-değiştirme">Kaynak Okuyup Değiştirme</a></h1>
+<p>Kaynağı okumak ve değiştirmek için Move'un iki yerleşik işlevi daha vardır. İsimleri hedeflerine mükemmel şekilde uyuyor: <code>borrow_global</code> ve <code>borrow_global_mut</code>.</p>
+<h2><a class="header" href="#borrow_global-ile-değiştirilemeyen-borrow" id="borrow_global-ile-değiştirilemeyen-borrow"><code>Borrow_global</code> ile Değiştirilemeyen borrow</a></h2>
+<p><a href="resources/resource-by-example//advanced-topics/ownership-and-references.html">Sahiplik ve referanslar bölümünde</a> değiştirilebilir (&amp;mut) ve değişmez referansları öğrenmiş olmalısınız. Bu bilgiyi uygulamaya koymanın zamanı geldi!</p>
+<pre><code class="language-Move">// modules/Collection.move
+module Collection {
+
+    // buraya bir gereksinim koyduk!
+    use 0x1::Signer;
+    use 0x1::Vector;
+
+    struct Item has store, drop {}
+    struct Collection has key, store {
+        items: vector&lt;Item&gt;
+    }
+
+    // ... atlandı ...
+
+    /// koleksiyon boyutunu al
+    /// acquires anahtar sözcüğüne dikkat!
+    public fun size(account: &amp;signer): u64 acquires Collection {
+        let owner = Signer::address_of(account);
+        let collection = borrow_global&lt;Collection&gt;(owner);
+
+        Vector::length(&amp;collection.items)
+    }
+}
+</code></pre>
+<p>Burada çok şey yaşandı. İlk olarak, yöntem imzasıyla ilgilenelim. Genel işlev <code>borrow_global&lt;T&gt;</code>, T kaynağına değişmez bir referans verir. İmzası şöyledir:</p>
+<pre><code class="language-Move">
+native fun borrow_global&lt;T: key&gt;(addr: address): &amp;T;
+
+</code></pre>
+<p>Bu fonksiyonu kullanarak, belirli bir adreste depolanan kaynağa okuma erişimi sağlarız. Bu, modülün kaynaklarından herhangi birini herhangi bir adreste okuma yeteneğine sahip olduğu anlamına gelir (bu fonksiyon uygulanmışsa).</p>
+<p>Başka bir sonuç: borrow kontrolü nedeniyle, kaynağa veya içeriğine referansı iade edemezsiniz (çünkü kaynağa yapılan orijinal referans, kapsam sonunda ölecektir).</p>
+<blockquote>
+<p>Kaynak kopyalanamaz bir tür olduğundan, üzerinde '*' referans operatörünü kullanmak mümkün değildir.</p>
+</blockquote>
+<h3><a class="header" href="#acquires-elde-etme-anahtar-kelimesi" id="acquires-elde-etme-anahtar-kelimesi">Acquires (elde etme) anahtar kelimesi</a></h3>
+<p>Anlatmam gereken bir detay daha var. Fonksiyonun dönüş değerinin ardından koyulan <code>acquires</code> anahtar sözcüğü. Bu anahtar kelime, bir fonksiyon tarafından elde edilen tüm kaynakları <em>belirtme</em> işlevi görür. Elde edilen tüm kaynakları belirtmelisiniz. Yuvalanmış fonksiyon çağrısı kaynak elde ediyorsa bile bu kaynağın üst kapsama ait (parent scope) acquires listesinde belirtlilmiş olması gerekmektedir.</p>
+<p><code>acquires</code> ile kullanılan fonksiyonların syntax’ı aşağıdaki gibidir:</p>
+<pre><code class="language-Move">
+fun &lt;name&gt;(&lt;args...&gt;): &lt;ret_type&gt; acquires T, T1 ... {
+
+</code></pre>
+<h2><a class="header" href="#borrow_global_mut-ile-susturulabilen-borrow" id="borrow_global_mut-ile-susturulabilen-borrow"><code>Borrow_global_mut</code> ile susturulabilen borrow</a></h2>
+<p>Kaynağa değiştirilebilir referans almak için, <code>borrow_global</code>'inize <code>_mut</code> ekleyin ve hepsi bu. Koleksiyona yeni (şu anda boş) öğe eklemek için bir işlev ekleyelim.</p>
+<pre><code class="language-Move">module Collection {
+
+    // ... atlandı ...
+
+    public fun add_item(account: &amp;signer) acquires T {
+        let collection = borrow_global_mut&lt;T&gt;(Signer::address_of(account));
+
+        Vector::push_back(&amp;mut collection.items, Item {});
+    }
+}
+</code></pre>
+<p>Kaynağa değiştirilebilir referans, içeriğine değiştirilebilir referanslar oluşturmaya izin verir. Bu nedenle, bu örnekte iç vektör <code>öğelerini</code> değiştirebiliyoruz.</p>
+<p><code>Borrow_global_mut</code> için imza:</p>
+<pre><code class="language-Move">
+native fun borrow_global_mut&lt;T: key&gt;(addr: address): &amp;mut T;
+
+</code></pre>
+<h1><a class="header" href="#kaynakları-alıp-yok-etme" id="kaynakları-alıp-yok-etme">Kaynakları Alıp Yok Etme</a></h1>
+<p>Bu bölümün son fonksiyonu, hesaptan kaynak alan <code>move_from</code> fonksiyonudur. <code>destroy</code> fonksiyonu, kaynakları hesaptan alıp farklı bir yere taşır ve tüm içeriğini yok eder.</p>
+<pre><code class="language-Move">// modules/Collection.move
+module Collection {
+
+    // ... atlandı ...
+
+    public fun destroy(account: &amp;signer) acquires Collection {
+
+        // artık hesaba bağlı bir kaynak yok
+        let collection = move_from&lt;Collection&gt;(Signer::address_of(account));
+
+        // şimdi de varlık değeri (resource value) kullanmamız gerek – onu parçalayacağız
+        // dikkatli bakın - Eşyaların droplanabilmesi gerekmektedir
+        let Collection { items: _ } = collection;
+
+        // tamamlandı. kaynak yok edildi
+    }
+}
+</code></pre>
+<p>Varlık değerinin (resource value) kullanılması şart. Yani kaynak bir hesaptan alındığında ya parçalanmalı ya da dönüş değeri olarak geçirilmeli. Ancak bu değeri dışarıya geçirmenizin ve scriptin içine koymanızın ardından seçenekleriniz oldukça kısıtlı hale geldiği aklınızda bulunsun. Bunun nedeni script bağlamı struct ya da resourceları başka bir yere geçirme dışında bir eylemde bulunmanıza izin vermez. Artık bunu da bildiğinize göre modüllerinizi uygun bir şekilde tasarlayın ve kullanıcıya döndürülen kaynakla ilgili seçenekler sunun.</p>
+<p>En son imza:</p>
+<pre><code class="language-Move">
+native fun move_from&lt;T: key&gt;(addr: address): T;
+
+</code></pre>
+<h1><a class="header" href="#sonraki-adımlar" id="sonraki-adımlar">Sonraki Adımlar</a></h1>
+<p>Bu bölümde, Move syntaxında kaynak kısıtlamalarının nasıl temsil edildiğini gördünüz. Ayrıca kaynakları nasıl oluşturacağınızı, kontrol edeceğinizi, onlara nasıl erişeceğinizi, değiştireceğinizi ve yok edeceğinizi de öğrendiniz. Bu bölümün kitaptaki son bölüm olması gerekiyordu. Ancak bu modülü ihtiyaçlarınıza göre değiştirebilir ve şu seçenekleri düşünebilirsiniz:</p>
+<ol>
+<li>Jeneriklerle herhangi bir tipi desteklemek için bu modülü değiştirmeyi deneyin;</li>
+<li><a href="https://github.com/starcoinorg/starcoin/blob/master/vm/stdlib/modules/Offer.move">Offer modülüne</a> bakın ve başka bir hesaba tahsilat sunmanın bir yolunu düşünün.</li>
+</ol>
+<p>Modül Koleksiyonunun tam koduna <a href="https://github.com/damirka/move-book/blob/master/samples/">GitHub'dan</a> ulaşabilirsiniz.</p>
+<h1><a class="header" href="#Öğretici-tutorial" id="Öğretici-tutorial">Öğretici (Tutorial)</a></h1>
+<p>Bu bölümde Move dilinin temel kullanımlarını kapsayacak ve yeteneklerini gösterecek öğreticiler bulacaksınız.</p>
+<h1><a class="header" href="#erc20-token-yazmak" id="erc20-token-yazmak">ERC20 Token Yazmak</a></h1>
+<p>Yapılacak...</p>
+<h1><a class="header" href="#Çeviriler" id="Çeviriler">Çeviriler</a></h1>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+        
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+        
+        
+
+    </body>
+</html>

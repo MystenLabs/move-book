@@ -1,0 +1,464 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>표현식과 스코프</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Move 프로그래밍 언어</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> 서문</a></li><li class="chapter-item expanded "><a href="../introduction/getting-started.html"><strong aria-hidden="true">3.</strong> 시작하기</a></li><li class="chapter-item expanded "><a href="../syntax-basics/index.html"><strong aria-hidden="true">4.</strong> 구문 기본사항</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../syntax-basics/concept.html"><strong aria-hidden="true">4.1.</strong> 개념</a></li><li class="chapter-item expanded "><a href="../syntax-basics/primitives.html"><strong aria-hidden="true">4.2.</strong> 기본형</a></li><li class="chapter-item expanded "><a href="../syntax-basics/comments.html"><strong aria-hidden="true">4.3.</strong> 주석</a></li><li class="chapter-item expanded "><a href="../syntax-basics/expression-and-scope.html" class="active"><strong aria-hidden="true">4.4.</strong> 표현식과 스코프</a></li><li class="chapter-item expanded "><a href="../syntax-basics/control-flow.html"><strong aria-hidden="true">4.5.</strong> 제어 흐름</a></li><li class="chapter-item expanded "><a href="../syntax-basics/module.html"><strong aria-hidden="true">4.6.</strong> 모듈과 불러오기</a></li><li class="chapter-item expanded "><a href="../syntax-basics/constants.html"><strong aria-hidden="true">4.7.</strong> 상수</a></li><li class="chapter-item expanded "><a href="../syntax-basics/function.html"><strong aria-hidden="true">4.8.</strong> 함수</a></li></ol></li><li class="chapter-item expanded "><a href="../advanced-topics/index.html"><strong aria-hidden="true">5.</strong> 고급 주제</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../advanced-topics/struct.html"><strong aria-hidden="true">5.1.</strong> 구조</a></li><li class="chapter-item expanded "><a href="../advanced-topics/types-with-abilities.html"><strong aria-hidden="true">5.2.</strong> 능력을 지니는 유형</a></li><li class="chapter-item expanded "><a href="../advanced-topics/ownership-and-references.html"><strong aria-hidden="true">5.3.</strong> 소유권과 참조</a></li><li class="chapter-item expanded "><a href="../advanced-topics/understanding-generics.html"><strong aria-hidden="true">5.4.</strong> 제네릭 이해하기</a></li><li class="chapter-item expanded "><a href="../advanced-topics/managing-collections-with-vectors.html"><strong aria-hidden="true">5.5.</strong> 벡터로 집합 관리하기</a></li></ol></li><li class="chapter-item expanded "><a href="../resources/index.html"><strong aria-hidden="true">6.</strong> 프로그래밍 가능한 자원</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../resources/signer-type.html"><strong aria-hidden="true">6.1.</strong> 서명자로서의 전송자</a></li><li class="chapter-item expanded "><a href="../resources/what-is-resource.html"><strong aria-hidden="true">6.2.</strong> 리소스란 무엇인가</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example/index.html"><strong aria-hidden="true">6.3.</strong> 리소스별 예시</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../resources/resource-by-example/storing-new-resource.html"><strong aria-hidden="true">6.3.1.</strong> 리소스 생성 및 이동</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example/access-resource-with-borrow.html"><strong aria-hidden="true">6.3.2.</strong> 리소스 읽기 및 수정</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example/destroy-resource.html"><strong aria-hidden="true">6.3.3.</strong> 리소스 이전 및 파괴</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example/furher-steps.html"><strong aria-hidden="true">6.3.4.</strong> 추가 단계</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../tutorials/index.html"><strong aria-hidden="true">7.</strong> 튜토리얼</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tutorials/erc20.html"><strong aria-hidden="true">7.1.</strong> ERC20 토큰 작성</a></li></ol></li><li class="chapter-item expanded "><a href="../translations.html"><strong aria-hidden="true">8.</strong> 번역본</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#표현식과-스코프" id="표현식과-스코프">표현식과 스코프</a></h1>
+<p>프로그래밍 언어에서 표현식은 값을 반환하는 코드 뭉치입니다. 반환 값을 가지는 함수 호출은 표현식입니다. 이 함수가 반환하는 정수(또는 부울값이나 주소) 또한 표현식입니다. 반환 값은 정수 유형의 값을 가집니다.</p>
+<blockquote>
+<p>표현식은 세미콜론을 사용하여 반드시 분할해 줘야 합니다*</p>
+</blockquote>
+<p><em>* 세미콜론을 입력하는 경우 ‘내부적으로는‘ <code>; (empty_expression)</code>으로 취급됩니다. 세미콜론 이후에 표현식을 배치하는 경우 공백란을 대체할 것입니다.</em></p>
+<h3><a class="header" href="#공백-표현식" id="공백-표현식">공백 표현식</a></h3>
+<p>이 표현식을 직접 사용할 일은 아마 없을 것이지만 Move에서 공백 표현식은 (Rust와 유사한 방식에 해당하는) 빈 괄호로 표기합니다.</p>
+<pre><code class="language-Move">script {
+    fun empty() {
+        () // this is an empty expression
+    }
+}
+</code></pre>
+<p>공백 표현식은 VM이 자동으로 입력하므로 제외해도 무방합니다.</p>
+<h3><a class="header" href="#리터럴-표현식" id="리터럴-표현식">리터럴 표현식</a></h3>
+<p>아래의 코드를 살펴보시면 각 라인에 세미콜론으로 끝나는 표현식이 있는 것을 확인하실 수 있습니다. 마지막 라인에는 세미콜론으로 분리된 표현식이 3개 있습니다.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        10;
+        10 + 5;
+        true;
+        true != false;
+        0x1;
+        1; 2; 3
+    }
+}
+</code></pre>
+<p>좋습니다. 이제 가장 단순한 형태의 표현식들을 배워 보셨는데, 이것들이 필요한 이유는 무엇일까요? 그리고 어떻게 사용할 수 있을까요? <code>let</code> 키워드에 대해 알아볼 시간입니다.</p>
+<h3><a class="header" href="#변수와-let-키워드" id="변수와-let-키워드">변수와 'let' 키워드</a></h3>
+<p>(다른 곳으로 값을 전달하기 위해) 변수에 표현식의 값을 저장하려면 <code>let</code>이라는 키워드가 필요합니다(이미 <a href="/syntax-basics/primitives.html">기본형을 설명하는 장</a>에서 보셨을 것입니다). 이 키워드는 공백(undefined)이거나 표현식의 값이 반영된 새로운 변수를 생성합니다.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let a;
+        let b = true;
+        let c = 10;
+        let d = 0x1;
+        a = c;
+    }
+}
+</code></pre>
+<blockquote>
+<p><code>let</code> 키워드는 <em>현재 스코프</em> 내부에 새로운 변수를 생성하며 부가적으로 값을 반영하여 해당 변수를 <em>초기 설정</em>합니다. 이 표현식에 대응하는 구문은 <code>let &lt;VARIABLE&gt; : &lt;TYPE&gt;;</code> 또는 <code>let &lt;VARIABLE&gt; = &lt;EXPRESSION&gt;</code> 입니다.</p>
+</blockquote>
+<p>변수를 생성하여 초기 설정을 완료한 뒤에는 변수 이름을 사용하여 값을 <em>변경</em>하거나 <em>접근</em>할 수 있습니다. 상기 예시에서 변수 <code>a</code>는 함수 끝부분에서 초기 설정이 이루어졌으며 변수 <code>c</code>의 값을 <em>할당</em> 받았습니다.</p>
+<p>After you've created and initialized variable you're able to <em>modify</em> or <em>access</em> its value by using a variable name. In example above variable <code>a</code> was initialized in the end of function and was <em>assigned</em> a value of variable <code>c</code>.</p>
+<blockquote>
+<p>등호 <code>=</code>는 할당 연산자입니다. 우측 표현식을 좌측 변수에 할당하게 됩니다. 예를 들면 <code>a = 10</code> 이라는 식에서 변수 <code>a</code>는 <code>10</code>이라는 정수가 할당되었습니다</p>
+</blockquote>
+<h3><a class="header" href="#정수형-대응-연산자" id="정수형-대응-연산자">정수형 대응 연산자</a></h3>
+<p>Move에는 정수 값을 변형할 수 있는 다양한 종류의 연산자가 아래와 같이 있습니다.
+| Operator | Op     | Types |                                 |
+|----------|--------|-------|---------------------------------|
+| +        | sum    | uint  | Sum LHS and RHS                 |
+| -        | sub    | uint  | Subtract RHS from LHS           |
+| /        | div    | uint  | Divide LHS by RHS               |
+| *        | mul    | uint  | Multiply LHS times RHS          |
+| %        | mod    | uint  | Division remainder (LHS by RHS) |
+| &lt;&lt;       | lshift | uint  | Left bit shift LHS by RHS       |
+| &gt;&gt;       | rshift | uint  | Right bit shift LHS by RHS      |
+| &amp;        | and    | uint  | Bitwise AND                     |
+| ^        | xor    | uint  | Bitwise XOR                     |
+| |       | or     | uint  | Bitwise OR                      |</p>
+<p><em>LHS - 좌측 표현식, RHS - 우측표현식; uint: u8, u64, u128.</em></p>
+<!--
+
+### Comparison and boolean operators
+
+To build a bool condition by comparing values you have these operators. All of them return `bool` value and require LHS and RHS types match.
+
+| Operator | Op     | Types |                                |
+|----------|--------|-------|--------------------------------|
+| ==       | equal  | any   | Check if LHS equals RHS        |
+|----------|--------|-------|--------------------------------|
+| =<       | equal  | any   | Check if LHS equals RHS        |
+|----------|--------|-------|--------------------------------|
+
+-->
+<h3><a class="header" href="#밑줄-_-로-사용되지-않음을-표기" id="밑줄-_-로-사용되지-않음을-표기">밑줄 &quot;<code>_</code>&quot; 로 사용되지 않음을 표기</a></h3>
+<p>Move에서는 입력된 모든 변수가 사용되어야 합니다(그렇지 않으면 코드가 컴파일되지 않습니다). 따라서 초기 설정(initialize)을 한 변수를 방치해서는 안 되는데, 밑줄 <code>_</code>을 사용하면 의도적으로 <em>사용되지 않은 상태</em>로 표시할 수 있습니다.</p>
+<p>이 스크립트를 컴파일하려고 시도하는 경우 오류가 발생할 것입니다.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let a = 1;
+    }
+}
+</code></pre>
+<p>에러 내용:</p>
+<pre><code>
+    ┌── /scripts/script.move:3:13 ───
+    │
+ 33 │         let a = 1;
+    │             ^ Unused assignment or binding for local 'a'. Consider removing or replacing it with '_'
+    │
+</code></pre>
+<p>컴파일러 메시지가 명확함으로 이런 경우에는 대신 밑줄만 추가하면 되겠습니다.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let _ = 1;
+    }
+}
+</code></pre>
+<h3><a class="header" href="#섀도잉" id="섀도잉">섀도잉</a></h3>
+<p>Move에서는 동일한 변수를 두 번 정의하는 것이 가능한데, 한 가지 제한사항이 있습니다. 바로 계속 사용되어야 하는 상태여야 한다는 것입니다. 상기 예시에서는 두 번째 <code>a</code>변수만 사용되고 있으며, 첫 번째 변수 <code>let a = 1</code>은 사용되지 않은 상태입니다. 바로 다음 라인에서는 첫 번째 변수가 사용되지 않은 그 상태에서 <code>a</code>를 <em>재정의</em>하고 있습니다.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let a = 1;
+        let a = 2;
+        let _ = a;
+    }
+}
+</code></pre>
+<p>그러나 첫 번째 변수를 사용해 줌으로써 정상적으로 진행되도록 할 수 있습니다.</p>
+<pre><code class="language-Move">script {
+    fun main() {
+        let a = 1;
+        let a = a + 2; // though let here is unnecessary
+        let _ = a;
+    }
+}
+</code></pre>
+<h2><a class="header" href="#블록-표현식" id="블록-표현식">블록 표현식</a></h2>
+<p>블록은 표현식이며, <em>중괄호</em> <code>{}</code>로 표시되어 있습니다. 블록에는 다른 표현식(및 다른 블록) 이 들어올 수도 있습니다. 약간의 제한은 있으나, 친숙한 중괄호가 등장하는 것에서 짐작할 수 있듯 함수 바디 또한 블록으로 분류할 수 있습니다.</p>
+<pre><code class="language-Move">script {
+    fun block() {
+        { };
+        { { }; };
+        true;
+        {
+            true;
+
+            { 10; };
+        };
+        { { { 10; }; }; };
+    }
+}
+</code></pre>
+<h3><a class="header" href="#스코프-이해하기" id="스코프-이해하기">스코프 이해하기</a></h3>
+<p>Scope (as it's said in <a href="https://en.wikipedia.org/wiki/Scope_(computer_science)">Wikipedia</a>) is a region of code where binding is valid. In other words - it's a part of code in which variable exists. In Move scope is a block of code surrounded by curly braces - basically a block.</p>
+<blockquote>
+<p>블록의 정의는 실제로 스코프를 정의하는 것입니다.</p>
+</blockquote>
+<pre><code class="language-Move">script {
+    fun scope_sample() {
+        // this is a function scope
+        {
+            // this is a block scope inside function scope
+            {
+                // and this is a scope inside scope
+                // inside functions scope... etc
+            };
+        };
+
+        {
+            // this is another block inside function scope
+        };
+    }
+}
+</code></pre>
+<p>이 샘플에 등장하는 주석에서 볼 수 있듯이 스코프는 블록(또는 함수)을 통해 정의되며, 중첩시키는 것도 가능하며 정의할 수 있는 스코프의 개수에는 제한이 없습니다. </p>
+<h3><a class="header" href="#변수의-지속시간과-가시성" id="변수의-지속시간과-가시성">변수의 지속시간과 가시성</a></h3>
+<p>Let 키워드는 변수를 생성한다는 점은 이미 알고 있지만, 정의된 변수는 해당 정의가 이루어진스코프 내부(즉 중첩된 스코프 내부)에서만 존속한다는 사실은 모르고 계셨을 것입니다. 요약하자면 소속된 스코프 외부에서는 접근할 수 없으며, 해당 스코프가 끝나는 지점에서 곧바로 변수도 수명을 다 합니다.</p>
+<pre><code class="language-Move">script {
+    fun let_scope_sample() {
+        let a = 1; // we've defined variable A inside function scope
+
+        {
+            let b = 2; // variable B is inside block scope
+
+            {
+                // variables A and B are accessible inside
+                // nested scopes
+                let c = a + b;
+
+            }; // in here C dies
+
+            // we can't write this line
+            // let d = c + b;
+            // as variable C died with its scope
+
+            // but we can define another C
+            let c = b - 1;
+
+        }; // variable C dies, so does C
+
+        // this is impossible
+        // let d = b + c;
+
+        // we can define any variables we want
+        // no name reservation happened
+        let b = a + 1;
+        let c = b + 1;
+
+    } // function scope ended - a, b and c are dropped and no longer accessible
+}
+</code></pre>
+<blockquote>
+<p>변수는 정의된 스코프(또는 블록) 내부에만 존재합니다. 소속된 스코프가 끝나는 시점에 변수도 수명이 끝납니다.</p>
+</blockquote>
+<h3><a class="header" href="#블록-반환값" id="블록-반환값">블록 반환값</a></h3>
+<p>앞서 블록은 표현식이라는 점을 배워보았는데, 왜 그런지, 그리고 블록의 반환값은 무엇인지에 대해서는 아직 다루지 않았습니다.</p>
+<blockquote>
+<p>블록은 값을 반환할 수 있는데, 이 때 반환되는 값은 세미콜론이 뒤에 붙지 않는다면 해당 블록 내부에 있는 마지막 표현식의 값에 해당합니다.</p>
+</blockquote>
+<p>조금 어려울 수 있으니 예시를 몇 개 들도록 하겠습니다.</p>
+<pre><code class="language-Move">script {
+    fun block_ret_sample() {
+
+        // since block is an expression, we can
+        // assign it's value to variable with let
+        let a = {
+
+            let c = 10;
+
+            c * 1000  // no semicolon!
+        }; // scope ended, variable a got value 10000
+
+        let b = {
+            a * 1000  // no semi!
+        };
+
+        // variable b got value 10000000
+
+        {
+            10; // see semi!
+        }; // this block does not return a value
+
+        let _ = a + b; // both a and b get their values from blocks
+    }
+}
+</code></pre>
+<blockquote>
+<p>(세미콜론 없는) 스코프 내부의 마지막 표현식이 바로 해당 스코프의 반환값입니다.</p>
+</blockquote>
+<h3><a class="header" href="#요약" id="요약">요약</a></h3>
+<p>이 장의 핵심을 요약해 보겠습니다.</p>
+<ol>
+<li>각 표현식은 블록의 반환값인 경우를 제외하고는 반드시 세미콜론으로 끝나야 합니다;</li>
+<li><code>let</code> 키워드는 값을 지니는 변수를 새로 생성하거나, 자신이 포함된 스코프와 동일한 지속시간을 지니는 우측 표현식을 생성합니다.</li>
+<li>블록은 반환값을 가지거나 가지지 않는 표현식입니다.</li>
+</ol>
+<p>다음으로 실행 흐름을 제어하는 방법과 논리 스위치에 블록을 사용하는 방법을 살펴보겠습니다.</p>
+<h3><a class="header" href="#추가-참고-자료" id="추가-참고-자료">추가 참고 자료</a></h3>
+<ul>
+<li><a href="https://community.diem.com/t/odd-error-when-semi-is-put-after-break-or-continue/2868">공백 표현식 및 세미콜론을 다룬 Diem 커뮤니티 게시글</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../syntax-basics/comments.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../syntax-basics/control-flow.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../syntax-basics/comments.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../syntax-basics/control-flow.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

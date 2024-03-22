@@ -1,0 +1,300 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Giriş</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Move Programlama Dili</a></li><li class="chapter-item expanded "><a href="../introduction/foreword.html"><strong aria-hidden="true">2.</strong> Önsöz</a></li><li class="chapter-item expanded "><a href="../introduction/getting-started.html" class="active"><strong aria-hidden="true">3.</strong> Giriş</a></li><li class="chapter-item expanded "><a href="../syntax-basics/index.html"><strong aria-hidden="true">4.</strong> Temel Syntax Kavramları</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../syntax-basics/concept.html"><strong aria-hidden="true">4.1.</strong> Konsept</a></li><li class="chapter-item expanded "><a href="../syntax-basics/primitives.html"><strong aria-hidden="true">4.2.</strong> İlkel Veri Tipleri</a></li><li class="chapter-item expanded "><a href="../syntax-basics/comments.html"><strong aria-hidden="true">4.3.</strong> Comment (Yorum)</a></li><li class="chapter-item expanded "><a href="../syntax-basics/expression-and-scope.html"><strong aria-hidden="true">4.4.</strong> ifade ve Kapsam</a></li><li class="chapter-item expanded "><a href="../syntax-basics/control-flow.html"><strong aria-hidden="true">4.5.</strong> Kontrol Akışı</a></li><li class="chapter-item expanded "><a href="../syntax-basics/module.html"><strong aria-hidden="true">4.6.</strong> Modüller ve İçe Aktarım (Import)</a></li><li class="chapter-item expanded "><a href="../syntax-basics/constants.html"><strong aria-hidden="true">4.7.</strong> Sabitler (Constants)</a></li><li class="chapter-item expanded "><a href="../syntax-basics/function.html"><strong aria-hidden="true">4.8.</strong> Fonksiyonlar</a></li></ol></li><li class="chapter-item expanded "><a href="../advanced-topics/index.html"><strong aria-hidden="true">5.</strong> Gelişmiş Başlıklar</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../advanced-topics/struct.html"><strong aria-hidden="true">5.1.</strong> Yapılar (Structures)</a></li><li class="chapter-item expanded "><a href="../advanced-topics/types-with-abilities.html"><strong aria-hidden="true">5.2.</strong> Yetenekli Tipler</a></li><li class="chapter-item expanded "><a href="../advanced-topics/ownership-and-references.html"><strong aria-hidden="true">5.3.</strong> Sahiplik ve Referanslar</a></li><li class="chapter-item expanded "><a href="../advanced-topics/understanding-generics.html"><strong aria-hidden="true">5.4.</strong> Jenerikler (Generics)</a></li><li class="chapter-item expanded "><a href="../advanced-topics/managing-collections-with-vectors.html"><strong aria-hidden="true">5.5.</strong> Vektör ile Koleksiyonları Kontrol Etmek</a></li></ol></li><li class="chapter-item expanded "><a href="../resources/index.html"><strong aria-hidden="true">6.</strong> Programlanabilir Kaynaklar</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../resources/signer-type.html"><strong aria-hidden="true">6.1.</strong> Göndericinin Signer Olması</a></li><li class="chapter-item expanded "><a href="../resources/what-is-resource.html"><strong aria-hidden="true">6.2.</strong> Kaynak Nedir</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example/index.html"><strong aria-hidden="true">6.3.</strong> Kaynak Örnekleri</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../resources/resource-by-example/storing-new-resource.html"><strong aria-hidden="true">6.3.1.</strong> Kaynak Yaratma ve Taşıma</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example/access-resource-with-borrow.html"><strong aria-hidden="true">6.3.2.</strong> Kaynak Okuyup Değiştirme</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example/destroy-resource.html"><strong aria-hidden="true">6.3.3.</strong> Kaynakları Alıp Yok Etme</a></li><li class="chapter-item expanded "><a href="../resources/resource-by-example/furher-steps.html"><strong aria-hidden="true">6.3.4.</strong> Sonraki Adımlar</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../tutorials/index.html"><strong aria-hidden="true">7.</strong> Öğretici (Tutorial)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tutorials/erc20.html"><strong aria-hidden="true">7.1.</strong> ERC20 Token Yazmak</a></li></ol></li><li class="chapter-item expanded "><a href="../translations.html"><strong aria-hidden="true">8.</strong> Çeviriler</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#giriş" id="giriş">Giriş</a></h1>
+<blockquote>
+<p><strong>Uyarı:</strong> Bu sayfada bulunan içerik güncel değildir ve yeniden düzenlenmesi gerekmektedir. Move IDE için daha yeni bir sürüm yakın zamanda yayınlanacaktır. Şimdilik <a href="https://github.com/diem/move/tree/main/language/tools/move-cli">move-cli</a> kullanmanızı öneriyorum.</p>
+</blockquote>
+<hr />
+<p>Her derlenmiş dilde olduğu gibi Move uygulamalarını derlememiz (compile), çalıştırmamız (run) ve hata ayıklaması (debug) yapmamız için gereken birtakım araçlara ihtiyacımız vardır. Move, blockchainler için oluşturulduğu ve sadece blockchainler içerisinde kullanıldığı için kodları zincir dışında çalıştırmak pek de basit değildir. Her modülün bir ortama, hesap yönetimi özelliğine ve compile-publishing sistemine ihtiyacı vardır.</p>
+<p>Move modüllerinin geliştirilmesini basitleştirmek adına Visual Studio Code için bir <a href="https://github.com/damirka/vscode-move-ide">Move IDE</a> uzantısı oluşturdum. Bu uzantı ortamın gereksinimleriyle başa çıkmanızı kolaylaştıracaktır. Bu uzantıyı kullanmanızı şiddetle tavsiye ediyorum çünkü build ve run ortamlarını sizin için halledecektir ve bu sayede CLI ile uğraşmanıza gerek kalmadan Move dilini öğrenmeye odaklanmanızı sağlayacaktır. Bu uzantı aynı zamanda hata ayıklamanızı kolaylaştıran Move syntax highlighter ve yürütücü özelliklerine de sahiptir.</p>
+<h2><a class="header" href="#move-ide-kurulumu" id="move-ide-kurulumu">Move IDE Kurulumu</a></h2>
+<p>Kurulum için aşağıdakilere ihtiyacınız vardır</p>
+<ol>
+<li>VSCode (1.43.0 sürümü veya daha iyisi) - <a href="https://code.visualstudio.com/download">buradan indirebilirsiniz;</a>; zaten kuruluysa 2. adıma geçiniz;</li>
+<li>Move IDE – VSCode’u kurduktan sonra Move IDE’nin en güncel sürümünü indirmek için <a href="https://marketplace.visualstudio.com/items?itemName=damirka.move-ide">bu linke tıklayınız.</a> .</li>
+</ol>
+<h3><a class="header" href="#kurulum-ortamı" id="kurulum-ortamı">Kurulum Ortamı</a></h3>
+<p>Move IDE dizin yapınızı düzenlemeniz için size tek bir yol sunar. Projeniz için yeni bir dizin oluşturun ve VSCode ile açın. Ardından bu dizin yapısını kurun.</p>
+<pre><code>modules/   - modüllerimiz için kullanacağımız dizin
+scripts/   - transaction scriptleri için kullanacağımız dizin
+out/       - derlediğimiz kaynaklar (source) bu dizinde toplanacaktır
+
+</code></pre>
+<p>Ayrıca <code>.mvconfig.json</code> adlı bir dosya yaratmanız gerekmektedir. Bu dosya çalışma ortamınızı yapılandıracaktır. Aşağıda <code>libra</code> için bir örnek bulunmaktadır:</p>
+<pre><code class="language-json">{
+    &quot;network&quot;: &quot;libra&quot;,
+    &quot;sender&quot;: &quot;0x1&quot;
+}
+</code></pre>
+<p>Alternatif olarak ağınız için <code>dfinance</code> de kullanabilirsiniz:</p>
+<pre><code class="language-json">{
+    &quot;network&quot;: &quot;dfinance&quot;,
+    &quot;sender&quot;: &quot;0x1&quot;
+}
+</code></pre>
+<blockquote>
+<p>dfinance bech32 ‘wallet1…’ adreslerini, libra da 16-byte ‘0x…’ adreslerini kullanmaktadır. Yerel olarak çalıştırmak ve denemek istiyorsanız basit ve kısa olan 0x1 adresi yeterli olacaktır. Fakat gerçek blockchainlerle testnet ya da üretim ortamlarında çalışacaksanız seçtiğiniz network için uygun olan adresi kullanmanız gerekmektedir.</p>
+</blockquote>
+<h2><a class="header" href="#İlk-move-uygulamanız" id="İlk-move-uygulamanız">İlk Move uygulamanız</a></h2>
+<p>Move IDE kodlarınızı test ortamlarında çalıştırmanıza olanak sunar. Gelin <code>gimme_five()</code> fonksiyonunu VSCode’da çalıştırarak nasıl yapıldığına bir göz atalım.</p>
+<h3><a class="header" href="#module-oluşturmak" id="module-oluşturmak">Module oluşturmak</a></h3>
+<p>Projenizin <code>modules/</code> dizininde <code>hello_world.move</code> adlı bir dosya oluşturun.</p>
+<pre><code class="language-Move">// modules/hello_world.move
+address 0x1 {
+module HelloWorld {
+    public fun gimme_five(): u8 {
+        5
+    }
+}
+}
+</code></pre>
+<blockquote>
+<p>0x1 yerine kendi adresinizi kullanmaya karar verdiyseniz bu ve bunun ardından göreceğiniz dosyada da 0x1 yazan kısmı doğru adresle değiştirmeyi unutmayın.</p>
+</blockquote>
+<h3><a class="header" href="#script-yazmak" id="script-yazmak">Script Yazmak</a></h3>
+<p>Daha sonra <code>scripts/</code> dizininin içinde bir script oluşturun. Adını <code>me.move</code> koyalım:</p>
+<pre><code class="language-Move">// scripts/run_hello.move
+script {
+    use 0x1::HelloWorld;
+    use 0x1::Debug;
+
+    fun main() {
+        let five = HelloWorld::gimme_five();
+
+        Debug::print&lt;u8&gt;(&amp;five);
+    }
+}
+</code></pre>
+<p>Sonra kodunuzu açık bırakarak aşağıdaki adımları takip edin:</p>
+<ol>
+<li><code>⌘+Shift+P</code> (on Mac) or <code>Ctrl+Shift+P</code> (on Linux/Windows) tuşlarına basarak VSCode'un command palette özelliğini açın.</li>
+<li><code>&gt;Move: Run Script</code> yazın ve Enter'a basın ya da doğru seçeneği gördüğünüzde üzerine tıklayın.</li>
+</ol>
+<p>İşte bu kadar! Debug kısmında printlenen değerin ‘5’ olduğu bir log mesajı olan yürütme sonucununu görüyor olmanız lazım. Karşınıza çıkan pencere bu değilse bu kısmı bir daha gözden geçirin.</p>
+<p>Dizin yapınızın aşağıdaki gibi gözükmesi gerekmektedir:</p>
+<pre><code>modules/
+  hello_world.move
+scripts/
+  run_hello.move
+out/
+.mvconfig.json
+</code></pre>
+<blockquote>
+<p>Modüllerinizi koyduğunuz ‘modules’ dizinine istediğiniz kadar modül koyabilirsiniz. Modüllerinizin hepsine script’inizde erişebileceksiniz. Her biri. mvconfig.json dosyasında belirttiğiniz adreslerde bulunacaktır.</p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../introduction/foreword.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../syntax-basics/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../introduction/foreword.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../syntax-basics/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
