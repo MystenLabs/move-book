@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <meta http-equiv="refresh" content="0; URL=foreword">
+    <link rel="canonical" href="foreword">
+  </head>
+  <body>
+      <p>Redirecting to... <a href="foreword">foreword</a>.</p>
+  </body>
+</html>
