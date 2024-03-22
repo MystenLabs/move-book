@@ -8,7 +8,6 @@ Original by Dempfi (https://github.com/dempfi/ayu)
   overflow-x: auto;
   background: #191f26;
   color: #e6e1cf;
-  padding: 0.5em;
 }
 
 .hljs-comment,
@@ -76,4 +75,14 @@ Original by Dempfi (https://github.com/dempfi/ayu)
 
 .hljs-deletion {
   color: #d96c75;
+}
+
+/* Custom */
+
+.hljs.language-undefined {
+  font-weight: 400;
+  line-height: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  background: none;
 }
