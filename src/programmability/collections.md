@@ -1,6 +1,6 @@
 # Collections
 
-Collection types are a fundamental part of any programming language. They are used to store a collection of data, such as a list of items. The `vector` type has already been covered in the [vector section](../basic-syntax/standard-library.md), and in this chapter we will cover the collection types offered by the Sui Framework.
+Collection types are a fundamental part of any programming language. They are used to store a collection of data, such as a list of items. The `vector` type has already been covered in the [vector section](./../basic-syntax/vector.md), and in this chapter we will cover the collection types offered by the [Sui Framework](./sui-framework.md).
 
 - [VecSet](#VecSet)
 - [VecMap](#VecMap)

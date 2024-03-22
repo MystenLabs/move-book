@@ -17,22 +17,7 @@ In the [Sui Object Model](./../concepts/object-model.md), capabilities are repre
 A very common practice is to create a single `AdminCap` object on package publish. This way, the application can have a setup phase where the admin account prepares the state of the application.
 
 ```move
-module book::admin_cap {
-    use sui::object::new as TxContext.fresh_uid;
-
-    /// The capability granting the admin privileges in the system.
-    /// Created only once in the `init` function.
-    struct AdminCap has key { id: UID }
-
-    /// Create the AdminCap object on package publish and transfer it to the
-    /// package owner.
-    fun init(ctx: &mut TxContext) {
-        transfer::transfer(
-            AdminCap { id: ctx.fresh_uid() },
-            ctx.sender()
-        )
-    }
-}
+{{#include ../../samples/sources/programmability/capability.move:admin_cap}}
 ```
 
 ## Address check vs Capability
@@ -42,25 +27,20 @@ Utilizing objects as capabilities is a relatively new concept in blockchain prog
 Let's look at how the `new` function that creates a user would look like if it was using the address check:
 
 ```move
-/// Creates a new user in the system. Requires the sender to be the application
-/// admin.
-public fun new_addr_check(ctx: &mut TxContext): User {
-    assert!(ctx.sender() == APPLICATION_ADMIN, ENotAuthorized);
-    User { id: ctx.fresh_uid() }
-}
+{{#include ../../samples/sources/programmability/capability.move:with_address}}
+```
 
-/// Creates a new user in the system. Requires the `AdminCap` capability to be
-/// passed as the first argument.
-public fun new(_: &AdminCap, ctx: &mut TxContext): User {
-    User { id: ctx.fresh_uid() }
-}
+And now, let's see how the same function would look like with the capability:
+
+```move
+{{#include ../../samples/sources/programmability/capability.move:with_capability}}
 ```
 
 Using capabilities has several advantages over the address check:
 
-- Migration of admin rights is easier with capabilities. If the admin address changes, all the functions that check the address need to be updated - hence, require [package upgrade](./package-upgrades.md).
+- Migration of admin rights is easier with capabilities due to them being objects. In case of address, if the admin address changes, all the functions that check the address need to be updated - hence, require a [package upgrade](./package-upgrades.md).
 - Function signatures are more descriptive with capabilities. It is clear that the `new` function requires the `AdminCap` to be passed as an argument. And this function can't be called without it.
-- Object Capabilities don't require the extra check in the function body, and hence, decrease the chance of a developer mistake.
+- Object Capabilities don't require extra checks in the function body, and hence, decrease the chance of a developer mistake.
 - An owned Capability also serves in discovery. The owner of the AdminCap can see the object in their account (via a Wallet or Explorer), and know that they have the admin rights. This is less transparent with the address check.
 
-However, the address check has its own advantages. For example, if an address is multisig, and transaction building gets more complex, it might be easier to check the address. Also, if there's a central object of the application that is used in every function, it can store the admin address, and this would simplify migration. The central object approach is also valuable for revokable capabilities, where the admin can revoke the capability from the user.
+However, the address approach has its own advantages. For example, if an address is multisig, and transaction building gets more complex, it might be easier to check the address. Also, if there's a central object of the application that is used in every function, it can store the admin address, and this would simplify migration. The central object approach is also valuable for revokable capabilities, where the admin can revoke the capability from the user.

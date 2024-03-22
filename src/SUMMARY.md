@@ -139,7 +139,7 @@ comparison to docs.sui.io
     - [Sui Framework](./programmability/sui-framework.md)
     - [Witness and Abstract Implementation](./programmability/witness-and-abstract-implementation.md)
     - [Events](./programmability/events.md)
-    - [Display]()
+    - [Display](./programmability/display.md)
     - [One Time Witness]()
     - [Pattern: Request]()
     - [Pattern: Hot Potato]()

@@ -5,18 +5,30 @@ To talk about best practices for upgradability, we need to first understand what
 ```move
 // module can not be removed from the package
 module book::upgradable {
-    // dependencies can be changed
-    use sui::tx_context::TxContext;
-    use sui::object::UID;
+    // dependencies can be changed (if they are not used in public signatures)
+    use std::string::String;
+    use sui::event; // can be removed
 
     // public structs can not be removed and can't be changed
     public struct Book has key {
-        id: UID
+        id: UID,
+        title: String,
+    }
+
+    // public structs can not be removed and can't be changed
+    public struct BookCreated has copy, drop {
+        /* ... */
     }
 
     // public functions can not be removed and their signature can never change
+    // but the implementation can be changed
     public fun create_book(ctx: &mut TxContext): Book {
         create_book_internal(ctx)
+
+        // can be removed and changed
+        event::emit(BookCreated {
+            /* ... */
+        })
     }
 
     // friend-only functions can be removed and changed
