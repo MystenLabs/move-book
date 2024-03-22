@@ -4,9 +4,6 @@
 module book::testing {
     use std::string::String;
 
-    use fun std::string::utf8 as vector.to_string;
-
-
     public struct Whoa {
         name: String
     }

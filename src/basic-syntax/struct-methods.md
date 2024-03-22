@@ -19,10 +19,10 @@ For modules that define multiple structs and their methods, it is possible to de
 The syntax for aliases is:
 ```move
 // for local method association
-use fun <function_path> as <Type>.<method_name>;
+use fun function_path as Type.method_name;
 
 // exported alias
-public use fun <function_path> as <Type>.<method_name>;
+public use fun function_path as Type.method_name;
 ```
 
 > Public aliases are only allowed for structs defined in the same module. If a struct is defined in another module, an alias can still be created but cannot be made public.

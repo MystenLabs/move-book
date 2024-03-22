@@ -34,8 +34,6 @@ module book::collections {
     use std::string::String;
     use sui::vec_map::{Self, VecMap};
 
-    use fun std::string::utf8 as vector.to_string;
-
     public struct Metadata has drop {
         name: String,
         /// `VecMap` used in the struct definition

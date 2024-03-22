@@ -7,8 +7,6 @@ module book::type_reflection {
     use std::ascii::String;
     use std::type_name::{Self, TypeName};
 
-    use fun std::ascii::string as vector.to_ascii_string;
-
     /// A function that returns the name of the type `T` and its module and address.
     public fun do_i_know_you<T>(): (String, String, String) {
         let type_name: TypeName = type_name::get<T>();

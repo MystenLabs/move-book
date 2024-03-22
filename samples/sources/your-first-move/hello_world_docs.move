@@ -3,17 +3,17 @@
 
 /// This module contains a function that returns a string "Hello, World!".
 module book::hello_world_docs {
-    use std::string::{Self, String};
+    use std::string::String;
 
     /// As the name says: returns a string "Hello, World!".
     public fun hello_world(): String {
-        string::utf8(b"Hello, World!")
+        b"Hello, World!".to_string()
     }
 
     #[test]
     /// This is a test for the `hello_world` function.
     fun test_is_hello_world() {
-        let expected = string::utf8(b"Hello, World!");
+        let expected = b"Hello, World!".to_string();
         let actual = hello_world();
 
         assert!(actual == expected, 0)

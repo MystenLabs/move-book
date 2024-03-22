@@ -5,8 +5,6 @@
 module book::struct_syntax {
     use std::string::{Self, String};
 
-    use fun std::string::utf8 as vector.to_string;
-
 // ANCHOR: def
 /// A struct representing an artist.
 public struct Artist {

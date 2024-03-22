@@ -5,8 +5,6 @@
 module book::control_flow {
 // ANCHOR_END: module
 
-    use fun std::string::utf8 as vector.to_string;
-
     // ANCHOR: if_condition
     #[test]
     fun test_if() {

@@ -59,10 +59,14 @@ comparison to docs.sui.io
     - [Move 2024](before-we-begin/move-2024.md)
 - [Your First Move](your-first-move/README.md)
     - [Hello World!](your-first-move/hello-world.md)
+    - [Your First Sui App](./hello-sui/README.md)
+    - [Publishing]()
+    - [Hello Sui!](./hello-sui/hello-sui.md)
+    - [Using Objects](./hello-sui/module-structure.md)
     - [Adding Tests](your-first-move/adding-tests.md)
     - [Debugging](your-first-move/debugging.md)
     - [Generating Docs](your-first-move/generating-docs.md)
-    <!-- - [Publishing]() -->
+    <!-- TODO:  -->
     <!-- - [Send a Transaction]() -->
 - [Concepts](./concepts/README.md)
     - [What is a Package](./concepts/packages.md)
@@ -73,12 +77,6 @@ comparison to docs.sui.io
     - [Account](./concepts/what-is-an-account.md)
     - [Transaction](./concepts/what-is-a-transaction.md)
     - [Object Model](./concepts/object-model.md)
-- [Your First Sui App](./hello-sui/README.md)
-    - [Hello Sui!](./hello-sui/hello-sui.md)
-    - [Using Objects](./hello-sui/module-structure.md)
-    - [Testing]()
-    - [Publish and Interact]()
-    - [Ideas]()
 - [Syntax Basics](./basic-syntax/README.md)
     - [Module](./basic-syntax/module.md)
     - [Comments](./basic-syntax/comments.md)
@@ -136,11 +134,11 @@ comparison to docs.sui.io
     - [Dynamic Fields](./programmability/dynamic-fields.md)
     - [Dynamic Collections]() <!-- (./programmability/dynamic-collections.md) -->
     - [Package Upgrades]()<!-- (./programmability/package-upgrades.md) -->
+    - [One Time Witness]()
     - [Sui Framework](./programmability/sui-framework.md)
     - [Witness and Abstract Implementation](./programmability/witness-and-abstract-implementation.md)
     - [Events](./programmability/events.md)
     - [Display](./programmability/display.md)
-    - [One Time Witness]()
     - [Pattern: Request]()
     - [Pattern: Hot Potato]()
     - [Pattern: Object Capability]()

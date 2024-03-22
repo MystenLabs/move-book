@@ -29,8 +29,6 @@ module book::arena {
     use sui::package;
     use sui::display;
 
-    use fun std::string::utf8 as vector.to_string;
-
     /// The One Time Witness to claim the `Publisher` object.
     public struct ARENA has drop {}
 
