@@ -3470,9 +3470,9 @@ Showcase how witness-gated functions can be used to implement abstract methods.
 <div style="break-before: page; page-break-before: always;"></div><h1 id="object-display"><a class="header" href="#object-display">Object Display</a></h1>
 <p>Objects on Sui are explicit in their structure and behavior and can be displayed in an understandable way. However, to support richer metadata for clients, there's a standard and efficient way of "describing" them to the client - the <code>Display</code> object defined in the <a href="programmability/./sui-framework.html">Sui Framework</a>.</p>
 <h2 id="background"><a class="header" href="#background">Background</a></h2>
-<p>Historically, there were different attempts to define a standard structure of an object so it can be displayed in a user interface. One of the approaches was to define certain fields in the object struct which, when present, would be used in the UI. This approach was not flexible enough and required developers to define the same fields in every object, and sometimes the fields did not make sense for the object.</p>
+<p>Historically, there were different attempts to agree on a standard structure of an object so it can be displayed in a user interface. One of the approaches was to define certain fields in the object struct which, when present, would be used in the UI. This approach was not flexible enough and required developers to define the same fields in every object, and sometimes the fields did not make sense for the object.</p>
 <pre><code class="language-move">/// An attempt to standardize the object structure for display.
-public struct OldWays has key {
+public struct CounterWithDisplay has key {
     id: UID,
     /// If this field is present it will be displayed in the UI as `name`.
     name: String,
@@ -3480,12 +3480,12 @@ public struct OldWays has key {
     description: String,
     // ...
     image: String,
-    /// Other fields that are not displayed in the UI.
+    /// Actual fields of the object.
     counter: u64,
     // ...
 }
 </code></pre>
-<p>Also, if any of the fields contained static data, it would be duplicated in every object. And, since Move does not have interfaces, it is not possible to know if an object has a specific field without "manually" checking the object's type, which makes the client fetching more complex.</p>
+<p>If any of the fields contained static data, it would be duplicated in every object. And, since Move does not have interfaces, it is not possible to know if an object has a specific field without "manually" checking the object's type, which makes the client fetching more complex.</p>
 <h2 id="object-display-1"><a class="header" href="#object-display-1">Object Display</a></h2>
 <p>To address these issues, Sui introduces a standard way of describing an object for display. Instead of defining fields in the object struct, the display metadata is stored in a separate object, which is associated with the type. This way, the display metadata is not duplicated, and it is easy to extend and maintain.</p>
 <p>Another important feature of Sui Display is the ability to define templates and use object fields in those templates. Not only it allows for a more flexible display, but it also frees the developer from the need to define the same fields with the same names and types in every object.</p>
@@ -3560,7 +3560,7 @@ public struct OldWays has key {
 <blockquote>
 <p>Please, refer to the <a href="https://docs.sui.io/standards/display">Sui Documentation</a> for the most up-to-date list of supported fields.</p>
 </blockquote>
-<p>While there's a standard set of fields, the Display object does not enforce them. The developer can define any fields they need, and the client can use them as they see fit. Some applications may require additional fields, and the Display object is flexible enough to support them.</p>
+<p>While there's a standard set of fields, the Display object does not enforce them. The developer can define any fields they need, and the client can use them as they see fit. Some applications may require additional fields, and omit other, and the Display is flexible enough to support them.</p>
 <h2 id="working-with-display"><a class="header" href="#working-with-display">Working with Display</a></h2>
 <p>The <code>Display</code> object is defined in the <code>sui::display</code> module. It is a generic struct that takes a phantom type as a parameter. The phantom type is used to associate the <code>Display</code> object with the type it describes. The <code>fields</code> of the <code>Display</code> object are a <code>VecMap</code> of key-value pairs, where the key is the field name and the value is the field value. The <code>version</code> field is used to version the display metadata, and is updated on the <code>update_display</code> call.</p>
 <p>File: sui-framework/sources/display.move</p>
