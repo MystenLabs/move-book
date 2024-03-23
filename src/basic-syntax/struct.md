@@ -1,6 +1,6 @@
 # Custom Types with Struct
 
-Move type system shines when it comes to defining custom types. User defined types can be custom tailored to the specific needs of the application. Not just on the data level, but also in its behavior. In this section we introduce the struct definition and how to use it.
+You can custom tailor user-defined types to the specific needs of the application. Not just on the data level, but also in its behavior. In this section we introduce the struct definition and how to use it.
 
 ## Struct
 
@@ -12,7 +12,7 @@ To define a custom type, you can use the `struct` keyword followed by the name o
 {{#include ../../samples/sources/basic-syntax/struct.move:def}}
 ```
 
-In the example above, we define a `Record` struct with five fields. The `title` field is of type `String`, the `artist` field is of type `Artist`, the `year` field is of type `u16`, the `is_debut` field is of type `bool`, and the `edition` field is of type `Option<u16>`. The `edition` field is of type `Option<u16>` to represent that the edition is optional.
+In this example, we define a `Record` struct with five fields. The `title` field is of type `String`, the `artist` field is of type `Artist`, the `year` field is of type `u16`, the `is_debut` field is of type `bool`, and the `edition` field is of type `Option<u16>`. The `edition` field is of type `Option<u16>` to represent that the edition is optional.
 
 Structs are private by default, meaning they cannot be imported and used outside of the module they are defined in. Their fields are also private and can't be accessed from outside the module. See [visibility](./visibility.md) for more information on different visibility modifiers.
 
@@ -34,7 +34,7 @@ To access the fields of a struct, you can use the `.` operator followed by the f
 {{#include ../../samples/sources/basic-syntax/struct.move:access}}
 ```
 
-Only module defining the struct can access its fields (both mutably and immutably). So the above code should be in the same module as the `Artist` struct.
+Only the module defining the struct can access its fields (both mutably and immutably). So the above code should be in the same module as the `Artist` struct.
 
 ## Unpacking a struct
 

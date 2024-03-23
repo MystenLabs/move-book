@@ -1,0 +1,22 @@
+This might be able to be done automagically. Right now it's just a running list of terms to _consider_ including if not.
+
+- implicit import
+- package
+- smart contract
+- Move
+- Move 2024
+- bytecode
+- module
+- address
+- object ownership
+- global storage
+- immutable
+- mutable
+- public
+- scope
+- Sui
+- Sui CLI
+- context
+- string literal
+- shadowing; as in "Variables can also be shadowed by re-declaring"
+- Arithmetic

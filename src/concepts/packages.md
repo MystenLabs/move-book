@@ -16,7 +16,7 @@
 
 -->
 
-Move is a language for writing smart contracts - programs that are stored and run on the blockchain. A single program is organized into a package. A package is published on the blockchain and is identified by an [address](./address.md). A published package can be interacted with by sending [transactions](./what-is-a-transaction.md) calling its functions. It can also act as a dependency for other packages.
+Move is a language for writing smart contracts - programs that you store and run on blockchains. A single program is organized into a package. A package is published on the blockchain and is identified by an [address](./address.md). A published package can be interacted with by sending [transactions](./what-is-a-transaction.md) calling its functions. It can also act as a dependency for other packages.
 
 > To create a new package, use the `sui move new` command.
 > To learn more about the command, run `sui move new --help`.
@@ -32,6 +32,8 @@ package 0x...
         struct B1
         fun hello_package()
 ```
+
+<!-- I think maybe the next section Package Structure is the one I think belongs least in a topic with this title. Might be worth it to start a new topic at the Syntax Basics level dealing with packages...structure, modules, imports, publishing, updating and would capture some of the bullets in the list at the top -->
 
 ## Package Structure
 
@@ -53,6 +55,8 @@ Move.toml
 The `tests` directory is optional and contains tests for the package. Code placed into the `tests` directory is not published on-chain and is only available in tests. The `examples` directory can be used for code examples, and is also not published on-chain.
 
 ## Published Package
+
+<!-- Not sure this section speaks to What is a Package, either.  
 
 During development, package doesn't have an address and it needs to be set to `0x0`. Once a package is published, it gets a single unique [address](./address.md) on the blockchain containing its modules' bytecode. A published package becomes *immutable* and can be interacted with by sending transactions.
 

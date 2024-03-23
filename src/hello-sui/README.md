@@ -12,4 +12,6 @@ The chapter is split into the following parts (in order):
 - [Build and Publish](./build-and-publish.md)
 - [Testing](./testing.md)
 
+
 Additionally, there's a section with ideas for further development of the application which you may get back to as you progress through the book.
+<!-- ^ Should link to that section ^ -->

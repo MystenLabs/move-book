@@ -28,6 +28,8 @@ The standard library provides methods to manipulate vectors. The following are s
 
 ## Destroying a Vector of non-droppable types
 
+<!-- What are the non-droppable types? -->
+
 A vector of non-droppable types cannot be discarded. If you define a vector of types without `drop` ability, the vector value cannot be ignored. However, if the vector is empty, compiler requires an explicit call to `destroy_empty` function.
 
 ```move

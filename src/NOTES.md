@@ -1,5 +1,9 @@
 Notes for consideration
 
+- Would be nice to have a page dedicated to borrowing. That's one of the concepts I have a tough time grasping.
+
+Page by page: 
+
 [Introduction](introduction.md)
 
 This should explain what exactly Move is a little more. Explaining the language and how it's used on blockchains. Is it used the same across all blockchains? As a reader, there should be enough information here that I can determine if I should keep reading or if I've made a mistake coming here.
@@ -66,6 +70,8 @@ I feel like a Move compiler topic would be useful here. How does it interact wit
 
 I believe this was the first mention of bytecode. Maybe I missed it. Added a move compiler topic suggestion ^.
 
+I'm not sure this is titled appropriately in the nav "What is a Package". It doesn't really discuss what a package is so much as how it's structured.
+
 [Manifest](./concepts/manifest.md)
 
 Good info. Could use some more info on requirements, if any, and scenarios of using local deps versus on-chain ones.
@@ -98,25 +104,95 @@ Should go after module as it's used in other topics.
 
 Definitely could use more here.
 
+[Your First Sui App](./hello-sui/README.md)
+
+This might seem weird compared to "First Move". As in, I just did my first thing, how is this different? It's addressed in the text, but might be a better title (for one or the other)? 
+
+I think this section is changing so skipping for now. That said, I think regardless of the example, this is out of place. Unlike the "First Move", this one should be after you've gone over things like Syntax Basics. 
+
+I like the Next Steps format for the bottom of these pages.
+
+It would be nice to have an example that could be referenced later, like in the advanced section, where you either add to it or change it and then update the package on chain.
+
+[Hello Sui!](./hello-sui/hello-sui.md)
+
+Intro could go a little deeper into some of the patterns you'll be using/seeing. Might also help to go over the flow in a little more detail. This is true for whatever the example ends up being.
+
+[Using Objects](./hello-sui/module-structure.md)
+
+I imagine some of the format will remain the same regardless of the actual example. With that in mind, there are times when you reference what's in the manifest, but then don't show it. Like "the name is defined in the Move.toml file". I think actually shopwing where in that file (even though it's not the main point of the instruction) would help connect dots for some folks without having to open the file.
 
 
-- [Your First Sui App](./hello-sui/README.md)
-    - [Hello Sui!](./hello-sui/hello-sui.md)
-    - [Using Objects](./hello-sui/module-structure.md)
+
     - [Testing]()
     - [Publish and Interact]()
     - [Ideas]()
+
 - [Syntax Basics](./basic-syntax/README.md)
-    - [Module](./basic-syntax/module.md)
-    - [Comments](./basic-syntax/comments.md)
-    - [Primitive Types](./basic-syntax/primitive-types.md)
-    - [Address Type](./basic-syntax/address.md)
-    - [Expression](./basic-syntax/expression.md)
-    - [Struct](./basic-syntax/struct.md)
-    - [Abilities: Drop](./basic-syntax/drop-ability.md)
-    - [Importing Modules](./basic-syntax/importing-modules.md)
-    - [Standard Library](./basic-syntax/standard-library.md)
-    - [Vector](./basic-syntax/vector.md)
+
+I'd suggest putting the child topics in alpha order. 
+
+
+[Module](./basic-syntax/module.md)
+
+I'm torn with this one. Is it a Move syntax basic? I think it belongs with the concepts/module info. 
+
+[Comments](./basic-syntax/comments.md)
+
+Left some comments in the file but lgtm. The docgen addition is needed.
+
+[Primitive Types](./basic-syntax/primitive-types.md)
+
+I'd suggest yes (answering the split question comment at the top of page) if for no other reason than having them in the nav. If I'm looking for integers, I'm guessing Move doesn't have them because they aren't in the nav. May not process what Primitive Types is about at a glance.
+
+In discussion on integers, anything builders should consider about which types to select? Why not just make everything `u256` to be safe?
+
+Is operators a primitive type? Should definitely have its own page for easier reference.
+
+Same question with casting and overflow.
+
+[Address Type](./basic-syntax/address.md)
+
+If prims are not split, it's weird that this one is. Regardless, should be a child of the Prim Type topic.
+
+I'm not a fan of splitting this info between concept and type. I like the link from concept/address, though. If it remains split, I'd add one here back to the concept.
+
+Info repeats between the two topics, as written. 
+
+[Expression](./basic-syntax/expression.md)
+
+I feel like the semicolon needs its own section in here. It's referenced throughout, but coming from other languages this idea was foreign to me. Like JS...use it or don't, JS don't care. In Move, it changes things.
+
+I feel like operands/operators should go with equality but forgot where that section is.
+
+[Struct](./basic-syntax/struct.md)
+
+Good info. I'm confused by the unpacking section, tho. It says:
+// Unpack the `Artist` struct and create a new variable `name`
+// with the value of the `name` field.
+let Artist { name } = artist;
+
+But what is `artist`? Is that the original struct? So, maybe ...with the value of the `artist.name` field ("The Beatles"). Still not sure how the variable is `name`. Why not `let namne = artist.name`? Anyway, I think slow people like me could use some more help in this section.
+
+[Abilities: Drop](./basic-syntax/drop-ability.md)
+
+Not a fan of separating these. Abilities should be a topic with each ability being a sub topic, IMO. The nuance I think you're using to make the separation is lost on people like me. I'm left wondering why that's done. I'd suggest adding some language around why if it's kept that way and possibly adding to each topic dealing with abilities.
+
+Then there's the question of "no abilities". Where does it go under this split? Doesn't belong here, fer certain.
+
+[Importing Modules](./basic-syntax/importing-modules.md)
+
+This seems out of place. Maybe the title is misleading. "The use Declaration" or something. 
+
+I could see this alternatively being grouped under package, too. Or as suggested in the What is a Package doc, creating a level at the same level as Syntax Basics for Packages. It would also include related subtopics. 
+
+[Standard Library](./basic-syntax/standard-library.md)
+
+Dig this info. Could use some details about the standard library. Like that it's in exteranl-crates...but is that just where it is or can you get it elsewhere, too? Simple things like that for the simple and smooth-brained folks like me ;)
+
+[Vector](./basic-syntax/vector.md)
+
+
     - [Option](./basic-syntax/option.md) <!-- Option requires vector -->
     - [String](./basic-syntax/string.md) <!-- String requires vector and option for try_* -->
     - [Control Flow](./basic-syntax/control-flow.md)
@@ -194,11 +270,7 @@ Definitely could use more here.
 
 
 
-
-
-
-
-General notes:
+General writing notes:
 
 I suggest pretty much never using the word "please". It conveys that the instruction is not a requirement, even though it almost always is. Readers know that they always have the option of following instruction or not, so please is also pretty much always a throw away word. The only time I suggest using is if the reader is perceived to have been inconvenienced in some way. "If you get this error, please email us." And even then, I personally wouldn't use.
 
@@ -209,3 +281,6 @@ Future tense. Writing is better without it unless there is an actual temporal cl
 Heading capitalizations are inconsistent. Should decide on what they should be and stick to it throughout.
 
 The use of "we" is sometimes odd. "We learn about...". Why is my instructor also learning this stuff?
+
+Pretty much never use the words simple or easy. If the reader doesn't find it simple or easy, you're essentially calling them dumb. Basic or straightforward are some optional substitutes but better to not use a qualifier at all in most cases.
+

@@ -1,6 +1,8 @@
 # Expression
 
-In programming languages expression is a unit of code which returns a value, in Move, almost everything is an expression, - with the sole exception of `let` statement which is a declaration. In this section, we cover the types of expressions and introduce the concept of scope.
+In programming languages, an expression is a unit of code that returns a value. In Move, almost everything is an expression, - with the sole exception of the `let` statement, which is a declaration. In this section, we cover the types of expressions and introduce the concept of scope.
+
+<!-- ^ Should the title include 'scope' then? -->
 
 > Expressions are sequenced with semicolons `;`. If there's "no expression" after the semicolon, the compiler will insert an empty expression `()`.
 
@@ -29,7 +31,7 @@ In the [Primitive Types](./primitive-types.md) section, we introduced the basic 
 
 ## Operators
 
-Ariphmetic, logical, and bitwise operators are used to perform operations on values. The result of an operation is a value, so operators are also expressions.
+Arithmetic, logical, and bitwise operators are used to perform operations on values. The result of an operation is a value, so operators are also expressions.
 
 ```move
 {{#include ../../samples/sources/basic-syntax/expression.move:operators}}

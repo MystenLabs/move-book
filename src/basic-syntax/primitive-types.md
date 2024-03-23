@@ -2,7 +2,8 @@
 
 <!-- TODO: Shall we split this into two pages? Maybe give an overview and focus more on specifics? -->
 
-For simple values, Move has a number of built-in primitive types. They're the base that makes up all other types. The primitive types are:
+
+For simple values, Move has a number of built-in primitive types. They're the base that make up all other types. The primitive types are:
 
 - [Booleans](#booleans)
 - [Unsigned Integers](#integers)
@@ -29,29 +30,33 @@ let x: bool = true;
 let mut y: u8 = 42;
 ```
 
-A mutable variable can be reassigned using the `=` operator.
+You can reassign a mutable variable using the `=` operator.
 
 ```move
 y = 43;
 ```
 
-Variables can also be shadowed by re-declaring.
+You can also re-decalre variables inside of a nested scope (shadow).
+
+<!-- Could use some more depth on what is meant by shadowing. I added a weak attempt. -->
 
 ```move
 let x: u8 = 42;
 let x: u8 = 43;
 ```
 
+<!-- This example seems contrived. Seems like more of a call to watch out for this possibility -->
+
 ## Booleans
 
-The `bool` type represents a boolean value - yes or no, true or false. It has two possible values: `true` and `false` which are keywords in Move. For booleans, there's no need to explicitly specify the type - the compiler can infer it from the value.
+The `bool` type represents a boolean value - yes or no, true or false, 1 or 0. In Move, it has two possible values: `true` or `false`, which are keywords in Move. For booleans, there's no need to explicitly specify the type - the compiler can infer it from the value.
 
 ```move
 let x = true;
 let y = false;
 ```
 
-Booleans are often used to store flags and to control the flow of the program. Please, refer to the [Control Flow](./control-flow.md) section for more information.
+Booleans are often used to store flags and to control the flow of the program. Refer to the [Control Flow](./control-flow.md) section for more information.
 
 ## Integer Types
 
@@ -79,9 +84,9 @@ let x: u8 = 42;
 let x = 42u8;
 ```
 
-### Operations
+### Operands
 
-Move supports the standard arithmetic operations for integers: addition, subtraction, multiplication, division, and remainder. The syntax for these operations is:
+Move supports the standard arithmetic operands for integers: addition, subtraction, multiplication, division, and remainder. The syntax for these operands is:
 
 |Syntax|Operation|Aborts If|
 |-|-|-|
@@ -97,6 +102,8 @@ The type of the operands *must match*, otherwise, the compiler will raise an err
 <!-- TODO: add bitwise operators -->
 
 ### Casting with `as`
+
+<!-- could use some content around when this is necessary or helpful --> 
 
 Move supports explicit casting between integer types. The syntax for it is:
 

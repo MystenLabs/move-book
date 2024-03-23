@@ -12,7 +12,12 @@ Notes:
     - give an example of how doc comments are translated
  -->
 
-Comments are a way to add notes or document your code. They are ignored by the compiler and don't result in the Move bytecode. You can use comments to explain what your code does, to add notes to yourself or other developers, to temporarily remove a part of your code, or to generate documentation. There are three types of comments in Move: line comment, block comment, and doc comment.
+Comments are a way to add notes or document your code. They are ignored by the compiler and don't end up in the Move bytecode. When published to a network, anyone with access to that network can view the bytecode. You can use comments to explain what your code does, to add notes to yourself or other developers, to temporarily remove a part of your code, or to generate documentation. 
+
+There are three types of comments in Move: 
+- line comment
+- block comment
+- doc comment
 
 ## Line comment
 
@@ -20,7 +25,7 @@ Comments are a way to add notes or document your code. They are ignored by the c
 {{#include ../../samples/sources/basic-syntax/comments.move:line}}
 ```
 
-You can use double slash `//` to comment out the rest of the line. Everything after `//` will be ignored by the compiler.
+You can use double slash `//` to comment out the rest of the line. The compiler ignores everything after `//`.
 
 ```Move
 {{#include ../../samples/sources/basic-syntax/comments.move:line_2}}
@@ -28,11 +33,12 @@ You can use double slash `//` to comment out the rest of the line. Everything af
 
 ## Block comment
 
-Block comments are used to comment out a block of code. They start with `/*` and end with `*/`. Everything between `/*` and `*/` will be ignored by the compiler. You can use block comments to comment out a single line or multiple lines. You can even use them to comment out a part of a line.
+Use block comments to comment out a block of code. They start with `/*` and end with `*/`. The compiler ignores everything between `/*` and `*/`. You can use block comments to comment out a single line or multiple lines. You can even use them to comment out a part of a line.
 
 ```Move
 {{#include ../../samples/sources/basic-syntax/comments.move:block}}
 ```
+<!-- Might add why this might not be the best approach. Perhaps mention code might get to this point in development, but to clean up for easier maintenance. -->
 
 This example is a bit extreme, but it shows how you can use block comments to comment out a part of a line.
 
@@ -44,4 +50,5 @@ Documentation comments are special comments that are used to generate documentat
 {{#include ../../samples/sources/basic-syntax/comments.move:doc}}
 ```
 
-<!-- TODO: docgen, which members are in the documentation -->
+<!-- TODO: docgen, which members are in the documentation --> 
+<!-- ^ Yes -->

@@ -33,6 +33,8 @@ Structs, functions and constants, imports and friend declarations are all part o
 - [Friend declarations]() <!-- TODO -->
 - [Method Aliases](./struct-methods.md)
 
+<!-- ^ Belongs in the module members section? -->
+
 ## Address / Named address
 
 Module address can be specified as both: an address *literal* (does not require the `@` prefix) or a named address specified in the [Package Manifest](../concepts/package-manifest.md). In the example below, both are identical because there's a `book = "0x0"` record in the `[addresses]` section of the `Move.toml`.
@@ -49,6 +51,8 @@ Addresses section in the Move.toml:
 book = "0x0"
 ```
 
+<!-- the above is something I called out in a prior note (adding the actual manifest part for reference). this is the way -->
+
 ## Module members
 
 Module members are declared inside the module body. To illustrate that, let's define a simple module with a struct, a function and a constant:
@@ -57,9 +61,14 @@ Module members are declared inside the module body. To illustrate that, let's de
 {{#include ../../samples/sources/basic-syntax/module.move:members}}
 ```
 
+<!-- some linking to the things raised in the previous include might be helpful -->
+<!-- Actually, the last block of Module Declaration might do the trick if moved here. -->
+
 ## Address block
 
 Before the introduction of the `address::module_name` syntax, modules were organized into `address {}` blocks. This way of code organization is still available today, but is not used widely. Modern practices imply having a single module per file, so the `address {}` block is rather a redundant construct.
+
+<!-- I like the history ^. Was unsure of its relevance but because it's still possible to see it, I think its inclusion has value -->
 
 > Module addresses can be omitted if modules are organized into `address {}` blocks.
 
@@ -67,7 +76,7 @@ Before the introduction of the `address::module_name` syntax, modules were organ
 {{#include ../../samples/sources/basic-syntax/module.move:address_block}}
 ```
 
-The modules defined in this code sample will be accessible as:
+The modules defined in this code sample are accessible as:
 
 - `book::another_module`
 - `book::yet_another_module`

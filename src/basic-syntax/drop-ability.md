@@ -26,11 +26,17 @@ Links:
 
  -->
 
-Move has a unique type system which allows defining *type abilities*. [In the previous section](./struct.md), we introduced the `struct` definition and how to use it. However, the instances of the `Artist` and `Record` structs had to be unpacked for the code to compile. This is default behavior of a struct without *abilities*. In this section, we introduce the first ability - `drop`.
+Move has a type system that allows defining *type abilities*. [In the Struct topic](./struct.md), we introduced the `struct` definition and how to use it. However, the instances of the `Artist` and `Record` structs had to be unpacked for the code to compile. This is default behavior of a struct without *abilities*. In this section, we introduce the first ability - `drop`.
 
 ## Abilities syntax
 
-Abilities are set in the struct definition using the `has` keyword followed by a list of abilities. The abilities are separated by commas. Move supports 4 abilities: `copy`, `drop`, `key`, and `store`. In this section, we cover the first two abilities: `copy` and `drop`. The last two abilities are covered [in the programmability chapter](./../programmability/README.md), when we introduce Objects and storage operations.
+Abilities are set in the struct definition using the `has` keyword followed by a list of abilities. The abilities are separated by commas. Move supports four abilities: 
+- `copy`
+- `drop`
+- `key`
+- `store`
+
+In this section, we cover the `drop` ability. The last two abilities are covered [in the programmability chapter](./../programmability/README.md), when we introduce Objects and storage operations.
 
 ```move
 /// This struct has the `copy` and `drop` abilities.
