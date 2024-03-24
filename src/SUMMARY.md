@@ -151,8 +151,6 @@ comparison to docs.sui.io
     - [BCS](./programmability/bcs.md)
 - [Patterns (?)]()
     - [Getters and Setters]()
-    <!-- - [Capability]() -->
-    <!-- - [Witness]() -->
     - [Abstract Class]()
     - [Hot Potato]()
     - [Request]()
