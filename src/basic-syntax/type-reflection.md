@@ -9,7 +9,7 @@ Type reflection is implemented in the [Standard Library](./standard-library.md) 
 The module is pretty straightforward, and operations allowed on the result are limited to getting a string representation and extracting the module and address of the type.
 
 ```move
-{{#include ../../samples/sources/basic-syntax/type-reflection.move:main}}
+{{#include ../../packages/samples/sources/basic-syntax/type-reflection.move:main}}
 ```
 
 ## Further reading

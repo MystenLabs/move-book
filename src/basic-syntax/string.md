@@ -16,7 +16,7 @@ TODO:
 No matter which type of string you use, it is important to know that strings are just bytes. The wrappers provided by the `string` and `ascii` modules are just that: wrappers. They do provide extra checks and functionality than a vector of bytes, but under the hood, they are just vectors of bytes.
 
 ```move
-{{#include ../../samples/sources/basic-syntax/string.move:custom}}
+{{#include ../../packages/samples/sources/basic-syntax/string.move:custom}}
 ```
 
 Both standard types provide conversions from and to vectors of bytes.
@@ -26,7 +26,7 @@ Both standard types provide conversions from and to vectors of bytes.
 While there are two types of strings in the standard library, the `string` module should be considered the default. It has native implementations of many common operations, and hence is more efficient than the `ascii` module. To create a string or perform operations on it, you must import the `string` module:
 
 ```move
-{{#include ../../samples/sources/basic-syntax/string.move:utf8}}
+{{#include ../../packages/samples/sources/basic-syntax/string.move:utf8}}
 ```
 
 ## Safe UTF-8 Operations
@@ -36,7 +36,7 @@ The default `utf8` method is potentially unsafe, as it does not check that the b
 > The `try_*` pattern is used throughout the standard library to indicate that a function may fail. For more information, see the [Error Handling](./error-handling.md) section.
 
 ```move
-{{#include ../../samples/sources/basic-syntax/string.move:safe_utf8}}
+{{#include ../../packages/samples/sources/basic-syntax/string.move:safe_utf8}}
 ```
 
 ## ASCII Strings
@@ -44,7 +44,7 @@ The default `utf8` method is potentially unsafe, as it does not check that the b
 TODO: ASCII strings
 
 ```move
-{{#include ../../samples/sources/basic-syntax/string.move:ascii}}
+{{#include ../../packages/samples/sources/basic-syntax/string.move:ascii}}
 ```
 
 ## Summary

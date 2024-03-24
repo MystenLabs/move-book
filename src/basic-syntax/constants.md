@@ -21,7 +21,7 @@ Links:
 Constants are immutable values that are defined at the module level. They often serve as a way to give names to values that are used throughout a module. For example, if there's a default price for a product, you might define a constant for it. Constants are *internal* to the module and can not be accessed from other modules.
 
 ```move
-{{#include ../../samples/sources/basic-syntax/constants.move:shop_price}}
+{{#include ../../packages/samples/sources/basic-syntax/constants.move:shop_price}}
 ```
 
 ## Naming Convention

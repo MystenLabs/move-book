@@ -17,5 +17,5 @@ public native fun to_bytes<T>(t: &T): vector<u8>;
 
 
 ```move
-{{#include ../../samples/sources/programmability/bcs.move:using_bcs}}
+{{#include ../../packages/samples/sources/programmability/bcs.move:using_bcs}}
 ```

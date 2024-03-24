@@ -10,7 +10,7 @@ Collection types are a fundamental part of any programming language. They are us
 `VecSet` is a collection type that stores a set of unique items. It is similar to a `vector`, but it does not allow duplicate items. This makes it useful for storing a collection of unique items, such as a list of unique IDs or addresses.
 
 ```move
-{{#include ../../samples/sources/programmability/collections.move:vec_set}}
+{{#include ../../packages/samples/sources/programmability/collections.move:vec_set}}
 ```
 
 ## VecMap
@@ -20,5 +20,5 @@ Collection types are a fundamental part of any programming language. They are us
 Keys in a `VecMap` are unique, and each key can only be associated with a single value. If you try to insert a key-value pair with a key that already exists in the map, the old value will be replaced with the new value.
 
 ```move
-{{#include ../../samples/sources/programmability/collections.move:vec_map}}
+{{#include ../../packages/samples/sources/programmability/collections.move:vec_map}}
 ```

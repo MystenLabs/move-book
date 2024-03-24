@@ -21,7 +21,7 @@ Modules are declared using the `module` keyword followed by the package address,
 Usually, a single file in the `sources/` folder contains a single module. The file name should match the module name - for example, a `donut_shop` module should be stored in the `donut_shop.move` file. You can read more about coding conventions in the [Coding Conventions](../special-topics/coding-conventions.md) section.
 
 ```Move
-{{#include ../../samples/sources/basic-syntax/module.move:module}}
+{{#include ../../packages/samples/sources/basic-syntax/module.move:module}}
 ```
 
 Structs, functions and constants, imports and friend declarations are all part of the module:
@@ -38,7 +38,7 @@ Structs, functions and constants, imports and friend declarations are all part o
 Module address can be specified as both: an address *literal* (does not require the `@` prefix) or a named address specified in the [Package Manifest](../concepts/package-manifest.md). In the example below, both are identical because there's a `book = "0x0"` record in the `[addresses]` section of the `Move.toml`.
 
 ```Move
-{{#include ../../samples/sources/basic-syntax/module.move:address_literal}}
+{{#include ../../packages/samples/sources/basic-syntax/module.move:address_literal}}
 ```
 
 Addresses section in the Move.toml:
@@ -54,7 +54,7 @@ book = "0x0"
 Module members are declared inside the module body. To illustrate that, let's define a simple module with a struct, a function and a constant:
 
 ```Move
-{{#include ../../samples/sources/basic-syntax/module.move:members}}
+{{#include ../../packages/samples/sources/basic-syntax/module.move:members}}
 ```
 
 ## Address block
@@ -64,7 +64,7 @@ Before the introduction of the `address::module_name` syntax, modules were organ
 > Module addresses can be omitted if modules are organized into `address {}` blocks.
 
 ```Move
-{{#include ../../samples/sources/basic-syntax/module.move:address_block}}
+{{#include ../../packages/samples/sources/basic-syntax/module.move:address_block}}
 ```
 
 The modules defined in this code sample will be accessible as:

@@ -23,7 +23,7 @@ module sui::event {
 Events are emitted using the `emit` function in the `sui::event` module. The function takes a single argument - the event to be emitted. The event data is passed by value,
 
 ```move
-{{#include ../../samples/sources/programmability/events.move:emit}}
+{{#include ../../packages/samples/sources/programmability/events.move:emit}}
 ```
 
 The Sui Verifier requires the type passed to the `emit` function to be *internal to the module*. So emitting a type from another module will result in a compilation error. Primitive types, although they match the *copy* and *drop* requirement, are not allowed to be emitted as events.

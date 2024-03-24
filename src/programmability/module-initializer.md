@@ -5,13 +5,13 @@ A common case in many applications is to run some just once when the package is 
 > All of the modules' `init` functions are called during publish. Currently, this only applies to publish command and not to [package upgrades](./package-upgrades.md).
 
 ```move
-{{#include ../../samples/sources/programmability/module-initializer.move:main}}
+{{#include ../../packages/samples/sources/programmability/module-initializer.move:main}}
 ```
 
 In the same package another module can have its own `init` function with its own logic.
 
 ```move
-{{#include ../../samples/sources/programmability/module-initializer.move:other}}
+{{#include ../../packages/samples/sources/programmability/module-initializer.move:other}}
 ```
 
 ## `init` features

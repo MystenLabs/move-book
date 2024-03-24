@@ -73,8 +73,8 @@ And then add the following code to the `hello_world.move` file:
 
 ```Move
 // sources/hello_world.move
-{{#include ../../samples/sources/your-first-move/hello_world.move:4:9}}
-{{#include ../../samples/sources/your-first-move/hello_world.move:16:16}}
+{{#include ../../packages/samples/sources/your-first-move/hello_world.move:4:9}}
+{{#include ../../packages/samples/sources/your-first-move/hello_world.move:16:16}}
 ```
 
 While it's not a hard restriction, it's is considered a good practice to name the module the same as the file. So, in our case, the module name is `hello_world` and the file name is `hello_world.move`.
@@ -86,8 +86,8 @@ The module name and function names should be in `snake_case` - all lowercase let
 Let's take a closer look at the code we just wrote:
 
 ```Move
-{{#include ../../samples/sources/your-first-move/hello_world.move:4:4}}
-{{#include ../../samples/sources/your-first-move/hello_world.move:16:16}}
+{{#include ../../packages/samples/sources/your-first-move/hello_world.move:4:4}}
+{{#include ../../packages/samples/sources/your-first-move/hello_world.move:16:16}}
 ```
 
 The first line of code declares a module called `hello_world` stored at the address `book`. The contents of the module go inside the curly braces `{}`. The last line closes the module declaration with a closing curly brace `}`. We will go through the module declaration in more detail in the [Modules](../basic-syntax/modules.md) section.
@@ -95,7 +95,7 @@ The first line of code declares a module called `hello_world` stored at the addr
 Then we import two members of the `std::string` module (which is part of the `std` package). The `string` module contains the `String` type, and the `Self` keyword imports the module itself, so we can use its functions.
 
 ```Move
-{{#include ../../samples/sources/your-first-move/hello_world.move:5:5}}
+{{#include ../../packages/samples/sources/your-first-move/hello_world.move:5:5}}
 ```
 
 Then we define a `hello_world` function using the keyword `fun` which takes no arguments and returns a `String` type. The `public` keyword marks the visibility of the function - "public" functions can be accessed by other modules. The function body is inside the curly braces `{}`.
@@ -103,7 +103,7 @@ Then we define a `hello_world` function using the keyword `fun` which takes no a
 > In the [Function](../basic-syntax/function.md) section we will learn more about functions.
 
 ```Move
-{{#include ../../samples/sources/your-first-move/hello_world.move:7:9}}
+{{#include ../../packages/samples/sources/your-first-move/hello_world.move:7:9}}
 ```
 
 The function body consists of a single function call to the `string::utf8` function and returns a `String` type. The expression is a bytestring literal `b"Hello World!"`.

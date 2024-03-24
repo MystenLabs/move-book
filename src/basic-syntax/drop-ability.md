@@ -50,7 +50,7 @@ A struct without abilities cannot be discarded, or copied, or stored in the stor
 The `drop` ability - the simplest of them - allows the instance of a struct to be *ignored* or *discarded*. In many programming languages this behavior is considered default. However, in Move, a struct without the `drop` ability is not allowed to be ignored. This is a safety feature of the Move language, which ensures that all assets are properly handled. An attempt to ignore a struct without the `drop` ability will result in a compilation error.
 
 ```move
-{{#include ../../samples/sources/basic-syntax/drop-ability.move:main}}
+{{#include ../../packages/samples/sources/basic-syntax/drop-ability.move:main}}
 ```
 
 The `drop` ability is often used on custom collection types to eliminate the need for special handling of the collection when it is no longer needed. For example, a `vector` type has the `drop` ability, which allows the vector to be ignored when it is no longer needed. However, the biggest feature of Move's type system is the ability to not have `drop`. This ensures that the assets are properly handled and not ignored.

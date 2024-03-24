@@ -13,7 +13,7 @@ Consensus is only required for mutating the shared state. If the object is immut
 ## In practice
 
 ```move
-{{#include ../../samples/sources/programmability/fast-path.move:main}}
+{{#include ../../packages/samples/sources/programmability/fast-path.move:main}}
 ```
 
 ## Special case: Clock

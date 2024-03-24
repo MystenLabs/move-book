@@ -7,7 +7,7 @@ Objects on Sui are explicit in their structure and behavior and can be displayed
 Historically, there were different attempts to agree on a standard structure of an object so it can be displayed in a user interface. One of the approaches was to define certain fields in the object struct which, when present, would be used in the UI. This approach was not flexible enough and required developers to define the same fields in every object, and sometimes the fields did not make sense for the object.
 
 ```move
-{{#include ../../samples/sources/programmability/display.move:background}}
+{{#include ../../packages/samples/sources/programmability/display.move:background}}
 ```
 
 If any of the fields contained static data, it would be duplicated in every object. And, since Move does not have interfaces, it is not possible to know if an object has a specific field without "manually" checking the object's type, which makes the client fetching more complex.
@@ -21,7 +21,7 @@ Another important feature of Sui Display is the ability to define templates and 
 > The Object Display is natively supported by the Sui Fullnode, and the client can fetch the display metadata for any object if the object type has a Display associated with it.
 
 ```move
-{{#include ../../samples/sources/programmability/display.move:hero}}
+{{#include ../../packages/samples/sources/programmability/display.move:hero}}
 ```
 
 ## Creator Privilege
@@ -67,7 +67,7 @@ The [Publisher](./publisher.md) object is required to a new Display, since it se
 Currently, Display supports simple string interpolation and can use struct fields (and paths) in its templates. The syntax is trivial - `{path}` is replaced with the value of the field at the path. The path is a dot-separated list of field names, starting from the root object in case of nested fields.
 
 ```move
-{{#include ../../samples/sources/programmability/display.move:nested}}
+{{#include ../../packages/samples/sources/programmability/display.move:nested}}
 ```
 
 The Display for the type `LittlePony` above could be defined as follows:

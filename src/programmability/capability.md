@@ -9,7 +9,7 @@ In the [Sui Object Model](./../concepts/object-model.md), capabilities are repre
 > There's a convention to name capabilities with the `Cap` suffix, for example, `AdminCap` or `KioskOwnerCap`.
 
 ```move
-{{#include ../../samples/sources/programmability/capability.move:main}}
+{{#include ../../packages/samples/sources/programmability/capability.move:main}}
 ```
 
 ## Using `init` for Admin Capability
@@ -17,7 +17,7 @@ In the [Sui Object Model](./../concepts/object-model.md), capabilities are repre
 A very common practice is to create a single `AdminCap` object on package publish. This way, the application can have a setup phase where the admin account prepares the state of the application.
 
 ```move
-{{#include ../../samples/sources/programmability/capability.move:admin_cap}}
+{{#include ../../packages/samples/sources/programmability/capability.move:admin_cap}}
 ```
 
 ## Address check vs Capability
@@ -27,13 +27,13 @@ Utilizing objects as capabilities is a relatively new concept in blockchain prog
 Let's look at how the `new` function that creates a user would look like if it was using the address check:
 
 ```move
-{{#include ../../samples/sources/programmability/capability.move:with_address}}
+{{#include ../../packages/samples/sources/programmability/capability.move:with_address}}
 ```
 
 And now, let's see how the same function would look like with the capability:
 
 ```move
-{{#include ../../samples/sources/programmability/capability.move:with_capability}}
+{{#include ../../packages/samples/sources/programmability/capability.move:with_capability}}
 ```
 
 Using capabilities has several advantages over the address check:

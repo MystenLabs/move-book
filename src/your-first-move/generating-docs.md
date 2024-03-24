@@ -20,14 +20,14 @@ Move CLI has a built-in tool for generating documentation for Move modules. The 
 To generate documentation for a module, we need to add documentation comments to the module and its functions. Documentation comments are written in Markdown and start with `///` (three slashes). For example, let's add a documentation comment to the `hello_world` module:
 
 ```Move
-{{#include ../../samples/sources/your-first-move/hello_world_docs.move:4:4}}
-{{#include ../../samples/sources/your-first-move/hello_world.move:4:4}}
+{{#include ../../packages/samples/sources/your-first-move/hello_world_docs.move:4:4}}
+{{#include ../../packages/samples/sources/your-first-move/hello_world.move:4:4}}
 ```
 
 Doc comments placed above the module are linked to the module itself, while doc comments placed above the function are linked to the function.
 
 ```Move
-{{#include ../../samples/sources/your-first-move/hello_world_docs.move:8:11}}
+{{#include ../../packages/samples/sources/your-first-move/hello_world_docs.move:8:11}}
 ```
 
 If a documented member has an attribute, such as `#[test]` in the example below, the doc comment must be placed *after* the attribute:
@@ -35,7 +35,7 @@ If a documented member has an attribute, such as `#[test]` in the example below,
 > While it is possible to document `#[test]` functions, doc comments for tests will not be included in the generated documentation.
 
 ```Move
-{{#include ../../samples/sources/your-first-move/hello_world_docs.move:13:20}}
+{{#include ../../packages/samples/sources/your-first-move/hello_world_docs.move:13:20}}
 ```
 
 ## Generating documentation

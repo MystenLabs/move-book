@@ -9,13 +9,13 @@ Epochs are used to separate the system into operational periods. During an epoch
 Epoch can be read from the [transaction context](./transaction-context.md):
 
 ```move
-{{#include ../../samples/sources/programmability/epoch-and-time.move:epoch}}
+{{#include ../../packages/samples/sources/programmability/epoch-and-time.move:epoch}}
 ```
 
 It is also possible to get the unix timestamp of the epoch start:
 
 ```move
-{{#include ../../samples/sources/programmability/epoch-and-time.move:epoch_start}}
+{{#include ../../packages/samples/sources/programmability/epoch-and-time.move:epoch_start}}
 ```
 
 Normally, epochs are used in staking and system operations, however, in custom scenarios they can be used to emulate 24h periods. They are critical if an application relies on the staking logic or needs to know the current validator set.
@@ -49,7 +49,7 @@ struct Clock has key {
 There is only one public function available in the `Clock` module - `timestamp_ms`. It returns the current time in milliseconds since the Unix Epoch.
 
 ```move
-{{#include ../../samples/sources/programmability/epoch-and-time.move:clock}}
+{{#include ../../packages/samples/sources/programmability/epoch-and-time.move:clock}}
 ```
 
 <!-- TODO:

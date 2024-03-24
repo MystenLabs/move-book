@@ -19,14 +19,14 @@ Now that we have a package with a module and a test, let's take a slight detour 
 To use the `debug` module, we need to import it in our module. Imports are usually grouped together for readability and they are placed at the top of the module. Let's add the import statement to the `hello_world` module:
 
 ```Move
-{{#include ../../samples/sources/your-first-move/hello_world.move:4:5}}
+{{#include ../../packages/samples/sources/your-first-move/hello_world.move:4:5}}
     use std::debug; // the added import!
 ```
 
 Having imported the `std::debug` module, we can now use its functions. Let's add a `debug::print` function call to the `hello_world` function. To achieve that we need to change the function body. Instead of returning the value right away we will assign it to a variable, print it to the console and then return it:
 
 ```Move
-{{#include ../../samples/sources/your-first-move/hello_world_debug.move:8:12}}
+{{#include ../../packages/samples/sources/your-first-move/hello_world_debug.move:8:12}}
 ```
 
 First, run the build command:

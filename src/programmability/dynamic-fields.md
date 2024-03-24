@@ -15,7 +15,7 @@ Because the representation of an object is its UID, dynamic fields are attached 
 Dynamic fields are defined in the `sui::dynamic_field` module of the [Sui Framework](./sui-framework.md).
 
 ```move
-{{#include ../../samples/sources/programmability/dynamic-fields.move:module}}
+{{#include ../../packages/samples/sources/programmability/dynamic-fields.move:module}}
 ```
 
 ## Dynamic Object Fields
