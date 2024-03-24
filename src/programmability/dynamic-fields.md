@@ -169,10 +169,10 @@ In the examples above, we used primitive types as field names since they have th
 
 ```move
 /// A custom type with fields in it.
-struct AccessoryKey has copy, drop, store { name: String }
+public struct AccessoryKey has copy, drop, store { name: String }
 
 /// An empty key, can be attached only once.
-struct MetadataKey has copy, drop, store {}
+public struct MetadataKey has copy, drop, store {}
 ```
 
 Two field names that we defined above are `AccessoryKey` and `MetadataKey`. The `AccessoryKey` has a `String` field in it, hence it can be used multiple times with different `name` values. The `MetadataKey` is an empty key, and can be attached only once.
