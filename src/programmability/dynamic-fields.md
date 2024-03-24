@@ -1,6 +1,6 @@
 # Dynamic Fields
 
-Sui Object model allows objects to be attached to other objects as *dynamic fields*. The behavior is similar to how a `Map` works in other programming languages, however, unlike a `Map` which in Move would be strictly typed (we have covered it in the [Collections](./collections.md) section), dynamic fields allow for attaching objects of any type.
+Sui Object model allows objects to be attached to other objects as *dynamic fields*. The behavior is similar to how a `Map` works in other programming languages. However, unlike a `Map` which in Move would be strictly typed (we have covered it in the [Collections](./collections.md) section), dynamic fields allow attaching objects of any type.
 
 > There's no limit to the number of dynamic fields that can be attached to an object. Thus, dynamic fields can be used to store large amounts of data that don't fit into the object limit size.
 
