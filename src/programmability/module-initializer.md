@@ -35,7 +35,7 @@ fun init(otw: OTW, ctx: &TxContext) { /* ... */ }
 
 ## Trust and security
 
-While `init` function can be used to create sensitive objects once, it is important to know that the same `AdminCap` can still be created in another function. Especially given that new functions can be added to the module during the upgrade. So the `init` function is a good place to set up the initial state of the module, but it is not a security measure on its own.
+While `init` function can be used to create sensitive objects once, it is important to know that the same object (eg. `StoreOwnerCap` from the first example) can still be created in another function. Especially given that new functions can be added to the module during an upgrade. So the `init` function is a good place to set up the initial state of the module, but it is not a security measure on its own.
 
 There are ways to guarantee that the object was created only once, such as the [One Time Witness](./one-time-witness.md). And there are ways to limit or disable the upgrade of the module, which we will cover in the [Package Upgrades](./package-upgrades.md) chapter.
 

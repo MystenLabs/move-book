@@ -17,6 +17,7 @@ Sui Framework is a default dependency set in the [Package Manifest](./../concept
 | sui::vec_map | Implements a map with vector keys | [Collections](./collections.md) |
 | sui::vec_set | Implements a set type | [Collections](./collections.md) |
 | sui::event | Allows emitting events for off-chain listeners | [Events](./events.md) |
+| sui::package | Defines the `Publisher` type and package upgrade methods | [Publisher](./publisher.md), [Package Upgrades](./package-upgrades.md) |
 | - | - | - |
 
 </div>

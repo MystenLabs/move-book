@@ -524,6 +524,7 @@ hljs.registerLanguage('move', function(hljs) {
             end: /(?=[;(])/,
             beginKeywords: 'has',
             contains: [
+              BLOCK_COMMENT,
               {
                 scope: 'title.class',
                 match: /\bcopy|drop|store|key\b/
@@ -556,6 +557,7 @@ hljs.registerLanguage('move', function(hljs) {
             begin: /(?<=<)/,
             end: /(?=>)/,
             contains: [
+              BLOCK_COMMENT,
               {
                 scope: 'title.class',
                 match: /\bcopy|drop|store|key\b/
@@ -569,6 +571,7 @@ hljs.registerLanguage('move', function(hljs) {
             contains: [
               TYPES,
               ENTITY,
+              BLOCK_COMMENT,
               {
                 scope: 'keyword.mut',
                 match: /\bmut\b/,

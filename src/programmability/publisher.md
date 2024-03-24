@@ -4,7 +4,7 @@ In application design and development, it is often needed to prove publisher aut
 
 ## Definition
 
-The Publisher object is defined in the `sui::package` module of the Sui Framework. It is a very simple, non-generic object that can be initialized once per module (and multiple times per package) and is used to prove the authority of the publisher over a type. To claim a Publisher object, the publisher must present a [One Time Witness](./one-time-witness.md) to the `sui::package::claim` function.
+The Publisher object is defined in the `sui::package` module of the Sui Framework. It is a very simple, non-generic object that can be initialized once per module (and multiple times per package) and is used to prove the authority of the publisher over a type. To claim a Publisher object, the publisher must present a [One Time Witness](./one-time-witness.md) to the `package::claim` function.
 
 File: sui-framework/sources/package.move
 ```move
@@ -21,23 +21,7 @@ public struct Publisher has key, store {
 Here's a simple example of claiming a `Publisher` object in a module:
 
 ```move
-module book::publisher {
-    /// Some type defined in the module.
-    public struct Book {}
-
-    /// The OTW for the module.
-    public struct PUBLISHER has drop {}
-
-    /// Uses the One Time Witness to claim the Publisher object.
-    fun init(otw: PUBLISHER, ctx: &mut TxContext) {
-        // Claim the Publisher object.
-        let publisher = sui::package::claim(otw, ctx);
-
-        // Usually it is transferred to the sender.
-        // It can also be stored in another object.
-        transfer::public_transfer(publisher, ctx.sender())
-    }
-}
+{{#include ../../packages/samples/sources/programmability/publisher.move:publisher}}
 ```
 
 ## Usage
@@ -45,25 +29,23 @@ module book::publisher {
 The Publisher object has two functions associated with it which are used to prove the publisher's authority over a type:
 
 ```move
-module book::use_publisher {
-    public struct Book {}
-
-    public struct USE_PUBLISHER has drop {}
-
-
-#[test]
-fun test_publisher() {
-let ctx = tx_context::dummy();
-let publisher = package::test_claim(USE_PUBLISHER, &mut ctx);
-// ANCHOR: use_publisher
-// Checks if the type is from the same module, hence the `Publisher` has the
-// authority over it.
-assert!(publisher.from_module<Book>(), 0);
-
-// Checks if the type is from the same package, hence the `Publisher` has the
-// authority over it.
-assert!(publisher.from_package<Book>(), 0);
-// ANCHOR_END: use_publisher
-}
-}
+{{#include ../../packages/samples/sources/programmability/publisher.move:use_publisher}}
 ```
+
+## Publisher as Admin Role
+
+For small applications or simple use cases, the Publisher object can be used as an admin [capability](./capability.md). While in the broader context, the Publisher object has control over system configurations, it can also be used to manage the application's state.
+
+```move
+{{#include ../../packages/samples/sources/programmability/publisher.move:publisher_as_admin}}
+```
+
+However, Publisher misses some native properties of [Capabilities](./capability.md), such as type safety and expressiveness. The signature for the `admin_function` is not very explicit, can be called by anyone else. And due to `Publisher` object being standard, there now is a risk of unauthorized access if the `from_module` check is not performed. So it's important to be cautious when using the `Publisher` object as an admin role.
+
+## Role on Sui
+
+Publisher is required for certain features on Sui. [Object Display](./display.md) can be created only by the Publisher, and TransferPolicy - an important component of the Kiosk system - also requires the Publisher object to prove ownership of the type.
+
+## Next Steps
+
+In the next chapter we will cover the first feature that requires the Publisher object - Object Display - a way to describe objects for clients, and standardize metadata. A must-have for user-friendly applications.

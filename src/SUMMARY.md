@@ -138,10 +138,10 @@ comparison to docs.sui.io
     - [One Time Witness](./programmability/one-time-witness.md)
     - [Publisher Authority](./programmability/publisher.md)
     - [Display](./programmability/display.md) <!-- End Block: from Witness to Display -->
-    - [Sui Framework](./programmability/sui-framework.md)
-    - [Witness and Abstract Implementation](./programmability/witness-and-abstract-implementation.md)
     - [Events](./programmability/events.md)
-    - [Pattern: Request]()
+    - [Balance & Coin](./programmability/balance-and-coin.md)
+    - [Sui Framework](./programmability/sui-framework.md)
+    - [Pattern: Request]() <!-- - [Witness and Abstract Implementation](./programmability/witness-and-abstract-implementation.md) -->
     - [Pattern: Hot Potato]()
     - [Pattern: Object Capability]()
     - [Transaction Blocks]()<!-- (./programmability/transaction-blocks.md) -->
