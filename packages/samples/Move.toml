@@ -1,0 +1,11 @@
+[package]
+name = "book"
+edition = "2024.alpha"
+
+[dependencies.Sui]
+git = "https://github.com/MystenLabs/sui.git"
+subdir = "crates/sui-framework/packages/sui-framework"
+rev = "main"
+
+[addresses]
+book = "0x0"
