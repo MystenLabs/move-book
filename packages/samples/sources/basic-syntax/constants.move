@@ -38,7 +38,7 @@ module book::shop_price {
     }
 }
 // ANCHOR_END: shop_price
-
+#[allow(unused_const)]
 module book::naming {
 
 // ANCHOR: naming

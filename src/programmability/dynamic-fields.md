@@ -31,61 +31,7 @@ As the definition shows, dynamic fields are stored in an internal `Field` object
 The methods available for dynamic fields are straightforward: a field can be added with `add`, removed with `remove`, and read with `borrow` and `borrow_mut`. Additionally, the `exists_` method can be used to check if a field exists (for stricter checks with type, there is an `exists_with_type` method).
 
 ```move
-module book::dynamic_collection {
-    // a very common alias for `dynamic_field` is `df` since the
-    // module name is quite long
-    use sui::dynamic_field as df;
-
-    /// The object that we will attach dynamic fields to.
-    public struct Character has key {
-        id: UID
-    }
-
-    // List of different accessories that can be attached to a character.
-    // They must have the `store` ability.
-    public struct Hat has key, store { id: UID, color: u32 }
-    public struct Mustache has key, store { id: UID }
-
-    #[test]
-    fun test_character_and_accessories() {
-        let ctx = &mut tx_context::dummy();
-        let character = Character { id: object::new(ctx) };
-
-        // Attach a hat to the character's UID
-        df::add(
-            &mut character.id,
-            b"hat_key",
-            Hat { id: object::new(ctx), color: 0xFF0000 }
-        );
-
-        // Similarly, attach a mustache to the character's UID
-        df::add(
-            &mut character.id,
-            b"mustache_key",
-            Mustache { id: object::new(ctx) }
-        );
-
-        // Check that the hat and mustache are attached to the character
-        //
-        assert!(df::exists_(&character.id, b"hat_key"), 0);
-        assert!(df::exists_(&character.id, b"mustache_key"), 1);
-
-        // Modify the color of the hat
-        let hat: &mut Hat = df::borrow_mut(&mut character.id, b"hat_key");
-        hat.color = 0x00FF00;
-
-        // Remove the hat and mustache from the character
-        let hat = df::remove(&mut character.id, b"hat_key");
-        let mustache = df::remove(&mut character.id, b"mustache_key");
-
-        // Check that the hat and mustache are no longer attached to the character
-        assert!(!df::exists_(&character.id, b"hat_key"), 0);
-        assert!(!df::exists_(&character.id, b"mustache_key"), 1);
-
-        sui::test_utils::destroy(character);
-        sui::test_utils::destroy(mustache);
-        sui::test_utils::destroy(hat);
-    }
+{{#include ../../packages/samples/sources/programmability/dynamic-fields.move:usage}}
 }
 ```
 
@@ -100,17 +46,7 @@ And the last important property of dynamic fields we should highlight is that th
 Dynamic fields allow objects to carry data of any type, including those defined in other modules. This is possible due to their generic nature and relatively weak constraints on the type parameters. Let's illustrate this by attaching a few different values to a `Character` object.
 
 ```move
-let ctx = tx_context::dummy();
-let character = Character { id: object::new(ctx) };
-
-// Attach a `String` via a `vector<u8>` name
-df::add(&mut character.id, b"string_key", b"Hello, World!".to_string());
-
-// Attach a `u64` via a `u32` name
-df::add(&mut character.id, 1000u32, 1_000_000_000u64);
-
-// Attach a `bool` via a `bool` name
-df::add(&mut character.id, true, false);
+{{#include ../../packages/samples/sources/programmability/dynamic-fields.move:foreign_types}}
 ```
 
 In this example we showed how different types can be used for both *name* and the *value* of a dynamic field. The `String` is attached via a `vector<u8>` name, the `u64` is attached via a `u32` name, and the `bool` is attached via a `bool` name. Anything is possible with dynamic fields!
@@ -122,19 +58,7 @@ In this example we showed how different types can be used for both *name* and th
 The `object::delete()` function, which is used to delete a UID, does not track the dynamic fields, and cannot prevent dynamic fields from becoming orphaned. Once the parent UID is deleted, the dynamic fields are not automatically deleted, and they become orphaned. This means that the dynamic fields are still stored in the blockchain, but they will never become accessible again.
 
 ```move
-// ! DO NOT do this in your code:
-let ctx = tx_context::dummy();
-let hat = Hat { id: object::new(ctx), color: 0xFF0000 };
-let character = Character { id: object::new(ctx) };
-
-// Attach a `Hat` via a `vector<u8>` name
-df::add(&mut character.id, b"hat_key", hat);
-
-// ! Danger - deleting the parent object
-let Character { id } = character;
-id.delete();
-
-// ...`Hat` is now stuck in a limbo, it will never be accessible again
+{{#include ../../packages/samples/sources/programmability/dynamic-fields.move:orphan_fields}}
 ```
 
 Orphaned objects are not a subject to storage rebate, and the storage fees will remain unclaimed.
@@ -146,17 +70,7 @@ Because dynamic fields are attached to `UID`s, their usage in other modules depe
 > Please, remember, that `&mut UID` access affects not only dynamic fields, but also [Transfer to Object](./object/transfer-to-object.md) and [Dynamic Object Fields](#dynamic-object-fields). Should you decide to expose the `UID` as a mutable reference, make sure to understand the implications.
 
 ```move
-/// Exposes the UID of the character, so that other modules can add, remove
-/// and modify dynamic fields.
-public fun uid_mut(c: &mut Character): &mut UID {
-    &mut c.id
-}
-
-/// Exposes the UID of the character, so that other modules can read
-/// dynamic fields.
-public fun uid(c: &Character): &UID {
-    &c.id
-}
+{{#include ../../packages/samples/sources/programmability/dynamic-fields.move:exposed_uid}}
 ```
 
 In the example above, we show how to expose the `UID` of a `Character` object. This solution may work for some applications, however, it is imporant to remember that the exposed `UID` can be a security risk. Especially, if the object's dynamic fields are not supposed to be modified by other modules.
@@ -168,34 +82,13 @@ If you need to expose the `UID` within the package, consider using a more restri
 In the examples above, we used primitive types as field names since they have the required set of abilities. But dynamic fields get even more interesting when we use custom types as field names. This allows for a more structured way of storing data, and also allows for protecting the field names from being accessed by other modules.
 
 ```move
-/// A custom type with fields in it.
-public struct AccessoryKey has copy, drop, store { name: String }
-
-/// An empty key, can be attached only once.
-public struct MetadataKey has copy, drop, store {}
+{{#include ../../packages/samples/sources/programmability/dynamic-fields.move:custom_type}}
 ```
 
 Two field names that we defined above are `AccessoryKey` and `MetadataKey`. The `AccessoryKey` has a `String` field in it, hence it can be used multiple times with different `name` values. The `MetadataKey` is an empty key, and can be attached only once.
 
 ```move
-let ctx = tx_context::dummy();
-let character = Character { id: object::new(ctx) };
-
-// Attaching via an `AccessoryKey { name: "hat" }`
-df::add(
-    &mut character.id,
-    AccessoryKey { name: "hat".to_string() },
-    Hat { id: object::new(ctx), color: 0xFF0000 }
-);
-// Attaching via an `AccessoryKey { name: "mustache" }`
-df::add(
-    &mut character.id,
-    AccessoryKey { name: "mustache".to_string() },
-    Mustache { id: object::new(ctx) }
-);
-
-// Attaching via a `MetadataKey`
-df::add(&mut character.id, MetadataKey {}, 42);
+{{#include ../../packages/samples/sources/programmability/dynamic-fields.move:custom_type_usage}}
 ```
 
 As you can see, custom types do work as field names but as long as they can be *constructed* by the module, in other words - if they are *internal* to the module and defined in it. This limitation on struct packing can open up new ways in the design of the application.
