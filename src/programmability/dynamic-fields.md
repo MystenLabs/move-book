@@ -198,13 +198,13 @@ df::add(
 df::add(&mut character.id, MetadataKey {}, 42);
 ```
 
-As you can see, custom types do work as field names but as long as they can be *packed* by the module, in other words - if they are *internal* to the module and defined in it. This limitation on struct packing can play an important role in the design of the application, as the keys attached to the object can *never* be accessed from other modules.
+As you can see, custom types do work as field names but as long as they can be *constructed* by the module, in other words - if they are *internal* to the module and defined in it. This limitation on struct packing can open up new ways in the design of the application.
 
 This approach is used in the [Object Capability]() pattern, where an application can authorize a foreign object to perform operations in it while not exposing the capabilities to other modules.
 
 ## Applications
 
-Dynamic Fields play a crucial role in the design of applications of any complexity. They allow storing heterogeneous data in a single object, so a marketplace of different objects can be built on top of a single object. Another important use case is the ability to define them *later*, which allows for extendable design patterns and more flexible applications. This last point allows for certain [upgradeability practices](./../guides/upgradeability-practices.md) to be implemented.
+Dynamic Fields can play a crucial role in applications of any complexity. They open up a variety of different use cases, from storing heterogeneous data to attaching objects as part of the application logic. They allow for certain [upgradeability practices](./../guides/upgradeability-practices.md) based on the ability to define them *later* and change the type of the field.
 
 ## Next Steps
 

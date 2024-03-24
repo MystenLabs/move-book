@@ -1,6 +1,6 @@
-# Upgradability Practices
+# Upgradeability Practices
 
-To talk about best practices for upgradability, we need to first understand what can be upgraded in a package. The base premise of upgradability is that an upgrade should not break public compatibility with the previous version. The parts of the module which can be used in dependent packages should not change their static signature. This applies to modules - a module can not be removed from a package, public structs - they can be used in function signatures and public functions - they can be called from other packages.
+To talk about best practices for upgradeability, we need to first understand what can be upgraded in a package. The base premise of upgradeability is that an upgrade should not break public compatibility with the previous version. The parts of the module which can be used in dependent packages should not change their static signature. This applies to modules - a module can not be removed from a package, public structs - they can be used in function signatures and public functions - they can be called from other packages.
 
 ```move
 // module can not be removed from the package
@@ -31,8 +31,8 @@ module book::upgradable {
         })
     }
 
-    // friend-only functions can be removed and changed
-    public(friend) fun create_book_friend(ctx: &mut TxContext): Book {
+    // package-visibility functions can be removed and changed
+    public(package) fun create_book_package(ctx: &mut TxContext): Book {
         create_book_internal(ctx)
     }
 
@@ -66,7 +66,7 @@ module book::versioned_state {
     const VERSION: u8 = 1;
 
     /// The shared state (can be owned too)
-    struct SharedState has key {
+    public struct SharedState has key {
         id: UID,
         version: u8,
         /* ... */
@@ -91,13 +91,13 @@ module book::versioned_config {
     use std::string::String;
 
     /// The base object
-    struct Config has key {
+    public struct Config has key {
         id: UID,
         version: u16
     }
 
     /// The actual configuration
-    struct ConfigV1 has store {
+    public struct ConfigV1 has store {
         data: Bag,
         metadata: VecMap<String, String>
     }
