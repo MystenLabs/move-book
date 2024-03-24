@@ -58,14 +58,14 @@ comparison to docs.sui.io
     - [Set up your IDE](before-we-begin/ide-support.md)
     - [Move 2024](before-we-begin/move-2024.md)
 - [Your First Move](your-first-move/README.md)
-    - [Hello World!](your-first-move/hello-world.md)
-    - [Your First Sui App](./hello-sui/README.md)
+    - [Hello World!]() <!-- your-first-move/hello-world.md) -->
+    - [Your First Sui App]() <!-- ./hello-sui/README.md) -->
     - [Publishing]()
-    - [Hello Sui!](./hello-sui/hello-sui.md)
-    - [Using Objects](./hello-sui/module-structure.md)
-    - [Adding Tests](your-first-move/adding-tests.md)
-    - [Debugging](your-first-move/debugging.md)
-    - [Generating Docs](your-first-move/generating-docs.md)
+    - [Hello Sui!]() <!--  ./hello-sui/hello-sui.md) -->
+    - [Using Objects]()<!-- (./hello-sui/module-structure.md) -->
+    - [Adding Tests]() <!--  your-first-move/adding-tests.md) -->
+    - [Debugging]() <!-- your-first-move/debugging.md) -->
+    - [Generating Docs]() <!-- your-first-move/generating-docs.md) -->
     <!-- TODO:  -->
     <!-- - [Send a Transaction]() -->
 - [Concepts](./concepts/README.md)
@@ -84,7 +84,7 @@ comparison to docs.sui.io
     - [Address Type](./basic-syntax/address.md)
     - [Expression](./basic-syntax/expression.md)
     - [Struct](./basic-syntax/struct.md)
-    - [Abilities: Drop](./basic-syntax/drop-ability.md)
+    - [Ability: Drop](./basic-syntax/drop-ability.md)
     - [Importing Modules](./basic-syntax/importing-modules.md)
     - [Standard Library](./basic-syntax/standard-library.md)
     - [Vector](./basic-syntax/vector.md)
@@ -97,7 +97,7 @@ comparison to docs.sui.io
     - [Struct Methods](./basic-syntax/struct-methods.md)
     - [Visibility Modifiers](./basic-syntax/visibility.md)
     - [Ownership and Scope](./basic-syntax/ownership-and-scope.md)
-    - [Abilities: Copy](./basic-syntax/copy-ability.md)
+    - [Ability: Copy](./basic-syntax/copy-ability.md)
     - [References](./basic-syntax/references.md)
     - [Generics](./basic-syntax/generics.md)
     - [Type Reflection](./basic-syntax/type-reflection.md)
@@ -118,7 +118,7 @@ comparison to docs.sui.io
     - [Asset Ownership]()
     - [Asset Metadata]() -->
 - [It starts with an Object](./object/README.md)
-    - [The Key Ability]() <!-- (./object/key-ability.md) -->
+    - [Ability: Key]() <!-- (./object/key-ability.md) -->
     - [What is an Object]() <!-- (./object/what-is-an-object.md) -->
     - [True Ownership]() <!-- (./object/true-ownership.md) -->
     - [Transfer Restrictions]() <!-- (./object/transfer-restrictions.md) -->
@@ -132,13 +132,15 @@ comparison to docs.sui.io
     - [Fast Path](./programmability/fast-path.md)
     - [Collections](./programmability/collections.md)
     - [Dynamic Fields](./programmability/dynamic-fields.md)
-    - [Dynamic Collections]() <!-- (./programmability/dynamic-collections.md) -->
+    - [Dynamic Collections]() <!-- ./programmability/dynamic-collections.md) -->
     - [Package Upgrades]()<!-- (./programmability/package-upgrades.md) -->
-    - [One Time Witness]()
+    - [Pattern: Witness]() <!-- ./programmability/witness-pattern.md) <!-- Block: from Witness to Display -->
+    - [One Time Witness](./programmability/one-time-witness.md)
+    - [Publisher Authority](./programmability/publisher.md)
+    - [Display](./programmability/display.md) <!-- End Block: from Witness to Display -->
     - [Sui Framework](./programmability/sui-framework.md)
     - [Witness and Abstract Implementation](./programmability/witness-and-abstract-implementation.md)
     - [Events](./programmability/events.md)
-    - [Display](./programmability/display.md)
     - [Pattern: Request]()
     - [Pattern: Hot Potato]()
     - [Pattern: Object Capability]()
@@ -149,8 +151,8 @@ comparison to docs.sui.io
     - [BCS](./programmability/bcs.md)
 - [Patterns (?)]()
     - [Getters and Setters]()
-    - [Capability]()
-    - [Witness]()
+    <!-- - [Capability]() -->
+    <!-- - [Witness]() -->
     - [Abstract Class]()
     - [Hot Potato]()
     - [Request]()

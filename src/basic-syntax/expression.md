@@ -2,16 +2,7 @@
 
 In programming languages expression is a unit of code which returns a value, in Move, almost everything is an expression, - with the sole exception of `let` statement which is a declaration. In this section, we cover the types of expressions and introduce the concept of scope.
 
-> Expressions are sequenced with semicolons `;`. If there's "no expression" after the semicolon, the compiler will insert an empty expression `()`.
-
-<!-- ## Empty Expression
-
-The very base of the expression is the empty expression. It is a valid expression that does nothing and returns nothing. An empty expression is written as empty parentheses `()`. It's rarely the case when you need to use an empty expression. The compiler automatically inserts empty expressions where needed, for example in an empty [Scope](#scope). Though, it may be helpful to know that it exists. Parentheses are also used to group expressions to control the order of evaluation.
-
-```move
-{{#include ../../packages/samples/sources/basic-syntax/expression.move:empty}}
-```
--->
+> Expressions are sequenced with semicolons `;`. If there's "no expression" after the semicolon, the compiler will insert a unit `()` - an empty expression.
 
 ## Literals
 

@@ -49,3 +49,6 @@ edit-url-template = "https://github.com/MystenLabs/move-book/edit/second-edition
 "tutorials/index.html" = "/index.html"
 "tutorials/erc20.html" = "/index.html"
 "translations.html" = "/index.html"
+
+[output.html.playground]
+runnable = true

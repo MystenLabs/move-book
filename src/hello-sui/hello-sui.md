@@ -35,7 +35,7 @@ The Postcard application will be a simple module that defines an [object](./../c
 Let's start by inserting the code. Replace the contents of the `src/postcard.move` file with the following:
 
 ```move
-// {{#include ../../postcard/sources/postcard.move:all}}
+// {{include ../../postcard/sources/postcard.move:all}}
 ```
 
 To make sure that everything is working as expected, run this command:

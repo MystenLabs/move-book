@@ -20,6 +20,10 @@ Links:
     - constants (previous section)
  -->
 
+A transaction can either succeed or fail. Successful execution applies all the changes made to objects and on-chain data, and the transaction is committed to the blockchain. If a transaction aborts, and changes are not applied. The `abort` keyword is used to abort a transaction and revert the changes made so far.
+
+> It is important to note that there is no catch mechanism in Move. If a transaction aborts, the changes made so far are reverted, and the transaction is considered failed.
+
 ## Abort
 
 The `abort` keyword is used to abort the execution of a transaction. It is used in combination with an abort code, which will be returned to the caller of the transaction. The abort code is an integer of type `u64` and can be any value.
@@ -48,4 +52,5 @@ To make error codes more descriptive, it is a good practice to define error cons
 
 ## Further reading
 
-We suggest reading the [Better Error Handling](./../guides/better-error-handling.md) guide to learn about best practices for error handling in Move.
+- [Abort and Assert](/reference/abort-and-assert.html) in the Move Language Reference.
+- We suggest reading the [Better Error Handling](./../guides/better-error-handling.md) guide to learn about best practices for error handling in Move.
