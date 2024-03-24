@@ -499,7 +499,7 @@ hljs.registerLanguage('move', function(hljs) {
         scope: 'struct',
         begin: 'struct',
         keywords: 'struct',
-        end: /(?=})/,
+        end: /(?=[\)}])/,
         relevance: 10,
         contains: [
           BLOCK_COMMENT,
@@ -507,16 +507,28 @@ hljs.registerLanguage('move', function(hljs) {
           TYPES,
           {
             scope: 'keyword',
-            match: /has|phantom/,
+            match: /\b(has|phantom)\b/,
           },
           {
             scope: 'param',
-            match: /[a-zA-Z][a-zA-Z0-9_]+\s*(?=:)/,
+            match: /[a-zA-Z][a-zA-Z0-9_]*\s*(?=:)/,
           },
           {
             scope: 'title.class',
-            match: /[a-zA-Z][a-zA-Z0-9_]+/,
+            match: /[a-zA-Z][a-zA-Z0-9_]*/,
             relevance: 0,
+          },
+          {
+            scope: 'has',
+            begin: /\bhas\b/,
+            end: /(?=[;(])/,
+            beginKeywords: 'has',
+            contains: [
+              {
+                scope: 'title.class',
+                match: /\bcopy|drop|store|key\b/
+              }
+            ]
           }
         ]
       },
