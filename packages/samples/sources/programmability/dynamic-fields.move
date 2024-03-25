@@ -81,13 +81,13 @@ sui::test_utils::destroy(character);
 #[test] fun orphan_fields() {
 let ctx = &mut tx_context::dummy();
 // ANCHOR: orphan_fields
-// ! DO NOT do this in your code:
 let hat = Hat { id: object::new(ctx), color: 0xFF0000 };
 let mut character = Character { id: object::new(ctx) };
 
 // Attach a `Hat` via a `vector<u8>` name
 df::add(&mut character.id, b"hat_key", hat);
 
+// ! DO NOT do this in your code
 // ! Danger - deleting the parent object
 let Character { id } = character;
 id.delete();

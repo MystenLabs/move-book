@@ -13,7 +13,7 @@ Sui Framework is a default dependency set in the [Package Manifest](./../concept
 | sui::object | Defines the `UID` and `ID` type, required for creating objects | [It starts with an Object](./../object) |
 | sui::clock | Defines the `Clock` type and its methods | [Epoch and Time](./epoch-and-time.md) |
 | sui::dynamic_field | Implements methods to add, use and remove dynamic fields | [Dynamic Fields](./dynamic-fields.md) |
-| sui::dynamic_object_field | Implements methods to add, use and remove dynamic object fields | [Dynamic Fields](./dynamic-fields.md) |
+| sui::dynamic_object_field | Implements methods to add, use and remove dynamic object fields | [Dynamic Object Fields](./dynamic-object-fields.md) |
 | sui::vec_map | Implements a map with vector keys | [Collections](./collections.md) |
 | sui::vec_set | Implements a set type | [Collections](./collections.md) |
 | sui::event | Allows emitting events for off-chain listeners | [Events](./events.md) |

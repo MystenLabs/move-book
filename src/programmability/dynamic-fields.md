@@ -1,6 +1,6 @@
 # Dynamic Fields
 
-Sui Object model allows objects to be attached to other objects as *dynamic fields*. The behavior is similar to how a `Map` works in other programming languages. However, unlike a `Map` which in Move would be strictly typed (we have covered it in the [Collections](./collections.md) section), dynamic fields allow attaching objects of any type.
+Sui Object model allows objects to be attached to other objects as *dynamic fields*. The behavior is similar to how a `Map` works in other programming languages. However, unlike a `Map` which in Move would be strictly typed (we have covered it in the [Collections](./collections.md) section), dynamic fields allow attaching objects of any type. A similar approach from the world of frontend development would be a JavaScript Object type which allows storing any type of data dynamically.
 
 > There's no limit to the number of dynamic fields that can be attached to an object. Thus, dynamic fields can be used to store large amounts of data that don't fit into the object limit size.
 
@@ -61,21 +61,7 @@ The `object::delete()` function, which is used to delete a UID, does not track t
 {{#include ../../packages/samples/sources/programmability/dynamic-fields.move:orphan_fields}}
 ```
 
-Orphaned objects are not a subject to storage rebate, and the storage fees will remain unclaimed.
-
-## Exposing UID
-
-Because dynamic fields are attached to `UID`s, their usage in other modules depends on whether the `UID` is exposed as a reference or a mutable reference. By default struct visibility protects the `id` field and won't let other modules access it directly. However, if there's a public accessor method that returns a reference to `UID` (or a mutable reference), dynamic fields can be accessed from other modules.
-
-> Please, remember, that `&mut UID` access affects not only dynamic fields, but also [Transfer to Object](./object/transfer-to-object.md) and [Dynamic Object Fields](#dynamic-object-fields). Should you decide to expose the `UID` as a mutable reference, make sure to understand the implications.
-
-```move
-{{#include ../../packages/samples/sources/programmability/dynamic-fields.move:exposed_uid}}
-```
-
-In the example above, we show how to expose the `UID` of a `Character` object. This solution may work for some applications, however, it is imporant to remember that the exposed `UID` can be a security risk. Especially, if the object's dynamic fields are not supposed to be modified by other modules.
-
-If you need to expose the `UID` within the package, consider using a more restrictive access control, like `public(package)`, or even better - use more specific accessor methods that would allow only reading specific fields.
+Orphaned objects are not a subject to storage rebate, and the storage fees will remain unclaimed. One way to avoid orphaned dynamic fields during unpacking on an object is to return the `UID` and store it somewhere temporarily until the dynamic fields are removed and handled properly.
 
 ## Custom Type as a Field Name
 
@@ -94,6 +80,28 @@ Two field names that we defined above are `AccessoryKey` and `MetadataKey`. The 
 As you can see, custom types do work as field names but as long as they can be *constructed* by the module, in other words - if they are *internal* to the module and defined in it. This limitation on struct packing can open up new ways in the design of the application.
 
 This approach is used in the [Object Capability]() pattern, where an application can authorize a foreign object to perform operations in it while not exposing the capabilities to other modules.
+
+## Exposing UID
+
+Because dynamic fields are attached to `UID`s, their usage in other modules depends on whether the `UID` is exposed as a reference or a mutable reference. By default struct visibility protects the `id` field and won't let other modules access it directly. However, if there's a public accessor method that returns a reference to `UID` (or a mutable reference), dynamic fields can be accessed from other modules.
+
+> Please, remember, that `&mut UID` access affects not only dynamic fields, but also [Transfer to Object](./object/transfer-to-object.md) and [Dynamic Object Fields](#dynamic-object-fields). Should you decide to expose the `UID` as a mutable reference, make sure to understand the implications.
+
+```move
+{{#include ../../packages/samples/sources/programmability/dynamic-fields.move:exposed_uid}}
+```
+
+In the example above, we show how to expose the `UID` of a `Character` object. This solution may work for some applications, however, it is imporant to remember that the exposed `UID` can be a security risk. Especially, if the object's dynamic fields are not supposed to be modified by other modules.
+
+If you need to expose the `UID` within the package, consider using a more restrictive access control, like `public(package)`, or even better - use more specific accessor methods that would allow only reading specific fields.
+
+## Dynamic Fields vs Fields
+
+Dynamic Fields are more expensive than regular fields, as they require additional storage and costs for accessing them. Their flexibility comes at a price, and it is important to understand the implications when making a decision between using dynamic fields and regular fields.
+
+## Limits
+
+Dynamic Fields are not subject to the [object size limit](./../guides/building-against-limits.md), and can be used to store large amounts of data. However, they are still subject to the [dynamic fields created limit](./../guides/building-against-limits.md), which is set to 1000 fields per transaction.
 
 ## Applications
 
