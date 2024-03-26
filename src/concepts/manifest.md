@@ -2,6 +2,8 @@
 
 The `Move.toml` is a manifest file that describes the [package](./packages.md) and its dependencies. It is written in [TOML](https://toml.io/en/) format and contains multiple sections, the most important of which are `[package]`, `[dependencies]` and `[addresses]`.
 
+<!-- are they most important or most used? if most important, why exactly? are any of the sections required? -->
+
 ```toml
 [package]
 name = "my_project"
@@ -34,6 +36,8 @@ The `[package]` section is used to describe the package. None of the fields in t
 ### Dependencies
 
 The `[dependencies]` section is used to specify the dependencies of the project. Each dependency is specified as a key-value pair, where the key is the name of the dependency, and the value is the dependency specification. The dependency specification can be a git repository URL or a path to the local directory.
+
+<!-- Under what circumstances would you use a local versus on chain dependency? --> 
 
 ```toml
 # git repository

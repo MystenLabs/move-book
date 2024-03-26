@@ -12,11 +12,13 @@
 
  -->
 
-Now that we have a package with a module and a test, let's take a slight detour and learn how to debug Move programs. Move Compiler has a built-in debugging tool that allows you to print intermediate values to the console. This is especially useful when you are writing tests and want to see what's going on inside the program.
+Now that we have a package with a module and a test, let's take a slight detour and learn how to debug Move programs. The Move compiler has a built-in debugging tool that allows you to print intermediate values to the console. This is especially useful when you are writing tests and want to see what's going on inside the program.
 
 ## New import
 
-To use the `debug` module, we need to import it in our module. Imports are usually grouped together for readability and they are placed at the top of the module. Let's add the import statement to the `hello_world` module:
+<!-- mention the use keyword, maybe compare to imports from other langs? --> 
+
+To use the `debug` module, we need to import it into our module. Imports are usually grouped together for readability and they are placed at the top of the module. Let's add the import statement to the `hello_world` module:
 
 ```Move
 {{#include ../../samples/sources/your-first-move/hello_world.move:4:5}}
@@ -59,10 +61,12 @@ Debug should only be used in local environment and never published on-chain. Usu
 
 ## Hint
 
+<!-- not sure I fully grasp how this is a time saver. Is having to use the fully qualified name every time better than importing once? -->
+
 There's one trick that allows you to save some time while debugging. Instead of adding a module-level import, use a fully qualified function name. This way you don't need to add an import statement to the module, but you can still use the `debug::print` function:
 
 ```Move
     std::debug::print(&my_variable);
 ```
 
-Be mindful that the value passed into debug should be a reference (the `&` symbol in front of the variable name). If you pass a value, the compiler will emit an error.
+Be mindful that the value passed into debug should be a reference (the `&` symbol in front of the variable name). If you pass a value, the compiler emits an error.
