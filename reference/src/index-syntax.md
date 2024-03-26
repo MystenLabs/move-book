@@ -14,7 +14,7 @@ To start, consider a `Matrix` type that uses a vector of vectors to represent it
 write a small library using `index` syntax annotations on the `borrow` and `borrow_mut` functions as
 follows:
 
-```
+```move
 module matrix {
 
     public struct Matrix<T> { v: vector<vector<T>> }
@@ -38,7 +38,7 @@ module matrix {
 
 Now anyone using this `Matrix` type has access to index syntax for it:
 
-```
+```move
 let v0 = vector<u64>[1, 0, 0];
 let v1 = vector<u64>[0, 1, 0];
 let v2 = vector<u64>[0, 0, 1];
@@ -107,7 +107,7 @@ Move places no restrictions on the values your index syntax method takes as para
 you to implement intricate programmatic behavior when defining index syntax, such as a data
 structure that takes a default value if the index is out of bounds:
 
-```
+```move
 #[syntax(index)]
 public fun borrow_or_set<Key: copy, Value: drop>(
     input: &mut MTable<Key, Value>,
