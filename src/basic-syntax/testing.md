@@ -4,7 +4,7 @@ A crucial part of any software development, and even more - blockchain developme
 
 ## The `#[test]` attribute
 
-Tests in Move are functions marked with the `#[test]` attribute. This attribute tells the compiler that the function is a test function, and it should be run when the tests are executed. Test functions are regular functions, but they must return `()` and take no arguments. They are excluded from the bytecode, and are not included in the final package.
+Tests in Move are functions marked with the `#[test]` attribute. This attribute tells the compiler that the function is a test function, and it should be run when the tests are executed. Test functions are regular functions, but they must return `()` and take no arguments. They are excluded from the bytecode, and are never published.
 
 ```move
 module book::testing {
@@ -39,6 +39,35 @@ $ sui move test
 ```
 
 <!-- TODO: fill output -->
+
+## Test Fail Cases with `#[expected_failure]`
+
+Tests for fail cases can be marked with `#[expected_failure]`. This attribute placed on a `#[test]` function tells the compiler that the test is expected to fail. This is useful when you want to test that a function fails when a certain condition is met.
+
+> This attribute can only be placed on a `#[test]` function.
+
+The attribute can take an argument for abort code, which is the expected abort code when the test fails. If the test fails with a different abort code, the test will fail. If the execution did not abort, the test will also fail.
+
+```move
+module book::testing_failure {
+
+    const EInvalidArgument: u64 = 0;
+
+    #[test]
+    #[expected_failure(abort_code = 0)]
+    fun test_fail() {
+        abort 0 // aborts with 0
+    }
+
+    // attributes can be grouped together
+    #[test, expected_failure(abort_code = EInvalidArgument)]
+    fun test_fail_1() {
+        abort 1 // aborts with 0
+    }
+}
+```
+
+The `abort_code` argument can use constants defined in the tests module as well as imported from other modules. This is the only case where constants can be used and "accessed" in other modules.
 
 ## Utilities with `#[test_only]`
 

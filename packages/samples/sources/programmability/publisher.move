@@ -21,16 +21,21 @@ module book::publisher {
 }
 // ANCHOR_END: publisher
 
+#[allow(unused_variable)]
 module book::use_publisher {
+    use sui::package::{Self, Publisher};
+
     public struct Book {}
 
     public struct USE_PUBLISHER has drop {}
 
+    const ENotAuthorized: u64 = 1;
+
 
 #[test]
 fun test_publisher() {
-let ctx = tx_context::dummy();
-let publisher = package::test_claim(USE_PUBLISHER, &mut ctx);
+let ctx = &mut tx_context::dummy();
+let publisher = package::test_claim(USE_PUBLISHER {}, ctx);
 // ANCHOR: use_publisher
 // Checks if the type is from the same module, hence the `Publisher` has the
 // authority over it.
@@ -40,6 +45,7 @@ assert!(publisher.from_module<Book>(), 0);
 // authority over it.
 assert!(publisher.from_package<Book>(), 0);
 // ANCHOR_END: use_publisher
+sui::test_utils::destroy(publisher);
 }
 
 // ANCHOR: publisher_as_admin

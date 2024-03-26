@@ -101,7 +101,7 @@ comparison to docs.sui.io
     - [References](./basic-syntax/references.md)
     - [Generics](./basic-syntax/generics.md)
     - [Type Reflection](./basic-syntax/type-reflection.md)
-    - [Testing](./programmability/testing.md)
+    - [Testing](./basic-syntax/testing.md)
     <!-- - [Enums]() (./basic-syntax/enums.md) -->
     <!-- - [Macro Functions]() (./basic-syntax/macro-functions.md) -->
     <!--
@@ -118,10 +118,11 @@ comparison to docs.sui.io
     - [Asset Ownership]()
     - [Asset Metadata]() -->
 - [It starts with an Object](./object/README.md)
-    - [Ability: Key]() <!-- (./object/key-ability.md) -->
+    - [Ability: Key](./object/key-ability.md)
     - [What is an Object]() <!-- (./object/what-is-an-object.md) -->
     - [True Ownership]() <!-- (./object/true-ownership.md) -->
     - [Transfer Restrictions]() <!-- (./object/transfer-restrictions.md) -->
+    - [Ability: Store]() <!-- ./object/store-ability.md) -->
     - [Shared State]() <!-- (./object/shared-state.md) -->
     - [Transfer to Object?]()<!-- (./object/transfer-to-object.md) -->
 - [Advanced Programmability](./programmability/README.md)
@@ -132,14 +133,15 @@ comparison to docs.sui.io
     - [Fast Path](./programmability/fast-path.md)
     - [Collections](./programmability/collections.md)
     - [Dynamic Fields](./programmability/dynamic-fields.md)
-    - [Dynamic Collections]() <!-- ./programmability/dynamic-collections.md) -->
+    - [Dynamic Object Fields](./programmability/dynamic-object-fields.md)
+    - [Dynamic Collections](./programmability/dynamic-collections.md)
     - [Package Upgrades]()<!-- (./programmability/package-upgrades.md) -->
     - [Pattern: Witness]() <!-- ./programmability/witness-pattern.md) <!-- Block: from Witness to Display -->
     - [One Time Witness](./programmability/one-time-witness.md)
     - [Publisher Authority](./programmability/publisher.md)
     - [Display](./programmability/display.md) <!-- End Block: from Witness to Display -->
     - [Events](./programmability/events.md)
-    - [Balance & Coin](./programmability/balance-and-coin.md)
+    - [Balance & Coin]() <!-- ./programmability/balance-and-coin.md) -->
     - [Sui Framework](./programmability/sui-framework.md)
     - [Pattern: Request]() <!-- - [Witness and Abstract Implementation](./programmability/witness-and-abstract-implementation.md) -->
     - [Pattern: Hot Potato]()

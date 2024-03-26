@@ -1,9 +1,20 @@
 /* Changing styles */
 
+html {
+    zoom: 100%;
+}
+
 body {
     font-family: 'Rubik', sans-serif;
     font-weight: lighter;
+    font-size: 1.8rem;
 }
+
+code {
+    font-weight: var(--code-font-weight);
+    line-height: var(--code-line-height);
+}
+
 
 h1, h2, h3, h4, h5 {
     font-family: 'Rubik', sans-serif;

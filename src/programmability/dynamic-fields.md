@@ -83,17 +83,25 @@ This approach is used in the [Object Capability]() pattern, where an application
 
 ## Exposing UID
 
-Because dynamic fields are attached to `UID`s, their usage in other modules depends on whether the `UID` is exposed as a reference or a mutable reference. By default struct visibility protects the `id` field and won't let other modules access it directly. However, if there's a public accessor method that returns a reference to `UID` (or a mutable reference), dynamic fields can be accessed from other modules.
+<div class="warning">
 
-> Please, remember, that `&mut UID` access affects not only dynamic fields, but also [Transfer to Object](./object/transfer-to-object.md) and [Dynamic Object Fields](#dynamic-object-fields). Should you decide to expose the `UID` as a mutable reference, make sure to understand the implications.
+Mutable access to `UID` is a security risk. Exposing `UID` of your type as a mutable reference can lead to unwanted modifications or removal of the object's dynamic fields. Additionally, it affects the [Transfer to Object](./object/transfer-to-object.md) and [Dynamic Object Fields](./dynamic-object-fields.md). Make sure to understand the implications before exposing the `UID` as a mutable reference.
+
+</div>
+
+Because dynamic fields are attached to `UID`s, their usage in other modules depends on whether the `UID` can be accessed. By default struct visibility protects the `id` field and won't let other modules access it directly. However, if there's a public accessor method that returns a reference to `UID`, dynamic fields can be read in other modules.
 
 ```move
 {{#include ../../packages/samples/sources/programmability/dynamic-fields.move:exposed_uid}}
 ```
 
-In the example above, we show how to expose the `UID` of a `Character` object. This solution may work for some applications, however, it is imporant to remember that the exposed `UID` can be a security risk. Especially, if the object's dynamic fields are not supposed to be modified by other modules.
+In the example above, we show how to expose the `UID` of a `Character` object. This solution may work for some applications, however, it is imporant to remember that exposed `UID` allows reading *any* dynamic field attached to the object.
 
-If you need to expose the `UID` within the package, consider using a more restrictive access control, like `public(package)`, or even better - use more specific accessor methods that would allow only reading specific fields.
+If you need to expose the `UID` only within the package, use a restrictive visibility, like `public(package)`, or even better - use more specific accessor methods that would allow only reading specific fields.
+
+```move
+{{#include ../../packages/samples/sources/programmability/dynamic-fields.move:exposed_uid_measures}}
+```
 
 ## Dynamic Fields vs Fields
 

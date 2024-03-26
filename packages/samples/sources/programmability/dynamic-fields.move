@@ -97,18 +97,27 @@ id.delete();
 }
 
 // ANCHOR: exposed_uid
-/// Exposes the UID of the character, so that other modules can add, remove
-/// and modify dynamic fields.
-public fun uid_mut(c: &mut Character): &mut UID {
-    &mut c.id
-}
-
 /// Exposes the UID of the character, so that other modules can read
 /// dynamic fields.
 public fun uid(c: &Character): &UID {
     &c.id
 }
 // ANCHOR_END: exposed_uid
+
+// ANCHOR: exposed_uid_measures
+/// Only allow modules in the same package to access the UID.
+public(package) fun uid_package(c: &Character): &UID {
+    &c.id
+}
+
+/// Allow borrowing dynamic fields from the character.
+public fun borrow<Name: copy + store + drop, Value: store>(
+    c: &Character,
+    n: Name
+): &Value {
+    df::borrow(&c.id, n)
+}
+// ANCHOR_END: exposed_uid_measures
 
 // ANCHOR: custom_type
 /// A custom type with fields in it.

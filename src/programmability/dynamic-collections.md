@@ -4,25 +4,36 @@
 
 For each collection type we will specify the primitive they use, and the specific features they offer.
 
-> Unlike dynamic (object) fields which operate on UID, collection types have their own type and allow calling associated methods.
+> Unlike dynamic (object) fields which operate on UID, collection types have their own type and allow calling [associated functions](./../basic-syntax/struct-methods.md).
 
 ## Common Concepts
 
-All of the collection types more or less share the same set of methods, which are:
+All of the collection types share the same set of methods, which are:
 
 - `add` - adds a field to the collection
 - `remove` - removes a field from the collection
 - `borrow` - borrows a field from the collection
 - `borrow_mut` - borrows a mutable reference to a field from the collection
 - `contains` - checks if a field exists in the collection
-- `contains_with_type` - checks if a field exists in the collection with a specific type
+- `length` - returns the number of fields in the collection
+- `is_empty` - checks if the `length` is 0
 
-In the examples we won't focus on these functions, rather
-<!-- - `size` - returns the number of fields in the collection -->
+All collection types support index syntax for `borrow` and `borrow_mut` methods. If you see square brackets in the examples, they are translated into `borrow` and `borrow_mut` calls.
+
+```move
+let hat: &Hat = &bag[b"key"];
+let hat_mut: &mut Hat = &mut bag[b"key"];
+
+// is equivalent to
+let hat: &Hat = bag.borrow(b"key");
+let hat_mut: &mut Hat = bag.borrow_mut(b"key");
+```
+
+In the examples we won't focus on these functions, but rather on the differences between the collection types.
 
 ## Bag
 
-Bag is a collection type which acts as a heterogeneous container for dynamic fields. It is a simple, non-generic type that can store any data. Bag prevents its fields from being orphaned by disallowing unpacking if there are attached fields.
+Bag, as the name suggests, acts as a "bag" of heterogeneous values. It is a simple, non-generic type that can store any data. Bag will never allow orphaned fields, as it tracks the number of fields and can't be destroyed if it's not empty.
 
 File: sui-framework/sources/bag.move
 ```move
@@ -34,37 +45,55 @@ public struct Bag has key, store {
 }
 ```
 
+Due to Bag storing any types, the extra methods it offers is:
+- `contains_with_type` - checks if a field exists with a specific type
+
+Used as a struct field:
 ```move
-use sui::bag::{Self, Bag};
-
-let ctx = &mut tx_context::dummy();
-let mut bag = bag::new(ctx);
-
-bag.add(b"key", 42u64);
-
-// Bag size can always be checked.
-assert!(bag.size() == 1, 0);
-
-// Bag provides a way to borrow a field both mut and immutably.
-let magic_mut: &mut u64 = bag.borrow_mut(b"key");
-
-assert!(*magic_mut == 42, 1);
-*magic_mut = 100;
-
-// Fields can be removed.
-let magic: u64 = bag.remove(b"key");
-
-assert!(magic == 100, 1);
-assert!(bag.size() == 0, 2);
-
-// Bag can be destroyed only if it's empty!
-bag.destroy_empty();
+{{#include ../../packages/samples/sources/programmability/dynamic-collections.move:bag_struct}}
 ```
 
+Using the Bag:
+```move
+{{#include ../../packages/samples/sources/programmability/dynamic-collections.move:bag_usage}}
+```
 
+## ObjectBag
 
-- Bag
-- ObjectBag
-- Linked Table
-- Table
-- ObjectTable
+Defined in the `sui::object_bag` module. Identical to [Bag](#bag), but uses [dynamic object fields](./dynamic-object-fields.md) internally. Can only store objects as values.
+
+## Table
+
+Table is a typed dynamic collection that has a fixed type for keys and values. It is defined in the `sui::table` module.
+
+File: sui-framework/sources/table.move
+```move
+public struct Table<phantom K: copy + drop + store, phantom V: store> has key, store {
+    /// the ID of this table
+    id: UID,
+    /// the number of key-value pairs in the table
+    size: u64,
+}
+```
+
+Used as a struct field:
+```move
+{{#include ../../packages/samples/sources/programmability/dynamic-collections.move:table_struct}}
+```
+
+Using the Table:
+```move
+{{#include ../../packages/samples/sources/programmability/dynamic-collections.move:table_usage}}
+```
+
+## ObjectTable
+
+Defined in the `sui::object_table` module. Identical to [Table](#table), but uses [dynamic object fields](./dynamic-object-fields.md) internally. Can only store objects as values.
+
+<!-- ## Choosing a Collection Type
+
+Depending on the needs of your project, you may choose to -->
+
+<!-- ## LinkedTable
+
+TODO: ... -->
