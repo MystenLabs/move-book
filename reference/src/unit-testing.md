@@ -30,7 +30,7 @@ that the test is expected to raise an error. There are a number of options that
 can be used with the `#[expected_failure]` annotation to ensure only a failure
 with the specified condition is marked as passing, these options are detailed
 in [Expected Failures](#expected-failures). Only functions that have the
-`#[test]` annotation can also be annotated as an #`[expected_failure]`. 
+`#[test]` annotation can also be annotated as an #`[expected_failure]`.
 
 Some simple examples of using the `#[expected_failure]` annotation are shown below:
 
@@ -125,7 +125,7 @@ module pkg_addr::my_module {
 }
 ```
 
-### 3. `#[expected_failure(out_of_gas, location = <location>)]` 
+### 3. `#[expected_failure(out_of_gas, location = <location>)]`
 
 This specifies that the test is expected to fail with an out of gas error at
 the specified location. The `<location>` must be a valid path to a module
@@ -207,7 +207,7 @@ module pkg_addr::my_module {
 }
 ```
 
-### 5. `#[expected_failure]` 
+### 5. `#[expected_failure]`
 
 This will pass if the test aborts with any error code. Because of this you
 should be incredibly careful using this way of annotating expected tests
@@ -285,7 +285,7 @@ A simple module using some of the unit testing features is shown in the followin
 First create an empty package and change directory into it:
 
 ```bash
-$ sui move new test_example; cd test_example 
+$ sui move new test_example; cd test_example
 ```
 
 Next add the following module under the `sources` directory:
@@ -336,7 +336,7 @@ module test_example::my_module {
 
 You can then run these tests with the `move test` command:
 
-```
+```bash
 $ sui move test
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
@@ -356,7 +356,7 @@ You can run a specific test, or a set of tests with `sui move test <str>`. This
 will only run tests whose fully qualified name contains `<str>`. For example if
 we wanted to only run tests with `"non_zero"` in their name:
 
-```
+```bash
 $ sui move test non_zero
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
@@ -370,7 +370,7 @@ Test result: OK. Total tests: 1; passed: 1; failed: 0
 
 This bounds the amount of gas that can be consumed for any one test to `<bound>`:
 
-```
+```bash
 $ sui move test -i 0
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
@@ -424,7 +424,7 @@ runtime and gas used for each test. You can additionally add `csv` (`sui move
 test -s csv`) to get the gas usage in a csv output format. For example, if we
 wanted to see the statistics for the tests in the example above:
 
-```
+```bash
 $ sui move test -s
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib

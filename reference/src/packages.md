@@ -14,7 +14,7 @@ package system allows programmers to easily:
 A Move package source directory contains a `Move.toml` package manifest file, a
 generated `Move.lock` file, and a set of subdirectories:
 
-```
+```plaintext
 a_move_package
 ├── Move.toml      (required)
 ├── Move.lock      (generated)
@@ -56,7 +56,7 @@ a_move_package
 The Move package manifest is defined within the `Move.toml` file and has the following syntax.
 Optional fields are marked with `*`, `+` denotes one or more elements:
 
-```
+```ini
 [package]
 name = <string>
 edition* = <string>      # e.g., "2024.alpha" to use the Move 2024 edition,
@@ -67,7 +67,7 @@ authors* = [<string>,+]  # e.g., ["Joe Smith (joesmith@noemail.com)", "John Snow
 # Additional fields may be added to this section by external tools. E.g., on Sui the following sections are added:
 published-at* = "<hex-address>" # The address that the package is published at. Should be set after the first publication.
 
-[dependencies] # (Optional section) Paths to dependencies 
+[dependencies] # (Optional section) Paths to dependencies
 # One or more lines declaring dependencies in the following format
 
 # ##### Local Dependencies #####
@@ -77,10 +77,10 @@ published-at* = "<hex-address>" # The address that the package is published at. 
 # override you can use `override = true`
 # Override = { local = "../conflicting/version", override = true }
 # To instantiate address values in a dependency, use `addr_subst`
-<string> = { 
+<string> = {
     local = <string>,
     override* = <bool>,
-    addr_subst* = { (<string> = (<string> | "<hex_address>"))+ } 
+    addr_subst* = { (<string> = (<string> | "<hex_address>"))+ }
 }
 
 # ##### Git Dependencies #####
@@ -88,7 +88,7 @@ published-at* = "<hex-address>" # The address that the package is published at. 
 # Revision must be supplied, it can be a branch, a tag, or a commit hash.
 # If no `subdir` is specified, the root of the repository is used.
 # MyRemotePackage = { git = "https://some.remote/host.git", subdir = "remote/path", rev = "main" }
-<string> = { 
+<string> = {
     git = <URL ending in .git>,
     subdir=<path to dir containing Move.toml inside git repo>,
     rev=<git commit hash>,
@@ -109,12 +109,12 @@ published-at* = "<hex-address>" # The address that the package is published at. 
 # The dev-dependencies section allows overriding dependencies for `--test` and
 # `--dev` modes. You can e.g., introduce test-only dependencies here.
 # Local = { local = "../path/to/dev-build" }
-<string> = { 
+<string> = {
     local = <string>,
     override* = <bool>,
-    addr_subst* = { (<string> = (<string> | "<hex_address>"))+ } 
+    addr_subst* = { (<string> = (<string> | "<hex_address>"))+ }
 }
-<string> = { 
+<string> = {
     git = <URL ending in .git>,
     subdir=<path to dir containing Move.toml inside git repo>,
     rev=<git commit hash>,
@@ -130,7 +130,7 @@ published-at* = "<hex-address>" # The address that the package is published at. 
 
 An example of a minimal package manifest:
 
-```
+```ini
 [package]
 name = "AName"
 ```
@@ -138,7 +138,7 @@ name = "AName"
 An example of a more standard package manifest that also includes the Move standard library and
 instantiates the named address `std` from the `LocalDep` package with the address value `0x1`:
 
-```
+```ini
 [package]
 name = "AName"
 license = "Apache 2.0"
@@ -169,7 +169,7 @@ The `Move.lock` file is generated at the root of the Move pacakge when the
 package is built. The `Move.lock` file contains information about your package
 and its build configuration, and acts as a communication layer between the Move
 compiler and other tools, like chain-specific command line interfaces and
-third-party package managers. 
+third-party package managers.
 
 Like the `Move.toml` file, the `Move.lock` file is a text-based TOML file.
 Unlike the package manifest however, the `Move.lock` file is not intended for
@@ -185,7 +185,7 @@ of the original, and that changes to the build will be apparent as changes to
 the `Move.lock` file.
 
 The `Move.lock` file is a TOML file that currently contains the following
-fields. 
+fields.
 
 **Note**: other fields may be added to the lock file either in the future, or
 by third-party package package managers as well.
@@ -200,7 +200,7 @@ This section contains the core information needed in the lockfile:
   present, this will be an empty string.
 * The list of dependencies.
 
-```
+```ini
 [move]
 version = <string> # Lock file version, used for backwards compatibility checking.
 manifest_digest = <hash> # Sha3-256 hash of the Move.toml file that was used to generate this lock file.
@@ -217,8 +217,8 @@ build fails. If all dependencies resolve, the `Move.lock` file contains the
 locations (local and remote) of all of the package's transitive dependencies.
 These will be stored in the `Move.lock` file in the following format:
 
-```
-...
+```ini
+# ...
 
 [[move.package]]
 name = "A"
@@ -235,8 +235,8 @@ As mentioned above, additional fields may be added to the lock file by external
 tools. For example, the Sui package manager adds toolchain version information
 to the lock file that can then be used for on-chain source verification:
 
-```
-...
+```ini
+# ...
 
 [move.toolchain-version]
 compiler-version = <string> # The version of the Move compiler used to build the package, e.g. "1.21.0"
@@ -253,7 +253,7 @@ Recall that Move has [named addresses](./primitive-types/address.md) and that na
 cannot be declared in Move. Instead they are declared at the package level: in
 the manifest file (`Move.toml`) for a Move package you declare named addresses
 in the package, instantiate other named addresses, and rename named addresses
-from other packages within the Move package system. 
+from other packages within the Move package system.
 
 Let's go through each of these actions, and how they are performed in the
 package's manifest one-by-one:
@@ -271,7 +271,7 @@ module named_addr::a {
 We could in `example_pkg/Move.toml` declare the named address `named_addr` in two different ways.
 The first:
 
-```
+```ini
 [package]
 name = "example_pkg"
 ...
@@ -287,7 +287,7 @@ later on by an importing package.
 
 `named_addr` can also be declared as:
 
-```
+```ini
 [package]
 name = "example_pkg"
 ...
@@ -332,7 +332,7 @@ package that brings them into scope is imported.
 Renaming a named address when importing can be done as follows in our `P`, `P1`, and `P2` example
 above:
 
-```
+```ini
 [package]
 name = "P"
 ...
@@ -368,7 +368,7 @@ addresses. Additionally, only the `[dev-addresses]` in the root package are incl
 For example a root package with the following manifest would not compile outside of `dev` mode since
 `named_addr` would be uninstantiated:
 
-```
+```ini
 [package]
 name = "example_pkg"
 ...
@@ -388,12 +388,12 @@ commands and flags for the Move CLI can be found by running `sui move --help`.
 
 ### Artifacts
 
-A package can be compiled using CLI commands. 
+A package can be compiled using CLI commands.
 This will create a `build`
-directory containing build-related artifacts (such as bytecode, source maps, and 
+directory containing build-related artifacts (such as bytecode, source maps, and
 documentation). The general layout of the `build` directory is as follows:
 
-```
+```plaintext
 a_move_package
 ├── BuildInfo.yaml
 ├── bytecode_modules

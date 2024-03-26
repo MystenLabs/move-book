@@ -53,7 +53,7 @@ Friend declarations are subject to the following rules:
 
 - A module cannot declare itself as a friend.
 
-  ```move=
+  ```move
   module 0x42::m { friend Self; // ERROR! }
   //                      ^^^^ Cannot declare the module itself as a friend
 
@@ -63,14 +63,14 @@ Friend declarations are subject to the following rules:
 
 - Friend modules must be known by the compiler
 
-  ```move=
+  ```move
   module 0x42::m { friend 0x42::nonexistent; // ERROR! }
   //                      ^^^^^^^^^^^^^^^^^ Unbound module '0x42::nonexistent'
   ```
 
 - Friend modules must be within the same account address.
 
-  ```move=
+  ```move
   module 0x42::m {}
 
   module 0x42::n { friend 0x42::m; // ERROR! }
@@ -85,7 +85,7 @@ Friend declarations are subject to the following rules:
   call functions in the current module). If that friend module is already used, either directly or
   transitively, a cycle of dependencies would be created.
 
-  ```move=
+  ```move
   module 0x2::a {
       use 0x2::c;
       friend 0x2::b;
@@ -107,7 +107,7 @@ Friend declarations are subject to the following rules:
 
 - The friend list for a module cannot contain duplicates.
 
-  ```move=
+  ```move
   module 0x42::a {}
 
   module 0x42::m {

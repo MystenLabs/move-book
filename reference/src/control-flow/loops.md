@@ -27,7 +27,7 @@ fun sum(n: u64): u64 {
 
 Infinite `while` loops are also allowed:
 
-```move=
+```move
 fun foo() {
     while (true) { }
 }
