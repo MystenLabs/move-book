@@ -4,7 +4,7 @@ A crucial part of any software development, and even more - blockchain developme
 
 ## The `#[test]` attribute
 
-Tests in Move are functions marked with the `#[test]` attribute. This attribute tells the compiler that the function is a test function, and it should be run when the tests are executed. Test functions are regular functions, but they must return `()` and take no arguments. They are excluded from the bytecode, and are never published.
+Tests in Move are functions marked with the `#[test]` attribute. This attribute tells the compiler that the function is a test function, and it should be run when the tests are executed. Test functions are regular functions, but they must take no any arguments and have no return value. They are excluded from the bytecode, and are never published.
 
 ```move
 module book::testing {
