@@ -1,6 +1,6 @@
 [book]
-title = "The Move Book"
-description = "Move book maintained by the Move core team."
+title = "The Move Reference"
+description = "The Move Language Reference maintained by the Move core team."
 authors = ["The Move Contributors"]
 language = "en"
 multilingual = false
