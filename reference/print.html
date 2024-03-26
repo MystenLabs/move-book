@@ -708,7 +708,7 @@ write is a mutation that must occur on the left hand side of an equals.</p>
 <p>In order for a reference to be read, the underlying type must have the
 <a href="primitive-types/../abilities.html"><code>copy</code> ability</a> as reading the reference creates a new copy of the value. This
 rule prevents the copying of assets:</p>
-<pre><code class="language-move=">fun copy_coin_via_ref_bad(c: Coin) {
+<pre><code class="language-move">fun copy_coin_via_ref_bad(c: Coin) {
     let c_ref = &amp;c;
     let counterfeit: Coin = *c_ref; // not allowed!
     pay(c);
@@ -730,7 +730,7 @@ let y: &amp;u64 = &amp;mut x;
 </code></pre>
 <p>This works because the under the hood, the compiler inserts <code>freeze</code> instructions where they are
 needed. Here are a few more examples of <code>freeze</code> inference in action:</p>
-<pre><code class="language-move=">fun takes_immut_returns_immut(x: &amp;u64): &amp;u64 { x }
+<pre><code class="language-move">fun takes_immut_returns_immut(x: &amp;u64): &amp;u64 { x }
 
 // freeze inference on return value
 fun takes_mut_returns_immut(x: &amp;mut u64): &amp;u64 { x }
@@ -759,7 +759,7 @@ fun assignment_examples() {
 above, this means that anywhere for any expression where a <code>&amp;T</code> value is used, a <code>&amp;mut T</code> value can
 also be used. This terminology is used in error messages to concisely indicate that a <code>&amp;mut T</code> was
 needed where a <code>&amp;T</code> was supplied. For example</p>
-<pre><code class="language-move=">module a::example {
+<pre><code class="language-move">module a::example {
     fun read_and_assign(store: &amp;mut u64, new_value: &amp;u64) {
         *store = *new_value
     }
@@ -1673,7 +1673,14 @@ predictable.</p>
 condition cannot be met.</p>
 <p>In this example, the function will pop two items off of the vector, but will abort early if the
 vector does not have two items</p>
-<pre><code class="language-move=">use std::vector;
+<!-- // Copyright (c) Mysten Labs, Inc.
+// SPDX-License-Identifier: Apache-2.0
+
+module ref::abort_and_assert {
+
+} -->
+<pre><code class="language-move">use std::vector;
+
 fun pop_twice&lt;T&gt;(v: &amp;mut vector&lt;T&gt;): (T, T) {
     if (vector::length(v) &lt; 2) abort 42;
     (vector::pop_back(v), vector::pop_back(v))
@@ -1681,7 +1688,7 @@ fun pop_twice&lt;T&gt;(v: &amp;mut vector&lt;T&gt;): (T, T) {
 </code></pre>
 <p>This is even more useful deep inside a control-flow construct. For example, this function checks
 that all numbers in the vector are less than the specified <code>bound</code>. And aborts otherwise</p>
-<pre><code class="language-move=">use std::vector;
+<pre><code class="language-move">use std::vector;
 fun check_vec(v: &amp;vector&lt;u64&gt;, bound: u64) {
     let i = 0;
     let n = vector::length(v);
@@ -1704,14 +1711,14 @@ does not exist at the bytecode level. It is replaced inside the compiler with</p
 </code></pre>
 <p><code>assert</code> is more commonly used than just <code>abort</code> by itself. The <code>abort</code> examples above can be
 rewritten using <code>assert</code></p>
-<pre><code class="language-move=">use std::vector;
+<pre><code class="language-move">use std::vector;
 fun pop_twice&lt;T&gt;(v: &amp;mut vector&lt;T&gt;): (T, T) {
     assert!(vector::length(v) &gt;= 2, 42); // Now uses 'assert'
     (vector::pop_back(v), vector::pop_back(v))
 }
 </code></pre>
 <p>and</p>
-<pre><code class="language-move=">use std::vector;
+<pre><code class="language-move">use std::vector;
 fun check_vec(v: &amp;vector&lt;u64&gt;, bound: u64) {
     let i = 0;
     let n = vector::length(v);
@@ -1741,7 +1748,7 @@ pieces of information:</p>
 <li>The abort code.</li>
 </ul>
 <p>For example</p>
-<pre><code class="language-move=">module 0x2::example {
+<pre><code class="language-move">module 0x2::example {
     public fun aborts() {
         abort 42
     }
@@ -1757,7 +1764,7 @@ module 0x3::invoker {
 would produce an error that indicated the module <code>0x2::example</code> and the code <code>42</code>.</p>
 <p>This can be useful for having multiple aborts being grouped together inside a module.</p>
 <p>In this example, the module has two separate error codes used in multiple functions</p>
-<pre><code class="language-move=">module 0x42::example {
+<pre><code class="language-move">module 0x42::example {
 
     use std::vector;
 
@@ -1878,7 +1885,7 @@ expression of type <code>bool</code>) evaluates to <code>false</code>.</p>
 }
 </code></pre>
 <p>Infinite <code>while</code> loops are also allowed:</p>
-<pre><code class="language-move=">fun foo() {
+<pre><code class="language-move">fun foo() {
     while (true) { }
 }
 </code></pre>
@@ -4108,7 +4115,7 @@ bespoke per-type and available implicitly for any programmer using your type.</p
 <p>To start, consider a <code>Matrix</code> type that uses a vector of vectors to represent its values. You can
 write a small library using <code>index</code> syntax annotations on the <code>borrow</code> and <code>borrow_mut</code> functions as
 follows:</p>
-<pre><code>module matrix {
+<pre><code class="language-move">module matrix {
 
     public struct Matrix&lt;T&gt; { v: vector&lt;vector&lt;T&gt;&gt; }
 
@@ -4129,7 +4136,7 @@ follows:</p>
 }
 </code></pre>
 <p>Now anyone using this <code>Matrix</code> type has access to index syntax for it:</p>
-<pre><code>let v0 = vector&lt;u64&gt;[1, 0, 0];
+<pre><code class="language-move">let v0 = vector&lt;u64&gt;[1, 0, 0];
 let v1 = vector&lt;u64&gt;[0, 1, 0];
 let v2 = vector&lt;u64&gt;[0, 0, 1];
 let v = vector&lt;vector&lt;u64&gt;&gt;[v0, v1, v2];
@@ -4187,7 +4194,7 @@ fun borrow_first(input: &amp;Vs): &amp;u64 {
 Move places no restrictions on the values your index syntax method takes as parameters. This allows
 you to implement intricate programmatic behavior when defining index syntax, such as a data
 structure that takes a default value if the index is out of bounds:</p>
-<pre><code>#[syntax(index)]
+<pre><code class="language-move">#[syntax(index)]
 public fun borrow_or_set&lt;Key: copy, Value: drop&gt;(
     input: &amp;mut MTable&lt;Key, Value&gt;,
     key: &amp;Key,
@@ -4351,7 +4358,7 @@ package system allows programmers to easily:</p>
 <h2 id="package-layout-and-manifest-syntax"><a class="header" href="#package-layout-and-manifest-syntax">Package Layout and Manifest Syntax</a></h2>
 <p>A Move package source directory contains a <code>Move.toml</code> package manifest file, a
 generated <code>Move.lock</code> file, and a set of subdirectories:</p>
-<pre><code>a_move_package
+<pre><code class="language-plaintext">a_move_package
 ├── Move.toml      (required)
 ├── Move.lock      (generated)
 ├── sources        (required)
@@ -4388,7 +4395,7 @@ run.</li>
 <h3 id="movetoml"><a class="header" href="#movetoml">Move.toml</a></h3>
 <p>The Move package manifest is defined within the <code>Move.toml</code> file and has the following syntax.
 Optional fields are marked with <code>*</code>, <code>+</code> denotes one or more elements:</p>
-<pre><code>[package]
+<pre><code class="language-ini">[package]
 name = &lt;string&gt;
 edition* = &lt;string&gt;      # e.g., "2024.alpha" to use the Move 2024 edition,
                          # currently in alpha. Will default to the latest stable edition if not specified.
@@ -4398,7 +4405,7 @@ authors* = [&lt;string&gt;,+]  # e.g., ["Joe Smith (joesmith@noemail.com)", "Joh
 # Additional fields may be added to this section by external tools. E.g., on Sui the following sections are added:
 published-at* = "&lt;hex-address&gt;" # The address that the package is published at. Should be set after the first publication.
 
-[dependencies] # (Optional section) Paths to dependencies 
+[dependencies] # (Optional section) Paths to dependencies
 # One or more lines declaring dependencies in the following format
 
 # ##### Local Dependencies #####
@@ -4408,10 +4415,10 @@ published-at* = "&lt;hex-address&gt;" # The address that the package is publishe
 # override you can use `override = true`
 # Override = { local = "../conflicting/version", override = true }
 # To instantiate address values in a dependency, use `addr_subst`
-&lt;string&gt; = { 
+&lt;string&gt; = {
     local = &lt;string&gt;,
     override* = &lt;bool&gt;,
-    addr_subst* = { (&lt;string&gt; = (&lt;string&gt; | "&lt;hex_address&gt;"))+ } 
+    addr_subst* = { (&lt;string&gt; = (&lt;string&gt; | "&lt;hex_address&gt;"))+ }
 }
 
 # ##### Git Dependencies #####
@@ -4419,7 +4426,7 @@ published-at* = "&lt;hex-address&gt;" # The address that the package is publishe
 # Revision must be supplied, it can be a branch, a tag, or a commit hash.
 # If no `subdir` is specified, the root of the repository is used.
 # MyRemotePackage = { git = "https://some.remote/host.git", subdir = "remote/path", rev = "main" }
-&lt;string&gt; = { 
+&lt;string&gt; = {
     git = &lt;URL ending in .git&gt;,
     subdir=&lt;path to dir containing Move.toml inside git repo&gt;,
     rev=&lt;git commit hash&gt;,
@@ -4440,12 +4447,12 @@ published-at* = "&lt;hex-address&gt;" # The address that the package is publishe
 # The dev-dependencies section allows overriding dependencies for `--test` and
 # `--dev` modes. You can e.g., introduce test-only dependencies here.
 # Local = { local = "../path/to/dev-build" }
-&lt;string&gt; = { 
+&lt;string&gt; = {
     local = &lt;string&gt;,
     override* = &lt;bool&gt;,
-    addr_subst* = { (&lt;string&gt; = (&lt;string&gt; | "&lt;hex_address&gt;"))+ } 
+    addr_subst* = { (&lt;string&gt; = (&lt;string&gt; | "&lt;hex_address&gt;"))+ }
 }
-&lt;string&gt; = { 
+&lt;string&gt; = {
     git = &lt;URL ending in .git&gt;,
     subdir=&lt;path to dir containing Move.toml inside git repo&gt;,
     rev=&lt;git commit hash&gt;,
@@ -4459,12 +4466,12 @@ published-at* = "&lt;hex-address&gt;" # The address that the package is publishe
 &lt;addr_name&gt; = "&lt;hex_address&gt;" # e.g., alice = "0xB0B"
 </code></pre>
 <p>An example of a minimal package manifest:</p>
-<pre><code>[package]
+<pre><code class="language-ini">[package]
 name = "AName"
 </code></pre>
 <p>An example of a more standard package manifest that also includes the Move standard library and
 instantiates the named address <code>std</code> from the <code>LocalDep</code> package with the address value <code>0x1</code>:</p>
-<pre><code>[package]
+<pre><code class="language-ini">[package]
 name = "AName"
 license = "Apache 2.0"
 
@@ -4517,7 +4524,7 @@ versioning lockfile changes in the future).</li>
 present, this will be an empty string.</li>
 <li>The list of dependencies.</li>
 </ul>
-<pre><code>[move]
+<pre><code class="language-ini">[move]
 version = &lt;string&gt; # Lock file version, used for backwards compatibility checking.
 manifest_digest = &lt;hash&gt; # Sha3-256 hash of the Move.toml file that was used to generate this lock file.
 deps_digest = &lt;hash&gt; # Sha3-256 hash of the Move.lock file of all dependencies. If no depencies are present, this will be an empty string.
@@ -4530,7 +4537,7 @@ failed to resolve, the compiler will not write the <code>Move.lock</code> file a
 build fails. If all dependencies resolve, the <code>Move.lock</code> file contains the
 locations (local and remote) of all of the package's transitive dependencies.
 These will be stored in the <code>Move.lock</code> file in the following format:</p>
-<pre><code>...
+<pre><code class="language-ini"># ...
 
 [[move.package]]
 name = "A"
@@ -4544,7 +4551,7 @@ source = { local = "../local-dep" }
 <p>As mentioned above, additional fields may be added to the lock file by external
 tools. For example, the Sui package manager adds toolchain version information
 to the lock file that can then be used for on-chain source verification:</p>
-<pre><code>...
+<pre><code class="language-ini"># ...
 
 [move.toolchain-version]
 compiler-version = &lt;string&gt; # The version of the Move compiler used to build the package, e.g. "1.21.0"
@@ -4569,7 +4576,7 @@ package's manifest one-by-one:</p>
 </code></pre>
 <p>We could in <code>example_pkg/Move.toml</code> declare the named address <code>named_addr</code> in two different ways.
 The first:</p>
-<pre><code>[package]
+<pre><code class="language-ini">[package]
 name = "example_pkg"
 ...
 [addresses]
@@ -4581,7 +4588,7 @@ any valid address value</em>. In particular, an importing package can pick the v
 package <code>example_pkg</code> by the named address <code>named_addr</code>, and the package can then be instantiated
 later on by an importing package.</p>
 <p><code>named_addr</code> can also be declared as:</p>
-<pre><code>[package]
+<pre><code class="language-ini">[package]
 name = "example_pkg"
 ...
 [addresses]
@@ -4619,7 +4626,7 @@ dependencies in a package are disjoint, and provide a way to <em>rename named ad
 package that brings them into scope is imported.</p>
 <p>Renaming a named address when importing can be done as follows in our <code>P</code>, <code>P1</code>, and <code>P2</code> example
 above:</p>
-<pre><code>[package]
+<pre><code class="language-ini">[package]
 name = "P"
 ...
 [dependencies]
@@ -4646,7 +4653,7 @@ section solves in part. This section can set values for named addresses, but can
 addresses. Additionally, only the <code>[dev-addresses]</code> in the root package are included in <code>dev</code> mode.
 For example a root package with the following manifest would not compile outside of <code>dev</code> mode since
 <code>named_addr</code> would be uninstantiated:</p>
-<pre><code>[package]
+<pre><code class="language-ini">[package]
 name = "example_pkg"
 ...
 [addresses]
@@ -4665,7 +4672,7 @@ commands and flags for the Move CLI can be found by running <code>sui move --hel
 This will create a <code>build</code>
 directory containing build-related artifacts (such as bytecode, source maps, and
 documentation). The general layout of the <code>build</code> directory is as follows:</p>
-<pre><code>a_move_package
+<pre><code class="language-plaintext">a_move_package
 ├── BuildInfo.yaml
 ├── bytecode_modules
 │   ├── dependencies
@@ -4943,7 +4950,7 @@ the <code>sui move test</code> command:</p>
 <h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
 <p>A simple module using some of the unit testing features is shown in the following example:</p>
 <p>First create an empty package and change directory into it:</p>
-<pre><code class="language-bash">$ sui move new test_example; cd test_example 
+<pre><code class="language-bash">$ sui move new test_example; cd test_example
 </code></pre>
 <p>Next add the following module under the <code>sources</code> directory:</p>
 <pre><code class="language-move">// filename: sources/my_module.move
@@ -4988,7 +4995,7 @@ module test_example::my_module {
 </code></pre>
 <h3 id="running-tests"><a class="header" href="#running-tests">Running Tests</a></h3>
 <p>You can then run these tests with the <code>move test</code> command:</p>
-<pre><code>$ sui move test
+<pre><code class="language-bash">$ sui move test
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
 BUILDING test_example
@@ -5003,7 +5010,7 @@ Test result: OK. Total tests: 3; passed: 3; failed: 0
 <p>You can run a specific test, or a set of tests with <code>sui move test &lt;str&gt;</code>. This
 will only run tests whose fully qualified name contains <code>&lt;str&gt;</code>. For example if
 we wanted to only run tests with <code>"non_zero"</code> in their name:</p>
-<pre><code>$ sui move test non_zero
+<pre><code class="language-bash">$ sui move test non_zero
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
 BUILDING test_example
@@ -5013,7 +5020,7 @@ Test result: OK. Total tests: 1; passed: 1; failed: 0
 </code></pre>
 <h4 id="-i-bound-or---gas_used-bound"><a class="header" href="#-i-bound-or---gas_used-bound"><code>-i &lt;bound&gt;</code> or <code>--gas_used &lt;bound&gt;</code></a></h4>
 <p>This bounds the amount of gas that can be consumed for any one test to <code>&lt;bound&gt;</code>:</p>
-<pre><code>$ sui move test -i 0
+<pre><code class="language-bash">$ sui move test -i 0
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
 BUILDING test_example
@@ -5062,7 +5069,7 @@ Test result: FAILED. Total tests: 3; passed: 0; failed: 3
 <p>With these flags you can gather statistics about the tests run and report the
 runtime and gas used for each test. You can additionally add <code>csv</code> (<code>sui move test -s csv</code>) to get the gas usage in a csv output format. For example, if we
 wanted to see the statistics for the tests in the example above:</p>
-<pre><code>$ sui move test -s
+<pre><code class="language-bash">$ sui move test -s
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
 BUILDING test_example
@@ -5131,7 +5138,7 @@ declarations near the beginning of the module definition.</p>
 <ul>
 <li>
 <p>A module cannot declare itself as a friend.</p>
-<pre><code class="language-move=">module 0x42::m { friend Self; // ERROR! }
+<pre><code class="language-move">module 0x42::m { friend Self; // ERROR! }
 //                      ^^^^ Cannot declare the module itself as a friend
 
 module 0x43::m { friend 0x43::M; // ERROR! }
@@ -5140,13 +5147,13 @@ module 0x43::m { friend 0x43::M; // ERROR! }
 </li>
 <li>
 <p>Friend modules must be known by the compiler</p>
-<pre><code class="language-move=">module 0x42::m { friend 0x42::nonexistent; // ERROR! }
+<pre><code class="language-move">module 0x42::m { friend 0x42::nonexistent; // ERROR! }
 //                      ^^^^^^^^^^^^^^^^^ Unbound module '0x42::nonexistent'
 </code></pre>
 </li>
 <li>
 <p>Friend modules must be within the same account address.</p>
-<pre><code class="language-move=">module 0x42::m {}
+<pre><code class="language-move">module 0x42::m {}
 
 module 0x42::n { friend 0x42::m; // ERROR! }
 //                      ^^^^^^^ Cannot declare modules out of the current address as a friend
@@ -5159,7 +5166,7 @@ friends <code>0x2::c</code> friends <code>0x2::a</code> is not allowed. More gen
 dependency upon the current module to the friend module (because the purpose is for the friend to
 call functions in the current module). If that friend module is already used, either directly or
 transitively, a cycle of dependencies would be created.</p>
-<pre><code class="language-move=">module 0x2::a {
+<pre><code class="language-move">module 0x2::a {
     use 0x2::c;
     friend 0x2::b;
 
@@ -5180,7 +5187,7 @@ module 0x2::c {
 </li>
 <li>
 <p>The friend list for a module cannot contain duplicates.</p>
-<pre><code class="language-move=">module 0x42::a {}
+<pre><code class="language-move">module 0x42::a {}
 
 module 0x42::m {
     use 0x42::a as aliased_a;

@@ -197,7 +197,7 @@ package system allows programmers to easily:</p>
 <h2 id="package-layout-and-manifest-syntax"><a class="header" href="#package-layout-and-manifest-syntax">Package Layout and Manifest Syntax</a></h2>
 <p>A Move package source directory contains a <code>Move.toml</code> package manifest file, a
 generated <code>Move.lock</code> file, and a set of subdirectories:</p>
-<pre><code>a_move_package
+<pre><code class="language-plaintext">a_move_package
 ├── Move.toml      (required)
 ├── Move.lock      (generated)
 ├── sources        (required)
@@ -234,7 +234,7 @@ run.</li>
 <h3 id="movetoml"><a class="header" href="#movetoml">Move.toml</a></h3>
 <p>The Move package manifest is defined within the <code>Move.toml</code> file and has the following syntax.
 Optional fields are marked with <code>*</code>, <code>+</code> denotes one or more elements:</p>
-<pre><code>[package]
+<pre><code class="language-ini">[package]
 name = &lt;string&gt;
 edition* = &lt;string&gt;      # e.g., "2024.alpha" to use the Move 2024 edition,
                          # currently in alpha. Will default to the latest stable edition if not specified.
@@ -244,7 +244,7 @@ authors* = [&lt;string&gt;,+]  # e.g., ["Joe Smith (joesmith@noemail.com)", "Joh
 # Additional fields may be added to this section by external tools. E.g., on Sui the following sections are added:
 published-at* = "&lt;hex-address&gt;" # The address that the package is published at. Should be set after the first publication.
 
-[dependencies] # (Optional section) Paths to dependencies 
+[dependencies] # (Optional section) Paths to dependencies
 # One or more lines declaring dependencies in the following format
 
 # ##### Local Dependencies #####
@@ -254,10 +254,10 @@ published-at* = "&lt;hex-address&gt;" # The address that the package is publishe
 # override you can use `override = true`
 # Override = { local = "../conflicting/version", override = true }
 # To instantiate address values in a dependency, use `addr_subst`
-&lt;string&gt; = { 
+&lt;string&gt; = {
     local = &lt;string&gt;,
     override* = &lt;bool&gt;,
-    addr_subst* = { (&lt;string&gt; = (&lt;string&gt; | "&lt;hex_address&gt;"))+ } 
+    addr_subst* = { (&lt;string&gt; = (&lt;string&gt; | "&lt;hex_address&gt;"))+ }
 }
 
 # ##### Git Dependencies #####
@@ -265,7 +265,7 @@ published-at* = "&lt;hex-address&gt;" # The address that the package is publishe
 # Revision must be supplied, it can be a branch, a tag, or a commit hash.
 # If no `subdir` is specified, the root of the repository is used.
 # MyRemotePackage = { git = "https://some.remote/host.git", subdir = "remote/path", rev = "main" }
-&lt;string&gt; = { 
+&lt;string&gt; = {
     git = &lt;URL ending in .git&gt;,
     subdir=&lt;path to dir containing Move.toml inside git repo&gt;,
     rev=&lt;git commit hash&gt;,
@@ -286,12 +286,12 @@ published-at* = "&lt;hex-address&gt;" # The address that the package is publishe
 # The dev-dependencies section allows overriding dependencies for `--test` and
 # `--dev` modes. You can e.g., introduce test-only dependencies here.
 # Local = { local = "../path/to/dev-build" }
-&lt;string&gt; = { 
+&lt;string&gt; = {
     local = &lt;string&gt;,
     override* = &lt;bool&gt;,
-    addr_subst* = { (&lt;string&gt; = (&lt;string&gt; | "&lt;hex_address&gt;"))+ } 
+    addr_subst* = { (&lt;string&gt; = (&lt;string&gt; | "&lt;hex_address&gt;"))+ }
 }
-&lt;string&gt; = { 
+&lt;string&gt; = {
     git = &lt;URL ending in .git&gt;,
     subdir=&lt;path to dir containing Move.toml inside git repo&gt;,
     rev=&lt;git commit hash&gt;,
@@ -305,12 +305,12 @@ published-at* = "&lt;hex-address&gt;" # The address that the package is publishe
 &lt;addr_name&gt; = "&lt;hex_address&gt;" # e.g., alice = "0xB0B"
 </code></pre>
 <p>An example of a minimal package manifest:</p>
-<pre><code>[package]
+<pre><code class="language-ini">[package]
 name = "AName"
 </code></pre>
 <p>An example of a more standard package manifest that also includes the Move standard library and
 instantiates the named address <code>std</code> from the <code>LocalDep</code> package with the address value <code>0x1</code>:</p>
-<pre><code>[package]
+<pre><code class="language-ini">[package]
 name = "AName"
 license = "Apache 2.0"
 
@@ -363,7 +363,7 @@ versioning lockfile changes in the future).</li>
 present, this will be an empty string.</li>
 <li>The list of dependencies.</li>
 </ul>
-<pre><code>[move]
+<pre><code class="language-ini">[move]
 version = &lt;string&gt; # Lock file version, used for backwards compatibility checking.
 manifest_digest = &lt;hash&gt; # Sha3-256 hash of the Move.toml file that was used to generate this lock file.
 deps_digest = &lt;hash&gt; # Sha3-256 hash of the Move.lock file of all dependencies. If no depencies are present, this will be an empty string.
@@ -376,7 +376,7 @@ failed to resolve, the compiler will not write the <code>Move.lock</code> file a
 build fails. If all dependencies resolve, the <code>Move.lock</code> file contains the
 locations (local and remote) of all of the package's transitive dependencies.
 These will be stored in the <code>Move.lock</code> file in the following format:</p>
-<pre><code>...
+<pre><code class="language-ini"># ...
 
 [[move.package]]
 name = "A"
@@ -390,7 +390,7 @@ source = { local = "../local-dep" }
 <p>As mentioned above, additional fields may be added to the lock file by external
 tools. For example, the Sui package manager adds toolchain version information
 to the lock file that can then be used for on-chain source verification:</p>
-<pre><code>...
+<pre><code class="language-ini"># ...
 
 [move.toolchain-version]
 compiler-version = &lt;string&gt; # The version of the Move compiler used to build the package, e.g. "1.21.0"
@@ -415,7 +415,7 @@ package's manifest one-by-one:</p>
 </code></pre>
 <p>We could in <code>example_pkg/Move.toml</code> declare the named address <code>named_addr</code> in two different ways.
 The first:</p>
-<pre><code>[package]
+<pre><code class="language-ini">[package]
 name = "example_pkg"
 ...
 [addresses]
@@ -427,7 +427,7 @@ any valid address value</em>. In particular, an importing package can pick the v
 package <code>example_pkg</code> by the named address <code>named_addr</code>, and the package can then be instantiated
 later on by an importing package.</p>
 <p><code>named_addr</code> can also be declared as:</p>
-<pre><code>[package]
+<pre><code class="language-ini">[package]
 name = "example_pkg"
 ...
 [addresses]
@@ -465,7 +465,7 @@ dependencies in a package are disjoint, and provide a way to <em>rename named ad
 package that brings them into scope is imported.</p>
 <p>Renaming a named address when importing can be done as follows in our <code>P</code>, <code>P1</code>, and <code>P2</code> example
 above:</p>
-<pre><code>[package]
+<pre><code class="language-ini">[package]
 name = "P"
 ...
 [dependencies]
@@ -492,7 +492,7 @@ section solves in part. This section can set values for named addresses, but can
 addresses. Additionally, only the <code>[dev-addresses]</code> in the root package are included in <code>dev</code> mode.
 For example a root package with the following manifest would not compile outside of <code>dev</code> mode since
 <code>named_addr</code> would be uninstantiated:</p>
-<pre><code>[package]
+<pre><code class="language-ini">[package]
 name = "example_pkg"
 ...
 [addresses]
@@ -511,7 +511,7 @@ commands and flags for the Move CLI can be found by running <code>sui move --hel
 This will create a <code>build</code>
 directory containing build-related artifacts (such as bytecode, source maps, and
 documentation). The general layout of the <code>build</code> directory is as follows:</p>
-<pre><code>a_move_package
+<pre><code class="language-plaintext">a_move_package
 ├── BuildInfo.yaml
 ├── bytecode_modules
 │   ├── dependencies

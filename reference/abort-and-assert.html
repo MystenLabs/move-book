@@ -204,7 +204,14 @@ predictable.</p>
 condition cannot be met.</p>
 <p>In this example, the function will pop two items off of the vector, but will abort early if the
 vector does not have two items</p>
-<pre><code class="language-move=">use std::vector;
+<!-- // Copyright (c) Mysten Labs, Inc.
+// SPDX-License-Identifier: Apache-2.0
+
+module ref::abort_and_assert {
+
+} -->
+<pre><code class="language-move">use std::vector;
+
 fun pop_twice&lt;T&gt;(v: &amp;mut vector&lt;T&gt;): (T, T) {
     if (vector::length(v) &lt; 2) abort 42;
     (vector::pop_back(v), vector::pop_back(v))
@@ -212,7 +219,7 @@ fun pop_twice&lt;T&gt;(v: &amp;mut vector&lt;T&gt;): (T, T) {
 </code></pre>
 <p>This is even more useful deep inside a control-flow construct. For example, this function checks
 that all numbers in the vector are less than the specified <code>bound</code>. And aborts otherwise</p>
-<pre><code class="language-move=">use std::vector;
+<pre><code class="language-move">use std::vector;
 fun check_vec(v: &amp;vector&lt;u64&gt;, bound: u64) {
     let i = 0;
     let n = vector::length(v);
@@ -235,14 +242,14 @@ does not exist at the bytecode level. It is replaced inside the compiler with</p
 </code></pre>
 <p><code>assert</code> is more commonly used than just <code>abort</code> by itself. The <code>abort</code> examples above can be
 rewritten using <code>assert</code></p>
-<pre><code class="language-move=">use std::vector;
+<pre><code class="language-move">use std::vector;
 fun pop_twice&lt;T&gt;(v: &amp;mut vector&lt;T&gt;): (T, T) {
     assert!(vector::length(v) &gt;= 2, 42); // Now uses 'assert'
     (vector::pop_back(v), vector::pop_back(v))
 }
 </code></pre>
 <p>and</p>
-<pre><code class="language-move=">use std::vector;
+<pre><code class="language-move">use std::vector;
 fun check_vec(v: &amp;vector&lt;u64&gt;, bound: u64) {
     let i = 0;
     let n = vector::length(v);
@@ -272,7 +279,7 @@ pieces of information:</p>
 <li>The abort code.</li>
 </ul>
 <p>For example</p>
-<pre><code class="language-move=">module 0x2::example {
+<pre><code class="language-move">module 0x2::example {
     public fun aborts() {
         abort 42
     }
@@ -288,7 +295,7 @@ module 0x3::invoker {
 would produce an error that indicated the module <code>0x2::example</code> and the code <code>42</code>.</p>
 <p>This can be useful for having multiple aborts being grouped together inside a module.</p>
 <p>In this example, the module has two separate error codes used in multiple functions</p>
-<pre><code class="language-move=">module 0x42::example {
+<pre><code class="language-move">module 0x42::example {
 
     use std::vector;
 

@@ -195,7 +195,7 @@ bespoke per-type and available implicitly for any programmer using your type.</p
 <p>To start, consider a <code>Matrix</code> type that uses a vector of vectors to represent its values. You can
 write a small library using <code>index</code> syntax annotations on the <code>borrow</code> and <code>borrow_mut</code> functions as
 follows:</p>
-<pre><code>module matrix {
+<pre><code class="language-move">module matrix {
 
     public struct Matrix&lt;T&gt; { v: vector&lt;vector&lt;T&gt;&gt; }
 
@@ -216,7 +216,7 @@ follows:</p>
 }
 </code></pre>
 <p>Now anyone using this <code>Matrix</code> type has access to index syntax for it:</p>
-<pre><code>let v0 = vector&lt;u64&gt;[1, 0, 0];
+<pre><code class="language-move">let v0 = vector&lt;u64&gt;[1, 0, 0];
 let v1 = vector&lt;u64&gt;[0, 1, 0];
 let v2 = vector&lt;u64&gt;[0, 0, 1];
 let v = vector&lt;vector&lt;u64&gt;&gt;[v0, v1, v2];
@@ -274,7 +274,7 @@ fun borrow_first(input: &amp;Vs): &amp;u64 {
 Move places no restrictions on the values your index syntax method takes as parameters. This allows
 you to implement intricate programmatic behavior when defining index syntax, such as a data
 structure that takes a default value if the index is out of bounds:</p>
-<pre><code>#[syntax(index)]
+<pre><code class="language-move">#[syntax(index)]
 public fun borrow_or_set&lt;Key: copy, Value: drop&gt;(
     input: &amp;mut MTable&lt;Key, Value&gt;,
     key: &amp;Key,

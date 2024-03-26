@@ -229,7 +229,7 @@ declarations near the beginning of the module definition.</p>
 <ul>
 <li>
 <p>A module cannot declare itself as a friend.</p>
-<pre><code class="language-move=">module 0x42::m { friend Self; // ERROR! }
+<pre><code class="language-move">module 0x42::m { friend Self; // ERROR! }
 //                      ^^^^ Cannot declare the module itself as a friend
 
 module 0x43::m { friend 0x43::M; // ERROR! }
@@ -238,13 +238,13 @@ module 0x43::m { friend 0x43::M; // ERROR! }
 </li>
 <li>
 <p>Friend modules must be known by the compiler</p>
-<pre><code class="language-move=">module 0x42::m { friend 0x42::nonexistent; // ERROR! }
+<pre><code class="language-move">module 0x42::m { friend 0x42::nonexistent; // ERROR! }
 //                      ^^^^^^^^^^^^^^^^^ Unbound module '0x42::nonexistent'
 </code></pre>
 </li>
 <li>
 <p>Friend modules must be within the same account address.</p>
-<pre><code class="language-move=">module 0x42::m {}
+<pre><code class="language-move">module 0x42::m {}
 
 module 0x42::n { friend 0x42::m; // ERROR! }
 //                      ^^^^^^^ Cannot declare modules out of the current address as a friend
@@ -257,7 +257,7 @@ friends <code>0x2::c</code> friends <code>0x2::a</code> is not allowed. More gen
 dependency upon the current module to the friend module (because the purpose is for the friend to
 call functions in the current module). If that friend module is already used, either directly or
 transitively, a cycle of dependencies would be created.</p>
-<pre><code class="language-move=">module 0x2::a {
+<pre><code class="language-move">module 0x2::a {
     use 0x2::c;
     friend 0x2::b;
 
@@ -278,7 +278,7 @@ module 0x2::c {
 </li>
 <li>
 <p>The friend list for a module cannot contain duplicates.</p>
-<pre><code class="language-move=">module 0x42::a {}
+<pre><code class="language-move">module 0x42::a {}
 
 module 0x42::m {
     use 0x42::a as aliased_a;

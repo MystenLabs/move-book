@@ -234,7 +234,7 @@ write is a mutation that must occur on the left hand side of an equals.</p>
 <p>In order for a reference to be read, the underlying type must have the
 <a href="../abilities.html"><code>copy</code> ability</a> as reading the reference creates a new copy of the value. This
 rule prevents the copying of assets:</p>
-<pre><code class="language-move=">fun copy_coin_via_ref_bad(c: Coin) {
+<pre><code class="language-move">fun copy_coin_via_ref_bad(c: Coin) {
     let c_ref = &amp;c;
     let counterfeit: Coin = *c_ref; // not allowed!
     pay(c);
@@ -256,7 +256,7 @@ let y: &amp;u64 = &amp;mut x;
 </code></pre>
 <p>This works because the under the hood, the compiler inserts <code>freeze</code> instructions where they are
 needed. Here are a few more examples of <code>freeze</code> inference in action:</p>
-<pre><code class="language-move=">fun takes_immut_returns_immut(x: &amp;u64): &amp;u64 { x }
+<pre><code class="language-move">fun takes_immut_returns_immut(x: &amp;u64): &amp;u64 { x }
 
 // freeze inference on return value
 fun takes_mut_returns_immut(x: &amp;mut u64): &amp;u64 { x }
@@ -285,7 +285,7 @@ fun assignment_examples() {
 above, this means that anywhere for any expression where a <code>&amp;T</code> value is used, a <code>&amp;mut T</code> value can
 also be used. This terminology is used in error messages to concisely indicate that a <code>&amp;mut T</code> was
 needed where a <code>&amp;T</code> was supplied. For example</p>
-<pre><code class="language-move=">module a::example {
+<pre><code class="language-move">module a::example {
     fun read_and_assign(store: &amp;mut u64, new_value: &amp;u64) {
         *store = *new_value
     }
