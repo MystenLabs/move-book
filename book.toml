@@ -4,8 +4,12 @@ description = "First book about the Move programming language and the Move VM. M
 authors = ["Damir Shamanaev"]
 language = "en"
 multilingual = false
-src = "src"
+src = "book"
 repository = "damirka/move-book"
+
+[build]
+build-dir = "build"
+extra-watch-dirs = ["packages"] # rebuild on Move Source changes
 
 [output.html]
 additional-css = ["theme/css/custom.css"]
@@ -13,11 +17,12 @@ git-repository-url = "https://github.com/MystenLabs/move-book"
 git-repository-icon = "fa-github"
 edit-url-template = "https://github.com/MystenLabs/move-book/edit/second-edition/{path}"
 
+# Contains the redirects from the old book
 [output.html.redirect]
-# optional = true
 "introduction/foreword" = "foreword"
 "introduction/getting-started" = "before-we-begin"
 
+# syntax basics redirects
 "syntax-basics/index.html" = "/basic-syntax/index.html"
 "syntax-basics/concept.html" = "/basic-syntax/module.html"
 "syntax-basics/comments.html" = "/basic-syntax/comments.html"
@@ -27,10 +32,10 @@ edit-url-template = "https://github.com/MystenLabs/move-book/edit/second-edition
 "syntax-basics/function.html" = "/basic-syntax/function.html"
 "advanced-topics/struct.html" = "/basic-syntax/struct.html"
 
+# advanced topics redirects
 "advanced-topics/index.html" = "/programmability/index.html"
 
-# TBD Redirects
-
+# TODO:
 "advanced-topics/types-with-abilities/index.html" = "/index.html"
 "advanced-topics/ownership-and-references.html" = "/index.html"
 "advanced-topics/understanding-generics.html" = "/index.html"
@@ -44,7 +49,6 @@ edit-url-template = "https://github.com/MystenLabs/move-book/edit/second-edition
 "resources/resource-by-example/access-resource-with-borrow.html" = "/index.html"
 "resources/resource-by-example/destroy-resource.html" = "/index.html"
 "resources/resource-by-example/furher-steps.html" = "/index.html"
-
 
 "tutorials/index.html" = "/index.html"
 "tutorials/erc20.html" = "/index.html"
