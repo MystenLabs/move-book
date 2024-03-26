@@ -1,6 +1,6 @@
 # Struct Methods
 
-Move Compiler supports *receiver syntax*, which allows defining methods which can be called on instances of a struct. This is similar to the method syntax in other programming languages. It is a convenient way to define functions which operate on the fields of a struct.
+Move Compiler supports _receiver syntax_, which allows defining methods which can be called on instances of a struct. This is similar to the method syntax in other programming languages. It is a convenient way to define functions which operate on the fields of a struct.
 
 ## Method syntax
 
@@ -17,6 +17,7 @@ When a module is imported, the methods are automatically associated with the str
 For modules that define multiple structs and their methods, it is possible to define method aliases to avoid name conflicts, or to provide a better-named method for a struct.
 
 The syntax for aliases is:
+
 ```move
 // for local method association
 use fun function_path as Type.method_name;

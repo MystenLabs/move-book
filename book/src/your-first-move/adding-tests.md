@@ -65,7 +65,7 @@ Test result: OK. Total tests: 1; passed: 1; failed: 0
 
 ## Failed experiment
 
-Try replacing the equality operator  `==` inside the `assert!` with the inequality operator `!=` and run the test command again.
+Try replacing the equality operator `==` inside the `assert!` with the inequality operator `!=` and run the test command again.
 
 ```Move
     assert!(hello_world() != expected, 0)

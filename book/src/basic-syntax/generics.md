@@ -6,7 +6,6 @@ Generics are a way to define a type or function that can work with any type. Thi
 
 In this chapter we already mentioned the [vector](./vector.md) type, which is a generic type that can hold any other type. Another example of a generic type in the standard library is the [Option](./option.md) type, which is used to represent a value that may or may not be present.
 
-
 ## Generic Syntax
 
 To define a generic type or function, a type signature needs to have a list of generic parameters enclosed in angle brackets (`<` and `>`). The generic parameters are separated by commas.
@@ -61,7 +60,7 @@ In the example above, `User` is a generic type with a single type parameter `T`,
 
 ## Phantom Type Parameters
 
-In some cases, you may want to define a generic type with a type parameter that is not used in the fields or methods of the type. This is called a *phantom type parameter*. Phantom type parameters are useful when you want to define a type that can hold any other type, but you want to enforce some constraints on the type parameter.
+In some cases, you may want to define a generic type with a type parameter that is not used in the fields or methods of the type. This is called a _phantom type parameter_. Phantom type parameters are useful when you want to define a type that can hold any other type, but you want to enforce some constraints on the type parameter.
 
 ```move
 {{#include ../../../packages/samples/sources/basic-syntax/generics.move:phantom}}
@@ -77,7 +76,7 @@ In the example above, we demonstrate how to create two different instances of `C
 
 ## Constraints on Type Parameters
 
-Type parameters can be constrained to have certain abilities. This is useful when you need the inner type to allow certain behavior, such as *copy* or *drop*. The syntax for constraining a type parameter is `T: <ability> + <ability>`.
+Type parameters can be constrained to have certain abilities. This is useful when you need the inner type to allow certain behavior, such as _copy_ or _drop_. The syntax for constraining a type parameter is `T: <ability> + <ability>`.
 
 ```move
 {{#include ../../../packages/samples/sources/basic-syntax/generics.move:constraints}}

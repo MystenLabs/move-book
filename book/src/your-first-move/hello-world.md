@@ -53,7 +53,7 @@ The file names should usually match the name of the module. And the module name 
 
 ## Tests
 
-The `tests/` directory contains package tests. Compiler excludes these files in the regular build process, but includes in *test* and *dev* modes.
+The `tests/` directory contains package tests. Compiler excludes these files in the regular build process, but includes in _test_ and _dev_ modes.
 
 ## Other Folders
 

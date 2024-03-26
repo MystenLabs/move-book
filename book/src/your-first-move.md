@@ -33,7 +33,7 @@ Move CLI will create a scaffold of the application and pre-create all necessary 
 
 ### Manifest
 
-The `Move.toml` file is called the [package manifest](./concepts/manifest.md), we will explain it in detail the concepts chapter. However, what is important to know is that it's the file that contains definitions and configuration for the package. Compiler uses it to read the package metadata, fetch dependencies and register *named addresses*. The latter you can see used in the `source/hello_world.move` module.
+The `Move.toml` file is called the [package manifest](./concepts/manifest.md), we will explain it in detail the concepts chapter. However, what is important to know is that it's the file that contains definitions and configuration for the package. Compiler uses it to read the package metadata, fetch dependencies and register _named addresses_. The latter you can see used in the `source/hello_world.move` module.
 
 ### Sources
 
@@ -47,15 +47,15 @@ module hello_world::hello_world {
 */
 ```
 
-The file names should usually match the name of the module. And the module name has to be a valid Move identifier: alphanumeric with underscores to separate words. A common convention is to call modules in *snake_case* - all lowercase, with underscores.
+The file names should usually match the name of the module. And the module name has to be a valid Move identifier: alphanumeric with underscores to separate words. A common convention is to call modules in _snake_case_ - all lowercase, with underscores.
 
 ### Tests
 
-The `tests/` directory normally contains package tests. Compiler excludes these files in the regular build process, but includes in *test* and *dev* modes.
+The `tests/` directory normally contains package tests. Compiler excludes these files in the regular build process, but includes in _test_ and _dev_ modes.
 
 ### Other Folders
 
-Also, compiler has built-in support for the `examples/` folder, the files there are treated similarly to the ones places under the `tests/` path - they're only built in the *test* and *dev* modes. And it is intended to be used for examples of usage of the package or its integration with other packages.
+Also, compiler has built-in support for the `examples/` folder, the files there are treated similarly to the ones places under the `tests/` path - they're only built in the _test_ and _dev_ modes. And it is intended to be used for examples of usage of the package or its integration with other packages.
 
 <!-- TODO: mention open-sourcing guide since it uses examples -->
 
@@ -79,7 +79,7 @@ module hello_world::hello_world {
 }
 ```
 
-During compilation the code is *built* but it's not *run*. A compiled package only offers functions which then can be called by other modules or in a transaction. We will explain these concepts in the [Concepts](./concepts) chapter. But now, let's see what happens when we run the `sui move build`.
+During compilation the code is _built_ but it's not _run_. A compiled package only offers functions which then can be called by other modules or in a transaction. We will explain these concepts in the [Concepts](./concepts) chapter. But now, let's see what happens when we run the `sui move build`.
 
 ```bash
 # run from the `hello_world` folder
@@ -90,6 +90,7 @@ $ sui move build --path hello_world
 ```
 
 The output would be:
+
 ```
 TODO: insert out
 ```
@@ -112,7 +113,7 @@ Replace the contents of the `tests/hello_world_tests.move` with the following co
 TODO: tests
 ```
 
-Here we import the `hello_world` module, and call its `hello_world` function to test that the output is indeed the string "Hello World!". Now, that we have tests in place, let's compile the package in the *test* mode and run tests. Move CLI has the `test` command for this:
+Here we import the `hello_world` module, and call its `hello_world` function to test that the output is indeed the string "Hello World!". Now, that we have tests in place, let's compile the package in the _test_ mode and run tests. Move CLI has the `test` command for this:
 
 ```bash
 # from `hello_world` folder

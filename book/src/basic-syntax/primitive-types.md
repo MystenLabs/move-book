@@ -20,6 +20,7 @@ let mut <variable_name>[: <type>] = <expression>;
 ```
 
 Where:
+
 - `<variable_name>` - the name of the variable
 - `<type>` - the type of the variable, optional
 - `<expression>` - the value to be assigned to the variable
@@ -83,15 +84,15 @@ let x = 42u8;
 
 Move supports the standard arithmetic operations for integers: addition, subtraction, multiplication, division, and remainder. The syntax for these operations is:
 
-|Syntax|Operation|Aborts If|
-|-|-|-|
-|+|addition|Result is too large for the integer type|
-|-|subtraction|Result is less than zero|
-|*|multiplication|Result is too large for the integer type|
-|%|modular division|The divisor is 0|
-|/|truncating division|The divisor is 0|
+| Syntax | Operation           | Aborts If                                |
+| ------ | ------------------- | ---------------------------------------- |
+| +      | addition            | Result is too large for the integer type |
+| -      | subtraction         | Result is less than zero                 |
+| \*     | multiplication      | Result is too large for the integer type |
+| %      | modular division    | The divisor is 0                         |
+| /      | truncating division | The divisor is 0                         |
 
-The type of the operands *must match*, otherwise, the compiler will raise an error. The result of the operation will be of the same type as the operands. To perform operations on different types, the operands need to be cast to the same type.
+The type of the operands _must match_, otherwise, the compiler will raise an error. The result of the operation will be of the same type as the operands. To perform operations on different types, the operands need to be cast to the same type.
 
 <!-- TODO: add examples + parentheses for arithmetic operations -->
 <!-- TODO: add bitwise operators -->

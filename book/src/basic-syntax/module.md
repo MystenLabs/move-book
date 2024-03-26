@@ -35,7 +35,7 @@ Structs, functions and constants, imports and friend declarations are all part o
 
 ## Address / Named address
 
-Module address can be specified as both: an address *literal* (does not require the `@` prefix) or a named address specified in the [Package Manifest](../concepts/package-manifest.md). In the example below, both are identical because there's a `book = "0x0"` record in the `[addresses]` section of the `Move.toml`.
+Module address can be specified as both: an address _literal_ (does not require the `@` prefix) or a named address specified in the [Package Manifest](../concepts/package-manifest.md). In the example below, both are identical because there's a `book = "0x0"` record in the `[addresses]` section of the `Move.toml`.
 
 ```Move
 {{#include ../../../packages/samples/sources/basic-syntax/module.move:address_literal}}

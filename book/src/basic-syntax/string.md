@@ -7,9 +7,9 @@ Sui execution environment also allows Strings as transaction arguments, so in ma
 ## Bytestring Literal
 
 TODO:
+
 - reference vector
 - reference literals - [Expression](./expression.md#literals)
-
 
 ## Strings are bytes
 

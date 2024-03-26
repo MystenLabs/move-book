@@ -20,5 +20,4 @@ Consensus is only required for mutating the shared state. If the object is immut
 
 The `Clock` object with the reserved address `0x6` is a special case of a shared object which cannot be passed by a mutable reference in a regular transaction. An attempt to do so will not succeed, and the transaction will be rejected. Because of this limitation, the `Clock` object can only be accessed immutably, which allows executing transactions in parallel without consensus.
 
-
 <!-- Add more on why and how -->

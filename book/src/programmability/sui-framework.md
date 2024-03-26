@@ -5,20 +5,20 @@ Sui Framework is a default dependency set in the [Package Manifest](./../concept
 <!-- Custom CSS addition in the theme/custom.css  -->
 <div class="modules-table">
 
-| Module | Description | Chapter |
-| ------ | ----------- | ------- |
-| sui::address | Adds conversion methods to the [address type](./../basic-syntax/address.md) | [Address](./../basic-syntax/address.md) |
-| sui::transfer | Implements the storage operations for Objects | [It starts with an Object](./../object) |
-| sui::tx_context | Contains the `TxContext` struct and methods to read it | [Transaction Context](./transaction-context.md) |
-| sui::object | Defines the `UID` and `ID` type, required for creating objects | [It starts with an Object](./../object) |
-| sui::clock | Defines the `Clock` type and its methods | [Epoch and Time](./epoch-and-time.md) |
-| sui::dynamic_field | Implements methods to add, use and remove dynamic fields | [Dynamic Fields](./dynamic-fields.md) |
-| sui::dynamic_object_field | Implements methods to add, use and remove dynamic object fields | [Dynamic Object Fields](./dynamic-object-fields.md) |
-| sui::vec_map | Implements a map with vector keys | [Collections](./collections.md) |
-| sui::vec_set | Implements a set type | [Collections](./collections.md) |
-| sui::event | Allows emitting events for off-chain listeners | [Events](./events.md) |
-| sui::package | Defines the `Publisher` type and package upgrade methods | [Publisher](./publisher.md), [Package Upgrades](./package-upgrades.md) |
-| - | - | - |
+| Module                    | Description                                                                 | Chapter                                                                |
+| ------------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| sui::address              | Adds conversion methods to the [address type](./../basic-syntax/address.md) | [Address](./../basic-syntax/address.md)                                |
+| sui::transfer             | Implements the storage operations for Objects                               | [It starts with an Object](./../object)                                |
+| sui::tx_context           | Contains the `TxContext` struct and methods to read it                      | [Transaction Context](./transaction-context.md)                        |
+| sui::object               | Defines the `UID` and `ID` type, required for creating objects              | [It starts with an Object](./../object)                                |
+| sui::clock                | Defines the `Clock` type and its methods                                    | [Epoch and Time](./epoch-and-time.md)                                  |
+| sui::dynamic_field        | Implements methods to add, use and remove dynamic fields                    | [Dynamic Fields](./dynamic-fields.md)                                  |
+| sui::dynamic_object_field | Implements methods to add, use and remove dynamic object fields             | [Dynamic Object Fields](./dynamic-object-fields.md)                    |
+| sui::vec_map              | Implements a map with vector keys                                           | [Collections](./collections.md)                                        |
+| sui::vec_set              | Implements a set type                                                       | [Collections](./collections.md)                                        |
+| sui::event                | Allows emitting events for off-chain listeners                              | [Events](./events.md)                                                  |
+| sui::package              | Defines the `Publisher` type and package upgrade methods                    | [Publisher](./publisher.md), [Package Upgrades](./package-upgrades.md) |
+| -                         | -                                                                           | -                                                                      |
 
 </div>
 

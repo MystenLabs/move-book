@@ -36,6 +36,7 @@ In the examples we won't focus on these functions, but rather on the differences
 Bag, as the name suggests, acts as a "bag" of heterogeneous values. It is a simple, non-generic type that can store any data. Bag will never allow orphaned fields, as it tracks the number of fields and can't be destroyed if it's not empty.
 
 File: sui-framework/sources/bag.move
+
 ```move
 public struct Bag has key, store {
     /// the ID of this bag
@@ -46,14 +47,17 @@ public struct Bag has key, store {
 ```
 
 Due to Bag storing any types, the extra methods it offers is:
+
 - `contains_with_type` - checks if a field exists with a specific type
 
 Used as a struct field:
+
 ```move
 {{#include ../../../packages/samples/sources/programmability/dynamic-collections.move:bag_struct}}
 ```
 
 Using the Bag:
+
 ```move
 {{#include ../../../packages/samples/sources/programmability/dynamic-collections.move:bag_usage}}
 ```
@@ -67,6 +71,7 @@ Defined in the `sui::object_bag` module. Identical to [Bag](#bag), but uses [dyn
 Table is a typed dynamic collection that has a fixed type for keys and values. It is defined in the `sui::table` module.
 
 File: sui-framework/sources/table.move
+
 ```move
 public struct Table<phantom K: copy + drop + store, phantom V: store> has key, store {
     /// the ID of this table
@@ -77,11 +82,13 @@ public struct Table<phantom K: copy + drop + store, phantom V: store> has key, s
 ```
 
 Used as a struct field:
+
 ```move
 {{#include ../../../packages/samples/sources/programmability/dynamic-collections.move:table_struct}}
 ```
 
 Using the Table:
+
 ```move
 {{#include ../../../packages/samples/sources/programmability/dynamic-collections.move:table_usage}}
 ```

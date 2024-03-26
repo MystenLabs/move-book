@@ -53,7 +53,7 @@ The `tests` directory is optional and contains tests for the package. Code place
 
 ## Published Package
 
-During development, package doesn't have an address and it needs to be set to `0x0`. Once a package is published, it gets a single unique [address](./address.md) on the blockchain containing its modules' bytecode. A published package becomes *immutable* and can be interacted with by sending transactions.
+During development, package doesn't have an address and it needs to be set to `0x0`. Once a package is published, it gets a single unique [address](./address.md) on the blockchain containing its modules' bytecode. A published package becomes _immutable_ and can be interacted with by sending transactions.
 
 ```
 0x...

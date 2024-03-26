@@ -139,6 +139,7 @@ module book::coin_otw {
 
 
  -->
+
 ## Case Study: Coin
 
 TODO: add a story behind TreasuryCap and Coin

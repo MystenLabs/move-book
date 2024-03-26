@@ -16,11 +16,11 @@ In the example above, we define a `Record` struct with five fields. The `title` 
 
 Structs are private by default, meaning they cannot be imported and used outside of the module they are defined in. Their fields are also private and can't be accessed from outside the module. See [visibility](./visibility.md) for more information on different visibility modifiers.
 
-> A struct by default is *internal* to the module it is defined in.
+> A struct by default is _internal_ to the module it is defined in.
 
 ## Create and use an instance
 
-We described how struct *definition* works. Now let's see how to initialize a struct and use it. A struct can be initialized using the `struct_name { field1: value1, field2: value2, ... }` syntax. The fields can be initialized in any order, and all of the fields must be set.
+We described how struct _definition_ works. Now let's see how to initialize a struct and use it. A struct can be initialized using the `struct_name { field1: value1, field2: value2, ... }` syntax. The fields can be initialized in any order, and all of the fields must be set.
 
 ```move
 {{#include ../../../packages/samples/sources/basic-syntax/struct.move:pack}}
@@ -48,7 +48,7 @@ Struct fields are private and can be accessed only by the module defining the st
 
 ## Unpacking a struct
 
-Structs are non-discardable by default, meaning that the initiated struct value must be used: either stored or *unpacked*. Unpacking a struct means deconstructing it into its fields. This is done using the `let` keyword followed by the struct name and the field names.
+Structs are non-discardable by default, meaning that the initiated struct value must be used: either stored or _unpacked_. Unpacking a struct means deconstructing it into its fields. This is done using the `let` keyword followed by the struct name and the field names.
 
 ```move
 {{#include ../../../packages/samples/sources/basic-syntax/struct.move:unpack}}

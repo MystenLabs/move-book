@@ -23,4 +23,4 @@ public struct Object has key {
 
 Sui Verifier will not allow using a UID that wasn't generated in the same function. In other words - reusing UID or passing it from another function won't work.
 
-## 
+##

@@ -31,16 +31,19 @@ An address literal starts with the `@` symbol followed by a hexadecimal number o
 Sui Framework offers a set of helper functions to work with addresses. Given that the address type is a 32 byte value, it can be converted to a `u256` type and vice versa. It can also be converted to and from a `vector<u8>` type.
 
 Example: Convert an address to a `u256` type and back.
+
 ```move
 {{#include ../../../packages/samples/sources/basic-syntax/address.move:to_u256}}
 ```
 
 Example: Convert an address to a `vector<u8>` type and back.
+
 ```move
 {{#include ../../../packages/samples/sources/basic-syntax/address.move:to_bytes}}
 ```
 
 Example: Convert an address into a string.
+
 ```move
 {{#include ../../../packages/samples/sources/basic-syntax/address.move:to_string}}
 ```
