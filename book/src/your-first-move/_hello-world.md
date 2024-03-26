@@ -116,7 +116,6 @@ To compile the package, run the following command:
 $ sui move build
 ```
 
-
 If you see this (or - for other binaries - similar) output, then everything is fine, and the code compiled successfully:
 
 ```bash

@@ -30,7 +30,7 @@ Doc comments placed above the module are linked to the module itself, while doc 
 {{#include ../../../packages/samples/sources/your-first-move/hello_world_docs.move:8:11}}
 ```
 
-If a documented member has an attribute, such as `#[test]` in the example below, the doc comment must be placed *after* the attribute:
+If a documented member has an attribute, such as `#[test]` in the example below, the doc comment must be placed _after_ the attribute:
 
 > While it is possible to document `#[test]` functions, doc comments for tests will not be included in the generated documentation.
 
@@ -81,4 +81,5 @@ As the name says: returns a string "Hello, World!".
 </code></pre>
 </details>
 ```
+
 </details>

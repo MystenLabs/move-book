@@ -11,7 +11,7 @@
 
  -->
 
-Sui does not have global storage. Instead, storage is split into a pool of objects. Some of the objects are owned by accounts and available only to them, and some are *shared* and can be accessed by anyone on the network. There's also a special kind of *shared immutable* objects, also called *frozen*, which can't be modified, and act as public chain-wide constants.
+Sui does not have global storage. Instead, storage is split into a pool of objects. Some of the objects are owned by accounts and available only to them, and some are _shared_ and can be accessed by anyone on the network. There's also a special kind of _shared immutable_ objects, also called _frozen_, which can't be modified, and act as public chain-wide constants.
 
 Each object has a unique 32-byte identifier - UID, it is used to access and reference the object.
 

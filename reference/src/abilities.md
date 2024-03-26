@@ -104,9 +104,7 @@ To declare that a `struct` has an ability, it is declared with `has <ability>` a
 and either before or after the fields. For example:
 
 ```move
-public struct Ignorable has drop { f: u64 }
-public struct Pair has copy, drop, store { x: u64, y: u64 }
-public struct MyVec(vector<u64>) has copy, drop, store;
+{{#include ../../packages/reference/sources/abilities.move:annotating_structs}}
 ```
 
 In this case: `Ignorable` has the `drop` ability. `Pair` and `MyVec` both have `copy`, `drop`, and
@@ -154,7 +152,7 @@ When abilities are annotated on a generic type, not all instances of that type a
 have that ability. Consider this struct declaration:
 
 ```move
-public struct Cup<T> has copy, drop, store, key { item: T }
+{{#include ../../packages/reference/sources/abilities.move:conditional_abilities}}
 ```
 
 It might be very helpful if `Cup` could hold any type, regardless of its abilities. The type system

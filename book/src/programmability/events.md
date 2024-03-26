@@ -5,6 +5,7 @@ Events are a way to notify off-chain listeners about on-chain events. They are u
 > Any type with the [copy](./../basic-syntax/copy-ability.md) and [drop](./../basic-syntax/drop-ability.md) abilities can be emitted as an event.
 
 File: sui-framework/sources/event.move
+
 ```move
 module sui::event {
     /// Emit a custom Move event, sending the data offchain.
@@ -26,10 +27,10 @@ Events are emitted using the `emit` function in the `sui::event` module. The fun
 {{#include ../../../packages/samples/sources/programmability/events.move:emit}}
 ```
 
-The Sui Verifier requires the type passed to the `emit` function to be *internal to the module*. So emitting a type from another module will result in a compilation error. Primitive types, although they match the *copy* and *drop* requirement, are not allowed to be emitted as events.
+The Sui Verifier requires the type passed to the `emit` function to be _internal to the module_. So emitting a type from another module will result in a compilation error. Primitive types, although they match the _copy_ and _drop_ requirement, are not allowed to be emitted as events.
 
 ## Event Structure
 
-Events are a part of the transaction result and are stored in the *transaction effects*. As such, they natively have the `sender` field which is the address who sent the transaction. So adding a "sender" field to the event is not necessary. Similarly, event metadata contains the timestamp. But it is important to note that the timestamp is relative to the node and may vary a little from node to node.
+Events are a part of the transaction result and are stored in the _transaction effects_. As such, they natively have the `sender` field which is the address who sent the transaction. So adding a "sender" field to the event is not necessary. Similarly, event metadata contains the timestamp. But it is important to note that the timestamp is relative to the node and may vary a little from node to node.
 
 <!-- ## Reliability -->

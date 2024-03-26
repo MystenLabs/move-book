@@ -3,6 +3,7 @@
 Option is a type that represents an optional value which may or may not exist. The concept of Option in Move is borrowed from Rust, and it is a very useful primitive in Move. `Option` is defined in the [Standard Library](./standard-library.md), and is defined as follows:
 
 File: move-stdlib/source/option.move
+
 ```move
 /// Abstraction of a value that may or may not be present.
 struct Option<Element> has copy, drop, store {

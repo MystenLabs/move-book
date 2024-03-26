@@ -30,8 +30,11 @@ condition cannot be met.
 In this example, the function will pop two items off of the vector, but will abort early if the
 vector does not have two items
 
-```move=
+<!-- {{#include ../../packages/reference/sources/abort-and-assert.move}} -->
+
+```move
 use std::vector;
+
 fun pop_twice<T>(v: &mut vector<T>): (T, T) {
     if (vector::length(v) < 2) abort 42;
     (vector::pop_back(v), vector::pop_back(v))
@@ -41,7 +44,7 @@ fun pop_twice<T>(v: &mut vector<T>): (T, T) {
 This is even more useful deep inside a control-flow construct. For example, this function checks
 that all numbers in the vector are less than the specified `bound`. And aborts otherwise
 
-```move=
+```move
 use std::vector;
 fun check_vec(v: &vector<u64>, bound: u64) {
     let i = 0;
@@ -74,7 +77,7 @@ if (condition) () else abort code
 `assert` is more commonly used than just `abort` by itself. The `abort` examples above can be
 rewritten using `assert`
 
-```move=
+```move
 use std::vector;
 fun pop_twice<T>(v: &mut vector<T>): (T, T) {
     assert!(vector::length(v) >= 2, 42); // Now uses 'assert'
@@ -84,7 +87,7 @@ fun pop_twice<T>(v: &mut vector<T>): (T, T) {
 
 and
 
-```move=
+```move
 use std::vector;
 fun check_vec(v: &vector<u64>, bound: u64) {
     let i = 0;
@@ -127,7 +130,7 @@ pieces of information:
 
 For example
 
-```move=
+```move
 module 0x2::example {
     public fun aborts() {
         abort 42
@@ -148,7 +151,7 @@ This can be useful for having multiple aborts being grouped together inside a mo
 
 In this example, the module has two separate error codes used in multiple functions
 
-```move=
+```move
 module 0x42::example {
 
     use std::vector;

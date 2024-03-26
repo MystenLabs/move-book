@@ -27,7 +27,6 @@ The package manifest - `Move.toml` - already contains all required dependencies 
 >
 > Like this: `edition = "2024.beta"`
 
-
 ## Implement the Postcard application
 
 The Postcard application will be a simple module that defines an [object](./../concepts/object-model.md), and a set of functions to create, modify and send the postcard to any [address](./../concepts/address.md).

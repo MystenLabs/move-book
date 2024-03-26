@@ -1,6 +1,6 @@
 [package]
 name = "book"
-edition = "2024.alpha"
+edition = "2024.beta"
 
 [dependencies.Sui]
 git = "https://github.com/MystenLabs/sui.git"

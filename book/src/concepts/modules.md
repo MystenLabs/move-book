@@ -15,4 +15,3 @@
  -->
 
 Module is the basic unit of organization in a package. A module is a separate scope that contains functions, types, and other items. A package consists of one or more modules.
-

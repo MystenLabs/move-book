@@ -49,6 +49,7 @@ While there's a standard set of fields, the Display object does not enforce them
 The `Display` object is defined in the `sui::display` module. It is a generic struct that takes a phantom type as a parameter. The phantom type is used to associate the `Display` object with the type it describes. The `fields` of the `Display` object are a `VecMap` of key-value pairs, where the key is the field name and the value is the field value. The `version` field is used to version the display metadata, and is updated on the `update_display` call.
 
 File: sui-framework/sources/display.move
+
 ```move
 struct Display<phantom T: key> has key, store {
     id: UID,
@@ -74,9 +75,9 @@ The Display for the type `LittlePony` above could be defined as follows:
 
 ```json
 {
-    "name": "Just a pony",
-    "image_url": "{image_url}",
-    "description": "{metadata.description}"
+  "name": "Just a pony",
+  "image_url": "{image_url}",
+  "description": "{metadata.description}"
 }
 ```
 

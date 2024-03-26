@@ -30,9 +30,11 @@ Having imported the `std::debug` module, we can now use its functions. Let's add
 ```
 
 First, run the build command:
+
 ```bash
 $ sui move build
 ```
+
 The output does not contain anything unusual, because our code was never executed. But running `build` is an important part of the routine - this way we make sure that the changes we added can compile. Let's run the test command now:
 
 ```bash

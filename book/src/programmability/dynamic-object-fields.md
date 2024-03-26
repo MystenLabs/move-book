@@ -2,7 +2,7 @@
 
 > This section expands on the [Dynamic Fields](./dynamic-fields.md). Please, read it first to understand the basics of dynamic fields.
 
-Another variation of dynamic fields is *dynamic object fields*, which have certain differences from regular dynamic fields. In this section, we will cover the specifics of dynamic object fields and explain how they differ from regular dynamic fields.
+Another variation of dynamic fields is _dynamic object fields_, which have certain differences from regular dynamic fields. In this section, we will cover the specifics of dynamic object fields and explain how they differ from regular dynamic fields.
 
 > General recommendation is to avoid using dynamic object fields in favor of (just) dynamic fields, especially if there's no need for direct discovery through the ID. The extra costs of dynamic object fields may not be justified by the benefits they provide.
 
@@ -13,6 +13,7 @@ Dynamic Object Fields are defined in the `sui::dynamic_object_fields` module in 
 They're less explicit in their framework definition, as the concept itself is more abstract:
 
 File: sui-framework/sources/dynamic_object_fields.move
+
 ```move
 /// Internal object used for storing the field and the name associated with the
 /// value. The separate type is necessary to prevent key collision with direct
@@ -22,7 +23,7 @@ public struct Wrapper<Name> has copy, drop, store {
 }
 ```
 
-Unlike `Field` type in the [Dynamic Fields](./dynamic-fields.md#definition) section, the `Wrapper` type only stores the name of the field. The value is the object itself, and is *not wrapped*.
+Unlike `Field` type in the [Dynamic Fields](./dynamic-fields.md#definition) section, the `Wrapper` type only stores the name of the field. The value is the object itself, and is _not wrapped_.
 
 The constraints on the `Value` type become visible in the methods available for dynamic object fields. Here's the signature for the `add` function:
 
@@ -51,7 +52,7 @@ Additionally, there is an `id` method which returns the `ID` of the `Value` obje
 
 ## Usage & Differences with Dynamic Fields
 
-The main difference between dynamic fields and dynamic object fields is that the latter allows storing *only objects* as values. This means that you can't store primitive types like `u64` or `bool`. It may be considered a limitation, if not for the fact that dynamic object fields are *not wrapped* into a separate object.
+The main difference between dynamic fields and dynamic object fields is that the latter allows storing _only objects_ as values. This means that you can't store primitive types like `u64` or `bool`. It may be considered a limitation, if not for the fact that dynamic object fields are _not wrapped_ into a separate object.
 
 > The relaxed requirement for wrapping keeps the object available for off-chain discovery via its ID. However, this property may not be outstanding if wrapped object indexing is implemented, making the dynamic object fields a redundant feature.
 

@@ -1,10 +1,10 @@
 # Visibility Modifiers
 
-Every module member has a visibility. By default, all module members are *private* - meaning they are only accessible within the module they are defined in. However, you can add a visibility modifier to make a module member *public* - visible outside the module, or *public(package)* - visible in the modules within the same package, or *entry* - can be called from a transaction but can't be called from other modules.
+Every module member has a visibility. By default, all module members are _private_ - meaning they are only accessible within the module they are defined in. However, you can add a visibility modifier to make a module member _public_ - visible outside the module, or _public(package)_ - visible in the modules within the same package, or _entry_ - can be called from a transaction but can't be called from other modules.
 
 ## Internal Visibility
 
-A function or a struct defined in a module which has no visibility modifier is *private* to the module. It can't be called from other modules.
+A function or a struct defined in a module which has no visibility modifier is _private_ to the module. It can't be called from other modules.
 
 ```move
 module book::internal_visibility {
@@ -35,7 +35,7 @@ module book::try_calling_internal {
 
 ## Public Visibility
 
-A struct or a function can be made *public* by adding the `public` keyword before the `fun` or `struct` keyword.
+A struct or a function can be made _public_ by adding the `public` keyword before the `fun` or `struct` keyword.
 
 ```move
 module book::public_visibility {
@@ -59,7 +59,7 @@ module book::try_calling_public {
 
 ## Package Visibility
 
-Move 2024 introduces the *package visibility* modifier. A function with *package visibility* can be called from any module within the same package. It can't be called from other packages.
+Move 2024 introduces the _package visibility_ modifier. A function with _package visibility_ can be called from any module within the same package. It can't be called from other packages.
 
 ```move
 module book::package_visibility {

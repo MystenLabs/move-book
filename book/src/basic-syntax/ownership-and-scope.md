@@ -51,7 +51,7 @@ module book::ownership {
 
 ## Passing by Value
 
-Additionally, if we passed the variable `a` to another function, the ownership of `a` would be transferred to this function. When performing this operation, we *move* the value from one scope to another. This is also called *move semantics*.
+Additionally, if we passed the variable `a` to another function, the ownership of `a` would be transferred to this function. When performing this operation, we _move_ the value from one scope to another. This is also called _move semantics_.
 
 ```move
 module book::ownership {
@@ -110,6 +110,4 @@ module book::ownership {
 
 ## Copyable Types
 
-Some types in Move are *copyable*, which means that they can be copied without transferring the ownership. This is useful for types that are small and cheap to copy, such as integers and booleans. Move compiler will automatically copy these types when they are passed to a function or returned from a function, or when they're *moved* to a scope and then accessed in their original scope.
-
-
+Some types in Move are _copyable_, which means that they can be copied without transferring the ownership. This is useful for types that are small and cheap to copy, such as integers and booleans. Move compiler will automatically copy these types when they are passed to a function or returned from a function, or when they're _moved_ to a scope and then accessed in their original scope.

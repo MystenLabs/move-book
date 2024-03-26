@@ -31,6 +31,7 @@ Modules defined in the same package can import each other. The `use` keyword is 
 ```
 
 File: sources/module_two.move
+
 ```move
 // File: sources/module_two.move
 {{#include ../../../packages/samples/sources/basic-syntax/importing-modules.move:module_two}}
@@ -70,7 +71,7 @@ When importing multiple members from different modules, it is possible to have n
 
 ## Adding an External Dependency
 
-Every new package generated via the `sui` binary features a `Move.toml` file with a single dependency on the *Sui Framework* package. The Sui Framework depends on the *Standard Library* package. And both of these packages are available in default configuration. Package dependencies are defined in the [Package Manifest](./../concepts/manifest.md) as follows:
+Every new package generated via the `sui` binary features a `Move.toml` file with a single dependency on the _Sui Framework_ package. The Sui Framework depends on the _Standard Library_ package. And both of these packages are available in default configuration. Package dependencies are defined in the [Package Manifest](./../concepts/manifest.md) as follows:
 
 ```toml
 [dependencies]

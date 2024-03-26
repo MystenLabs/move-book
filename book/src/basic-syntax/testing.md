@@ -27,7 +27,7 @@ module book::testing {
 
 ## Running Tests
 
-To run tests, you can use the `sui move test` command. This command will first build the package in the *test mode* and then run all the tests found in the package. During test mode, modules from both `sources/` and `tests/` directories are processed, and the tests are executed.
+To run tests, you can use the `sui move test` command. This command will first build the package in the _test mode_ and then run all the tests found in the package. During test mode, modules from both `sources/` and `tests/` directories are processed, and the tests are executed.
 
 ```bash
 $ sui move test

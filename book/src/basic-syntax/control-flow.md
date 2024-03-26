@@ -106,10 +106,10 @@ Infinite loops on their own are not very useful in Move, since every operation i
 As we already mentioned, infinite loops are rather useless on their own. And that's where we introduce the `break` and `continue` statements. They are used to exit a loop early, and to skip the rest of the current iteration, respectively.
 
 Syntax for the `break` statement is (without a semicolon):
+
 ```move
 break
 ```
-
 
 The `break` statement is used to stop the execution of a loop and exit it early. It is often used in combination with a conditional statement to exit the loop when a certain condition is met. To illustrate this point, let's turn the infinite `loop` from the previous example into something that looks and behaves more like a `while` loop:
 
@@ -124,6 +124,7 @@ Almost identical to the `while` loop, right? The `break` statement is used to ex
 The `continue` statement is used to skip the rest of the current iteration and start the next one. Similarly to `break`, it is used in combination with a conditional statement to skip the rest of the iteration when a certain condition is met.
 
 Syntax for the `continue` statement is (without a semicolon):
+
 ```move
 continue
 ```

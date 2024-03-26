@@ -1,12 +1,13 @@
 # Publisher Authority
 
-In application design and development, it is often needed to prove publisher authority. This is especially important in the context of digital assets, where the publisher may enable or disable certain features for their assets. The Publisher Object is an object, defined in the [Sui Framework](./sui-framework.md), that allows the publisher to prove their *authority over a type*.
+In application design and development, it is often needed to prove publisher authority. This is especially important in the context of digital assets, where the publisher may enable or disable certain features for their assets. The Publisher Object is an object, defined in the [Sui Framework](./sui-framework.md), that allows the publisher to prove their _authority over a type_.
 
 ## Definition
 
 The Publisher object is defined in the `sui::package` module of the Sui Framework. It is a very simple, non-generic object that can be initialized once per module (and multiple times per package) and is used to prove the authority of the publisher over a type. To claim a Publisher object, the publisher must present a [One Time Witness](./one-time-witness.md) to the `package::claim` function.
 
 File: sui-framework/sources/package.move
+
 ```move
 // module: sui::package
 public struct Publisher has key, store {

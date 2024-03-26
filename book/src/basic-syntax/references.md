@@ -16,7 +16,7 @@ Notes:
 
  -->
 
-In the [Ownership and Scope](./ownership-and-scope.md) section, we explained that when a value is passed to a function, it is *moved* to the function's scope. This means that the function becomes the owner of the value, and the original scope (owner) can no longer use it. This is an important concept in Move, as it ensures that the value is not used in multiple places at the same time. However, there are use cases when we want to pass a value to a function but retain the ownership. This is where references come into play.
+In the [Ownership and Scope](./ownership-and-scope.md) section, we explained that when a value is passed to a function, it is _moved_ to the function's scope. This means that the function becomes the owner of the value, and the original scope (owner) can no longer use it. This is an important concept in Move, as it ensures that the value is not used in multiple places at the same time. However, there are use cases when we want to pass a value to a function but retain the ownership. This is where references come into play.
 
 To illustrate this, let's consider a simple example - an application for a metro (subway) pass. We will look at 4 different scenarios:
 
@@ -43,7 +43,7 @@ module book::metro_pass {
 
 ## Reference
 
-References are a way to *show* a value to a function without giving up the ownership. In our case, when we show the Card to the inspector, we don't want to give up the ownership of it, and we don't allow them to spend the rides. We just want to allow *reading* the value of the Card and prove its ownership.
+References are a way to _show_ a value to a function without giving up the ownership. In our case, when we show the Card to the inspector, we don't want to give up the ownership of it, and we don't allow them to spend the rides. We just want to allow _reading_ the value of the Card and prove its ownership.
 
 To do so, in the function signature, we use the `&` symbol to indicate that we are passing a reference to the value, not the value itself.
 
@@ -71,7 +71,7 @@ Lastly, let's give an illustration of what happens when we pass the value itself
 {{#include ../../../packages/samples/sources/basic-syntax/references.move:move}}
 ```
 
-In the `recycle` function, the Card is *taken by value* and can be unpacked and destroyed. The original scope can't use it anymore.
+In the `recycle` function, the Card is _taken by value_ and can be unpacked and destroyed. The original scope can't use it anymore.
 
 ## Full Example
 

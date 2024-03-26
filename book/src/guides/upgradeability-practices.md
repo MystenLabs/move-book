@@ -83,7 +83,7 @@ module book::versioned_state {
 
 <!-- This practice is for versioning the contents / structure of objects -->
 
-There's a common pattern in Sui which allows changing the stored configuration of an object while retaining the same object signature. This is done by keeping the base object simple and versioned and adding an actual configuration object as a dynamic field. Using this *anchor* pattern, the configuration can be changed with package upgrades while keeping the same base object signature.
+There's a common pattern in Sui which allows changing the stored configuration of an object while retaining the same object signature. This is done by keeping the base object simple and versioned and adding an actual configuration object as a dynamic field. Using this _anchor_ pattern, the configuration can be changed with package upgrades while keeping the same base object signature.
 
 ```move
 module book::versioned_config {

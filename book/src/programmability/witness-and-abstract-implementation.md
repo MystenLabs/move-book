@@ -16,7 +16,6 @@ Talk through Generic Struct and how it can be instantiated with a witness.
 
  -->
 
-
 ## Common methods
 
 <!--
