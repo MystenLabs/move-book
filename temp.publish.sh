@@ -11,4 +11,4 @@ mv book sui;
 git add sui;
 git commit -m "update $time";
 git push origin head;
-git checkout second-edition;
+git checkout main;
