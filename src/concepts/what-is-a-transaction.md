@@ -18,8 +18,8 @@ Transaction is a fundamental concept in the blockchain world. It is a way to int
 
 Transactions consist of:
 
-- a sender - the account that *signs* the transaction
-- a list (or a chain) of commands - the operations to be executed
-- command inputs - the arguments for the commands
-- a gas object - the object used to pay for the transaction
-- gas price and budget - the cost of the transaction
+- a sender - the account that *signs* the transaction;
+- a list (or a chain) of commands - the operations to be executed;
+- command inputs - the arguments for the commands: either `pure` - simple values like numbers or strings, or `object` - objects that the transaction will access;
+- a gas object - the `Coin` object used to pay for the transaction;
+- gas price and budget - the cost of the transaction;

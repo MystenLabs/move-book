@@ -43,9 +43,10 @@ Here are some examples of reserved addresses:
 
 - `0x1` - address of the Sui Standard Library (alias `std`)
 - `0x2` - address of the Sui Framework (alias `sui`)
-- `0x5` - address of the Sui System object
-- `0x6` - address of the system Clock object
-- `0x403` - address of the DenyList system object
+- `0x5` - address of the `SuiSystem` object
+- `0x6` - address of the system `Clock` object
+- `0x8` - address of the system `Random` object
+- `0x403` - address of the `DenyList` system object
 
 ## Further reading
 

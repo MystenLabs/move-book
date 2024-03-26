@@ -1,128 +1,120 @@
-# Hello World
+# Hello World!
 
-<!-- TODO: redo the tutorial based on new CLI scaffold features -->
+Assuming you have already [installed Sui](./../before-we-begin/install-sui.md) and set up your [IDE environment](./../before-we-begin/ide-support.md), let's jump right into it.
 
-<!--
+## Create a New Package
 
-- Hello World
-    - copy-paste the example
-    - explain the structure of the code
-    - explain the module
-    - explain the function
-    - run sui move build
-    - compare the output
-    - leave a hint, show that there's more to it
+To create a new program, we will use the `sui move new` command followed by the name of the application.
 
--->
-
-It's time to write your first Move program. We'll start with the classic "Hello World" program which returns a String.
-
-## Initialize a project
-
-First, you need to initialize a new project. Assuming [you have Sui installed](../before-we-begin/install-sui.md), run the following command:
+> In this and other chapters, if you see the code blocks with lines starting with `$` (dollar sign), it means that the following command should be run in terminal. The sign should not be included. It's a common way of showing commands in the terminal.
 
 ```bash
-$ sui move new hello_world
+sui move new hello_world
 ```
 
-Sui CLI has a `move` subcommand which is used to work with Move packages. The `new` subcommand creates a new package with the given name in a new directory. In our case, the package name is `hello_world`, and it is located in the `hello_world` directory.
-
-To make sure that the package was created successfully, we can check the contents of the current directory, and see that there is a new `hello_world` path.
+The sui move command gives access to the Move CLI - a built in compiler and test runner environment. The new command followed by the name of the package will create a new package in a new folder. In our case, the folder name is hello_world.
 
 ```bash
-$ ls | grep hello_world
-hello_world
+$ cd hello_world
+$ tree hello_world
 ```
 
-<!--
-    Revisit, decide if we should go that deep and detailed;
-    Expect the user to know how to use a terminal and a text editor?
--->
+## Directory Structure
 
-If the output looks like this, then everything is fine, and we can proceed. The folder structure of the package is the following:
+Move CLI will create a scaffold of the application and pre-create all necessary files. Let's see what's inside.
 
-```bash
-hello_world
+```plaintext
+hello-world
 ├── Move.toml
-├── src/
-│   └── hello_world.move
-└── tests/
-    └── hello_world_tests.move
+├── sources
+│   └── hello-world.move
+└── tests
+    └── hello-world_tests.move
 ```
 
-The address I'm using in this book is always `0x0` and the name for it is "book". You can use any address you want, but make sure to change it in the examples. To make the examples work as is, please, add the following address to the `[addresses]` section in the `Move.toml`:
+## Manifest
 
-```toml
-# Move.toml
-[addresses]
-std = "0x1"
-book = "0x0"
+The `Move.toml` file is called the [package manifest](./../concepts/manifest.md), we will explain it in detail the [concepts chapter](./../concepts). However, what is important to know is that it is the file that contains definitions and configuration for the package. Compiler uses it to read the package metadata, fetch dependencies and register named addresses. The latter you can see used in the `source/hello_world.move` module - the named address is set to `hello_world` and the module is also named `hello_world`.
+
+## Sources
+
+The sources/ directory contains the source files. Move source files have .move extension, and typically named after the module defined in the file. For example, in our case, the file name is hello_world and inside it Move CLI has already placed commented out structure:
+
+```move
+/*
+/// Module: hello_world
+module hello_world::hello_world {
+
+}
+*/
 ```
 
-## Create a module
+The file names should usually match the name of the module. And the module name has to be a valid Move identifier: alphanumeric with underscores to separate words. A common convention is to call modules (and functions) in snake_case - all lowercase, with underscores. Coding conventions are important for readability and maintainability of the code, we summarize them in the Coding Conventions section.
 
-Let's create a new module called `hello_world`. To do so, create a new file in the `sources` folder called `hello_world.move`. So that the structure looks like this:
+## Tests
+
+The `tests/` directory contains package tests. Compiler excludes these files in the regular build process, but includes in *test* and *dev* modes.
+
+## Other Folders
+
+Also, compiler has built-in support for the `examples/` folder, the files there are treated similarly to the ones places under the tests/ path - they're only built in the test and dev modes. And it is intended to be used for examples of usage of the package or its integration with other packages.
+
+## Compiling the Package
+
+Move is a compiled language, and as such, it requires compilation of source files into Move Bytecode. The bytecode contains only necessary information about module, its members and types, and excludes comments and some identifiers (for example, for constants).
+
+To demonstrate these features, let's replace the contents of the sources/hello_world.move file with the following:
+
+```move
+/// The module `hello_world` under named address `hello_world`.
+/// The named address is set in the `Move.toml`.
+module hello_world::hello_world {
+    // Imports the `String` type from the Standard Library
+    use std::string::String;
+
+    /// Returns the "Hello World!" as a `String`.
+    public fun hello_world(): String {
+        b"Hello World!".to_string()
+    }
+}
+```
+
+During compilation the code is built but it's not run. A compiled package only offers functions which then can be called by other modules or in a transaction. We will explain these concepts in the Concepts chapter. But now, let's see what happens when we run the sui move build.
 
 ```bash
-sources/
-    hello_world.move
-Move.toml
-```
-
-And then add the following code to the `hello_world.move` file:
-
-```Move
-// sources/hello_world.move
-{{#include ../../packages/samples/sources/your-first-move/hello_world.move:4:9}}
-{{#include ../../packages/samples/sources/your-first-move/hello_world.move:16:16}}
-```
-
-While it's not a hard restriction, it's is considered a good practice to name the module the same as the file. So, in our case, the module name is `hello_world` and the file name is `hello_world.move`.
-
-The module name and function names should be in `snake_case` - all lowercase letters with underscores between words. You can read more about coding conventions in the [Coding Conventions](../special-topics/coding-conventions.md) section.
-
-## Dive into the code
-
-Let's take a closer look at the code we just wrote:
-
-```Move
-{{#include ../../packages/samples/sources/your-first-move/hello_world.move:4:4}}
-{{#include ../../packages/samples/sources/your-first-move/hello_world.move:16:16}}
-```
-
-The first line of code declares a module called `hello_world` stored at the address `book`. The contents of the module go inside the curly braces `{}`. The last line closes the module declaration with a closing curly brace `}`. We will go through the module declaration in more detail in the [Modules](../basic-syntax/modules.md) section.
-
-Then we import two members of the `std::string` module (which is part of the `std` package). The `string` module contains the `String` type, and the `Self` keyword imports the module itself, so we can use its functions.
-
-```Move
-{{#include ../../packages/samples/sources/your-first-move/hello_world.move:5:5}}
-```
-
-Then we define a `hello_world` function using the keyword `fun` which takes no arguments and returns a `String` type. The `public` keyword marks the visibility of the function - "public" functions can be accessed by other modules. The function body is inside the curly braces `{}`.
-
-> In the [Function](../basic-syntax/function.md) section we will learn more about functions.
-
-```Move
-{{#include ../../packages/samples/sources/your-first-move/hello_world.move:7:9}}
-```
-
-The function body consists of a single function call to the `string::utf8` function and returns a `String` type. The expression is a bytestring literal `b"Hello World!"`.
-
-## Compile the package
-
-To compile the package, run the following command:
-
-```bash
+# run from the `hello_world` folder
 $ sui move build
+
+# alternatively, if you didn't `cd` into it
+$ sui move build --path hello_world
 ```
 
+<!-- The output would be: -->
+<!-- TODO: insert out -->
 
-If you see this (or - for other binaries - similar) output, then everything is fine, and the code compiled successfully:
+During the compilation, Move Compiler automatically creates a build folder where it places all fetched and compiled dependencies as well as the bytecode for the modules of the current package.
+
+> If you're using a versioning system, such as Git, build folder should be ignored. For example, using a `.gitignore` file with `build` added to it.
 
 ```bash
-> UPDATING GIT DEPENDENCY https://github.com/move-language/move.git
-> INCLUDING DEPENDENCY MoveStdlib
-> BUILDING Book
+$ tree build
+Running Tests
 ```
 
-Congratulations! You've just compiled your first Move program. Now, let's add a test and some logging so we see that it works.
+Before we get to testing, we should add a test. Move Compiler supports tests written in Move and provides the execution environment. The tests can be placed in both the source files and in the tests/ folder. Tests are marked with the #[test] attribute and are automatically discovered by the compiler. We explain tests in depth in the Testing section.
+
+<!-- Replace the contents of the tests/hello_world_tests.move with the following content: -->
+
+Here we import the hello_world module, and call its hello_world function to test that the output is indeed the string "Hello World!". Now, that we have tests in place, let's compile the package in the test mode and run tests. Move CLI has the test command for this:
+
+```bash
+# from `hello_world` folder
+$ sui move test
+
+# outside
+$ sui move test --path hello_world
+```
+
+## Next Steps
+
+In this section we explained the basics of the Move package: its structure, the manifest, the build and test flows. [On the next page](), we will write an application and see how the code is structured and what the language can do.
