@@ -2,15 +2,14 @@
 
 Unit testing for Move uses three annotations in the Move source language:
 
-- `#[test]`,
-- `#[expected_failure]`, and
-- `#[test_only]`
+- `#[test]` marks a function as a test;
+- `#[expected_failure]` marks that a test is expected to fail;
+- `#[test_only]` marks a module or module member ([`use`](./uses.md), [function](./functions.md),
+  [struct](./structs.md), or [constant](./constants.md)) as code to be included for testing only.
 
-They respectively mark a function as a test, mark that a test is expected to fail, and mark a module
-or module member ([`use`](./uses.md), [function](./functions.md), [struct](./structs.md), or
-[constant](./constants.md)) as code to be included for testing only. These annotations can be placed
-on a function with any visibility. Whenever a module or module member is annotated as `#[test_only]`
-or `#[test]`, it will not be included in the compiled bytecode unless it is compiled for testing.
+These annotations can be placed on any appropriate form with any visibility. Whenever a module or
+module member is annotated as `#[test_only]` or `#[test]`, it will not be included in the compiled
+bytecode unless it is compiled for testing.
 
 ## Test Annotations
 
@@ -67,8 +66,8 @@ specify different types of error conditions. These are:
 This will pass if the test aborts with the specified constant value in the module that defines the
 constant and fail otherwise. This is the recommended way of testing for expected test failures.
 
-> **Note**: You can reference constants outside of the current module or package in `expected_failure`
-> annotations.
+> **Note**: You can reference constants outside of the current module or package in
+> `expected_failure` annotations.
 
 ```move
 module pkg_addr::other_module {
@@ -156,8 +155,8 @@ module pkg_addr::my_module {
 
 ### 4. `#[expected_failure(vector_error, minor_status = <u64_opt>, location = <location>)]`
 
-This specifies that the test is expected to fail with a vector error at the specified location and
-with the given `minor_status` if provided. The `<location>` must be a valid path to a module
+This specifies that the test is expected to fail with a vector error at the specified location with
+the given `minor_status` (if provided). The `<location>` must be a valid path to a module module
 location, e.g., `Self`, or `my_package::my_module`. The `<u64_opt>` is an optional parameter that
 specifies the minor status of the vector error. If it is not specified, the test will pass if the
 test fails with any minor status. If it is specified, the test will only pass if the test fails with
@@ -208,9 +207,9 @@ module pkg_addr::my_module {
 
 ### 5. `#[expected_failure]`
 
-This will pass if the test aborts with _any_ error code. You should be **_incredibly
-careful_** using this to annotate expected tests failures, and always prefer one of the ways
-described above instead. Examples of these types of annotations are:
+This will pass if the test aborts with _any_ error code. You should be **_incredibly careful_**
+using this to annotate expected tests failures, and always prefer one of the ways described above
+instead. Examples of these types of annotations are:
 
 ```move
 #[test]
@@ -229,8 +228,8 @@ A module and any of its members can be declared as test only. If an item is anno
 mode. Additionally, when compiled outside of test mode, any non-test `use`s of a `#[test_only]`
 module will raise an error during compilation.
 
-> **Note**: functions that are annotated with `#[test_only]` will only be available to be called from
-> test code, but they themselves are not tests and will not be run as tests by the unit testing
+> **Note**: functions that are annotated with `#[test_only]` will only be available to be called
+> from test code, but they themselves are not tests and will not be run as tests by the unit testing
 > framework.
 
 ```move
@@ -261,12 +260,12 @@ possible. You can see an example of this below.
 A test will be marked as timing out if it exceeds the maximum number of instructions that can be
 executed for any single test. This bound can be changed using the options below. Additionally, while
 the result of a test is always deterministic, tests are run in parallel by default, so the ordering
-of test results in a test run is non-deterministic unless running with only one thread (see
-`OPTIONS` below on how to do this).
+of test results in a test run is non-deterministic unless running with only one thread, which can be
+configured via an option.
 
-There are also a number of options that can be passed to the unit testing binary to fine-tune
-testing and to help debug failing tests. The available options, and a description of what each one
-can do can be found by passing the help flag to the `sui move test` command:
+These aforementioned options are two among many that can fine-tune testing and help debug failing
+tests. To see all available options, and a description of what each one does, pass the `--help` flag
+to the `sui move test` command:
 
 ```
 $ sui move test --help
