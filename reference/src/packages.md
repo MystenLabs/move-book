@@ -310,8 +310,8 @@ A named address `N` in a package `P` is in scope if:
 
 Additionally, every named address in a package is exported. Because of this and the above scoping
 rules each package can be viewed as coming with a set of named addresses that will be brought into
-scope when the package is imported, e.g., if the `example_pkg` package was imported, that
-importation would bring into scope the `named_addr` named address. Because of this, if `P` imports
+scope when the package is imported, e.g., if you import `example_pkg`, that
+import will also bring the `named_addr` named address into scope. Because of this, if `P` imports
 two packages `P1` and `P2` both of which declare a named address `N` an issue arises in `P`: which
 "`N`" is meant when `N` is referred to in `P`? The one from `P1` or `P2`? To prevent this ambiguity
 around which package a named address is coming from, we enforce that the sets of scopes introduced
@@ -378,7 +378,7 @@ be found by running `sui move --help`.
 ### Artifacts
 
 A package can be compiled using CLI commands. This will create a `build` directory containing
-build-related artifacts (such as bytecode, source maps, and documentation). The general layout of
+build-related artifacts (including bytecode binaries, source maps, and documentation). The general layout of
 the `build` directory is as follows:
 
 ```plaintext

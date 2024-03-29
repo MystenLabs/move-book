@@ -54,8 +54,8 @@ public fun test_will_error_and_fail() { 1/0; }
 public fun this_other_test_will_abort_and_pass() { abort 1 }
 ```
 
-**NOTE**: `#[test]` and `#[test_only]` functions can also call
-[`entry`](./functions.md#entry-modifier) functions, regardless of their visibility.
+> **Note**: `#[test]` and `#[test_only]` functions can also call
+> [`entry`](./functions.md#entry-modifier) functions, regardless of their visibility.
 
 ## Expected Failures
 
@@ -67,8 +67,8 @@ specify different types of error conditions. These are:
 This will pass if the test aborts with the specified constant value in the module that defines the
 constant and fail otherwise. This is the recommended way of testing for expected test failures.
 
-**NOTE**: You can reference constants outside of the current module or package in `expected_failure`
-annotations.
+> **Note**: You can reference constants outside of the current module or package in `expected_failure`
+> annotations.
 
 ```move
 module pkg_addr::other_module {
@@ -166,7 +166,7 @@ a vector error with the specified minor status.
 ```move
 module pkg_addr::other_module {
     public fun vector_borrow_empty() {
-        vector::borrow(&vector<u64>[], 1);
+        &vector<u64>[][1];
     }
 }
 
@@ -208,8 +208,8 @@ module pkg_addr::my_module {
 
 ### 5. `#[expected_failure]`
 
-This will pass if the test aborts with any error code. Because of this you should be incredibly
-careful using this way of annotating expected tests failures, and instead prefer one of the ways
+This will pass if the test aborts with _any_ error code. You should be **_incredibly
+careful_** using this to annotate expected tests failures, and always prefer one of the ways
 described above instead. Examples of these types of annotations are:
 
 ```move
@@ -229,9 +229,9 @@ A module and any of its members can be declared as test only. If an item is anno
 mode. Additionally, when compiled outside of test mode, any non-test `use`s of a `#[test_only]`
 module will raise an error during compilation.
 
-**NOTE**: functions that are annotated with `#[test_only]` will only be available to be called from
-test code, but they themselves are not tests and will not be run as tests by the unit testing
-framework.
+> **Note**: functions that are annotated with `#[test_only]` will only be available to be called from
+> test code, but they themselves are not tests and will not be run as tests by the unit testing
+> framework.
 
 ```move
 #[test_only] // test only attributes can be attached to modules
