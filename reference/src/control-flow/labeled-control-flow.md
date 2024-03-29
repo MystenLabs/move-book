@@ -37,9 +37,9 @@ fun sum_until_threshold(input: &vector<vector<u64>>, threshold: u64): u64 {
                 // the next element we saw would break the threshold,
                 // so we return the current sum
                 break 'outer sum
-            }
+            };
             j = j + 1;
-        }
+        };
         i = i + 1;
     }
 }
@@ -54,10 +54,10 @@ that might see us continuing the inner or outer loop, we could express that code
     ...
     'inner: while (cond) {
         ...
-        if (cond0) { break 'outer value }
+        if (cond0) { break 'outer value };
         ...
         if (cond1) { continue 'inner }
-        else if (cond2) { continue 'outer }
+        else if (cond2) { continue 'outer };
         ...
     }
     ...

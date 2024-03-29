@@ -1,7 +1,7 @@
 # Index Syntax
 
 Move provides syntax attributes to allow you to define operations that look and feel like native
-move code, lowering these operations into your user-provided definitions.
+Move code, lowering these operations into your user-provided definitions.
 
 Our first syntax method, `index`, allows you to define a group of operations that can be used as
 custom index accessors for your datatypes, such as accessing a matrix element as `m[i,j]`, by
@@ -20,13 +20,13 @@ module matrix {
     public struct Matrix<T> { v: vector<vector<T>> }
 
     #[syntax(index)]
-    public fun borrow<T>(s: &Matrix<T>, i: u64, j: u64):  &T {
-        borrow(borrow(s.v, i), j)
+    public fun borrow<T>(s: &Matrix<T>, i: u64, j: u64): &T {
+        vector::borrow(vector::borrow(&s.v, i), j)
     }
 
     #[syntax(index)]
-    public fun borrow_mut<T>(s: &mut Matrix<T>, i: u64, j: u64):  &mut T {
-        borrow_mut(borrow_mut(s.v, i), j)
+    public fun borrow_mut<T>(s: &mut Matrix<T>, i: u64, j: u64): &mut T {
+        vector::borrow_mut(vector::borrow_mut(&mut s.v, i), j)
     }
 
     public fun make_matrix<T>(v: vector<vector<T>>):  Matrix<T> {
@@ -39,20 +39,20 @@ module matrix {
 Now anyone using this `Matrix` type has access to index syntax for it:
 
 ```move
-let v0 = vector<u64>[1, 0, 0];
-let v1 = vector<u64>[0, 1, 0];
-let v2 = vector<u64>[0, 0, 1];
-let v = vector<vector<u64>>[v0, v1, v2];
-let mut m = matrix::make_matrix(v);
+let mut m = matrix::make_matrix(vector[
+    vector[1, 0, 0],
+    vector[0, 1, 0],
+    vector[0, 0, 1],
+]);
 
 let mut i = 0;
 while (i < 3) {
     let mut j = 0;
     while (j < 3) {
         if (i == j) {
-            assert!(m[i, j] == 1, i);
+            assert!(m[i, j] == 1, 1);
         } else {
-            assert!(m[i, j] == 0, i + 10);
+            assert!(m[i, j] == 0, 0);
         };
         *(&mut m[i,j]) = 2;
         j = j + 1;
@@ -78,13 +78,13 @@ the position and mutable usage of the expression:
 let mut mat = matrix::make_matrix(...);
 
 let m_0_0 = mat[0, 0];
-    // translates to copy matrix::borrow(&mat, 0, 0)
+// translates to `copy matrix::borrow(&mat, 0, 0)`
 
 let m_0_0 = &mat[0, 0];
-    // translates to matrix::borrow(&mat, 0, 0)
+// translates to `matrix::borrow(&mat, 0, 0)`
 
 let m_0_0 = &mut mat[0, 0];
-    // translates to matrix::borrow_mut(&mut mat, 0, 0)
+// translates to `matrix::borrow_mut(&mut mat, 0, 0)`
 ``
 
 You can also intermix index expressions with field accesses:
@@ -95,8 +95,8 @@ public struct V { v: vector<u64> }
 public struct Vs { vs: vector<V> }
 
 fun borrow_first(input: &Vs): &u64 {
-    input.vs[0].v[0]
-    // translates to vector::borrow(vector::borrow(input.vs, 0).v, 0)
+    &input.vs[0].v[0]
+    // translates to `vector::borrow(&vector::borrow(&input.vs, 0).v, 0)`
 }
 ````
 
@@ -111,13 +111,13 @@ structure that takes a default value if the index is out of bounds:
 #[syntax(index)]
 public fun borrow_or_set<Key: copy, Value: drop>(
     input: &mut MTable<Key, Value>,
-    key: &Key,
+    key: Key,
     default: Value
 ): &mut Value {
-    if (contains(input, *key)) {
+    if (contains(input, key)) {
         borrow(input, key)
     } else {
-        insert(input, *key, default)
+        insert(input, key, default);
         borrow(input, key)
     }
 }
@@ -125,7 +125,7 @@ public fun borrow_or_set<Key: copy, Value: drop>(
 
 Now, when you index into `MTable`, you must also provide a default value:
 
-```
+```move
 let string_key: String = ...;
 let mut table: MTable<String, u64> = m_table::make_table();
 let entry: &mut u64 = &mut table[string_key, 0];
@@ -167,9 +167,7 @@ defined in `std::vector` is an example of this:
 
 ```move
 #[syntax(index)]
-public fun borrow<Element>(v: &vector<Element>, i: u64): &Element {
-    // implementation
-}
+public native fun borrow<Element>(v: &vector<Element>, i: u64): &Element;
 ```
 
 #### Mutable Accessor
@@ -180,9 +178,7 @@ element type. The `borrow_mut` function defined in `std::vector` is an example o
 
 ```move
 #[syntax(index)]
-public fun borrow_mut<Element>(v: &mut vector<Element>, i: u64): &mut Element {
-    // implementation
-}
+public native fun borrow_mut<Element>(v: &mut vector<Element>, i: u64): &mut Element;
 ```
 
 #### Visibility
@@ -242,7 +238,7 @@ whose subject and return mutability differ:
 #[syntax(index)]
 public fun borrow_imm(x: &mut Matrix<u64>, ...): &u64 { ... }
     // ERROR! incompatible mutability
-
+    // expected a mutable reference '&mut' return type
 ```
 
 ### Type Compatibility
@@ -264,8 +260,8 @@ To illustrate some of these errors, recall the previous `Matrix` definition:
 
 ```move
 #[syntax(index)]
-public fun borrow<T>(s: &Matrix<T>, i: u64, j: u64):  &T {
-    borrow(borrow(s.v, i), j)
+public fun borrow<T>(s: &Matrix<T>, i: u64, j: u64): &T {
+    vector::borrow(vector::borrow(&s.v, i), j)
 }
 ```
 
@@ -273,23 +269,23 @@ All of the following are type-incompatible definitions of the mutable version:
 
 ```move
 #[syntax(index)]
-public fun borrow_mut<T: drop>(s: &mut Matrix<T>, i: u64, j: u64):  &mut T { ... }
+public fun borrow_mut<T: drop>(s: &mut Matrix<T>, i: u64, j: u64): &mut T { ... }
     // ERROR! `T` has `drop` here, but no in the immutable version
 
 #[syntax(index)]
-public fun borrow_mut(s: &mut Matrix<u64>, i: u64, j: u64):  &mut u64 { ... }
+public fun borrow_mut(s: &mut Matrix<u64>, i: u64, j: u64): &mut u64 { ... }
     // ERROR! This takes a different number of type parameters
 
 #[syntax(index)]
-public fun borrow_mut<T, U>(s: &mut Matrix<U>, i: u64, j: u64):  &mut U { ... }
+public fun borrow_mut<T, U>(s: &mut Matrix<U>, i: u64, j: u64): &mut U { ... }
     // ERROR! This takes a different number of type parameters
 
 #[syntax(index)]
-public fun borrow_mut<T, U>(s: &mut Matrix<U>, i_j: (u64, u64)):  &mut U { ... }
+public fun borrow_mut<U>(s: &mut Matrix<U>, i_j: (u64, u64)): &mut U { ... }
     // ERROR! This takes a different number of arguments
 
 #[syntax(index)]
-public fun borrow_mut<T, U>(s: &mut Matrix<U>, i: u64, j: u32):  &mut U { ... }
+public fun borrow_mut<U>(s: &mut Matrix<U>, i: u64, j: u32): &mut U { ... }
     // ERROR! `j` is a different type
 ```
 

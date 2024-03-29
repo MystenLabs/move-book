@@ -2,15 +2,15 @@
 
 Unit testing for Move uses three annotations in the Move source language:
 
-- `#[test]`
-- `#[test_only]`, and
-- `#[expected_failure]`.
+- `#[test]`,
+- `#[expected_failure]`, and
+- `#[test_only]`
 
-They respectively mark a function as a test, mark a module or module member (`use`, function, or
-struct) as code to be included for testing only, and mark that a test is expected to fail. These
-annotations can be placed on a function with any visibility. Whenever a module or module member is
-annotated as `#[test_only]` or `#[test]`, it will not be included in the compiled bytecode unless it
-is compiled for testing.
+They respectively mark a function as a test, mark that a test is expected to fail, and mark a module
+or module member ([`use`](./uses.md), [function](./functions.md), [struct](./structs.md), or
+[constant](./constants.md)) as code to be included for testing only. These annotations can be placed
+on a function with any visibility. Whenever a module or module member is annotated as `#[test_only]`
+or `#[test]`, it will not be included in the compiled bytecode unless it is compiled for testing.
 
 ## Test Annotations
 
@@ -47,12 +47,15 @@ public fun test_will_error_and_pass() { 1/0; }
 public fun test_will_error_and_pass_abort_code() { abort ENotFound }
 
 #[test] // Will fail since test fails with a different error than expected.
-#[expected_failure(abort_code = my_module::EnotFound)]
+#[expected_failure(abort_code = my_module::ENotFound)]
 public fun test_will_error_and_fail() { 1/0; }
 
 #[test, expected_failure] // Can have multiple in one attribute. This test will pass.
 public fun this_other_test_will_abort_and_pass() { abort 1 }
 ```
+
+**NOTE**: `#[test]` and `#[test_only]` functions can also call
+[`entry`](./functions.md#entry-modifier) functions, regardless of their visibility.
 
 ## Expected Failures
 
@@ -70,7 +73,7 @@ annotations.
 ```move
 module pkg_addr::other_module {
     const ENotFound: u64 = 1;
-    fun will_abort() {
+    public fun will_abort() {
         abort ENotFound
     }
 }
@@ -102,7 +105,7 @@ location, e.g., `Self`, or `my_package::my_module`.
 
 ```move
 module pkg_addr::other_module {
-    fun will_arith_error() { 1/0; }
+    public fun will_arith_error() { 1/0; }
 }
 
 module pkg_addr::my_module {
@@ -130,7 +133,7 @@ The `<location>` must be a valid path to a module location, e.g., `Self`, or
 
 ```move
 module pkg_addr::other_module {
-    fun will_oog() { loop {} }
+    public fun will_oog() { loop {} }
 }
 
 module pkg_addr::my_module {
@@ -143,7 +146,8 @@ module pkg_addr::my_module {
     #[expected_failure(arithmetic_error, location = pkg_addr::other_module)]
     fun test_will_oog_and_pass2() { other_module::will_oog() }
 
-    // FAIL: Will fail since the location we expect it the fail at is different from where the test actually failed.
+    // FAIL: Will fail since the location we expect it the fail at is different from where
+    // the test actually failed.
     #[test]
     #[expected_failure(out_of_gas, location = Self)]
     fun test_will_oog_and_fail() { other_module::will_oog() }
@@ -161,8 +165,8 @@ a vector error with the specified minor status.
 
 ```move
 module pkg_addr::other_module {
-    fun vector_borrow_empty() {
-        vector::borrow(&vector::empty<u64>(), 1);
+    public fun vector_borrow_empty() {
+        vector::borrow(&vector<u64>[], 1);
     }
 }
 
@@ -170,7 +174,7 @@ module pkg_addr::my_module {
     #[test]
     #[expected_failure(vector_error, location = Self)]
     fun vector_abort_same_module() {
-        vector::borrow(&vector::empty<u64>(), 1);
+        vector::borrow(&vector<u64>[], 1);
     }
 
     #[test]
@@ -183,7 +187,7 @@ module pkg_addr::my_module {
     #[test]
     #[expected_failure(vector_error, minor_status = 1, location = Self)]
     fun native_abort_good_right_code() {
-        vector::borrow(&vector::empty<u64>(), 1);
+        vector::borrow(&vector<u64>[], 1);
     }
 
     // FAIL: correct error, but wrong location.
@@ -197,7 +201,7 @@ module pkg_addr::my_module {
     #[test]
     #[expected_failure(vector_error, minor_status = 0, location = Self)]
     fun vector_abort_wrong_minor_code() {
-        vector::borrow(&vector::empty<u64>(), 1);
+        vector::borrow(&vector<u64>[], 1);
     }
 }
 ```

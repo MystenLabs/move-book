@@ -132,6 +132,21 @@ restrictions are specific to each individual deployment of Move.
 
 [The documentation for `entry` functions on Sui can be found here.](https://docs.sui.io/concepts/sui-move-concepts/entry-functions).
 
+To enable easier testing, `entry` functions can be called from
+[`#[test]` and `#[test_only]`](./unit-testing.md) contexts.
+
+```move
+module a::m {
+    entry fun foo(): u64 { 0 }
+}
+module a::m_test {
+    #[test]
+    fun my_test(): u64 { a::m::foo() } // valid!
+    #[test_only]
+    fun my_test_helper(): u64 { a::m::foo() } // valid!
+}
+```
+
 ### Name
 
 Function names can start with letters `a` to `z`. After the first character, function names can
