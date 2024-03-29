@@ -237,7 +237,7 @@ module will raise an error during compilation.
 module abc { ... }
 
 #[test_only] // test only attributes can be attached to constants
-const Addr: address = @0x1;
+const MY_ADDR: address = @0x1;
 
 #[test_only] // .. to uses
 use pkg_addr::some_other_module;
