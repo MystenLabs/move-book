@@ -36,7 +36,7 @@ std = "0x1"
 
 ## Implicit Imports
 
-Just like with [Standard Library](./../basic-syntax/standard-library.md), some of the modules and types are imported implicitly in the Sui Framework. This is the list of modules and types that are available without explicit `use` import:
+Just like with [Standard Library](./../basic-syntax/standard-library.md#implicit-imports), some of the modules and types are imported implicitly in the Sui Framework. This is the list of modules and types that are available without explicit `use` import:
 
 - sui::object
 - sui::object::ID

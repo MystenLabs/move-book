@@ -3,6 +3,7 @@
 
 :root {
     --blockquote-offset: 30px;
+    --warning-border: orange;
 
     --sides-offset: 30px;
     --sidebar-width: 300px;

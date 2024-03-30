@@ -1,14 +1,15 @@
 # Module Initializer
 
-A common case in many applications is to run some just once when the package is published. Imagine a simple store module that needs to create the main Store object when it is published. On Sui it is achieved by defining an `init` function in the module. The function will get automatically called when the module is published.
+A common use case in many applications is to run certain code just once when the package is published. Imagine a simple store module that needs to create the main Store object upon its publication. In Sui, this is achieved by defining an `init` function within the module. This function will automatically be called when the module is published.
 
-> All of the modules' `init` functions are called during publish. Currently, this only applies to publish command and not to [package upgrades](./package-upgrades.md).
+
+> All of the modules' `init` functions are called during the publishing process. Currently, this behavior is limited to the publish command and does not extend to [package upgrades](./package-upgrades.md).
 
 ```move
 {{#include ../../../packages/samples/sources/programmability/module-initializer.move:main}}
 ```
 
-In the same package another module can have its own `init` function with its own logic.
+In the same package, another module can have its own init function, encapsulating distinct logic.
 
 ```move
 {{#include ../../../packages/samples/sources/programmability/module-initializer.move:other}}

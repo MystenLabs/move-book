@@ -46,7 +46,7 @@ Some of the modules are imported implicitly, and are available in the module wit
 
 ## Importing std without Sui Framework
 
-The Move Standard Library can be imported to the package directly. However, std alone is not enough to build a meaningful application, as it does not provide any storage capabilities, and can't interact with the on-chain state.
+The Move Standard Library can be imported to the package directly. However, `std` alone is not enough to build a meaningful application, as it does not provide any storage capabilities, and can't interact with the on-chain state.
 
 ```toml
 MoveStdlib = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/move-stdlib", rev = "framework/mainnet" }

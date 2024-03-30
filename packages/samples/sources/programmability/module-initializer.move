@@ -7,30 +7,30 @@ module book::store {
     /// the store.
     public struct StoreOwnerCap has key, store { id: UID }
 
-    /// The store itself, one and only, created in the `init` function.
+    /// The singular store itself, created in the `init` function.
     public struct Store has key {
         id: UID,
         /* ... */
     }
 
-    // Will be called only once, when the module is published. Has to be
-    // private, so it is not callable from the outside.
+    // Called only once, upon module publication. It must be
+    // private to prevent external invocation.
     fun init(ctx: &mut TxContext) {
-        // transfer the StoreOwnerCap to the sender (publisher)
+        // Transfers the StoreOwnerCap to the sender (publisher).
         transfer::transfer(StoreOwnerCap {
             id: object::new(ctx)
         }, ctx.sender());
 
-        // share the Store object
+        // Shares the Store object.
         transfer::share_object(Store {
             id: object::new(ctx)
-        })
+        });
     }
 }
 // ANCHOR_END: main
 
 // ANCHOR: other
-// same package with the `store` module
+// In the same package as the `store` module
 module book::bank {
 
     public struct Bank has key {
@@ -41,7 +41,7 @@ module book::bank {
     fun init(ctx: &mut TxContext) {
         transfer::share_object(Bank {
             id: object::new(ctx)
-        })
+        });
     }
 }
 // ANCHOR_END: other

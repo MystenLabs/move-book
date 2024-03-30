@@ -1,3 +1,9 @@
+/* Variables */
+
+:root {
+    --warning-border: orange;
+}
+
 /* Changing styles */
 
 html {

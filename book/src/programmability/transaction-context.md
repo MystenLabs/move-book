@@ -1,6 +1,6 @@
 # Transaction Context
 
-Every transaction has the execution context. The context is a set of pre-defined variables that are available to the program during execution. For example, every transaction has a sender address, and the transaction context contains a variable that holds the sender address.
+Every transaction has the execution context. The context is a set of predefined variables that are available to the program during execution. For example, every transaction has a sender address, and the transaction context contains a variable that holds the sender address.
 
 The transaction context is available to the program through the `TxContext` struct. The struct is defined in the `sui::tx_context` module and contains the following fields:
 

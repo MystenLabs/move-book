@@ -126,5 +126,3 @@ $ sui move test --path hello_world
 ## Next Steps
 
 In this section we explained the basics of the Move package: its structure, the manifest file, the build and test processes. On the next page, we will write an application and see how the code is structured and what the language can do.
-
-#

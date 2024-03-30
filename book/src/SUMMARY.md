@@ -57,12 +57,14 @@ comparison to docs.sui.io
   - [Set up your IDE](before-we-begin/ide-support.md)
   - [Move 2024](before-we-begin/move-2024.md)
 - [Your First Move](your-first-move/README.md)
-  - [Hello World!](your-first-move/hello-world.md)
-  - [Your First Sui App]() <!-- ./hello-sui/README.md) -->
-  - [Publishing]()
-  - [Hello Sui!]() <!--  ./hello-sui/hello-sui.md) -->
-  - [Using Objects]()<!-- (./hello-sui/module-structure.md) -->
-  - [Adding Tests]() <!--  your-first-move/adding-tests.md) -->
+  - [Hello, World!](your-first-move/hello-world.md)
+  - [Hello, Sui!](./your-first-move/hello-sui.md)
+    - [Prepare Package]() <!-- ./your-first-move/hello-sui.html#add-the-code) -->
+    - [Create Account]() <!-- ./your-first-move/hello-sui.html#set-up-an-account)  -->
+    - [Publishing]() <!-- ./your-first-move/hello-sui.html#publish)  -->
+    - [Sending Transactions]()
+    - [Code Walkthrough]()
+    - [Ideas]()
   - [Debugging]() <!-- your-first-move/debugging.md) -->
   - [Generating Docs]() <!-- your-first-move/generating-docs.md) -->
     <!-- TODO:  -->
@@ -76,6 +78,8 @@ comparison to docs.sui.io
   - [Account](./concepts/what-is-an-account.md)
   - [Transaction](./concepts/what-is-a-transaction.md)
   - [Object Model](./concepts/object-model.md)
+  - [Fast Path](./concepts/fast-path.md)
+  - [True Ownership](./concepts/true-ownership.md)
 - [Syntax Basics](./basic-syntax/README.md)
   - [Module](./basic-syntax/module.md)
   - [Comments](./basic-syntax/comments.md)
@@ -174,30 +178,13 @@ comparison to docs.sui.io
   - [Coding Conventions]()
 - [Appendix]()
   - [A - Glossary](./appendix/glossary.md)
-  - [B - Publications]() <!-- ./appendix/publications.md) -->
-  - [C - References]() <!-- (./appendix/references.md) -->
-  - [D - Contributing](./appendix/contributing.md)
-  - [E - Acknowledgements]() <!-- (./appendix/acknowledgements.md) -->
+  - [B - Publications](./appendix/publications.md)
+  - [C - Contributing](./appendix/contributing.md)
+  <!-- - [C - References]() (./appendix/references.md) -->
+  <!-- - [E - Acknowledgements]() (./appendix/acknowledgements.md) -->
 
-<!-- - [Syntax Basics](basic-syntax/README.md)
-    - [Module](modules.md)
-    - [Comments](comments.md)
-    - [Address](address.md)
-    - [Primitive Types](primitive-types.md)
-    - [Expression and Scope](expression-and-scope.md)
-    - [Control Flow]()
-        - [If](if.md)
-        - [Loop](loop.md)
-        - [While](while.md)
-    - [Constants](constants.md)
-    - [Error Handling]()
-    - [Function](function.md)
-    - [Imports](imports.md)
-    - [Struct](struct.md)
-    - [Standard Library]()
-        - [Vector](managing-collections-with-vectors.md)
-        - [Option](option.md)
-        - [String](string.md)
+<!--
+
 - [It starts with an Object]()
     - [What is an Object]()
     - [True Ownership]()
@@ -206,37 +193,16 @@ comparison to docs.sui.io
         - [Freezing an Object]()
         - [Mutable Shared State]()
     - [Transfer to Object?]()
-    - [Dynamic Fields]()
-- [Know the Context]()
-    - [Epochs]()
-    - [Sender]()
 - [Patterns]()
     - [Getters and Setters]()
-    - [Capability]()
-    - [Witness]()
     - [Abstract Class]()
     - [Hot Potato]()
     - [Request + Policy]()
 - [Sui Framework]()
-    - [TxContext]()
-    - [String]()
-    - [Url]()
-    - [Choose a Collection type]()
-    - [VecSet]()
-    - [VecMap]()
-    - [vector]()
-    - [Dynamic Fields]()
-    - [Table]()
-    - [Linked Table]()
-    - [Testing]()
     - [Test Scenario]()
-    - [Transfer]()
     - [Cryptography]()
     - [Hashes](hashes.md)
-    - [Clock](clock.md)
     - [Randomness]()
-    - [Freeze Object]()
-    - [TypeName and Reflection]()
     - [ID and UID]()
     - [Public Transfer Functions]()
     - [Share Object]()

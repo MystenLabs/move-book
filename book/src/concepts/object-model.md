@@ -9,9 +9,23 @@
     - objects are stored in the blockchain storage
     - focus on infrastructure properties of objects
 
+
+- most documentation is outdated
+  -
+
  -->
 
-Sui does not have global storage. Instead, storage is split into a pool of objects. Some of the objects are owned by accounts and available only to them, and some are _shared_ and can be accessed by anyone on the network. There's also a special kind of _shared immutable_ objects, also called _frozen_, which can't be modified, and act as public chain-wide constants.
+On Sui, data is represented as objects. Objects are defined as Move types with the `key` ability with the first field being the `UID` - a 32-byte unique identifier. Objects are stored in the blockchain storage and indexed by their `UID`. The module defining the object also defines the behavior and properties of the object. For example, the set of abilities the object has, affects whether an object can freely transferred, stored as a dynamic field, or owned by an account. 
+
+##
+
+Sui does not have global storage. Instead, the storage is split into objects. Some of the objects are owned by accounts and available only to them, and some are _shared_ and can be accessed by anyone on the network. There's also a special kind of _shared immutable_ objects, also called _frozen_, which can't be modified, and act as public chain-wide constants.
+
+## Strict typing
+
+## Execution model
+
+## Object Properties
 
 Each object has a unique 32-byte identifier - UID, it is used to access and reference the object.
 
@@ -25,6 +39,12 @@ Sui object consists of:
 - Digest - hash of the object's content
 - Version - acts as a nonce
 - Content - the actual data represented as BCS
+
+## Ownership
+
+Objects
+
+## Control of Behavior
 
 <!--
 
