@@ -111,7 +111,7 @@ fun aliases() {
 }
 ```
 
-For the full list of built-in aliases, refer to the [Standard Library](../basic-syntax/standard-library.md) and [Sui Framework](../programmability/sui-framework.md) source code.
+For the full list of built-in aliases, refer to the [Standard Library](../basic-syntax/standard-library.md#source-code) and [Sui Framework](../programmability/sui-framework.md#source-code) source code.
 
 ## Borrowing Operator
 
