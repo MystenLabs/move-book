@@ -51,3 +51,7 @@ The Move Standard Library can be imported to the package directly. However, `std
 ```toml
 MoveStdlib = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/move-stdlib", rev = "framework/mainnet" }
 ```
+
+## Source Code
+
+The source code of the Move Standard Library is available in the [Sui repository](https://github.com/MystenLabs/sui/tree/main/crates/sui-framework/packages/move-stdlib/sources).

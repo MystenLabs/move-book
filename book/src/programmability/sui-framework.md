@@ -45,6 +45,10 @@ Just like with [Standard Library](./../basic-syntax/standard-library.md#implicit
 - sui::tx_context::TxContext
 - sui::transfer
 
+## Source Code
+
+The source code of the Sui Framework is available in the [Sui repository](https://github.com/MystenLabs/sui/tree/main/crates/sui-framework/packages/sui-framework/sources).
+
 <!--
 
 Modules:
