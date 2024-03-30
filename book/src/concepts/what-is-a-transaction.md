@@ -22,3 +22,19 @@ Transactions consist of:
 - command inputs - the arguments for the commands: either `pure` - simple values like numbers or strings, or `object` - objects that the transaction will access;
 - a gas object - the `Coin` object used to pay for the transaction;
 - gas price and budget - the cost of the transaction;
+
+## Transaction Effects
+
+Transaction effects are the changes that a transaction makes to the blockchain state. More specifically, a transaction can change the state in the following ways:
+
+- use the gas object to pay for the transaction;
+- create, update, or delete objects;
+- emit events;
+
+The result of the executed transaction consists of different parts:
+
+- Transaction Data - the inputs, commands and gas object used in the transaction;
+- Transaction Effects - the status and the "effects" of the transaction, more specifically: the status of the transaction, updates to objects and their new versions, the gas object used, the gas cost of the transaction, and the events emitted by the transaction;
+- Events - the custom events emitted by the transaction;
+- Object Changes - the changes made to the objects, including the *change of ownership*;
+- Balance Changes - the changes made to the aggregate balances of the account involved in the transaction;

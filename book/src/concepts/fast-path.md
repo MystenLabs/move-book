@@ -10,14 +10,14 @@ The same principle applies to Sui. If a transaction only touches the private sta
 
 Consensus is only required for mutating the shared state. If the object is immutable, it is treated as a "constant" and can be accessed in parallel. Frozen objects can be used to share unchangeable data between multiple parties without requiring consensus.
 
-## In practice
+<!-- ## In practice
 
 ```move
 {{#include ../../../packages/samples/sources/programmability/fast-path.move:main}}
-```
+``` -->
 
-## Special case: Clock
+<!-- ## Special case: Clock
 
-The `Clock` object with the reserved address `0x6` is a special case of a shared object which cannot be passed by a mutable reference in a regular transaction. An attempt to do so will not succeed, and the transaction will be rejected. Because of this limitation, the `Clock` object can only be accessed immutably, which allows executing transactions in parallel without consensus.
+The `Clock` object with the reserved address `0x6` is a special case of a shared object which cannot be passed by a mutable reference in a regular transaction. An attempt to do so will not succeed, and the transaction will be rejected. Because of this limitation, the `Clock` object can only be accessed immutably, which allows executing transactions in parallel without consensus. -->
 
 <!-- Add more on why and how -->

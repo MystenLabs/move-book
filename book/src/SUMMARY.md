@@ -49,6 +49,7 @@ comparison to docs.sui.io
 
 -->
 
+- [The Move Book](README.md)
 - [Introduction](introduction.md)
 - [Foreword]() <!-- foreword.md) -->
 - [History](history.md)
@@ -56,9 +57,9 @@ comparison to docs.sui.io
   - [Install Sui](before-we-begin/install-sui.md)
   - [Set up your IDE](before-we-begin/ide-support.md)
   - [Move 2024](before-we-begin/move-2024.md)
-- [Your First Move](your-first-move/README.md)
-  - [Hello, World!](your-first-move/hello-world.md)
-  - [Hello, Sui!](./your-first-move/hello-sui.md)
+<!-- - [Your First Move](your-first-move/README.md) -->
+- [Hello, World!](your-first-move/hello-world.md)
+- [Your First Sui App](your-first-move/hello-sui.md)
     - [Prepare Package]() <!-- ./your-first-move/hello-sui.html#add-the-code) -->
     - [Create Account]() <!-- ./your-first-move/hello-sui.html#set-up-an-account)  -->
     - [Publishing]() <!-- ./your-first-move/hello-sui.html#publish)  -->
@@ -77,9 +78,7 @@ comparison to docs.sui.io
   - [Interacting with a Package](./concepts/user-interaction.md)
   - [Account](./concepts/what-is-an-account.md)
   - [Transaction](./concepts/what-is-a-transaction.md)
-  - [Object Model](./concepts/object-model.md)
   - [Fast Path](./concepts/fast-path.md)
-  - [True Ownership](./concepts/true-ownership.md)
 - [Syntax Basics](./basic-syntax/README.md)
   - [Module](./basic-syntax/module.md)
   - [Comments](./basic-syntax/comments.md)
@@ -91,8 +90,8 @@ comparison to docs.sui.io
   - [Importing Modules](./basic-syntax/importing-modules.md)
   - [Standard Library](./basic-syntax/standard-library.md)
   - [Vector](./basic-syntax/vector.md)
-  - [Option](./basic-syntax/option.md) <!-- Option requires vector -->
-  - [String](./basic-syntax/string.md) <!-- String requires vector and option for try_* -->
+  - [Option](./basic-syntax/option.md)
+  - [String](./basic-syntax/string.md)
   - [Control Flow](./basic-syntax/control-flow.md)
   - [Constants](./basic-syntax/constants.md)
   - [Assert and Abort](./basic-syntax/assert-and-abort.md)
@@ -105,25 +104,15 @@ comparison to docs.sui.io
   - [Generics](./basic-syntax/generics.md)
   - [Type Reflection](./basic-syntax/type-reflection.md)
   - [Testing](./basic-syntax/testing.md)
-    <!-- - [Enums]() (./basic-syntax/enums.md) -->
-    <!-- - [Macro Functions]() (./basic-syntax/macro-functions.md) -->
-    <!--
-    Somewhere here we should mention that Move does not enforce a storage model
-    -->
-    <!--
-    Don't forget to give an explainer on what an asset is and how it translates
-    to Move and Sui. A reminder to the reader why we are learning all this.
-     -->
-- [Programming Digital Assets]()
-    <!-- - [What is an Asset]()
-    - [Asset Lifecycle]()
-    - [Asset Transfer]()
-    - [Asset Ownership]()
-    - [Asset Metadata]() -->
-- [It starts with an Object](./object/README.md)
-  - [Ability: Key](./object/key-ability.md)
-  - [What is an Object]() <!-- (./object/what-is-an-object.md) -->
-  - [True Ownership]() <!-- (./object/true-ownership.md) -->
+- [Object Model](./object/README.md)
+  - [Digital Assets]()
+  - [What is an Object]()
+  - [Ownership]()
+  - [True Ownership]()
+  - [Fast Path]()
+- [Using Objects](./storage/README.md)
+  - [Ability: Key](./storage/key-ability.md)
+  - [UID and ID]() <!-- (./object/what-is-an-object.md) -->
   - [Transfer Restrictions]() <!-- (./object/transfer-restrictions.md) -->
   - [Ability: Store]() <!-- ./object/store-ability.md) -->
   - [Shared State]() <!-- (./object/shared-state.md) -->

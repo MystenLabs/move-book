@@ -1,6 +1,13 @@
 # Hello, World!
 
-Assuming you have already [installed Sui](./../before-we-begin/install-sui.md) and set up your [IDE environment](./../before-we-begin/ide-support.md), let's jump right into it.
+This chapter will guide you through the process using the Move CLI to create a new package, write a simple module, compile it, and run tests. It is expected that you have already [installed Sui](./../before-we-begin/install-sui.md) and set up your [IDE environment](./../before-we-begin/ide-support.md).
+
+The structure of the chapter is as follows:
+
+- [Create a New Package](#create-a-new-package)
+- [Directory Structure](#directory-structure)
+- [Compiling the Package](#compiling-the-package)
+- [Running Tests](#running-tests)
 
 ## Create a New Package
 
@@ -129,6 +136,9 @@ $ sui move build --path hello_world
 
 <!-- The output would be: -->
 <!-- TODO: insert out -->
+
+
+## Running Tests
 
 During the compilation, Move Compiler automatically creates a build folder where it places all fetched and compiled dependencies as well as the bytecode for the modules of the current package.
 
