@@ -26,11 +26,13 @@ Constants are immutable values that are defined at the module level. They often 
 
 ## Naming Convention
 
-Constants are named using `UPPER_SNAKE_CASE`. This is a convention that is used throughout the Move codebase. It's a way to make constants stand out from other identifiers in the code. Move compiler will error if the first letter of a constant is not an uppercase letter.
+Name constants using `UPPER_SNAKE_CASE`. 
+
+The Move codebase adheres to this convention throughout. The reason for the convention is for readability by make constants stand out from other identifiers in the code. The Move compiler errors if the first letter of a constant is not an uppercase letter.
 
 ## Constants are Immutable
 
-Constants can't be changed and assigned new values. They are part of the package bytecode, and inherently immutable.
+You can't change constants by assigning new values to them. They are part of the package bytecode, and inherently immutable.
 
 ```move
 module book::immutable_constants {

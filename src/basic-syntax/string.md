@@ -1,8 +1,9 @@
 # String
 
-While Move does not have a built-in to represent strings, it does have a `string` module in the [Standard Library](./standard-library.md) that provides a `String` type. The `string` module represents UTF-8 encoded strings, and another module, `ascii`, provides an ASCII-only `String` type.
+While Move does not have a primitive for strings, it does have a `string` module in the [Standard Library](./standard-library.md) that provides a `String` type. The `string` module represents UTF-8 encoded strings, and another module, `ascii`, provides an ASCII-only `String` type.
 
-Sui execution environment also allows Strings as transaction arguments, so in many cases, String does not to be constructed in the [Transaction Block](./../concepts/what-is-a-transaction.md).
+<!-- This idea seems to pop up from out of nowhere. I think a little more info about TBs would help -->
+Sui execution environment also allows `String` types as transaction arguments, so in many cases, `String` does not to be constructed in the [Transaction Block](./../concepts/what-is-a-transaction.md).
 
 ## Bytestring Literal
 
@@ -22,7 +23,7 @@ No matter which type of string you use, it is important to know that strings are
 Both standard types provide conversions from and to vectors of bytes.
 
 ## Working with UTF-8 Strings
-
+<!-- Some info about the `b` construct in b"string" would be useful -->
 While there are two types of strings in the standard library, the `string` module should be considered the default. It has native implementations of many common operations, and hence is more efficient than the `ascii` module. To create a string or perform operations on it, you must import the `string` module:
 
 ```move
@@ -33,7 +34,7 @@ While there are two types of strings in the standard library, the `string` modul
 
 The default `utf8` method is potentially unsafe, as it does not check that the bytes passed to it are valid UTF-8. If you are not sure that the bytes you are passing are valid UTF-8, you should use the `try_utf8` method instead. It returns an `Option<String>`, which is `None` if the bytes are not valid UTF-8:
 
-> The `try_*` pattern is used throughout the standard library to indicate that a function may fail. For more information, see the [Error Handling](./error-handling.md) section.
+> The `try_*` pattern is used throughout the standard library to indicate that a function might fail. For more information, see the [Error Handling](./error-handling.md) section.
 
 ```move
 {{#include ../../samples/sources/basic-syntax/string.move:safe_utf8}}

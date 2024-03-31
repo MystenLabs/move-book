@@ -10,13 +10,13 @@ In this example, we define a function `add` that takes two arguments of type `u6
 
 ## Function declaration
 
-> There's a convention to call functions in Move with the `snake_case` naming convention. This means that the function name should be all lowercase with words separated by underscores. For example, `do_something`, `add`, `get_balance`, `is_authorized`, and so on.
-
 A function is declared with the `fun` keyword followed by the function name (a valid Move identifier), a list of arguments in parentheses, and a return type. The function body is a block of code that contains a sequence of statements and expressions. The last expression in the function body is the return value of the function.
 
 ```move
 {{#include ../../samples/sources/basic-syntax/function.move:return_nothing}}
 ```
+
+> The naming convention for functions in Move is to use `snake_case`. This means that the function name is all lowercase with words separated by underscores. For example, `do_something`, `add`, `get_balance`, `is_authorized`, and so on.
 
 ## Accessing functions
 

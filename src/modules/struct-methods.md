@@ -1,10 +1,10 @@
 # Struct Methods
 
-Move Compiler supports *receiver syntax*, which allows defining methods which can be called on instances of a struct. This is similar to the method syntax in other programming languages. It is a convenient way to define functions which operate on the fields of a struct.
+The Move compiler supports *receiver syntax*, which allows defining methods which can be called on instances of a struct. This is similar to the method syntax in other programming languages. It is a convenient way to define functions that operate on the fields of a struct.
 
 ## Method syntax
 
-If the first argument of a function is a struct internal to the module, then the function can be called using the `.` operator. If the function uses a struct from another module, then method won't be associated with the struct by default. In this case, the function can be called using the standard function call syntax.
+If the first argument of a function is a struct internal to the module, then you can call the function using the `.` operator. If the function uses a struct from another module, then the method isn't associated with the struct by default. In this case, then call the function using the standard function call syntax.
 
 When a module is imported, the methods are automatically associated with the struct.
 
@@ -27,7 +27,7 @@ public use fun <function_path> as <Type>.<method_name>;
 
 > Public aliases are only allowed for structs defined in the same module. If a struct is defined in another module, an alias can still be created but cannot be made public.
 
-In the example below, we changed the `hero` module and added another type - `Villain`. Both `Hero` and `Villain` have similar field names and methods. And to avoid name conflicts, we prefixed methods with `hero_` and `villain_` respectively. However, we can create aliases for these methods so that they can be called on the instances of the structs without the prefix.
+In the following example, we changed the `hero` module and added another type - `Villain`. Both `Hero` and `Villain` have similar field names and methods. And to avoid name conflicts, we prefixed methods with `hero_` and `villain_` respectively. However, we can create aliases for these methods so that they can be called on the instances of the structs without the prefix.
 
 ```move
 {{#include ../../samples/sources/basic-syntax/struct_methods.move:hero_and_villain}}

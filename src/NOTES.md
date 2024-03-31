@@ -192,12 +192,35 @@ Dig this info. Could use some details about the standard library. Like that it's
 
 [Vector](./basic-syntax/vector.md)
 
+Notes in page but dig it.
 
-    - [Option](./basic-syntax/option.md) <!-- Option requires vector -->
-    - [String](./basic-syntax/string.md) <!-- String requires vector and option for try_* -->
-    - [Control Flow](./basic-syntax/control-flow.md)
-    - [Constants](./basic-syntax/constants.md)
-    - [Assert and Abort](./basic-syntax/assert-and-abort.md)
+[Option](./basic-syntax/option.md) <!-- Option requires vector -->
+
+Notes in page but dig it.
+
+[String](./basic-syntax/string.md) <!-- String requires vector and option for try_* -->
+
+Notes in page but dig it.
+
+[Control Flow](./basic-syntax/control-flow.md)
+
+Consider splitting conditionals, loops into children.
+Control Flow
+    - conditionals
+    - iteration
+Good info.
+
+[Constants](./basic-syntax/constants.md)
+
+I feel like this should be higher in the nav tree.
+
+[Assert and Abort](./basic-syntax/assert-and-abort.md)
+
+Abort and Assert?
+The little bit about assert filled in a personal knowledge gap. Thanks!
+Typo: constatns
+
+
     - [Function](./basic-syntax/function.md)
     - [Struct Methods](./basic-syntax/struct-methods.md)
     - [Visibility Modifiers](./basic-syntax/visibility.md)

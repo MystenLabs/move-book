@@ -22,13 +22,13 @@ Links:
 
 ## Abort
 
-The `abort` keyword is used to abort the execution of a transaction. It is used in combination with an abort code, which will be returned to the caller of the transaction. The abort code is an integer of type `u64` and can be any value.
+The `abort` keyword is used to abort the execution of a transaction. It is used in combination with an abort code, which is returned to the caller of the transaction. The abort code is an integer of type `u64` and can be any value.
 
 ```move
 {{#include ../../samples/sources/basic-syntax/assert_abort.move:abort}}
 ```
 
-The code above will, of course, abort with abort code `1`.
+This code aborts with abort code `1`.
 
 ## assert!
 
@@ -40,7 +40,7 @@ The `assert!` macro is a built-in macro that can be used to assert a condition. 
 
 ## Error constants
 
-To make error codes more descriptive, it is a good practice to define error constants. Error constants are defined as `const` declarations and are usually prefixed with `E` followed by a camel case name. Error constatns are no different from other constants and don't have special handling. So their addition is purely a practice for better code readability.
+To make error codes more descriptive, it is a good practice to define error constants. Error constants are defined as `const` declarations and are usually prefixed with `E` followed by a Pascal case name. Error constants are no different from other constants and don't have special handling. So their addition is purely a practice for better code readability.
 
 ```move
 {{#include ../../samples/sources/basic-syntax/assert_abort.move:error_const}}
@@ -48,4 +48,4 @@ To make error codes more descriptive, it is a good practice to define error cons
 
 ## Further reading
 
-We suggest reading the [Better Error Handling](./../guides/better-error-handling.md) guide to learn about best practices for error handling in Move.
+Read the [Better Error Handling](./../guides/better-error-handling.md) guide to learn about best practices for error handling in Move.

@@ -14,6 +14,8 @@ The `vector` type is a built-in type in Move, and does not need to be imported f
 
 ## Vector operations
 
+<!-- Should either list all methods or point to https://docs.sui.io/references/framework/move-stdlib/vector -->
+
 The standard library provides methods to manipulate vectors. The following are some of the most commonly used operations:
 
 - `push_back`: Adds an element to the end of the vector.
@@ -27,10 +29,9 @@ The standard library provides methods to manipulate vectors. The following are s
 ```
 
 ## Destroying a Vector of non-droppable types
+<!-- I have trouble grasping this. What does the "vector value cannot be ignored" mean? Why do I create an empty vector and if it's empty, why would I care about destroying? -->
 
-<!-- What are the non-droppable types? -->
-
-A vector of non-droppable types cannot be discarded. If you define a vector of types without `drop` ability, the vector value cannot be ignored. However, if the vector is empty, compiler requires an explicit call to `destroy_empty` function.
+A vector of non-droppable types cannot be discarded. If you define a vector of types without the `drop` ability, the vector value cannot be ignored. However, if the vector is empty, the compiler requires an explicit call to `destroy_empty` function.
 
 ```move
 {{#include ../../samples/sources/basic-syntax/vector.move:no_drop}}
