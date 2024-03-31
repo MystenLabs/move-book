@@ -8,9 +8,8 @@ module book::my_module {
 // ANCHOR_END: module
 
 // ANCHOR: address_literal
-module 0x0::address_literal_example {
-    // module body
-}
+module 0x0::address_literal { /* ... */ }
+module book::named_address { /* ... */ }
 // ANCHOR_END: address_literal
 
 #[allow(unused_function, unused_const, unused_use)]

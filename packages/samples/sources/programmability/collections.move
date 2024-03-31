@@ -2,6 +2,25 @@
 // SPDX-License-Identifier: Apache-2.0
 
 #[allow(unused_variable, unused_field)]
+// ANCHOR: vector
+module book::collections_vector {
+    /// The Book that can be sold by a `BookStore`
+    struct Book has key, store {
+        id: UID,
+        name: String
+    }
+
+    /// The BookStore that sells `Book`s
+    public struct BookStore has key, store {
+        id: UID,
+        books: vector<Book>
+    }
+
+    #[test]
+    
+}
+
+#[allow(unused_variable, unused_field)]
 // ANCHOR: vec_set
 module book::collections_vec_set {
     use sui::vec_set::{Self, VecSet};

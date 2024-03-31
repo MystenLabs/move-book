@@ -71,14 +71,14 @@ comparison to docs.sui.io
     <!-- TODO:  -->
     <!-- - [Send a Transaction]() -->
 - [Concepts](./concepts/README.md)
-  - [What is a Package](./concepts/packages.md)
+  - [Package](./concepts/packages.md)
   - [Manifest](./concepts/manifest.md)
-  - [Addresses](./concepts/address.md)
-  - [Module](./concepts/modules.md)
-  - [Interacting with a Package](./concepts/user-interaction.md)
+  - [Address](./concepts/address.md)
   - [Account](./concepts/what-is-an-account.md)
   - [Transaction](./concepts/what-is-a-transaction.md)
-  - [Fast Path](./concepts/fast-path.md)
+<!-- - [Interacting with a Package](./concepts/user-interaction.md) -->
+<!-- - [Fast Path](./concepts/fast-path.md) -->
+<!-- - [Module](./concepts/modules.md) -->
 - [Syntax Basics](./basic-syntax/README.md)
   - [Module](./basic-syntax/module.md)
   - [Comments](./basic-syntax/comments.md)
@@ -112,7 +112,7 @@ comparison to docs.sui.io
   - [Fast Path & Consensus](./object/fast-path-and-consensus.md)
 - [Using Objects](./storage/README.md)
   - [Ability: Key](./storage/key-ability.md)
-  - [UID and ID]() <!-- (./object/what-is-an-object.md) -->
+  - [UID and ID](./storage/uid-and-id.md)
   - [Transfer Restrictions]() <!-- (./object/transfer-restrictions.md) -->
   - [Ability: Store]() <!-- ./object/store-ability.md) -->
   - [Shared State]() <!-- (./object/shared-state.md) -->
@@ -127,7 +127,6 @@ comparison to docs.sui.io
   - [Dynamic Fields](./programmability/dynamic-fields.md)
   - [Dynamic Object Fields](./programmability/dynamic-object-fields.md)
   - [Dynamic Collections](./programmability/dynamic-collections.md)
-  - [Package Upgrades]()<!-- (./programmability/package-upgrades.md) -->
   - [Pattern: Witness]() <!-- ./programmability/witness-pattern.md) <!-- Block: from Witness to Display -->
   - [One Time Witness](./programmability/one-time-witness.md)
   - [Publisher Authority](./programmability/publisher.md)
@@ -138,18 +137,19 @@ comparison to docs.sui.io
   - [Pattern: Request]() <!-- - [Witness and Abstract Implementation](./programmability/witness-and-abstract-implementation.md) -->
   - [Pattern: Hot Potato]()
   - [Pattern: Object Capability]()
+  - [Package Upgrades]()<!-- (./programmability/package-upgrades.md) -->
   - [Transaction Blocks]()<!-- (./programmability/transaction-blocks.md) -->
   - [Authorization Patterns]()<!-- (./programmability/authorization-patterns.md) -->
   - [Cryptography and Hashing]()<!-- (./programmability/cryptography-and-hashing.md) -->
   - [Randomness]()<!-- (./programmability/randomness.md) -->
-  - [BCS](./programmability/bcs.md)
-- [Patterns (?)]()
+  - [BCS]() <!-- (./programmability/bcs.md) -->
+  <!-- - [Patterns (?)]()
   - [Getters and Setters]()
   - [Abstract Class]()
   - [Hot Potato]()
   - [Request]()
   - [Object Capability]()
-  - [Witness Registry]()
+  - [Witness Registry]() -->
 - [Standards]()
   - [Balance]()
   - [Coin]()
@@ -165,7 +165,7 @@ comparison to docs.sui.io
   - [Testing]()<!-- (./guides/testing.md) -->
   - [Debugging]()<!-- (./guides/debugging.md) -->
   - [Coding Conventions]()
-- [Appendix]()
+# Appendix
   - [A - Glossary](./appendix/glossary.md)
   - [B - Publications](./appendix/publications.md)
   - [C - Contributing](./appendix/contributing.md)

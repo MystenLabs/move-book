@@ -24,18 +24,17 @@ Usually, a single file in the `sources/` folder contains a single module. The fi
 {{#include ../../../packages/samples/sources/basic-syntax/module.move:module}}
 ```
 
-Structs, functions and constants, imports and friend declarations are all part of the module:
+Structs, functions, constants and imports all part of the module:
 
 - [Structs](./struct.md)
 - [Functions](./function.md)
 - [Constants](./constants.md)
 - [Imports](./importing-modules.md)
-- [Friend declarations]() <!-- TODO -->
-- [Method Aliases](./struct-methods.md)
+- [Struct Methods](./struct-methods.md)
 
 ## Address / Named address
 
-Module address can be specified as both: an address _literal_ (does not require the `@` prefix) or a named address specified in the [Package Manifest](../concepts/package-manifest.md). In the example below, both are identical because there's a `book = "0x0"` record in the `[addresses]` section of the `Move.toml`.
+Module address can be specified as both: an address _literal_ (does not require the `@` prefix) or a named address specified in the [Package Manifest](../concepts/manifest.md). In the example below, both are identical because there's a `book = "0x0"` record in the `[addresses]` section of the `Move.toml`.
 
 ```Move
 {{#include ../../../packages/samples/sources/basic-syntax/module.move:address_literal}}
@@ -56,18 +55,3 @@ Module members are declared inside the module body. To illustrate that, let's de
 ```Move
 {{#include ../../../packages/samples/sources/basic-syntax/module.move:members}}
 ```
-
-## Address block
-
-Before the introduction of the `address::module_name` syntax, modules were organized into `address {}` blocks. This way of code organization is still available today, but is not used widely. Modern practices imply having a single module per file, so the `address {}` block is rather a redundant construct.
-
-> Module addresses can be omitted if modules are organized into `address {}` blocks.
-
-```Move
-{{#include ../../../packages/samples/sources/basic-syntax/module.move:address_block}}
-```
-
-The modules defined in this code sample will be accessible as:
-
-- `book::another_module`
-- `book::yet_another_module`

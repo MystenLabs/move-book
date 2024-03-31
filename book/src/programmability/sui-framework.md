@@ -2,6 +2,10 @@
 
 Sui Framework is a default dependency set in the [Package Manifest](./../concepts/manifest.md). It depends on the [Standard Library](./../basic-syntax/standard-library.md) and provides Sui-specific features, including the interaction with the storage, and Sui-specific native types and modules.
 
+_For convenience, we grouped the modules in the Sui Framework into multiple categories. But they're still part of the same framework._
+
+## Core
+
 <!-- Custom CSS addition in the theme/custom.css  -->
 <div class="modules-table">
 
@@ -14,11 +18,25 @@ Sui Framework is a default dependency set in the [Package Manifest](./../concept
 | sui::clock                | Defines the `Clock` type and its methods                                    | [Epoch and Time](./epoch-and-time.md)                                  |
 | sui::dynamic_field        | Implements methods to add, use and remove dynamic fields                    | [Dynamic Fields](./dynamic-fields.md)                                  |
 | sui::dynamic_object_field | Implements methods to add, use and remove dynamic object fields             | [Dynamic Object Fields](./dynamic-object-fields.md)                    |
-| sui::vec_map              | Implements a map with vector keys                                           | [Collections](./collections.md)                                        |
-| sui::vec_set              | Implements a set type                                                       | [Collections](./collections.md)                                        |
 | sui::event                | Allows emitting events for off-chain listeners                              | [Events](./events.md)                                                  |
 | sui::package              | Defines the `Publisher` type and package upgrade methods                    | [Publisher](./publisher.md), [Package Upgrades](./package-upgrades.md) |
-| -                         | -                                                                           | -                                                                      |
+| sui::display              | Implements the `Display` object and ways to create and update it            | [Display](./display.md)                                                |
+
+</div>
+
+## Collections
+
+<div class="modules-table">
+
+| Module            | Description                                                       | Chapter                                         |
+| ----------------- | ----------------------------------------------------------------- | ----------------------------------------------- |
+| sui::vec_set      | Implements a set type                                             | [Collections](./collections.md)                 |
+| sui::vec_map      | Implements a map with vector keys                                 | [Collections](./collections.md)                 |
+| sui::table        | Implements the `Table` type and methods to interact with it       | [Dynamic Collections](./dynamic-collections.md) |
+| sui::linked_table | Implements the `LinkedTable` type and methods to interact with it | [Dynamic Collections](./dynamic-collections.md) |
+| sui::bag          | Implements the `Bag` type and methods to interact with it         | [Dynamic Collections](./dynamic-collections.md) |
+| sui::object_table | Implements the `ObjectTable` type and methods to interact with it | [Dynamic Collections](./dynamic-collections.md) |
+| sui::object_bag   | Implements the `ObjectBag` type and methods to interact with it   | [Dynamic Collections](./dynamic-collections.md) |
 
 </div>
 
@@ -53,45 +71,38 @@ The source code of the Sui Framework is available in the [Sui repository](https:
 
 Modules:
 
-+ sui::address
-- sui::authenticator
-- sui::bag
-- sui::balance
-- sui::bcs
-- sui::borrow
-+ sui::clock
-- sui::coin
-- sui::deny_list
-- sui::display
-- sui::dynamic_field
-- sui::dynamic_object_field
-- sui::event
-- sui::hex
-- sui::linked_table
-- sui::math
-- sui::object_bag
-- sui::object_table
-- sui::object
-- sui::package
+Coins:
 - sui::pay
-- sui::priority_queue
-- sui::prover
-- sui::random
 - sui::sui
-- sui::table_vec
-- sui::table
+- sui::coin
 - sui::token
-- sui::transfer
-- sui::tx_context
-- sui::types
-- sui::url
-- sui::vec_map
-- sui::vec_set
-- sui::versioned
+- sui::balance
+- sui::deny_list
 
+Commerce:
 - sui::kiosk
+- sui::display
 - sui::kiosk_extension
 - sui::transfer_policy
+
+
+- sui::bcs
+- sui::hex
+- sui::math
+- sui::types
+- sui::borrow
+
+
+- sui::authenticator
+
+- sui::priority_queue
+- sui::table_vec
+
+- sui::url
+- sui::versioned
+
+- sui::prover
+- sui::random
 
 - sui::bls12381
 - sui::ecdsa_k1
