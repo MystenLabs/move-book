@@ -2,9 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 module book::buffer {
-    use std::vector;
-    use std::option::{Self, Option};
-
     /// Error returned when the buffer is overflowed.
     const EBufferOverflow: u64 = 0;
 

@@ -2,6 +2,8 @@
 
 Move 2024 is the new edition of the Move language that is maintained by Mysten Labs. This guide is intended to help you understand the differences between the 2024 edition and the previous version of the Move language.
 
+> This guide provides a high-level overview of the changes in the new edition. For a more detailed and exhaustive list of changes, refer to the [Sui Documentation](https://docs.sui.io/guides/developer/advanced/move-2024-migration).
+
 ## Using the New Edition
 
 To use the new edition, you need to specify the edition in the `move` file. The edition is specified in the `move` file using the `edition` keyword. Currently, the only available edition is `2024.alpha`.
@@ -51,6 +53,12 @@ fun destruct() {
     let (mut x, y) = point::get_point();
     let (mut x, mut y) = point::get_point();
 }
+
+// in struct unpack
+fun unpack() {
+    let Point { x, mut y } = point::get_point();
+    let Point { mut x, mut y } = point::get_point();
+}
 ```
 
 ## Friends are Deprecated
@@ -78,7 +86,7 @@ struct Book {}
 public struct Book {}
 ```
 
-## Associated Methods
+## Method Syntax
 
 In the new edition, functions which have a struct as the first argument are associated with the struct. This means that the function can be called using the dot notation. Methods defined in the same module with the type are automatically exported.
 
@@ -148,7 +156,7 @@ public fun borrow_mut(c: &mut List<T>, key: String): &mut T { /* ... */ }
 
 ## Method Aliases
 
-In Move 2024, generic methods can be associated with types. The alias can be defined for any type locally to the module; or publicly, if the type is defined in the same module.
+In Move 2024, methods can be associated with types. The alias can be defined for any type locally to the module; or publicly, if the type is defined in the same module.
 
 ```move
 // my_module.move

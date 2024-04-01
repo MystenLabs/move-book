@@ -26,9 +26,8 @@ For a more precise time measurement, Sui provides the `Clock` object. It is a sy
 
 Clock is a shared object, but it a transaction attempting to access it mutably will fail. This limitation allows parallel access to the `Clock` object, which is important for maintaining performance.
 
-File: sui-framework/clock.move
-
 ```move
+// File: sui-framework/clock.move
 /// Singleton shared object that exposes time to Move calls.  This
 /// object is found at address 0x6, and can only be read (accessed
 /// via an immutable reference) by entry functions.

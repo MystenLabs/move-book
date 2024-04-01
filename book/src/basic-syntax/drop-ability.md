@@ -56,3 +56,18 @@ The `drop` ability - the simplest of them - allows the instance of a struct to b
 The `drop` ability is often used on custom collection types to eliminate the need for special handling of the collection when it is no longer needed. For example, a `vector` type has the `drop` ability, which allows the vector to be ignored when it is no longer needed. However, the biggest feature of Move's type system is the ability to not have `drop`. This ensures that the assets are properly handled and not ignored.
 
 A struct with a single `drop` ability is called a _Witness_. We explain the concept of a _Witness_ in the [Witness and Abstract Implementation](./../programmability/witness-and-abstract-implementation.md) section.
+
+## Types with the `drop` Ability
+
+All native types in Move have the `drop` ability. This includes:
+
+- [bool](./../basic-syntax/primitive-types.md#booleans)
+- [unsigned integers](./../basic-syntax/primitive-types.md#integers)
+- [vector](./../basic-syntax/vector.md)
+- [address](./../basic-syntax/address.md)
+
+All of the types defined in the standard library have the `drop` ability as well. This includes:
+
+- [Option](./../basic-syntax/option.md)
+- [String](./../basic-syntax/string.md)
+- [TypeName](./../basic-syntax/type-reflection.md#typename)

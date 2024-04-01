@@ -49,7 +49,8 @@ comparison to docs.sui.io
 
 -->
 
-- [The Move Book](README.md)
+<!-- - [The Move Book](README.md) -->
+# The Move Book
 - [Introduction](introduction.md)
 - [Foreword]() <!-- foreword.md) -->
 - [History](history.md)
@@ -76,9 +77,11 @@ comparison to docs.sui.io
   - [Address](./concepts/address.md)
   - [Account](./concepts/what-is-an-account.md)
   - [Transaction](./concepts/what-is-a-transaction.md)
-<!-- - [Interacting with a Package](./concepts/user-interaction.md) -->
-<!-- - [Fast Path](./concepts/fast-path.md) -->
-<!-- - [Module](./concepts/modules.md) -->
+<!-- Removed:
+  - Interacting with a Package
+  - Fast Path
+  - Module
+-->
 - [Syntax Basics](./basic-syntax/README.md)
   - [Module](./basic-syntax/module.md)
   - [Comments](./basic-syntax/comments.md)
@@ -112,11 +115,12 @@ comparison to docs.sui.io
   - [Fast Path & Consensus](./object/fast-path-and-consensus.md)
 - [Using Objects](./storage/README.md)
   - [Ability: Key](./storage/key-ability.md)
+  - [Storage Functions](./storage/storage-functions.md)
+  - [Prices and Rebates]()
+  - [Ability: Store](./storage/store-ability.md)
   - [UID and ID](./storage/uid-and-id.md)
-  - [Transfer Restrictions]() <!-- (./object/transfer-restrictions.md) -->
-  - [Ability: Store]() <!-- ./object/store-ability.md) -->
-  - [Shared State]() <!-- (./object/shared-state.md) -->
-  - [Transfer to Object?]()<!-- (./object/transfer-to-object.md) -->
+  - [Restricted and Public Transfer](./storage/transfer-restrictions.md)
+  - [Transfer to Object?](./storage/transfer-to-object.md)
 - [Advanced Programmability](./programmability/README.md)
   - [Transaction Context](./programmability/transaction-context.md)
   - [Module Initializer](./programmability/module-initializer.md)
@@ -150,13 +154,14 @@ comparison to docs.sui.io
   - [Request]()
   - [Object Capability]()
   - [Witness Registry]() -->
-- [Standards]()
-  - [Balance]()
-  - [Coin]()
-  - [Closed Loop Token]()
-  - [Transfer Policy]()
-  - [Kiosk]()
-- [Guides](./guides/README.md)
+<!-- - [Standards]() -->
+  <!-- - [Balance]() -->
+  <!-- - [Coin]() -->
+  <!-- - [Closed Loop Token]() -->
+  <!-- - [Transfer Policy]() -->
+  <!-- - [Kiosk]() -->
+<!-- - [Guides](./guides/README.md) -->
+# Guides
   - [2024 Migration Guide](./guides/2024-migration-guide.md)
   - [Upgradability Practices](./guides/upgradeability-practices.md)
   - [Building against Limits](./guides/building-against-limits.md)

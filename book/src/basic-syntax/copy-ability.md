@@ -25,3 +25,18 @@ The `copy` ability is closely related to [`drop` ability](./drop-ability.md). If
 ```
 
 All of the primitive types in Move behave as if they have the _copy_ and _drop_ abilities. This means that they can be copied and dropped, and the Move compiler will handle the memory management for them.
+
+## Types with the `copy` Ability
+
+All native types in Move have the `copy` ability. This includes:
+
+- [bool](./../basic-syntax/primitive-types.md#booleans)
+- [unsigned integers](./../basic-syntax/primitive-types.md#integers)
+- [vector](./../basic-syntax/vector.md)
+- [address](./../basic-syntax/address.md)
+
+All of the types defined in the standard library have the `copy` ability as well. This includes:
+
+- [Option](./../basic-syntax/option.md)
+- [String](./../basic-syntax/string.md)
+- [TypeName](./../basic-syntax/type-reflection.md#typename)

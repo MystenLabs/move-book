@@ -4,8 +4,10 @@
 #[allow(unused_variable, unused_field)]
 // ANCHOR: vector
 module book::collections_vector {
+    use std::string::String;
+
     /// The Book that can be sold by a `BookStore`
-    struct Book has key, store {
+    public struct Book has key, store {
         id: UID,
         name: String
     }
@@ -15,9 +17,6 @@ module book::collections_vector {
         id: UID,
         books: vector<Book>
     }
-
-    #[test]
-    
 }
 
 #[allow(unused_variable, unused_field)]
