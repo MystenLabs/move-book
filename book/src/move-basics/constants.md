@@ -59,5 +59,5 @@ This way other modules can import and read the constants, and the update process
 
 ## Links
 
-- [Constants in the Move Language Reference](/reference/constants.html)
-- [Coding conventions for constants](./../guides/coding-conventions.md#constants)
+- [Constants](/reference/constants.html) in the Move Language Reference
+- [Coding conventions for constants](./../guides/coding-conventions.md#constant)

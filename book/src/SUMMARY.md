@@ -117,7 +117,7 @@ comparison to docs.sui.io
 - [Using Objects](./storage/README.md)
   - [Ability: Key](./storage/key-ability.md)
   - [Storage Functions](./storage/storage-functions.md)
-  <!-- - [Prices and Rebates]() -->
+    <!-- - [Prices and Rebates]() -->
   - [Ability: Store](./storage/store-ability.md)
   - [UID and ID](./storage/uid-and-id.md)
   - [Restricted and Public Transfer](./storage/transfer-restrictions.md)
@@ -168,9 +168,9 @@ comparison to docs.sui.io
   - [Building against Limits](./guides/building-against-limits.md)
   - [Better error handling](./guides/better-error-handling.md)
   - [Open-sourcing Libraries]()
-  - [Testing]()<!-- (./guides/testing.md) -->
-  - [Debugging]()<!-- (./guides/debugging.md) -->
-  - [Coding Conventions]()
+  - [Tests with Objects]()<!-- (./guides/testing.md) -->
+  <!-- - [Debugging]()(./guides/debugging.md) -->
+  - [Coding Conventions](./guides/coding-conventions.md)
 # Appendix
   - [A - Glossary](./appendix/glossary.md)
   - [B - Publications](./appendix/publications.md)
