@@ -40,3 +40,7 @@ All of the types defined in the standard library have the `copy` ability as well
 - [Option](./../move-basics/option.md)
 - [String](./../move-basics/string.md)
 - [TypeName](./../move-basics/type-reflection.md#typename)
+
+## Further reading
+
+- [Type Abilities](/reference/type-abilities.html) in the Move Language Reference.

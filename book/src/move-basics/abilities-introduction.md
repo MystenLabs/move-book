@@ -4,7 +4,7 @@ Move has a unique type system which allows customizing _type abilities_. [In the
 
 ## What are Abilities?
 
-Abilities are a way to allow certain behavious for a type. In Move, abilities are set on a struct declaration and define which behaviours are allowed for the instances of the struct. 
+Abilities are a way to allow certain behavious for a type. In Move, abilities are set on a struct declaration and define which behaviours are allowed for the instances of the struct.
 
 ## Abilities syntax
 
@@ -22,3 +22,7 @@ struct VeryAble has copy, drop {
 ## No abilities
 
 A struct without abilities cannot be discarded, or copied, or stored in the storage. We call such a struct a _Hot Potato_. It is a joke, but it is also a good way to remember that a struct without abilities is like a hot potato - it needs to be passed around and handled properly. Hot Potato is one of the most powerful patterns in Move, we go in detail about it in the [TODO: authorization patterns](./../programmability/authorization-patterns.md) chapter.
+
+## Further reading
+
+- [Type Abilities](/reference/type-abilities.html) in the Move Language Reference.

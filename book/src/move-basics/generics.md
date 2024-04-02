@@ -92,5 +92,4 @@ Move Compiler will enforce that the type parameter `T` has the specified abiliti
 
 ## Further Reading
 
-<!-- Abilities propagation to parent -->
-<!--  -->
+- [Generics](/reference/generics.html) in the Move Language Reference.

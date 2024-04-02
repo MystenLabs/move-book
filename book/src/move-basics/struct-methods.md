@@ -43,3 +43,7 @@ It is also possible to associate a function defined in another module with a str
 ```move
 {{#include ../../../packages/samples/sources/move-basics/struct-methods.move:hero_to_bytes}}
 ```
+
+## Further reading
+
+- [Method Syntax](/reference/method-syntax.html) in the Move Language Reference.

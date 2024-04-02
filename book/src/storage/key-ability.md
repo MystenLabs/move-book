@@ -41,3 +41,7 @@ Due to the `UID` requirement for types with `key`, none of the native types in M
 ## Next Steps
 
 Key ability defines the object in Move, and objects are intended to be _stored_. In the next section we present the `sui::transfer` module, which provides native storage functions for objects.
+
+## Further reading
+
+- [Type Abilities](/reference/type-abilities.html) in the Move Language Reference.

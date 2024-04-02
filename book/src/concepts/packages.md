@@ -65,3 +65,4 @@ During development, package doesn't have an address and it needs to be set to `0
 
 - [Package Manifest](./manifest.md)
 - [Address](./address.md)
+- [Packages](/reference/packages.html) in the Move Language Reference.

@@ -101,3 +101,7 @@ module book::testing {
 ```
 
 Functions marked with the `#[test_only]` will be available to the test environment, and to the other modules if their visibility is set so.
+
+## Further Reading
+
+- [Unit Testing](https://move-book.com/reference/unit-testing.html) in the Move Language Reference.

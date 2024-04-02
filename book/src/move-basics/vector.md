@@ -33,3 +33,7 @@ A vector of non-droppable types cannot be discarded. If you define a vector of t
 ```move
 {{#include ../../../packages/samples/sources/move-basics/vector.move:no_drop}}
 ```
+
+## Further reading
+
+- [Vector](/reference/primitive-types/vector.html) in the Move Language Reference.

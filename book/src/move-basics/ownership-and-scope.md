@@ -111,3 +111,7 @@ module book::ownership {
 ## Copyable Types
 
 Some types in Move are _copyable_, which means that they can be copied without transferring the ownership. This is useful for types that are small and cheap to copy, such as integers and booleans. Move compiler will automatically copy these types when they are passed to a function or returned from a function, or when they're _moved_ to a scope and then accessed in their original scope.
+
+## Further reading
+
+- [Local Variables and Scopes](/reference/variables.html) in the Move Language Reference.

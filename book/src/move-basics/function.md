@@ -51,3 +51,7 @@ If some of the arguments are not used, they can be ignored with the `_` symbol:
 ```move
 {{#include ../../../packages/samples/sources/move-basics/function.move:tuple_return_ignore}}
 ```
+
+## Further reading
+
+- [Functions](/reference/functions.html) in the Move Language Reference.

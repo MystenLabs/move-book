@@ -55,3 +55,7 @@ Module members are declared inside the module body. To illustrate that, let's de
 ```Move
 {{#include ../../../packages/samples/sources/move-basics/module.move:members}}
 ```
+
+## Further reading
+
+- [Modules](/reference/modules.html) in the Move Language Reference.

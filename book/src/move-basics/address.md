@@ -47,3 +47,7 @@ Example: Convert an address into a string.
 ```move
 {{#include ../../../packages/samples/sources/move-basics/address.move:to_string}}
 ```
+
+## Further reading
+
+- [Address](/reference/primitive-types/address.html) in the Move Language Reference.

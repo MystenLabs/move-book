@@ -6,7 +6,7 @@ Move type system shines when it comes to defining custom types. User defined typ
 
 To define a custom type, you can use the `struct` keyword followed by the name of the type. After the name, you can define the fields of the struct. Each field is defined with the `field_name: field_type` syntax. Field definitions must be separated by commas. The fields can be of any type, including other structs.
 
-> Note: Move does not support recursive structs, meaning a struct cannot contain itself as a field.
+> Move does not support recursive structs, meaning a struct cannot contain itself as a field.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/struct.move:def}}
@@ -59,3 +59,7 @@ In the example above we unpack the `Artist` struct and create a new variable `na
 ```move
 {{#include ../../../packages/samples/sources/move-basics/struct.move:unpack_ignore}}
 ```
+
+## Further reading
+
+- [Structs](/reference/structs.html) in the Move Language Reference.
