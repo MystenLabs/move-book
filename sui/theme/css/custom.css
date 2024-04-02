@@ -58,3 +58,8 @@ strong {
 .modules-table table td {
     height: 50px;
 }
+
+/* input[type="checkbox"]:disabled {
+    display: none;
+    content: "aaaaa";
+} */
