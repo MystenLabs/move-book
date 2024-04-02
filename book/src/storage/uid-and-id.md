@@ -1,6 +1,6 @@
 # UID and ID
 
-The `UID` type is defined in the `sui::object` module and is a wrapper around an `ID` which, in turn, wraps the `address` type. The UIDs on Sui are guaranteed to be unique, and can't be reused.
+The `UID` type is defined in the `sui::object` module and is a wrapper around an `ID` which, in turn, wraps the `address` type. The UIDs on Sui are guaranteed to be unique, and can't be reused after the object was deleted.
 
 ```move
 // File: sui-framework/sources/object.move
