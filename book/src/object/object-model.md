@@ -23,3 +23,7 @@ Objects in Sui have the following properties:
 - Objects in Sui are high-level abstractions representing digital assets.
 - Objects have a type, unique ID, owner, data, version, and digest.
 - The Object Model simplifies asset management and enables a wide range of use cases.
+
+## Further reading
+
+- [Object Model](https://docs.sui.io/concepts/object-model) in Sui Documentation.

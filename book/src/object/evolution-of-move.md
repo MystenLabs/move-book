@@ -8,3 +8,8 @@ Sui addressed these challenges by redesigning the storage and ownership model of
 
 - Move's initial storage model was not well-suited for managing digital assets, requiring complex and restrictive transfer operations.
 - Sui introduced the Object Model, which provides a native concept of ownership, simplifying asset management and enabling heterogeneous collections.
+
+## Further reading
+
+- [Why We Created Sui Move](https://blog.sui.io/why-we-created-sui-move/) by Sam Blackshear
+
