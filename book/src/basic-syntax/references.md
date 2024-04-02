@@ -25,8 +25,6 @@ To illustrate this, let's consider a simple example - an application for a metro
 3. Card can be used at the turnstile to enter the metro, and spend a ride
 4. Card can be recycled once it's empty
 
-> On this page we use pre-2024 syntax for better visibility. The result utilizing the 2024 syntax is shown in [the end of the page](#move-2024).
-
 ## Layout
 
 The initial layout of the metro pass application is simple. We define the `Card` type and the `USES` [constant](./constants.md) that represents the number of rides for a single card. We also add an [error constant](./assert-and-abort.md#error-constants) for the case when the card is empty.

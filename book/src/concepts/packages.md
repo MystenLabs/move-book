@@ -63,6 +63,5 @@ During development, package doesn't have an address and it needs to be set to `0
 
 ## Links
 
-- [Package Manifest](./package-manifest.md)
+- [Package Manifest](./manifest.md)
 - [Address](./address.md)
-- [Publishing a Package](./../hello-sui/build-and-publish.md)

@@ -30,7 +30,7 @@ Modules defined in the same package can import each other. The `use` keyword is 
 {{#include ../../../packages/samples/sources/basic-syntax/importing-modules.move:module_one}}
 ```
 
-File: sources/module_two.move
+Another module defined in the same package can import the first module using the `use` keyword.
 
 ```move
 // File: sources/module_two.move

@@ -89,6 +89,7 @@ comparison to docs.sui.io
   - [Address Type](./basic-syntax/address.md)
   - [Expression](./basic-syntax/expression.md)
   - [Struct](./basic-syntax/struct.md)
+  - [Abilities: Introduction](./basic-syntax/abilities-introduction.md)
   - [Ability: Drop](./basic-syntax/drop-ability.md)
   - [Importing Modules](./basic-syntax/importing-modules.md)
   - [Standard Library](./basic-syntax/standard-library.md)
