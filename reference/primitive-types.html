@@ -230,6 +230,22 @@ user-defined types, e.g. in a <a href="./structs.html"><code>struct</code></a>.<
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 
@@ -247,6 +263,7 @@ user-defined types, e.g. in a <a href="./structs.html"><code>struct</code></a>.<
         <script src="book.js"></script>
 
         <!-- Custom JS scripts -->
+        <script src="theme/switcher.js"></script>
 
 
     </div>

@@ -288,6 +288,22 @@ const B: u16 = A + 1; // ERROR!
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 
@@ -305,6 +321,7 @@ const B: u16 = A + 1; // ERROR!
         <script src="book.js"></script>
 
         <!-- Custom JS scripts -->
+        <script src="theme/switcher.js"></script>
 
 
     </div>

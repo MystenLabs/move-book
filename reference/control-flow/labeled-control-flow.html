@@ -273,6 +273,22 @@ that might see us continuing the inner or outer loop, we could express that code
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 
@@ -290,6 +306,7 @@ that might see us continuing the inner or outer loop, we could express that code
         <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
+        <script src="../theme/switcher.js"></script>
 
 
     </div>

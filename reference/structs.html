@@ -596,6 +596,22 @@ See the documentation for the <a href="./abilities.html#key"><code>key</code> ab
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 
@@ -613,6 +629,7 @@ See the documentation for the <a href="./abilities.html#key"><code>key</code> ab
         <script src="book.js"></script>
 
         <!-- Custom JS scripts -->
+        <script src="theme/switcher.js"></script>
 
 
     </div>
