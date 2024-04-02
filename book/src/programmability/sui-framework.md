@@ -9,18 +9,18 @@ _For convenience, we grouped the modules in the Sui Framework into multiple cate
 <!-- Custom CSS addition in the theme/custom.css  -->
 <div class="modules-table">
 
-| Module                    | Description                                                                 | Chapter                                                                |
-| ------------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| sui::address              | Adds conversion methods to the [address type](./../move-basics/address.md) | [Address](./../move-basics/address.md)                                |
-| sui::transfer             | Implements the storage operations for Objects                               | [It starts with an Object](./../object)                                |
-| sui::tx_context           | Contains the `TxContext` struct and methods to read it                      | [Transaction Context](./transaction-context.md)                        |
-| sui::object               | Defines the `UID` and `ID` type, required for creating objects              | [It starts with an Object](./../object)                                |
-| sui::clock                | Defines the `Clock` type and its methods                                    | [Epoch and Time](./epoch-and-time.md)                                  |
-| sui::dynamic_field        | Implements methods to add, use and remove dynamic fields                    | [Dynamic Fields](./dynamic-fields.md)                                  |
-| sui::dynamic_object_field | Implements methods to add, use and remove dynamic object fields             | [Dynamic Object Fields](./dynamic-object-fields.md)                    |
-| sui::event                | Allows emitting events for off-chain listeners                              | [Events](./events.md)                                                  |
-| sui::package              | Defines the `Publisher` type and package upgrade methods                    | [Publisher](./publisher.md), [Package Upgrades](./package-upgrades.md) |
-| sui::display              | Implements the `Display` object and ways to create and update it            | [Display](./display.md)                                                |
+| Module                                                                                                   | Description                                                                | Chapter                                                                |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| [sui::address](https://docs.sui.io/references/framework/sui-framework/address)                           | Adds conversion methods to the [address type](./../move-basics/address.md) | [Address](./../move-basics/address.md)                                 |
+| [sui::transfer](https://docs.sui.io/references/framework/sui-framework/transfer)                         | Implements the storage operations for Objects                              | [It starts with an Object](./../object)                                |
+| [sui::tx_context](https://docs.sui.io/references/framework/sui-framework/tx_context)                     | Contains the `TxContext` struct and methods to read it                     | [Transaction Context](./transaction-context.md)                        |
+| [sui::object](https://docs.sui.io/references/framework/sui-framework/object)                             | Defines the `UID` and `ID` type, required for creating objects             | [It starts with an Object](./../object)                                |
+| [sui::clock](https://docs.sui.io/references/framework/sui-framework/clock)                               | Defines the `Clock` type and its methods                                   | [Epoch and Time](./epoch-and-time.md)                                  |
+| [sui::dynamic_field](https://docs.sui.io/references/framework/sui-framework/dynamic_field)               | Implements methods to add, use and remove dynamic fields                   | [Dynamic Fields](./dynamic-fields.md)                                  |
+| [sui::dynamic_object_field](https://docs.sui.io/references/framework/sui-framework/dynamic_object_field) | Implements methods to add, use and remove dynamic object fields            | [Dynamic Object Fields](./dynamic-object-fields.md)                    |
+| [sui::event](https://docs.sui.io/references/framework/sui-framework/event)                               | Allows emitting events for off-chain listeners                             | [Events](./events.md)                                                  |
+| [sui::package](https://docs.sui.io/references/framework/sui-framework/package)                           | Defines the `Publisher` type and package upgrade methods                   | [Publisher](./publisher.md), [Package Upgrades](./package-upgrades.md) |
+| [sui::display](https://docs.sui.io/references/framework/sui-framework/display)                           | Implements the `Display` object and ways to create and update it           | [Display](./display.md)                                                |
 
 </div>
 
@@ -28,15 +28,15 @@ _For convenience, we grouped the modules in the Sui Framework into multiple cate
 
 <div class="modules-table">
 
-| Module            | Description                                                       | Chapter                                         |
-| ----------------- | ----------------------------------------------------------------- | ----------------------------------------------- |
-| sui::vec_set      | Implements a set type                                             | [Collections](./collections.md)                 |
-| sui::vec_map      | Implements a map with vector keys                                 | [Collections](./collections.md)                 |
-| sui::table        | Implements the `Table` type and methods to interact with it       | [Dynamic Collections](./dynamic-collections.md) |
-| sui::linked_table | Implements the `LinkedTable` type and methods to interact with it | [Dynamic Collections](./dynamic-collections.md) |
-| sui::bag          | Implements the `Bag` type and methods to interact with it         | [Dynamic Collections](./dynamic-collections.md) |
-| sui::object_table | Implements the `ObjectTable` type and methods to interact with it | [Dynamic Collections](./dynamic-collections.md) |
-| sui::object_bag   | Implements the `ObjectBag` type and methods to interact with it   | [Dynamic Collections](./dynamic-collections.md) |
+| Module                                                                                   | Description                                                       | Chapter                                         |
+| ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------- |
+| [sui::vec_set](https://docs.sui.io/references/framework/sui-framework/vec_set)           | Implements a set type                                             | [Collections](./collections.md)                 |
+| [sui::vec_map](https://docs.sui.io/references/framework/sui-framework/vec_map)           | Implements a map with vector keys                                 | [Collections](./collections.md)                 |
+| [sui::table](https://docs.sui.io/references/framework/sui-framework/table)               | Implements the `Table` type and methods to interact with it       | [Dynamic Collections](./dynamic-collections.md) |
+| [sui::linked_table](https://docs.sui.io/references/framework/sui-framework/linked_table) | Implements the `LinkedTable` type and methods to interact with it | [Dynamic Collections](./dynamic-collections.md) |
+| [sui::bag](https://docs.sui.io/references/framework/sui-framework/bag)                   | Implements the `Bag` type and methods to interact with it         | [Dynamic Collections](./dynamic-collections.md) |
+| [sui::object_table](https://docs.sui.io/references/framework/sui-framework/object_table) | Implements the `ObjectTable` type and methods to interact with it | [Dynamic Collections](./dynamic-collections.md) |
+| [sui::object_bag](https://docs.sui.io/references/framework/sui-framework/object_bag)     | Implements the `ObjectBag` type and methods to interact with it   | [Dynamic Collections](./dynamic-collections.md) |
 
 </div>
 

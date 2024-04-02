@@ -11,19 +11,19 @@ In this book we go into detail about most of the modules in the Standard Library
 <!-- Custom CSS addition in the theme/custom.css  -->
 <div class="modules-table">
 
-| Module             | Description                                                                | Chapter                                                                    |
-| ------------------ | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| std::string        | Provides basic string operations                                           | [String](./string.md)                                                      |
-| std::ascii         | Provides basic ASCII operations                                            | [String](./string.md)                                                      |
-| std::option        | Implements an `Option<T>`                                                  | [Option](./option.md)                                                      |
-| std::vector        | Native operations on the vector type                                       | [Vector](./vector.md)                                                      |
-| std::hash          | Hashing functions: `sha2_256` and `sha3_256`                               | [Cryptography and Hashing](../programmability/cryptography-and-hashing.md) |
-| std::bcs           | Contains the `bcs::to_bytes()` function                                    | [BCS](../move-basics/bcs.md)                                              |
-| std::address       | Contains a single `address::length` function                               | [Address](./address.md)                                                    |
-| std::type_name     | Allows runtime _type reflection_                                           | [Type Reflection](./type-reflection.md)                                    |
-| std::debug         | Contains debugging functions, which are available in only in **test** mode | [Debugging](./debugging.md)                                                |
-| std::bit_vector    | Provides operations on bit vectors                                         | -                                                                          |
-| std::fixed_point32 | Provides the `FixedPoint32` type                                           | -                                                                          |
+| Module                                                                           | Description                                                                | Chapter                                                                    |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| [std::string](https://docs.sui.io/references/framework/move-stdlib/string)       | Provides basic string operations                                           | [String](./string.md)                                                      |
+| [std::ascii](https://docs.sui.io/references/framework/move-stdlib/ascii)         | Provides basic ASCII operations                                            | [String](./string.md)                                                      |
+| [std::option](https://docs.sui.io/references/framework/move-stdlib/option)       | Implements an `Option<T>`                                                  | [Option](./option.md)                                                      |
+| [std::vector](https://docs.sui.io/references/framework/move-stdlib/vector)       | Native operations on the vector type                                       | [Vector](./vector.md)                                                      |
+| [std::bcs](https://docs.sui.io/references/framework/move-stdlib/bcs)             | Contains the `bcs::to_bytes()` function                                    | [BCS](../move-basics/bcs.md)                                               |
+| [std::address](https://docs.sui.io/references/framework/move-stdlib/address)     | Contains a single `address::length` function                               | [Address](./address.md)                                                    |
+| [std::type_name](https://docs.sui.io/references/framework/move-stdlib/type_name) | Allows runtime _type reflection_                                           | [Type Reflection](./type-reflection.md)                                    |
+| std::hash                                                                        | Hashing functions: `sha2_256` and `sha3_256`                               | [Cryptography and Hashing](../programmability/cryptography-and-hashing.md) |
+| std::debug                                                                       | Contains debugging functions, which are available in only in **test** mode | [Debugging](./debugging.md)                                                |
+| std::bit_vector                                                                  | Provides operations on bit vectors                                         | -                                                                          |
+| std::fixed_point32                                                               | Provides the `FixedPoint32` type                                           | -                                                                          |
 
 </div>
 
