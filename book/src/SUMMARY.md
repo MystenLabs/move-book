@@ -82,7 +82,7 @@ comparison to docs.sui.io
   - Fast Path
   - Module
 -->
-- [Syntax Basics](./basic-syntax/README.md)
+- [Move Basics](./basic-syntax/README.md)
   - [Module](./basic-syntax/module.md)
   - [Comments](./basic-syntax/comments.md)
   - [Primitive Types](./basic-syntax/primitive-types.md)

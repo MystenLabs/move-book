@@ -2,6 +2,18 @@
 
 <!-- TODO: reiterate, given that we introduce abilities one by one -->
 
+<!-- TODO:
+
+- introduce abilities first
+- mention them all
+- then do one by one
+
+consistency: we / I / you ?
+who is we? I am alone, there's no one else here
+ 
+
+-->
+
 <!--
 
 // Shall we only talk about `drop` ?

@@ -1,5 +1,7 @@
 # Assert and Abort
 
+<!-- Consider "aborting execution" -->
+
 <!--
 
 Chapter: Basic Syntax

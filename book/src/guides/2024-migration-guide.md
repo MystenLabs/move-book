@@ -6,7 +6,7 @@ Move 2024 is the new edition of the Move language that is maintained by Mysten L
 
 ## Using the New Edition
 
-To use the new edition, you need to specify the edition in the `move` file. The edition is specified in the `move` file using the `edition` keyword. Currently, the only available edition is `2024.alpha`.
+To use the new edition, you need to specify the edition in the `move` file. The edition is specified in the `move` file using the `edition` keyword. Currently, the only available edition is `2024.beta`.
 
 ```ini
 edition = "2024.beta";
@@ -24,7 +24,7 @@ The migration tool will update the code to use the `let mut` syntax, the new `pu
 
 ## Mutable bindings with `let mut`
 
-In Move 2024, the `let mut` syntax is introduced, which is used to declare mutable variables. The `let mut` syntax is used to declare a mutable variable that can be changed after it is declared.
+Move 2024 introduces `let mut` syntax to declare mutable variables. The `let mut` syntax is used to declare a mutable variable that can be changed after it is declared.
 
 > `let mut` declaration is now required for mutable variables. Compiler will emit an error if you try to reassign a variable without the `mut` keyword.
 

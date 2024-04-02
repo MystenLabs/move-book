@@ -23,7 +23,7 @@ Sui also offers the *frozen object* model, where an object becomes permanently r
 
 The last ownership model in Sui is the *object owner*. In this model, an object is owned by another object. This feature allows creating complex relationships between objects, store large heterogenious collections, and implementing extensible and modular systems. Practically speaking, since the transactions are initiated by accounts, the transaction still accesses the parent object, but it can then access the child objects through the parent object.
 
-A use case we love to mention is a game character. Alice can own the Hero object from a game, and the Hero can own items: also represented as objects, like a "Map", or a "Compass". Alice may take the "Map" from the "Hero" object, and then send it to Bob, or sell it on a marketplace. With object owner, it becomes very easy to imagine how the assets can be structured and managed in relation to each other.
+A use case we love to mention is a game character. Alice can own the Hero object from a game, and the Hero can own items: also represented as objects, like a "Map", or a "Compass". Alice may take the "Map" from the "Hero" object, and then send it to Bob, or sell it on a marketplace. With object owner, it becomes very natural to imagine how the assets can be structured and managed in relation to each other.
 
 ## Summary
 

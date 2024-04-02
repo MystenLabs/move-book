@@ -5,6 +5,7 @@ This chapter describes the Object Model of Sui. It focuses on the theory and con
 <div class="warning">
 
 In no way should this chapter be considered a comprehensive guide to the Object Model. It is only a high-level overview of the concepts and principles behind the Object Model.
-For a more detailed and comprehensive guide, please, refer to the [Sui documentation](https://docs.sui.io/concepts/sui-architecture).
+
+For a more detailed description, refer to the [Sui Documentation](https://docs.sui.io/concepts/object-model).
 
 </div>

@@ -10,7 +10,7 @@ Objects in Sui have the following properties:
 
 <!-- Note: consider "shared across many entities" -->
 
-- **Owner:** Every object is associated with an owner, who has control over the object. Ownership on Sui can be exclusive to an account, shared across the network, or frozen, allowing read-only access without modification or transfer capabilities. We'll discuss ownership in more detail in the following sections.
+- **Owner:** Every object is associated with an owner, who has control over the object. Ownership on Sui can be exclusive to an account, shared across the network, or frozen, allowing read-only access without modification or transfer capabilities. We will discuss ownership in more detail in the following sections.
 
 - **Data:** Objects encapsulate their data, simplifying management and manipulation. The data structure and operations are defined by the object's type.
 
