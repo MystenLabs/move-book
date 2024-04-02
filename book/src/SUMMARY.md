@@ -116,7 +116,7 @@ comparison to docs.sui.io
   - [Fast Path & Consensus](./object/fast-path-and-consensus.md)
 - [Using Objects](./storage/README.md)
   - [Ability: Key](./storage/key-ability.md)
-  - [Storage Functions](./storage/transfer-functions.md)
+  - [Storage Functions](./storage/storage-functions.md)
   - [Prices and Rebates]()
   - [Ability: Store](./storage/store-ability.md)
   - [UID and ID](./storage/uid-and-id.md)
