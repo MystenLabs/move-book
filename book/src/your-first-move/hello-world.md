@@ -66,7 +66,7 @@ module hello_world::hello_world {
 */
 ```
 
-> The `/*` and `*/` are the comment delimiters in Move. Everything in between is ignored by the compiler and can be used for documentation or notes. We explain all ways to comment the code in the [Basic Syntax](./../basic-syntax/comments.md).
+> The `/*` and `*/` are the comment delimiters in Move. Everything in between is ignored by the compiler and can be used for documentation or notes. We explain all ways to comment the code in the [Basic Syntax](./../move-basics/comments.md).
 
 The commented out code is a module definition, it starts with the keyword `module` followed by a named address (or an address literal), and the module name. The module name is a unique identifier for the module and has to be unique within the package. The module name is used to reference the module from other modules or transactions.
 

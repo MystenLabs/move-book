@@ -43,7 +43,7 @@ Links:
 The `drop` ability - the simplest of them - allows the instance of a struct to be _ignored_ or _discarded_. In many programming languages this behavior is considered default. However, in Move, a struct without the `drop` ability is not allowed to be ignored. This is a safety feature of the Move language, which ensures that all assets are properly handled. An attempt to ignore a struct without the `drop` ability will result in a compilation error.
 
 ```move
-{{#include ../../../packages/samples/sources/basic-syntax/drop-ability.move:main}}
+{{#include ../../../packages/samples/sources/move-basics/drop-ability.move:main}}
 ```
 
 The `drop` ability is often used on custom collection types to eliminate the need for special handling of the collection when it is no longer needed. For example, a `vector` type has the `drop` ability, which allows the vector to be ignored when it is no longer needed. However, the biggest feature of Move's type system is the ability to not have `drop`. This ensures that the assets are properly handled and not ignored.
@@ -54,13 +54,13 @@ A struct with a single `drop` ability is called a _Witness_. We explain the conc
 
 All native types in Move have the `drop` ability. This includes:
 
-- [bool](./../basic-syntax/primitive-types.md#booleans)
-- [unsigned integers](./../basic-syntax/primitive-types.md#integers)
-- [vector](./../basic-syntax/vector.md)
-- [address](./../basic-syntax/address.md)
+- [bool](./../move-basics/primitive-types.md#booleans)
+- [unsigned integers](./../move-basics/primitive-types.md#integers)
+- [vector](./../move-basics/vector.md)
+- [address](./../move-basics/address.md)
 
 All of the types defined in the standard library have the `drop` ability as well. This includes:
 
-- [Option](./../basic-syntax/option.md)
-- [String](./../basic-syntax/string.md)
-- [TypeName](./../basic-syntax/type-reflection.md#typename)
+- [Option](./../move-basics/option.md)
+- [String](./../move-basics/string.md)
+- [TypeName](./../move-basics/type-reflection.md#typename)

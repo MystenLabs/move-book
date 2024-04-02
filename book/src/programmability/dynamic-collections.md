@@ -4,7 +4,7 @@
 
 For each collection type we will specify the primitive they use, and the specific features they offer.
 
-> Unlike dynamic (object) fields which operate on UID, collection types have their own type and allow calling [associated functions](./../basic-syntax/struct-methods.md).
+> Unlike dynamic (object) fields which operate on UID, collection types have their own type and allow calling [associated functions](./../move-basics/struct-methods.md).
 
 ## Common Concepts
 

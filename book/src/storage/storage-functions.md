@@ -16,10 +16,10 @@ The `transfer` module is a go-to for most of the storage operations, except a sp
 
 ## Ownerships and References: A Quick Recap
 
-In the [Ownership and Scope](./../basic-syntax/ownership-and-scope.md) and [References](./../basic-syntax/references.md) chapters, we covered the basics of ownership and references in Move. It is important that you understand these concepts when working with storage functions. Let's do a quick recap of the most important points:
+In the [Ownership and Scope](./../move-basics/ownership-and-scope.md) and [References](./../move-basics/references.md) chapters, we covered the basics of ownership and references in Move. It is important that you understand these concepts when using storage functions. Let's do a quick recap of the most important points:
 
 - The _move_ semantics in Move means that the value is _moved_ from one scope to another. In other words, if an instance of a type is passed to a function _by value_, it is _moved_ to the function scope and can't be accessed in the caller scope anymore.
-- To maintain the ownership of the value, you can pass it _by reference_. Either by _immutable reference_ `&T` or _mutable reference_ `&mut T`. Then the value is _borrowed_ and can be accessed in the caller scope, however the owner remains the same.
+- To maintain the ownership of the value, you can pass it _by reference_. Either by _immutable reference_ `&T` or _mutable reference_ `&mut T`. Then the value is _borrowed_ and can be accessed in the caller scope, however the owner stays the same.
 
 ```move
 /// Moved by value
@@ -40,7 +40,7 @@ public fun borrow_mut<T>(value: &mut T) { /* value is mutably borrowed here! */ 
 
 ## Transfer
 
-The `transfer::transfer` function is a public function used to transfer an object to another address. Its signature is as follows, only accepts a type with the [`key` ability](./key-ability.md) and an [address](./../basic-syntax/address.md) of the recipient. Please, note that the object is passed into the function _by value_, therefore it is _moved_ to the function scope and then moved to the recipient address:
+The `transfer::transfer` function is a public function used to transfer an object to another address. Its signature is as follows, only accepts a type with the [`key` ability](./key-ability.md) and an [address](./../move-basics/address.md) of the recipient. Please, note that the object is passed into the function _by value_, therefore it is _moved_ to the function scope and then moved to the recipient address:
 
 ```move
 // File: sui-framework/sources/transfer.move

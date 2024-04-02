@@ -33,13 +33,13 @@ public struct MegaConfig has key {
 
 All native types in Move have the `store` ability. This includes:
 
-- [bool](./../basic-syntax/primitive-types.md#booleans)
-- [unsigned integers](./../basic-syntax/primitive-types.md#integers)
-- [vector](./../basic-syntax/vector.md)
-- [address](./../basic-syntax/address.md)
+- [bool](./../move-basics/primitive-types.md#booleans)
+- [unsigned integers](./../move-basics/primitive-types.md#integers)
+- [vector](./../move-basics/vector.md)
+- [address](./../move-basics/address.md)
 
 All of the types defined in the standard library have the `store` ability as well. This includes:
 
-- [Option](./../basic-syntax/option.md)
-- [String](./../basic-syntax/string.md)
-- [TypeName](./../basic-syntax/type-reflection.md#typename)
+- [Option](./../move-basics/option.md)
+- [String](./../move-basics/string.md)
+- [TypeName](./../move-basics/type-reflection.md#typename)

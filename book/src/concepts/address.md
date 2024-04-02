@@ -50,4 +50,4 @@ Here are some examples of reserved addresses:
 
 ## Further reading
 
-- [Address type](../basic-syntax/address.md) in Move
+- [Address type](../move-basics/address.md) in Move

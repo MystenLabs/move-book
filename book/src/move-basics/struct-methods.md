@@ -9,7 +9,7 @@ If the first argument of a function is a struct internal to the module, then the
 When a module is imported, the methods are automatically associated with the struct.
 
 ```move
-{{#include ../../../packages/samples/sources/basic-syntax/struct-methods.move:hero}}
+{{#include ../../../packages/samples/sources/move-basics/struct-methods.move:hero}}
 ```
 
 ## Method Aliases
@@ -31,7 +31,7 @@ public use fun function_path as Type.method_name;
 In the example below, we changed the `hero` module and added another type - `Villain`. Both `Hero` and `Villain` have similar field names and methods. And to avoid name conflicts, we prefixed methods with `hero_` and `villain_` respectively. However, we can create aliases for these methods so that they can be called on the instances of the structs without the prefix.
 
 ```move
-{{#include ../../../packages/samples/sources/basic-syntax/struct-methods.move:hero_and_villain}}
+{{#include ../../../packages/samples/sources/move-basics/struct-methods.move:hero_and_villain}}
 ```
 
 As you can see, in the test function, we called the `health` method on the instances of `Hero` and `Villain` without the prefix. The compiler will automatically associate the methods with the structs.
@@ -41,5 +41,5 @@ As you can see, in the test function, we called the `health` method on the insta
 It is also possible to associate a function defined in another module with a struct from the current module. Following the same approach, we can create an alias for the method defined in another module. Let's use the `bcs::to_bytes` method from the [Standard Library](./standard-library.md) and associate it with the `Hero` struct. It will allow serializing the `Hero` struct to a vector of bytes.
 
 ```move
-{{#include ../../../packages/samples/sources/basic-syntax/struct-methods.move:hero_to_bytes}}
+{{#include ../../../packages/samples/sources/move-basics/struct-methods.move:hero_to_bytes}}
 ```

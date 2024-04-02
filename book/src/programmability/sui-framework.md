@@ -1,6 +1,6 @@
 # Sui Framework
 
-Sui Framework is a default dependency set in the [Package Manifest](./../concepts/manifest.md). It depends on the [Standard Library](./../basic-syntax/standard-library.md) and provides Sui-specific features, including the interaction with the storage, and Sui-specific native types and modules.
+Sui Framework is a default dependency set in the [Package Manifest](./../concepts/manifest.md). It depends on the [Standard Library](./../move-basics/standard-library.md) and provides Sui-specific features, including the interaction with the storage, and Sui-specific native types and modules.
 
 _For convenience, we grouped the modules in the Sui Framework into multiple categories. But they're still part of the same framework._
 
@@ -11,7 +11,7 @@ _For convenience, we grouped the modules in the Sui Framework into multiple cate
 
 | Module                    | Description                                                                 | Chapter                                                                |
 | ------------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| sui::address              | Adds conversion methods to the [address type](./../basic-syntax/address.md) | [Address](./../basic-syntax/address.md)                                |
+| sui::address              | Adds conversion methods to the [address type](./../move-basics/address.md) | [Address](./../move-basics/address.md)                                |
 | sui::transfer             | Implements the storage operations for Objects                               | [It starts with an Object](./../object)                                |
 | sui::tx_context           | Contains the `TxContext` struct and methods to read it                      | [Transaction Context](./transaction-context.md)                        |
 | sui::object               | Defines the `UID` and `ID` type, required for creating objects              | [It starts with an Object](./../object)                                |
@@ -54,7 +54,7 @@ std = "0x1"
 
 ## Implicit Imports
 
-Just like with [Standard Library](./../basic-syntax/standard-library.md#implicit-imports), some of the modules and types are imported implicitly in the Sui Framework. This is the list of modules and types that are available without explicit `use` import:
+Just like with [Standard Library](./../move-basics/standard-library.md#implicit-imports), some of the modules and types are imported implicitly in the Sui Framework. This is the list of modules and types that are available without explicit `use` import:
 
 - sui::object
 - sui::object::ID

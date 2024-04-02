@@ -1,6 +1,6 @@
 # The Key Ability
 
-In the [Basic Syntax](./../basic-syntax) chapter we already covered two out of four abilities - [Drop](./drop-ability.md) and [Copy](./copy-ability.md). They affect the behaviour of the value in a scope and are not directly related to storage. It is time to cover the `key` ability, which allows the struct to be stored.
+In the [Basic Syntax](./../move-basics) chapter we already covered two out of four abilities - [Drop](./drop-ability.md) and [Copy](./copy-ability.md). They affect the behaviour of the value in a scope and are not directly related to storage. It is time to cover the `key` ability, which allows the struct to be stored.
 
 Historically, the `key` ability was created to mark the type as a *key in the storage*. A type with the `key` ability could be stored at top-level in the storage, and could be *directly owned* by an account or address. With the introduction of the [Object Model](./../object), the `key` ability naturally became the defining ability for the object.
 
@@ -36,7 +36,7 @@ In the context of the [Object Model](./../object/digital-assets.md), an object w
 
 ## Types with the `key` Ability
 
-Due to the `UID` requirement for types with `key`, none of the native types in Move can have the `key` ability, nor can any of the [Standard Library](./../basic-syntax/standard-library.md) types. The `key` ability is only present in the [Sui Framework](./../programmability/sui-framework.md) and custom types.
+Due to the `UID` requirement for types with `key`, none of the native types in Move can have the `key` ability, nor can any of the [Standard Library](./../move-basics/standard-library.md) types. The `key` ability is only present in the [Sui Framework](./../programmability/sui-framework.md) and custom types.
 
 ## Next Steps
 

@@ -61,7 +61,7 @@ Also, compiler has built-in support for the `examples/` folder, the files there 
 
 ## Compiling the Package
 
-Move is a compiled language, and as such, it requires compilation of source files into Move Bytecode. The bytecode contains only necessary information about module, its members and types, and excludes comments and some identifiers (for example, for [constants](./basic-syntax/constants.md)).
+Move is a compiled language, and as such, it requires compilation of source files into Move Bytecode. The bytecode contains only necessary information about module, its members and types, and excludes comments and some identifiers (for example, for [constants](./move-basics/constants.md)).
 
 To demonstrate these features, let's replace the contents of the `sources/hello_world.move` file with the following:
 
@@ -105,7 +105,7 @@ $ tree build
 
 ## Running Tests
 
-Before we get to testing, we should add a test. Move Compiler supports tests written in Move and provides the execution environment. The tests can be placed in both the source files and in the `tests/` folder. Tests are marked with the `#[test]` attribute and are automatically discovered by the compiler. We explain tests in depth in the [Testing](./basic-syntax/testing.md) section.
+Before we get to testing, we should add a test. Move Compiler supports tests written in Move and provides the execution environment. The tests can be placed in both the source files and in the `tests/` folder. Tests are marked with the `#[test]` attribute and are automatically discovered by the compiler. We explain tests in depth in the [Testing](./move-basics/testing.md) section.
 
 Replace the contents of the `tests/hello_world_tests.move` with the following content:
 

@@ -42,13 +42,13 @@ When the test command runs, it looks for all tests in all files in the directory
 {{#include ../../../packages/samples/sources/your-first-move/hello_world.move:4:}}
 ```
 
-The test function is a function with a `#[test]` attribute. Normally it takes no arguments (but it can take arguments in some cases - you'll learn more about it closer to the end of this book) and returns nothing. Tests placed in the same module as the code they test are called "unit tests". They can access all functions and types in the module. We'll go through them in more detail in the [Test](../basic-syntax/test.md) section.
+The test function is a function with a `#[test]` attribute. Normally it takes no arguments (but it can take arguments in some cases - you'll learn more about it closer to the end of this book) and returns nothing. Tests placed in the same module as the code they test are called "unit tests". They can access all functions and types in the module. We'll go through them in more detail in the [Test](../move-basics/test.md) section.
 
 ```Move
 {{#include ../../../packages/samples/sources/your-first-move/hello_world.move:11:15}}
 ```
 
-Inside the test function, we define the expected outcome by creating a String with the expected value and assign it to the `expected` variable. Then we use the special built-in `assert!()` which takes two arguments: a conditional expression and an error code. If the expression evaluates to `false`, then the test fails with the given error code. The equality operator `==` compares the `actual` and `expected` values and returns `true` if they are equal. We'll learn more about expressions in the [Expression and Scope](../basic-syntax/expression-and-scope.md) section.
+Inside the test function, we define the expected outcome by creating a String with the expected value and assign it to the `expected` variable. Then we use the special built-in `assert!()` which takes two arguments: a conditional expression and an error code. If the expression evaluates to `false`, then the test fails with the given error code. The equality operator `==` compares the `actual` and `expected` values and returns `true` if they are equal. We'll learn more about expressions in the [Expression and Scope](../move-basics/expression-and-scope.md) section.
 
 Now let's run the test command again:
 

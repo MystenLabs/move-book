@@ -6,7 +6,7 @@ The format specification is available in the [BCS repository](https://github.com
 
 ## Using BCS
 
-[Standard Library](./../basic-syntax/standard-library.md) provides the `std::bcs` module that contains functions for encoding and decoding data using BCS. The module has one function for getting data bytes for any type:
+[Standard Library](./../move-basics/standard-library.md) provides the `std::bcs` module that contains functions for encoding and decoding data using BCS. The module has one function for getting data bytes for any type:
 
 File: move-stdlib/sources/bcs.move
 

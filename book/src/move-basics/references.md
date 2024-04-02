@@ -31,9 +31,9 @@ The initial layout of the metro pass application is simple. We define the `Card`
 
 ```move
 module book::metro_pass {
-{{#include ../../../packages/samples/sources/basic-syntax/references.move:header}}
+{{#include ../../../packages/samples/sources/move-basics/references.move:header}}
 
-{{#include ../../../packages/samples/sources/basic-syntax/references.move:new}}
+{{#include ../../../packages/samples/sources/move-basics/references.move:new}}
 }
 ```
 
@@ -46,7 +46,7 @@ References are a way to _show_ a value to a function without giving up the owner
 To do so, in the function signature, we use the `&` symbol to indicate that we are passing a reference to the value, not the value itself.
 
 ```move
-{{#include ../../../packages/samples/sources/basic-syntax/references.move:immutable}}
+{{#include ../../../packages/samples/sources/move-basics/references.move:immutable}}
 ```
 
 Now the function can't take the ownership of the card, and it can't spend the rides. But it can read its value. Worth noting, that a signature like this makes it impossible to call the function without a Card at all. This is an important property which allows the [Capability Pattern](./../programmability/capability.md) which we will cover in the next chapters.
@@ -56,7 +56,7 @@ Now the function can't take the ownership of the card, and it can't spend the ri
 In some cases, we want to allow the function to change the value of the Card. For example, when we use the Card at the turnstile, we want to spend a ride. To implement it, we use the `&mut` keyword in the function signature.
 
 ```move
-{{#include ../../../packages/samples/sources/basic-syntax/references.move:mutable}}
+{{#include ../../../packages/samples/sources/move-basics/references.move:mutable}}
 ```
 
 As you can see in the function body, the `&mut` reference allows mutating the value, and the function can spend the rides.
@@ -66,7 +66,7 @@ As you can see in the function body, the `&mut` reference allows mutating the va
 Lastly, let's give an illustration of what happens when we pass the value itself to the function. In this case, the function takes the ownership of the value, and the original scope can no longer use it. The owner of the Card can recycle it, and, hence, lose the ownership.
 
 ```move
-{{#include ../../../packages/samples/sources/basic-syntax/references.move:move}}
+{{#include ../../../packages/samples/sources/move-basics/references.move:move}}
 ```
 
 In the `recycle` function, the Card is _taken by value_ and can be unpacked and destroyed. The original scope can't use it anymore.
@@ -76,7 +76,7 @@ In the `recycle` function, the Card is _taken by value_ and can be unpacked and 
 To illustrate the full flow of the application, let's put all the pieces together in a test.
 
 ```move
-{{#include ../../../packages/samples/sources/basic-syntax/references.move:move_2024}}
+{{#include ../../../packages/samples/sources/move-basics/references.move:move_2024}}
 ```
 
 <!-- ## Dereference and Copy -->
@@ -97,6 +97,6 @@ To illustrate the full flow of the application, let's put all the pieces togethe
 Here's the test from this page written with the Move 2024 syntax:
 
 ```move
-{{#include ../../../packages/samples/sources/basic-syntax/references.move:move_2024}}
+{{#include ../../../packages/samples/sources/move-basics/references.move:move_2024}}
 ```
 -->

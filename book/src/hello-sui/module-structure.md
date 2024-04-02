@@ -12,7 +12,7 @@ First line of the file is the module declaration. The address of the module is `
 
 ## Imports
 
-In the top of the module we import [String](./../basic-syntax/string.md) type from the [Standard Library](./../basic-syntax/standard-library.md) (std). The rest of the types used in this module are _implicitly imported_ from the [Sui Framework](./../programmability/sui-framework.md).
+In the top of the module we import [String](./../move-basics/string.md) type from the [Standard Library](./../move-basics/standard-library.md) (std). The rest of the types used in this module are _implicitly imported_ from the [Sui Framework](./../programmability/sui-framework.md).
 
 ```move
 {{ include ../../postcard/sources/postcard.move:imports}}

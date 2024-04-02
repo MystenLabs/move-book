@@ -18,7 +18,7 @@ In this book we go into detail about most of the modules in the Standard Library
 | std::option        | Implements an `Option<T>`                                                  | [Option](./option.md)                                                      |
 | std::vector        | Native operations on the vector type                                       | [Vector](./vector.md)                                                      |
 | std::hash          | Hashing functions: `sha2_256` and `sha3_256`                               | [Cryptography and Hashing](../programmability/cryptography-and-hashing.md) |
-| std::bcs           | Contains the `bcs::to_bytes()` function                                    | [BCS](../basic-syntax/bcs.md)                                              |
+| std::bcs           | Contains the `bcs::to_bytes()` function                                    | [BCS](../move-basics/bcs.md)                                              |
 | std::address       | Contains a single `address::length` function                               | [Address](./address.md)                                                    |
 | std::type_name     | Allows runtime _type reflection_                                           | [Type Reflection](./type-reflection.md)                                    |
 | std::debug         | Contains debugging functions, which are available in only in **test** mode | [Debugging](./debugging.md)                                                |

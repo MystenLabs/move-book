@@ -1,10 +1,10 @@
 # Collections
 
-Collection types are a fundamental part of any programming language. They are used to store a collection of data, such as a list of items. The `vector` type has already been covered in the [vector section](./../basic-syntax/vector.md), and in this chapter we will cover the vector-based collection types offered by the [Sui Framework](./sui-framework.md).
+Collection types are a fundamental part of any programming language. They are used to store a collection of data, such as a list of items. The `vector` type has already been covered in the [vector section](./../move-basics/vector.md), and in this chapter we will cover the vector-based collection types offered by the [Sui Framework](./sui-framework.md).
 
 ## Vector
 
-While we have previously covered the `vector` type in the [vector section](./../basic-syntax/vector.md), it is worth going over it again in a new context. This time we will cover the usage of the `vector` type in objects and how it can be used in an application.
+While we have previously covered the `vector` type in the [vector section](./../move-basics/vector.md), it is worth going over it again in a new context. This time we will cover the usage of the `vector` type in objects and how it can be used in an application.
 
 ```move
 {{#include ../../../packages/samples/sources/programmability/collections.move:vector}}

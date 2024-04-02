@@ -15,7 +15,7 @@ In the [Primitive Types](./primitive-types.md) section, we introduced the basic 
 - `x"0A"` HEX literal for byte values
 
 ```move
-{{#include ../../../packages/samples/sources/basic-syntax/expression.move:literals}}
+{{#include ../../../packages/samples/sources/move-basics/expression.move:literals}}
 ```
 
 ## Operators
@@ -23,7 +23,7 @@ In the [Primitive Types](./primitive-types.md) section, we introduced the basic 
 Ariphmetic, logical, and bitwise operators are used to perform operations on values. The result of an operation is a value, so operators are also expressions.
 
 ```move
-{{#include ../../../packages/samples/sources/basic-syntax/expression.move:operators}}
+{{#include ../../../packages/samples/sources/move-basics/expression.move:operators}}
 ```
 
 ## Blocks
@@ -31,7 +31,7 @@ Ariphmetic, logical, and bitwise operators are used to perform operations on val
 A block is a sequence of statements and expressions, and it returns the value of the last expression in the block. A block is written as a pair of curly braces `{}`. A block is an expression, so it can be used anywhere an expression is expected.
 
 ```move
-{{#include ../../../packages/samples/sources/basic-syntax/expression.move:block}}
+{{#include ../../../packages/samples/sources/move-basics/expression.move:block}}
 ```
 
 ## Function Calls
@@ -39,7 +39,7 @@ A block is a sequence of statements and expressions, and it returns the value of
 We go into detail about functions in the [Functions](./functions.md) section. However, we already used function calls in the previous sections, so it's worth mentioning them here. A function call is an expression that calls a function and returns the value of the last expression in the function body.
 
 ```move
-{{#include ../../../packages/samples/sources/basic-syntax/expression.move:fun_call}}
+{{#include ../../../packages/samples/sources/move-basics/expression.move:fun_call}}
 ```
 
 ## Control Flow Expressions
@@ -47,5 +47,5 @@ We go into detail about functions in the [Functions](./functions.md) section. Ho
 Control flow expressions are used to control the flow of the program. They are also expressions, so they return a value. We cover control flow expressions in the [Control Flow](./control-flow.md) section. Here's a very brief overview:
 
 ```move
-{{#include ../../../packages/samples/sources/basic-syntax/expression.move:control_flow}}
+{{#include ../../../packages/samples/sources/move-basics/expression.move:control_flow}}
 ```
