@@ -71,3 +71,22 @@ module book::collections {
     }
 }
 // ANCHOR_END: vec_map
+
+#[allow(unused_field, unused_variable)]
+module book::collections_compare_vec_set {
+use sui::vec_set;
+#[test, expected_failure]
+fun test_compare() {
+// ANCHOR: vec_set_comparison
+let mut set1 = vec_set::empty();
+set1.insert(1);
+set1.insert(2);
+
+let mut set2 = vec_set::empty();
+set2.insert(2);
+set2.insert(1);
+
+assert!(set1 == set2, 0);
+// ANCHOR_END: vec_set_comparison
+}
+}

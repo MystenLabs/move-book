@@ -34,6 +34,19 @@ Keys in a `VecMap` are unique, and each key can only be associated with a single
 
 Standard collection types are a great way to store typed data with guaranteed safety and consistency. However, they are limited by the type of data they can store - the type system won't allow you to store a wrong type in a collection; and they're limited in size - by the object size limit. They will work for relatively small-sized sets and lists, but for larger collections you may need to use a different approach.
 
+Another limitations on collection types is inability to compare them. Because the order of insertion is not guaranteed, an attempt to compare a `VecSet` to another `VecSet` may not yield the expected results.
+
+> This behavior is caught by the linter and will emit a warning:
+> *Comparing collections of type 'sui::vec_set::VecSet' may yield unexpected result*
+
+```move
+{{#include ../../../packages/samples/sources/programmability/collections.move:vec_set_comparison}}
+```
+
+In the example above, the comparison will fail because the order of insertion is not guaranteed, and the two `VecSet` instances may have different orders of elements. And the comparison will fail even if the two `VecSet` instances contain the same elements.
+
+
+
 ## Summary
 
 - Vector is a native type that allows storing a list of items.
