@@ -1,6 +1,6 @@
 # Storage Functions
 
-The module that defines main storage operations is `sui::transfer`. It is implicitly imported in all packages that depend on the [Sui Framework](./../programmability/sui-framework.md), so, like other implicitly imported modules (e.g. `std::option` or `std::vector`) does not require adding a use statement.
+The module that defines main storage operations is `sui::transfer`. It is implicitly imported in all packages that depend on the [Sui Framework](./../programmability/sui-framework.md), so, like other implicitly imported modules (e.g. `std::option` or `std::vector`), it does not require adding a use statement.
 
 ## Overview
 
