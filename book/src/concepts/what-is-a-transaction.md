@@ -59,7 +59,7 @@ Transaction effects are the changes that a transaction makes to the blockchain s
 
 The result of the executed transaction consists of different parts:
 
-- Tx Digest - the hash of the transaction which is used to identify the transaction;
+- Transaction Digest - the hash of the transaction which is used to identify the transaction;
 - Transaction Data - the inputs, commands and gas object used in the transaction;
 - Transaction Effects - the status and the "effects" of the transaction, more specifically: the status of the transaction, updates to objects and their new versions, the gas object used, the gas cost of the transaction, and the events emitted by the transaction;
 - Events - the custom [events](./../programmability/events.md) emitted by the transaction;
