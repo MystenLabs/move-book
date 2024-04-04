@@ -96,7 +96,7 @@ public fun mint_and_transfer(
 }
 ```
 
-The `mint_and_transfer` function is a public function that "could" be called by anyone, but it requires an `AdminCap` object to be passed as the first argument. Without it, the function will not be callable. This is a simple way to restrict access to privileged functions called _[Capability](./../programmability/capability.md)_. Because the `AdminCap` object is _account owned_, only `0xa11ce` will be able to call the `mint_and_transfer` function.
+The `mint_and_transfer` function is a public function that "could" be called by anyone, but it requires an `AdminCap` object to be passed as the first argument by reference. Without it, the function will not be callable. This is a simple way to restrict access to privileged functions called _[Capability](./../programmability/capability.md)_. Because the `AdminCap` object is _account owned_, only `0xa11ce` will be able to call the `mint_and_transfer` function.
 
 The `Gift`s sent to recipients will also be _account owned_, each gift being unique and owned exclusively by the recipient.
 
