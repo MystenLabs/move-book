@@ -72,7 +72,7 @@ module book::collections {
 }
 // ANCHOR_END: vec_map
 
-#[allow(unused_field, unused_variable)]
+#[allow(unused_field, unused_variable, lint(collection_equality))]
 module book::collections_compare_vec_set {
 use sui::vec_set;
 #[test, expected_failure]

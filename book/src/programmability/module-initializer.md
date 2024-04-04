@@ -9,7 +9,7 @@ A common use case in many applications is to run certain code just once when the
 {{#include ../../../packages/samples/sources/programmability/module-initializer.move:main}}
 ```
 
-In the same package, another module can have its own init function, encapsulating distinct logic.
+In the same package, another module can have its own `init` function, encapsulating distinct logic.
 
 ```move
 {{#include ../../../packages/samples/sources/programmability/module-initializer.move:other}}
