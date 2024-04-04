@@ -1,6 +1,6 @@
 # Fast Path
 
-Due to the object model and the data organization model of Sui, some operations can be performed in a more efficient and parallelized way. This is called the **fast path**. Transaction that touches shared state requires consensus because it can be accessed by multiple parties at the same time. However, if the transaction only touches the private state (owned objects), there is no need for consensus. This is the fast path.
+Due to the object model and the data organization model of Sui, some operations can be performed in a more efficient and parallelized way. This is called the **fast path**. A transaction that touches shared state inherently requires consensus because it can be accessed by multiple parties at the same time. However, if the transaction only touches the private state (owned objects), there is no need for consensus. This is the fast path.
 
 We have a favorite example for this: a coffee machine and a coffee cup. The coffee machine placed in the office is a shared resource - everyone can use it, but there can be only one user at a time. The coffee cup, on the other hand, is a private resource - it belongs to a specific person, and only that person can use it. To make coffee, one needs to use the coffee machine and wait if there's someone else using it. However, once the coffee is made and poured into the cup, the person can take the cup and drink the coffee without waiting for anyone else.
 
