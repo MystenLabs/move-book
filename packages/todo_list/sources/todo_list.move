@@ -3,8 +3,6 @@
 module todo_list::todo_list {
     use std::string::String;
 
-    use fun sui::object::uid_to_inner as UID.to_inner;
-
     /// Error code for when the caller is not the owner of the list.
     const ENotOwner: u64 = 0;
 
