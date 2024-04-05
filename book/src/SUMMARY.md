@@ -175,8 +175,8 @@ comparison to docs.sui.io
   - [A - Glossary](./appendix/glossary.md)
   - [B - Publications](./appendix/publications.md)
   - [C - Contributing](./appendix/contributing.md)
+  - [D - Acknowledgements](./appendix/acknowledgements.md)
   <!-- - [C - References]() (./appendix/references.md) -->
-  <!-- - [E - Acknowledgements]() (./appendix/acknowledgements.md) -->
 
 <!--
 
