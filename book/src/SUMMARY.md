@@ -121,7 +121,7 @@ comparison to docs.sui.io
   - [Ability: Store](./storage/store-ability.md)
   - [UID and ID](./storage/uid-and-id.md)
   - [Restricted and Public Transfer](./storage/transfer-restrictions.md)
-  - [Transfer to Object?](./storage/transfer-to-object.md)
+  - [Transfer to Object?]() <!-- (./storage/transfer-to-object.md) -->
 - [Advanced Programmability](./programmability/README.md)
   - [Transaction Context](./programmability/transaction-context.md)
   - [Module Initializer](./programmability/module-initializer.md)
@@ -139,8 +139,8 @@ comparison to docs.sui.io
   - [Events](./programmability/events.md)
   - [Balance & Coin]() <!-- ./programmability/balance-and-coin.md) -->
   - [Sui Framework](./programmability/sui-framework.md)
+  - [Pattern: Hot Potato](./programmability/hot-potato.md)
   - [Pattern: Request]() <!-- - [Witness and Abstract Implementation](./programmability/witness-and-abstract-implementation.md) -->
-  - [Pattern: Hot Potato]()
   - [Pattern: Object Capability]()
   - [Package Upgrades]()<!-- (./programmability/package-upgrades.md) -->
   - [Transaction Blocks]()<!-- (./programmability/transaction-blocks.md) -->
@@ -168,6 +168,7 @@ comparison to docs.sui.io
   - [Building against Limits](./guides/building-against-limits.md)
   - [Better error handling](./guides/better-error-handling.md)
   - [Open-sourcing Libraries]()
+  - [Creating an NFT Collection]()
   - [Tests with Objects]()<!-- (./guides/testing.md) -->
   <!-- - [Debugging]()(./guides/debugging.md) -->
   - [Coding Conventions](./guides/coding-conventions.md)
@@ -180,30 +181,8 @@ comparison to docs.sui.io
 
 <!--
 
-- [It starts with an Object]()
-    - [What is an Object]()
-    - [True Ownership]()
-    - [Transfer Restrictions]()
-    - [Shared State]()
-        - [Freezing an Object]()
-        - [Mutable Shared State]()
-    - [Transfer to Object?]()
 - [Patterns]()
     - [Getters and Setters]()
     - [Abstract Class]()
     - [Hot Potato]()
     - [Request + Policy]()
-- [Sui Framework]()
-    - [Test Scenario]()
-    - [Cryptography]()
-    - [Hashes](hashes.md)
-    - [Randomness]()
-    - [ID and UID]()
-    - [Public Transfer Functions]()
-    - [Share Object]()
-    - [Key Ability and UID]()
-    - [Balance]()
-    - [Coin]()
-    - [Token]()
-    - [Capability]()
-    - [Error Constants]()

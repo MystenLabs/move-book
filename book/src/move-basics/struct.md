@@ -16,7 +16,7 @@ In the example above, we define a `Record` struct with five fields. The `title` 
 
 Structs are private by default, meaning they cannot be imported and used outside of the module they are defined in. Their fields are also private and can't be accessed from outside the module. See [visibility](./visibility.md) for more information on different visibility modifiers.
 
-> A struct by default is _internal_ to the module it is defined in.
+> Fields of a struct are private and can only be accessed by the module defining the struct. Reading and writing the fields of a struct in other modules is only possible if the module defining the struct provides public functions to access the fields.
 
 ## Create and use an instance
 

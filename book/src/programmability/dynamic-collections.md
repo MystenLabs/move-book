@@ -97,6 +97,14 @@ Using the Table:
 
 Defined in the `sui::object_table` module. Identical to [Table](#table), but uses [dynamic object fields](./dynamic-object-fields.md) internally. Can only store objects as values.
 
+## Summary
+
+- [Bag](#bag) - a simple collection that can store any type of data
+- [ObjectBag](#objectbag) - a collection that can store only objects
+- [Table](#table) - a typed dynamic collection that has a fixed type for keys and values
+- [ObjectTable](#objecttable) - same as Table, but can only store objects
+<!-- [Linked Table](#linkedtable) -->
+
 <!-- ## Choosing a Collection Type
 
 Depending on the needs of your project, you may choose to -->
