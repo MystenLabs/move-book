@@ -51,7 +51,7 @@ comparison to docs.sui.io
 
 <!-- - [The Move Book](README.md) -->
 - [The Move Book](README.md)
-- [Foreword]() <!-- foreword.md) -->
+- [Foreword](foreword.md)
 - [Introduction](introduction.md)
 <!-- - [History](history.md) TODO: merged with foreword -->
 - [Before we begin](before-we-begin/README.md)
