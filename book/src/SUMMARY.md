@@ -60,7 +60,7 @@ comparison to docs.sui.io
   - [Move 2024](before-we-begin/move-2024.md)
 <!-- - [Your First Move](your-first-move/README.md) -->
 - [Hello, World!](your-first-move/hello-world.md)
-- [Your First Sui App](your-first-move/hello-sui.md)
+- [Hello, Sui!](your-first-move/hello-sui.md)
 <!--
     - [Prepare Package]()
     - [Create Account]()
