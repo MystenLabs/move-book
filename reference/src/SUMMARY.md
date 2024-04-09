@@ -1,6 +1,6 @@
 # The Move Programming Language
 
-[Introduction](introduction.md)
+[The Move Reference](introduction.md)
 
 # Getting Started
 

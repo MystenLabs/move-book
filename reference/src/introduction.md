@@ -1,4 +1,4 @@
-# Introduction
+# The Move Reference
 
 Welcome to Move, a next generation language for secure asset programming. Its primary use case is in
 blockchain environments, where Move programs are used to construct state changes. Move allows
