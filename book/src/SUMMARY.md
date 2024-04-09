@@ -53,8 +53,8 @@ comparison to docs.sui.io
 
 - [The Move Book](README.md)
 - [Foreword](foreword.md)
-- [Introduction](introduction.md)
-<!-- - [History](history.md) TODO: merged with foreword -->
+<!-- - [Introduction](introduction.md) -->
+<!-- - [Foreword]() foreword.md) -->
 - [Before we begin](before-we-begin/README.md)
   - [Install Sui](before-we-begin/install-sui.md)
   - [Set up your IDE](before-we-begin/ide-support.md)
