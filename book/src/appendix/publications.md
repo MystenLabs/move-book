@@ -1,4 +1,4 @@
-# Publications
+# Appendix C: Publications
 
 This section lists publications related to Move and Sui.
 

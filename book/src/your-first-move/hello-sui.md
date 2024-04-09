@@ -1,10 +1,14 @@
 # Hello, Sui!
 
-In the [previous section](./hello-world.md) we created a new package and demonstrated the basic flow of creating, building and testing a Move package. In this section, we will write a simple application that uses the storage model, and can be interacted with. To do this, we will create a simple todo list application.
+In the [previous section](./hello-world.md) we created a new package and demonstrated the basic flow
+of creating, building and testing a Move package. In this section, we will write a simple
+application that uses the storage model, and can be interacted with. To do this, we will create a
+simple todo list application.
 
 ## Create a New Package
 
-Following the same flow as in [Hello, World!](./hello-world.md), we will create a new package called `todo_list`.
+Following the same flow as in [Hello, World!](./hello-world.md), we will create a new package called
+`todo_list`.
 
 ```bash
 $ sui move new todo_list
@@ -12,9 +16,11 @@ $ sui move new todo_list
 
 ## Add the code
 
-To speed things up and focus on the application logic, we will provide the code for the todo list application. Replace the contents of the _sources/todo_list.move_ file with the following code:
+To speed things up and focus on the application logic, we will provide the code for the todo list
+application. Replace the contents of the _sources/todo_list.move_ file with the following code:
 
-> Note: while the contents may seem overwhelming at first, we will break it down in the following sections. Try to focus on what's at hand right now.
+> Note: while the contents may seem overwhelming at first, we will break it down in the following
+> sections. Try to focus on what's at hand right now.
 
 ```move
 {{#include ../../../packages/todo_list/sources/todo_list.move:all}}
@@ -22,7 +28,9 @@ To speed things up and focus on the application logic, we will provide the code 
 
 ## Build the package
 
-To make sure that we did everything correctly, let's build the package by running the `sui move build` command. If everything is correct, you should see the output similar to the following:
+To make sure that we did everything correctly, let's build the package by running the
+`sui move build` command. If everything is correct, you should see the output similar to the
+following:
 
 ```bash
 $ sui move build
@@ -32,20 +40,26 @@ INCLUDING DEPENDENCY MoveStdlib
 BUILDING todo_list
 ```
 
-If there are no errors following this output, you have successfully built the package. If there are errors, make sure that:
+If there are no errors following this output, you have successfully built the package. If there are
+errors, make sure that:
 
 - The code is copied correctly
 - The file name and the package name is correct
 
-There are not many other reasons for the code to fail at this stage. But if you are still having issues, try looking up the structure of the package in [this location](https://github.com/MystenLabs/move-book/tree/main/packages/todo_list).
+There are not many other reasons for the code to fail at this stage. But if you are still having
+issues, try looking up the structure of the package in
+[this location](https://github.com/MystenLabs/move-book/tree/main/packages/todo_list).
 
 ## Set up an account
 
-To publish and interact with the package, we need to set up an account. For the sake of simplicity and demonstration purposes, we will use _sui devnet_ environment.
+To publish and interact with the package, we need to set up an account. For the sake of simplicity
+and demonstration purposes, we will use _sui devnet_ environment.
 
 > If you already have an account set up, you can skip this step.
 
-If you are doing it for the first time, you will need to create a new account. To do this, run the `sui client` command, then the CLI will prompt you multiple questions, the answers are marked below with `>`:
+If you are doing it for the first time, you will need to create a new account. To do this, run the
+`sui client` command, then the CLI will prompt you multiple questions, the answers are marked below
+with `>`:
 
 ```bash
 $ sui client
@@ -57,7 +71,8 @@ Select key scheme to generate keypair (0 for ed25519, 1 for secp256k1, 2: for se
 > 0
 ```
 
-After you have answered the questions, the CLI will generate a new keypair and save it to the configuration file. You can now use this account to interact with the network.
+After you have answered the questions, the CLI will generate a new keypair and save it to the
+configuration file. You can now use this account to interact with the network.
 
 To check that we have the account set up correctly, run the `sui client active-address` command:
 
@@ -70,14 +85,16 @@ The command will output the address of your account, it starts with `0x` followe
 
 ## Requesting Coins
 
-In _devnet_ and _testnet_ environments, CLI provides a way to request coins to your account, so you can interact with the network. To request coins, run the `sui client faucet` command:
+In _devnet_ and _testnet_ environments, CLI provides a way to request coins to your account, so you
+can interact with the network. To request coins, run the `sui client faucet` command:
 
 ```bash
 $ sui client faucet
 Request successful. It can take up to 1 minute to get the coin. Run sui client gas to check your gas coins.
 ```
 
-After waiting a little bit, you can check that the Coin object was sent to your account by running the `sui client balance` command:
+After waiting a little bit, you can check that the Coin object was sent to your account by running
+the `sui client balance` command:
 
 ```bash
 $ sui client balance
@@ -92,7 +109,9 @@ $ sui client balance
 ╰────────────────────────────────────────╯
 ```
 
-Alternatively, you can query _objects_ owned by your account, by running the `sui client objects` command. The actual output will be different, because the object ID is unique, and so is digest, but the structure will be similar:
+Alternatively, you can query _objects_ owned by your account, by running the `sui client objects`
+command. The actual output will be different, because the object ID is unique, and so is digest, but
+the structure will be similar:
 
 ```bash
 $ sui client objects
@@ -106,15 +125,20 @@ $ sui client objects
 ╰───────────────────────────────────────────────────────────────────────────────────────╯
 ```
 
-Now that we have the account set up and the coins in the account, we can interact with the network. We will start by publishing the package to the network.
+Now that we have the account set up and the coins in the account, we can interact with the network.
+We will start by publishing the package to the network.
 
 ## Publish
 
-To publish the package to the network, we will use the `sui client publish` command. The command will automatically build the package and use its bytecode to publish in a single transaction.
+To publish the package to the network, we will use the `sui client publish` command. The command
+will automatically build the package and use its bytecode to publish in a single transaction.
 
-> We are using the `--gas-budget` argument during publishing. It specifies how much gas we are willing to spend on the transaction. We won't touch on this topic in this section, but it's important to know that every transaction in Sui costs gas, and the gas is paid in SUI coins.
+> We are using the `--gas-budget` argument during publishing. It specifies how much gas we are
+> willing to spend on the transaction. We won't touch on this topic in this section, but it's
+> important to know that every transaction in Sui costs gas, and the gas is paid in SUI coins.
 
-The `gas-budget` is specified in _MISTs_. 1 SUI equals 10^9 MISTs. For the sake of demonstration, we will use 100,000,000 MISTs, which is 0.1 SUI.
+The `gas-budget` is specified in _MISTs_. 1 SUI equals 10^9 MISTs. For the sake of demonstration, we
+will use 100,000,000 MISTs, which is 0.1 SUI.
 
 ```bash
 # run this from the `todo_list` folder
@@ -136,11 +160,17 @@ Successfully verified dependencies on-chain against source.
 Transaction Digest: GpcDV6JjjGQMRwHpEz582qsd5MpCYgSwrDAq1JXcpFjW
 ```
 
-As you can see, when we run `publish` command, the CLI first builds the package, then verifies the dependencies on-chain, and finally publishes the package. The output of the command is the transaction digest, which is a unique identifier of the transaction and can be used to query the transaction status.
+As you can see, when we run `publish` command, the CLI first builds the package, then verifies the
+dependencies on-chain, and finally publishes the package. The output of the command is the
+transaction digest, which is a unique identifier of the transaction and can be used to query the
+transaction status.
 
 ### Transaction Data
 
-Next section is `TransactionData` which contains the information about the transaction we just sent. It features fields like `sender` which is your address, the `gas_budget` that we set, as well as the Coin we used for payment. It also prints the Commands that were run by the CLI, in our case it's `Publish` and `TransferObject` - the latter transfers a special object `UpgradeCap` to the sender.
+Next section is `TransactionData` which contains the information about the transaction we just sent.
+It features fields like `sender` which is your address, the `gas_budget` that we set, as well as the
+Coin we used for payment. It also prints the Commands that were run by the CLI, in our case it's
+`Publish` and `TransferObject` - the latter transfers a special object `UpgradeCap` to the sender.
 
 ```plaintext
 ╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
@@ -189,7 +219,8 @@ Next section is `TransactionData` which contains the information about the trans
 
 ### Transaction Effects
 
-Transaction Effects contains the status of the transaction, the changes that the transaction made to the state of the network and the objects involved in the transaction.
+Transaction Effects contains the status of the transaction, the changes that the transaction made to
+the state of the network and the objects involved in the transaction.
 
 ```plaintext
 ╭───────────────────────────────────────────────────────────────────────────────────────────────────╮
@@ -240,7 +271,8 @@ Transaction Effects contains the status of the transaction, the changes that the
 
 ### Events
 
-If there were any _events_ emitted, you would see them in this section. Our package does not use events, so the section is empty.
+If there were any _events_ emitted, you would see them in this section. Our package does not use
+events, so the section is empty.
 
 ```plaintext
 ╭─────────────────────────────╮
@@ -250,7 +282,9 @@ If there were any _events_ emitted, you would see them in this section. Our pack
 
 ### Object Changes
 
-These are the changes to _objects_ that transaction has made. In our case, we have _created_ a new `UpgradeCap` object which is a special object that allows the sender to upgrade the package in the future, _mutated_ the Gas object, and _published_ a new package. Packages are also objects on Sui.
+These are the changes to _objects_ that transaction has made. In our case, we have _created_ a new
+`UpgradeCap` object which is a special object that allows the sender to upgrade the package in the
+future, _mutated_ the Gas object, and _published_ a new package. Packages are also objects on Sui.
 
 ```plaintext
 ╭──────────────────────────────────────────────────────────────────────────────────────────────────╮
@@ -286,7 +320,8 @@ These are the changes to _objects_ that transaction has made. In our case, we ha
 
 ### Balance Changes
 
-This last section contains changes to SUI Coins, in our case, we have _spent_ around 0.015 SUI, which in MIST is 10,500,000. You can see it under the _amount_ field in the output.
+This last section contains changes to SUI Coins, in our case, we have _spent_ around 0.015 SUI,
+which in MIST is 10,500,000. You can see it under the _amount_ field in the output.
 
 ```plaintext
 ╭───────────────────────────────────────────────────────────────────────────────────────────────────╮
@@ -302,7 +337,8 @@ This last section contains changes to SUI Coins, in our case, we have _spent_ ar
 
 ### Alternative Output
 
-It is possible to specify the `--json` flag during publishing to get the output in JSON format. This is useful if you want to parse the output programmatically or store it for later use.
+It is possible to specify the `--json` flag during publishing to get the output in JSON format. This
+is useful if you want to parse the output programmatically or store it for later use.
 
 ```bash
 $ sui client publish --gas-budget 100000000 --json
@@ -310,7 +346,10 @@ $ sui client publish --gas-budget 100000000 --json
 
 ### Using the Results
 
-After the package is published on chain, we can interact with it. To do this, we need to find the address (object ID) of the package. It's under the `Published Objects` section of the `Object Changes` output. The address is unique for each package, so you will need to copy it from the output.
+After the package is published on chain, we can interact with it. To do this, we need to find the
+address (object ID) of the package. It's under the `Published Objects` section of the
+`Object Changes` output. The address is unique for each package, so you will need to copy it from
+the output.
 
 In this example, the address is:
 
@@ -318,10 +357,10 @@ In this example, the address is:
 0x468daa33dfcb3e17162bbc8928f6ec73744bb08d838d1b6eb94eac99269b29fe
 ```
 
-Now that we have the address, we can interact with the package. In the next section, we will show how to interact with the package by sending transactions.
+Now that we have the address, we can interact with the package. In the next section, we will show
+how to interact with the package by sending transactions.
 
 ## Sending Transactions
 
-To demonstrate the interaction with the `todo_list` package, we will send a transaction to create a new list and add an item to it. Transactions are sent via the `sui client call` command.
-
-
+To demonstrate the interaction with the `todo_list` package, we will send a transaction to create a
+new list and add an item to it. Transactions are sent via the `sui client call` command.

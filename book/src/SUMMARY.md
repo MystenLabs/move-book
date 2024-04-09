@@ -61,16 +61,16 @@ comparison to docs.sui.io
 <!-- - [Your First Move](your-first-move/README.md) -->
 - [Hello, World!](your-first-move/hello-world.md)
 - [Your First Sui App](your-first-move/hello-sui.md)
-    - [Prepare Package]() <!-- ./your-first-move/hello-sui.html#add-the-code) -->
-    - [Create Account]() <!-- ./your-first-move/hello-sui.html#set-up-an-account)  -->
-    - [Publishing]() <!-- ./your-first-move/hello-sui.html#publish)  -->
+<!--
+    - [Prepare Package]()
+    - [Create Account]()
+    - [Publishing]()
     - [Sending Transactions]()
     - [Code Walkthrough]()
     - [Ideas]()
-  - [Debugging]() <!-- your-first-move/debugging.md) -->
-  - [Generating Docs]() <!-- your-first-move/generating-docs.md) -->
-    <!-- TODO:  -->
-    <!-- - [Send a Transaction]() -->
+  - [Debugging]()
+  - [Generating Docs]()
+-->
 - [Concepts](./concepts/README.md)
   - [Package](./concepts/packages.md)
   - [Manifest](./concepts/manifest.md)
@@ -174,10 +174,10 @@ comparison to docs.sui.io
   - [Coding Conventions](./guides/coding-conventions.md)
 # Appendix
   - [A - Glossary](./appendix/glossary.md)
-  - [B - Publications](./appendix/publications.md)
-  - [C - Contributing](./appendix/contributing.md)
-  - [D - Acknowledgements](./appendix/acknowledgements.md)
-  <!-- - [C - References]() (./appendix/references.md) -->
+  - [B - Reserved Addresses](./appendix/reserved-addresses.md)
+  - [C - Publications](./appendix/publications.md)
+  - [D - Contributing](./appendix/contributing.md)
+  - [E - Acknowledgements](./appendix/acknowledgements.md)
 
 <!--
 
