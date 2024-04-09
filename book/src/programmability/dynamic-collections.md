@@ -105,6 +105,12 @@ Defined in the `sui::object_table` module. Identical to [Table](#table), but use
 - [ObjectTable](#objecttable) - same as Table, but can only store objects
 <!-- [Linked Table](#linkedtable) -->
 
+## LinkedTable
+
+This section is coming soon!
+
+<!-- TODO! -->
+
 <!-- ## Choosing a Collection Type
 
 Depending on the needs of your project, you may choose to -->
