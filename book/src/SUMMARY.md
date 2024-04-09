@@ -50,6 +50,7 @@ comparison to docs.sui.io
 -->
 
 <!-- - [The Move Book](README.md) -->
+
 - [The Move Book](README.md)
 - [Foreword]() <!-- foreword.md) -->
 - [Introduction](introduction.md)
@@ -58,7 +59,7 @@ comparison to docs.sui.io
   - [Install Sui](before-we-begin/install-sui.md)
   - [Set up your IDE](before-we-begin/ide-support.md)
   - [Move 2024](before-we-begin/move-2024.md)
-<!-- - [Your First Move](your-first-move/README.md) -->
+  <!-- - [Your First Move](your-first-move/README.md) -->
 - [Hello, World!](your-first-move/hello-world.md)
 - [Hello, Sui!](your-first-move/hello-sui.md)
 <!--
@@ -77,11 +78,10 @@ comparison to docs.sui.io
   - [Address](./concepts/address.md)
   - [Account](./concepts/what-is-an-account.md)
   - [Transaction](./concepts/what-is-a-transaction.md)
-<!-- Removed:
+  <!-- Removed:
   - Interacting with a Package
   - Fast Path
-  - Module
--->
+  - Module -->
 - [Move Basics](./move-basics/README.md)
   - [Module](./move-basics/module.md)
   - [Comments](./move-basics/comments.md)
@@ -140,7 +140,8 @@ comparison to docs.sui.io
   - [Balance & Coin]() <!-- ./programmability/balance-and-coin.md) -->
   - [Sui Framework](./programmability/sui-framework.md)
   - [Pattern: Hot Potato]() <!-- ./programmability/hot-potato.md) -->
-  - [Pattern: Request]() <!-- - [Witness and Abstract Implementation](./programmability/witness-and-abstract-implementation.md) -->
+  - [Pattern: Request]()
+    <!-- - [Witness and Abstract Implementation](./programmability/witness-and-abstract-implementation.md) -->
   - [Pattern: Object Capability]()
   - [Package Upgrades]()<!-- (./programmability/package-upgrades.md) -->
   - [Transaction Blocks]()<!-- (./programmability/transaction-blocks.md) -->
@@ -155,29 +156,33 @@ comparison to docs.sui.io
   - [Request]()
   - [Object Capability]()
   - [Witness Registry]() -->
-<!-- - [Standards]() -->
-  <!-- - [Balance]() -->
-  <!-- - [Coin]() -->
-  <!-- - [Closed Loop Token]() -->
-  <!-- - [Transfer Policy]() -->
-  <!-- - [Kiosk]() -->
-<!-- - [Guides](./guides/README.md) -->
+    <!-- - [Standards]() -->
+      <!-- - [Balance]() -->
+      <!-- - [Coin]() -->
+      <!-- - [Closed Loop Token]() -->
+      <!-- - [Transfer Policy]() -->
+      <!-- - [Kiosk]() -->
+    <!-- - [Guides](./guides/README.md) -->
+
 # Guides
-  - [2024 Migration Guide](./guides/2024-migration-guide.md)
-  - [Upgradability Practices](./guides/upgradeability-practices.md)
-  - [Building against Limits](./guides/building-against-limits.md)
-  - [Better error handling](./guides/better-error-handling.md)
-  - [Open-sourcing Libraries]()
-  - [Creating an NFT Collection]()
-  - [Tests with Objects]()<!-- (./guides/testing.md) -->
-  <!-- - [Debugging]()(./guides/debugging.md) -->
-  - [Coding Conventions](./guides/coding-conventions.md)
+
+- [2024 Migration Guide](./guides/2024-migration-guide.md)
+- [Upgradability Practices](./guides/upgradeability-practices.md)
+- [Building against Limits](./guides/building-against-limits.md)
+- [Better error handling](./guides/better-error-handling.md)
+- [Open-sourcing Libraries]()
+- [Creating an NFT Collection]()
+- [Tests with Objects]()<!-- (./guides/testing.md) -->
+<!-- - [Debugging]()(./guides/debugging.md) -->
+- [Coding Conventions](./guides/coding-conventions.md)
+
 # Appendix
-  - [A - Glossary](./appendix/glossary.md)
-  - [B - Reserved Addresses](./appendix/reserved-addresses.md)
-  - [C - Publications](./appendix/publications.md)
-  - [D - Contributing](./appendix/contributing.md)
-  - [E - Acknowledgements](./appendix/acknowledgements.md)
+
+- [A - Glossary](./appendix/glossary.md)
+- [B - Reserved Addresses](./appendix/reserved-addresses.md)
+- [C - Publications](./appendix/publications.md)
+- [D - Contributing](./appendix/contributing.md)
+- [E - Acknowledgements](./appendix/acknowledgements.md)
 
 <!--
 
