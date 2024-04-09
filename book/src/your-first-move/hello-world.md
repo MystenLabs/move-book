@@ -21,14 +21,13 @@ sui move new hello_world
 
 The `sui move` command gives access to the Move CLI - a built-in compiler, test runner and a utility for all things Move. The `new` command followed by the name of the package will create a new package in a new folder. In our case, the folder name is "hello_world".
 
-```bash
-$ cd hello_world
-```
-
 We can view the contents of the folder to see that the package was created successfully.
 
 ```bash
 $ ls -l hello_world
+Move.toml
+sources
+tests
 ```
 
 ## Directory Structure
@@ -119,7 +118,7 @@ module hello_world::hello_world {
 
     /// Returns the "Hello World!" as a `String`.
     public fun hello_world(): String {
-        b"Hello World!".to_string()
+        b"Hello, World!".to_string()
     }
 }
 ```
@@ -137,9 +136,6 @@ $ sui move build --path hello_world
 <!-- The output would be: -->
 <!-- TODO: insert out -->
 
-
-## Running Tests
-
 During the compilation, Move Compiler automatically creates a build folder where it places all fetched and compiled dependencies as well as the bytecode for the modules of the current package.
 
 > If you're using a versioning system, such as Git, build folder should be ignored. For example, using a `.gitignore` file with `build` added to it.
@@ -149,9 +145,23 @@ $ tree build
 Running Tests
 ```
 
+## Running Tests
+
 Before we get to testing, we should add a test. Move Compiler supports tests written in Move and provides the execution environment. The tests can be placed in both the source files and in the tests/ folder. Tests are marked with the #[test] attribute and are automatically discovered by the compiler. We explain tests in depth in the Testing section.
 
-<!-- Replace the contents of the tests/hello_world_tests.move with the following content: -->
+Replace the contents of the tests/hello_world_tests.move with the following content:
+
+```move
+#[test_only]
+module hello_world::hello_world_tests {
+    use hello_world::hello_world;
+
+    #[test]
+    fun test_hello_world() {
+        assert!(hello_world::hello_world() == b"Hello, World!".to_string(), 0);
+    }
+}
+```
 
 Here we import the hello_world module, and call its hello_world function to test that the output is indeed the string "Hello World!". Now, that we have tests in place, let's compile the package in the test mode and run tests. Move CLI has the test command for this:
 
@@ -165,13 +175,9 @@ $ sui move test --path hello_world
 
 ## Next Steps
 
-In this section we explained the basics of the Move package: its structure, the manifest, the build and test flows. [On the next page](), we will write an application and see how the code is structured and what the language can do.
+In this section we explained the basics of the Move package: its structure, the manifest, the build and test flows. [On the next page](./../hello-sui), we will write an application and see how the code is structured and what the language can do.
 
 ## Further Reading
 
 - [Package Manifest](./../concepts/manifest.md) section
 - Package in [The Move Reference](/reference/packages.html)
-
-## Summary
-
-In this chapter, we have created a new package, explained its structure and contents, and compiled it. We have also added a test and ran it. In the next chapter, we will write a simple application and see how the code is structured and what the language can do.
