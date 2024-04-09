@@ -15,6 +15,8 @@ Transaction is a fundamental concept in the blockchain world. It is a way to int
 
 ## Transaction Structure
 
+> Every transaction explicitly specifies the objects it operates on!
+
 Transactions consist of:
 
 - a sender - the [account](./what-is-an-account.md) that _signs_ the transaction;

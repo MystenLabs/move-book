@@ -1,10 +1,15 @@
 # Dynamic Collections
 
-[Sui Framework](./sui-framework.md) offers a variety of collection types that build on the [dynamic fields](./dynamic-fields.md) and [dynamic object fields](./dynamic-object-fields.md) concepts. These collections are designed to be a safer and more understandable way to store and manage dynamic fields and objects.
+[Sui Framework](./sui-framework.md) offers a variety of collection types that build on the
+[dynamic fields](./dynamic-fields.md) and [dynamic object fields](./dynamic-object-fields.md)
+concepts. These collections are designed to be a safer and more understandable way to store and
+manage dynamic fields and objects.
 
-For each collection type we will specify the primitive they use, and the specific features they offer.
+For each collection type we will specify the primitive they use, and the specific features they
+offer.
 
-> Unlike dynamic (object) fields which operate on UID, collection types have their own type and allow calling [associated functions](./../move-basics/struct-methods.md).
+> Unlike dynamic (object) fields which operate on UID, collection types have their own type and
+> allow calling [associated functions](./../move-basics/struct-methods.md).
 
 ## Common Concepts
 
@@ -18,7 +23,8 @@ All of the collection types share the same set of methods, which are:
 - `length` - returns the number of fields in the collection
 - `is_empty` - checks if the `length` is 0
 
-All collection types support index syntax for `borrow` and `borrow_mut` methods. If you see square brackets in the examples, they are translated into `borrow` and `borrow_mut` calls.
+All collection types support index syntax for `borrow` and `borrow_mut` methods. If you see square
+brackets in the examples, they are translated into `borrow` and `borrow_mut` calls.
 
 ```move
 let hat: &Hat = &bag[b"key"];
@@ -29,11 +35,14 @@ let hat: &Hat = bag.borrow(b"key");
 let hat_mut: &mut Hat = bag.borrow_mut(b"key");
 ```
 
-In the examples we won't focus on these functions, but rather on the differences between the collection types.
+In the examples we won't focus on these functions, but rather on the differences between the
+collection types.
 
 ## Bag
 
-Bag, as the name suggests, acts as a "bag" of heterogeneous values. It is a simple, non-generic type that can store any data. Bag will never allow orphaned fields, as it tracks the number of fields and can't be destroyed if it's not empty.
+Bag, as the name suggests, acts as a "bag" of heterogeneous values. It is a simple, non-generic type
+that can store any data. Bag will never allow orphaned fields, as it tracks the number of fields and
+can't be destroyed if it's not empty.
 
 File: sui-framework/sources/bag.move
 
@@ -64,11 +73,13 @@ Using the Bag:
 
 ## ObjectBag
 
-Defined in the `sui::object_bag` module. Identical to [Bag](#bag), but uses [dynamic object fields](./dynamic-object-fields.md) internally. Can only store objects as values.
+Defined in the `sui::object_bag` module. Identical to [Bag](#bag), but uses
+[dynamic object fields](./dynamic-object-fields.md) internally. Can only store objects as values.
 
 ## Table
 
-Table is a typed dynamic collection that has a fixed type for keys and values. It is defined in the `sui::table` module.
+Table is a typed dynamic collection that has a fixed type for keys and values. It is defined in the
+`sui::table` module.
 
 File: sui-framework/sources/table.move
 
@@ -95,7 +106,8 @@ Using the Table:
 
 ## ObjectTable
 
-Defined in the `sui::object_table` module. Identical to [Table](#table), but uses [dynamic object fields](./dynamic-object-fields.md) internally. Can only store objects as values.
+Defined in the `sui::object_table` module. Identical to [Table](#table), but uses
+[dynamic object fields](./dynamic-object-fields.md) internally. Can only store objects as values.
 
 ## Summary
 
@@ -104,6 +116,12 @@ Defined in the `sui::object_table` module. Identical to [Table](#table), but use
 - [Table](#table) - a typed dynamic collection that has a fixed type for keys and values
 - [ObjectTable](#objecttable) - same as Table, but can only store objects
 <!-- [Linked Table](#linkedtable) -->
+
+## LinkedTable
+
+This section is coming soon!
+
+<!-- TODO! -->
 
 <!-- ## Choosing a Collection Type
 

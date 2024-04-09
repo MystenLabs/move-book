@@ -48,9 +48,11 @@ module book::upgradable {
 }
 ```
 
+<!--
 ## Using entry and friend functions
 
 TODO: Add a section about entry and friend functions
+-->
 
 ## Versioning objects
 
@@ -108,4 +110,6 @@ module book::versioned_config {
 
 ## Modular architecture
 
-TODO: add two patterns for modular architecture: object capability (SuiFrens) and witness registry (SuiNS)
+This section is coming soon!
+
+<!-- TODO: add two patterns for modular architecture: object capability (SuiFrens) and witness registry (SuiNS) -->
