@@ -22,9 +22,9 @@ jobs:
       - run: mdbook build book
       - run: mdbook build reference
       - run: mv reference/build book/build/reference
-      # - name: Deploy
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./book
-      #     cname: move-book.com
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./book/build
+          cname: move-book.com
