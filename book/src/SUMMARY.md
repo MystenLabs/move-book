@@ -54,7 +54,6 @@ comparison to docs.sui.io
 - [The Move Book](README.md)
 - [Foreword](foreword.md)
 <!-- - [Introduction](introduction.md) -->
-<!-- - [Foreword]() foreword.md) -->
 - [Before we begin](before-we-begin/README.md)
   - [Install Sui](before-we-begin/install-sui.md)
   - [Set up your IDE](before-we-begin/ide-support.md)
@@ -69,8 +68,8 @@ comparison to docs.sui.io
     - [Sending Transactions]()
     - [Code Walkthrough]()
     - [Ideas]()
-  - [Debugging]()
-  - [Generating Docs]()
+    - [Debugging]()
+    - [Generating Docs]()
 -->
 - [Concepts](./concepts/README.md)
   - [Package](./concepts/packages.md)
@@ -78,10 +77,6 @@ comparison to docs.sui.io
   - [Address](./concepts/address.md)
   - [Account](./concepts/what-is-an-account.md)
   - [Transaction](./concepts/what-is-a-transaction.md)
-  <!-- Removed:
-  - Interacting with a Package
-  - Fast Path
-  - Module -->
 - [Move Basics](./move-basics/README.md)
   - [Module](./move-basics/module.md)
   - [Comments](./move-basics/comments.md)
@@ -149,20 +144,6 @@ comparison to docs.sui.io
   - [Cryptography and Hashing]()<!-- (./programmability/cryptography-and-hashing.md) -->
   - [Randomness]()<!-- (./programmability/randomness.md) -->
   - [BCS]() <!-- (./programmability/bcs.md) -->
-  <!-- - [Patterns (?)]()
-  - [Getters and Setters]()
-  - [Abstract Class]()
-  - [Hot Potato]()
-  - [Request]()
-  - [Object Capability]()
-  - [Witness Registry]() -->
-    <!-- - [Standards]() -->
-      <!-- - [Balance]() -->
-      <!-- - [Coin]() -->
-      <!-- - [Closed Loop Token]() -->
-      <!-- - [Transfer Policy]() -->
-      <!-- - [Kiosk]() -->
-    <!-- - [Guides](./guides/README.md) -->
 
 # Guides
 
