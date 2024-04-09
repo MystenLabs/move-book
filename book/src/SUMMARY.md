@@ -108,7 +108,7 @@ comparison to docs.sui.io
   - [Generics](./move-basics/generics.md)
   - [Type Reflection](./move-basics/type-reflection.md)
   - [Testing](./move-basics/testing.md)
-- [Object Model](./object/README.md)
+- [Object Model](./object/README.md) -pattern
   - [Language for Digital Assets](./object/digital-assets.md)
   - [Evolution of Move](./object/evolution-of-move.md)
   - [What is an Object?](./object/object-model.md)
@@ -132,14 +132,14 @@ comparison to docs.sui.io
   - [Dynamic Fields](./programmability/dynamic-fields.md)
   - [Dynamic Object Fields](./programmability/dynamic-object-fields.md)
   - [Dynamic Collections](./programmability/dynamic-collections.md)
-  - [Pattern: Witness]() <!-- ./programmability/witness-pattern.md) <!-- Block: from Witness to Display -->
+  - [Pattern: Witness](./programmability/witness.md)
   - [One Time Witness](./programmability/one-time-witness.md)
   - [Publisher Authority](./programmability/publisher.md)
   - [Display](./programmability/display.md) <!-- End Block: from Witness to Display -->
   - [Events](./programmability/events.md)
   - [Balance & Coin]() <!-- ./programmability/balance-and-coin.md) -->
   - [Sui Framework](./programmability/sui-framework.md)
-  - [Pattern: Hot Potato](./programmability/hot-potato.md)
+  - [Pattern: Hot Potato]() <!-- ./programmability/hot-potato.md) -->
   - [Pattern: Request]() <!-- - [Witness and Abstract Implementation](./programmability/witness-and-abstract-implementation.md) -->
   - [Pattern: Object Capability]()
   - [Package Upgrades]()<!-- (./programmability/package-upgrades.md) -->
