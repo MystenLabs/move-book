@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light" dir="ltr">
+<html lang="en" class="sidebar-visible no-js light">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,15 +7,13 @@
 
 
         <!-- Custom HTML head -->
-        <meta name="robots" content="noindex">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
-        
 
         <meta name="description" content="The Move Language Reference maintained by the Move core team.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff">
+        <meta name="theme-color" content="#ffffff" />
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -37,7 +35,7 @@
         <link rel="stylesheet" href="theme/css/custom.css">
 
     </head>
-    <body class="sidebar-visible no-js">
+    <body>
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -67,38 +65,31 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
+            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add('js');
         </script>
-
-        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
+            var html = document.querySelector('html');
             var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
                 <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Getting Started</li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">1.</strong> Modules</a></li><li class="chapter-item expanded affix "><li class="part-title">Basic Concepts</li><li class="chapter-item expanded "><a href="primitive-types.html"><strong aria-hidden="true">2.</strong> Primitive Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="primitive-types/integers.html"><strong aria-hidden="true">2.1.</strong> Integers</a></li><li class="chapter-item expanded "><a href="primitive-types/bool.html"><strong aria-hidden="true">2.2.</strong> Bool</a></li><li class="chapter-item expanded "><a href="primitive-types/address.html"><strong aria-hidden="true">2.3.</strong> Address</a></li><li class="chapter-item expanded "><a href="primitive-types/vector.html"><strong aria-hidden="true">2.4.</strong> Vector</a></li><li class="chapter-item expanded "><a href="primitive-types/references.html"><strong aria-hidden="true">2.5.</strong> References</a></li><li class="chapter-item expanded "><a href="primitive-types/tuples.html"><strong aria-hidden="true">2.6.</strong> Tuples and Unit</a></li></ol></li><li class="chapter-item expanded "><a href="variables.html"><strong aria-hidden="true">3.</strong> Local Variables and Scopes</a></li><li class="chapter-item expanded "><a href="equality.html"><strong aria-hidden="true">4.</strong> Equality</a></li><li class="chapter-item expanded "><a href="abort-and-assert.html"><strong aria-hidden="true">5.</strong> Abort and Assert</a></li><li class="chapter-item expanded "><a href="control-flow.html"><strong aria-hidden="true">6.</strong> Control Flow</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="control-flow/conditionals.html"><strong aria-hidden="true">6.1.</strong> Conditional Expressions</a></li><li class="chapter-item expanded "><a href="control-flow/loops.html"><strong aria-hidden="true">6.2.</strong> Loops</a></li><li class="chapter-item expanded "><a href="control-flow/labeled-control-flow.html"><strong aria-hidden="true">6.3.</strong> Labeled Control FLow</a></li></ol></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">7.</strong> Functions</a></li><li class="chapter-item expanded "><a href="structs.html"><strong aria-hidden="true">8.</strong> Structs</a></li><li class="chapter-item expanded "><a href="constants.html"><strong aria-hidden="true">9.</strong> Constants</a></li><li class="chapter-item expanded "><a href="generics.html"><strong aria-hidden="true">10.</strong> Generics</a></li><li class="chapter-item expanded "><a href="abilities.html"><strong aria-hidden="true">11.</strong> Type Abilities</a></li><li class="chapter-item expanded "><a href="uses.html"><strong aria-hidden="true">12.</strong> Uses and Aliases</a></li><li class="chapter-item expanded affix "><li class="part-title">Advanced Concepts</li><li class="chapter-item expanded "><a href="method-syntax.html"><strong aria-hidden="true">13.</strong> Method Syntax</a></li><li class="chapter-item expanded "><a href="index-syntax.html"><strong aria-hidden="true">14.</strong> Index Syntax Methods</a></li><li class="chapter-item expanded affix "><li class="part-title">Tooling</li><li class="chapter-item expanded "><a href="packages.html" class="active"><strong aria-hidden="true">15.</strong> Packages</a></li><li class="chapter-item expanded "><a href="unit-testing.html"><strong aria-hidden="true">16.</strong> Unit Tests</a></li><li class="chapter-item expanded affix "><li class="part-title">Reference</li><li class="chapter-item expanded "><a href="coding-conventions.html"><strong aria-hidden="true">17.</strong> Coding Conventions</a></li><li class="chapter-item expanded affix "><li class="part-title">Deprecated</li><li class="chapter-item expanded "><a href="friends.html"><strong aria-hidden="true">18.</strong> Friends</a></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
-                <div class="sidebar-resize-indicator"></div>
-            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <!-- Track and set sidebar scroll position -->
@@ -129,9 +120,9 @@
                                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </label>
+                        </button>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -196,8 +187,8 @@ package system allows programmers to easily:</p>
 <li>Work with a common interface around compiled Move artifacts.</li>
 </ul>
 <h2 id="package-layout-and-manifest-syntax"><a class="header" href="#package-layout-and-manifest-syntax">Package Layout and Manifest Syntax</a></h2>
-<p>A Move package source directory contains a <code>Move.toml</code> package manifest file, a
-generated <code>Move.lock</code> file, and a set of subdirectories:</p>
+<p>A Move package source directory contains a <code>Move.toml</code> package manifest file, a generated
+<code>Move.lock</code> file, and a set of subdirectories:</p>
 <pre><code class="language-plaintext">a_move_package
 ├── Move.toml      (required)
 ├── Move.lock      (generated)
@@ -206,208 +197,133 @@ generated <code>Move.lock</code> file, and a set of subdirectories:</p>
 ├── examples       (optional, test &amp; dev mode)
 └── tests          (optional, test mode)
 </code></pre>
-<p>The directories and files labeled "required" must be present for a directory to be
-considered a Move package and built. Optional directories may be present,
-and if so, they will be included in the compilation process depending on the
-mode used to build the package. For instance, when built in "dev" or "test"
-modes, the <code>tests</code> and <code>examples</code> directories will also be included.</p>
+<p>The directories and files labeled &quot;required&quot; must be present for a directory to be considered a Move
+package and built. Optional directories may be present, and if so, they will be included in the
+compilation process depending on the mode used to build the package. For instance, when built in
+&quot;dev&quot; or &quot;test&quot; modes, the <code>tests</code> and <code>examples</code> directories will also be included.</p>
 <p>Going through each of these in turn:</p>
 <ol>
-<li>The <code>Move.toml</code> file is the package manifest and is required for a directory
-to be considered a Move package. This file contains metadata about the
-package, such as name, dependencies, and so on.</li>
-<li>The <code>Move.lock</code> file is generated by the Move CLI and contains the fixed
-build versions of the package and its dependencies. It is used to ensure
-consistent versions are used across different builds and that changes in
-dependencies are apparent as a change in this file.</li>
-<li>The <code>sources</code> directory is required and contains the Move modules that make
-up the package. Modules in this directory will always be included in the
-compilation process.</li>
-<li>The <code>doc_templates</code> directory can contain documentation templates that will
-be used when generating documentation for the package.</li>
-<li>The <code>examples</code> directory can hold additional code to be used only for
-development and/or tutorials, this will not be included when compiled
-outside of <code>test</code> or <code>dev</code> modes.</li>
-<li>The <code>tests</code> directory can contain Move modules that are only included when
-compiled in <code>test</code> mode or when <a href="./unit-testing.html">Move unit tests</a> are
-run.</li>
+<li>The <a href="#movetoml"><code>Move.toml</code></a> file is the package manifest and is required for a directory to be
+considered a Move package. This file contains metadata about the package, such as name,
+dependencies, and so on.</li>
+<li>The <a href="#movelock"><code>Move.lock</code></a> file is generated by the Move CLI and contains the fixed build
+versions of the package and its dependencies. It is used to ensure consistent versions are used
+across different builds and that changes in dependencies are apparent as a change in this file.</li>
+<li>The <code>sources</code> directory is required and contains the Move modules that make up the package.
+Modules in this directory will always be included in the compilation process.</li>
+<li>The <code>doc_templates</code> directory can contain documentation templates that will be used when
+generating documentation for the package.</li>
+<li>The <code>examples</code> directory can hold additional code to be used only for development and/or
+tutorials, this will not be included when compiled outside of <code>test</code> or <code>dev</code> modes.</li>
+<li>The <code>tests</code> directory can contain Move modules that are only included when compiled in <code>test</code>
+mode or when <a href="./unit-testing.html">Move unit tests</a> are run.</li>
 </ol>
 <h3 id="movetoml"><a class="header" href="#movetoml">Move.toml</a></h3>
 <p>The Move package manifest is defined within the <code>Move.toml</code> file and has the following syntax.
 Optional fields are marked with <code>*</code>, <code>+</code> denotes one or more elements:</p>
 <pre><code class="language-ini">[package]
 name = &lt;string&gt;
-edition* = &lt;string&gt;      # e.g., "2024.alpha" to use the Move 2024 edition,
+edition* = &lt;string&gt;      # e.g., &quot;2024.alpha&quot; to use the Move 2024 edition,
                          # currently in alpha. Will default to the latest stable edition if not specified.
-license* = &lt;string&gt;              # e.g., "MIT", "GPL", "Apache 2.0"
-authors* = [&lt;string&gt;,+]  # e.g., ["Joe Smith (joesmith@noemail.com)", "John Snow (johnsnow@noemail.com)"]
+license* = &lt;string&gt;              # e.g., &quot;MIT&quot;, &quot;GPL&quot;, &quot;Apache 2.0&quot;
+authors* = [&lt;string&gt;,+]  # e.g., [&quot;Joe Smith (joesmith@noemail.com)&quot;, &quot;John Snow (johnsnow@noemail.com)&quot;]
 
 # Additional fields may be added to this section by external tools. E.g., on Sui the following sections are added:
-published-at* = "&lt;hex-address&gt;" # The address that the package is published at. Should be set after the first publication.
+published-at* = &quot;&lt;hex-address&gt;&quot; # The address that the package is published at. Should be set after the first publication.
 
 [dependencies] # (Optional section) Paths to dependencies
 # One or more lines declaring dependencies in the following format
 
 # ##### Local Dependencies #####
 # For local dependencies use `local = path`. Path is relative to the package root
-# Local = { local = "../path/to" }
+# Local = { local = &quot;../path/to&quot; }
 # To resolve a version conflict and force a specific version for dependency
 # override you can use `override = true`
-# Override = { local = "../conflicting/version", override = true }
+# Override = { local = &quot;../conflicting/version&quot;, override = true }
 # To instantiate address values in a dependency, use `addr_subst`
 &lt;string&gt; = {
     local = &lt;string&gt;,
     override* = &lt;bool&gt;,
-    addr_subst* = { (&lt;string&gt; = (&lt;string&gt; | "&lt;hex_address&gt;"))+ }
+    addr_subst* = { (&lt;string&gt; = (&lt;string&gt; | &quot;&lt;hex_address&gt;&quot;))+ }
 }
 
 # ##### Git Dependencies #####
-# For remote import, use the `{ git = "...", subdir = "...", rev = "..." }`.
+# For remote import, use the `{ git = &quot;...&quot;, subdir = &quot;...&quot;, rev = &quot;...&quot; }`.
 # Revision must be supplied, it can be a branch, a tag, or a commit hash.
 # If no `subdir` is specified, the root of the repository is used.
-# MyRemotePackage = { git = "https://some.remote/host.git", subdir = "remote/path", rev = "main" }
+# MyRemotePackage = { git = &quot;https://some.remote/host.git&quot;, subdir = &quot;remote/path&quot;, rev = &quot;main&quot; }
 &lt;string&gt; = {
     git = &lt;URL ending in .git&gt;,
     subdir=&lt;path to dir containing Move.toml inside git repo&gt;,
     rev=&lt;git commit hash&gt;,
     override* = &lt;bool&gt;,
-    addr_subst* = { (&lt;string&gt; = (&lt;string&gt; | "&lt;hex_address&gt;"))+ }
+    addr_subst* = { (&lt;string&gt; = (&lt;string&gt; | &quot;&lt;hex_address&gt;&quot;))+ }
 }
 
 [addresses]  # (Optional section) Declares named addresses in this package
 # One or more lines declaring named addresses in the following format
-# Addresses that match the name of the package must be set to `"0x0"` or they will be unable to be published.
-&lt;addr_name&gt; = "_" | "&lt;hex_address&gt;" # e.g., std = "_" or my_addr = "0xC0FFEECAFE"
+# Addresses that match the name of the package must be set to `&quot;0x0&quot;` or they will be unable to be published.
+&lt;addr_name&gt; = &quot;_&quot; | &quot;&lt;hex_address&gt;&quot; # e.g., std = &quot;_&quot; or my_addr = &quot;0xC0FFEECAFE&quot;
 
 # Named addresses will be accessible in Move as `@name`. They're also exported:
-# for example, `std = "0x1"` is exported by the Standard Library.
-# alice = "0xA11CE"
+# for example, `std = &quot;0x1&quot;` is exported by the Standard Library.
+# alice = &quot;0xA11CE&quot;
 
-[dev-dependencies] # (Optional section) Same as [dependencies] section, but only included in "dev" and "test" modes
+[dev-dependencies] # (Optional section) Same as [dependencies] section, but only included in &quot;dev&quot; and &quot;test&quot; modes
 # The dev-dependencies section allows overriding dependencies for `--test` and
 # `--dev` modes. You can e.g., introduce test-only dependencies here.
-# Local = { local = "../path/to/dev-build" }
+# Local = { local = &quot;../path/to/dev-build&quot; }
 &lt;string&gt; = {
     local = &lt;string&gt;,
     override* = &lt;bool&gt;,
-    addr_subst* = { (&lt;string&gt; = (&lt;string&gt; | "&lt;hex_address&gt;"))+ }
+    addr_subst* = { (&lt;string&gt; = (&lt;string&gt; | &quot;&lt;hex_address&gt;&quot;))+ }
 }
 &lt;string&gt; = {
     git = &lt;URL ending in .git&gt;,
     subdir=&lt;path to dir containing Move.toml inside git repo&gt;,
     rev=&lt;git commit hash&gt;,
     override* = &lt;bool&gt;,
-    addr_subst* = { (&lt;string&gt; = (&lt;string&gt; | "&lt;hex_address&gt;"))+ }
+    addr_subst* = { (&lt;string&gt; = (&lt;string&gt; | &quot;&lt;hex_address&gt;&quot;))+ }
 }
 
-[dev-addresses] # (Optional section) Same as [addresses] section, but only included in "dev" and "test" modes
+[dev-addresses] # (Optional section) Same as [addresses] section, but only included in &quot;dev&quot; and &quot;test&quot; modes
 # The dev-addresses section allows overwriting named addresses for the `--test`
 # and `--dev` modes.
-&lt;addr_name&gt; = "&lt;hex_address&gt;" # e.g., alice = "0xB0B"
+&lt;addr_name&gt; = &quot;&lt;hex_address&gt;&quot; # e.g., alice = &quot;0xB0B&quot;
 </code></pre>
 <p>An example of a minimal package manifest:</p>
 <pre><code class="language-ini">[package]
-name = "AName"
+name = &quot;AName&quot;
 </code></pre>
 <p>An example of a more standard package manifest that also includes the Move standard library and
 instantiates the named address <code>std</code> from the <code>LocalDep</code> package with the address value <code>0x1</code>:</p>
 <pre><code class="language-ini">[package]
-name = "AName"
-license = "Apache 2.0"
+name = &quot;AName&quot;
+license = &quot;Apache 2.0&quot;
 
 [addresses]
-address_to_be_filled_in = "_"
-specified_address = "0xB0B"
+address_to_be_filled_in = &quot;_&quot;
+specified_address = &quot;0xB0B&quot;
 
 [dependencies]
 # Local dependency
-LocalDep = { local = "projects/move-awesomeness", addr_subst = { "std" = "0x1" } }
+LocalDep = { local = &quot;projects/move-awesomeness&quot;, addr_subst = { &quot;std&quot; = &quot;0x1&quot; } }
 # Git dependency
-MoveStdlib = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/move-stdlib", rev = "framework/mainnet" }
+MoveStdlib = { git = &quot;https://github.com/MystenLabs/sui.git&quot;, subdir = &quot;crates/sui-framework/packages/move-stdlib&quot;, rev = &quot;framework/mainnet&quot; }
 
 [dev-addresses] # For use when developing this module
-address_to_be_filled_in = "0x101010101"
+address_to_be_filled_in = &quot;0x101010101&quot;
 </code></pre>
-<p>Most of the sections in the package manifest are self explanatory, but named
-addresses can be a bit difficult to understand so we examine them in more
-detail in <a href="#named-addresses-during-compilation">Named Addresses During
-Compilation</a>, but before that we'll first
-take a look at the <code>Move.lock</code> file and what it contains.</p>
-<h2 id="movelock"><a class="header" href="#movelock">Move.lock</a></h2>
-<p>The <code>Move.lock</code> file is generated at the root of the Move pacakge when the
-package is built. The <code>Move.lock</code> file contains information about your package
-and its build configuration, and acts as a communication layer between the Move
-compiler and other tools, like chain-specific command line interfaces and
-third-party package managers.</p>
-<p>Like the <code>Move.toml</code> file, the <code>Move.lock</code> file is a text-based TOML file.
-Unlike the package manifest however, the <code>Move.lock</code> file is not intended for
-you to edit directly. Processes on the toolchain, like the Move compiler,
-access and edit the file to read and append relevant information to it. You
-also must not move the file from the root, as it needs to be at the same level
-as the <code>Move.toml</code> manifest in the package.</p>
-<p>If you are using source control for your package, it's recommended practice to
-check in the <code>Move.lock</code> file that corresponds with your desired built or
-published package. This ensures that every build of your package is an exact replica
-of the original, and that changes to the build will be apparent as changes to
-the <code>Move.lock</code> file.</p>
-<p>The <code>Move.lock</code> file is a TOML file that currently contains the following
-fields.</p>
-<p><strong>Note</strong>: other fields may be added to the lock file either in the future, or
-by third-party package package managers as well.</p>
-<h3 id="the-move-section"><a class="header" href="#the-move-section">The <code>[move]</code> Section</a></h3>
-<p>This section contains the core information needed in the lockfile:</p>
-<ul>
-<li>The version of the lockfile (needed for backwards compatibility checking, and
-versioning lockfile changes in the future).</li>
-<li>The hash of the <code>Move.toml</code> file that was used to generate this lock file.</li>
-<li>The hash of the <code>Move.lock</code> file of all dependencies. If no depencies are
-present, this will be an empty string.</li>
-<li>The list of dependencies.</li>
-</ul>
-<pre><code class="language-ini">[move]
-version = &lt;string&gt; # Lock file version, used for backwards compatibility checking.
-manifest_digest = &lt;hash&gt; # Sha3-256 hash of the Move.toml file that was used to generate this lock file.
-deps_digest = &lt;hash&gt; # Sha3-256 hash of the Move.lock file of all dependencies. If no depencies are present, this will be an empty string.
-dependencies = { (name = &lt;string&gt;)* } # List of dependencies. Not present if there are no dependencies.
-</code></pre>
-<h3 id="the-movepackage-sections"><a class="header" href="#the-movepackage-sections">The <code>[move.package]</code> Sections</a></h3>
-<p>After the Move compiler resolves each of the dependencies for the package it
-writes the location of the dependency to the <code>Move.lock</code> file. If a dependency
-failed to resolve, the compiler will not write the <code>Move.lock</code> file and the
-build fails. If all dependencies resolve, the <code>Move.lock</code> file contains the
-locations (local and remote) of all of the package's transitive dependencies.
-These will be stored in the <code>Move.lock</code> file in the following format:</p>
-<pre><code class="language-ini"># ...
-
-[[move.package]]
-name = "A"
-source = { git = "https://github.com/b/c.git", subdir = "e/f", rev = "a1b2c3" }
-
-[[move.package]]
-name = "B"
-source = { local = "../local-dep" }
-</code></pre>
-<h3 id="the-movetoolchain-version-section"><a class="header" href="#the-movetoolchain-version-section">The <code>[move.toolchain-version]</code> Section</a></h3>
-<p>As mentioned above, additional fields may be added to the lock file by external
-tools. For example, the Sui package manager adds toolchain version information
-to the lock file that can then be used for on-chain source verification:</p>
-<pre><code class="language-ini"># ...
-
-[move.toolchain-version]
-compiler-version = &lt;string&gt; # The version of the Move compiler used to build the package, e.g. "1.21.0"
-edition = &lt;string&gt; # The edition of the Move language used to build the package, e.g. "2024.alpha"
-flavor = &lt;string&gt; # The flavor of the Move compiler used to build the package, e.g. "sui"
-</code></pre>
-<p>With that, let's now turn to the compilation process and how named addresses are
-resolved, and how to use them.</p>
+<p>Most of the sections in the package manifest are self explanatory, but named addresses can be a bit
+difficult to understand so we examine them in more detail in
+<a href="#named-addresses-during-compilation">Named Addresses During Compilation</a>.</p>
 <h2 id="named-addresses-during-compilation"><a class="header" href="#named-addresses-during-compilation">Named Addresses During Compilation</a></h2>
-<p>Recall that Move has <a href="./primitive-types/address.html">named addresses</a> and that named addresses
-cannot be declared in Move. Instead they are declared at the package level: in
-the manifest file (<code>Move.toml</code>) for a Move package you declare named addresses
-in the package, instantiate other named addresses, and rename named addresses
-from other packages within the Move package system.</p>
-<p>Let's go through each of these actions, and how they are performed in the
-package's manifest one-by-one:</p>
+<p>Recall that Move has <a href="./primitive-types/address.html">named addresses</a> and that named addresses cannot
+be declared in Move. Instead they are declared at the package level: in the manifest file
+(<code>Move.toml</code>) for a Move package you declare named addresses in the package, instantiate other named
+addresses, and rename named addresses from other packages within the Move package system.</p>
+<p>Let's go through each of these actions, and how they are performed in the package's manifest
+one-by-one:</p>
 <h3 id="declaring-named-addresses"><a class="header" href="#declaring-named-addresses">Declaring Named Addresses</a></h3>
 <p>Let's say we have a Move module in <code>example_pkg/sources/A.move</code> as follows:</p>
 <pre><code class="language-move">module named_addr::a {
@@ -417,22 +333,22 @@ package's manifest one-by-one:</p>
 <p>We could in <code>example_pkg/Move.toml</code> declare the named address <code>named_addr</code> in two different ways.
 The first:</p>
 <pre><code class="language-ini">[package]
-name = "example_pkg"
+name = &quot;example_pkg&quot;
 ...
 [addresses]
-named_addr = "_"
+named_addr = &quot;_&quot;
 </code></pre>
 <p>Declares <code>named_addr</code> as a named address in the package <code>example_pkg</code> and that <em>this address can be
-any valid address value</em>. In particular, an importing package can pick the value of the named address
-<code>named_addr</code> to be any address it wishes. Intuitively you can think of this as parameterizing the
-package <code>example_pkg</code> by the named address <code>named_addr</code>, and the package can then be instantiated
-later on by an importing package.</p>
+any valid address value</em>. In particular, an importing package can pick the value of the named
+address <code>named_addr</code> to be any address it wishes. Intuitively you can think of this as
+parameterizing the package <code>example_pkg</code> by the named address <code>named_addr</code>, and the package can then
+be instantiated later on by an importing package.</p>
 <p><code>named_addr</code> can also be declared as:</p>
 <pre><code class="language-ini">[package]
-name = "example_pkg"
+name = &quot;example_pkg&quot;
 ...
 [addresses]
-named_addr = "0xCAFE"
+named_addr = &quot;0xCAFE&quot;
 </code></pre>
 <p>which states that the named address <code>named_addr</code> is exactly <code>0xCAFE</code> and cannot be changed. This is
 useful so other importing packages can use this named address without needing to worry about the
@@ -440,9 +356,9 @@ exact value assigned to it.</p>
 <p>With these two different declaration methods, there are two ways that information about named
 addresses can flow in the package graph:</p>
 <ul>
-<li>The former ("unassigned named addresses") allows named address values to flow from the importation
+<li>The former (&quot;unassigned named addresses&quot;) allows named address values to flow from the importation
 site to the declaration site.</li>
-<li>The latter ("assigned named addresses") allows named address values to flow from the declaration
+<li>The latter (&quot;assigned named addresses&quot;) allows named address values to flow from the declaration
 site upwards in the package graph to usage sites.</li>
 </ul>
 <p>With these two methods for flowing named address information throughout the package graph the rules
@@ -457,21 +373,21 @@ renaming of <code>N</code>.</li>
 </ol>
 <p>Additionally, every named address in a package is exported. Because of this and the above scoping
 rules each package can be viewed as coming with a set of named addresses that will be brought into
-scope when the package is imported, e.g., if the <code>example_pkg</code> package was imported, that importation
-would bring into scope the <code>named_addr</code> named address. Because of this, if <code>P</code> imports two packages
-<code>P1</code> and <code>P2</code> both of which declare a named address <code>N</code> an issue arises in <code>P</code>: which "<code>N</code>" is meant
-when <code>N</code> is referred to in <code>P</code>? The one from <code>P1</code> or <code>P2</code>? To prevent this ambiguity around which
-package a named address is coming from, we enforce that the sets of scopes introduced by all
-dependencies in a package are disjoint, and provide a way to <em>rename named addresses</em> when the
-package that brings them into scope is imported.</p>
+scope when the package is imported, e.g., if you import <code>example_pkg</code>, that import will also bring
+the <code>named_addr</code> named address into scope. Because of this, if <code>P</code> imports two packages <code>P1</code> and
+<code>P2</code> both of which declare a named address <code>N</code> an issue arises in <code>P</code>: which &quot;<code>N</code>&quot; is meant when <code>N</code>
+is referred to in <code>P</code>? The one from <code>P1</code> or <code>P2</code>? To prevent this ambiguity around which package a
+named address is coming from, we enforce that the sets of scopes introduced by all dependencies in a
+package are disjoint, and provide a way to <em>rename named addresses</em> when the package that brings
+them into scope is imported.</p>
 <p>Renaming a named address when importing can be done as follows in our <code>P</code>, <code>P1</code>, and <code>P2</code> example
 above:</p>
 <pre><code class="language-ini">[package]
-name = "P"
+name = &quot;P&quot;
 ...
 [dependencies]
-P1 = { local = "some_path_to_P1", addr_subst = { "P1N" = "N" } }
-P2 = { local = "some_path_to_P2"  }
+P1 = { local = &quot;some_path_to_P1&quot;, addr_subst = { &quot;P1N&quot; = &quot;N&quot; } }
+P2 = { local = &quot;some_path_to_P2&quot;  }
 </code></pre>
 <p>With this renaming <code>N</code> refers to the <code>N</code> from <code>P2</code> and <code>P1N</code> will refer to <code>N</code> coming from <code>P1</code>:</p>
 <pre><code class="language-move">module N::A {
@@ -481,37 +397,36 @@ P2 = { local = "some_path_to_P2"  }
 <p>It is important to note that <em>renaming is not local</em>: once a named address <code>N</code> has been renamed to
 <code>N2</code> in a package <code>P</code> all packages that import <code>P</code> will not see <code>N</code> but only <code>N2</code> unless <code>N</code> is
 reintroduced from outside of <code>P</code>. This is why rule (2) in the scoping rules at the start of this
-section specifies a "dependency path in the package graph between between <code>P</code> and the declaring
-package of <code>N</code> with no renaming of <code>N</code>."</p>
+section specifies a &quot;dependency path in the package graph between between <code>P</code> and the declaring
+package of <code>N</code> with no renaming of <code>N</code>.&quot;</p>
 <h3 id="instantiating-named-addresses"><a class="header" href="#instantiating-named-addresses">Instantiating Named Addresses</a></h3>
 <p>Named addresses can be instantiated multiple times across the package graph as long as it is always
 with the same value. It is an error if the same named address (regardless of renaming) is
 instantiated with differing values across the package graph.</p>
 <p>A Move package can only be compiled if all named addresses resolve to a value. This presents issues
 if the package wishes to expose an uninstantiated named address. This is what the <code>[dev-addresses]</code>
-section solves in part. This section can set values for named addresses, but cannot introduce any named
-addresses. Additionally, only the <code>[dev-addresses]</code> in the root package are included in <code>dev</code> mode.
-For example a root package with the following manifest would not compile outside of <code>dev</code> mode since
-<code>named_addr</code> would be uninstantiated:</p>
+section solves in part. This section can set values for named addresses, but cannot introduce any
+named addresses. Additionally, only the <code>[dev-addresses]</code> in the root package are included in <code>dev</code>
+mode. For example a root package with the following manifest would not compile outside of <code>dev</code> mode
+since <code>named_addr</code> would be uninstantiated:</p>
 <pre><code class="language-ini">[package]
-name = "example_pkg"
+name = &quot;example_pkg&quot;
 ...
 [addresses]
-named_addr = "_"
+named_addr = &quot;_&quot;
 
 [dev-addresses]
-named_addr = "0xC0FFEE"
+named_addr = &quot;0xC0FFEE&quot;
 </code></pre>
 <h2 id="usage-and-artifacts"><a class="header" href="#usage-and-artifacts">Usage and Artifacts</a></h2>
 <p>The Move package system comes with a command line option as part of the CLI:
-<code>sui move &lt;command&gt; &lt;command_flags&gt;</code>. Unless a particular path is provided, all
-package commands will run in the current working directory. The full list of
-commands and flags for the Move CLI can be found by running <code>sui move --help</code>.</p>
+<code>sui move &lt;command&gt; &lt;command_flags&gt;</code>. Unless a particular path is provided, all package commands
+will run in the current enclosing Move package. The full list of commands and flags for the Move CLI
+can be found by running <code>sui move --help</code>.</p>
 <h3 id="artifacts"><a class="header" href="#artifacts">Artifacts</a></h3>
-<p>A package can be compiled using CLI commands.
-This will create a <code>build</code>
-directory containing build-related artifacts (such as bytecode, source maps, and
-documentation). The general layout of the <code>build</code> directory is as follows:</p>
+<p>A package can be compiled using CLI commands. This will create a <code>build</code> directory containing
+build-related artifacts (including bytecode binaries, source maps, and documentation). The general
+layout of the <code>build</code> directory is as follows:</p>
 <pre><code class="language-plaintext">a_move_package
 ├── BuildInfo.yaml
 ├── bytecode_modules
@@ -553,6 +468,66 @@ documentation). The general layout of the <code>build</code> directory is as fol
     ...
     └── *.move
 </code></pre>
+<h2 id="movelock"><a class="header" href="#movelock">Move.lock</a></h2>
+<p>The <code>Move.lock</code> file is generated at the root of the Move pacakge when the package is built. The
+<code>Move.lock</code> file contains information about your package and its build configuration, and acts as a
+communication layer between the Move compiler and other tools, like chain-specific command line
+interfaces and third-party package managers.</p>
+<p>Like the <code>Move.toml</code> file, the <code>Move.lock</code> file is a text-based TOML file. Unlike the package
+manifest however, the <code>Move.lock</code> file is not intended for you to edit directly. Processes on the
+toolchain, like the Move compiler, access and edit the file to read and append relevant information
+to it. You also must not move the file from the root, as it needs to be at the same level as the
+<code>Move.toml</code> manifest in the package.</p>
+<p>If you are using source control for your package, it's recommended practice to check in the
+<code>Move.lock</code> file that corresponds with your desired built or published package. This ensures that
+every build of your package is an exact replica of the original, and that changes to the build will
+be apparent as changes to the <code>Move.lock</code> file.</p>
+<p>The <code>Move.lock</code> file is a TOML file that currently contains the following fields.</p>
+<p><strong>Note</strong>: other fields may be added to the lock file either in the future, or by third-party package
+package managers as well.</p>
+<h3 id="the-move-section"><a class="header" href="#the-move-section">The <code>[move]</code> Section</a></h3>
+<p>This section contains the core information needed in the lockfile:</p>
+<ul>
+<li>The version of the lockfile (needed for backwards compatibility checking, and versioning lockfile
+changes in the future).</li>
+<li>The hash of the <code>Move.toml</code> file that was used to generate this lock file.</li>
+<li>The hash of the <code>Move.lock</code> file of all dependencies. If no dependencies are present, this will be
+an empty string.</li>
+<li>The list of dependencies.</li>
+</ul>
+<pre><code class="language-ini">[move]
+version = &lt;string&gt; # Lock file version, used for backwards compatibility checking.
+manifest_digest = &lt;hash&gt; # Sha3-256 hash of the Move.toml file that was used to generate this lock file.
+deps_digest = &lt;hash&gt; # Sha3-256 hash of the Move.lock file of all dependencies. If no dependencies are present, this will be an empty string.
+dependencies = { (name = &lt;string&gt;)* } # List of dependencies. Not present if there are no dependencies.
+</code></pre>
+<h3 id="the-movepackage-sections"><a class="header" href="#the-movepackage-sections">The <code>[move.package]</code> Sections</a></h3>
+<p>After the Move compiler resolves each of the dependencies for the package it writes the location of
+the dependency to the <code>Move.lock</code> file. If a dependency failed to resolve, the compiler will not
+write the <code>Move.lock</code> file and the build fails. If all dependencies resolve, the <code>Move.lock</code> file
+contains the locations (local and remote) of all of the package's transitive dependencies. These
+will be stored in the <code>Move.lock</code> file in the following format:</p>
+<pre><code class="language-ini"># ...
+
+[[move.package]]
+name = &quot;A&quot;
+source = { git = &quot;https://github.com/b/c.git&quot;, subdir = &quot;e/f&quot;, rev = &quot;a1b2c3&quot; }
+
+[[move.package]]
+name = &quot;B&quot;
+source = { local = &quot;../local-dep&quot; }
+</code></pre>
+<h3 id="the-movetoolchain-version-section"><a class="header" href="#the-movetoolchain-version-section">The <code>[move.toolchain-version]</code> Section</a></h3>
+<p>As mentioned above, additional fields may be added to the lock file by external tools. For example,
+the Sui package manager adds toolchain version information to the lock file that can then be used
+for on-chain source verification:</p>
+<pre><code class="language-ini"># ...
+
+[move.toolchain-version]
+compiler-version = &lt;string&gt; # The version of the Move compiler used to build the package, e.g. &quot;1.21.0&quot;
+edition = &lt;string&gt; # The edition of the Move language used to build the package, e.g. &quot;2024.alpha&quot;
+flavor = &lt;string&gt; # The flavor of the Move compiler used to build the package, e.g. &quot;sui&quot;
+</code></pre>
 
                     </main>
 
@@ -562,7 +537,7 @@ documentation). The general layout of the <code>build</code> directory is as fol
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="unit-testing.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="unit-testing.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -576,29 +551,13 @@ documentation). The general layout of the <code>build</code> directory is as fol
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="unit-testing.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="unit-testing.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 

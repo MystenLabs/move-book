@@ -1,0 +1,411 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Dynamic Fields - The Move Book</title>
+
+
+        <!-- Custom HTML head -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+
+        <meta name="description" content="First book about the Move programming language and the Move VM. Move documentation, Move tutorials and language reference.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../theme/css/custom.css">
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> The Move Book</a></li><li class="chapter-item expanded "><a href="../foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">3.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../before-we-begin/index.html"><strong aria-hidden="true">4.</strong> Before we begin</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../before-we-begin/install-sui.html"><strong aria-hidden="true">4.1.</strong> Install Sui</a></li><li class="chapter-item expanded "><a href="../before-we-begin/ide-support.html"><strong aria-hidden="true">4.2.</strong> Set up your IDE</a></li><li class="chapter-item expanded "><a href="../before-we-begin/move-2024.html"><strong aria-hidden="true">4.3.</strong> Move 2024</a></li></ol></li><li class="chapter-item expanded "><a href="../your-first-move/hello-world.html"><strong aria-hidden="true">5.</strong> Hello, World!</a></li><li class="chapter-item expanded "><a href="../your-first-move/hello-sui.html"><strong aria-hidden="true">6.</strong> Hello, Sui!</a></li><li class="chapter-item expanded "><a href="../concepts/index.html"><strong aria-hidden="true">7.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../concepts/packages.html"><strong aria-hidden="true">7.1.</strong> Package</a></li><li class="chapter-item expanded "><a href="../concepts/manifest.html"><strong aria-hidden="true">7.2.</strong> Manifest</a></li><li class="chapter-item expanded "><a href="../concepts/address.html"><strong aria-hidden="true">7.3.</strong> Address</a></li><li class="chapter-item expanded "><a href="../concepts/what-is-an-account.html"><strong aria-hidden="true">7.4.</strong> Account</a></li><li class="chapter-item expanded "><a href="../concepts/what-is-a-transaction.html"><strong aria-hidden="true">7.5.</strong> Transaction</a></li></ol></li><li class="chapter-item expanded "><a href="../move-basics/index.html"><strong aria-hidden="true">8.</strong> Move Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../move-basics/module.html"><strong aria-hidden="true">8.1.</strong> Module</a></li><li class="chapter-item expanded "><a href="../move-basics/comments.html"><strong aria-hidden="true">8.2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../move-basics/primitive-types.html"><strong aria-hidden="true">8.3.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../move-basics/address.html"><strong aria-hidden="true">8.4.</strong> Address Type</a></li><li class="chapter-item expanded "><a href="../move-basics/expression.html"><strong aria-hidden="true">8.5.</strong> Expression</a></li><li class="chapter-item expanded "><a href="../move-basics/struct.html"><strong aria-hidden="true">8.6.</strong> Struct</a></li><li class="chapter-item expanded "><a href="../move-basics/abilities-introduction.html"><strong aria-hidden="true">8.7.</strong> Abilities: Introduction</a></li><li class="chapter-item expanded "><a href="../move-basics/drop-ability.html"><strong aria-hidden="true">8.8.</strong> Ability: Drop</a></li><li class="chapter-item expanded "><a href="../move-basics/importing-modules.html"><strong aria-hidden="true">8.9.</strong> Importing Modules</a></li><li class="chapter-item expanded "><a href="../move-basics/standard-library.html"><strong aria-hidden="true">8.10.</strong> Standard Library</a></li><li class="chapter-item expanded "><a href="../move-basics/vector.html"><strong aria-hidden="true">8.11.</strong> Vector</a></li><li class="chapter-item expanded "><a href="../move-basics/option.html"><strong aria-hidden="true">8.12.</strong> Option</a></li><li class="chapter-item expanded "><a href="../move-basics/string.html"><strong aria-hidden="true">8.13.</strong> String</a></li><li class="chapter-item expanded "><a href="../move-basics/control-flow.html"><strong aria-hidden="true">8.14.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../move-basics/constants.html"><strong aria-hidden="true">8.15.</strong> Constants</a></li><li class="chapter-item expanded "><a href="../move-basics/assert-and-abort.html"><strong aria-hidden="true">8.16.</strong> Assert and Abort</a></li><li class="chapter-item expanded "><a href="../move-basics/function.html"><strong aria-hidden="true">8.17.</strong> Function</a></li><li class="chapter-item expanded "><a href="../move-basics/struct-methods.html"><strong aria-hidden="true">8.18.</strong> Struct Methods</a></li><li class="chapter-item expanded "><a href="../move-basics/visibility.html"><strong aria-hidden="true">8.19.</strong> Visibility Modifiers</a></li><li class="chapter-item expanded "><a href="../move-basics/ownership-and-scope.html"><strong aria-hidden="true">8.20.</strong> Ownership and Scope</a></li><li class="chapter-item expanded "><a href="../move-basics/copy-ability.html"><strong aria-hidden="true">8.21.</strong> Ability: Copy</a></li><li class="chapter-item expanded "><a href="../move-basics/references.html"><strong aria-hidden="true">8.22.</strong> References</a></li><li class="chapter-item expanded "><a href="../move-basics/generics.html"><strong aria-hidden="true">8.23.</strong> Generics</a></li><li class="chapter-item expanded "><a href="../move-basics/type-reflection.html"><strong aria-hidden="true">8.24.</strong> Type Reflection</a></li><li class="chapter-item expanded "><a href="../move-basics/testing.html"><strong aria-hidden="true">8.25.</strong> Testing</a></li></ol></li><li class="chapter-item expanded "><a href="../object/index.html"><strong aria-hidden="true">9.</strong> Object Model</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../object/digital-assets.html"><strong aria-hidden="true">9.1.</strong> Language for Digital Assets</a></li><li class="chapter-item expanded "><a href="../object/evolution-of-move.html"><strong aria-hidden="true">9.2.</strong> Evolution of Move</a></li><li class="chapter-item expanded "><a href="../object/object-model.html"><strong aria-hidden="true">9.3.</strong> What is an Object?</a></li><li class="chapter-item expanded "><a href="../object/ownership.html"><strong aria-hidden="true">9.4.</strong> Ownership</a></li><li class="chapter-item expanded "><a href="../object/fast-path-and-consensus.html"><strong aria-hidden="true">9.5.</strong> Fast Path & Consensus</a></li></ol></li><li class="chapter-item expanded "><a href="../storage/index.html"><strong aria-hidden="true">10.</strong> Using Objects</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../storage/key-ability.html"><strong aria-hidden="true">10.1.</strong> Ability: Key</a></li><li class="chapter-item expanded "><a href="../storage/storage-functions.html"><strong aria-hidden="true">10.2.</strong> Storage Functions</a></li><li class="chapter-item expanded "><a href="../storage/store-ability.html"><strong aria-hidden="true">10.3.</strong> Ability: Store</a></li><li class="chapter-item expanded "><a href="../storage/uid-and-id.html"><strong aria-hidden="true">10.4.</strong> UID and ID</a></li><li class="chapter-item expanded "><a href="../storage/transfer-restrictions.html"><strong aria-hidden="true">10.5.</strong> Restricted and Public Transfer</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">10.6.</strong> Transfer to Object?</div></li></ol></li><li class="chapter-item expanded "><a href="../programmability/index.html"><strong aria-hidden="true">11.</strong> Advanced Programmability</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../programmability/transaction-context.html"><strong aria-hidden="true">11.1.</strong> Transaction Context</a></li><li class="chapter-item expanded "><a href="../programmability/module-initializer.html"><strong aria-hidden="true">11.2.</strong> Module Initializer</a></li><li class="chapter-item expanded "><a href="../programmability/capability.html"><strong aria-hidden="true">11.3.</strong> Pattern: Capability</a></li><li class="chapter-item expanded "><a href="../programmability/epoch-and-time.html"><strong aria-hidden="true">11.4.</strong> Epoch and Time</a></li><li class="chapter-item expanded "><a href="../programmability/fast-path.html"><strong aria-hidden="true">11.5.</strong> Fast Path</a></li><li class="chapter-item expanded "><a href="../programmability/collections.html"><strong aria-hidden="true">11.6.</strong> Collections</a></li><li class="chapter-item expanded "><a href="../programmability/dynamic-fields.html" class="active"><strong aria-hidden="true">11.7.</strong> Dynamic Fields</a></li><li class="chapter-item expanded "><a href="../programmability/dynamic-object-fields.html"><strong aria-hidden="true">11.8.</strong> Dynamic Object Fields</a></li><li class="chapter-item expanded "><a href="../programmability/dynamic-collections.html"><strong aria-hidden="true">11.9.</strong> Dynamic Collections</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.10.</strong> Pattern: Witness</div></li><li class="chapter-item expanded "><a href="../programmability/one-time-witness.html"><strong aria-hidden="true">11.11.</strong> One Time Witness</a></li><li class="chapter-item expanded "><a href="../programmability/publisher.html"><strong aria-hidden="true">11.12.</strong> Publisher Authority</a></li><li class="chapter-item expanded "><a href="../programmability/display.html"><strong aria-hidden="true">11.13.</strong> Display</a></li><li class="chapter-item expanded "><a href="../programmability/events.html"><strong aria-hidden="true">11.14.</strong> Events</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.15.</strong> Balance & Coin</div></li><li class="chapter-item expanded "><a href="../programmability/sui-framework.html"><strong aria-hidden="true">11.16.</strong> Sui Framework</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.17.</strong> Pattern: Hot Potato</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.18.</strong> Pattern: Request</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.19.</strong> Pattern: Object Capability</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.20.</strong> Package Upgrades</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.21.</strong> Transaction Blocks</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.22.</strong> Authorization Patterns</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.23.</strong> Cryptography and Hashing</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.24.</strong> Randomness</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.25.</strong> BCS</div></li></ol></li><li class="chapter-item expanded "><li class="part-title">Guides</li><li class="chapter-item expanded "><a href="../guides/2024-migration-guide.html"><strong aria-hidden="true">12.</strong> 2024 Migration Guide</a></li><li class="chapter-item expanded "><a href="../guides/upgradeability-practices.html"><strong aria-hidden="true">13.</strong> Upgradability Practices</a></li><li class="chapter-item expanded "><a href="../guides/building-against-limits.html"><strong aria-hidden="true">14.</strong> Building against Limits</a></li><li class="chapter-item expanded "><a href="../guides/better-error-handling.html"><strong aria-hidden="true">15.</strong> Better error handling</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">16.</strong> Open-sourcing Libraries</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.</strong> Creating an NFT Collection</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">18.</strong> Tests with Objects</div></li><li class="chapter-item expanded "><a href="../guides/coding-conventions.html"><strong aria-hidden="true">19.</strong> Coding Conventions</a></li><li class="chapter-item expanded affix "><li class="part-title">Appendix</li><li class="chapter-item expanded "><a href="../appendix/glossary.html"><strong aria-hidden="true">20.</strong> A - Glossary</a></li><li class="chapter-item expanded "><a href="../appendix/reserved-addresses.html"><strong aria-hidden="true">21.</strong> B - Reserved Addresses</a></li><li class="chapter-item expanded "><a href="../appendix/publications.html"><strong aria-hidden="true">22.</strong> C - Publications</a></li><li class="chapter-item expanded "><a href="../appendix/contributing.html"><strong aria-hidden="true">23.</strong> D - Contributing</a></li><li class="chapter-item expanded "><a href="../appendix/acknowledgements.html"><strong aria-hidden="true">24.</strong> E - Acknowledgements</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The Move Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/MystenLabs/move-book" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/MystenLabs/move-book/edit/second-edition/src/programmability/dynamic-fields.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="dynamic-fields"><a class="header" href="#dynamic-fields">Dynamic Fields</a></h1>
+<p>Sui Object model allows objects to be attached to other objects as <em>dynamic fields</em>. The behavior is similar to how a <code>Map</code> works in other programming languages. However, unlike a <code>Map</code> which in Move would be strictly typed (we have covered it in the <a href="./collections.html">Collections</a> section), dynamic fields allow attaching objects of any type. A similar approach from the world of frontend development would be a JavaScript Object type which allows storing any type of data dynamically.</p>
+<blockquote>
+<p>There's no limit to the number of dynamic fields that can be attached to an object. Thus, dynamic fields can be used to store large amounts of data that don't fit into the object limit size.</p>
+</blockquote>
+<p>Dynamic Fields allow for a wide range of applications, from splitting data into smaller parts to avoid <a href="./../guides/building-against-limits.html">object size limit</a> to attaching objects as a part of application logic.</p>
+<h2 id="definition"><a class="header" href="#definition">Definition</a></h2>
+<p>Dynamic Fields are defined in the <code>sui::dynamic_field</code> module of the <a href="./sui-framework.html">Sui Framework</a>. They are attached to object's <code>UID</code> via a <em>name</em>, and can be accessed using that name. There can be only one field with a given name attached to an object.</p>
+<p>File: sui-framework/sources/dynamic_field.move</p>
+<pre><code class="language-move">/// Internal object used for storing the field and value
+public struct Field&lt;Name: copy + drop + store, Value: store&gt; has key {
+    /// Determined by the hash of the object ID, the field name
+    /// value and it's type, i.e. hash(parent.id || name || Name)
+    id: UID,
+    /// The value for the name of this field
+    name: Name,
+    /// The value bound to this field
+    value: Value,
+}
+</code></pre>
+<p>As the definition shows, dynamic fields are stored in an internal <code>Field</code> object, which has the <code>UID</code> generated in a deterministic way based on the object ID, the field name, and the field type. The <code>Field</code> object contains the field name and the value bound to it. The constraints on the <code>Name</code> and <code>Value</code> type parameters define the abilities that the key and value must have.</p>
+<h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
+<p>The methods available for dynamic fields are straightforward: a field can be added with <code>add</code>, removed with <code>remove</code>, and read with <code>borrow</code> and <code>borrow_mut</code>. Additionally, the <code>exists_</code> method can be used to check if a field exists (for stricter checks with type, there is an <code>exists_with_type</code> method).</p>
+<pre><code class="language-move">module book::dynamic_collection {
+    // a very common alias for `dynamic_field` is `df` since the
+    // module name is quite long
+    use sui::dynamic_field as df;
+    use std::string::String;
+
+    /// The object that we will attach dynamic fields to.
+    public struct Character has key {
+        id: UID
+    }
+
+    // List of different accessories that can be attached to a character.
+    // They must have the `store` ability.
+    public struct Hat has key, store { id: UID, color: u32 }
+    public struct Mustache has key, store { id: UID }
+
+    #[test]
+    fun test_character_and_accessories() {
+        let ctx = &amp;mut tx_context::dummy();
+        let mut character = Character { id: object::new(ctx) };
+
+        // Attach a hat to the character's UID
+        df::add(
+            &amp;mut character.id,
+            b&quot;hat_key&quot;,
+            Hat { id: object::new(ctx), color: 0xFF0000 }
+        );
+
+        // Similarly, attach a mustache to the character's UID
+        df::add(
+            &amp;mut character.id,
+            b&quot;mustache_key&quot;,
+            Mustache { id: object::new(ctx) }
+        );
+
+        // Check that the hat and mustache are attached to the character
+        //
+        assert!(df::exists_(&amp;character.id, b&quot;hat_key&quot;), 0);
+        assert!(df::exists_(&amp;character.id, b&quot;mustache_key&quot;), 1);
+
+        // Modify the color of the hat
+        let hat: &amp;mut Hat = df::borrow_mut(&amp;mut character.id, b&quot;hat_key&quot;);
+        hat.color = 0x00FF00;
+
+        // Remove the hat and mustache from the character
+        let hat: Hat = df::remove(&amp;mut character.id, b&quot;hat_key&quot;);
+        let mustache: Mustache = df::remove(&amp;mut character.id, b&quot;mustache_key&quot;);
+
+        // Check that the hat and mustache are no longer attached to the character
+        assert!(!df::exists_(&amp;character.id, b&quot;hat_key&quot;), 0);
+        assert!(!df::exists_(&amp;character.id, b&quot;mustache_key&quot;), 1);
+
+        sui::test_utils::destroy(character);
+        sui::test_utils::destroy(mustache);
+        sui::test_utils::destroy(hat);
+    }
+}
+</code></pre>
+<p>In the example above, we define a <code>Character</code> object and two different types of accessories that could never be put together in a vector. However, dynamic fields allow us to store them together in a single object. Both objects are attached to the <code>Character</code> via a <code>vector&lt;u8&gt;</code> (bytestring literal), and can be accessed using their respective keys.</p>
+<p>As you can see, when we attached the accessories to the Character, we passed them <em>by value</em>. In other words, both values were moved to a new scope, and their ownership was transferred to the <code>Character</code> object. If we changed the ownership of <code>Character</code> object, the accessories would have been moved with it.</p>
+<p>And the last important property of dynamic fields we should highlight is that they are <em>accessed through their parent</em>. This means that the <code>Hat</code> and <code>Mustache</code> objects are not directly accessible and follow the same rules as the parent object.</p>
+<h2 id="foreign-types-as-dynamic-fields"><a class="header" href="#foreign-types-as-dynamic-fields">Foreign Types as Dynamic Fields</a></h2>
+<p>Dynamic fields allow objects to carry data of any type, including those defined in other modules. This is possible due to their generic nature and relatively weak constraints on the type parameters. Let's illustrate this by attaching a few different values to a <code>Character</code> object.</p>
+<pre><code class="language-move">let mut character = Character { id: object::new(ctx) };
+
+// Attach a `String` via a `vector&lt;u8&gt;` name
+df::add(&amp;mut character.id, b&quot;string_key&quot;, b&quot;Hello, World!&quot;.to_string());
+
+// Attach a `u64` via a `u32` name
+df::add(&amp;mut character.id, 1000u32, 1_000_000_000u64);
+
+// Attach a `bool` via a `bool` name
+df::add(&amp;mut character.id, true, false);
+</code></pre>
+<p>In this example we showed how different types can be used for both <em>name</em> and the <em>value</em> of a dynamic field. The <code>String</code> is attached via a <code>vector&lt;u8&gt;</code> name, the <code>u64</code> is attached via a <code>u32</code> name, and the <code>bool</code> is attached via a <code>bool</code> name. Anything is possible with dynamic fields!</p>
+<h2 id="orphaned-dynamic-fields"><a class="header" href="#orphaned-dynamic-fields">Orphaned Dynamic Fields</a></h2>
+<blockquote>
+<p>To prevent orphaned dynamic fields, please, use <a href="./dynamic-collections.html">Dynamic Collection Types</a> such as <code>Bag</code> as they track the dynamic fields and won't allow unpacking if there are attached fields.</p>
+</blockquote>
+<p>The <code>object::delete()</code> function, which is used to delete a UID, does not track the dynamic fields, and cannot prevent dynamic fields from becoming orphaned. Once the parent UID is deleted, the dynamic fields are not automatically deleted, and they become orphaned. This means that the dynamic fields are still stored in the blockchain, but they will never become accessible again.</p>
+<pre><code class="language-move">let hat = Hat { id: object::new(ctx), color: 0xFF0000 };
+let mut character = Character { id: object::new(ctx) };
+
+// Attach a `Hat` via a `vector&lt;u8&gt;` name
+df::add(&amp;mut character.id, b&quot;hat_key&quot;, hat);
+
+// ! DO NOT do this in your code
+// ! Danger - deleting the parent object
+let Character { id } = character;
+id.delete();
+
+// ...`Hat` is now stuck in a limbo, it will never be accessible again
+</code></pre>
+<p>Orphaned objects are not a subject to storage rebate, and the storage fees will remain unclaimed. One way to avoid orphaned dynamic fields during unpacking on an object is to return the <code>UID</code> and store it somewhere temporarily until the dynamic fields are removed and handled properly.</p>
+<h2 id="custom-type-as-a-field-name"><a class="header" href="#custom-type-as-a-field-name">Custom Type as a Field Name</a></h2>
+<p>In the examples above, we used primitive types as field names since they have the required set of abilities. But dynamic fields get even more interesting when we use custom types as field names. This allows for a more structured way of storing data, and also allows for protecting the field names from being accessed by other modules.</p>
+<pre><code class="language-move">/// A custom type with fields in it.
+public struct AccessoryKey has copy, drop, store { name: String }
+
+/// An empty key, can be attached only once.
+public struct MetadataKey has copy, drop, store {}
+</code></pre>
+<p>Two field names that we defined above are <code>AccessoryKey</code> and <code>MetadataKey</code>. The <code>AccessoryKey</code> has a <code>String</code> field in it, hence it can be used multiple times with different <code>name</code> values. The <code>MetadataKey</code> is an empty key, and can be attached only once.</p>
+<pre><code class="language-move">let mut character = Character { id: object::new(ctx) };
+
+// Attaching via an `AccessoryKey { name: b&quot;hat&quot; }`
+df::add(
+    &amp;mut character.id,
+    AccessoryKey { name: b&quot;hat&quot;.to_string() },
+    Hat { id: object::new(ctx), color: 0xFF0000 }
+);
+// Attaching via an `AccessoryKey { name: b&quot;mustache&quot; }`
+df::add(
+    &amp;mut character.id,
+    AccessoryKey { name: b&quot;mustache&quot;.to_string() },
+    Mustache { id: object::new(ctx) }
+);
+
+// Attaching via a `MetadataKey`
+df::add(&amp;mut character.id, MetadataKey {}, 42);
+</code></pre>
+<p>As you can see, custom types do work as field names but as long as they can be <em>constructed</em> by the module, in other words - if they are <em>internal</em> to the module and defined in it. This limitation on struct packing can open up new ways in the design of the application.</p>
+<p>This approach is used in the <a href="">Object Capability</a> pattern, where an application can authorize a foreign object to perform operations in it while not exposing the capabilities to other modules.</p>
+<h2 id="exposing-uid"><a class="header" href="#exposing-uid">Exposing UID</a></h2>
+<div class="warning">
+<p>Mutable access to <code>UID</code> is a security risk. Exposing <code>UID</code> of your type as a mutable reference can lead to unwanted modifications or removal of the object's dynamic fields. Additionally, it affects the <a href="./../storage/transfer-to-object.html">Transfer to Object</a> and <a href="./dynamic-object-fields.html">Dynamic Object Fields</a>. Make sure to understand the implications before exposing the <code>UID</code> as a mutable reference.</p>
+</div>
+<p>Because dynamic fields are attached to <code>UID</code>s, their usage in other modules depends on whether the <code>UID</code> can be accessed. By default struct visibility protects the <code>id</code> field and won't let other modules access it directly. However, if there's a public accessor method that returns a reference to <code>UID</code>, dynamic fields can be read in other modules.</p>
+<pre><code class="language-move">/// Exposes the UID of the character, so that other modules can read
+/// dynamic fields.
+public fun uid(c: &amp;Character): &amp;UID {
+    &amp;c.id
+}
+</code></pre>
+<p>In the example above, we show how to expose the <code>UID</code> of a <code>Character</code> object. This solution may work for some applications, however, it is imporant to remember that exposed <code>UID</code> allows reading <em>any</em> dynamic field attached to the object.</p>
+<p>If you need to expose the <code>UID</code> only within the package, use a restrictive visibility, like <code>public(package)</code>, or even better - use more specific accessor methods that would allow only reading specific fields.</p>
+<pre><code class="language-move">/// Only allow modules in the same package to access the UID.
+public(package) fun uid_package(c: &amp;Character): &amp;UID {
+    &amp;c.id
+}
+
+/// Allow borrowing dynamic fields from the character.
+public fun borrow&lt;Name: copy + store + drop, Value: store&gt;(
+    c: &amp;Character,
+    n: Name
+): &amp;Value {
+    df::borrow(&amp;c.id, n)
+}
+</code></pre>
+<h2 id="dynamic-fields-vs-fields"><a class="header" href="#dynamic-fields-vs-fields">Dynamic Fields vs Fields</a></h2>
+<p>Dynamic Fields are more expensive than regular fields, as they require additional storage and costs for accessing them. Their flexibility comes at a price, and it is important to understand the implications when making a decision between using dynamic fields and regular fields.</p>
+<h2 id="limits"><a class="header" href="#limits">Limits</a></h2>
+<p>Dynamic Fields are not subject to the <a href="./../guides/building-against-limits.html">object size limit</a>, and can be used to store large amounts of data. However, they are still subject to the <a href="./../guides/building-against-limits.html">dynamic fields created limit</a>, which is set to 1000 fields per transaction.</p>
+<h2 id="applications"><a class="header" href="#applications">Applications</a></h2>
+<p>Dynamic Fields can play a crucial role in applications of any complexity. They open up a variety of different use cases, from storing heterogeneous data to attaching objects as part of the application logic. They allow for certain <a href="./../guides/upgradeability-practices.html">upgradeability practices</a> based on the ability to define them <em>later</em> and change the type of the field.</p>
+<h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
+<p>In the next section we will cover <a href="./dynamic-object-fields.html">Dynamic Object Fields</a> and explain how they differ from dynamic fields, and what are the implications of using them.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../programmability/collections.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../programmability/dynamic-object-fields.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../programmability/collections.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../programmability/dynamic-object-fields.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../theme/switcher.js"></script>
+
+
+    </div>
+    </body>
+</html>

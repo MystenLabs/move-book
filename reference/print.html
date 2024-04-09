@@ -1,22 +1,20 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light" dir="ltr">
+<html lang="en" class="sidebar-visible no-js light">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>The Move Reference</title>
-        <meta name="robots" content="noindex">
+        <meta name="robots" content="noindex" />
 
 
         <!-- Custom HTML head -->
-        <meta name="robots" content="noindex">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
-        
 
         <meta name="description" content="The Move Language Reference maintained by the Move core team.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff">
+        <meta name="theme-color" content="#ffffff" />
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -38,7 +36,7 @@
         <link rel="stylesheet" href="theme/css/custom.css">
 
     </head>
-    <body class="sidebar-visible no-js">
+    <body>
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -68,38 +66,31 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
+            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add('js');
         </script>
-
-        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
+            var html = document.querySelector('html');
             var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
                 <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Getting Started</li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">1.</strong> Modules</a></li><li class="chapter-item expanded affix "><li class="part-title">Basic Concepts</li><li class="chapter-item expanded "><a href="primitive-types.html"><strong aria-hidden="true">2.</strong> Primitive Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="primitive-types/integers.html"><strong aria-hidden="true">2.1.</strong> Integers</a></li><li class="chapter-item expanded "><a href="primitive-types/bool.html"><strong aria-hidden="true">2.2.</strong> Bool</a></li><li class="chapter-item expanded "><a href="primitive-types/address.html"><strong aria-hidden="true">2.3.</strong> Address</a></li><li class="chapter-item expanded "><a href="primitive-types/vector.html"><strong aria-hidden="true">2.4.</strong> Vector</a></li><li class="chapter-item expanded "><a href="primitive-types/references.html"><strong aria-hidden="true">2.5.</strong> References</a></li><li class="chapter-item expanded "><a href="primitive-types/tuples.html"><strong aria-hidden="true">2.6.</strong> Tuples and Unit</a></li></ol></li><li class="chapter-item expanded "><a href="variables.html"><strong aria-hidden="true">3.</strong> Local Variables and Scopes</a></li><li class="chapter-item expanded "><a href="equality.html"><strong aria-hidden="true">4.</strong> Equality</a></li><li class="chapter-item expanded "><a href="abort-and-assert.html"><strong aria-hidden="true">5.</strong> Abort and Assert</a></li><li class="chapter-item expanded "><a href="control-flow.html"><strong aria-hidden="true">6.</strong> Control Flow</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="control-flow/conditionals.html"><strong aria-hidden="true">6.1.</strong> Conditional Expressions</a></li><li class="chapter-item expanded "><a href="control-flow/loops.html"><strong aria-hidden="true">6.2.</strong> Loops</a></li><li class="chapter-item expanded "><a href="control-flow/labeled-control-flow.html"><strong aria-hidden="true">6.3.</strong> Labeled Control FLow</a></li></ol></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">7.</strong> Functions</a></li><li class="chapter-item expanded "><a href="structs.html"><strong aria-hidden="true">8.</strong> Structs</a></li><li class="chapter-item expanded "><a href="constants.html"><strong aria-hidden="true">9.</strong> Constants</a></li><li class="chapter-item expanded "><a href="generics.html"><strong aria-hidden="true">10.</strong> Generics</a></li><li class="chapter-item expanded "><a href="abilities.html"><strong aria-hidden="true">11.</strong> Type Abilities</a></li><li class="chapter-item expanded "><a href="uses.html"><strong aria-hidden="true">12.</strong> Uses and Aliases</a></li><li class="chapter-item expanded affix "><li class="part-title">Advanced Concepts</li><li class="chapter-item expanded "><a href="method-syntax.html"><strong aria-hidden="true">13.</strong> Method Syntax</a></li><li class="chapter-item expanded "><a href="index-syntax.html"><strong aria-hidden="true">14.</strong> Index Syntax Methods</a></li><li class="chapter-item expanded affix "><li class="part-title">Tooling</li><li class="chapter-item expanded "><a href="packages.html"><strong aria-hidden="true">15.</strong> Packages</a></li><li class="chapter-item expanded "><a href="unit-testing.html"><strong aria-hidden="true">16.</strong> Unit Tests</a></li><li class="chapter-item expanded affix "><li class="part-title">Reference</li><li class="chapter-item expanded "><a href="coding-conventions.html"><strong aria-hidden="true">17.</strong> Coding Conventions</a></li><li class="chapter-item expanded affix "><li class="part-title">Deprecated</li><li class="chapter-item expanded "><a href="friends.html"><strong aria-hidden="true">18.</strong> Friends</a></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
-                <div class="sidebar-resize-indicator"></div>
-            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <!-- Track and set sidebar scroll position -->
@@ -130,9 +121,9 @@
                                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </label>
+                        </button>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -197,7 +188,7 @@ the name) semantics as an explicit representation of digital assets, such as cur
 types. Struct types define the schema of Move's <a href="./abilities.html#key">storage</a>, and module functions
 define the rules interacting with values of those types. While modules themselves are also stored in
 storage, they are not accessible from within a Move program. In a blockchain environment, the
-modules are stored on chain in a process typically referred to as "publishing". After being
+modules are stored on chain in a process typically referred to as &quot;publishing&quot;. After being
 published, <a href="./functions.html#entry-modifier"><code>entry</code></a> and <a href="./functions.html#visibility"><code>public</code></a>
 functions can be invoked according to the rules of that particular Move instance.</p>
 <h2 id="syntax"><a class="header" href="#syntax">Syntax</a></h2>
@@ -399,7 +390,7 @@ need to be of the same type. If you need to compare integers of different types,
 </div>
 <h3 id="equality"><a class="header" href="#equality">Equality</a></h3>
 <p>Like all types with <a href="primitive-types/../abilities.html"><code>drop</code></a>, all integer types support the
-<a href="primitive-types/../equality.html">"equal"</a> and <a href="primitive-types/../equality.html">"not equal"</a> operations. Both arguments need to be of
+<a href="primitive-types/../equality.html">&quot;equal&quot;</a> and <a href="primitive-types/../equality.html">&quot;not equal&quot;</a> operations. Both arguments need to be of
 the same type. If you need to compare integers of different types, you must <a href="primitive-types/integers.html#casting">cast</a> one of
 them first.</p>
 <p>Equality operations do not abort.</p>
@@ -463,7 +454,7 @@ differentiate packages of <a href="primitive-types/../modules.html">modules</a>,
 modules. Specific deployments of Move might also use the <code>address</code> value for
 <a href="primitive-types/../abilities.html#key">storage</a> operations.</p>
 <blockquote>
-<p>For Sui, <code>address</code> is used to represent "accounts", and also objects via strong type wrappers
+<p>For Sui, <code>address</code> is used to represent &quot;accounts&quot;, and also objects via strong type wrappers
 (with <code>sui::object::UID</code> and <code>sui::object::ID</code>).</p>
 </blockquote>
 <p>Although an <code>address</code> is a 256 bit integer under the hood, Move addresses are intentionally
@@ -529,7 +520,7 @@ module std::other_module {  // Can use a named address when declaring a module
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="vector"><a class="header" href="#vector">Vector</a></h1>
 <p><code>vector&lt;T&gt;</code> is the only primitive collection type provided by Move. A <code>vector&lt;T&gt;</code> is a homogenous
-collection of <code>T</code>'s that can grow or shrink by pushing/popping values off the "end".</p>
+collection of <code>T</code>'s that can grow or shrink by pushing/popping values off the &quot;end&quot;.</p>
 <p>A <code>vector&lt;T&gt;</code> can be instantiated with any type <code>T</code>. For example, <code>vector&lt;u64&gt;</code>, <code>vector&lt;address&gt;</code>,
 <code>vector&lt;0x42::my_module::MyData&gt;</code>, and <code>vector&lt;vector&lt;u8&gt;&gt;</code> are all valid vector types.</p>
 <h2 id="literals-2"><a class="header" href="#literals-2">Literals</a></h2>
@@ -553,14 +544,14 @@ vector&lt;T&gt;[e1, ..., en]: vector&lt;T&gt;
 (vector&lt;address&gt;[@0x42, @0x100]: vector&lt;address&gt;);
 </code></pre>
 <h3 id="vectoru8-literals"><a class="header" href="#vectoru8-literals"><code>vector&lt;u8&gt;</code> literals</a></h3>
-<p>A common use-case for vectors in Move is to represent "byte arrays", which are represented with
+<p>A common use-case for vectors in Move is to represent &quot;byte arrays&quot;, which are represented with
 <code>vector&lt;u8&gt;</code>. These values are often used for cryptographic purposes, such as a public key or a hash
 result. These values are so common that specific syntax is provided to make the values more
 readable, as opposed to having to use <code>vector[]</code> where each individual <code>u8</code> value is specified in
 numeric form.</p>
 <p>There are currently two supported types of <code>vector&lt;u8&gt;</code> literals, <em>byte strings</em> and <em>hex strings</em>.</p>
 <h4 id="byte-strings"><a class="header" href="#byte-strings">Byte Strings</a></h4>
-<p>Byte strings are quoted string literals prefixed by a <code>b</code>, e.g. <code>b"Hello!\n"</code>.</p>
+<p>Byte strings are quoted string literals prefixed by a <code>b</code>, e.g. <code>b&quot;Hello!\n&quot;</code>.</p>
 <p>These are ASCII encoded strings that allow for escape sequences. Currently, the supported escape
 sequences are:</p>
 <div class="table-wrapper"><table><thead><tr><th>Escape Sequence</th><th>Description</th></tr></thead><tbody>
@@ -569,22 +560,22 @@ sequences are:</p>
 <tr><td><code>\t</code></td><td>Tab</td></tr>
 <tr><td><code>\\</code></td><td>Backslash</td></tr>
 <tr><td><code>\0</code></td><td>Null</td></tr>
-<tr><td><code>\"</code></td><td>Quote</td></tr>
+<tr><td><code>\&quot;</code></td><td>Quote</td></tr>
 <tr><td><code>\xHH</code></td><td>Hex escape, inserts the hex byte sequence <code>HH</code></td></tr>
 </tbody></table>
 </div>
 <h4 id="hex-strings"><a class="header" href="#hex-strings">Hex Strings</a></h4>
-<p>Hex strings are quoted string literals prefixed by a <code>x</code>, e.g. <code>x"48656C6C6F210A"</code>.</p>
+<p>Hex strings are quoted string literals prefixed by a <code>x</code>, e.g. <code>x&quot;48656C6C6F210A&quot;</code>.</p>
 <p>Each byte pair, ranging from <code>00</code> to <code>FF</code>, is interpreted as hex encoded <code>u8</code> value. So each byte
 pair corresponds to a single entry in the resulting <code>vector&lt;u8&gt;</code>.</p>
 <h4 id="example-string-literals"><a class="header" href="#example-string-literals">Example String Literals</a></h4>
 <pre><code class="language-move">fun byte_and_hex_strings() {
-    assert!(b"" == x"", 0);
-    assert!(b"Hello!\n" == x"48656C6C6F210A", 1);
-    assert!(b"\x48\x65\x6C\x6C\x6F\x21\x0A" == x"48656C6C6F210A", 2);
+    assert!(b&quot;&quot; == x&quot;&quot;, 0);
+    assert!(b&quot;Hello!\n&quot; == x&quot;48656C6C6F210A&quot;, 1);
+    assert!(b&quot;\x48\x65\x6C\x6C\x6F\x21\x0A&quot; == x&quot;48656C6C6F210A&quot;, 2);
     assert!(
-        b"\"Hello\tworld!\"\n \r \\Null=\0" ==
-            x"2248656C6C6F09776F726C6421220A200D205C4E756C6C3D00",
+        b&quot;\&quot;Hello\tworld!\&quot;\n \r \\Null=\0&quot; ==
+            x&quot;2248656C6C6F09776F726C6421220A200D205C4E756C6C3D00&quot;,
         3
     );
 }
@@ -666,8 +657,8 @@ modifications via a write through that reference. Move's type system enforces an
 discipline that prevents reference errors.</p>
 <h2 id="reference-operators"><a class="header" href="#reference-operators">Reference Operators</a></h2>
 <p>Move provides operators for creating and extending references as well as converting a mutable
-reference to an immutable one. Here and elsewhere, we use the notation <code>e: T</code> for "expression <code>e</code>
-has type <code>T</code>".</p>
+reference to an immutable one. Here and elsewhere, we use the notation <code>e: T</code> for &quot;expression <code>e</code>
+has type <code>T</code>&quot;.</p>
 <div class="table-wrapper"><table><thead><tr><th>Syntax</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>&amp;e</code></td><td><code>&amp;T</code> where <code>e: T</code> and <code>T</code> is a non-reference type</td><td>Create an immutable reference to <code>e</code></td></tr>
 <tr><td><code>&amp;mut e</code></td><td><code>&amp;mut T</code> where <code>e: T</code> and <code>T</code> is a non-reference type</td><td>Create a mutable reference to <code>e</code>.</td></tr>
@@ -717,7 +708,7 @@ rule prevents the copying of assets:</p>
 }
 </code></pre>
 <p>Dually: in order for a reference to be written to, the underlying type must have the
-<a href="primitive-types/../abilities.html"><code>drop</code> ability</a> as writing to the reference will discard (or "drop") the old
+<a href="primitive-types/../abilities.html"><code>drop</code> ability</a> as writing to the reference will discard (or &quot;drop&quot;) the old
 value. This rule prevents the destruction of resource values:</p>
 <pre><code class="language-move=">fun destroy_coin_via_ref_bad(mut ten_coins: Coin, c: Coin) {
     let ref = &amp;mut ten_coins;
@@ -872,8 +863,8 @@ return values are represented using tuples.</p>
 <p>Note that <code>(e)</code> does not have type <code>(e): (t)</code>, in other words there is no tuple with one element. If
 there is only a single element inside of the parentheses, the parentheses are only used for
 disambiguation and do not carry any other special meaning.</p>
-<p>Sometimes, tuples with two elements are called "pairs" and tuples with three elements are called
-"triples."</p>
+<p>Sometimes, tuples with two elements are called &quot;pairs&quot; and tuples with three elements are called
+&quot;triples.&quot;</p>
 <h3 id="examples-2"><a class="header" href="#examples-2">Examples</a></h3>
 <pre><code class="language-move">module 0x42::example {
     // all 3 of these functions are equivalent
@@ -892,7 +883,7 @@ disambiguation and do not carry any other special meaning.</p>
         (0, false, @0x42)
     }
     fun returns_4_values(x: &amp;u64): (&amp;u64, u8, u128, vector&lt;u8&gt;) {
-        (x, 0, 1, b"foobar")
+        (x, 0, 1, b&quot;foobar&quot;)
     }
 }
 </code></pre>
@@ -905,16 +896,16 @@ disambiguation and do not carry any other special meaning.</p>
     // all 3 of these functions are equivalent
     fun returns_unit() {}
     fun returns_2_values(): (bool, bool) { (true, false) }
-    fun returns_4_values(x: &amp;u64): (&amp;u64, u8, u128, vector&lt;u8&gt;) { (x, 0, 1, b"foobar") }
+    fun returns_4_values(x: &amp;u64): (&amp;u64, u8, u128, vector&lt;u8&gt;) { (x, 0, 1, b&quot;foobar&quot;) }
 
     fun examples(cond: bool) {
         let () = ();
         let (mut x, mut y): (u8, u64) = (0, 1);
-        let (mut a, mut b, mut c, mut d) = (@0x0, 0, false, b"");
+        let (mut a, mut b, mut c, mut d) = (@0x0, 0, false, b&quot;&quot;);
 
         () = ();
         (x, y) = if (cond) (1, 2) else (3, 4);
-        (a, b, c, d) = (@0x1, 1, true, b"1");
+        (a, b, c, d) = (@0x1, 1, true, b&quot;1&quot;);
     }
 
     fun examples_with_function_calls() {
@@ -1029,7 +1020,7 @@ let Foo = e; // ERROR!
 <p>The type of a local variable can almost always be inferred by Move's type system. However, Move
 allows explicit type annotations that can be useful for readability, clarity, or debuggability. The
 syntax for adding a type annotation is:</p>
-<pre><code class="language-move">let x: T = e; // "Variable x of type T is initialized to expression e"
+<pre><code class="language-move">let x: T = e; // &quot;Variable x of type T is initialized to expression e&quot;
 </code></pre>
 <p>Some examples of explicit type annotations:</p>
 <pre><code class="language-move">module 0x42::example {
@@ -1038,7 +1029,7 @@ syntax for adding a type annotation is:</p>
 
     fun annotated() {
         let u: u8 = 0;
-        let b: vector&lt;u8&gt; = b"hello";
+        let b: vector&lt;u8&gt; = b&quot;hello&quot;;
         let a: address = @0x0;
         let (x, y): (&amp;u64, &amp;mut u64) = (&amp;0, &amp;mut 1);
         let S { f, g: f2 }: S = S { f: 0, g: 1 };
@@ -1365,7 +1356,7 @@ commonly used as statements.</p>
     let x = 0;
     x + 1; // value is discarded
     x + 2; // value is discarded
-    b"hello"; // value is discarded
+    b&quot;hello&quot;; // value is discarded
 }
 </code></pre>
 <p>But! If the expression contains a resource (a value without the <code>drop</code> <a href="./abilities.html">ability</a>),
@@ -1397,8 +1388,8 @@ The body of a function is also an expression block, but the function body cannot
 another expression.)</p>
 <pre><code class="language-move">let my_vector: vector&lt;vector&lt;u8&gt;&gt; = {
     let mut v = vector[];
-    vector::push_back(&amp;mut v, b"hello");
-    vector::push_back(&amp;mut v, b"goodbye");
+    vector::push_back(&amp;mut v, b&quot;hello&quot;);
+    vector::push_back(&amp;mut v, b&quot;goodbye&quot;);
     v
 };
 </code></pre>
@@ -1416,8 +1407,8 @@ assert!(x == 1, 42);
 <pre><code class="language-move">let x = 0;
 assert!(x == 0, 42);
 
-let x = b"hello"; // x is shadowed
-assert!(x == b"hello", 42);
+let x = b&quot;hello&quot;; // x is shadowed
+assert!(x == b&quot;hello&quot;, 42);
 </code></pre>
 <p>After a local is shadowed, the value stored in the local still exists, but will no longer be
 accessible. This is important to keep in mind with values of types without the
@@ -1448,8 +1439,8 @@ assert!(x == 0, 42);
 <p>Remember, locals can change type when they are shadowed.</p>
 <pre><code class="language-move">let x = 0;
 {
-    let x = b"hello";
-    assert!(x = b"hello", 42);
+    let x = b&quot;hello&quot;;
+    assert!(x = b&quot;hello&quot;, 42);
 };
 assert!(x == 0, 42);
 </code></pre>
@@ -1500,7 +1491,7 @@ errors. This will happen once the reference is no longer used.</li>
 public struct Coin has store { value: u64 }
 </code></pre>
 <p>we have the following example</p>
-<pre><code class="language-move">let s = b"hello";
+<pre><code class="language-move">let s = b&quot;hello&quot;;
 let foo = Foo { f: 0 };
 let coin = Coin { value: 0 };
 let coins = vector[Coin { value: 0 }, Coin { value: 0 }];
@@ -1534,19 +1525,19 @@ let coin_ref2 = coin_ref; // copy
 <p>Both the equal (<code>==</code>) and not-equal (<code>!=</code>) operations only work if both operands are the same type</p>
 <pre><code class="language-move">0 == 0; // `true`
 1u128 == 2u128; // `false`
-b"hello" != x"00"; // `true`
+b&quot;hello&quot; != x&quot;00&quot;; // `true`
 </code></pre>
 <p>Equality and non-equality also work over <em>all</em> user defined types!</p>
 <pre><code class="language-move=">module 0x42::example {
     public struct S has copy, drop { f: u64, s: vector&lt;u8&gt; }
 
     fun always_true(): bool {
-        let s = S { f: 0, s: b"" };
+        let s = S { f: 0, s: b&quot;&quot; };
         s == s
     }
 
     fun always_false(): bool {
-        let s = S { f: 0, s: b"" };
+        let s = S { f: 0, s: b&quot;&quot; };
         s != s
     }
 }
@@ -1554,7 +1545,7 @@ b"hello" != x"00"; // `true`
 <p>If the operands have different types, there is a type checking error</p>
 <pre><code class="language-move">1u8 == 1u128; // ERROR!
 //     ^^^^^ expected an argument of type 'u8'
-b"" != 0; // ERROR!
+b&quot;&quot; != 0; // ERROR!
 //     ^ expected an argument of type 'vector&lt;u8&gt;'
 </code></pre>
 <h3 id="typing-with-references"><a class="header" href="#typing-with-references">Typing with references</a></h3>
@@ -1580,7 +1571,7 @@ i == i; // `true`
 </code></pre>
 <p>But again, the underlying type must be the same type</p>
 <pre><code class="language-move">let i = &amp;0;
-let s = &amp;b"";
+let s = &amp;b&quot;&quot;;
 
 i == s; // ERROR!
 //   ^ expected an argument of type '&amp;u64'
@@ -1664,7 +1655,7 @@ the current function and one for the entire transaction.</p>
 </code></pre>
 <p>The <code>abort</code> expression halts execution the current function and reverts all changes made to state by
 the current transaction (note though that this guarantee must be upheld by the adapter of the
-specific deployment of Move). There is no mechanism for "catching" or otherwise handling an <code>abort</code>.</p>
+specific deployment of Move). There is no mechanism for &quot;catching&quot; or otherwise handling an <code>abort</code>.</p>
 <p>Luckily, in Move transactions are all or nothing, meaning any changes to storage are made all at
 once only if the transaction succeeds. For Sui, this means no objects are modified.</p>
 <p>Because of this transactional commitment of changes, after an abort there is no need to worry about
@@ -1829,7 +1820,7 @@ For example:</p>
 when the condition is false.</p>
 <pre><code class="language-move">if (y &lt;= 10) y = y + 1 else y = 10
 </code></pre>
-<p>Either the "true" branch or the "false" branch will be evaluated, but not both. Either branch can be
+<p>Either the &quot;true&quot; branch or the &quot;false&quot; branch will be evaluated, but not both. Either branch can be
 a single expression or an expression block.</p>
 <p>The conditional expressions may produce values so that the <code>if</code> expression has a result.</p>
 <pre><code class="language-move">let z = if (x &lt; 100) x else 100;
@@ -2070,9 +2061,9 @@ outer label to escape both loops at once:</p>
                 // the next element we saw would break the threshold,
                 // so we return the current sum
                 break 'outer sum
-            }
+            };
             j = j + 1;
-        }
+        };
         i = i + 1;
     }
 }
@@ -2084,10 +2075,10 @@ that might see us continuing the inner or outer loop, we could express that code
     ...
     'inner: while (cond) {
         ...
-        if (cond0) { break 'outer value }
+        if (cond0) { break 'outer value };
         ...
         if (cond1) { continue 'inner }
-        else if (cond2) { continue 'outer }
+        else if (cond2) { continue 'outer };
         ...
     }
     ...
@@ -2175,7 +2166,7 @@ enumerated by the callee's module. see <a href="./friends.html">Friends</a> for 
 <p>In addition to <code>public</code> functions, you might have some functions in your modules that you want to
 use as the entry point to execution. The <code>entry</code> modifier is designed to allow module functions to
 initiate execution, without having to expose the functionality to other modules.</p>
-<p>Essentially, the combination of <code>pbulic</code> and <code>entry</code> functions define the "main" functions of a
+<p>Essentially, the combination of <code>pbulic</code> and <code>entry</code> functions define the &quot;main&quot; functions of a
 module, and they specify where Move programs can start executing.</p>
 <p>Keep in mind though, an <code>entry</code> function <em>can</em> still be called by other Move functions. So while
 they <em>can</em> serve as the start of a Move program, they aren't restricted to that case.</p>
@@ -2195,6 +2186,18 @@ module a::n {
 <p><code>entry</code> functions may have restrictions on their parameters and return types. Although, these
 restrictions are specific to each individual deployment of Move.</p>
 <p><a href="https://docs.sui.io/concepts/sui-move-concepts/entry-functions">The documentation for <code>entry</code> functions on Sui can be found here.</a>.</p>
+<p>To enable easier testing, <code>entry</code> functions can be called from
+<a href="./unit-testing.html"><code>#[test]</code> and <code>#[test_only]</code></a> contexts.</p>
+<pre><code class="language-move">module a::m {
+    entry fun foo(): u64 { 0 }
+}
+module a::m_test {
+    #[test]
+    fun my_test(): u64 { a::m::foo() } // valid!
+    #[test_only]
+    fun my_test_helper(): u64 { a::m::foo() } // valid!
+}
+</code></pre>
 <h3 id="name"><a class="header" href="#name">Name</a></h3>
 <p>Function names can start with letters <code>a</code> to <code>z</code>. After the first character, function names can
 contain underscores <code>_</code>, letters <code>a</code> to <code>z</code>, letters <code>A</code> to <code>Z</code>, or digits <code>0</code> to <code>9</code>.</p>
@@ -2239,7 +2242,7 @@ functions are equivalent:</p>
 fun just_unit() { () }
 fun just_unit() { }
 </code></pre>
-<p>As mentioned in the <a href="./primitive-types/tuples.html">tuples section</a>, these tuple "values" do not exist
+<p>As mentioned in the <a href="./primitive-types/tuples.html">tuples section</a>, these tuple &quot;values&quot; do not exist
 as runtime values. This means that a function that returns unit <code>()</code> does not return any value
 during execution.</p>
 <h3 id="function-body"><a class="header" href="#function-body">Function body</a></h3>
@@ -2312,7 +2315,7 @@ module b::other {
 </code></pre>
 <p>For more details, see <a href="./generics.html">Move generics</a>.</p>
 <h2 id="returning-values"><a class="header" href="#returning-values">Returning values</a></h2>
-<p>The result of a function, its "return value", is the final value of its function body. For example</p>
+<p>The result of a function, its &quot;return value&quot;, is the final value of its function body. For example</p>
 <pre><code class="language-move">fun add(x: u64, y: u64): u64 {
     x + y
 }
@@ -2365,7 +2368,7 @@ fun foo() { return () }
 <div style="break-before: page; page-break-before: always;"></div><h1 id="structs-and-resources"><a class="header" href="#structs-and-resources">Structs and Resources</a></h1>
 <p>A <em>struct</em> is a user-defined data structure containing typed fields. Structs can store any
 non-reference, non-tuple type, including other structs.</p>
-<p>Structs can be used to define all "asset" values or unrestricted values, where the operations
+<p>Structs can be used to define all &quot;asset&quot; values or unrestricted values, where the operations
 performed on those values can be controlled by the struct's <a href="./abilities.html">abilities</a>. By default,
 structs are linear and ephemeral. By this we mean that they: cannot be copied, cannot be dropped,
 and cannot be stored in storage. This means that all values have to have ownership transferred
@@ -2445,7 +2448,7 @@ public struct P_o_s_Foo()
 features. It may or may not be removed later.</p>
 <h2 id="using-structs"><a class="header" href="#using-structs">Using Structs</a></h2>
 <h3 id="creating-structs"><a class="header" href="#creating-structs">Creating Structs</a></h3>
-<p>Values of a struct type can be created (or "packed") by indicating the struct name, followed by
+<p>Values of a struct type can be created (or &quot;packed&quot;) by indicating the struct name, followed by
 value for each field.</p>
 <p>For a struct with named fields, the order of the fields does not matter, but the field name needs to
 be provided. For a struct with positional fields, the order of the fields must match the order of
@@ -2473,7 +2476,7 @@ the same name as the field:</p>
 // is equivalent to
 let baz = Baz { foo };
 </code></pre>
-<p>This is sometimes called "field name punning".</p>
+<p>This is sometimes called &quot;field name punning&quot;.</p>
 <h3 id="destroying-structs-via-pattern-matching"><a class="header" href="#destroying-structs-via-pattern-matching">Destroying Structs via Pattern Matching</a></h3>
 <p>Struct values can be destroyed by binding or assigning them in patterns using similar syntax to
 constructing them.</p>
@@ -2643,7 +2646,7 @@ foo_ref.x = foo_ref.x + 1;
 <p>Most struct operations on a struct type <code>T</code> can only be performed inside the module that declares
 <code>T</code>:</p>
 <ul>
-<li>Struct types can only be created ("packed"), destroyed ("unpacked") inside the module that defines
+<li>Struct types can only be created (&quot;packed&quot;), destroyed (&quot;unpacked&quot;) inside the module that defines
 the struct.</li>
 <li>The fields of a struct are only accessible inside the module that defines the struct.</li>
 </ul>
@@ -2708,7 +2711,7 @@ circulation.</p>
     }
 }
 </code></pre>
-<p>To fix the example <code>fun destroying_1</code>, you would need to manually "unpack" the value:</p>
+<p>To fix the example <code>fun destroying_1</code>, you would need to manually &quot;unpack&quot; the value:</p>
 <pre><code class="language-move">module a::m {
     public struct Foo { x: u64 }
 
@@ -2784,8 +2787,8 @@ in the declaring module. However, as a convenience, they can be used across modu
 <p>Commonly, <code>const</code>s are assigned a simple value, or literal, of their type. For example</p>
 <pre><code class="language-move">const MY_BOOL: bool = false;
 const MY_ADDRESS: address = @0x70DD;
-const BYTES: vector&lt;u8&gt; = b"hello world";
-const HEX_BYTES: vector&lt;u8&gt; = x"DEADBEEF";
+const BYTES: vector&lt;u8&gt; = b&quot;hello world&quot;;
+const HEX_BYTES: vector&lt;u8&gt; = x&quot;DEADBEEF&quot;;
 </code></pre>
 <h3 id="complex-expressions"><a class="header" href="#complex-expressions">Complex Expressions</a></h3>
 <p>In addition to literals, constants can include more complex expressions, as long as the compiler is
@@ -3059,7 +3062,7 @@ parameters can be declared with ability constraints.</p>
 satisfy that constraint, even though the parameter is phantom. The usual restrictions apply and <code>T</code>
 can only be instantiated with arguments having <code>copy</code>.</p>
 <h2 id="constraints"><a class="header" href="#constraints">Constraints</a></h2>
-<p>In the examples above, we have demonstrated how one can use type parameters to define "unknown"
+<p>In the examples above, we have demonstrated how one can use type parameters to define &quot;unknown&quot;
 types that can be plugged in by callers at a later time. This however means the type system has
 little information about the type and has to perform checks in a very conservative way. In some
 sense, the type system must assume the worst case scenario for an unconstrained generic--a type with
@@ -3217,7 +3220,7 @@ does NOT take control flow or runtime values into account.</p>
 creating finitely many types, but it is still considered invalid by Move's type system.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="abilities-1"><a class="header" href="#abilities-1">Abilities</a></h1>
 <p>Abilities are a typing feature in Move that control what actions are permissible for values of a
-given type. This system grants fine grained control over the "linear" typing behavior of values, as
+given type. This system grants fine grained control over the &quot;linear&quot; typing behavior of values, as
 well as if and how values are used in storage (as defined by the specific deployment of Move, e.g.
 the notion of storage for the blockchain). This is implemented by gating access to certain bytecode
 instructions so that for a value to be used with the bytecode instruction, it must have the ability
@@ -3251,7 +3254,7 @@ If you are already somewhat familiar with abilities from writing Move programs, 
 </li>
 <li><a href="abilities.html#key"><code>key</code></a>
 <ul>
-<li>Allows the type to serve as a "key" for storage. Ostensibly this means the value can be a
+<li>Allows the type to serve as a &quot;key&quot; for storage. Ostensibly this means the value can be a
 top-level value in storage; in other words, it does not need to be contained in another value to
 be in storage.</li>
 <li>For Sui, <code>key</code> is used to signify an <a href="./abilities/object.html">object</a>.</li>
@@ -3753,7 +3756,7 @@ outer scope. As with shadowing of locals, the shadowing ends at the end of the e
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="methods"><a class="header" href="#methods">Methods</a></h1>
-<p>As a syntactic convience, some functions in Move can be called as "methods" on a value. This is done
+<p>As a syntactic convience, some functions in Move can be called as &quot;methods&quot; on a value. This is done
 by using the <code>.</code> operator to call the function, where the value on the left-hand side of the <code>.</code> is
 the first argument to the function (sometimes called the receiver). The type of that value
 statically determines which function is called. This is an important difference from some other
@@ -3778,7 +3781,7 @@ mapping from type and method name to the module and function name that should be
 mapping is created fom the <code>use fun</code> aliases that are currently in scope, and from the appropriate
 functions in the receiver type's defining module. In all cases, the receiver type is the first
 argument to the function, whether by-value or by-reference.</p>
-<p>In this section, when we say a method "resolves" to a function, we mean that the compiler will
+<p>In this section, when we say a method &quot;resolves&quot; to a function, we mean that the compiler will
 statically replace the method with a normal <a href="./functions.html">function</a> call. For example if we have
 <code>x.foo(e)</code> with <code>foo</code> resolving to <code>a::m::foo</code>, the compiler will replace <code>x.foo(e)</code> with
 <code>a::m::foo(x, e)</code>, potentially <a href="method-syntax.html#automatic-borrowing">automatically borrowing</a> <code>x</code>.</p>
@@ -3917,7 +3920,7 @@ that module). Both of these views are equivalent.</p>
 }
 </code></pre>
 <p>In this example, a public method alias is created for <code>a::cup::Cup.borrow</code> and
-<code>a::cup::Cup.cup_borrow</code>. Both resolve to <code>a::cup::cup_borrow</code>. And both are "public" in the sense
+<code>a::cup::Cup.cup_borrow</code>. Both resolve to <code>a::cup::cup_borrow</code>. And both are &quot;public&quot; in the sense
 that they can be used outside of <code>a::cup</code>, without an additional <code>use</code> or <code>use fun</code>.</p>
 <pre><code class="language-move">module b::example {
 
@@ -4102,12 +4105,12 @@ module b::example {
 </code></pre>
 <p>In this example for <code>l.start().x()</code>, the compiler first resolves <code>l.start()</code> to
 <code>a::shapes::start(&amp;l)</code>. Then <code>.x()</code> is resolved to <code>a::shapes::x(a::shapes::start(&amp;l))</code>. Similarly
-for <code>l.end().x()</code>. Keep in mind, this feature is not "special"--the left-hand side of the <code>.</code> can be
+for <code>l.end().x()</code>. Keep in mind, this feature is not &quot;special&quot;--the left-hand side of the <code>.</code> can be
 any expression, and the compiler will resolve the method call as normal. We simply draw attention to
-this sort of "chaining" because it is a common practice to increase readability.</p>
+this sort of &quot;chaining&quot; because it is a common practice to increase readability.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="index-syntax"><a class="header" href="#index-syntax">Index Syntax</a></h1>
 <p>Move provides syntax attributes to allow you to define operations that look and feel like native
-move code, lowering these operations into your user-provided definitions.</p>
+Move code, lowering these operations into your user-provided definitions.</p>
 <p>Our first syntax method, <code>index</code>, allows you to define a group of operations that can be used as
 custom index accessors for your datatypes, such as accessing a matrix element as <code>m[i,j]</code>, by
 annotating functions that should be used for these index operations. Moreover, these definitions are
@@ -4121,13 +4124,13 @@ follows:</p>
     public struct Matrix&lt;T&gt; { v: vector&lt;vector&lt;T&gt;&gt; }
 
     #[syntax(index)]
-    public fun borrow&lt;T&gt;(s: &amp;Matrix&lt;T&gt;, i: u64, j: u64):  &amp;T {
-        borrow(borrow(s.v, i), j)
+    public fun borrow&lt;T&gt;(s: &amp;Matrix&lt;T&gt;, i: u64, j: u64): &amp;T {
+        vector::borrow(vector::borrow(&amp;s.v, i), j)
     }
 
     #[syntax(index)]
-    public fun borrow_mut&lt;T&gt;(s: &amp;mut Matrix&lt;T&gt;, i: u64, j: u64):  &amp;mut T {
-        borrow_mut(borrow_mut(s.v, i), j)
+    public fun borrow_mut&lt;T&gt;(s: &amp;mut Matrix&lt;T&gt;, i: u64, j: u64): &amp;mut T {
+        vector::borrow_mut(vector::borrow_mut(&amp;mut s.v, i), j)
     }
 
     public fun make_matrix&lt;T&gt;(v: vector&lt;vector&lt;T&gt;&gt;):  Matrix&lt;T&gt; {
@@ -4137,20 +4140,20 @@ follows:</p>
 }
 </code></pre>
 <p>Now anyone using this <code>Matrix</code> type has access to index syntax for it:</p>
-<pre><code class="language-move">let v0 = vector&lt;u64&gt;[1, 0, 0];
-let v1 = vector&lt;u64&gt;[0, 1, 0];
-let v2 = vector&lt;u64&gt;[0, 0, 1];
-let v = vector&lt;vector&lt;u64&gt;&gt;[v0, v1, v2];
-let mut m = matrix::make_matrix(v);
+<pre><code class="language-move">let mut m = matrix::make_matrix(vector[
+    vector[1, 0, 0],
+    vector[0, 1, 0],
+    vector[0, 0, 1],
+]);
 
 let mut i = 0;
 while (i &lt; 3) {
     let mut j = 0;
     while (j &lt; 3) {
         if (i == j) {
-            assert!(m[i, j] == 1, i);
+            assert!(m[i, j] == 1, 1);
         } else {
-            assert!(m[i, j] == 0, i + 10);
+            assert!(m[i, j] == 0, 0);
         };
         *(&amp;mut m[i,j]) = 2;
         j = j + 1;
@@ -4169,13 +4172,13 @@ the position and mutable usage of the expression:</p>
 <pre><code class="language-move">let mut mat = matrix::make_matrix(...);
 
 let m_0_0 = mat[0, 0];
-    // translates to copy matrix::borrow(&amp;mat, 0, 0)
+// translates to `copy matrix::borrow(&amp;mat, 0, 0)`
 
 let m_0_0 = &amp;mat[0, 0];
-    // translates to matrix::borrow(&amp;mat, 0, 0)
+// translates to `matrix::borrow(&amp;mat, 0, 0)`
 
 let m_0_0 = &amp;mut mat[0, 0];
-    // translates to matrix::borrow_mut(&amp;mut mat, 0, 0)
+// translates to `matrix::borrow_mut(&amp;mut mat, 0, 0)`
 ``
 
 You can also intermix index expressions with field accesses:
@@ -4186,8 +4189,8 @@ public struct V { v: vector&lt;u64&gt; }
 public struct Vs { vs: vector&lt;V&gt; }
 
 fun borrow_first(input: &amp;Vs): &amp;u64 {
-    input.vs[0].v[0]
-    // translates to vector::borrow(vector::borrow(input.vs, 0).v, 0)
+    &amp;input.vs[0].v[0]
+    // translates to `vector::borrow(&amp;vector::borrow(&amp;input.vs, 0).v, 0)`
 }
 </code></pre>
 <h3 id="index-functions-take-flexible-arguments"><a class="header" href="#index-functions-take-flexible-arguments">Index Functions Take Flexible Arguments</a></h3>
@@ -4198,19 +4201,19 @@ structure that takes a default value if the index is out of bounds:</p>
 <pre><code class="language-move">#[syntax(index)]
 public fun borrow_or_set&lt;Key: copy, Value: drop&gt;(
     input: &amp;mut MTable&lt;Key, Value&gt;,
-    key: &amp;Key,
+    key: Key,
     default: Value
 ): &amp;mut Value {
-    if (contains(input, *key)) {
+    if (contains(input, key)) {
         borrow(input, key)
     } else {
-        insert(input, *key, default)
+        insert(input, key, default);
         borrow(input, key)
     }
 }
 </code></pre>
 <p>Now, when you index into <code>MTable</code>, you must also provide a default value:</p>
-<pre><code>let string_key: String = ...;
+<pre><code class="language-move">let string_key: String = ...;
 let mut table: MTable&lt;String, u64&gt; = m_table::make_table();
 let entry: &amp;mut u64 = &amp;mut table[string_key, 0];
 </code></pre>
@@ -4245,18 +4248,14 @@ the function is an index accessor for the specified type.</p>
 of the subject type and returns an immutable reference to the element type. The <code>borrow</code> function
 defined in <code>std::vector</code> is an example of this:</p>
 <pre><code class="language-move">#[syntax(index)]
-public fun borrow&lt;Element&gt;(v: &amp;vector&lt;Element&gt;, i: u64): &amp;Element {
-    // implementation
-}
+public native fun borrow&lt;Element&gt;(v: &amp;vector&lt;Element&gt;, i: u64): &amp;Element;
 </code></pre>
 <h4 id="mutable-accessor"><a class="header" href="#mutable-accessor">Mutable Accessor</a></h4>
 <p>The mutable index syntax method is the dual of the immutable one, allowing for both read and write
 operations. It takes a mutable reference of the subject type and returns a mutable reference to the
 element type. The <code>borrow_mut</code> function defined in <code>std::vector</code> is an example of this:</p>
 <pre><code class="language-move">#[syntax(index)]
-public fun borrow_mut&lt;Element&gt;(v: &amp;mut vector&lt;Element&gt;, i: u64): &amp;mut Element {
-    // implementation
-}
+public native fun borrow_mut&lt;Element&gt;(v: &amp;mut vector&lt;Element&gt;, i: u64): &amp;mut Element;
 </code></pre>
 <h4 id="visibility-3"><a class="header" href="#visibility-3">Visibility</a></h4>
 <p>To ensure that indexing functions are available anywhere the type is used, all index syntax methods
@@ -4301,7 +4300,7 @@ whose subject and return mutability differ:</p>
 <pre><code class="language-move">#[syntax(index)]
 public fun borrow_imm(x: &amp;mut Matrix&lt;u64&gt;, ...): &amp;u64 { ... }
     // ERROR! incompatible mutability
-
+    // expected a mutable reference '&amp;mut' return type
 </code></pre>
 <h3 id="type-compatibility"><a class="header" href="#type-compatibility">Type Compatibility</a></h3>
 <p>When defining an immutable and mutable index syntax method pair, they are subject to a number of
@@ -4318,29 +4317,29 @@ constraints.</li>
 mutable or immutable position.</p>
 <p>To illustrate some of these errors, recall the previous <code>Matrix</code> definition:</p>
 <pre><code class="language-move">#[syntax(index)]
-public fun borrow&lt;T&gt;(s: &amp;Matrix&lt;T&gt;, i: u64, j: u64):  &amp;T {
-    borrow(borrow(s.v, i), j)
+public fun borrow&lt;T&gt;(s: &amp;Matrix&lt;T&gt;, i: u64, j: u64): &amp;T {
+    vector::borrow(vector::borrow(&amp;s.v, i), j)
 }
 </code></pre>
 <p>All of the following are type-incompatible definitions of the mutable version:</p>
 <pre><code class="language-move">#[syntax(index)]
-public fun borrow_mut&lt;T: drop&gt;(s: &amp;mut Matrix&lt;T&gt;, i: u64, j: u64):  &amp;mut T { ... }
+public fun borrow_mut&lt;T: drop&gt;(s: &amp;mut Matrix&lt;T&gt;, i: u64, j: u64): &amp;mut T { ... }
     // ERROR! `T` has `drop` here, but no in the immutable version
 
 #[syntax(index)]
-public fun borrow_mut(s: &amp;mut Matrix&lt;u64&gt;, i: u64, j: u64):  &amp;mut u64 { ... }
+public fun borrow_mut(s: &amp;mut Matrix&lt;u64&gt;, i: u64, j: u64): &amp;mut u64 { ... }
     // ERROR! This takes a different number of type parameters
 
 #[syntax(index)]
-public fun borrow_mut&lt;T, U&gt;(s: &amp;mut Matrix&lt;U&gt;, i: u64, j: u64):  &amp;mut U { ... }
+public fun borrow_mut&lt;T, U&gt;(s: &amp;mut Matrix&lt;U&gt;, i: u64, j: u64): &amp;mut U { ... }
     // ERROR! This takes a different number of type parameters
 
 #[syntax(index)]
-public fun borrow_mut&lt;T, U&gt;(s: &amp;mut Matrix&lt;U&gt;, i_j: (u64, u64)):  &amp;mut U { ... }
+public fun borrow_mut&lt;U&gt;(s: &amp;mut Matrix&lt;U&gt;, i_j: (u64, u64)): &amp;mut U { ... }
     // ERROR! This takes a different number of arguments
 
 #[syntax(index)]
-public fun borrow_mut&lt;T, U&gt;(s: &amp;mut Matrix&lt;U&gt;, i: u64, j: u32):  &amp;mut U { ... }
+public fun borrow_mut&lt;U&gt;(s: &amp;mut Matrix&lt;U&gt;, i: u64, j: u32): &amp;mut U { ... }
     // ERROR! `j` is a different type
 </code></pre>
 <p>Again, the goal here is to make the usage across the immutable and mutable versions consistent. This
@@ -4357,8 +4356,8 @@ package system allows programmers to easily:</p>
 <li>Work with a common interface around compiled Move artifacts.</li>
 </ul>
 <h2 id="package-layout-and-manifest-syntax"><a class="header" href="#package-layout-and-manifest-syntax">Package Layout and Manifest Syntax</a></h2>
-<p>A Move package source directory contains a <code>Move.toml</code> package manifest file, a
-generated <code>Move.lock</code> file, and a set of subdirectories:</p>
+<p>A Move package source directory contains a <code>Move.toml</code> package manifest file, a generated
+<code>Move.lock</code> file, and a set of subdirectories:</p>
 <pre><code class="language-plaintext">a_move_package
 ├── Move.toml      (required)
 ├── Move.lock      (generated)
@@ -4367,208 +4366,133 @@ generated <code>Move.lock</code> file, and a set of subdirectories:</p>
 ├── examples       (optional, test &amp; dev mode)
 └── tests          (optional, test mode)
 </code></pre>
-<p>The directories and files labeled "required" must be present for a directory to be
-considered a Move package and built. Optional directories may be present,
-and if so, they will be included in the compilation process depending on the
-mode used to build the package. For instance, when built in "dev" or "test"
-modes, the <code>tests</code> and <code>examples</code> directories will also be included.</p>
+<p>The directories and files labeled &quot;required&quot; must be present for a directory to be considered a Move
+package and built. Optional directories may be present, and if so, they will be included in the
+compilation process depending on the mode used to build the package. For instance, when built in
+&quot;dev&quot; or &quot;test&quot; modes, the <code>tests</code> and <code>examples</code> directories will also be included.</p>
 <p>Going through each of these in turn:</p>
 <ol>
-<li>The <code>Move.toml</code> file is the package manifest and is required for a directory
-to be considered a Move package. This file contains metadata about the
-package, such as name, dependencies, and so on.</li>
-<li>The <code>Move.lock</code> file is generated by the Move CLI and contains the fixed
-build versions of the package and its dependencies. It is used to ensure
-consistent versions are used across different builds and that changes in
-dependencies are apparent as a change in this file.</li>
-<li>The <code>sources</code> directory is required and contains the Move modules that make
-up the package. Modules in this directory will always be included in the
-compilation process.</li>
-<li>The <code>doc_templates</code> directory can contain documentation templates that will
-be used when generating documentation for the package.</li>
-<li>The <code>examples</code> directory can hold additional code to be used only for
-development and/or tutorials, this will not be included when compiled
-outside of <code>test</code> or <code>dev</code> modes.</li>
-<li>The <code>tests</code> directory can contain Move modules that are only included when
-compiled in <code>test</code> mode or when <a href="./unit-testing.html">Move unit tests</a> are
-run.</li>
+<li>The <a href="packages.html#movetoml"><code>Move.toml</code></a> file is the package manifest and is required for a directory to be
+considered a Move package. This file contains metadata about the package, such as name,
+dependencies, and so on.</li>
+<li>The <a href="packages.html#movelock"><code>Move.lock</code></a> file is generated by the Move CLI and contains the fixed build
+versions of the package and its dependencies. It is used to ensure consistent versions are used
+across different builds and that changes in dependencies are apparent as a change in this file.</li>
+<li>The <code>sources</code> directory is required and contains the Move modules that make up the package.
+Modules in this directory will always be included in the compilation process.</li>
+<li>The <code>doc_templates</code> directory can contain documentation templates that will be used when
+generating documentation for the package.</li>
+<li>The <code>examples</code> directory can hold additional code to be used only for development and/or
+tutorials, this will not be included when compiled outside of <code>test</code> or <code>dev</code> modes.</li>
+<li>The <code>tests</code> directory can contain Move modules that are only included when compiled in <code>test</code>
+mode or when <a href="./unit-testing.html">Move unit tests</a> are run.</li>
 </ol>
 <h3 id="movetoml"><a class="header" href="#movetoml">Move.toml</a></h3>
 <p>The Move package manifest is defined within the <code>Move.toml</code> file and has the following syntax.
 Optional fields are marked with <code>*</code>, <code>+</code> denotes one or more elements:</p>
 <pre><code class="language-ini">[package]
 name = &lt;string&gt;
-edition* = &lt;string&gt;      # e.g., "2024.alpha" to use the Move 2024 edition,
+edition* = &lt;string&gt;      # e.g., &quot;2024.alpha&quot; to use the Move 2024 edition,
                          # currently in alpha. Will default to the latest stable edition if not specified.
-license* = &lt;string&gt;              # e.g., "MIT", "GPL", "Apache 2.0"
-authors* = [&lt;string&gt;,+]  # e.g., ["Joe Smith (joesmith@noemail.com)", "John Snow (johnsnow@noemail.com)"]
+license* = &lt;string&gt;              # e.g., &quot;MIT&quot;, &quot;GPL&quot;, &quot;Apache 2.0&quot;
+authors* = [&lt;string&gt;,+]  # e.g., [&quot;Joe Smith (joesmith@noemail.com)&quot;, &quot;John Snow (johnsnow@noemail.com)&quot;]
 
 # Additional fields may be added to this section by external tools. E.g., on Sui the following sections are added:
-published-at* = "&lt;hex-address&gt;" # The address that the package is published at. Should be set after the first publication.
+published-at* = &quot;&lt;hex-address&gt;&quot; # The address that the package is published at. Should be set after the first publication.
 
 [dependencies] # (Optional section) Paths to dependencies
 # One or more lines declaring dependencies in the following format
 
 # ##### Local Dependencies #####
 # For local dependencies use `local = path`. Path is relative to the package root
-# Local = { local = "../path/to" }
+# Local = { local = &quot;../path/to&quot; }
 # To resolve a version conflict and force a specific version for dependency
 # override you can use `override = true`
-# Override = { local = "../conflicting/version", override = true }
+# Override = { local = &quot;../conflicting/version&quot;, override = true }
 # To instantiate address values in a dependency, use `addr_subst`
 &lt;string&gt; = {
     local = &lt;string&gt;,
     override* = &lt;bool&gt;,
-    addr_subst* = { (&lt;string&gt; = (&lt;string&gt; | "&lt;hex_address&gt;"))+ }
+    addr_subst* = { (&lt;string&gt; = (&lt;string&gt; | &quot;&lt;hex_address&gt;&quot;))+ }
 }
 
 # ##### Git Dependencies #####
-# For remote import, use the `{ git = "...", subdir = "...", rev = "..." }`.
+# For remote import, use the `{ git = &quot;...&quot;, subdir = &quot;...&quot;, rev = &quot;...&quot; }`.
 # Revision must be supplied, it can be a branch, a tag, or a commit hash.
 # If no `subdir` is specified, the root of the repository is used.
-# MyRemotePackage = { git = "https://some.remote/host.git", subdir = "remote/path", rev = "main" }
+# MyRemotePackage = { git = &quot;https://some.remote/host.git&quot;, subdir = &quot;remote/path&quot;, rev = &quot;main&quot; }
 &lt;string&gt; = {
     git = &lt;URL ending in .git&gt;,
     subdir=&lt;path to dir containing Move.toml inside git repo&gt;,
     rev=&lt;git commit hash&gt;,
     override* = &lt;bool&gt;,
-    addr_subst* = { (&lt;string&gt; = (&lt;string&gt; | "&lt;hex_address&gt;"))+ }
+    addr_subst* = { (&lt;string&gt; = (&lt;string&gt; | &quot;&lt;hex_address&gt;&quot;))+ }
 }
 
 [addresses]  # (Optional section) Declares named addresses in this package
 # One or more lines declaring named addresses in the following format
-# Addresses that match the name of the package must be set to `"0x0"` or they will be unable to be published.
-&lt;addr_name&gt; = "_" | "&lt;hex_address&gt;" # e.g., std = "_" or my_addr = "0xC0FFEECAFE"
+# Addresses that match the name of the package must be set to `&quot;0x0&quot;` or they will be unable to be published.
+&lt;addr_name&gt; = &quot;_&quot; | &quot;&lt;hex_address&gt;&quot; # e.g., std = &quot;_&quot; or my_addr = &quot;0xC0FFEECAFE&quot;
 
 # Named addresses will be accessible in Move as `@name`. They're also exported:
-# for example, `std = "0x1"` is exported by the Standard Library.
-# alice = "0xA11CE"
+# for example, `std = &quot;0x1&quot;` is exported by the Standard Library.
+# alice = &quot;0xA11CE&quot;
 
-[dev-dependencies] # (Optional section) Same as [dependencies] section, but only included in "dev" and "test" modes
+[dev-dependencies] # (Optional section) Same as [dependencies] section, but only included in &quot;dev&quot; and &quot;test&quot; modes
 # The dev-dependencies section allows overriding dependencies for `--test` and
 # `--dev` modes. You can e.g., introduce test-only dependencies here.
-# Local = { local = "../path/to/dev-build" }
+# Local = { local = &quot;../path/to/dev-build&quot; }
 &lt;string&gt; = {
     local = &lt;string&gt;,
     override* = &lt;bool&gt;,
-    addr_subst* = { (&lt;string&gt; = (&lt;string&gt; | "&lt;hex_address&gt;"))+ }
+    addr_subst* = { (&lt;string&gt; = (&lt;string&gt; | &quot;&lt;hex_address&gt;&quot;))+ }
 }
 &lt;string&gt; = {
     git = &lt;URL ending in .git&gt;,
     subdir=&lt;path to dir containing Move.toml inside git repo&gt;,
     rev=&lt;git commit hash&gt;,
     override* = &lt;bool&gt;,
-    addr_subst* = { (&lt;string&gt; = (&lt;string&gt; | "&lt;hex_address&gt;"))+ }
+    addr_subst* = { (&lt;string&gt; = (&lt;string&gt; | &quot;&lt;hex_address&gt;&quot;))+ }
 }
 
-[dev-addresses] # (Optional section) Same as [addresses] section, but only included in "dev" and "test" modes
+[dev-addresses] # (Optional section) Same as [addresses] section, but only included in &quot;dev&quot; and &quot;test&quot; modes
 # The dev-addresses section allows overwriting named addresses for the `--test`
 # and `--dev` modes.
-&lt;addr_name&gt; = "&lt;hex_address&gt;" # e.g., alice = "0xB0B"
+&lt;addr_name&gt; = &quot;&lt;hex_address&gt;&quot; # e.g., alice = &quot;0xB0B&quot;
 </code></pre>
 <p>An example of a minimal package manifest:</p>
 <pre><code class="language-ini">[package]
-name = "AName"
+name = &quot;AName&quot;
 </code></pre>
 <p>An example of a more standard package manifest that also includes the Move standard library and
 instantiates the named address <code>std</code> from the <code>LocalDep</code> package with the address value <code>0x1</code>:</p>
 <pre><code class="language-ini">[package]
-name = "AName"
-license = "Apache 2.0"
+name = &quot;AName&quot;
+license = &quot;Apache 2.0&quot;
 
 [addresses]
-address_to_be_filled_in = "_"
-specified_address = "0xB0B"
+address_to_be_filled_in = &quot;_&quot;
+specified_address = &quot;0xB0B&quot;
 
 [dependencies]
 # Local dependency
-LocalDep = { local = "projects/move-awesomeness", addr_subst = { "std" = "0x1" } }
+LocalDep = { local = &quot;projects/move-awesomeness&quot;, addr_subst = { &quot;std&quot; = &quot;0x1&quot; } }
 # Git dependency
-MoveStdlib = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/move-stdlib", rev = "framework/mainnet" }
+MoveStdlib = { git = &quot;https://github.com/MystenLabs/sui.git&quot;, subdir = &quot;crates/sui-framework/packages/move-stdlib&quot;, rev = &quot;framework/mainnet&quot; }
 
 [dev-addresses] # For use when developing this module
-address_to_be_filled_in = "0x101010101"
+address_to_be_filled_in = &quot;0x101010101&quot;
 </code></pre>
-<p>Most of the sections in the package manifest are self explanatory, but named
-addresses can be a bit difficult to understand so we examine them in more
-detail in <a href="packages.html#named-addresses-during-compilation">Named Addresses During
-Compilation</a>, but before that we'll first
-take a look at the <code>Move.lock</code> file and what it contains.</p>
-<h2 id="movelock"><a class="header" href="#movelock">Move.lock</a></h2>
-<p>The <code>Move.lock</code> file is generated at the root of the Move pacakge when the
-package is built. The <code>Move.lock</code> file contains information about your package
-and its build configuration, and acts as a communication layer between the Move
-compiler and other tools, like chain-specific command line interfaces and
-third-party package managers.</p>
-<p>Like the <code>Move.toml</code> file, the <code>Move.lock</code> file is a text-based TOML file.
-Unlike the package manifest however, the <code>Move.lock</code> file is not intended for
-you to edit directly. Processes on the toolchain, like the Move compiler,
-access and edit the file to read and append relevant information to it. You
-also must not move the file from the root, as it needs to be at the same level
-as the <code>Move.toml</code> manifest in the package.</p>
-<p>If you are using source control for your package, it's recommended practice to
-check in the <code>Move.lock</code> file that corresponds with your desired built or
-published package. This ensures that every build of your package is an exact replica
-of the original, and that changes to the build will be apparent as changes to
-the <code>Move.lock</code> file.</p>
-<p>The <code>Move.lock</code> file is a TOML file that currently contains the following
-fields.</p>
-<p><strong>Note</strong>: other fields may be added to the lock file either in the future, or
-by third-party package package managers as well.</p>
-<h3 id="the-move-section"><a class="header" href="#the-move-section">The <code>[move]</code> Section</a></h3>
-<p>This section contains the core information needed in the lockfile:</p>
-<ul>
-<li>The version of the lockfile (needed for backwards compatibility checking, and
-versioning lockfile changes in the future).</li>
-<li>The hash of the <code>Move.toml</code> file that was used to generate this lock file.</li>
-<li>The hash of the <code>Move.lock</code> file of all dependencies. If no depencies are
-present, this will be an empty string.</li>
-<li>The list of dependencies.</li>
-</ul>
-<pre><code class="language-ini">[move]
-version = &lt;string&gt; # Lock file version, used for backwards compatibility checking.
-manifest_digest = &lt;hash&gt; # Sha3-256 hash of the Move.toml file that was used to generate this lock file.
-deps_digest = &lt;hash&gt; # Sha3-256 hash of the Move.lock file of all dependencies. If no depencies are present, this will be an empty string.
-dependencies = { (name = &lt;string&gt;)* } # List of dependencies. Not present if there are no dependencies.
-</code></pre>
-<h3 id="the-movepackage-sections"><a class="header" href="#the-movepackage-sections">The <code>[move.package]</code> Sections</a></h3>
-<p>After the Move compiler resolves each of the dependencies for the package it
-writes the location of the dependency to the <code>Move.lock</code> file. If a dependency
-failed to resolve, the compiler will not write the <code>Move.lock</code> file and the
-build fails. If all dependencies resolve, the <code>Move.lock</code> file contains the
-locations (local and remote) of all of the package's transitive dependencies.
-These will be stored in the <code>Move.lock</code> file in the following format:</p>
-<pre><code class="language-ini"># ...
-
-[[move.package]]
-name = "A"
-source = { git = "https://github.com/b/c.git", subdir = "e/f", rev = "a1b2c3" }
-
-[[move.package]]
-name = "B"
-source = { local = "../local-dep" }
-</code></pre>
-<h3 id="the-movetoolchain-version-section"><a class="header" href="#the-movetoolchain-version-section">The <code>[move.toolchain-version]</code> Section</a></h3>
-<p>As mentioned above, additional fields may be added to the lock file by external
-tools. For example, the Sui package manager adds toolchain version information
-to the lock file that can then be used for on-chain source verification:</p>
-<pre><code class="language-ini"># ...
-
-[move.toolchain-version]
-compiler-version = &lt;string&gt; # The version of the Move compiler used to build the package, e.g. "1.21.0"
-edition = &lt;string&gt; # The edition of the Move language used to build the package, e.g. "2024.alpha"
-flavor = &lt;string&gt; # The flavor of the Move compiler used to build the package, e.g. "sui"
-</code></pre>
-<p>With that, let's now turn to the compilation process and how named addresses are
-resolved, and how to use them.</p>
+<p>Most of the sections in the package manifest are self explanatory, but named addresses can be a bit
+difficult to understand so we examine them in more detail in
+<a href="packages.html#named-addresses-during-compilation">Named Addresses During Compilation</a>.</p>
 <h2 id="named-addresses-during-compilation"><a class="header" href="#named-addresses-during-compilation">Named Addresses During Compilation</a></h2>
-<p>Recall that Move has <a href="./primitive-types/address.html">named addresses</a> and that named addresses
-cannot be declared in Move. Instead they are declared at the package level: in
-the manifest file (<code>Move.toml</code>) for a Move package you declare named addresses
-in the package, instantiate other named addresses, and rename named addresses
-from other packages within the Move package system.</p>
-<p>Let's go through each of these actions, and how they are performed in the
-package's manifest one-by-one:</p>
+<p>Recall that Move has <a href="./primitive-types/address.html">named addresses</a> and that named addresses cannot
+be declared in Move. Instead they are declared at the package level: in the manifest file
+(<code>Move.toml</code>) for a Move package you declare named addresses in the package, instantiate other named
+addresses, and rename named addresses from other packages within the Move package system.</p>
+<p>Let's go through each of these actions, and how they are performed in the package's manifest
+one-by-one:</p>
 <h3 id="declaring-named-addresses"><a class="header" href="#declaring-named-addresses">Declaring Named Addresses</a></h3>
 <p>Let's say we have a Move module in <code>example_pkg/sources/A.move</code> as follows:</p>
 <pre><code class="language-move">module named_addr::a {
@@ -4578,22 +4502,22 @@ package's manifest one-by-one:</p>
 <p>We could in <code>example_pkg/Move.toml</code> declare the named address <code>named_addr</code> in two different ways.
 The first:</p>
 <pre><code class="language-ini">[package]
-name = "example_pkg"
+name = &quot;example_pkg&quot;
 ...
 [addresses]
-named_addr = "_"
+named_addr = &quot;_&quot;
 </code></pre>
 <p>Declares <code>named_addr</code> as a named address in the package <code>example_pkg</code> and that <em>this address can be
-any valid address value</em>. In particular, an importing package can pick the value of the named address
-<code>named_addr</code> to be any address it wishes. Intuitively you can think of this as parameterizing the
-package <code>example_pkg</code> by the named address <code>named_addr</code>, and the package can then be instantiated
-later on by an importing package.</p>
+any valid address value</em>. In particular, an importing package can pick the value of the named
+address <code>named_addr</code> to be any address it wishes. Intuitively you can think of this as
+parameterizing the package <code>example_pkg</code> by the named address <code>named_addr</code>, and the package can then
+be instantiated later on by an importing package.</p>
 <p><code>named_addr</code> can also be declared as:</p>
 <pre><code class="language-ini">[package]
-name = "example_pkg"
+name = &quot;example_pkg&quot;
 ...
 [addresses]
-named_addr = "0xCAFE"
+named_addr = &quot;0xCAFE&quot;
 </code></pre>
 <p>which states that the named address <code>named_addr</code> is exactly <code>0xCAFE</code> and cannot be changed. This is
 useful so other importing packages can use this named address without needing to worry about the
@@ -4601,9 +4525,9 @@ exact value assigned to it.</p>
 <p>With these two different declaration methods, there are two ways that information about named
 addresses can flow in the package graph:</p>
 <ul>
-<li>The former ("unassigned named addresses") allows named address values to flow from the importation
+<li>The former (&quot;unassigned named addresses&quot;) allows named address values to flow from the importation
 site to the declaration site.</li>
-<li>The latter ("assigned named addresses") allows named address values to flow from the declaration
+<li>The latter (&quot;assigned named addresses&quot;) allows named address values to flow from the declaration
 site upwards in the package graph to usage sites.</li>
 </ul>
 <p>With these two methods for flowing named address information throughout the package graph the rules
@@ -4618,21 +4542,21 @@ renaming of <code>N</code>.</li>
 </ol>
 <p>Additionally, every named address in a package is exported. Because of this and the above scoping
 rules each package can be viewed as coming with a set of named addresses that will be brought into
-scope when the package is imported, e.g., if the <code>example_pkg</code> package was imported, that importation
-would bring into scope the <code>named_addr</code> named address. Because of this, if <code>P</code> imports two packages
-<code>P1</code> and <code>P2</code> both of which declare a named address <code>N</code> an issue arises in <code>P</code>: which "<code>N</code>" is meant
-when <code>N</code> is referred to in <code>P</code>? The one from <code>P1</code> or <code>P2</code>? To prevent this ambiguity around which
-package a named address is coming from, we enforce that the sets of scopes introduced by all
-dependencies in a package are disjoint, and provide a way to <em>rename named addresses</em> when the
-package that brings them into scope is imported.</p>
+scope when the package is imported, e.g., if you import <code>example_pkg</code>, that import will also bring
+the <code>named_addr</code> named address into scope. Because of this, if <code>P</code> imports two packages <code>P1</code> and
+<code>P2</code> both of which declare a named address <code>N</code> an issue arises in <code>P</code>: which &quot;<code>N</code>&quot; is meant when <code>N</code>
+is referred to in <code>P</code>? The one from <code>P1</code> or <code>P2</code>? To prevent this ambiguity around which package a
+named address is coming from, we enforce that the sets of scopes introduced by all dependencies in a
+package are disjoint, and provide a way to <em>rename named addresses</em> when the package that brings
+them into scope is imported.</p>
 <p>Renaming a named address when importing can be done as follows in our <code>P</code>, <code>P1</code>, and <code>P2</code> example
 above:</p>
 <pre><code class="language-ini">[package]
-name = "P"
+name = &quot;P&quot;
 ...
 [dependencies]
-P1 = { local = "some_path_to_P1", addr_subst = { "P1N" = "N" } }
-P2 = { local = "some_path_to_P2"  }
+P1 = { local = &quot;some_path_to_P1&quot;, addr_subst = { &quot;P1N&quot; = &quot;N&quot; } }
+P2 = { local = &quot;some_path_to_P2&quot;  }
 </code></pre>
 <p>With this renaming <code>N</code> refers to the <code>N</code> from <code>P2</code> and <code>P1N</code> will refer to <code>N</code> coming from <code>P1</code>:</p>
 <pre><code class="language-move">module N::A {
@@ -4642,37 +4566,36 @@ P2 = { local = "some_path_to_P2"  }
 <p>It is important to note that <em>renaming is not local</em>: once a named address <code>N</code> has been renamed to
 <code>N2</code> in a package <code>P</code> all packages that import <code>P</code> will not see <code>N</code> but only <code>N2</code> unless <code>N</code> is
 reintroduced from outside of <code>P</code>. This is why rule (2) in the scoping rules at the start of this
-section specifies a "dependency path in the package graph between between <code>P</code> and the declaring
-package of <code>N</code> with no renaming of <code>N</code>."</p>
+section specifies a &quot;dependency path in the package graph between between <code>P</code> and the declaring
+package of <code>N</code> with no renaming of <code>N</code>.&quot;</p>
 <h3 id="instantiating-named-addresses"><a class="header" href="#instantiating-named-addresses">Instantiating Named Addresses</a></h3>
 <p>Named addresses can be instantiated multiple times across the package graph as long as it is always
 with the same value. It is an error if the same named address (regardless of renaming) is
 instantiated with differing values across the package graph.</p>
 <p>A Move package can only be compiled if all named addresses resolve to a value. This presents issues
 if the package wishes to expose an uninstantiated named address. This is what the <code>[dev-addresses]</code>
-section solves in part. This section can set values for named addresses, but cannot introduce any named
-addresses. Additionally, only the <code>[dev-addresses]</code> in the root package are included in <code>dev</code> mode.
-For example a root package with the following manifest would not compile outside of <code>dev</code> mode since
-<code>named_addr</code> would be uninstantiated:</p>
+section solves in part. This section can set values for named addresses, but cannot introduce any
+named addresses. Additionally, only the <code>[dev-addresses]</code> in the root package are included in <code>dev</code>
+mode. For example a root package with the following manifest would not compile outside of <code>dev</code> mode
+since <code>named_addr</code> would be uninstantiated:</p>
 <pre><code class="language-ini">[package]
-name = "example_pkg"
+name = &quot;example_pkg&quot;
 ...
 [addresses]
-named_addr = "_"
+named_addr = &quot;_&quot;
 
 [dev-addresses]
-named_addr = "0xC0FFEE"
+named_addr = &quot;0xC0FFEE&quot;
 </code></pre>
 <h2 id="usage-and-artifacts"><a class="header" href="#usage-and-artifacts">Usage and Artifacts</a></h2>
 <p>The Move package system comes with a command line option as part of the CLI:
-<code>sui move &lt;command&gt; &lt;command_flags&gt;</code>. Unless a particular path is provided, all
-package commands will run in the current working directory. The full list of
-commands and flags for the Move CLI can be found by running <code>sui move --help</code>.</p>
+<code>sui move &lt;command&gt; &lt;command_flags&gt;</code>. Unless a particular path is provided, all package commands
+will run in the current enclosing Move package. The full list of commands and flags for the Move CLI
+can be found by running <code>sui move --help</code>.</p>
 <h3 id="artifacts"><a class="header" href="#artifacts">Artifacts</a></h3>
-<p>A package can be compiled using CLI commands.
-This will create a <code>build</code>
-directory containing build-related artifacts (such as bytecode, source maps, and
-documentation). The general layout of the <code>build</code> directory is as follows:</p>
+<p>A package can be compiled using CLI commands. This will create a <code>build</code> directory containing
+build-related artifacts (including bytecode binaries, source maps, and documentation). The general
+layout of the <code>build</code> directory is as follows:</p>
 <pre><code class="language-plaintext">a_move_package
 ├── BuildInfo.yaml
 ├── bytecode_modules
@@ -4714,33 +4637,91 @@ documentation). The general layout of the <code>build</code> directory is as fol
     ...
     └── *.move
 </code></pre>
+<h2 id="movelock"><a class="header" href="#movelock">Move.lock</a></h2>
+<p>The <code>Move.lock</code> file is generated at the root of the Move pacakge when the package is built. The
+<code>Move.lock</code> file contains information about your package and its build configuration, and acts as a
+communication layer between the Move compiler and other tools, like chain-specific command line
+interfaces and third-party package managers.</p>
+<p>Like the <code>Move.toml</code> file, the <code>Move.lock</code> file is a text-based TOML file. Unlike the package
+manifest however, the <code>Move.lock</code> file is not intended for you to edit directly. Processes on the
+toolchain, like the Move compiler, access and edit the file to read and append relevant information
+to it. You also must not move the file from the root, as it needs to be at the same level as the
+<code>Move.toml</code> manifest in the package.</p>
+<p>If you are using source control for your package, it's recommended practice to check in the
+<code>Move.lock</code> file that corresponds with your desired built or published package. This ensures that
+every build of your package is an exact replica of the original, and that changes to the build will
+be apparent as changes to the <code>Move.lock</code> file.</p>
+<p>The <code>Move.lock</code> file is a TOML file that currently contains the following fields.</p>
+<p><strong>Note</strong>: other fields may be added to the lock file either in the future, or by third-party package
+package managers as well.</p>
+<h3 id="the-move-section"><a class="header" href="#the-move-section">The <code>[move]</code> Section</a></h3>
+<p>This section contains the core information needed in the lockfile:</p>
+<ul>
+<li>The version of the lockfile (needed for backwards compatibility checking, and versioning lockfile
+changes in the future).</li>
+<li>The hash of the <code>Move.toml</code> file that was used to generate this lock file.</li>
+<li>The hash of the <code>Move.lock</code> file of all dependencies. If no dependencies are present, this will be
+an empty string.</li>
+<li>The list of dependencies.</li>
+</ul>
+<pre><code class="language-ini">[move]
+version = &lt;string&gt; # Lock file version, used for backwards compatibility checking.
+manifest_digest = &lt;hash&gt; # Sha3-256 hash of the Move.toml file that was used to generate this lock file.
+deps_digest = &lt;hash&gt; # Sha3-256 hash of the Move.lock file of all dependencies. If no dependencies are present, this will be an empty string.
+dependencies = { (name = &lt;string&gt;)* } # List of dependencies. Not present if there are no dependencies.
+</code></pre>
+<h3 id="the-movepackage-sections"><a class="header" href="#the-movepackage-sections">The <code>[move.package]</code> Sections</a></h3>
+<p>After the Move compiler resolves each of the dependencies for the package it writes the location of
+the dependency to the <code>Move.lock</code> file. If a dependency failed to resolve, the compiler will not
+write the <code>Move.lock</code> file and the build fails. If all dependencies resolve, the <code>Move.lock</code> file
+contains the locations (local and remote) of all of the package's transitive dependencies. These
+will be stored in the <code>Move.lock</code> file in the following format:</p>
+<pre><code class="language-ini"># ...
+
+[[move.package]]
+name = &quot;A&quot;
+source = { git = &quot;https://github.com/b/c.git&quot;, subdir = &quot;e/f&quot;, rev = &quot;a1b2c3&quot; }
+
+[[move.package]]
+name = &quot;B&quot;
+source = { local = &quot;../local-dep&quot; }
+</code></pre>
+<h3 id="the-movetoolchain-version-section"><a class="header" href="#the-movetoolchain-version-section">The <code>[move.toolchain-version]</code> Section</a></h3>
+<p>As mentioned above, additional fields may be added to the lock file by external tools. For example,
+the Sui package manager adds toolchain version information to the lock file that can then be used
+for on-chain source verification:</p>
+<pre><code class="language-ini"># ...
+
+[move.toolchain-version]
+compiler-version = &lt;string&gt; # The version of the Move compiler used to build the package, e.g. &quot;1.21.0&quot;
+edition = &lt;string&gt; # The edition of the Move language used to build the package, e.g. &quot;2024.alpha&quot;
+flavor = &lt;string&gt; # The flavor of the Move compiler used to build the package, e.g. &quot;sui&quot;
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="unit-tests"><a class="header" href="#unit-tests">Unit Tests</a></h1>
 <p>Unit testing for Move uses three annotations in the Move source language:</p>
 <ul>
-<li><code>#[test]</code></li>
-<li><code>#[test_only]</code>, and</li>
-<li><code>#[expected_failure]</code>.</li>
+<li><code>#[test]</code> marks a function as a test;</li>
+<li><code>#[expected_failure]</code> marks that a test is expected to fail;</li>
+<li><code>#[test_only]</code> marks a module or module member (<a href="./uses.html"><code>use</code></a>, <a href="./functions.html">function</a>,
+<a href="./structs.html">struct</a>, or <a href="./constants.html">constant</a>) as code to be included for testing only.</li>
 </ul>
-<p>They respectively mark a function as a test, mark a module or module member (<code>use</code>, function, or
-struct) as code to be included for testing only, and mark that a test is expected to fail. These
-annotations can be placed on a function with any visibility. Whenever a module or module member is
-annotated as <code>#[test_only]</code> or <code>#[test]</code>, it will not be included in the compiled bytecode unless it
-is compiled for testing.</p>
+<p>These annotations can be placed on any appropriate form with any visibility. Whenever a module or
+module member is annotated as <code>#[test_only]</code> or <code>#[test]</code>, it will not be included in the compiled
+bytecode unless it is compiled for testing.</p>
 <h2 id="test-annotations"><a class="header" href="#test-annotations">Test Annotations</a></h2>
-<p>The <code>#[test]</code> annotation can only be placed on a function with no parameters.
-This annotation marks the function as a test to be run by the unit testing harness.</p>
+<p>The <code>#[test]</code> annotation can only be placed on a function with no parameters. This annotation marks
+the function as a test to be run by the unit testing harness.</p>
 <pre><code class="language-move">#[test] // OK
 fun this_is_a_test() { ... }
 
 #[test] // Will fail to compile since the test takes an argument
 fun this_is_not_correct(arg: u64) { ... }
 </code></pre>
-<p>A test can also be annotated as an <code>#[expected_failure]</code>. This annotation marks
-that the test is expected to raise an error. There are a number of options that
-can be used with the <code>#[expected_failure]</code> annotation to ensure only a failure
-with the specified condition is marked as passing, these options are detailed
-in <a href="unit-testing.html#expected-failures">Expected Failures</a>. Only functions that have the
-<code>#[test]</code> annotation can also be annotated as an #<code>[expected_failure]</code>.</p>
+<p>A test can also be annotated as an <code>#[expected_failure]</code>. This annotation marks that the test is
+expected to raise an error. There are a number of options that can be used with the
+<code>#[expected_failure]</code> annotation to ensure only a failure with the specified condition is marked as
+passing, these options are detailed in <a href="unit-testing.html#expected-failures">Expected Failures</a>. Only functions that
+have the <code>#[test]</code> annotation can also be annotated as an #<code>[expected_failure]</code>.</p>
 <p>Some simple examples of using the <code>#[expected_failure]</code> annotation are shown below:</p>
 <pre><code class="language-move">#[test]
 #[expected_failure]
@@ -4755,24 +4736,29 @@ public fun test_will_error_and_pass() { 1/0; }
 public fun test_will_error_and_pass_abort_code() { abort ENotFound }
 
 #[test] // Will fail since test fails with a different error than expected.
-#[expected_failure(abort_code = my_module::EnotFound)]
+#[expected_failure(abort_code = my_module::ENotFound)]
 public fun test_will_error_and_fail() { 1/0; }
 
 #[test, expected_failure] // Can have multiple in one attribute. This test will pass.
 public fun this_other_test_will_abort_and_pass() { abort 1 }
 </code></pre>
+<blockquote>
+<p><strong>Note</strong>: <code>#[test]</code> and <code>#[test_only]</code> functions can also call
+<a href="./functions.html#entry-modifier"><code>entry</code></a> functions, regardless of their visibility.</p>
+</blockquote>
 <h2 id="expected-failures"><a class="header" href="#expected-failures">Expected Failures</a></h2>
-<p>There are a number of different ways that you can use the <code>#[expected_failure]</code>
-annotation to specify different types of error conditions. These are:</p>
+<p>There are a number of different ways that you can use the <code>#[expected_failure]</code> annotation to
+specify different types of error conditions. These are:</p>
 <h3 id="1-expected_failureabort_code--constant"><a class="header" href="#1-expected_failureabort_code--constant">1. <code>#[expected_failure(abort_code = &lt;constant&gt;)]</code></a></h3>
-<p>This will pass if the test aborts with the specified constant value in the
-module that defines the constant and fail otherwise. This is the recommended
-way of testing for expected test failures.</p>
-<p><strong>NOTE</strong>: You can reference constants outside of the current module or package
-in <code>expected_failure</code> annotations.</p>
+<p>This will pass if the test aborts with the specified constant value in the module that defines the
+constant and fail otherwise. This is the recommended way of testing for expected test failures.</p>
+<blockquote>
+<p><strong>Note</strong>: You can reference constants outside of the current module or package in
+<code>expected_failure</code> annotations.</p>
+</blockquote>
 <pre><code class="language-move">module pkg_addr::other_module {
     const ENotFound: u64 = 1;
-    fun will_abort() {
+    public fun will_abort() {
         abort ENotFound
     }
 }
@@ -4796,12 +4782,11 @@ module pkg_addr::my_module {
 }
 </code></pre>
 <h3 id="2-expected_failurearithmetic_error-location--location"><a class="header" href="#2-expected_failurearithmetic_error-location--location">2. <code>#[expected_failure(arithmetic_error, location = &lt;location&gt;)]</code></a></h3>
-<p>This specifies that the test is expected to fail with an arithmetic error
-(e.g., integer overflow, division by zero, etc) at the specified location. The
-<code>&lt;location&gt;</code> must be a valid path to a module location, e.g., <code>Self</code>, or
-<code>my_package::my_module</code>.</p>
+<p>This specifies that the test is expected to fail with an arithmetic error (e.g., integer overflow,
+division by zero, etc) at the specified location. The <code>&lt;location&gt;</code> must be a valid path to a module
+location, e.g., <code>Self</code>, or <code>my_package::my_module</code>.</p>
 <pre><code class="language-move">module pkg_addr::other_module {
-    fun will_arith_error() { 1/0; }
+    public fun will_arith_error() { 1/0; }
 }
 
 module pkg_addr::my_module {
@@ -4821,11 +4806,11 @@ module pkg_addr::my_module {
 }
 </code></pre>
 <h3 id="3-expected_failureout_of_gas-location--location"><a class="header" href="#3-expected_failureout_of_gas-location--location">3. <code>#[expected_failure(out_of_gas, location = &lt;location&gt;)]</code></a></h3>
-<p>This specifies that the test is expected to fail with an out of gas error at
-the specified location. The <code>&lt;location&gt;</code> must be a valid path to a module
-location, e.g., <code>Self</code>, or <code>my_package::my_module</code>.</p>
+<p>This specifies that the test is expected to fail with an out of gas error at the specified location.
+The <code>&lt;location&gt;</code> must be a valid path to a module location, e.g., <code>Self</code>, or
+<code>my_package::my_module</code>.</p>
 <pre><code class="language-move">module pkg_addr::other_module {
-    fun will_oog() { loop {} }
+    public fun will_oog() { loop {} }
 }
 
 module pkg_addr::my_module {
@@ -4838,24 +4823,23 @@ module pkg_addr::my_module {
     #[expected_failure(arithmetic_error, location = pkg_addr::other_module)]
     fun test_will_oog_and_pass2() { other_module::will_oog() }
 
-    // FAIL: Will fail since the location we expect it the fail at is different from where the test actually failed.
+    // FAIL: Will fail since the location we expect it the fail at is different from where
+    // the test actually failed.
     #[test]
     #[expected_failure(out_of_gas, location = Self)]
     fun test_will_oog_and_fail() { other_module::will_oog() }
 }
 </code></pre>
 <h3 id="4-expected_failurevector_error-minor_status--u64_opt-location--location"><a class="header" href="#4-expected_failurevector_error-minor_status--u64_opt-location--location">4. <code>#[expected_failure(vector_error, minor_status = &lt;u64_opt&gt;, location = &lt;location&gt;)]</code></a></h3>
-<p>This specifies that the test is expected to fail with a vector error at the
-specified location and with the given <code>minor_status</code> if provided. The
-<code>&lt;location&gt;</code> must be a valid path to a module location, e.g., <code>Self</code>, or
-<code>my_package::my_module</code>. The <code>&lt;u64_opt&gt;</code> is an optional parameter that
-specifies the minor status of the vector error. If it is not specified, the
-test will pass if the test fails with any minor status. If it is specified, the
-test will only pass if the test fails with a vector error with the specified
-minor status.</p>
+<p>This specifies that the test is expected to fail with a vector error at the specified location with
+the given <code>minor_status</code> (if provided). The <code>&lt;location&gt;</code> must be a valid path to a module module
+location, e.g., <code>Self</code>, or <code>my_package::my_module</code>. The <code>&lt;u64_opt&gt;</code> is an optional parameter that
+specifies the minor status of the vector error. If it is not specified, the test will pass if the
+test fails with any minor status. If it is specified, the test will only pass if the test fails with
+a vector error with the specified minor status.</p>
 <pre><code class="language-move">module pkg_addr::other_module {
-    fun vector_borrow_empty() {
-        vector::borrow(&amp;vector::empty&lt;u64&gt;(), 1);
+    public fun vector_borrow_empty() {
+        &amp;vector&lt;u64&gt;[][1];
     }
 }
 
@@ -4863,7 +4847,7 @@ module pkg_addr::my_module {
     #[test]
     #[expected_failure(vector_error, location = Self)]
     fun vector_abort_same_module() {
-        vector::borrow(&amp;vector::empty&lt;u64&gt;(), 1);
+        vector::borrow(&amp;vector&lt;u64&gt;[], 1);
     }
 
     #[test]
@@ -4876,7 +4860,7 @@ module pkg_addr::my_module {
     #[test]
     #[expected_failure(vector_error, minor_status = 1, location = Self)]
     fun native_abort_good_right_code() {
-        vector::borrow(&amp;vector::empty&lt;u64&gt;(), 1);
+        vector::borrow(&amp;vector&lt;u64&gt;[], 1);
     }
 
     // FAIL: correct error, but wrong location.
@@ -4890,15 +4874,14 @@ module pkg_addr::my_module {
     #[test]
     #[expected_failure(vector_error, minor_status = 0, location = Self)]
     fun vector_abort_wrong_minor_code() {
-        vector::borrow(&amp;vector::empty&lt;u64&gt;(), 1);
+        vector::borrow(&amp;vector&lt;u64&gt;[], 1);
     }
 }
 </code></pre>
 <h3 id="5-expected_failure"><a class="header" href="#5-expected_failure">5. <code>#[expected_failure]</code></a></h3>
-<p>This will pass if the test aborts with any error code. Because of this you
-should be incredibly careful using this way of annotating expected tests
-failures, and instead prefer one of the ways described above instead. Examples
-of these types of annotations are:</p>
+<p>This will pass if the test aborts with <em>any</em> error code. You should be <strong><em>incredibly careful</em></strong>
+using this to annotate expected tests failures, and always prefer one of the ways described above
+instead. Examples of these types of annotations are:</p>
 <pre><code class="language-move">#[test]
 #[expected_failure]
 fun test_will_abort_and_pass1() { abort 1 }
@@ -4908,19 +4891,20 @@ fun test_will_abort_and_pass1() { abort 1 }
 fun test_will_arith_error_and_pass2() { 1/0; }
 </code></pre>
 <h2 id="test-only-annotations"><a class="header" href="#test-only-annotations">Test Only Annotations</a></h2>
-<p>A module and any of its members can be declared as test only. If an item is
-annotated as <code>#[test_only]</code> the item will only be included in the compiled Move
-bytecode when compiled in test mode. Additionally, when compiled outside of
-test mode, any non-test <code>use</code>s of a <code>#[test_only]</code> module will raise an error
-during compilation.</p>
-<p><strong>NOTE</strong>: functions that are annotated with <code>#[test_only]</code> will only be available
-to be called from test code, but they themselves are not tests and will not be
-run as tests by the unit testing framework.</p>
+<p>A module and any of its members can be declared as test only. If an item is annotated as
+<code>#[test_only]</code> the item will only be included in the compiled Move bytecode when compiled in test
+mode. Additionally, when compiled outside of test mode, any non-test <code>use</code>s of a <code>#[test_only]</code>
+module will raise an error during compilation.</p>
+<blockquote>
+<p><strong>Note</strong>: functions that are annotated with <code>#[test_only]</code> will only be available to be called
+from test code, but they themselves are not tests and will not be run as tests by the unit testing
+framework.</p>
+</blockquote>
 <pre><code class="language-move">#[test_only] // test only attributes can be attached to modules
 module abc { ... }
 
 #[test_only] // test only attributes can be attached to constants
-const Addr: address = @0x1;
+const MY_ADDR: address = @0x1;
 
 #[test_only] // .. to uses
 use pkg_addr::some_other_module;
@@ -4936,16 +4920,14 @@ fun test_only_function(...) { ... }
 <p>When running tests, every test will either <code>PASS</code>, <code>FAIL</code>, or <code>TIMEOUT</code>. If a test case fails, the
 location of the failure along with the function name that caused the failure will be reported if
 possible. You can see an example of this below.</p>
-<p>A test will be marked as timing out if it exceeds the maximum number of
-instructions that can be executed for any single test. This bound can be
-changed using the options below. Additionally, while the result of a test is
-always deterministic, tests are run in parallel by default, so the ordering of
-test results in a test run is non-deterministic unless running with only one
-thread (see <code>OPTIONS</code> below on how to do this).</p>
-<p>There are also a number of options that can be passed to the unit testing binary to fine-tune
-testing and to help debug failing tests. The available options, and a
-description of what each one can do can be found by passing the help flag to
-the <code>sui move test</code> command:</p>
+<p>A test will be marked as timing out if it exceeds the maximum number of instructions that can be
+executed for any single test. This bound can be changed using the options below. Additionally, while
+the result of a test is always deterministic, tests are run in parallel by default, so the ordering
+of test results in a test run is non-deterministic unless running with only one thread, which can be
+configured via an option.</p>
+<p>These aforementioned options are two among many that can fine-tune testing and help debug failing
+tests. To see all available options, and a description of what each one does, pass the <code>--help</code> flag
+to the <code>sui move test</code> command:</p>
 <pre><code>$ sui move test --help
 </code></pre>
 <h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
@@ -5008,9 +4990,9 @@ Test result: OK. Total tests: 3; passed: 3; failed: 0
 </code></pre>
 <h3 id="using-test-flags"><a class="header" href="#using-test-flags">Using Test Flags</a></h3>
 <h4 id="passing-specific-tests-to-run"><a class="header" href="#passing-specific-tests-to-run">Passing specific tests to run</a></h4>
-<p>You can run a specific test, or a set of tests with <code>sui move test &lt;str&gt;</code>. This
-will only run tests whose fully qualified name contains <code>&lt;str&gt;</code>. For example if
-we wanted to only run tests with <code>"non_zero"</code> in their name:</p>
+<p>You can run a specific test, or a set of tests with <code>sui move test &lt;str&gt;</code>. This will only run tests
+whose fully qualified name contains <code>&lt;str&gt;</code>. For example if we wanted to only run tests with
+<code>&quot;non_zero&quot;</code> in their name:</p>
 <pre><code class="language-bash">$ sui move test non_zero
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
@@ -5067,9 +5049,9 @@ Failures in 0x0::my_module:
 Test result: FAILED. Total tests: 3; passed: 0; failed: 3
 </code></pre>
 <h4 id="-s-or---statistics"><a class="header" href="#-s-or---statistics"><code>-s</code> or <code>--statistics</code></a></h4>
-<p>With these flags you can gather statistics about the tests run and report the
-runtime and gas used for each test. You can additionally add <code>csv</code> (<code>sui move test -s csv</code>) to get the gas usage in a csv output format. For example, if we
-wanted to see the statistics for the tests in the example above:</p>
+<p>With these flags you can gather statistics about the tests run and report the runtime and gas used
+for each test. You can additionally add <code>csv</code> (<code>sui move test -s csv</code>) to get the gas usage in a csv
+output format. For example, if we wanted to see the statistics for the tests in the example above:</p>
 <pre><code class="language-bash">$ sui move test -s
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
@@ -5217,22 +5199,6 @@ module 0x42::m {
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 

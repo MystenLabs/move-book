@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light" dir="ltr">
+<html lang="en" class="sidebar-visible no-js light">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,15 +7,13 @@
 
 
         <!-- Custom HTML head -->
-        <meta name="robots" content="noindex">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
-        
 
         <meta name="description" content="The Move Language Reference maintained by the Move core team.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff">
+        <meta name="theme-color" content="#ffffff" />
 
         <link rel="icon" href="../favicon.svg">
         <link rel="shortcut icon" href="../favicon.png">
@@ -37,7 +35,7 @@
         <link rel="stylesheet" href="../theme/css/custom.css">
 
     </head>
-    <body class="sidebar-visible no-js">
+    <body>
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -67,38 +65,31 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
+            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add('js');
         </script>
-
-        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
+            var html = document.querySelector('html');
             var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
                 <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Getting Started</li><li class="chapter-item expanded "><a href="../modules.html"><strong aria-hidden="true">1.</strong> Modules</a></li><li class="chapter-item expanded affix "><li class="part-title">Basic Concepts</li><li class="chapter-item expanded "><a href="../primitive-types.html"><strong aria-hidden="true">2.</strong> Primitive Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../primitive-types/integers.html"><strong aria-hidden="true">2.1.</strong> Integers</a></li><li class="chapter-item expanded "><a href="../primitive-types/bool.html"><strong aria-hidden="true">2.2.</strong> Bool</a></li><li class="chapter-item expanded "><a href="../primitive-types/address.html"><strong aria-hidden="true">2.3.</strong> Address</a></li><li class="chapter-item expanded "><a href="../primitive-types/vector.html" class="active"><strong aria-hidden="true">2.4.</strong> Vector</a></li><li class="chapter-item expanded "><a href="../primitive-types/references.html"><strong aria-hidden="true">2.5.</strong> References</a></li><li class="chapter-item expanded "><a href="../primitive-types/tuples.html"><strong aria-hidden="true">2.6.</strong> Tuples and Unit</a></li></ol></li><li class="chapter-item expanded "><a href="../variables.html"><strong aria-hidden="true">3.</strong> Local Variables and Scopes</a></li><li class="chapter-item expanded "><a href="../equality.html"><strong aria-hidden="true">4.</strong> Equality</a></li><li class="chapter-item expanded "><a href="../abort-and-assert.html"><strong aria-hidden="true">5.</strong> Abort and Assert</a></li><li class="chapter-item expanded "><a href="../control-flow.html"><strong aria-hidden="true">6.</strong> Control Flow</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../control-flow/conditionals.html"><strong aria-hidden="true">6.1.</strong> Conditional Expressions</a></li><li class="chapter-item expanded "><a href="../control-flow/loops.html"><strong aria-hidden="true">6.2.</strong> Loops</a></li><li class="chapter-item expanded "><a href="../control-flow/labeled-control-flow.html"><strong aria-hidden="true">6.3.</strong> Labeled Control FLow</a></li></ol></li><li class="chapter-item expanded "><a href="../functions.html"><strong aria-hidden="true">7.</strong> Functions</a></li><li class="chapter-item expanded "><a href="../structs.html"><strong aria-hidden="true">8.</strong> Structs</a></li><li class="chapter-item expanded "><a href="../constants.html"><strong aria-hidden="true">9.</strong> Constants</a></li><li class="chapter-item expanded "><a href="../generics.html"><strong aria-hidden="true">10.</strong> Generics</a></li><li class="chapter-item expanded "><a href="../abilities.html"><strong aria-hidden="true">11.</strong> Type Abilities</a></li><li class="chapter-item expanded "><a href="../uses.html"><strong aria-hidden="true">12.</strong> Uses and Aliases</a></li><li class="chapter-item expanded affix "><li class="part-title">Advanced Concepts</li><li class="chapter-item expanded "><a href="../method-syntax.html"><strong aria-hidden="true">13.</strong> Method Syntax</a></li><li class="chapter-item expanded "><a href="../index-syntax.html"><strong aria-hidden="true">14.</strong> Index Syntax Methods</a></li><li class="chapter-item expanded affix "><li class="part-title">Tooling</li><li class="chapter-item expanded "><a href="../packages.html"><strong aria-hidden="true">15.</strong> Packages</a></li><li class="chapter-item expanded "><a href="../unit-testing.html"><strong aria-hidden="true">16.</strong> Unit Tests</a></li><li class="chapter-item expanded affix "><li class="part-title">Reference</li><li class="chapter-item expanded "><a href="../coding-conventions.html"><strong aria-hidden="true">17.</strong> Coding Conventions</a></li><li class="chapter-item expanded affix "><li class="part-title">Deprecated</li><li class="chapter-item expanded "><a href="../friends.html"><strong aria-hidden="true">18.</strong> Friends</a></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
-                <div class="sidebar-resize-indicator"></div>
-            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <!-- Track and set sidebar scroll position -->
@@ -129,9 +120,9 @@
                                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </label>
+                        </button>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -187,7 +178,7 @@
                     <main>
                         <h1 id="vector"><a class="header" href="#vector">Vector</a></h1>
 <p><code>vector&lt;T&gt;</code> is the only primitive collection type provided by Move. A <code>vector&lt;T&gt;</code> is a homogenous
-collection of <code>T</code>'s that can grow or shrink by pushing/popping values off the "end".</p>
+collection of <code>T</code>'s that can grow or shrink by pushing/popping values off the &quot;end&quot;.</p>
 <p>A <code>vector&lt;T&gt;</code> can be instantiated with any type <code>T</code>. For example, <code>vector&lt;u64&gt;</code>, <code>vector&lt;address&gt;</code>,
 <code>vector&lt;0x42::my_module::MyData&gt;</code>, and <code>vector&lt;vector&lt;u8&gt;&gt;</code> are all valid vector types.</p>
 <h2 id="literals"><a class="header" href="#literals">Literals</a></h2>
@@ -211,14 +202,14 @@ vector&lt;T&gt;[e1, ..., en]: vector&lt;T&gt;
 (vector&lt;address&gt;[@0x42, @0x100]: vector&lt;address&gt;);
 </code></pre>
 <h3 id="vectoru8-literals"><a class="header" href="#vectoru8-literals"><code>vector&lt;u8&gt;</code> literals</a></h3>
-<p>A common use-case for vectors in Move is to represent "byte arrays", which are represented with
+<p>A common use-case for vectors in Move is to represent &quot;byte arrays&quot;, which are represented with
 <code>vector&lt;u8&gt;</code>. These values are often used for cryptographic purposes, such as a public key or a hash
 result. These values are so common that specific syntax is provided to make the values more
 readable, as opposed to having to use <code>vector[]</code> where each individual <code>u8</code> value is specified in
 numeric form.</p>
 <p>There are currently two supported types of <code>vector&lt;u8&gt;</code> literals, <em>byte strings</em> and <em>hex strings</em>.</p>
 <h4 id="byte-strings"><a class="header" href="#byte-strings">Byte Strings</a></h4>
-<p>Byte strings are quoted string literals prefixed by a <code>b</code>, e.g. <code>b"Hello!\n"</code>.</p>
+<p>Byte strings are quoted string literals prefixed by a <code>b</code>, e.g. <code>b&quot;Hello!\n&quot;</code>.</p>
 <p>These are ASCII encoded strings that allow for escape sequences. Currently, the supported escape
 sequences are:</p>
 <div class="table-wrapper"><table><thead><tr><th>Escape Sequence</th><th>Description</th></tr></thead><tbody>
@@ -227,22 +218,22 @@ sequences are:</p>
 <tr><td><code>\t</code></td><td>Tab</td></tr>
 <tr><td><code>\\</code></td><td>Backslash</td></tr>
 <tr><td><code>\0</code></td><td>Null</td></tr>
-<tr><td><code>\"</code></td><td>Quote</td></tr>
+<tr><td><code>\&quot;</code></td><td>Quote</td></tr>
 <tr><td><code>\xHH</code></td><td>Hex escape, inserts the hex byte sequence <code>HH</code></td></tr>
 </tbody></table>
 </div>
 <h4 id="hex-strings"><a class="header" href="#hex-strings">Hex Strings</a></h4>
-<p>Hex strings are quoted string literals prefixed by a <code>x</code>, e.g. <code>x"48656C6C6F210A"</code>.</p>
+<p>Hex strings are quoted string literals prefixed by a <code>x</code>, e.g. <code>x&quot;48656C6C6F210A&quot;</code>.</p>
 <p>Each byte pair, ranging from <code>00</code> to <code>FF</code>, is interpreted as hex encoded <code>u8</code> value. So each byte
 pair corresponds to a single entry in the resulting <code>vector&lt;u8&gt;</code>.</p>
 <h4 id="example-string-literals"><a class="header" href="#example-string-literals">Example String Literals</a></h4>
 <pre><code class="language-move">fun byte_and_hex_strings() {
-    assert!(b"" == x"", 0);
-    assert!(b"Hello!\n" == x"48656C6C6F210A", 1);
-    assert!(b"\x48\x65\x6C\x6C\x6F\x21\x0A" == x"48656C6C6F210A", 2);
+    assert!(b&quot;&quot; == x&quot;&quot;, 0);
+    assert!(b&quot;Hello!\n&quot; == x&quot;48656C6C6F210A&quot;, 1);
+    assert!(b&quot;\x48\x65\x6C\x6C\x6F\x21\x0A&quot; == x&quot;48656C6C6F210A&quot;, 2);
     assert!(
-        b"\"Hello\tworld!\"\n \r \\Null=\0" ==
-            x"2248656C6C6F09776F726C6421220A200D205C4E756C6C3D00",
+        b&quot;\&quot;Hello\tworld!\&quot;\n \r \\Null=\0&quot; ==
+            x&quot;2248656C6C6F09776F726C6421220A200D205C4E756C6C3D00&quot;,
         3
     );
 }
@@ -326,7 +317,7 @@ elements can be copied. In that case, the copy can be done via a
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../primitive-types/references.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../primitive-types/references.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -340,29 +331,13 @@ elements can be copied. In that case, the copy can be done via a
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../primitive-types/references.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../primitive-types/references.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 

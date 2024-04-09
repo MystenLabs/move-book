@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light" dir="ltr">
+<html lang="en" class="sidebar-visible no-js light">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,15 +7,13 @@
 
 
         <!-- Custom HTML head -->
-        <meta name="robots" content="noindex">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
-        
 
         <meta name="description" content="The Move Language Reference maintained by the Move core team.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff">
+        <meta name="theme-color" content="#ffffff" />
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -37,7 +35,7 @@
         <link rel="stylesheet" href="theme/css/custom.css">
 
     </head>
-    <body class="sidebar-visible no-js">
+    <body>
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -67,38 +65,31 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
+            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add('js');
         </script>
-
-        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
+            var html = document.querySelector('html');
             var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
                 <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Getting Started</li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">1.</strong> Modules</a></li><li class="chapter-item expanded affix "><li class="part-title">Basic Concepts</li><li class="chapter-item expanded "><a href="primitive-types.html"><strong aria-hidden="true">2.</strong> Primitive Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="primitive-types/integers.html"><strong aria-hidden="true">2.1.</strong> Integers</a></li><li class="chapter-item expanded "><a href="primitive-types/bool.html"><strong aria-hidden="true">2.2.</strong> Bool</a></li><li class="chapter-item expanded "><a href="primitive-types/address.html"><strong aria-hidden="true">2.3.</strong> Address</a></li><li class="chapter-item expanded "><a href="primitive-types/vector.html"><strong aria-hidden="true">2.4.</strong> Vector</a></li><li class="chapter-item expanded "><a href="primitive-types/references.html"><strong aria-hidden="true">2.5.</strong> References</a></li><li class="chapter-item expanded "><a href="primitive-types/tuples.html"><strong aria-hidden="true">2.6.</strong> Tuples and Unit</a></li></ol></li><li class="chapter-item expanded "><a href="variables.html" class="active"><strong aria-hidden="true">3.</strong> Local Variables and Scopes</a></li><li class="chapter-item expanded "><a href="equality.html"><strong aria-hidden="true">4.</strong> Equality</a></li><li class="chapter-item expanded "><a href="abort-and-assert.html"><strong aria-hidden="true">5.</strong> Abort and Assert</a></li><li class="chapter-item expanded "><a href="control-flow.html"><strong aria-hidden="true">6.</strong> Control Flow</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="control-flow/conditionals.html"><strong aria-hidden="true">6.1.</strong> Conditional Expressions</a></li><li class="chapter-item expanded "><a href="control-flow/loops.html"><strong aria-hidden="true">6.2.</strong> Loops</a></li><li class="chapter-item expanded "><a href="control-flow/labeled-control-flow.html"><strong aria-hidden="true">6.3.</strong> Labeled Control FLow</a></li></ol></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">7.</strong> Functions</a></li><li class="chapter-item expanded "><a href="structs.html"><strong aria-hidden="true">8.</strong> Structs</a></li><li class="chapter-item expanded "><a href="constants.html"><strong aria-hidden="true">9.</strong> Constants</a></li><li class="chapter-item expanded "><a href="generics.html"><strong aria-hidden="true">10.</strong> Generics</a></li><li class="chapter-item expanded "><a href="abilities.html"><strong aria-hidden="true">11.</strong> Type Abilities</a></li><li class="chapter-item expanded "><a href="uses.html"><strong aria-hidden="true">12.</strong> Uses and Aliases</a></li><li class="chapter-item expanded affix "><li class="part-title">Advanced Concepts</li><li class="chapter-item expanded "><a href="method-syntax.html"><strong aria-hidden="true">13.</strong> Method Syntax</a></li><li class="chapter-item expanded "><a href="index-syntax.html"><strong aria-hidden="true">14.</strong> Index Syntax Methods</a></li><li class="chapter-item expanded affix "><li class="part-title">Tooling</li><li class="chapter-item expanded "><a href="packages.html"><strong aria-hidden="true">15.</strong> Packages</a></li><li class="chapter-item expanded "><a href="unit-testing.html"><strong aria-hidden="true">16.</strong> Unit Tests</a></li><li class="chapter-item expanded affix "><li class="part-title">Reference</li><li class="chapter-item expanded "><a href="coding-conventions.html"><strong aria-hidden="true">17.</strong> Coding Conventions</a></li><li class="chapter-item expanded affix "><li class="part-title">Deprecated</li><li class="chapter-item expanded "><a href="friends.html"><strong aria-hidden="true">18.</strong> Friends</a></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
-                <div class="sidebar-resize-indicator"></div>
-            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <!-- Track and set sidebar scroll position -->
@@ -129,9 +120,9 @@
                                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </label>
+                        </button>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -260,7 +251,7 @@ let Foo = e; // ERROR!
 <p>The type of a local variable can almost always be inferred by Move's type system. However, Move
 allows explicit type annotations that can be useful for readability, clarity, or debuggability. The
 syntax for adding a type annotation is:</p>
-<pre><code class="language-move">let x: T = e; // "Variable x of type T is initialized to expression e"
+<pre><code class="language-move">let x: T = e; // &quot;Variable x of type T is initialized to expression e&quot;
 </code></pre>
 <p>Some examples of explicit type annotations:</p>
 <pre><code class="language-move">module 0x42::example {
@@ -269,7 +260,7 @@ syntax for adding a type annotation is:</p>
 
     fun annotated() {
         let u: u8 = 0;
-        let b: vector&lt;u8&gt; = b"hello";
+        let b: vector&lt;u8&gt; = b&quot;hello&quot;;
         let a: address = @0x0;
         let (x, y): (&amp;u64, &amp;mut u64) = (&amp;0, &amp;mut 1);
         let S { f, g: f2 }: S = S { f: 0, g: 1 };
@@ -596,7 +587,7 @@ commonly used as statements.</p>
     let x = 0;
     x + 1; // value is discarded
     x + 2; // value is discarded
-    b"hello"; // value is discarded
+    b&quot;hello&quot;; // value is discarded
 }
 </code></pre>
 <p>But! If the expression contains a resource (a value without the <code>drop</code> <a href="./abilities.html">ability</a>),
@@ -628,8 +619,8 @@ The body of a function is also an expression block, but the function body cannot
 another expression.)</p>
 <pre><code class="language-move">let my_vector: vector&lt;vector&lt;u8&gt;&gt; = {
     let mut v = vector[];
-    vector::push_back(&amp;mut v, b"hello");
-    vector::push_back(&amp;mut v, b"goodbye");
+    vector::push_back(&amp;mut v, b&quot;hello&quot;);
+    vector::push_back(&amp;mut v, b&quot;goodbye&quot;);
     v
 };
 </code></pre>
@@ -647,8 +638,8 @@ assert!(x == 1, 42);
 <pre><code class="language-move">let x = 0;
 assert!(x == 0, 42);
 
-let x = b"hello"; // x is shadowed
-assert!(x == b"hello", 42);
+let x = b&quot;hello&quot;; // x is shadowed
+assert!(x == b&quot;hello&quot;, 42);
 </code></pre>
 <p>After a local is shadowed, the value stored in the local still exists, but will no longer be
 accessible. This is important to keep in mind with values of types without the
@@ -679,8 +670,8 @@ assert!(x == 0, 42);
 <p>Remember, locals can change type when they are shadowed.</p>
 <pre><code class="language-move">let x = 0;
 {
-    let x = b"hello";
-    assert!(x = b"hello", 42);
+    let x = b&quot;hello&quot;;
+    assert!(x = b&quot;hello&quot;, 42);
 };
 assert!(x == 0, 42);
 </code></pre>
@@ -731,7 +722,7 @@ errors. This will happen once the reference is no longer used.</li>
 public struct Coin has store { value: u64 }
 </code></pre>
 <p>we have the following example</p>
-<pre><code class="language-move">let s = b"hello";
+<pre><code class="language-move">let s = b&quot;hello&quot;;
 let foo = Foo { f: 0 };
 let coin = Coin { value: 0 };
 let coins = vector[Coin { value: 0 }, Coin { value: 0 }];
@@ -762,7 +753,7 @@ let coin_ref2 = coin_ref; // copy
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="equality.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="equality.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -776,29 +767,13 @@ let coin_ref2 = coin_ref; // copy
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="equality.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="equality.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 

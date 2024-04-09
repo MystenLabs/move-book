@@ -3,14 +3,19 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>The Move Language - The Move Book</title>
-        
+        <title>The Move Book - The Move Book</title>
 
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="First book about Diem's Move programming language and Move VM. Move documentation, Move tutorials and language reference">
+
+        <!-- Custom HTML head -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+
+        <meta name="description" content="First book about the Move programming language and the Move VM. Move documentation, Move tutorials and language reference.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
+        <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
         <link rel="stylesheet" href="css/variables.css">
         <link rel="stylesheet" href="css/general.css">
@@ -19,8 +24,7 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
@@ -28,19 +32,19 @@
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        
+        <link rel="stylesheet" href="theme/css/custom.css">
 
-        
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">
+        <script>
             var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
+        <script>
             try {
                 var theme = localStorage.getItem('mdbook-theme');
                 var sidebar = localStorage.getItem('mdbook-sidebar');
@@ -56,7 +60,7 @@
         </script>
 
         <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
+        <script>
             var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
@@ -68,12 +72,14 @@
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
+        <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -81,17 +87,38 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html" class="active"><strong aria-hidden="true">1.</strong> The Move Language</a></li><li class="chapter-item expanded "><a href="introduction/foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="introduction/getting-started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="syntax-basics/index.html"><strong aria-hidden="true">4.</strong> Syntax Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="syntax-basics/concept.html"><strong aria-hidden="true">4.1.</strong> Concept</a></li><li class="chapter-item expanded "><a href="syntax-basics/primitives.html"><strong aria-hidden="true">4.2.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="syntax-basics/comments.html"><strong aria-hidden="true">4.3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="syntax-basics/expression-and-scope.html"><strong aria-hidden="true">4.4.</strong> Expression and Scope</a></li><li class="chapter-item expanded "><a href="syntax-basics/control-flow.html"><strong aria-hidden="true">4.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="syntax-basics/module.html"><strong aria-hidden="true">4.6.</strong> Module and Import</a></li><li class="chapter-item expanded "><a href="syntax-basics/constants.html"><strong aria-hidden="true">4.7.</strong> Constants</a></li><li class="chapter-item expanded "><a href="syntax-basics/function.html"><strong aria-hidden="true">4.8.</strong> Function</a></li></ol></li><li class="chapter-item expanded "><a href="advanced-topics/index.html"><strong aria-hidden="true">5.</strong> Advanced Topics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="advanced-topics/struct.html"><strong aria-hidden="true">5.1.</strong> Structures</a></li><li class="chapter-item expanded "><a href="advanced-topics/types-with-abilities.html"><strong aria-hidden="true">5.2.</strong> Types with Abilities</a></li><li class="chapter-item expanded "><a href="advanced-topics/ownership-and-references.html"><strong aria-hidden="true">5.3.</strong> Ownership and References</a></li><li class="chapter-item expanded "><a href="advanced-topics/understanding-generics.html"><strong aria-hidden="true">5.4.</strong> Understanding Generics</a></li><li class="chapter-item expanded "><a href="advanced-topics/managing-collections-with-vectors.html"><strong aria-hidden="true">5.5.</strong> Managing collections with Vectors</a></li></ol></li><li class="chapter-item expanded "><a href="resources/index.html"><strong aria-hidden="true">6.</strong> Programmable Resources</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="resources/signer-type.html"><strong aria-hidden="true">6.1.</strong> Sender as Signer</a></li><li class="chapter-item expanded "><a href="resources/what-is-resource.html"><strong aria-hidden="true">6.2.</strong> What is Resource</a></li><li class="chapter-item expanded "><a href="resources/resource-by-example/index.html"><strong aria-hidden="true">6.3.</strong> Resource by Example</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="resources/resource-by-example/storing-new-resource.html"><strong aria-hidden="true">6.3.1.</strong> Create and Move</a></li><li class="chapter-item expanded "><a href="resources/resource-by-example/access-resource-with-borrow.html"><strong aria-hidden="true">6.3.2.</strong> Read and Modify</a></li><li class="chapter-item expanded "><a href="resources/resource-by-example/destroy-resource.html"><strong aria-hidden="true">6.3.3.</strong> Take and Destroy</a></li><li class="chapter-item expanded "><a href="resources/resource-by-example/furher-steps.html"><strong aria-hidden="true">6.3.4.</strong> Further Steps</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="tutorials/index.html"><strong aria-hidden="true">7.</strong> Tutorials</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tutorials/erc20.html"><strong aria-hidden="true">7.1.</strong> Writing ERC20 Token</a></li></ol></li><li class="chapter-item expanded "><a href="translations.html"><strong aria-hidden="true">8.</strong> Translations</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html" class="active"><strong aria-hidden="true">1.</strong> The Move Book</a></li><li class="chapter-item expanded "><a href="foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">3.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="before-we-begin/index.html"><strong aria-hidden="true">4.</strong> Before we begin</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="before-we-begin/install-sui.html"><strong aria-hidden="true">4.1.</strong> Install Sui</a></li><li class="chapter-item expanded "><a href="before-we-begin/ide-support.html"><strong aria-hidden="true">4.2.</strong> Set up your IDE</a></li><li class="chapter-item expanded "><a href="before-we-begin/move-2024.html"><strong aria-hidden="true">4.3.</strong> Move 2024</a></li></ol></li><li class="chapter-item expanded "><a href="your-first-move/hello-world.html"><strong aria-hidden="true">5.</strong> Hello, World!</a></li><li class="chapter-item expanded "><a href="your-first-move/hello-sui.html"><strong aria-hidden="true">6.</strong> Hello, Sui!</a></li><li class="chapter-item expanded "><a href="concepts/index.html"><strong aria-hidden="true">7.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="concepts/packages.html"><strong aria-hidden="true">7.1.</strong> Package</a></li><li class="chapter-item expanded "><a href="concepts/manifest.html"><strong aria-hidden="true">7.2.</strong> Manifest</a></li><li class="chapter-item expanded "><a href="concepts/address.html"><strong aria-hidden="true">7.3.</strong> Address</a></li><li class="chapter-item expanded "><a href="concepts/what-is-an-account.html"><strong aria-hidden="true">7.4.</strong> Account</a></li><li class="chapter-item expanded "><a href="concepts/what-is-a-transaction.html"><strong aria-hidden="true">7.5.</strong> Transaction</a></li></ol></li><li class="chapter-item expanded "><a href="move-basics/index.html"><strong aria-hidden="true">8.</strong> Move Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="move-basics/module.html"><strong aria-hidden="true">8.1.</strong> Module</a></li><li class="chapter-item expanded "><a href="move-basics/comments.html"><strong aria-hidden="true">8.2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="move-basics/primitive-types.html"><strong aria-hidden="true">8.3.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="move-basics/address.html"><strong aria-hidden="true">8.4.</strong> Address Type</a></li><li class="chapter-item expanded "><a href="move-basics/expression.html"><strong aria-hidden="true">8.5.</strong> Expression</a></li><li class="chapter-item expanded "><a href="move-basics/struct.html"><strong aria-hidden="true">8.6.</strong> Struct</a></li><li class="chapter-item expanded "><a href="move-basics/abilities-introduction.html"><strong aria-hidden="true">8.7.</strong> Abilities: Introduction</a></li><li class="chapter-item expanded "><a href="move-basics/drop-ability.html"><strong aria-hidden="true">8.8.</strong> Ability: Drop</a></li><li class="chapter-item expanded "><a href="move-basics/importing-modules.html"><strong aria-hidden="true">8.9.</strong> Importing Modules</a></li><li class="chapter-item expanded "><a href="move-basics/standard-library.html"><strong aria-hidden="true">8.10.</strong> Standard Library</a></li><li class="chapter-item expanded "><a href="move-basics/vector.html"><strong aria-hidden="true">8.11.</strong> Vector</a></li><li class="chapter-item expanded "><a href="move-basics/option.html"><strong aria-hidden="true">8.12.</strong> Option</a></li><li class="chapter-item expanded "><a href="move-basics/string.html"><strong aria-hidden="true">8.13.</strong> String</a></li><li class="chapter-item expanded "><a href="move-basics/control-flow.html"><strong aria-hidden="true">8.14.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="move-basics/constants.html"><strong aria-hidden="true">8.15.</strong> Constants</a></li><li class="chapter-item expanded "><a href="move-basics/assert-and-abort.html"><strong aria-hidden="true">8.16.</strong> Assert and Abort</a></li><li class="chapter-item expanded "><a href="move-basics/function.html"><strong aria-hidden="true">8.17.</strong> Function</a></li><li class="chapter-item expanded "><a href="move-basics/struct-methods.html"><strong aria-hidden="true">8.18.</strong> Struct Methods</a></li><li class="chapter-item expanded "><a href="move-basics/visibility.html"><strong aria-hidden="true">8.19.</strong> Visibility Modifiers</a></li><li class="chapter-item expanded "><a href="move-basics/ownership-and-scope.html"><strong aria-hidden="true">8.20.</strong> Ownership and Scope</a></li><li class="chapter-item expanded "><a href="move-basics/copy-ability.html"><strong aria-hidden="true">8.21.</strong> Ability: Copy</a></li><li class="chapter-item expanded "><a href="move-basics/references.html"><strong aria-hidden="true">8.22.</strong> References</a></li><li class="chapter-item expanded "><a href="move-basics/generics.html"><strong aria-hidden="true">8.23.</strong> Generics</a></li><li class="chapter-item expanded "><a href="move-basics/type-reflection.html"><strong aria-hidden="true">8.24.</strong> Type Reflection</a></li><li class="chapter-item expanded "><a href="move-basics/testing.html"><strong aria-hidden="true">8.25.</strong> Testing</a></li></ol></li><li class="chapter-item expanded "><a href="object/index.html"><strong aria-hidden="true">9.</strong> Object Model</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="object/digital-assets.html"><strong aria-hidden="true">9.1.</strong> Language for Digital Assets</a></li><li class="chapter-item expanded "><a href="object/evolution-of-move.html"><strong aria-hidden="true">9.2.</strong> Evolution of Move</a></li><li class="chapter-item expanded "><a href="object/object-model.html"><strong aria-hidden="true">9.3.</strong> What is an Object?</a></li><li class="chapter-item expanded "><a href="object/ownership.html"><strong aria-hidden="true">9.4.</strong> Ownership</a></li><li class="chapter-item expanded "><a href="object/fast-path-and-consensus.html"><strong aria-hidden="true">9.5.</strong> Fast Path & Consensus</a></li></ol></li><li class="chapter-item expanded "><a href="storage/index.html"><strong aria-hidden="true">10.</strong> Using Objects</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="storage/key-ability.html"><strong aria-hidden="true">10.1.</strong> Ability: Key</a></li><li class="chapter-item expanded "><a href="storage/storage-functions.html"><strong aria-hidden="true">10.2.</strong> Storage Functions</a></li><li class="chapter-item expanded "><a href="storage/store-ability.html"><strong aria-hidden="true">10.3.</strong> Ability: Store</a></li><li class="chapter-item expanded "><a href="storage/uid-and-id.html"><strong aria-hidden="true">10.4.</strong> UID and ID</a></li><li class="chapter-item expanded "><a href="storage/transfer-restrictions.html"><strong aria-hidden="true">10.5.</strong> Restricted and Public Transfer</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">10.6.</strong> Transfer to Object?</div></li></ol></li><li class="chapter-item expanded "><a href="programmability/index.html"><strong aria-hidden="true">11.</strong> Advanced Programmability</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="programmability/transaction-context.html"><strong aria-hidden="true">11.1.</strong> Transaction Context</a></li><li class="chapter-item expanded "><a href="programmability/module-initializer.html"><strong aria-hidden="true">11.2.</strong> Module Initializer</a></li><li class="chapter-item expanded "><a href="programmability/capability.html"><strong aria-hidden="true">11.3.</strong> Pattern: Capability</a></li><li class="chapter-item expanded "><a href="programmability/epoch-and-time.html"><strong aria-hidden="true">11.4.</strong> Epoch and Time</a></li><li class="chapter-item expanded "><a href="programmability/fast-path.html"><strong aria-hidden="true">11.5.</strong> Fast Path</a></li><li class="chapter-item expanded "><a href="programmability/collections.html"><strong aria-hidden="true">11.6.</strong> Collections</a></li><li class="chapter-item expanded "><a href="programmability/dynamic-fields.html"><strong aria-hidden="true">11.7.</strong> Dynamic Fields</a></li><li class="chapter-item expanded "><a href="programmability/dynamic-object-fields.html"><strong aria-hidden="true">11.8.</strong> Dynamic Object Fields</a></li><li class="chapter-item expanded "><a href="programmability/dynamic-collections.html"><strong aria-hidden="true">11.9.</strong> Dynamic Collections</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.10.</strong> Pattern: Witness</div></li><li class="chapter-item expanded "><a href="programmability/one-time-witness.html"><strong aria-hidden="true">11.11.</strong> One Time Witness</a></li><li class="chapter-item expanded "><a href="programmability/publisher.html"><strong aria-hidden="true">11.12.</strong> Publisher Authority</a></li><li class="chapter-item expanded "><a href="programmability/display.html"><strong aria-hidden="true">11.13.</strong> Display</a></li><li class="chapter-item expanded "><a href="programmability/events.html"><strong aria-hidden="true">11.14.</strong> Events</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.15.</strong> Balance & Coin</div></li><li class="chapter-item expanded "><a href="programmability/sui-framework.html"><strong aria-hidden="true">11.16.</strong> Sui Framework</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.17.</strong> Pattern: Hot Potato</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.18.</strong> Pattern: Request</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.19.</strong> Pattern: Object Capability</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.20.</strong> Package Upgrades</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.21.</strong> Transaction Blocks</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.22.</strong> Authorization Patterns</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.23.</strong> Cryptography and Hashing</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.24.</strong> Randomness</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.25.</strong> BCS</div></li></ol></li><li class="chapter-item expanded "><li class="part-title">Guides</li><li class="chapter-item expanded "><a href="guides/2024-migration-guide.html"><strong aria-hidden="true">12.</strong> 2024 Migration Guide</a></li><li class="chapter-item expanded "><a href="guides/upgradeability-practices.html"><strong aria-hidden="true">13.</strong> Upgradability Practices</a></li><li class="chapter-item expanded "><a href="guides/building-against-limits.html"><strong aria-hidden="true">14.</strong> Building against Limits</a></li><li class="chapter-item expanded "><a href="guides/better-error-handling.html"><strong aria-hidden="true">15.</strong> Better error handling</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">16.</strong> Open-sourcing Libraries</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.</strong> Creating an NFT Collection</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">18.</strong> Tests with Objects</div></li><li class="chapter-item expanded "><a href="guides/coding-conventions.html"><strong aria-hidden="true">19.</strong> Coding Conventions</a></li><li class="chapter-item expanded affix "><li class="part-title">Appendix</li><li class="chapter-item expanded "><a href="appendix/glossary.html"><strong aria-hidden="true">20.</strong> A - Glossary</a></li><li class="chapter-item expanded "><a href="appendix/reserved-addresses.html"><strong aria-hidden="true">21.</strong> B - Reserved Addresses</a></li><li class="chapter-item expanded "><a href="appendix/publications.html"><strong aria-hidden="true">22.</strong> C - Publications</a></li><li class="chapter-item expanded "><a href="appendix/contributing.html"><strong aria-hidden="true">23.</strong> D - Contributing</a></li><li class="chapter-item expanded "><a href="appendix/acknowledgements.html"><strong aria-hidden="true">24.</strong> E - Acknowledgements</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
-                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
                         <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
@@ -100,17 +127,15 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        
                         <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
-                        
                     </div>
 
                     <h1 class="menu-title">The Move Book</h1>
@@ -119,18 +144,19 @@
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        
-                        <a href="https://github.com/damirka/move-book" title="Git repository" aria-label="Git repository">
+                        <a href="https://github.com/MystenLabs/move-book" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        
+                        <a href="https://github.com/MystenLabs/move-book/edit/second-edition/src/README.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
                     </div>
                 </div>
 
-                
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -138,10 +164,9 @@
                         </ul>
                     </div>
                 </div>
-                
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
+                <script>
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
                     document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
@@ -151,21 +176,24 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#the-move-programming-language" id="the-move-programming-language">The Move Programming Language</a></h1>
-<p>Move is a safe and reliable language originally created by <a href="https://diem.com/">Diem</a>. You can read language white paper on <a href="https://diem-developers-components.netlify.app/papers/diem-move-a-language-with-programmable-resources/2020-05-26.pdf">Diem developers website</a>.</p>
-<p>This book is a collection of all the information which I found and shaped into a single source of knowledge about Move language.</p>
+                        <h1 id="the-move-book"><a class="header" href="#the-move-book">The Move Book</a></h1>
+<!-- TODO: insert author(s) -->
+<p>This is the Move Book - a comprehensive guide to the Move programming language and the Sui blockchain. The book is intended for developers who are interested in learning about Move and building on Sui.</p>
+<div class="warning">
+<p>The book is in active development and a work in progress. If you have any feedback or suggestions, feel free to open an issue or a pull request on the <a href="https://github.com/MystenLabs/move-book">GitHub repository</a>.</p>
+</div>
+<blockquote>
+<p>If you're looking for The Move Reference, you can find it <a href="/reference">here</a>.</p>
+</blockquote>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
 
-                        
-                            <a rel="next" href="introduction/foreword.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="foreword.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
-                        
 
                         <div style="clear: both"></div>
                     </nav>
@@ -173,62 +201,34 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
 
-                
-                    <a rel="next" href="introduction/foreword.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="foreword.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                
             </nav>
 
         </div>
 
-        
 
-        
-        <!-- Google Analytics Tag -->
-        <script type="text/javascript">
-            var localAddrs = ["localhost", "127.0.0.1", ""];
 
-            // make sure we don't activate google analytics if the developer is
-            // inspecting the book locally...
-            if (localAddrs.indexOf(document.location.hostname) === -1) {
-                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-                ga('create', 'UA-183817972-1', 'auto');
-                ga('send', 'pageview');
-            }
+        <script>
+            window.playground_copyable = true;
         </script>
-        
 
-        
-        
-        
-        <script type="text/javascript">
-            window.playpen_copyable = true;
-        </script>
-        
 
-        
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
 
-        
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
-        
-
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
 
         <!-- Custom JS scripts -->
-        
+        <script src="theme/switcher.js"></script>
 
-        
 
+    </div>
     </body>
 </html>

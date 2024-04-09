@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light" dir="ltr">
+<html lang="en" class="sidebar-visible no-js light">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,15 +7,13 @@
 
 
         <!-- Custom HTML head -->
-        <meta name="robots" content="noindex">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
-        
 
         <meta name="description" content="The Move Language Reference maintained by the Move core team.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff">
+        <meta name="theme-color" content="#ffffff" />
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -37,7 +35,7 @@
         <link rel="stylesheet" href="theme/css/custom.css">
 
     </head>
-    <body class="sidebar-visible no-js">
+    <body>
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -67,38 +65,31 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
+            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add('js');
         </script>
-
-        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
+            var html = document.querySelector('html');
             var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
                 <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Getting Started</li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">1.</strong> Modules</a></li><li class="chapter-item expanded affix "><li class="part-title">Basic Concepts</li><li class="chapter-item expanded "><a href="primitive-types.html"><strong aria-hidden="true">2.</strong> Primitive Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="primitive-types/integers.html"><strong aria-hidden="true">2.1.</strong> Integers</a></li><li class="chapter-item expanded "><a href="primitive-types/bool.html"><strong aria-hidden="true">2.2.</strong> Bool</a></li><li class="chapter-item expanded "><a href="primitive-types/address.html"><strong aria-hidden="true">2.3.</strong> Address</a></li><li class="chapter-item expanded "><a href="primitive-types/vector.html"><strong aria-hidden="true">2.4.</strong> Vector</a></li><li class="chapter-item expanded "><a href="primitive-types/references.html"><strong aria-hidden="true">2.5.</strong> References</a></li><li class="chapter-item expanded "><a href="primitive-types/tuples.html"><strong aria-hidden="true">2.6.</strong> Tuples and Unit</a></li></ol></li><li class="chapter-item expanded "><a href="variables.html"><strong aria-hidden="true">3.</strong> Local Variables and Scopes</a></li><li class="chapter-item expanded "><a href="equality.html"><strong aria-hidden="true">4.</strong> Equality</a></li><li class="chapter-item expanded "><a href="abort-and-assert.html"><strong aria-hidden="true">5.</strong> Abort and Assert</a></li><li class="chapter-item expanded "><a href="control-flow.html"><strong aria-hidden="true">6.</strong> Control Flow</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="control-flow/conditionals.html"><strong aria-hidden="true">6.1.</strong> Conditional Expressions</a></li><li class="chapter-item expanded "><a href="control-flow/loops.html"><strong aria-hidden="true">6.2.</strong> Loops</a></li><li class="chapter-item expanded "><a href="control-flow/labeled-control-flow.html"><strong aria-hidden="true">6.3.</strong> Labeled Control FLow</a></li></ol></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">7.</strong> Functions</a></li><li class="chapter-item expanded "><a href="structs.html"><strong aria-hidden="true">8.</strong> Structs</a></li><li class="chapter-item expanded "><a href="constants.html"><strong aria-hidden="true">9.</strong> Constants</a></li><li class="chapter-item expanded "><a href="generics.html"><strong aria-hidden="true">10.</strong> Generics</a></li><li class="chapter-item expanded "><a href="abilities.html"><strong aria-hidden="true">11.</strong> Type Abilities</a></li><li class="chapter-item expanded "><a href="uses.html"><strong aria-hidden="true">12.</strong> Uses and Aliases</a></li><li class="chapter-item expanded affix "><li class="part-title">Advanced Concepts</li><li class="chapter-item expanded "><a href="method-syntax.html"><strong aria-hidden="true">13.</strong> Method Syntax</a></li><li class="chapter-item expanded "><a href="index-syntax.html"><strong aria-hidden="true">14.</strong> Index Syntax Methods</a></li><li class="chapter-item expanded affix "><li class="part-title">Tooling</li><li class="chapter-item expanded "><a href="packages.html"><strong aria-hidden="true">15.</strong> Packages</a></li><li class="chapter-item expanded "><a href="unit-testing.html" class="active"><strong aria-hidden="true">16.</strong> Unit Tests</a></li><li class="chapter-item expanded affix "><li class="part-title">Reference</li><li class="chapter-item expanded "><a href="coding-conventions.html"><strong aria-hidden="true">17.</strong> Coding Conventions</a></li><li class="chapter-item expanded affix "><li class="part-title">Deprecated</li><li class="chapter-item expanded "><a href="friends.html"><strong aria-hidden="true">18.</strong> Friends</a></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
-                <div class="sidebar-resize-indicator"></div>
-            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <!-- Track and set sidebar scroll position -->
@@ -129,9 +120,9 @@
                                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </label>
+                        </button>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -188,30 +179,28 @@
                         <h1 id="unit-tests"><a class="header" href="#unit-tests">Unit Tests</a></h1>
 <p>Unit testing for Move uses three annotations in the Move source language:</p>
 <ul>
-<li><code>#[test]</code></li>
-<li><code>#[test_only]</code>, and</li>
-<li><code>#[expected_failure]</code>.</li>
+<li><code>#[test]</code> marks a function as a test;</li>
+<li><code>#[expected_failure]</code> marks that a test is expected to fail;</li>
+<li><code>#[test_only]</code> marks a module or module member (<a href="./uses.html"><code>use</code></a>, <a href="./functions.html">function</a>,
+<a href="./structs.html">struct</a>, or <a href="./constants.html">constant</a>) as code to be included for testing only.</li>
 </ul>
-<p>They respectively mark a function as a test, mark a module or module member (<code>use</code>, function, or
-struct) as code to be included for testing only, and mark that a test is expected to fail. These
-annotations can be placed on a function with any visibility. Whenever a module or module member is
-annotated as <code>#[test_only]</code> or <code>#[test]</code>, it will not be included in the compiled bytecode unless it
-is compiled for testing.</p>
+<p>These annotations can be placed on any appropriate form with any visibility. Whenever a module or
+module member is annotated as <code>#[test_only]</code> or <code>#[test]</code>, it will not be included in the compiled
+bytecode unless it is compiled for testing.</p>
 <h2 id="test-annotations"><a class="header" href="#test-annotations">Test Annotations</a></h2>
-<p>The <code>#[test]</code> annotation can only be placed on a function with no parameters.
-This annotation marks the function as a test to be run by the unit testing harness.</p>
+<p>The <code>#[test]</code> annotation can only be placed on a function with no parameters. This annotation marks
+the function as a test to be run by the unit testing harness.</p>
 <pre><code class="language-move">#[test] // OK
 fun this_is_a_test() { ... }
 
 #[test] // Will fail to compile since the test takes an argument
 fun this_is_not_correct(arg: u64) { ... }
 </code></pre>
-<p>A test can also be annotated as an <code>#[expected_failure]</code>. This annotation marks
-that the test is expected to raise an error. There are a number of options that
-can be used with the <code>#[expected_failure]</code> annotation to ensure only a failure
-with the specified condition is marked as passing, these options are detailed
-in <a href="#expected-failures">Expected Failures</a>. Only functions that have the
-<code>#[test]</code> annotation can also be annotated as an #<code>[expected_failure]</code>.</p>
+<p>A test can also be annotated as an <code>#[expected_failure]</code>. This annotation marks that the test is
+expected to raise an error. There are a number of options that can be used with the
+<code>#[expected_failure]</code> annotation to ensure only a failure with the specified condition is marked as
+passing, these options are detailed in <a href="#expected-failures">Expected Failures</a>. Only functions that
+have the <code>#[test]</code> annotation can also be annotated as an #<code>[expected_failure]</code>.</p>
 <p>Some simple examples of using the <code>#[expected_failure]</code> annotation are shown below:</p>
 <pre><code class="language-move">#[test]
 #[expected_failure]
@@ -226,24 +215,29 @@ public fun test_will_error_and_pass() { 1/0; }
 public fun test_will_error_and_pass_abort_code() { abort ENotFound }
 
 #[test] // Will fail since test fails with a different error than expected.
-#[expected_failure(abort_code = my_module::EnotFound)]
+#[expected_failure(abort_code = my_module::ENotFound)]
 public fun test_will_error_and_fail() { 1/0; }
 
 #[test, expected_failure] // Can have multiple in one attribute. This test will pass.
 public fun this_other_test_will_abort_and_pass() { abort 1 }
 </code></pre>
+<blockquote>
+<p><strong>Note</strong>: <code>#[test]</code> and <code>#[test_only]</code> functions can also call
+<a href="./functions.html#entry-modifier"><code>entry</code></a> functions, regardless of their visibility.</p>
+</blockquote>
 <h2 id="expected-failures"><a class="header" href="#expected-failures">Expected Failures</a></h2>
-<p>There are a number of different ways that you can use the <code>#[expected_failure]</code>
-annotation to specify different types of error conditions. These are:</p>
+<p>There are a number of different ways that you can use the <code>#[expected_failure]</code> annotation to
+specify different types of error conditions. These are:</p>
 <h3 id="1-expected_failureabort_code--constant"><a class="header" href="#1-expected_failureabort_code--constant">1. <code>#[expected_failure(abort_code = &lt;constant&gt;)]</code></a></h3>
-<p>This will pass if the test aborts with the specified constant value in the
-module that defines the constant and fail otherwise. This is the recommended
-way of testing for expected test failures.</p>
-<p><strong>NOTE</strong>: You can reference constants outside of the current module or package
-in <code>expected_failure</code> annotations.</p>
+<p>This will pass if the test aborts with the specified constant value in the module that defines the
+constant and fail otherwise. This is the recommended way of testing for expected test failures.</p>
+<blockquote>
+<p><strong>Note</strong>: You can reference constants outside of the current module or package in
+<code>expected_failure</code> annotations.</p>
+</blockquote>
 <pre><code class="language-move">module pkg_addr::other_module {
     const ENotFound: u64 = 1;
-    fun will_abort() {
+    public fun will_abort() {
         abort ENotFound
     }
 }
@@ -267,12 +261,11 @@ module pkg_addr::my_module {
 }
 </code></pre>
 <h3 id="2-expected_failurearithmetic_error-location--location"><a class="header" href="#2-expected_failurearithmetic_error-location--location">2. <code>#[expected_failure(arithmetic_error, location = &lt;location&gt;)]</code></a></h3>
-<p>This specifies that the test is expected to fail with an arithmetic error
-(e.g., integer overflow, division by zero, etc) at the specified location. The
-<code>&lt;location&gt;</code> must be a valid path to a module location, e.g., <code>Self</code>, or
-<code>my_package::my_module</code>.</p>
+<p>This specifies that the test is expected to fail with an arithmetic error (e.g., integer overflow,
+division by zero, etc) at the specified location. The <code>&lt;location&gt;</code> must be a valid path to a module
+location, e.g., <code>Self</code>, or <code>my_package::my_module</code>.</p>
 <pre><code class="language-move">module pkg_addr::other_module {
-    fun will_arith_error() { 1/0; }
+    public fun will_arith_error() { 1/0; }
 }
 
 module pkg_addr::my_module {
@@ -292,11 +285,11 @@ module pkg_addr::my_module {
 }
 </code></pre>
 <h3 id="3-expected_failureout_of_gas-location--location"><a class="header" href="#3-expected_failureout_of_gas-location--location">3. <code>#[expected_failure(out_of_gas, location = &lt;location&gt;)]</code></a></h3>
-<p>This specifies that the test is expected to fail with an out of gas error at
-the specified location. The <code>&lt;location&gt;</code> must be a valid path to a module
-location, e.g., <code>Self</code>, or <code>my_package::my_module</code>.</p>
+<p>This specifies that the test is expected to fail with an out of gas error at the specified location.
+The <code>&lt;location&gt;</code> must be a valid path to a module location, e.g., <code>Self</code>, or
+<code>my_package::my_module</code>.</p>
 <pre><code class="language-move">module pkg_addr::other_module {
-    fun will_oog() { loop {} }
+    public fun will_oog() { loop {} }
 }
 
 module pkg_addr::my_module {
@@ -309,24 +302,23 @@ module pkg_addr::my_module {
     #[expected_failure(arithmetic_error, location = pkg_addr::other_module)]
     fun test_will_oog_and_pass2() { other_module::will_oog() }
 
-    // FAIL: Will fail since the location we expect it the fail at is different from where the test actually failed.
+    // FAIL: Will fail since the location we expect it the fail at is different from where
+    // the test actually failed.
     #[test]
     #[expected_failure(out_of_gas, location = Self)]
     fun test_will_oog_and_fail() { other_module::will_oog() }
 }
 </code></pre>
 <h3 id="4-expected_failurevector_error-minor_status--u64_opt-location--location"><a class="header" href="#4-expected_failurevector_error-minor_status--u64_opt-location--location">4. <code>#[expected_failure(vector_error, minor_status = &lt;u64_opt&gt;, location = &lt;location&gt;)]</code></a></h3>
-<p>This specifies that the test is expected to fail with a vector error at the
-specified location and with the given <code>minor_status</code> if provided. The
-<code>&lt;location&gt;</code> must be a valid path to a module location, e.g., <code>Self</code>, or
-<code>my_package::my_module</code>. The <code>&lt;u64_opt&gt;</code> is an optional parameter that
-specifies the minor status of the vector error. If it is not specified, the
-test will pass if the test fails with any minor status. If it is specified, the
-test will only pass if the test fails with a vector error with the specified
-minor status.</p>
+<p>This specifies that the test is expected to fail with a vector error at the specified location with
+the given <code>minor_status</code> (if provided). The <code>&lt;location&gt;</code> must be a valid path to a module module
+location, e.g., <code>Self</code>, or <code>my_package::my_module</code>. The <code>&lt;u64_opt&gt;</code> is an optional parameter that
+specifies the minor status of the vector error. If it is not specified, the test will pass if the
+test fails with any minor status. If it is specified, the test will only pass if the test fails with
+a vector error with the specified minor status.</p>
 <pre><code class="language-move">module pkg_addr::other_module {
-    fun vector_borrow_empty() {
-        vector::borrow(&amp;vector::empty&lt;u64&gt;(), 1);
+    public fun vector_borrow_empty() {
+        &amp;vector&lt;u64&gt;[][1];
     }
 }
 
@@ -334,7 +326,7 @@ module pkg_addr::my_module {
     #[test]
     #[expected_failure(vector_error, location = Self)]
     fun vector_abort_same_module() {
-        vector::borrow(&amp;vector::empty&lt;u64&gt;(), 1);
+        vector::borrow(&amp;vector&lt;u64&gt;[], 1);
     }
 
     #[test]
@@ -347,7 +339,7 @@ module pkg_addr::my_module {
     #[test]
     #[expected_failure(vector_error, minor_status = 1, location = Self)]
     fun native_abort_good_right_code() {
-        vector::borrow(&amp;vector::empty&lt;u64&gt;(), 1);
+        vector::borrow(&amp;vector&lt;u64&gt;[], 1);
     }
 
     // FAIL: correct error, but wrong location.
@@ -361,15 +353,14 @@ module pkg_addr::my_module {
     #[test]
     #[expected_failure(vector_error, minor_status = 0, location = Self)]
     fun vector_abort_wrong_minor_code() {
-        vector::borrow(&amp;vector::empty&lt;u64&gt;(), 1);
+        vector::borrow(&amp;vector&lt;u64&gt;[], 1);
     }
 }
 </code></pre>
 <h3 id="5-expected_failure"><a class="header" href="#5-expected_failure">5. <code>#[expected_failure]</code></a></h3>
-<p>This will pass if the test aborts with any error code. Because of this you
-should be incredibly careful using this way of annotating expected tests
-failures, and instead prefer one of the ways described above instead. Examples
-of these types of annotations are:</p>
+<p>This will pass if the test aborts with <em>any</em> error code. You should be <strong><em>incredibly careful</em></strong>
+using this to annotate expected tests failures, and always prefer one of the ways described above
+instead. Examples of these types of annotations are:</p>
 <pre><code class="language-move">#[test]
 #[expected_failure]
 fun test_will_abort_and_pass1() { abort 1 }
@@ -379,19 +370,20 @@ fun test_will_abort_and_pass1() { abort 1 }
 fun test_will_arith_error_and_pass2() { 1/0; }
 </code></pre>
 <h2 id="test-only-annotations"><a class="header" href="#test-only-annotations">Test Only Annotations</a></h2>
-<p>A module and any of its members can be declared as test only. If an item is
-annotated as <code>#[test_only]</code> the item will only be included in the compiled Move
-bytecode when compiled in test mode. Additionally, when compiled outside of
-test mode, any non-test <code>use</code>s of a <code>#[test_only]</code> module will raise an error
-during compilation.</p>
-<p><strong>NOTE</strong>: functions that are annotated with <code>#[test_only]</code> will only be available
-to be called from test code, but they themselves are not tests and will not be
-run as tests by the unit testing framework.</p>
+<p>A module and any of its members can be declared as test only. If an item is annotated as
+<code>#[test_only]</code> the item will only be included in the compiled Move bytecode when compiled in test
+mode. Additionally, when compiled outside of test mode, any non-test <code>use</code>s of a <code>#[test_only]</code>
+module will raise an error during compilation.</p>
+<blockquote>
+<p><strong>Note</strong>: functions that are annotated with <code>#[test_only]</code> will only be available to be called
+from test code, but they themselves are not tests and will not be run as tests by the unit testing
+framework.</p>
+</blockquote>
 <pre><code class="language-move">#[test_only] // test only attributes can be attached to modules
 module abc { ... }
 
 #[test_only] // test only attributes can be attached to constants
-const Addr: address = @0x1;
+const MY_ADDR: address = @0x1;
 
 #[test_only] // .. to uses
 use pkg_addr::some_other_module;
@@ -407,16 +399,14 @@ fun test_only_function(...) { ... }
 <p>When running tests, every test will either <code>PASS</code>, <code>FAIL</code>, or <code>TIMEOUT</code>. If a test case fails, the
 location of the failure along with the function name that caused the failure will be reported if
 possible. You can see an example of this below.</p>
-<p>A test will be marked as timing out if it exceeds the maximum number of
-instructions that can be executed for any single test. This bound can be
-changed using the options below. Additionally, while the result of a test is
-always deterministic, tests are run in parallel by default, so the ordering of
-test results in a test run is non-deterministic unless running with only one
-thread (see <code>OPTIONS</code> below on how to do this).</p>
-<p>There are also a number of options that can be passed to the unit testing binary to fine-tune
-testing and to help debug failing tests. The available options, and a
-description of what each one can do can be found by passing the help flag to
-the <code>sui move test</code> command:</p>
+<p>A test will be marked as timing out if it exceeds the maximum number of instructions that can be
+executed for any single test. This bound can be changed using the options below. Additionally, while
+the result of a test is always deterministic, tests are run in parallel by default, so the ordering
+of test results in a test run is non-deterministic unless running with only one thread, which can be
+configured via an option.</p>
+<p>These aforementioned options are two among many that can fine-tune testing and help debug failing
+tests. To see all available options, and a description of what each one does, pass the <code>--help</code> flag
+to the <code>sui move test</code> command:</p>
 <pre><code>$ sui move test --help
 </code></pre>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
@@ -479,9 +469,9 @@ Test result: OK. Total tests: 3; passed: 3; failed: 0
 </code></pre>
 <h3 id="using-test-flags"><a class="header" href="#using-test-flags">Using Test Flags</a></h3>
 <h4 id="passing-specific-tests-to-run"><a class="header" href="#passing-specific-tests-to-run">Passing specific tests to run</a></h4>
-<p>You can run a specific test, or a set of tests with <code>sui move test &lt;str&gt;</code>. This
-will only run tests whose fully qualified name contains <code>&lt;str&gt;</code>. For example if
-we wanted to only run tests with <code>"non_zero"</code> in their name:</p>
+<p>You can run a specific test, or a set of tests with <code>sui move test &lt;str&gt;</code>. This will only run tests
+whose fully qualified name contains <code>&lt;str&gt;</code>. For example if we wanted to only run tests with
+<code>&quot;non_zero&quot;</code> in their name:</p>
 <pre><code class="language-bash">$ sui move test non_zero
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
@@ -538,9 +528,9 @@ Failures in 0x0::my_module:
 Test result: FAILED. Total tests: 3; passed: 0; failed: 3
 </code></pre>
 <h4 id="-s-or---statistics"><a class="header" href="#-s-or---statistics"><code>-s</code> or <code>--statistics</code></a></h4>
-<p>With these flags you can gather statistics about the tests run and report the
-runtime and gas used for each test. You can additionally add <code>csv</code> (<code>sui move test -s csv</code>) to get the gas usage in a csv output format. For example, if we
-wanted to see the statistics for the tests in the example above:</p>
+<p>With these flags you can gather statistics about the tests run and report the runtime and gas used
+for each test. You can additionally add <code>csv</code> (<code>sui move test -s csv</code>) to get the gas usage in a csv
+output format. For example, if we wanted to see the statistics for the tests in the example above:</p>
 <pre><code class="language-bash">$ sui move test -s
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
@@ -573,7 +563,7 @@ Test result: OK. Total tests: 3; passed: 3; failed: 0
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="coding-conventions.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="coding-conventions.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -587,29 +577,13 @@ Test result: OK. Total tests: 3; passed: 3; failed: 0
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="coding-conventions.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="coding-conventions.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 

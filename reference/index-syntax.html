@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light" dir="ltr">
+<html lang="en" class="sidebar-visible no-js light">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,15 +7,13 @@
 
 
         <!-- Custom HTML head -->
-        <meta name="robots" content="noindex">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
-        
 
         <meta name="description" content="The Move Language Reference maintained by the Move core team.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff">
+        <meta name="theme-color" content="#ffffff" />
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -37,7 +35,7 @@
         <link rel="stylesheet" href="theme/css/custom.css">
 
     </head>
-    <body class="sidebar-visible no-js">
+    <body>
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -67,38 +65,31 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
+            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add('js');
         </script>
-
-        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
+            var html = document.querySelector('html');
             var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
                 <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Getting Started</li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">1.</strong> Modules</a></li><li class="chapter-item expanded affix "><li class="part-title">Basic Concepts</li><li class="chapter-item expanded "><a href="primitive-types.html"><strong aria-hidden="true">2.</strong> Primitive Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="primitive-types/integers.html"><strong aria-hidden="true">2.1.</strong> Integers</a></li><li class="chapter-item expanded "><a href="primitive-types/bool.html"><strong aria-hidden="true">2.2.</strong> Bool</a></li><li class="chapter-item expanded "><a href="primitive-types/address.html"><strong aria-hidden="true">2.3.</strong> Address</a></li><li class="chapter-item expanded "><a href="primitive-types/vector.html"><strong aria-hidden="true">2.4.</strong> Vector</a></li><li class="chapter-item expanded "><a href="primitive-types/references.html"><strong aria-hidden="true">2.5.</strong> References</a></li><li class="chapter-item expanded "><a href="primitive-types/tuples.html"><strong aria-hidden="true">2.6.</strong> Tuples and Unit</a></li></ol></li><li class="chapter-item expanded "><a href="variables.html"><strong aria-hidden="true">3.</strong> Local Variables and Scopes</a></li><li class="chapter-item expanded "><a href="equality.html"><strong aria-hidden="true">4.</strong> Equality</a></li><li class="chapter-item expanded "><a href="abort-and-assert.html"><strong aria-hidden="true">5.</strong> Abort and Assert</a></li><li class="chapter-item expanded "><a href="control-flow.html"><strong aria-hidden="true">6.</strong> Control Flow</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="control-flow/conditionals.html"><strong aria-hidden="true">6.1.</strong> Conditional Expressions</a></li><li class="chapter-item expanded "><a href="control-flow/loops.html"><strong aria-hidden="true">6.2.</strong> Loops</a></li><li class="chapter-item expanded "><a href="control-flow/labeled-control-flow.html"><strong aria-hidden="true">6.3.</strong> Labeled Control FLow</a></li></ol></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">7.</strong> Functions</a></li><li class="chapter-item expanded "><a href="structs.html"><strong aria-hidden="true">8.</strong> Structs</a></li><li class="chapter-item expanded "><a href="constants.html"><strong aria-hidden="true">9.</strong> Constants</a></li><li class="chapter-item expanded "><a href="generics.html"><strong aria-hidden="true">10.</strong> Generics</a></li><li class="chapter-item expanded "><a href="abilities.html"><strong aria-hidden="true">11.</strong> Type Abilities</a></li><li class="chapter-item expanded "><a href="uses.html"><strong aria-hidden="true">12.</strong> Uses and Aliases</a></li><li class="chapter-item expanded affix "><li class="part-title">Advanced Concepts</li><li class="chapter-item expanded "><a href="method-syntax.html"><strong aria-hidden="true">13.</strong> Method Syntax</a></li><li class="chapter-item expanded "><a href="index-syntax.html" class="active"><strong aria-hidden="true">14.</strong> Index Syntax Methods</a></li><li class="chapter-item expanded affix "><li class="part-title">Tooling</li><li class="chapter-item expanded "><a href="packages.html"><strong aria-hidden="true">15.</strong> Packages</a></li><li class="chapter-item expanded "><a href="unit-testing.html"><strong aria-hidden="true">16.</strong> Unit Tests</a></li><li class="chapter-item expanded affix "><li class="part-title">Reference</li><li class="chapter-item expanded "><a href="coding-conventions.html"><strong aria-hidden="true">17.</strong> Coding Conventions</a></li><li class="chapter-item expanded affix "><li class="part-title">Deprecated</li><li class="chapter-item expanded "><a href="friends.html"><strong aria-hidden="true">18.</strong> Friends</a></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
-                <div class="sidebar-resize-indicator"></div>
-            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <!-- Track and set sidebar scroll position -->
@@ -129,9 +120,9 @@
                                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </label>
+                        </button>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -187,7 +178,7 @@
                     <main>
                         <h1 id="index-syntax"><a class="header" href="#index-syntax">Index Syntax</a></h1>
 <p>Move provides syntax attributes to allow you to define operations that look and feel like native
-move code, lowering these operations into your user-provided definitions.</p>
+Move code, lowering these operations into your user-provided definitions.</p>
 <p>Our first syntax method, <code>index</code>, allows you to define a group of operations that can be used as
 custom index accessors for your datatypes, such as accessing a matrix element as <code>m[i,j]</code>, by
 annotating functions that should be used for these index operations. Moreover, these definitions are
@@ -201,13 +192,13 @@ follows:</p>
     public struct Matrix&lt;T&gt; { v: vector&lt;vector&lt;T&gt;&gt; }
 
     #[syntax(index)]
-    public fun borrow&lt;T&gt;(s: &amp;Matrix&lt;T&gt;, i: u64, j: u64):  &amp;T {
-        borrow(borrow(s.v, i), j)
+    public fun borrow&lt;T&gt;(s: &amp;Matrix&lt;T&gt;, i: u64, j: u64): &amp;T {
+        vector::borrow(vector::borrow(&amp;s.v, i), j)
     }
 
     #[syntax(index)]
-    public fun borrow_mut&lt;T&gt;(s: &amp;mut Matrix&lt;T&gt;, i: u64, j: u64):  &amp;mut T {
-        borrow_mut(borrow_mut(s.v, i), j)
+    public fun borrow_mut&lt;T&gt;(s: &amp;mut Matrix&lt;T&gt;, i: u64, j: u64): &amp;mut T {
+        vector::borrow_mut(vector::borrow_mut(&amp;mut s.v, i), j)
     }
 
     public fun make_matrix&lt;T&gt;(v: vector&lt;vector&lt;T&gt;&gt;):  Matrix&lt;T&gt; {
@@ -217,20 +208,20 @@ follows:</p>
 }
 </code></pre>
 <p>Now anyone using this <code>Matrix</code> type has access to index syntax for it:</p>
-<pre><code class="language-move">let v0 = vector&lt;u64&gt;[1, 0, 0];
-let v1 = vector&lt;u64&gt;[0, 1, 0];
-let v2 = vector&lt;u64&gt;[0, 0, 1];
-let v = vector&lt;vector&lt;u64&gt;&gt;[v0, v1, v2];
-let mut m = matrix::make_matrix(v);
+<pre><code class="language-move">let mut m = matrix::make_matrix(vector[
+    vector[1, 0, 0],
+    vector[0, 1, 0],
+    vector[0, 0, 1],
+]);
 
 let mut i = 0;
 while (i &lt; 3) {
     let mut j = 0;
     while (j &lt; 3) {
         if (i == j) {
-            assert!(m[i, j] == 1, i);
+            assert!(m[i, j] == 1, 1);
         } else {
-            assert!(m[i, j] == 0, i + 10);
+            assert!(m[i, j] == 0, 0);
         };
         *(&amp;mut m[i,j]) = 2;
         j = j + 1;
@@ -249,13 +240,13 @@ the position and mutable usage of the expression:</p>
 <pre><code class="language-move">let mut mat = matrix::make_matrix(...);
 
 let m_0_0 = mat[0, 0];
-    // translates to copy matrix::borrow(&amp;mat, 0, 0)
+// translates to `copy matrix::borrow(&amp;mat, 0, 0)`
 
 let m_0_0 = &amp;mat[0, 0];
-    // translates to matrix::borrow(&amp;mat, 0, 0)
+// translates to `matrix::borrow(&amp;mat, 0, 0)`
 
 let m_0_0 = &amp;mut mat[0, 0];
-    // translates to matrix::borrow_mut(&amp;mut mat, 0, 0)
+// translates to `matrix::borrow_mut(&amp;mut mat, 0, 0)`
 ``
 
 You can also intermix index expressions with field accesses:
@@ -266,8 +257,8 @@ public struct V { v: vector&lt;u64&gt; }
 public struct Vs { vs: vector&lt;V&gt; }
 
 fun borrow_first(input: &amp;Vs): &amp;u64 {
-    input.vs[0].v[0]
-    // translates to vector::borrow(vector::borrow(input.vs, 0).v, 0)
+    &amp;input.vs[0].v[0]
+    // translates to `vector::borrow(&amp;vector::borrow(&amp;input.vs, 0).v, 0)`
 }
 </code></pre>
 <h3 id="index-functions-take-flexible-arguments"><a class="header" href="#index-functions-take-flexible-arguments">Index Functions Take Flexible Arguments</a></h3>
@@ -278,19 +269,19 @@ structure that takes a default value if the index is out of bounds:</p>
 <pre><code class="language-move">#[syntax(index)]
 public fun borrow_or_set&lt;Key: copy, Value: drop&gt;(
     input: &amp;mut MTable&lt;Key, Value&gt;,
-    key: &amp;Key,
+    key: Key,
     default: Value
 ): &amp;mut Value {
-    if (contains(input, *key)) {
+    if (contains(input, key)) {
         borrow(input, key)
     } else {
-        insert(input, *key, default)
+        insert(input, key, default);
         borrow(input, key)
     }
 }
 </code></pre>
 <p>Now, when you index into <code>MTable</code>, you must also provide a default value:</p>
-<pre><code>let string_key: String = ...;
+<pre><code class="language-move">let string_key: String = ...;
 let mut table: MTable&lt;String, u64&gt; = m_table::make_table();
 let entry: &amp;mut u64 = &amp;mut table[string_key, 0];
 </code></pre>
@@ -325,18 +316,14 @@ the function is an index accessor for the specified type.</p>
 of the subject type and returns an immutable reference to the element type. The <code>borrow</code> function
 defined in <code>std::vector</code> is an example of this:</p>
 <pre><code class="language-move">#[syntax(index)]
-public fun borrow&lt;Element&gt;(v: &amp;vector&lt;Element&gt;, i: u64): &amp;Element {
-    // implementation
-}
+public native fun borrow&lt;Element&gt;(v: &amp;vector&lt;Element&gt;, i: u64): &amp;Element;
 </code></pre>
 <h4 id="mutable-accessor"><a class="header" href="#mutable-accessor">Mutable Accessor</a></h4>
 <p>The mutable index syntax method is the dual of the immutable one, allowing for both read and write
 operations. It takes a mutable reference of the subject type and returns a mutable reference to the
 element type. The <code>borrow_mut</code> function defined in <code>std::vector</code> is an example of this:</p>
 <pre><code class="language-move">#[syntax(index)]
-public fun borrow_mut&lt;Element&gt;(v: &amp;mut vector&lt;Element&gt;, i: u64): &amp;mut Element {
-    // implementation
-}
+public native fun borrow_mut&lt;Element&gt;(v: &amp;mut vector&lt;Element&gt;, i: u64): &amp;mut Element;
 </code></pre>
 <h4 id="visibility"><a class="header" href="#visibility">Visibility</a></h4>
 <p>To ensure that indexing functions are available anywhere the type is used, all index syntax methods
@@ -381,7 +368,7 @@ whose subject and return mutability differ:</p>
 <pre><code class="language-move">#[syntax(index)]
 public fun borrow_imm(x: &amp;mut Matrix&lt;u64&gt;, ...): &amp;u64 { ... }
     // ERROR! incompatible mutability
-
+    // expected a mutable reference '&amp;mut' return type
 </code></pre>
 <h3 id="type-compatibility"><a class="header" href="#type-compatibility">Type Compatibility</a></h3>
 <p>When defining an immutable and mutable index syntax method pair, they are subject to a number of
@@ -398,29 +385,29 @@ constraints.</li>
 mutable or immutable position.</p>
 <p>To illustrate some of these errors, recall the previous <code>Matrix</code> definition:</p>
 <pre><code class="language-move">#[syntax(index)]
-public fun borrow&lt;T&gt;(s: &amp;Matrix&lt;T&gt;, i: u64, j: u64):  &amp;T {
-    borrow(borrow(s.v, i), j)
+public fun borrow&lt;T&gt;(s: &amp;Matrix&lt;T&gt;, i: u64, j: u64): &amp;T {
+    vector::borrow(vector::borrow(&amp;s.v, i), j)
 }
 </code></pre>
 <p>All of the following are type-incompatible definitions of the mutable version:</p>
 <pre><code class="language-move">#[syntax(index)]
-public fun borrow_mut&lt;T: drop&gt;(s: &amp;mut Matrix&lt;T&gt;, i: u64, j: u64):  &amp;mut T { ... }
+public fun borrow_mut&lt;T: drop&gt;(s: &amp;mut Matrix&lt;T&gt;, i: u64, j: u64): &amp;mut T { ... }
     // ERROR! `T` has `drop` here, but no in the immutable version
 
 #[syntax(index)]
-public fun borrow_mut(s: &amp;mut Matrix&lt;u64&gt;, i: u64, j: u64):  &amp;mut u64 { ... }
+public fun borrow_mut(s: &amp;mut Matrix&lt;u64&gt;, i: u64, j: u64): &amp;mut u64 { ... }
     // ERROR! This takes a different number of type parameters
 
 #[syntax(index)]
-public fun borrow_mut&lt;T, U&gt;(s: &amp;mut Matrix&lt;U&gt;, i: u64, j: u64):  &amp;mut U { ... }
+public fun borrow_mut&lt;T, U&gt;(s: &amp;mut Matrix&lt;U&gt;, i: u64, j: u64): &amp;mut U { ... }
     // ERROR! This takes a different number of type parameters
 
 #[syntax(index)]
-public fun borrow_mut&lt;T, U&gt;(s: &amp;mut Matrix&lt;U&gt;, i_j: (u64, u64)):  &amp;mut U { ... }
+public fun borrow_mut&lt;U&gt;(s: &amp;mut Matrix&lt;U&gt;, i_j: (u64, u64)): &amp;mut U { ... }
     // ERROR! This takes a different number of arguments
 
 #[syntax(index)]
-public fun borrow_mut&lt;T, U&gt;(s: &amp;mut Matrix&lt;U&gt;, i: u64, j: u32):  &amp;mut U { ... }
+public fun borrow_mut&lt;U&gt;(s: &amp;mut Matrix&lt;U&gt;, i: u64, j: u32): &amp;mut U { ... }
     // ERROR! `j` is a different type
 </code></pre>
 <p>Again, the goal here is to make the usage across the immutable and mutable versions consistent. This
@@ -435,7 +422,7 @@ mutable versus immutable usage, ultimately ensuring a consistent interface to pr
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="packages.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="packages.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -449,29 +436,13 @@ mutable versus immutable usage, ultimately ensuring a consistent interface to pr
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="packages.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="packages.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 
