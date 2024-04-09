@@ -140,11 +140,6 @@ During the compilation, Move Compiler automatically creates a build folder where
 
 > If you're using a versioning system, such as Git, build folder should be ignored. For example, using a `.gitignore` file with `build` added to it.
 
-```bash
-$ tree build
-Running Tests
-```
-
 ## Running Tests
 
 Before we get to testing, we should add a test. Move Compiler supports tests written in Move and provides the execution environment. The tests can be placed in both the source files and in the tests/ folder. Tests are marked with the #[test] attribute and are automatically discovered by the compiler. We explain tests in depth in the Testing section.
@@ -166,16 +161,24 @@ module hello_world::hello_world_tests {
 Here we import the hello_world module, and call its hello_world function to test that the output is indeed the string "Hello World!". Now, that we have tests in place, let's compile the package in the test mode and run tests. Move CLI has the test command for this:
 
 ```bash
-# from `hello_world` folder
 $ sui move test
+INCLUDING DEPENDENCY Sui
+INCLUDING DEPENDENCY MoveStdlib
+BUILDING hello_world
+Running Move unit tests
+[ PASS    ] 0x0::hello_world_tests::test_hello_world
+Test result: OK. Total tests: 1; passed: 1; failed: 0
+```
 
-# outside
+If you're running the tests outside of the package folder, you can specify the path to the package:
+
+```bash
 $ sui move test --path hello_world
 ```
 
 ## Next Steps
 
-In this section we explained the basics of the Move package: its structure, the manifest, the build and test flows. [On the next page](./../hello-sui), we will write an application and see how the code is structured and what the language can do.
+In this section we explained the basics of the Move package: its structure, the manifest, the build and test flows. [On the next page](./hello-sui.md), we will write an application and see how the code is structured and what the language can do.
 
 ## Further Reading
 
