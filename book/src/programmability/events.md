@@ -2,7 +2,7 @@
 
 Events are a way to notify off-chain listeners about on-chain events. They are used to emit additional information about the transaction that is not stored - and, hence, can't be accessed - on-chain. Events are emitted by the `sui::event` module located in the [Sui Framework](./sui-framework.md).
 
-> Any type with the [copy](./../basic-syntax/copy-ability.md) and [drop](./../basic-syntax/drop-ability.md) abilities can be emitted as an event.
+> Any type with the [copy](./../move-basics/copy-ability.md) and [drop](./../move-basics/drop-ability.md) abilities can be emitted as an event.
 
 File: sui-framework/sources/event.move
 

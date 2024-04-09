@@ -1,4 +1,4 @@
-# Packages
+# Package
 
 <!--
 
@@ -35,7 +35,7 @@ package 0x...
 
 ## Package Structure
 
-Locally, a package is a directory with a `Move.toml` file and a `sources` directory. The `Move.toml` file - called the "package manifest" - contains metadata about the package, and the `sources` directory contains the source code for the modules. Packages usually looks like this:
+Locally, a package is a directory with a `Move.toml` file and a `sources` directory. The `Move.toml` file - called the "package manifest" - contains metadata about the package, and the `sources` directory contains the source code for the modules. Package usually looks like this:
 
 ```
 sources/
@@ -63,6 +63,6 @@ During development, package doesn't have an address and it needs to be set to `0
 
 ## Links
 
-- [Package Manifest](./package-manifest.md)
+- [Package Manifest](./manifest.md)
 - [Address](./address.md)
-- [Publishing a Package](./../hello-sui/build-and-publish.md)
+- [Packages](/reference/packages.html) in the Move Language Reference.

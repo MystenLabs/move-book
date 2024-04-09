@@ -4,7 +4,7 @@
 
 For each collection type we will specify the primitive they use, and the specific features they offer.
 
-> Unlike dynamic (object) fields which operate on UID, collection types have their own type and allow calling [associated functions](./../basic-syntax/struct-methods.md).
+> Unlike dynamic (object) fields which operate on UID, collection types have their own type and allow calling [associated functions](./../move-basics/struct-methods.md).
 
 ## Common Concepts
 
@@ -96,6 +96,14 @@ Using the Table:
 ## ObjectTable
 
 Defined in the `sui::object_table` module. Identical to [Table](#table), but uses [dynamic object fields](./dynamic-object-fields.md) internally. Can only store objects as values.
+
+## Summary
+
+- [Bag](#bag) - a simple collection that can store any type of data
+- [ObjectBag](#objectbag) - a collection that can store only objects
+- [Table](#table) - a typed dynamic collection that has a fixed type for keys and values
+- [ObjectTable](#objecttable) - same as Table, but can only store objects
+<!-- [Linked Table](#linkedtable) -->
 
 <!-- ## Choosing a Collection Type
 

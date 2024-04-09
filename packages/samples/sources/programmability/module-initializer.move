@@ -2,35 +2,35 @@
 // SPDX-License-Identifier: Apache-2.0
 
 // ANCHOR: main
-module book::store {
-    /// The Capability which grants the store owner the right to manage
-    /// the store.
-    public struct StoreOwnerCap has key, store { id: UID }
+module book::shop {
+    /// The Capability which grants the Shop owner the right to manage
+    /// the shop.
+    public struct ShopOwnerCap has key, store { id: UID }
 
-    /// The store itself, one and only, created in the `init` function.
-    public struct Store has key {
+    /// The singular Shop itself, created in the `init` function.
+    public struct Shop has key {
         id: UID,
         /* ... */
     }
 
-    // Will be called only once, when the module is published. Has to be
-    // private, so it is not callable from the outside.
+    // Called only once, upon module publication. It must be
+    // private to prevent external invocation.
     fun init(ctx: &mut TxContext) {
-        // transfer the StoreOwnerCap to the sender (publisher)
-        transfer::transfer(StoreOwnerCap {
+        // Transfers the ShopOwnerCap to the sender (publisher).
+        transfer::transfer(ShopOwnerCap {
             id: object::new(ctx)
         }, ctx.sender());
 
-        // share the Store object
-        transfer::share_object(Store {
+        // Shares the Shop object.
+        transfer::share_object(Shop {
             id: object::new(ctx)
-        })
+        });
     }
 }
 // ANCHOR_END: main
 
 // ANCHOR: other
-// same package with the `store` module
+// In the same package as the `shop` module
 module book::bank {
 
     public struct Bank has key {
@@ -41,7 +41,7 @@ module book::bank {
     fun init(ctx: &mut TxContext) {
         transfer::share_object(Bank {
             id: object::new(ctx)
-        })
+        });
     }
 }
 // ANCHOR_END: other

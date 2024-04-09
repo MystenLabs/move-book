@@ -6,8 +6,6 @@ module book::capability {
     use std::string::String;
     use sui::event;
 
-    use fun sui::object::uid_to_inner as UID.to_inner;
-
     /// The capability granting the application admin the right to create new
     /// accounts in the system.
     public struct AdminCap has key, store { id: UID }

@@ -86,7 +86,7 @@ This approach is used in the [Object Capability]() pattern, where an application
 
 <div class="warning">
 
-Mutable access to `UID` is a security risk. Exposing `UID` of your type as a mutable reference can lead to unwanted modifications or removal of the object's dynamic fields. Additionally, it affects the [Transfer to Object](./object/transfer-to-object.md) and [Dynamic Object Fields](./dynamic-object-fields.md). Make sure to understand the implications before exposing the `UID` as a mutable reference.
+Mutable access to `UID` is a security risk. Exposing `UID` of your type as a mutable reference can lead to unwanted modifications or removal of the object's dynamic fields. Additionally, it affects the [Transfer to Object](./../storage/transfer-to-object.md) and [Dynamic Object Fields](./dynamic-object-fields.md). Make sure to understand the implications before exposing the `UID` as a mutable reference.
 
 </div>
 

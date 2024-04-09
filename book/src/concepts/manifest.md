@@ -89,6 +89,6 @@ rev = "framework/testnet"
 local = "../my-package"
 ```
 
-## Links
+## Further Reading
 
-- [Packages in the Move Documentation](https://move-language.github.io/move/packages.html)
+- [Packages](/reference/packages.html) in the Move Language Reference.
