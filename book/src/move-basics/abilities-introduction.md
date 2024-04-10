@@ -6,7 +6,7 @@ Move has a unique type system which allows customizing _type abilities_. [In the
 
 ## What are Abilities?
 
-Abilities are a way to allow certain behavious for a type. They are a part of the struct declaration and define which behaviours are allowed for the instances of the struct.
+Abilities are a way to allow certain behaviors for a type. They are a part of the struct declaration and define which behaviours are allowed for the instances of the struct.
 
 ## Abilities syntax
 
