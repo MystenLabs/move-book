@@ -1498,7 +1498,7 @@ let Artist { name: _ } = artist;
 <p>Throughout the book you will see chapters with name <code>Ability: &lt;name&gt;</code>, where <code>&lt;name&gt;</code> is the name of the ability. These chapters will cover the ability in detail, how it works, and how to use it in Move.</p>
 </blockquote>
 <h2 id="what-are-abilities"><a class="header" href="#what-are-abilities">What are Abilities?</a></h2>
-<p>Abilities are a way to allow certain behavious for a type. They are a part of the struct declaration and define which behaviours are allowed for the instances of the struct.</p>
+<p>Abilities are a way to allow certain behaviors for a type. They are a part of the struct declaration and define which behaviours are allowed for the instances of the struct.</p>
 <h2 id="abilities-syntax"><a class="header" href="#abilities-syntax">Abilities syntax</a></h2>
 <p>Abilities are set in the struct definition using the <code>has</code> keyword followed by a list of abilities. The abilities are separated by commas. Move supports 4 abilities: <code>copy</code>, <code>drop</code>, <code>key</code>, and <code>store</code>, each of them is used to define a specific behaviour for the struct instances.</p>
 <pre><code class="language-move">/// This struct has the `copy` and `drop` abilities.
@@ -3497,7 +3497,7 @@ public struct ID has store, drop {
 <pre><code class="language-move">let ctx = &amp;mut tx_context::dummy();
 let uid = object::new(ctx);
 </code></pre>
-<p>On Sui, <code>UID</code> acts as a representation of an object, and allows defining behavious and features of an object. One of the key-features - <a href="storage/">Dynamic Fields</a> - is possible because of the <code>UID</code> type being explicit. Additionally, it allows the <a href="storage/">Transfer To Object (TTO)</a> which we will explain later in this chapter.</p>
+<p>On Sui, <code>UID</code> acts as a representation of an object, and allows defining behaviors and features of an object. One of the key-features - <a href="storage/">Dynamic Fields</a> - is possible because of the <code>UID</code> type being explicit. Additionally, it allows the <a href="storage/">Transfer To Object (TTO)</a> which we will explain later in this chapter.</p>
 <h2 id="uid-lifecycle"><a class="header" href="#uid-lifecycle">UID lifecycle</a></h2>
 <p>The <code>UID</code> type is created with the <code>object::new(ctx)</code> function, and it is destroyed with the <code>object::delete(uid)</code> function. The <code>object::delete</code> consumes the UID <em>by value</em>, and it is impossible to delete it unless the value was unpacked from an Object.</p>
 <pre><code class="language-move">let ctx = &amp;mut tx_context::dummy();
