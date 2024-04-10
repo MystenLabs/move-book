@@ -2,7 +2,9 @@
 
 While Move does not have a built-in to represent strings, it does have a `string` module in the [Standard Library](./standard-library.md) that provides a `String` type. The `string` module represents UTF-8 encoded strings, and another module, `ascii`, provides an ASCII-only `String` type.
 
-Sui execution environment also allows Strings as transaction arguments, so in many cases, String does not to be constructed in the [Transaction Block](./../concepts/what-is-a-transaction.md).
+> Sui execution environment automatically converts bytevector into `String` in transaction inputs. So in many cases, String does not to be constructed in the [Transaction Block](./../concepts/what-is-a-transaction.md).
+
+<!--
 
 ## Bytestring Literal
 
@@ -10,6 +12,8 @@ TODO:
 
 - reference vector
 - reference literals - [Expression](./expression.md#literals)
+
+-->
 
 ## Strings are bytes
 
@@ -41,12 +45,15 @@ The default `utf8` method is potentially unsafe, as it does not check that the b
 
 ## ASCII Strings
 
-TODO: ASCII strings
+This section is coming soon!
 
-```move
+<!-- TODO: ASCII strings -->
+
+<!-- ```move
 {{#include ../../../packages/samples/sources/move-basics/string.move:ascii}}
 ```
+-->
 
-## Summary
+<!-- ## Summary
 
-TODO: summary
+ TODO: summary -->
