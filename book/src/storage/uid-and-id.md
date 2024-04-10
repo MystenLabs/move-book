@@ -30,7 +30,7 @@ let ctx = &mut tx_context::dummy();
 let uid = object::new(ctx);
 ```
 
-On Sui, `UID` acts as a representation of an object, and allows defining behavious and features of an object. One of the key-features - [Dynamic Fields]() - is possible because of the `UID` type being explicit. Additionally, it allows the [Transfer To Object (TTO)]() which we will explain later in this chapter.
+On Sui, `UID` acts as a representation of an object, and allows defining behaviors and features of an object. One of the key-features - [Dynamic Fields]() - is possible because of the `UID` type being explicit. Additionally, it allows the [Transfer To Object (TTO)]() which we will explain later in this chapter.
 
 ## UID lifecycle
 
