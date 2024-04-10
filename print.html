@@ -1862,13 +1862,19 @@ assert!(opt.is_none(), 2);
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="string"><a class="header" href="#string">String</a></h1>
 <p>While Move does not have a built-in to represent strings, it does have a <code>string</code> module in the <a href="move-basics/./standard-library.html">Standard Library</a> that provides a <code>String</code> type. The <code>string</code> module represents UTF-8 encoded strings, and another module, <code>ascii</code>, provides an ASCII-only <code>String</code> type.</p>
-<p>Sui execution environment also allows Strings as transaction arguments, so in many cases, String does not to be constructed in the <a href="move-basics/./../concepts/what-is-a-transaction.html">Transaction Block</a>.</p>
-<h2 id="bytestring-literal"><a class="header" href="#bytestring-literal">Bytestring Literal</a></h2>
-<p>TODO:</p>
-<ul>
-<li>reference vector</li>
-<li>reference literals - <a href="move-basics/./expression.html#literals">Expression</a></li>
-</ul>
+<blockquote>
+<p>Sui execution environment automatically converts bytevector into <code>String</code> in transaction inputs. So in many cases, String does not to be constructed in the <a href="move-basics/./../concepts/what-is-a-transaction.html">Transaction Block</a>.</p>
+</blockquote>
+<!--
+
+## Bytestring Literal
+
+TODO:
+
+- reference vector
+- reference literals - [Expression](./expression.md#literals)
+
+-->
 <h2 id="strings-are-bytes"><a class="header" href="#strings-are-bytes">Strings are bytes</a></h2>
 <p>No matter which type of string you use, it is important to know that strings are just bytes. The wrappers provided by the <code>string</code> and <code>ascii</code> modules are just that: wrappers. They do provide extra checks and functionality than a vector of bytes, but under the hood, they are just vectors of bytes.</p>
 <pre><code class="language-move">module book::custom_string {
@@ -1891,66 +1897,56 @@ assert!(opt.is_none(), 2);
 <p>Both standard types provide conversions from and to vectors of bytes.</p>
 <h2 id="working-with-utf-8-strings"><a class="header" href="#working-with-utf-8-strings">Working with UTF-8 Strings</a></h2>
 <p>While there are two types of strings in the standard library, the <code>string</code> module should be considered the default. It has native implementations of many common operations, and hence is more efficient than the <code>ascii</code> module. To create a string or perform operations on it, you must import the <code>string</code> module:</p>
-<pre><code class="language-move">module book::string_utf {
-    use std::string;
+<pre><code class="language-move">// strings are normally created using the `utf8` function
+let mut hello = b&quot;Hello&quot;.to_string();
+let world = b&quot;, World!&quot;.to_string();
 
-    #[test]
-    fun using_strings() {
-        // strings are normally created using the `utf8` function
-        let mut hello = string::utf8(b&quot;Hello&quot;);
-        let world = string::utf8(b&quot;, World!&quot;);
+// strings can be concatenated using the `append_utf8` function
+hello.append_utf8(*world.bytes()); // mutates the value
 
-        // strings can be concatenated using the `append_utf8` function
-        hello.append_utf8(*world.bytes()); // mutates the value
-
-        // just like any other type, strings can be compared
-        assert!(hello == string::utf8(b&quot;Hello, World!&quot;), 0x0);
-    }
-}
+// just like any other type, strings can be compared
+assert!(hello == b&quot;Hello, World!&quot;.to_string(), 0x0);
 </code></pre>
 <h2 id="safe-utf-8-operations"><a class="header" href="#safe-utf-8-operations">Safe UTF-8 Operations</a></h2>
 <p>The default <code>utf8</code> method is potentially unsafe, as it does not check that the bytes passed to it are valid UTF-8. If you are not sure that the bytes you are passing are valid UTF-8, you should use the <code>try_utf8</code> method instead. It returns an <code>Option&lt;String&gt;</code>, which is <code>None</code> if the bytes are not valid UTF-8:</p>
 <blockquote>
 <p>The <code>try_*</code> pattern is used throughout the standard library to indicate that a function may fail. For more information, see the <a href="move-basics/./error-handling.html">Error Handling</a> section.</p>
 </blockquote>
-<pre><code class="language-move">module book::string_safe_utf {
-    use std::string;
+<pre><code class="language-move">// this is a valid UTF-8 string
+let hello = b&quot;Hello&quot;.try_to_string();
 
-    #[test]
-    fun safe_strings() {
-        // this is a valid UTF-8 string
-        let hello = string::try_utf8(b&quot;Hello&quot;);
+assert!(hello.is_some(), 0); // abort if the value is not valid UTF-8
 
-        assert!(hello.is_some(), 0); // abort if the value is not valid UTF-8
+// this is not a valid UTF-8 string
+let invalid = b&quot;\xFF&quot;.try_to_string();
 
-        // this is not a valid UTF-8 string
-        let invalid = string::try_utf8(b&quot;\xFF&quot;);
-
-        assert!(invalid.is_none(), 0); // abort if the value is valid UTF-8
-    }
-}
+assert!(invalid.is_none(), 0); // abort if the value is valid UTF-8
 </code></pre>
 <h2 id="ascii-strings"><a class="header" href="#ascii-strings">ASCII Strings</a></h2>
-<p>TODO: ASCII strings</p>
-<pre><code class="language-move">module book::string_ascii {
+<p>This section is coming soon!</p>
+<!-- TODO: ASCII strings -->
+<!-- ```move
+module book::string_ascii {
     // use std::ascii::String;
 
     #[test]
     fun using_strings() {
         // strings are normally created using the `utf8` function
-        // let mut hello = string::utf8(b&quot;Hello&quot;);
-        // let world = string::utf8(b&quot;, World!&quot;);
+        // let mut hello = string::utf8(b"Hello");
+        // let world = string::utf8(b", World!");
 
         // // strings can be concatenated using the `append_utf8` function
         // let hello_world = hello.append_utf8(*world.bytes());
 
         // // just like any other type, strings can be compared
-        // assert!(hello_world == string::utf8(b&quot;Hello, World!&quot;), 0x0);
+        // assert!(hello_world == string::utf8(b"Hello, World!"), 0x0);
     }
 }
-</code></pre>
-<h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
-<p>TODO: summary</p>
+```
+-->
+<!-- ## Summary
+
+ TODO: summary -->
 <div style="break-before: page; page-break-before: always;"></div><h1 id="control-flow"><a class="header" href="#control-flow">Control Flow</a></h1>
 <!--
 
@@ -3102,7 +3098,7 @@ fun test_constraints() {
 </li>
 </ul>
 <p>Move managed to encapsulate these properties in its design, becoming an ideal language for digital assets.</p>
-<h2 id="summary-1"><a class="header" href="#summary-1">Summary</a></h2>
+<h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
 <ul>
 <li>Move was designed to provide a first-class abstraction for digital assets, enabling developers to create and manage assets natively.</li>
 <li>Essential properties of digital assets include ownership, non-copyability, and non-discardability, which Move enforces in its design.</li>
@@ -3115,7 +3111,7 @@ fun test_constraints() {
 <div style="break-before: page; page-break-before: always;"></div><h1 id="evolution-of-move"><a class="header" href="#evolution-of-move">Evolution of Move</a></h1>
 <p>While Move was created to manage digital assets, its initial storage model was bulky and not well-suited for many use cases. For instance, if Alice wanted to transfer an asset X to Bob, Bob had to create a new &quot;empty&quot; resource, and then Alice could transfer asset X to Bob. This process was not intuitive and presented implementation challenges, partly due to the restrictive design of <a href="https://www.diem.com/en-us">Diem</a>. Another drawback of the original design was the lack of built-in support for a &quot;transfer&quot; operation, requiring every module to implement its own storage transfer logic. Additionally, managing heterogeneous collections of assets in a single account was particularly challenging.</p>
 <p>Sui addressed these challenges by redesigning the storage and ownership model of objects to more closely resemble real-world object interactions. With a native concept of ownership and <em>transfer</em>, Alice can directly transfer asset X to Bob. Furthermore, Bob can maintain a collection of different assets without any preparatory steps. These improvements laid the foundation for the Object Model in Sui.</p>
-<h2 id="summary-2"><a class="header" href="#summary-2">Summary</a></h2>
+<h2 id="summary-1"><a class="header" href="#summary-1">Summary</a></h2>
 <ul>
 <li>Move's initial storage model was not well-suited for managing digital assets, requiring complex and restrictive transfer operations.</li>
 <li>Sui introduced the Object Model, which provides a native concept of ownership, simplifying asset management and enabling heterogeneous collections.</li>
@@ -3150,7 +3146,7 @@ fun test_constraints() {
 <p><strong>Digest:</strong> Every object has a digest, which is a hash of the object's data. The digest is used to cryptographically verify the integrity of the object's data and ensures that it has not been tampered with. The digest is calculated when the object is created and is updated whenever the object's data changes.</p>
 </li>
 </ul>
-<h2 id="summary-3"><a class="header" href="#summary-3">Summary</a></h2>
+<h2 id="summary-2"><a class="header" href="#summary-2">Summary</a></h2>
 <ul>
 <li>Objects in Sui are high-level abstractions representing digital assets.</li>
 <li>Objects have a type, unique ID, owner, data, version, and digest.</li>
@@ -3173,7 +3169,7 @@ fun test_constraints() {
 <h2 id="object-owner"><a class="header" href="#object-owner">Object Owner</a></h2>
 <p>The last ownership model in Sui is the <em>object owner</em>. In this model, an object is owned by another object. This feature allows creating complex relationships between objects, store large heterogenious collections, and implementing extensible and modular systems. Practically speaking, since the transactions are initiated by accounts, the transaction still accesses the parent object, but it can then access the child objects through the parent object.</p>
 <p>A use case we love to mention is a game character. Alice can own the Hero object from a game, and the Hero can own items: also represented as objects, like a &quot;Map&quot;, or a &quot;Compass&quot;. Alice may take the &quot;Map&quot; from the &quot;Hero&quot; object, and then send it to Bob, or sell it on a marketplace. With object owner, it becomes very natural to imagine how the assets can be structured and managed in relation to each other.</p>
-<h2 id="summary-4"><a class="header" href="#summary-4">Summary</a></h2>
+<h2 id="summary-3"><a class="header" href="#summary-3">Summary</a></h2>
 <ul>
 <li><strong>Single Owner:</strong> Objects are owned by a single account, granting exclusive control over the object.</li>
 <li><strong>Shared State:</strong> Objects can be shared with the network, allowing multiple accounts to read and modify the object.</li>
@@ -3195,7 +3191,7 @@ fun test_constraints() {
 <!-- On Sui consensus is per-object - mention!!! -->
 <h2 id="objects-owned-by-objects"><a class="header" href="#objects-owned-by-objects">Objects owned by Objects</a></h2>
 <p>Lastly, it is important to mention that objects owned by other objects are subject to the same rules as the parent object. If the parent object is <em>shared</em>, the child object is also transitively shared. If the parent object is immutable, the child object is also immutable.</p>
-<h2 id="summary-5"><a class="header" href="#summary-5">Summary</a></h2>
+<h2 id="summary-4"><a class="header" href="#summary-4">Summary</a></h2>
 <ul>
 <li><strong>Fast Path:</strong> Transactions involving account-owned objects or immutable shared state are processed quickly without the need for extensive consensus.</li>
 <li><strong>Consensus Path:</strong> Transactions involving shared objects require sequencing and consensus to ensure network integrity.</li>
@@ -4067,7 +4063,7 @@ set2.insert(1);
 assert!(set1 == set2, 0);
 </code></pre>
 <p>In the example above, the comparison will fail because the order of insertion is not guaranteed, and the two <code>VecSet</code> instances may have different orders of elements. And the comparison will fail even if the two <code>VecSet</code> instances contain the same elements.</p>
-<h2 id="summary-6"><a class="header" href="#summary-6">Summary</a></h2>
+<h2 id="summary-5"><a class="header" href="#summary-5">Summary</a></h2>
 <ul>
 <li>Vector is a native type that allows storing a list of items.</li>
 <li>VecSet is built on top of vector and allows storing sets of unique items.</li>
@@ -4488,7 +4484,7 @@ table.destroy_empty();
 <h2 id="objecttable"><a class="header" href="#objecttable">ObjectTable</a></h2>
 <p>Defined in the <code>sui::object_table</code> module. Identical to <a href="programmability/dynamic-collections.html#table">Table</a>, but uses
 <a href="programmability/./dynamic-object-fields.html">dynamic object fields</a> internally. Can only store objects as values.</p>
-<h2 id="summary-7"><a class="header" href="#summary-7">Summary</a></h2>
+<h2 id="summary-6"><a class="header" href="#summary-6">Summary</a></h2>
 <ul>
 <li><a href="programmability/dynamic-collections.html#bag">Bag</a> - a simple collection that can store any type of data</li>
 <li><a href="programmability/dynamic-collections.html#objectbag">ObjectBag</a> - a collection that can store only objects</li>
@@ -4639,7 +4635,7 @@ module book::coin_otw {
 TODO: add a story behind TreasuryCap and Coin
 
 -->
-<h2 id="summary-8"><a class="header" href="#summary-8">Summary</a></h2>
+<h2 id="summary-7"><a class="header" href="#summary-7">Summary</a></h2>
 <p>The One Time Witness pattern is a great way to ensure that a type is used only once. Most of the developers should understand how to define and receive the OTW, while the OTW checks and enforcement is mostly needed in libraries and frameworks. For example, the <code>sui::coin</code> module requires a One Time Witness in the <code>coin::create_currency</code> method, therefore enforcing that the <code>coin::TreasuryCap</code> is created only once.</p>
 <p>One Time Witness is a powerful tool which lays the foundation for the <a href="programmability/./publisher.html">Publisher</a> object, which we will cover in the next section.</p>
 <!--

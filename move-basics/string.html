@@ -178,13 +178,19 @@
                     <main>
                         <h1 id="string"><a class="header" href="#string">String</a></h1>
 <p>While Move does not have a built-in to represent strings, it does have a <code>string</code> module in the <a href="./standard-library.html">Standard Library</a> that provides a <code>String</code> type. The <code>string</code> module represents UTF-8 encoded strings, and another module, <code>ascii</code>, provides an ASCII-only <code>String</code> type.</p>
-<p>Sui execution environment also allows Strings as transaction arguments, so in many cases, String does not to be constructed in the <a href="./../concepts/what-is-a-transaction.html">Transaction Block</a>.</p>
-<h2 id="bytestring-literal"><a class="header" href="#bytestring-literal">Bytestring Literal</a></h2>
-<p>TODO:</p>
-<ul>
-<li>reference vector</li>
-<li>reference literals - <a href="./expression.html#literals">Expression</a></li>
-</ul>
+<blockquote>
+<p>Sui execution environment automatically converts bytevector into <code>String</code> in transaction inputs. So in many cases, String does not to be constructed in the <a href="./../concepts/what-is-a-transaction.html">Transaction Block</a>.</p>
+</blockquote>
+<!--
+
+## Bytestring Literal
+
+TODO:
+
+- reference vector
+- reference literals - [Expression](./expression.md#literals)
+
+-->
 <h2 id="strings-are-bytes"><a class="header" href="#strings-are-bytes">Strings are bytes</a></h2>
 <p>No matter which type of string you use, it is important to know that strings are just bytes. The wrappers provided by the <code>string</code> and <code>ascii</code> modules are just that: wrappers. They do provide extra checks and functionality than a vector of bytes, but under the hood, they are just vectors of bytes.</p>
 <pre><code class="language-move">module book::custom_string {
@@ -207,66 +213,56 @@
 <p>Both standard types provide conversions from and to vectors of bytes.</p>
 <h2 id="working-with-utf-8-strings"><a class="header" href="#working-with-utf-8-strings">Working with UTF-8 Strings</a></h2>
 <p>While there are two types of strings in the standard library, the <code>string</code> module should be considered the default. It has native implementations of many common operations, and hence is more efficient than the <code>ascii</code> module. To create a string or perform operations on it, you must import the <code>string</code> module:</p>
-<pre><code class="language-move">module book::string_utf {
-    use std::string;
+<pre><code class="language-move">// strings are normally created using the `utf8` function
+let mut hello = b&quot;Hello&quot;.to_string();
+let world = b&quot;, World!&quot;.to_string();
 
-    #[test]
-    fun using_strings() {
-        // strings are normally created using the `utf8` function
-        let mut hello = string::utf8(b&quot;Hello&quot;);
-        let world = string::utf8(b&quot;, World!&quot;);
+// strings can be concatenated using the `append_utf8` function
+hello.append_utf8(*world.bytes()); // mutates the value
 
-        // strings can be concatenated using the `append_utf8` function
-        hello.append_utf8(*world.bytes()); // mutates the value
-
-        // just like any other type, strings can be compared
-        assert!(hello == string::utf8(b&quot;Hello, World!&quot;), 0x0);
-    }
-}
+// just like any other type, strings can be compared
+assert!(hello == b&quot;Hello, World!&quot;.to_string(), 0x0);
 </code></pre>
 <h2 id="safe-utf-8-operations"><a class="header" href="#safe-utf-8-operations">Safe UTF-8 Operations</a></h2>
 <p>The default <code>utf8</code> method is potentially unsafe, as it does not check that the bytes passed to it are valid UTF-8. If you are not sure that the bytes you are passing are valid UTF-8, you should use the <code>try_utf8</code> method instead. It returns an <code>Option&lt;String&gt;</code>, which is <code>None</code> if the bytes are not valid UTF-8:</p>
 <blockquote>
 <p>The <code>try_*</code> pattern is used throughout the standard library to indicate that a function may fail. For more information, see the <a href="./error-handling.html">Error Handling</a> section.</p>
 </blockquote>
-<pre><code class="language-move">module book::string_safe_utf {
-    use std::string;
+<pre><code class="language-move">// this is a valid UTF-8 string
+let hello = b&quot;Hello&quot;.try_to_string();
 
-    #[test]
-    fun safe_strings() {
-        // this is a valid UTF-8 string
-        let hello = string::try_utf8(b&quot;Hello&quot;);
+assert!(hello.is_some(), 0); // abort if the value is not valid UTF-8
 
-        assert!(hello.is_some(), 0); // abort if the value is not valid UTF-8
+// this is not a valid UTF-8 string
+let invalid = b&quot;\xFF&quot;.try_to_string();
 
-        // this is not a valid UTF-8 string
-        let invalid = string::try_utf8(b&quot;\xFF&quot;);
-
-        assert!(invalid.is_none(), 0); // abort if the value is valid UTF-8
-    }
-}
+assert!(invalid.is_none(), 0); // abort if the value is valid UTF-8
 </code></pre>
 <h2 id="ascii-strings"><a class="header" href="#ascii-strings">ASCII Strings</a></h2>
-<p>TODO: ASCII strings</p>
-<pre><code class="language-move">module book::string_ascii {
+<p>This section is coming soon!</p>
+<!-- TODO: ASCII strings -->
+<!-- ```move
+module book::string_ascii {
     // use std::ascii::String;
 
     #[test]
     fun using_strings() {
         // strings are normally created using the `utf8` function
-        // let mut hello = string::utf8(b&quot;Hello&quot;);
-        // let world = string::utf8(b&quot;, World!&quot;);
+        // let mut hello = string::utf8(b"Hello");
+        // let world = string::utf8(b", World!");
 
         // // strings can be concatenated using the `append_utf8` function
         // let hello_world = hello.append_utf8(*world.bytes());
 
         // // just like any other type, strings can be compared
-        // assert!(hello_world == string::utf8(b&quot;Hello, World!&quot;), 0x0);
+        // assert!(hello_world == string::utf8(b"Hello, World!"), 0x0);
     }
 }
-</code></pre>
-<h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
-<p>TODO: summary</p>
+```
+-->
+<!-- ## Summary
+
+ TODO: summary -->
 
                     </main>
 
