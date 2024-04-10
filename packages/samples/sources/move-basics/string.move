@@ -39,40 +39,36 @@ module book::string_ascii {
 }
 // ANCHOR_END: ascii
 
-// ANCHOR: safe_utf8
 module book::string_safe_utf {
-    use std::string;
-
     #[test]
     fun safe_strings() {
-        // this is a valid UTF-8 string
-        let hello = string::try_utf8(b"Hello");
+// ANCHOR: safe_utf8
+// this is a valid UTF-8 string
+let hello = b"Hello".try_to_string();
 
-        assert!(hello.is_some(), 0); // abort if the value is not valid UTF-8
+assert!(hello.is_some(), 0); // abort if the value is not valid UTF-8
 
-        // this is not a valid UTF-8 string
-        let invalid = string::try_utf8(b"\xFF");
+// this is not a valid UTF-8 string
+let invalid = b"\xFF".try_to_string();
 
-        assert!(invalid.is_none(), 0); // abort if the value is valid UTF-8
+assert!(invalid.is_none(), 0); // abort if the value is valid UTF-8
+// ANCHOR_END: safe_utf8
     }
 }
-// ANCHOR_END: safe_utf8
 
-// ANCHOR: utf8
 module book::string_utf {
-    use std::string;
-
     #[test]
     fun using_strings() {
-        // strings are normally created using the `utf8` function
-        let mut hello = string::utf8(b"Hello");
-        let world = string::utf8(b", World!");
+// ANCHOR: utf8
+// strings are normally created using the `utf8` function
+let mut hello = b"Hello".to_string();
+let world = b", World!".to_string();
 
-        // strings can be concatenated using the `append_utf8` function
-        hello.append_utf8(*world.bytes()); // mutates the value
+// strings can be concatenated using the `append_utf8` function
+hello.append_utf8(*world.bytes()); // mutates the value
 
-        // just like any other type, strings can be compared
-        assert!(hello == string::utf8(b"Hello, World!"), 0x0);
+// just like any other type, strings can be compared
+assert!(hello == b"Hello, World!".to_string(), 0x0);
+// ANCHOR_END: utf8
     }
 }
-// ANCHOR_END: utf8
