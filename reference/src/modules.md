@@ -105,6 +105,6 @@ to members from other modules. The [`const`](./constants.md) keyword defines con
 used in the functions of a module.
 
 The [`friend`](./friends.md) syntax is a deprecated concept for specifying a list of trusted
-modules. The concept has been superceded by [`public(package)`](./functions.md#visibility)
+modules. The concept has been superseded by [`public(package)`](./functions.md#visibility)
 
 <!-- TODO member access rules -->

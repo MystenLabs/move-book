@@ -1,6 +1,6 @@
 # Methods
 
-As a syntactic convience, some functions in Move can be called as "methods" on a value. This is done
+As a syntactic convenience, some functions in Move can be called as "methods" on a value. This is done
 by using the `.` operator to call the function, where the value on the left-hand side of the `.` is
 the first argument to the function (sometimes called the receiver). The type of that value
 statically determines which function is called. This is an important difference from some other

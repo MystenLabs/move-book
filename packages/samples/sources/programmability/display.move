@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 #[allow(unused_field)]
-module book::backround {
+module book::background {
     use std::string::String;
 
 // ANCHOR: background
