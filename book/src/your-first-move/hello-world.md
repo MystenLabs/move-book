@@ -134,15 +134,15 @@ module hello_world::hello_world_tests {
 ### Other Folders
 
 Additionally, Move CLI supports the `examples/` folder. The files there are treated similarly to the
-ones placed under the `tests/` path - they're only built in the _test_ and _dev_ modes. They are to
-be examples of how to use the package or how to integrate it with other packages. The most popular
-use case is for documentation purposes and library packages.
+ones placed under the `tests/` folder - they're only built in the _test_ and _dev_ modes. They are
+to be examples of how to use the package or how to integrate it with other packages. The most
+popular use case is for documentation purposes and library packages.
 
 ## Compiling the Package
 
 Move is a compiled language, and as such, it requires the compilation of source files into Move
-Bytecode. The bytecode contains only necessary information about the module, its members, and types,
-and excludes comments and some identifiers (for example, for constants).
+Bytecode. It contains only necessary information about the module, its members, and types, and
+excludes comments and some identifiers (for example, for constants).
 
 To demonstrate these features, let's replace the contents of the _sources/hello_world.move_ file
 with the following:
