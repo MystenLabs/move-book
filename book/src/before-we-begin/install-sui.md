@@ -14,6 +14,14 @@ You can install Sui using the [Homebrew](https://brew.sh/) package manager.
 brew install sui
 ```
 
+## Install using Chocolatey (Windows)
+
+You can install Sui using the [Chocolatey](https://chocolatey.org/install) package manager for Windows.
+
+```bash
+choco install sui
+```
+
 ## Build using Cargo (MacOS, Linux)
 
 You can install and build Sui locally by using the Cargo package manager (requires Rust)
