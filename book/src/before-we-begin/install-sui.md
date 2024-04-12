@@ -16,10 +16,16 @@ brew install sui
 
 ## Build using Cargo (MacOS, Linux)
 
-You can install and build Sui locally by using the Cargo package manager (requires Rust)
+You can install and build Sui locally by using the Cargo package manager (requires Rust).
 
 ```bash
 cargo install --git https://github.com/MystenLabs/sui.git --bin sui --branch mainnet
+```
+
+Make sure you have the latest stable version of Rust in your machine.
+
+```bash
+rustup update stable
 ```
 
 ## Troubleshooting
