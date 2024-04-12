@@ -261,7 +261,7 @@ of <a href="./structs.html"><code>types</code></a> and <a href="./functions.html
 to members from other modules. The <a href="./constants.html"><code>const</code></a> keyword defines constants that can be
 used in the functions of a module.</p>
 <p>The <a href="./friends.html"><code>friend</code></a> syntax is a deprecated concept for specifying a list of trusted
-modules. The concept has been superceded by <a href="./functions.html#visibility"><code>public(package)</code></a></p>
+modules. The concept has been superseded by <a href="./functions.html#visibility"><code>public(package)</code></a></p>
 <!-- TODO member access rules -->
 <div style="break-before: page; page-break-before: always;"></div><h1 id="primitive-types"><a class="header" href="#primitive-types">Primitive Types</a></h1>
 <p>The primitive types are the basic building blocks of the language.</p>
@@ -519,7 +519,7 @@ module std::other_module {  // Can use a named address when declaring a module
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="vector"><a class="header" href="#vector">Vector</a></h1>
-<p><code>vector&lt;T&gt;</code> is the only primitive collection type provided by Move. A <code>vector&lt;T&gt;</code> is a homogenous
+<p><code>vector&lt;T&gt;</code> is the only primitive collection type provided by Move. A <code>vector&lt;T&gt;</code> is a homogeneous
 collection of <code>T</code>'s that can grow or shrink by pushing/popping values off the &quot;end&quot;.</p>
 <p>A <code>vector&lt;T&gt;</code> can be instantiated with any type <code>T</code>. For example, <code>vector&lt;u64&gt;</code>, <code>vector&lt;address&gt;</code>,
 <code>vector&lt;0x42::my_module::MyData&gt;</code>, and <code>vector&lt;vector&lt;u8&gt;&gt;</code> are all valid vector types.</p>
@@ -3756,7 +3756,7 @@ outer scope. As with shadowing of locals, the shadowing ends at the end of the e
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="methods"><a class="header" href="#methods">Methods</a></h1>
-<p>As a syntactic convience, some functions in Move can be called as &quot;methods&quot; on a value. This is done
+<p>As a syntactic convenience, some functions in Move can be called as &quot;methods&quot; on a value. This is done
 by using the <code>.</code> operator to call the function, where the value on the left-hand side of the <code>.</code> is
 the first argument to the function (sometimes called the receiver). The type of that value
 statically determines which function is called. This is an important difference from some other
@@ -4638,7 +4638,7 @@ layout of the <code>build</code> directory is as follows:</p>
     └── *.move
 </code></pre>
 <h2 id="movelock"><a class="header" href="#movelock">Move.lock</a></h2>
-<p>The <code>Move.lock</code> file is generated at the root of the Move pacakge when the package is built. The
+<p>The <code>Move.lock</code> file is generated at the root of the Move package when the package is built. The
 <code>Move.lock</code> file contains information about your package and its build configuration, and acts as a
 communication layer between the Move compiler and other tools, like chain-specific command line
 interfaces and third-party package managers.</p>
@@ -5077,7 +5077,7 @@ Test result: OK. Total tests: 3; passed: 3; failed: 0
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><p>See <a href="https://docs.sui.io/concepts/sui-move-concepts/conventions">Sui's Coding Conventions for Move</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="deprecated-friends"><a class="header" href="#deprecated-friends">DEPRECATED: Friends</a></h1>
-<p>NOTE: this feature has been superceded by <a href="./functions.html#visibility"><code>public(package)</code></a>.</p>
+<p>NOTE: this feature has been superseded by <a href="./functions.html#visibility"><code>public(package)</code></a>.</p>
 <p>The <code>friend</code> syntax was used to declare modules that are trusted by the current module. A trusted
 module is allowed to call any function defined in the current module that have the <code>public(friend)</code>
 visibility. For details on function visibilities, refer to the <em>Visibility</em> section in

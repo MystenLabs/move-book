@@ -333,7 +333,7 @@ public fun uid(c: &amp;Character): &amp;UID {
     &amp;c.id
 }
 </code></pre>
-<p>In the example above, we show how to expose the <code>UID</code> of a <code>Character</code> object. This solution may work for some applications, however, it is imporant to remember that exposed <code>UID</code> allows reading <em>any</em> dynamic field attached to the object.</p>
+<p>In the example above, we show how to expose the <code>UID</code> of a <code>Character</code> object. This solution may work for some applications, however, it is important to remember that exposed <code>UID</code> allows reading <em>any</em> dynamic field attached to the object.</p>
 <p>If you need to expose the <code>UID</code> only within the package, use a restrictive visibility, like <code>public(package)</code>, or even better - use more specific accessor methods that would allow only reading specific fields.</p>
 <pre><code class="language-move">/// Only allow modules in the same package to access the UID.
 public(package) fun uid_package(c: &amp;Character): &amp;UID {

@@ -177,7 +177,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="restricted-and-public-transfer"><a class="header" href="#restricted-and-public-transfer">Restricted and Public Transfer</a></h1>
-<p>Storage Operations that we described in the <a href="./storage-functions.html">previous secitons</a> are restricted by default - they can only be called in the module defining the object. In other terms, the type must be <em>internal</em> to the module to be used in storage operations. This restriction is implemented in the Sui Verifier and is enforced at the bytecode level.</p>
+<p>Storage Operations that we described in the <a href="./storage-functions.html">previous sections</a> are restricted by default - they can only be called in the module defining the object. In other terms, the type must be <em>internal</em> to the module to be used in storage operations. This restriction is implemented in the Sui Verifier and is enforced at the bytecode level.</p>
 <p>However, to allow objects to be transferred and stored in other modules, these restrictions can be relaxed. The <code>sui::transfer</code> module offers a set of <em>public_*</em> functions that allow calling storage operations in other modules. The functions are prefixed with <code>public_</code> and are available to all modules and transactions.</p>
 <h2 id="public-storage-operations"><a class="header" href="#public-storage-operations">Public Storage Operations</a></h2>
 <p>The <code>sui::transfer</code> module provides the following public functions. They are almost identical to the ones we already covered, but can be called from any module.</p>

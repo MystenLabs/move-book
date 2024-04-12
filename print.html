@@ -3521,7 +3521,7 @@ id.delete();
 <h2 id="fresh_object_address"><a class="header" href="#fresh_object_address">fresh_object_address</a></h2>
 <p>TxContext provides the <code>fresh_object_address</code> function which can be utilized to create unique addresses and <code>ID</code>s - it may be useful in some application that assign unique identifiers to user actions - for example, an order_id in a marketplace.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="restricted-and-public-transfer"><a class="header" href="#restricted-and-public-transfer">Restricted and Public Transfer</a></h1>
-<p>Storage Operations that we described in the <a href="storage/./storage-functions.html">previous secitons</a> are restricted by default - they can only be called in the module defining the object. In other terms, the type must be <em>internal</em> to the module to be used in storage operations. This restriction is implemented in the Sui Verifier and is enforced at the bytecode level.</p>
+<p>Storage Operations that we described in the <a href="storage/./storage-functions.html">previous sections</a> are restricted by default - they can only be called in the module defining the object. In other terms, the type must be <em>internal</em> to the module to be used in storage operations. This restriction is implemented in the Sui Verifier and is enforced at the bytecode level.</p>
 <p>However, to allow objects to be transferred and stored in other modules, these restrictions can be relaxed. The <code>sui::transfer</code> module offers a set of <em>public_*</em> functions that allow calling storage operations in other modules. The functions are prefixed with <code>public_</code> and are available to all modules and transactions.</p>
 <h2 id="public-storage-operations"><a class="header" href="#public-storage-operations">Public Storage Operations</a></h2>
 <p>The <code>sui::transfer</code> module provides the following public functions. They are almost identical to the ones we already covered, but can be called from any module.</p>
@@ -4229,7 +4229,7 @@ public fun uid(c: &amp;Character): &amp;UID {
     &amp;c.id
 }
 </code></pre>
-<p>In the example above, we show how to expose the <code>UID</code> of a <code>Character</code> object. This solution may work for some applications, however, it is imporant to remember that exposed <code>UID</code> allows reading <em>any</em> dynamic field attached to the object.</p>
+<p>In the example above, we show how to expose the <code>UID</code> of a <code>Character</code> object. This solution may work for some applications, however, it is important to remember that exposed <code>UID</code> allows reading <em>any</em> dynamic field attached to the object.</p>
 <p>If you need to expose the <code>UID</code> only within the package, use a restrictive visibility, like <code>public(package)</code>, or even better - use more specific accessor methods that would allow only reading specific fields.</p>
 <pre><code class="language-move">/// Only allow modules in the same package to access the UID.
 public(package) fun uid_package(c: &amp;Character): &amp;UID {
@@ -4344,7 +4344,7 @@ public fun add&lt;Name: copy + drop + store, Value: key + store&gt;(
 }
 </code></pre>
 <h2 id="pricing-differences"><a class="header" href="#pricing-differences">Pricing Differences</a></h2>
-<p>Dynamic Object Fields come a little more exensive than dynamic fields. Because of their internal structure, they require 2 objects: the Wraper for Name and the Value. Because of this, the cost of adding and accessing object fields (loading 2 objects compared to 1 for dynamic fields) is higher.</p>
+<p>Dynamic Object Fields come a little more exensive than dynamic fields. Because of their internal structure, they require 2 objects: the Wrapper for Name and the Value. Because of this, the cost of adding and accessing object fields (loading 2 objects compared to 1 for dynamic fields) is higher.</p>
 <h2 id="next-steps-7"><a class="header" href="#next-steps-7">Next Steps</a></h2>
 <p>Both dynamic field and dynamic object fields are powerful features which allow for innovative solutions in applications. However, they are relatively low-level and require careful handling to avoid orphaned fields. In the next section, we will introduce a higher-level abstraction - <a href="programmability/./dynamic-collections.html">Dynamic Collections</a> - which can help with managing dynamic fields and objects more effectively.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="dynamic-collections"><a class="header" href="#dynamic-collections">Dynamic Collections</a></h1>
@@ -4695,7 +4695,7 @@ assert!(publisher.from_package&lt;Book&gt;(), 0);
 public fun admin_action(cap: &amp;Publisher, /* app objects... */ param: u64) {
     assert!(cap.from_module&lt;Book&gt;(), ENotAuthorized);
 
-    // perform application-speficic action
+    // perform application-specific action
 }
 </code></pre>
 <p>However, Publisher misses some native properties of <a href="programmability/./capability.html">Capabilities</a>, such as type safety and expressiveness. The signature for the <code>admin_function</code> is not very explicit, can be called by anyone else. And due to <code>Publisher</code> object being standard, there now is a risk of unauthorized access if the <code>from_module</code> check is not performed. So it's important to be cautious when using the <code>Publisher</code> object as an admin role.</p>

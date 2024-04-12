@@ -268,7 +268,7 @@ public fun add&lt;Name: copy + drop + store, Value: key + store&gt;(
 }
 </code></pre>
 <h2 id="pricing-differences"><a class="header" href="#pricing-differences">Pricing Differences</a></h2>
-<p>Dynamic Object Fields come a little more exensive than dynamic fields. Because of their internal structure, they require 2 objects: the Wraper for Name and the Value. Because of this, the cost of adding and accessing object fields (loading 2 objects compared to 1 for dynamic fields) is higher.</p>
+<p>Dynamic Object Fields come a little more exensive than dynamic fields. Because of their internal structure, they require 2 objects: the Wrapper for Name and the Value. Because of this, the cost of adding and accessing object fields (loading 2 objects compared to 1 for dynamic fields) is higher.</p>
 <h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
 <p>Both dynamic field and dynamic object fields are powerful features which allow for innovative solutions in applications. However, they are relatively low-level and require careful handling to avoid orphaned fields. In the next section, we will introduce a higher-level abstraction - <a href="./dynamic-collections.html">Dynamic Collections</a> - which can help with managing dynamic fields and objects more effectively.</p>
 
