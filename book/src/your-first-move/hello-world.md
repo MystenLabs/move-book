@@ -76,9 +76,9 @@ hello_world = "0x0"
 
 ### Sources
 
-The `sources/` directory contains the source files. Move source files have .move extension, and are
-typically named after the module defined in the file. For example, in our case, the file name is
-hello_world.move and the Move CLI has already placed commented out code inside:
+The `sources/` directory contains the source files. Move source files have _.move_ extension, and
+are typically named after the module defined in the file. For example, in our case, the file name is
+_hello_world.move_ and the Move CLI has already placed commented out code inside:
 
 ```move
 /*
@@ -103,9 +103,9 @@ module from other modules or transactions.
 ### Tests
 
 The `tests/` directory contains package tests. The compiler excludes these files in the regular
-build process but uses them in test and dev modes. The tests are written in Move and are marked with
-the `#[test]` attribute. Tests can be grouped in a separate module (then it's usually called
-module_name_tests.move), or inside the module they're testing.
+build process but uses them in _test_ and _dev_ modes. The tests are written in Move and are marked
+with the `#[test]` attribute. Tests can be grouped in a separate module (then it's usually called
+_module_name_tests.move_), or inside the module they're testing.
 
 The _hello_world_tests.move_ file contains a commented out test module template:
 
