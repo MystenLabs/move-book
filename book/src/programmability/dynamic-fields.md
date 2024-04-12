@@ -96,7 +96,7 @@ Because dynamic fields are attached to `UID`s, their usage in other modules depe
 {{#include ../../../packages/samples/sources/programmability/dynamic-fields.move:exposed_uid}}
 ```
 
-In the example above, we show how to expose the `UID` of a `Character` object. This solution may work for some applications, however, it is imporant to remember that exposed `UID` allows reading _any_ dynamic field attached to the object.
+In the example above, we show how to expose the `UID` of a `Character` object. This solution may work for some applications, however, it is important to remember that exposed `UID` allows reading _any_ dynamic field attached to the object.
 
 If you need to expose the `UID` only within the package, use a restrictive visibility, like `public(package)`, or even better - use more specific accessor methods that would allow only reading specific fields.
 

@@ -62,7 +62,7 @@ The main difference between dynamic fields and dynamic object fields is that the
 
 ## Pricing Differences
 
-Dynamic Object Fields come a little more exensive than dynamic fields. Because of their internal structure, they require 2 objects: the Wraper for Name and the Value. Because of this, the cost of adding and accessing object fields (loading 2 objects compared to 1 for dynamic fields) is higher.
+Dynamic Object Fields come a little more exensive than dynamic fields. Because of their internal structure, they require 2 objects: the Wrapper for Name and the Value. Because of this, the cost of adding and accessing object fields (loading 2 objects compared to 1 for dynamic fields) is higher.
 
 ## Next Steps
 

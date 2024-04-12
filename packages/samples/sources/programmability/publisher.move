@@ -53,7 +53,7 @@ sui::test_utils::destroy(publisher);
 public fun admin_action(cap: &Publisher, /* app objects... */ param: u64) {
     assert!(cap.from_module<Book>(), ENotAuthorized);
 
-    // perform application-speficic action
+    // perform application-specific action
 }
 // ANCHOR_END: publisher_as_admin
 }
