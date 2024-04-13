@@ -1,9 +1,14 @@
 # Hello, World!
 
-This chapter will guide you through the process using the Move CLI to create a new package, write a
-simple module, compile it, and run tests. It is expected that you have already
-[installed Sui](./../before-we-begin/install-sui.md) and set up your
-[IDE environment](./../before-we-begin/ide-support.md).
+In this chapter, you will learn how to create a new package, write a simple module, compile it, and
+run tests with the Move CLI. Make sure you have [installed Sui](./../before-we-begin/install-sui.md)
+and set up your [IDE environment](./../before-we-begin/ide-support.md). Run the command below to
+test if Sui has been installed correctly.
+
+```bash
+# It should print the client version. E.g. sui-client 1.22.0-036299745.
+sui client --version
+```
 
 > Move CLI is a command-line interface for the Move language; it is built into the Sui binary and
 > provides a set of commands to manage packages, compile and test code.
@@ -25,7 +30,7 @@ application. Our first program will be called `hello_world`.
 > included. It's a common way of showing commands in terminal environments.
 
 ```bash
-sui move new hello_world
+$ sui move new hello_world
 ```
 
 The `sui move` command gives access to the Move CLI - a built-in compiler, test runner and a utility
@@ -57,7 +62,10 @@ hello_world
 
 ### Manifest
 
-The `Move.toml` file, known as the [package manifest](./../concepts/manifest.md), contains definitions and configuration settings for the package. It is used by the Move Compiler to manage package metadata, fetch dependencies, and register named addresses. We will explain it in detail in the [Concepts](./../concepts) chapter.
+The `Move.toml` file, known as the [package manifest](./../concepts/manifest.md), contains
+definitions and configuration settings for the package. It is used by the Move Compiler to manage
+package metadata, fetch dependencies, and register named addresses. We will explain it in detail in
+the [Concepts](./../concepts) chapter.
 
 > By default, the package features one named address - the name of the package.
 
@@ -69,8 +77,8 @@ hello_world = "0x0"
 ### Sources
 
 The `sources/` directory contains the source files. Move source files have _.move_ extension, and
-typically named after the module defined in the file. For example, in our case, the file name is
-_hello_world.move_ and inside it Move CLI has already placed commented out code:
+are typically named after the module defined in the file. For example, in our case, the file name is
+_hello_world.move_ and the Move CLI has already placed commented out code inside:
 
 ```move
 /*
@@ -94,9 +102,9 @@ module from other modules or transactions.
 
 ### Tests
 
-The `tests/` directory contains package tests. Compiler excludes these files in the regular build
-process, but uses them in _test_ and _dev_ modes. The tests are written in Move and are marked with
-the `#[test]` attribute, tests can be grouped in a separate module (then it's usually called
+The `tests/` directory contains package tests. The compiler excludes these files in the regular
+build process but uses them in _test_ and _dev_ modes. The tests are written in Move and are marked
+with the `#[test]` attribute. Tests can be grouped in a separate module (then it's usually called
 _module_name_tests.move_), or inside the module they're testing.
 
 The _hello_world_tests.move_ file contains a commented out test module template:
@@ -125,15 +133,15 @@ module hello_world::hello_world_tests {
 
 ### Other Folders
 
-Additionally, Move CLI supports `examples/` folder. The files there are treated similarly to the
-ones placed under the tests/ path - they're only built in the _test_ and _dev_ modes. And it is
-intended to be used for examples of usage of the package or its integration with other packages.
-It's mostly used for documentation purposes and for library packages.
+Additionally, Move CLI supports the `examples/` folder. The files there are treated similarly to the
+ones placed under the `tests/` folder - they're only built in the _test_ and _dev_ modes. They are
+to be examples of how to use the package or how to integrate it with other packages. The most
+popular use case is for documentation purposes and library packages.
 
 ## Compiling the Package
 
-Move is a compiled language, and as such, it requires compilation of source files into Move
-Bytecode. The bytecode contains only necessary information about module, its members and types, and
+Move is a compiled language, and as such, it requires the compilation of source files into Move
+Bytecode. It contains only necessary information about the module, its members, and types, and
 excludes comments and some identifiers (for example, for constants).
 
 To demonstrate these features, let's replace the contents of the _sources/hello_world.move_ file
@@ -153,9 +161,9 @@ module hello_world::hello_world {
 }
 ```
 
-During compilation the code is built but it's not run. A compiled package only offers functions
-which then can be called by other modules or in a transaction. We will explain these concepts in the
-Concepts chapter. But now, let's see what happens when we run the sui move build.
+During compilation, the code is built, but not run. A compiled package only includes functions that
+can be called by other modules or in a transaction. We will explain these concepts in the
+[Concepts](./../concepts) chapter. But now, let's see what happens when we run the _sui move build_.
 
 ```bash
 # run from the `hello_world` folder
@@ -165,8 +173,14 @@ $ sui move build
 $ sui move build --path hello_world
 ```
 
-<!-- The output would be: -->
-<!-- TODO: insert out -->
+It should output the following message on your console.
+
+```plaintext
+UPDATING GIT DEPENDENCY https://github.com/MystenLabs/sui.git
+INCLUDING DEPENDENCY Sui
+INCLUDING DEPENDENCY MoveStdlib
+BUILDING hello_world
+```
 
 During the compilation, Move Compiler automatically creates a build folder where it places all
 fetched and compiled dependencies as well as the bytecode for the modules of the current package.
@@ -178,8 +192,8 @@ fetched and compiled dependencies as well as the bytecode for the modules of the
 
 Before we get to testing, we should add a test. Move Compiler supports tests written in Move and
 provides the execution environment. The tests can be placed in both the source files and in the
-tests/ folder. Tests are marked with the `#[test]` attribute and are automatically discovered by the
-compiler. We explain tests in depth in the [Testing](./../move-basics/testing.md) section.
+`tests/` folder. Tests are marked with the `#[test]` attribute and are automatically discovered by
+the compiler. We explain tests in depth in the [Testing](./../move-basics/testing.md) section.
 
 Replace the contents of the `tests/hello_world_tests.move` with the following content:
 
@@ -222,7 +236,7 @@ $ sui move test --path hello_world
 
 ## Next Steps
 
-In this section we explained the basics of the Move package: its structure, the manifest, the build
+In this section, we explained the basics of a Move package: its structure, the manifest, the build,
 and test flows. [On the next page](./hello-sui.md), we will write an application and see how the
 code is structured and what the language can do.
 

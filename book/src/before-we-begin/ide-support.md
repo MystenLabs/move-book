@@ -22,7 +22,7 @@ There are two most popular IDEs for Move development: VSCode and IntelliJ IDEA. 
 
 ## Github Codespaces
 
-Web based IDE from Github, can be run right in the browser and provides almost a full-featured VSCode experience.
+The Web-based IDE from Github can be run right in the browser and provides almost a full-featured VSCode experience.
 
 - [Github Codespaces](https://github.com/features/codespaces)
 - [Move Syntax](https://marketplace.visualstudio.com/items?itemName=damirka.move-syntax) is also available in the extensions marketplace.
