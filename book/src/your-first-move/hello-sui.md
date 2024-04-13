@@ -58,7 +58,7 @@ and demonstration purposes, we will use _sui devnet_ environment.
 > If you already have an account set up, you can skip this step.
 
 If you are doing it for the first time, you will need to create a new account. To do this, run the
-`sui client` command, then the CLI will prompt with you multiple questions, the answers are marked
+`sui client` command, then the CLI will prompt you with multiple questions. The answers are marked
 below with `>`:
 
 ```bash
