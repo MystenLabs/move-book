@@ -177,10 +177,13 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="hello-world"><a class="header" href="#hello-world">Hello, World!</a></h1>
-<p>This chapter will guide you through the process using the Move CLI to create a new package, write a
-simple module, compile it, and run tests. It is expected that you have already
-<a href="./../before-we-begin/install-sui.html">installed Sui</a> and set up your
-<a href="./../before-we-begin/ide-support.html">IDE environment</a>.</p>
+<p>In this chapter, you will learn how to create a new package, write a simple module, compile it, and
+run tests with the Move CLI. Make sure you have <a href="./../before-we-begin/install-sui.html">installed Sui</a>
+and set up your <a href="./../before-we-begin/ide-support.html">IDE environment</a>. Run the command below to
+test if Sui has been installed correctly.</p>
+<pre><code class="language-bash"># It should print the client version. E.g. sui-client 1.22.0-036299745.
+sui client --version
+</code></pre>
 <blockquote>
 <p>Move CLI is a command-line interface for the Move language; it is built into the Sui binary and
 provides a set of commands to manage packages, compile and test code.</p>
@@ -200,7 +203,7 @@ application. Our first program will be called <code>hello_world</code>.</p>
 sign), it means that the following command should be run in a terminal. The sign should not be
 included. It's a common way of showing commands in terminal environments.</p>
 </blockquote>
-<pre><code class="language-bash">sui move new hello_world
+<pre><code class="language-bash">$ sui move new hello_world
 </code></pre>
 <p>The <code>sui move</code> command gives access to the Move CLI - a built-in compiler, test runner and a utility
 for all things Move. The <code>new</code> command followed by the name of the package will create a new package
@@ -222,7 +225,10 @@ necessary files. Let's see what's inside.</p>
     └── hello_world_tests.move
 </code></pre>
 <h3 id="manifest"><a class="header" href="#manifest">Manifest</a></h3>
-<p>The <code>Move.toml</code> file, known as the <a href="./../concepts/manifest.html">package manifest</a>, contains definitions and configuration settings for the package. It is used by the Move Compiler to manage package metadata, fetch dependencies, and register named addresses. We will explain it in detail in the <a href="./../concepts">Concepts</a> chapter.</p>
+<p>The <code>Move.toml</code> file, known as the <a href="./../concepts/manifest.html">package manifest</a>, contains
+definitions and configuration settings for the package. It is used by the Move Compiler to manage
+package metadata, fetch dependencies, and register named addresses. We will explain it in detail in
+the <a href="./../concepts">Concepts</a> chapter.</p>
 <blockquote>
 <p>By default, the package features one named address - the name of the package.</p>
 </blockquote>
@@ -231,8 +237,8 @@ hello_world = &quot;0x0&quot;
 </code></pre>
 <h3 id="sources"><a class="header" href="#sources">Sources</a></h3>
 <p>The <code>sources/</code> directory contains the source files. Move source files have <em>.move</em> extension, and
-typically named after the module defined in the file. For example, in our case, the file name is
-<em>hello_world.move</em> and inside it Move CLI has already placed commented out code:</p>
+are typically named after the module defined in the file. For example, in our case, the file name is
+<em>hello_world.move</em> and the Move CLI has already placed commented out code inside:</p>
 <pre><code class="language-move">/*
 /// Module: hello_world
 module hello_world::hello_world {
@@ -251,9 +257,9 @@ for the module and has to be unique within the package. The module name is used 
 module from other modules or transactions.</p>
 <!-- And the module name has to be a valid Move identifier: alphanumeric with underscores to separate words. A common convention is to call modules (and functions) in snake_case - all lowercase, with underscores. Coding conventions are important for readability and maintainability of the code, we summarize them in the Coding Conventions section. -->
 <h3 id="tests"><a class="header" href="#tests">Tests</a></h3>
-<p>The <code>tests/</code> directory contains package tests. Compiler excludes these files in the regular build
-process, but uses them in <em>test</em> and <em>dev</em> modes. The tests are written in Move and are marked with
-the <code>#[test]</code> attribute, tests can be grouped in a separate module (then it's usually called
+<p>The <code>tests/</code> directory contains package tests. The compiler excludes these files in the regular
+build process but uses them in <em>test</em> and <em>dev</em> modes. The tests are written in Move and are marked
+with the <code>#[test]</code> attribute. Tests can be grouped in a separate module (then it's usually called
 <em>module_name_tests.move</em>), or inside the module they're testing.</p>
 <p>The <em>hello_world_tests.move</em> file contains a commented out test module template:</p>
 <pre><code class="language-move">/*
@@ -277,13 +283,13 @@ module hello_world::hello_world_tests {
 */
 </code></pre>
 <h3 id="other-folders"><a class="header" href="#other-folders">Other Folders</a></h3>
-<p>Additionally, Move CLI supports <code>examples/</code> folder. The files there are treated similarly to the
-ones placed under the tests/ path - they're only built in the <em>test</em> and <em>dev</em> modes. And it is
-intended to be used for examples of usage of the package or its integration with other packages.
-It's mostly used for documentation purposes and for library packages.</p>
+<p>Additionally, Move CLI supports the <code>examples/</code> folder. The files there are treated similarly to the
+ones placed under the <code>tests/</code> folder - they're only built in the <em>test</em> and <em>dev</em> modes. They are
+to be examples of how to use the package or how to integrate it with other packages. The most
+popular use case is for documentation purposes and library packages.</p>
 <h2 id="compiling-the-package"><a class="header" href="#compiling-the-package">Compiling the Package</a></h2>
-<p>Move is a compiled language, and as such, it requires compilation of source files into Move
-Bytecode. The bytecode contains only necessary information about module, its members and types, and
+<p>Move is a compiled language, and as such, it requires the compilation of source files into Move
+Bytecode. It contains only necessary information about the module, its members, and types, and
 excludes comments and some identifiers (for example, for constants).</p>
 <p>To demonstrate these features, let's replace the contents of the <em>sources/hello_world.move</em> file
 with the following:</p>
@@ -299,17 +305,21 @@ module hello_world::hello_world {
     }
 }
 </code></pre>
-<p>During compilation the code is built but it's not run. A compiled package only offers functions
-which then can be called by other modules or in a transaction. We will explain these concepts in the
-Concepts chapter. But now, let's see what happens when we run the sui move build.</p>
+<p>During compilation, the code is built, but not run. A compiled package only includes functions that
+can be called by other modules or in a transaction. We will explain these concepts in the
+<a href="./../concepts">Concepts</a> chapter. But now, let's see what happens when we run the <em>sui move build</em>.</p>
 <pre><code class="language-bash"># run from the `hello_world` folder
 $ sui move build
 
 # alternatively, if you didn't `cd` into it
 $ sui move build --path hello_world
 </code></pre>
-<!-- The output would be: -->
-<!-- TODO: insert out -->
+<p>It should output the following message on your console.</p>
+<pre><code class="language-plaintext">UPDATING GIT DEPENDENCY https://github.com/MystenLabs/sui.git
+INCLUDING DEPENDENCY Sui
+INCLUDING DEPENDENCY MoveStdlib
+BUILDING hello_world
+</code></pre>
 <p>During the compilation, Move Compiler automatically creates a build folder where it places all
 fetched and compiled dependencies as well as the bytecode for the modules of the current package.</p>
 <blockquote>
@@ -319,8 +329,8 @@ should use a <code>.gitignore</code> file and add <code>build</code> to it.</p>
 <h2 id="running-tests"><a class="header" href="#running-tests">Running Tests</a></h2>
 <p>Before we get to testing, we should add a test. Move Compiler supports tests written in Move and
 provides the execution environment. The tests can be placed in both the source files and in the
-tests/ folder. Tests are marked with the <code>#[test]</code> attribute and are automatically discovered by the
-compiler. We explain tests in depth in the <a href="./../move-basics/testing.html">Testing</a> section.</p>
+<code>tests/</code> folder. Tests are marked with the <code>#[test]</code> attribute and are automatically discovered by
+the compiler. We explain tests in depth in the <a href="./../move-basics/testing.html">Testing</a> section.</p>
 <p>Replace the contents of the <code>tests/hello_world_tests.move</code> with the following content:</p>
 <pre><code class="language-move">#[test_only]
 module hello_world::hello_world_tests {
@@ -349,7 +359,7 @@ Test result: OK. Total tests: 1; passed: 1; failed: 0
 <pre><code class="language-bash">$ sui move test --path hello_world
 </code></pre>
 <h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
-<p>In this section we explained the basics of the Move package: its structure, the manifest, the build
+<p>In this section, we explained the basics of a Move package: its structure, the manifest, the build,
 and test flows. <a href="./hello-sui.html">On the next page</a>, we will write an application and see how the
 code is structured and what the language can do.</p>
 <h2 id="further-reading"><a class="header" href="#further-reading">Further Reading</a></h2>
