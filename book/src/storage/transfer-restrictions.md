@@ -1,6 +1,6 @@
 # Restricted and Public Transfer
 
-Storage Operations that we described in the [previous secitons](./storage-functions.md) are restricted by default - they can only be called in the module defining the object. In other terms, the type must be _internal_ to the module to be used in storage operations. This restriction is implemented in the Sui Verifier and is enforced at the bytecode level.
+Storage Operations that we described in the [previous sections](./storage-functions.md) are restricted by default - they can only be called in the module defining the object. In other terms, the type must be _internal_ to the module to be used in storage operations. This restriction is implemented in the Sui Verifier and is enforced at the bytecode level.
 
 However, to allow objects to be transferred and stored in other modules, these restrictions can be relaxed. The `sui::transfer` module offers a set of _public\_*_ functions that allow calling storage operations in other modules. The functions are prefixed with `public_` and are available to all modules and transactions.
 
