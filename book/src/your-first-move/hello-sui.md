@@ -167,11 +167,6 @@ transaction status.
 
 ### Transaction Data
 
-Next section is `TransactionData` which contains the information about the transaction we just sent.
-It features fields like `sender` which is your address, the `gas_budget` that we set, as well as the
-Coin we used for payment. It also prints the Commands that were run by the CLI, in our case it's
-`Publish` and `TransferObject` - the latter transfers a special object `UpgradeCap` to the sender.
-
 The section titled `TransactionData` contains the information about the transaction we just sent. It
 features fields like `sender`, which is your address, the `gas_budget` set with the `--gas-budget`
 argument, and the Coin we used for payment. It also prints the Commands that were run by the CLI. In
@@ -291,11 +286,6 @@ events, so the section is empty.
 These are the changes to _objects_ that transaction has made. In our case, we have _created_ a new
 `UpgradeCap` object which is a special object that allows the sender to upgrade the package in the
 future, _mutated_ the Gas object, and _published_ a new package. Packages are also objects on Sui.
-
-These are the changes to _objects_ that the transaction has made. In our case, we have _created_ a
-new `UpgradeCap` object which is a special object that allows the sender to upgrade the package in
-the future, _mutate_ the Gas object, and _published_ a new package. Packages are also objects on
-Sui.
 
 ```plaintext
 ╭──────────────────────────────────────────────────────────────────────────────────────────────────╮
