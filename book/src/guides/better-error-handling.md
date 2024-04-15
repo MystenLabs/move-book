@@ -1,6 +1,11 @@
 # Better error handling
 
-Whenever execution encounters an abort, transaction fails and abort code is returned to the caller. Move VM returns the module name that aborted the transaction and the abort code. This behavior is not fully transparent to the caller of the transaction, especially when a single function contains multiple calls to the same function which may abort. In this case, the caller will not know which call aborted the transaction, and it will be hard to debug the issue or provide meaningful error message to the user.
+Whenever execution encounters an abort, transaction fails and abort code is returned to the caller.
+Move VM returns the module name that aborted the transaction and the abort code. This behavior is
+not fully transparent to the caller of the transaction, especially when a single function contains
+multiple calls to the same function which may abort. In this case, the caller will not know which
+call aborted the transaction, and it will be hard to debug the issue or provide meaningful error
+message to the user.
 
 ```move
 module book::module_a {
@@ -16,11 +21,17 @@ module book::module_a {
 }
 ```
 
-The example above illustrates the case when a single function contains multiple calls which may abort. If the caller of the `do_something` function receives an abort code `0`, it will be hard to understand which call to `module_b::get_field` aborted the transaction. To address this problem, there are common patterns that can be used to improve error handling.
+The example above illustrates the case when a single function contains multiple calls which may
+abort. If the caller of the `do_something` function receives an abort code `0`, it will be hard to
+understand which call to `module_b::get_field` aborted the transaction. To address this problem,
+there are common patterns that can be used to improve error handling.
 
 ## Rule 1: Handle all possible scenarios
 
-It is considered a good practice to provide a safe "check" function that returns a boolean value indicating whether an operation can be performed safely. If the `module_b` provides a function `has_field` that returns a boolean value indicating whether a field exists, the `do_something` function can be rewritten as follows:
+It is considered a good practice to provide a safe "check" function that returns a boolean value
+indicating whether an operation can be performed safely. If the `module_b` provides a function
+`has_field` that returns a boolean value indicating whether a field exists, the `do_something`
+function can be rewritten as follows:
 
 ```move
 module book::module_a {
@@ -41,11 +52,14 @@ module book::module_a {
 }
 ```
 
-By adding custom checks before each call to `module_b::get_field`, the developer of the `module_a` takes control over the error handling. And it allows implementing the second rule.
+By adding custom checks before each call to `module_b::get_field`, the developer of the `module_a`
+takes control over the error handling. And it allows implementing the second rule.
 
 ## Rule 2: Abort with different codes
 
-The second trick, once the abort codes are handled by the caller module, is to use different abort codes for different scenarios. This way, the caller module can provide a meaningful error message to the user. The `module_a` can be rewritten as follows:
+The second trick, once the abort codes are handled by the caller module, is to use different abort
+codes for different scenarios. This way, the caller module can provide a meaningful error message to
+the user. The `module_a` can be rewritten as follows:
 
 ```move
 module book::module_a {
@@ -68,11 +82,16 @@ module book::module_a {
 }
 ```
 
-Now, the caller module can provide a meaningful error message to the user. If the caller receives an abort code `0`, it can be translated to "Field 1 does not exist". If the caller receives an abort code `1`, it can be translated to "Field 2 does not exist". And so on.
+Now, the caller module can provide a meaningful error message to the user. If the caller receives an
+abort code `0`, it can be translated to "Field 1 does not exist". If the caller receives an abort
+code `1`, it can be translated to "Field 2 does not exist". And so on.
 
 ## Rule 3: Return bool instead of assert
 
-A developer is often tempted to add a public function that would assert all the conditions and abort the execution. However, it is a better practice to create a function that returns a boolean value instead. This way, the caller module can handle the error and provide a meaningful error message to the user.
+A developer is often tempted to add a public function that would assert all the conditions and abort
+the execution. However, it is a better practice to create a function that returns a boolean value
+instead. This way, the caller module can handle the error and provide a meaningful error message to
+the user.
 
 ```move
 module book::some_app_assert {
@@ -124,4 +143,5 @@ module book::some_app {
 }
 ```
 
-Utilizing these three rules will make the error handling more transparent to the caller of the transaction, and it will allow other developers to use custom abort codes in their modules.
+Utilizing these three rules will make the error handling more transparent to the caller of the
+transaction, and it will allow other developers to use custom abort codes in their modules.

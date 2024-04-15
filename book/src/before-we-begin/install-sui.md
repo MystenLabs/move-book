@@ -20,7 +20,8 @@ brew install sui
 
 ## Install using Chocolatey (Windows)
 
-You can install Sui using the [Chocolatey](https://chocolatey.org/install) package manager for Windows.
+You can install Sui using the [Chocolatey](https://chocolatey.org/install) package manager for
+Windows.
 
 ```bash
 choco install sui

@@ -1,8 +1,11 @@
 # Sui Framework
 
-Sui Framework is a default dependency set in the [Package Manifest](./../concepts/manifest.md). It depends on the [Standard Library](./../move-basics/standard-library.md) and provides Sui-specific features, including the interaction with the storage, and Sui-specific native types and modules.
+Sui Framework is a default dependency set in the [Package Manifest](./../concepts/manifest.md). It
+depends on the [Standard Library](./../move-basics/standard-library.md) and provides Sui-specific
+features, including the interaction with the storage, and Sui-specific native types and modules.
 
-_For convenience, we grouped the modules in the Sui Framework into multiple categories. But they're still part of the same framework._
+_For convenience, we grouped the modules in the Sui Framework into multiple categories. But they're
+still part of the same framework._
 
 ## Core
 
@@ -54,7 +57,9 @@ std = "0x1"
 
 ## Implicit Imports
 
-Just like with [Standard Library](./../move-basics/standard-library.md#implicit-imports), some of the modules and types are imported implicitly in the Sui Framework. This is the list of modules and types that are available without explicit `use` import:
+Just like with [Standard Library](./../move-basics/standard-library.md#implicit-imports), some of
+the modules and types are imported implicitly in the Sui Framework. This is the list of modules and
+types that are available without explicit `use` import:
 
 - sui::object
 - sui::object::ID
@@ -65,7 +70,8 @@ Just like with [Standard Library](./../move-basics/standard-library.md#implicit-
 
 ## Source Code
 
-The source code of the Sui Framework is available in the [Sui repository](https://github.com/MystenLabs/sui/tree/main/crates/sui-framework/packages/sui-framework/sources).
+The source code of the Sui Framework is available in the
+[Sui repository](https://github.com/MystenLabs/sui/tree/main/crates/sui-framework/packages/sui-framework/sources).
 
 <!--
 

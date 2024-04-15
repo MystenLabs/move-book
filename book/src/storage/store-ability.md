@@ -1,16 +1,22 @@
 # Ability: Store
 
-Now that you have an understanding of top-level storage functions which are enabled by the [`key`](./key-ability.md) ability, we can talk about the last ability in the list - `store`.
+Now that you have an understanding of top-level storage functions which are enabled by the
+[`key`](./key-ability.md) ability, we can talk about the last ability in the list - `store`.
 
 ## Definition
 
-The `store` is a special ability that allows a type to be _stored_ in objects. This ability is required for the type to be used as a field in a struct that has the `key` ability. Another way to put it is that the `store` ability allows the value to be _wrapped_ in an object.
+The `store` is a special ability that allows a type to be _stored_ in objects. This ability is
+required for the type to be used as a field in a struct that has the `key` ability. Another way to
+put it is that the `store` ability allows the value to be _wrapped_ in an object.
 
-> The `store` ability also relaxes restrictions on transfer operations. We talk about it more in the [Restricted and Public Transfer](./restricted-and-public-transfer.md) section.
+> The `store` ability also relaxes restrictions on transfer operations. We talk about it more in the
+> [Restricted and Public Transfer](./restricted-and-public-transfer.md) section.
 
 ## Example
 
-In previous sections we already used types with the `store` ability: all objects must have a `UID` field, which we used in examples; we also used the `String` type as a part of the `Config` struct. The `String` type also has the `store` ability.
+In previous sections we already used types with the `store` ability: all objects must have a `UID`
+field, which we used in examples; we also used the `String` type as a part of the `Config` struct.
+The `String` type also has the `store` ability.
 
 ```move
 /// This type has the `store` ability.

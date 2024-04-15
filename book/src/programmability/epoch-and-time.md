@@ -1,10 +1,15 @@
 # Epoch and Time
 
-Sui has two ways of accessing the current time: `Epoch` and `Time`. The former represents operational periods in the system and changed roughly every 24 hours. The latter represents the current time in milliseconds since the Unix Epoch. Both can be accessed freely in the program.
+Sui has two ways of accessing the current time: `Epoch` and `Time`. The former represents
+operational periods in the system and changed roughly every 24 hours. The latter represents the
+current time in milliseconds since the Unix Epoch. Both can be accessed freely in the program.
 
 ## Epoch
 
-Epochs are used to separate the system into operational periods. During an epoch the validator set is fixed, however, at the epoch boundary, the validator set can be changed. Epochs play a crucial role in the consensus algorithm and are used to determine the current validator set. They are also used as measurement in the staking mechanism.
+Epochs are used to separate the system into operational periods. During an epoch the validator set
+is fixed, however, at the epoch boundary, the validator set can be changed. Epochs play a crucial
+role in the consensus algorithm and are used to determine the current validator set. They are also
+used as measurement in the staking mechanism.
 
 Epoch can be read from the [transaction context](./transaction-context.md):
 
@@ -18,13 +23,20 @@ It is also possible to get the unix timestamp of the epoch start:
 {{#include ../../../packages/samples/sources/programmability/epoch-and-time.move:epoch_start}}
 ```
 
-Normally, epochs are used in staking and system operations, however, in custom scenarios they can be used to emulate 24h periods. They are critical if an application relies on the staking logic or needs to know the current validator set.
+Normally, epochs are used in staking and system operations, however, in custom scenarios they can be
+used to emulate 24h periods. They are critical if an application relies on the staking logic or
+needs to know the current validator set.
 
 ## Time
 
-For a more precise time measurement, Sui provides the `Clock` object. It is a system object that is updated during checkpoints by the system, which stores the current time in milliseconds since the Unix Epoch. The `Clock` object is defined in the `sui::clock` module and has a reserved address `0x6`.
+For a more precise time measurement, Sui provides the `Clock` object. It is a system object that is
+updated during checkpoints by the system, which stores the current time in milliseconds since the
+Unix Epoch. The `Clock` object is defined in the `sui::clock` module and has a reserved address
+`0x6`.
 
-Clock is a shared object, but it a transaction attempting to access it mutably will fail. This limitation allows parallel access to the `Clock` object, which is important for maintaining performance.
+Clock is a shared object, but it a transaction attempting to access it mutably will fail. This
+limitation allows parallel access to the `Clock` object, which is important for maintaining
+performance.
 
 ```move
 // File: sui-framework/clock.move
@@ -46,7 +58,8 @@ struct Clock has key {
 }
 ```
 
-There is only one public function available in the `Clock` module - `timestamp_ms`. It returns the current time in milliseconds since the Unix Epoch.
+There is only one public function available in the `Clock` module - `timestamp_ms`. It returns the
+current time in milliseconds since the Unix Epoch.
 
 ```move
 {{#include ../../../packages/samples/sources/programmability/epoch-and-time.move:clock}}

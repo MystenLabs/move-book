@@ -1,6 +1,11 @@
 # Upgradeability Practices
 
-To talk about best practices for upgradeability, we need to first understand what can be upgraded in a package. The base premise of upgradeability is that an upgrade should not break public compatibility with the previous version. The parts of the module which can be used in dependent packages should not change their static signature. This applies to modules - a module can not be removed from a package, public structs - they can be used in function signatures and public functions - they can be called from other packages.
+To talk about best practices for upgradeability, we need to first understand what can be upgraded in
+a package. The base premise of upgradeability is that an upgrade should not break public
+compatibility with the previous version. The parts of the module which can be used in dependent
+packages should not change their static signature. This applies to modules - a module can not be
+removed from a package, public structs - they can be used in function signatures and public
+functions - they can be called from other packages.
 
 ```move
 // module can not be removed from the package
@@ -58,7 +63,11 @@ TODO: Add a section about entry and friend functions
 
 <!-- This practice is for function version locking based on a shared state -->
 
-To discard previous versions of the package, the objects can be versioned. As long as the object contains a version field, and the code which uses the object expects and asserts a specific version, the code can be force-migrated to the new version. Normally, after an upgrade, admin functions can be used to update the version of the shared state, so that the new version of code can be used, and the old version aborts with a version mismatch.
+To discard previous versions of the package, the objects can be versioned. As long as the object
+contains a version field, and the code which uses the object expects and asserts a specific version,
+the code can be force-migrated to the new version. Normally, after an upgrade, admin functions can
+be used to update the version of the shared state, so that the new version of code can be used, and
+the old version aborts with a version mismatch.
 
 ```move
 module book::versioned_state {
@@ -85,7 +94,10 @@ module book::versioned_state {
 
 <!-- This practice is for versioning the contents / structure of objects -->
 
-There's a common pattern in Sui which allows changing the stored configuration of an object while retaining the same object signature. This is done by keeping the base object simple and versioned and adding an actual configuration object as a dynamic field. Using this _anchor_ pattern, the configuration can be changed with package upgrades while keeping the same base object signature.
+There's a common pattern in Sui which allows changing the stored configuration of an object while
+retaining the same object signature. This is done by keeping the base object simple and versioned
+and adding an actual configuration object as a dynamic field. Using this _anchor_ pattern, the
+configuration can be changed with package upgrades while keeping the same base object signature.
 
 ```move
 module book::versioned_config {

@@ -1,12 +1,19 @@
 # Restricted and Public Transfer
 
-Storage Operations that we described in the [previous sections](./storage-functions.md) are restricted by default - they can only be called in the module defining the object. In other terms, the type must be _internal_ to the module to be used in storage operations. This restriction is implemented in the Sui Verifier and is enforced at the bytecode level.
+Storage Operations that we described in the [previous sections](./storage-functions.md) are
+restricted by default - they can only be called in the module defining the object. In other terms,
+the type must be _internal_ to the module to be used in storage operations. This restriction is
+implemented in the Sui Verifier and is enforced at the bytecode level.
 
-However, to allow objects to be transferred and stored in other modules, these restrictions can be relaxed. The `sui::transfer` module offers a set of _public\_*_ functions that allow calling storage operations in other modules. The functions are prefixed with `public_` and are available to all modules and transactions.
+However, to allow objects to be transferred and stored in other modules, these restrictions can be
+relaxed. The `sui::transfer` module offers a set of _public\_\*_ functions that allow calling
+storage operations in other modules. The functions are prefixed with `public_` and are available to
+all modules and transactions.
 
 ## Public Storage Operations
 
-The `sui::transfer` module provides the following public functions. They are almost identical to the ones we already covered, but can be called from any module.
+The `sui::transfer` module provides the following public functions. They are almost identical to the
+ones we already covered, but can be called from any module.
 
 ```move
 // File: sui-framework/sources/transfer.move
@@ -20,9 +27,12 @@ public fun public_share_object<T: key + store>(object: T) {}
 public fun public_freeze_object<T: key + store>(object: T) {}
 ```
 
-To illustrate the usage of these functions, consider the following example: module A defines an ObjectK with `key` and ObjectKS with `key + store` abilities, and module B tries to implement a `transfer` function for these objects.
+To illustrate the usage of these functions, consider the following example: module A defines an
+ObjectK with `key` and ObjectKS with `key + store` abilities, and module B tries to implement a
+`transfer` function for these objects.
 
-> In this example we use `transfer::transfer`, but the behaviour is identical for `share_object` and `freeze_object` functions.
+> In this example we use `transfer::transfer`, but the behaviour is identical for `share_object` and
+> `freeze_object` functions.
 
 ```move
 /// Defines `ObjectK` and `ObjectKS` with `key` and `key + store`
@@ -69,6 +79,8 @@ To expand on the example above:
 
 ## Implications of `store`
 
-The decision on whether to add the `store` ability to a type should be made carefully. On one hand, it is de-facto a requirement for the type to be _usable_ by other applications. On the other hand, it allows _wrapping_ and changing the intented storage model. For example, a character may be intented to be owned by accounts, but with the `store` ability it can be frozen (cannot be shared - this transition is restricted).
-
-
+The decision on whether to add the `store` ability to a type should be made carefully. On one hand,
+it is de-facto a requirement for the type to be _usable_ by other applications. On the other hand,
+it allows _wrapping_ and changing the intented storage model. For example, a character may be
+intented to be owned by accounts, but with the `store` ability it can be frozen (cannot be shared -
+this transition is restricted).

@@ -51,7 +51,8 @@ public struct AdminCap has key { id: UID }
 ### Struct Method
 
 1. Struct methods should be in `snake_case`.
-2. If there's multiple structs with the same method, the method should be prefixed with the struct name. In this case, an alias can be added to the method using `use fun`.
+2. If there's multiple structs with the same method, the method should be prefixed with the struct
+   name. In this case, an alias can be added to the method using `use fun`.
 
 ```move
 public fun value(h: &Hero): u64 { h.value }
