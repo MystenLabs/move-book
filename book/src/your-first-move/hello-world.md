@@ -107,7 +107,7 @@ build process but uses them in _test_ and _dev_ modes. The tests are written in 
 with the `#[test]` attribute. Tests can be grouped in a separate module (then it's usually called
 _module_name_tests.move_), or inside the module they're testing.
 
-Modules, imports and functions can be annotated with `#[test_only]`. This attribute is
+Modules, imports, constants and functions can be annotated with `#[test_only]`. This attribute is
 used to exclude modules, functions or imports from the build process. This is useful when you want to
 add helpers for your tests without including them in the code that will be published on chain.
 
