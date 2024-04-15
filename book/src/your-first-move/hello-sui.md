@@ -1,8 +1,8 @@
 # Hello, Sui!
 
 In the [previous section](./hello-world.md) we created a new package and demonstrated the basic flow
-of creating, building and testing a Move package. In this section, we will write a simple
-application that uses the storage model, and can be interacted with. To do this, we will create a
+of creating, building, and testing a Move package. In this section, we will write a simple
+application that uses the storage model and can be interacted with. To do this, we will create a
 simple todo list application.
 
 ## Create a New Package
@@ -58,8 +58,8 @@ and demonstration purposes, we will use _sui devnet_ environment.
 > If you already have an account set up, you can skip this step.
 
 If you are doing it for the first time, you will need to create a new account. To do this, run the
-`sui client` command, then the CLI will prompt you multiple questions, the answers are marked below
-with `>`:
+`sui client` command, then the CLI will prompt you with multiple questions. The answers are marked
+below with `>`:
 
 ```bash
 $ sui client
@@ -85,8 +85,8 @@ The command will output the address of your account, it starts with `0x` followe
 
 ## Requesting Coins
 
-In _devnet_ and _testnet_ environments, CLI provides a way to request coins to your account, so you
-can interact with the network. To request coins, run the `sui client faucet` command:
+In _devnet_ and _testnet_ environments, the CLI provides a way to request coins to your account, so
+you can interact with the network. To request coins, run the `sui client faucet` command:
 
 ```bash
 $ sui client faucet
@@ -160,17 +160,18 @@ Successfully verified dependencies on-chain against source.
 Transaction Digest: GpcDV6JjjGQMRwHpEz582qsd5MpCYgSwrDAq1JXcpFjW
 ```
 
-As you can see, when we run `publish` command, the CLI first builds the package, then verifies the
-dependencies on-chain, and finally publishes the package. The output of the command is the
+As you can see, when we run the `publish` command, the CLI first builds the package, then verifies
+the dependencies on-chain, and finally publishes the package. The output of the command is the
 transaction digest, which is a unique identifier of the transaction and can be used to query the
 transaction status.
 
 ### Transaction Data
 
-Next section is `TransactionData` which contains the information about the transaction we just sent.
-It features fields like `sender` which is your address, the `gas_budget` that we set, as well as the
-Coin we used for payment. It also prints the Commands that were run by the CLI, in our case it's
-`Publish` and `TransferObject` - the latter transfers a special object `UpgradeCap` to the sender.
+The section titled `TransactionData` contains the information about the transaction we just sent. It
+features fields like `sender`, which is your address, the `gas_budget` set with the `--gas-budget`
+argument, and the Coin we used for payment. It also prints the Commands that were run by the CLI. In
+this example, the commands `Publish` and `TransferObject` were run - the latter transfers a special
+object `UpgradeCap` to the sender.
 
 ```plaintext
 ╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
