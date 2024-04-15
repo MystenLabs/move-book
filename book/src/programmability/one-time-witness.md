@@ -1,6 +1,8 @@
 # One Time Witness
 
-While regular [Witness](./witness-pattern.md) is a great way to statically prove the ownership of a type, there are cases, where we need to ensure that a witness is used only once. And this is the purpose of the One Time Witness (OTW).
+While regular [Witness](./witness-pattern.md) is a great way to statically prove the ownership of a
+type, there are cases, where we need to ensure that a witness is used only once. And this is the
+purpose of the One Time Witness (OTW).
 
 <!--
 Notes to self:
@@ -11,7 +13,9 @@ Notes to self:
 
 ## Definition
 
-The One Time Witness is a special type of witness that can be used only once. It cannot be manually created, and it is guaranteed to be unique per module. Sui Adapter treats a type as a One Time Witness if it follows these rules:
+The One Time Witness is a special type of witness that can be used only once. It cannot be manually
+created, and it is guaranteed to be unique per module. Sui Adapter treats a type as a One Time
+Witness if it follows these rules:
 
 1. Has only `drop` ability.
 2. Has no fields.
@@ -33,11 +37,16 @@ module book::one_time {
 }
 ```
 
-The One Time Witness cannot be constructed manually, and any code attempting to do so will result in a compilation error. The OTW can be received as the first argument in the [module initializer](./module-initializer.md). And because the `init` function is called only once per module, the OTW is guaranteed to be instantiated only once.
+The One Time Witness cannot be constructed manually, and any code attempting to do so will result in
+a compilation error. The OTW can be received as the first argument in the
+[module initializer](./module-initializer.md). And because the `init` function is called only once
+per module, the OTW is guaranteed to be instantiated only once.
 
 ## Enforcing the OTW
 
-To check if a type is a One Time Witness, `sui::types` module of the [Sui Framework](./sui-framework.md) offers a special function `is_one_time_witness` that can be used to check if the type is a One Time Witness.
+To check if a type is a One Time Witness, `sui::types` module of the
+[Sui Framework](./sui-framework.md) offers a special function `is_one_time_witness` that can be used
+to check if the type is a One Time Witness.
 
 ```move
 use sui::types;
@@ -148,9 +157,14 @@ TODO: add a story behind TreasuryCap and Coin
 
 ## Summary
 
-The One Time Witness pattern is a great way to ensure that a type is used only once. Most of the developers should understand how to define and receive the OTW, while the OTW checks and enforcement is mostly needed in libraries and frameworks. For example, the `sui::coin` module requires a One Time Witness in the `coin::create_currency` method, therefore enforcing that the `coin::TreasuryCap` is created only once.
+The One Time Witness pattern is a great way to ensure that a type is used only once. Most of the
+developers should understand how to define and receive the OTW, while the OTW checks and enforcement
+is mostly needed in libraries and frameworks. For example, the `sui::coin` module requires a One
+Time Witness in the `coin::create_currency` method, therefore enforcing that the `coin::TreasuryCap`
+is created only once.
 
-One Time Witness is a powerful tool which lays the foundation for the [Publisher](./publisher.md) object, which we will cover in the next section.
+One Time Witness is a powerful tool which lays the foundation for the [Publisher](./publisher.md)
+object, which we will cover in the next section.
 
 <!--
 

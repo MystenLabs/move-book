@@ -1,10 +1,15 @@
 # Testing
 
-A crucial part of any software development, and even more - blockchain development, is testing. Here, we will cover the basics of testing in Move and how to write and organize tests for your Move code.
+A crucial part of any software development, and even more - blockchain development, is testing.
+Here, we will cover the basics of testing in Move and how to write and organize tests for your Move
+code.
 
 ## The `#[test]` attribute
 
-Tests in Move are functions marked with the `#[test]` attribute. This attribute tells the compiler that the function is a test function, and it should be run when the tests are executed. Test functions are regular functions, but they must take no any arguments and have no return value. They are excluded from the bytecode, and are never published.
+Tests in Move are functions marked with the `#[test]` attribute. This attribute tells the compiler
+that the function is a test function, and it should be run when the tests are executed. Test
+functions are regular functions, but they must take no any arguments and have no return value. They
+are excluded from the bytecode, and are never published.
 
 ```move
 module book::testing {
@@ -27,7 +32,9 @@ module book::testing {
 
 ## Running Tests
 
-To run tests, you can use the `sui move test` command. This command will first build the package in the _test mode_ and then run all the tests found in the package. During test mode, modules from both `sources/` and `tests/` directories are processed, and the tests are executed.
+To run tests, you can use the `sui move test` command. This command will first build the package in
+the _test mode_ and then run all the tests found in the package. During test mode, modules from both
+`sources/` and `tests/` directories are processed, and the tests are executed.
 
 ```bash
 $ sui move test
@@ -42,11 +49,15 @@ $ sui move test
 
 ## Test Fail Cases with `#[expected_failure]`
 
-Tests for fail cases can be marked with `#[expected_failure]`. This attribute placed on a `#[test]` function tells the compiler that the test is expected to fail. This is useful when you want to test that a function fails when a certain condition is met.
+Tests for fail cases can be marked with `#[expected_failure]`. This attribute placed on a `#[test]`
+function tells the compiler that the test is expected to fail. This is useful when you want to test
+that a function fails when a certain condition is met.
 
 > This attribute can only be placed on a `#[test]` function.
 
-The attribute can take an argument for abort code, which is the expected abort code when the test fails. If the test fails with a different abort code, the test will fail. If the execution did not abort, the test will also fail.
+The attribute can take an argument for abort code, which is the expected abort code when the test
+fails. If the test fails with a different abort code, the test will fail. If the execution did not
+abort, the test will also fail.
 
 ```move
 module book::testing_failure {
@@ -67,11 +78,15 @@ module book::testing_failure {
 }
 ```
 
-The `abort_code` argument can use constants defined in the tests module as well as imported from other modules. This is the only case where constants can be used and "accessed" in other modules.
+The `abort_code` argument can use constants defined in the tests module as well as imported from
+other modules. This is the only case where constants can be used and "accessed" in other modules.
 
 ## Utilities with `#[test_only]`
 
-In some cases, it is helpful to give the test environment access to some of the internal functions or features. It simplifies the testing process and allows for more thorough testing. However, it is important to remember that these functions should not be included in the final package. This is where the `#[test_only]` attribute comes in handy.
+In some cases, it is helpful to give the test environment access to some of the internal functions
+or features. It simplifies the testing process and allows for more thorough testing. However, it is
+important to remember that these functions should not be included in the final package. This is
+where the `#[test_only]` attribute comes in handy.
 
 ```move
 module book::testing {
@@ -100,7 +115,8 @@ module book::testing {
 }
 ```
 
-Functions marked with the `#[test_only]` will be available to the test environment, and to the other modules if their visibility is set so.
+Functions marked with the `#[test_only]` will be available to the test environment, and to the other
+modules if their visibility is set so.
 
 ## Further Reading
 

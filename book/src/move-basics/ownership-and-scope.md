@@ -1,6 +1,9 @@
 # Ownership and Scope
 
-Every variable in Move has a scope and an owner. The scope is the range of code where the variable is valid, and the owner is the scope that this variable belongs to. Once the owner scope ends, the variable is dropped. This is a fundamental concept in Move, and it is important to understand how it works.
+Every variable in Move has a scope and an owner. The scope is the range of code where the variable
+is valid, and the owner is the scope that this variable belongs to. Once the owner scope ends, the
+variable is dropped. This is a fundamental concept in Move, and it is important to understand how it
+works.
 
 <!--
 
@@ -12,7 +15,9 @@ Every variable in Move has a scope and an owner. The scope is the range of code 
 
 ## Ownership
 
-A variable defined in a function scope is owned by this scope. The runtime goes through the function scope and executes every expression and statement. Once the function scope end, the variables defined in it are dropped or deallocated.
+A variable defined in a function scope is owned by this scope. The runtime goes through the function
+scope and executes every expression and statement. Once the function scope end, the variables
+defined in it are dropped or deallocated.
 
 ```move
 module book::ownership {
@@ -28,11 +33,14 @@ module book::ownership {
 }
 ```
 
-In the example above, the variable `a` is owned by the `owner` function, and the variable `b` is owned by the `other` function. When each of these functions are called, the variables are defined, and when the function ends, the variables are discarded.
+In the example above, the variable `a` is owned by the `owner` function, and the variable `b` is
+owned by the `other` function. When each of these functions are called, the variables are defined,
+and when the function ends, the variables are discarded.
 
 ## Returning a Value
 
-If we changed the `owner` function to return the variable `a`, then the ownership of `a` would be transferred to the caller of the function.
+If we changed the `owner` function to return the variable `a`, then the ownership of `a` would be
+transferred to the caller of the function.
 
 ```move
 module book::ownership {
@@ -51,7 +59,9 @@ module book::ownership {
 
 ## Passing by Value
 
-Additionally, if we passed the variable `a` to another function, the ownership of `a` would be transferred to this function. When performing this operation, we _move_ the value from one scope to another. This is also called _move semantics_.
+Additionally, if we passed the variable `a` to another function, the ownership of `a` would be
+transferred to this function. When performing this operation, we _move_ the value from one scope to
+another. This is also called _move semantics_.
 
 ```move
 module book::ownership {
@@ -75,7 +85,9 @@ module book::ownership {
 
 ## Scopes with Blocks
 
-Function has a main scope, and it can also have sub-scopes via the use of blocks. A block is a sequence of statements and expressions, and it has its own scope. Variables defined in a block are owned by this block, and when the block ends, the variables are dropped.
+Function has a main scope, and it can also have sub-scopes via the use of blocks. A block is a
+sequence of statements and expressions, and it has its own scope. Variables defined in a block are
+owned by this block, and when the block ends, the variables are dropped.
 
 ```move
 module book::ownership {
@@ -93,7 +105,8 @@ module book::ownership {
 }
 ```
 
-However, shall we use the return value of a block, the ownership of the variable is transferred to the caller of the block.
+However, shall we use the return value of a block, the ownership of the variable is transferred to
+the caller of the block.
 
 ```move
 module book::ownership {
@@ -110,7 +123,10 @@ module book::ownership {
 
 ## Copyable Types
 
-Some types in Move are _copyable_, which means that they can be copied without transferring the ownership. This is useful for types that are small and cheap to copy, such as integers and booleans. Move compiler will automatically copy these types when they are passed to a function or returned from a function, or when they're _moved_ to a scope and then accessed in their original scope.
+Some types in Move are _copyable_, which means that they can be copied without transferring the
+ownership. This is useful for types that are small and cheap to copy, such as integers and booleans.
+Move compiler will automatically copy these types when they are passed to a function or returned
+from a function, or when they're _moved_ to a scope and then accessed in their original scope.
 
 ## Further reading
 
