@@ -188,7 +188,11 @@ Notes:
     - doc comments are allowed for: modules, structs, functions, constants
     - give an example of how doc comments are translated
  -->
-<p>Comments are a way to add notes or document your code. They are ignored by the compiler and don't result in the Move bytecode. You can use comments to explain what your code does, to add notes to yourself or other developers, to temporarily remove a part of your code, or to generate documentation. There are three types of comments in Move: line comment, block comment, and doc comment.</p>
+<p>Comments are a way to add notes or document your code. They are ignored by the compiler and don't
+result in the Move bytecode. You can use comments to explain what your code does, to add notes to
+yourself or other developers, to temporarily remove a part of your code, or to generate
+documentation. There are three types of comments in Move: line comment, block comment, and doc
+comment.</p>
 <h2 id="line-comment"><a class="header" href="#line-comment">Line comment</a></h2>
 <pre><code class="language-Move">module book::comments_line {
     fun some_function() {
@@ -196,7 +200,8 @@ Notes:
     }
 }
 </code></pre>
-<p>You can use double slash <code>//</code> to comment out the rest of the line. Everything after <code>//</code> will be ignored by the compiler.</p>
+<p>You can use double slash <code>//</code> to comment out the rest of the line. Everything after <code>//</code> will be
+ignored by the compiler.</p>
 <pre><code class="language-Move">module book::comments_line_2 {
     // let's add a note to everything!
     fun some_function_with_numbers() {
@@ -208,7 +213,9 @@ Notes:
 }
 </code></pre>
 <h2 id="block-comment"><a class="header" href="#block-comment">Block comment</a></h2>
-<p>Block comments are used to comment out a block of code. They start with <code>/*</code> and end with <code>*/</code>. Everything between <code>/*</code> and <code>*/</code> will be ignored by the compiler. You can use block comments to comment out a single line or multiple lines. You can even use them to comment out a part of a line.</p>
+<p>Block comments are used to comment out a block of code. They start with <code>/*</code> and end with <code>*/</code>.
+Everything between <code>/*</code> and <code>*/</code> will be ignored by the compiler. You can use block comments to
+comment out a single line or multiple lines. You can even use them to comment out a part of a line.</p>
 <pre><code class="language-Move">module book::comments_block {
     fun /* you can comment everywhere */ go_wild() {
         /* here
@@ -224,9 +231,12 @@ Notes:
     */
 }
 </code></pre>
-<p>This example is a bit extreme, but it shows how you can use block comments to comment out a part of a line.</p>
+<p>This example is a bit extreme, but it shows how you can use block comments to comment out a part of
+a line.</p>
 <h2 id="doc-comment"><a class="header" href="#doc-comment">Doc comment</a></h2>
-<p>Documentation comments are special comments that are used to generate documentation for your code. They are similar to block comments, but they start with three slashes <code>///</code> and are placed before the definition of the item they document.</p>
+<p>Documentation comments are special comments that are used to generate documentation for your code.
+They are similar to block comments, but they start with three slashes <code>///</code> and are placed before
+the definition of the item they document.</p>
 <pre><code class="language-Move">/// Module has documentation!
 module book::comments_doc {
 

@@ -177,9 +177,14 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="visibility-modifiers"><a class="header" href="#visibility-modifiers">Visibility Modifiers</a></h1>
-<p>Every module member has a visibility. By default, all module members are <em>private</em> - meaning they are only accessible within the module they are defined in. However, you can add a visibility modifier to make a module member <em>public</em> - visible outside the module, or <em>public(package)</em> - visible in the modules within the same package, or <em>entry</em> - can be called from a transaction but can't be called from other modules.</p>
+<p>Every module member has a visibility. By default, all module members are <em>private</em> - meaning they
+are only accessible within the module they are defined in. However, you can add a visibility
+modifier to make a module member <em>public</em> - visible outside the module, or <em>public(package)</em> -
+visible in the modules within the same package, or <em>entry</em> - can be called from a transaction but
+can't be called from other modules.</p>
 <h2 id="internal-visibility"><a class="header" href="#internal-visibility">Internal Visibility</a></h2>
-<p>A function or a struct defined in a module which has no visibility modifier is <em>private</em> to the module. It can't be called from other modules.</p>
+<p>A function or a struct defined in a module which has no visibility modifier is <em>private</em> to the
+module. It can't be called from other modules.</p>
 <pre><code class="language-move">module book::internal_visibility {
     // This function can be called from other functions in the same module
     fun internal() { /* ... */ }
@@ -202,7 +207,8 @@
 }
 </code></pre>
 <h2 id="public-visibility"><a class="header" href="#public-visibility">Public Visibility</a></h2>
-<p>A struct or a function can be made <em>public</em> by adding the <code>public</code> keyword before the <code>fun</code> or <code>struct</code> keyword.</p>
+<p>A struct or a function can be made <em>public</em> by adding the <code>public</code> keyword before the <code>fun</code> or
+<code>struct</code> keyword.</p>
 <pre><code class="language-move">module book::public_visibility {
     // This function can be called from other modules
     public fun public() { /* ... */ }
@@ -219,7 +225,8 @@
 }
 </code></pre>
 <h2 id="package-visibility"><a class="header" href="#package-visibility">Package Visibility</a></h2>
-<p>Move 2024 introduces the <em>package visibility</em> modifier. A function with <em>package visibility</em> can be called from any module within the same package. It can't be called from other packages.</p>
+<p>Move 2024 introduces the <em>package visibility</em> modifier. A function with <em>package visibility</em> can be
+called from any module within the same package. It can't be called from other packages.</p>
 <pre><code class="language-move">module book::package_visibility {
     public(package) fun package_only() { /* ... */ }
 }

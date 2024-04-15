@@ -194,7 +194,10 @@ Links:
     - constants (language reference)
 
  -->
-<p>Constants are immutable values that are defined at the module level. They often serve as a way to give names to static values that are used throughout a module. For example, if there's a default price for a product, you might define a constant for it. Constants are stored in the module's bytecode, and each time they are used, the value is copied.</p>
+<p>Constants are immutable values that are defined at the module level. They often serve as a way to
+give names to static values that are used throughout a module. For example, if there's a default
+price for a product, you might define a constant for it. Constants are stored in the module's
+bytecode, and each time they are used, the value is copied.</p>
 <pre><code class="language-move">module book::shop_price {
     use sui::coin::Coin;
     use sui::sui::SUI;
@@ -218,7 +221,10 @@ Links:
 }
 </code></pre>
 <h2 id="naming-convention"><a class="header" href="#naming-convention">Naming Convention</a></h2>
-<p>Constants must start with a capital letter - this is enforced at the compiler level. For constants used as a value, there's a convention to use uppercase letters and underscores to separate words. It's a way to make constants stand out from other identifiers in the code. One exception is made for <a href="./assert-and-abort.html#assert-and-abort">error constants</a>, which are written in ECamelCase.</p>
+<p>Constants must start with a capital letter - this is enforced at the compiler level. For constants
+used as a value, there's a convention to use uppercase letters and underscores to separate words.
+It's a way to make constants stand out from other identifiers in the code. One exception is made for
+<a href="./assert-and-abort.html#assert-and-abort">error constants</a>, which are written in ECamelCase.</p>
 <pre><code class="language-move">/// Price of the item used at the shop.
 const ITEM_PRICE: u64 = 100;
 
@@ -226,7 +232,8 @@ const ITEM_PRICE: u64 = 100;
 const EItemNotFound: u64 = 1;
 </code></pre>
 <h2 id="constants-are-immutable"><a class="header" href="#constants-are-immutable">Constants are Immutable</a></h2>
-<p>Constants can't be changed and assigned new values. They are part of the package bytecode, and inherently immutable.</p>
+<p>Constants can't be changed and assigned new values. They are part of the package bytecode, and
+inherently immutable.</p>
 <pre><code class="language-move">module book::immutable_constants {
     const ITEM_PRICE: u64 = 100;
 
@@ -237,7 +244,9 @@ const EItemNotFound: u64 = 1;
 }
 </code></pre>
 <h2 id="using-config-pattern"><a class="header" href="#using-config-pattern">Using Config Pattern</a></h2>
-<p>A common use case for an application is to define a set of constants that are used throughout the codebase. But due to constants being private to the module, they can't be accessed from other modules. One way to solve this is to define a &quot;config&quot; module that exports the constants.</p>
+<p>A common use case for an application is to define a set of constants that are used throughout the
+codebase. But due to constants being private to the module, they can't be accessed from other
+modules. One way to solve this is to define a &quot;config&quot; module that exports the constants.</p>
 <pre><code class="language-move">module book::config {
     const ITEM_PRICE: u64 = 100;
     const TAX_RATE: u64 = 10;
@@ -251,7 +260,9 @@ const EItemNotFound: u64 = 1;
     public fun shipping_cost(): u64 { SHIPPING_COST }
 }
 </code></pre>
-<p>This way other modules can import and read the constants, and the update process is simplified. If the constants need to be changed, only the config module needs to be updated during the package upgrade.</p>
+<p>This way other modules can import and read the constants, and the update process is simplified. If
+the constants need to be changed, only the config module needs to be updated during the package
+upgrade.</p>
 <h2 id="links"><a class="header" href="#links">Links</a></h2>
 <ul>
 <li><a href="/reference/constants.html">Constants</a> in the Move Language Reference</li>

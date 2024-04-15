@@ -177,7 +177,10 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="ownership-and-scope"><a class="header" href="#ownership-and-scope">Ownership and Scope</a></h1>
-<p>Every variable in Move has a scope and an owner. The scope is the range of code where the variable is valid, and the owner is the scope that this variable belongs to. Once the owner scope ends, the variable is dropped. This is a fundamental concept in Move, and it is important to understand how it works.</p>
+<p>Every variable in Move has a scope and an owner. The scope is the range of code where the variable
+is valid, and the owner is the scope that this variable belongs to. Once the owner scope ends, the
+variable is dropped. This is a fundamental concept in Move, and it is important to understand how it
+works.</p>
 <!--
 
 - Borrow Checker
@@ -186,7 +189,9 @@
 
 -->
 <h2 id="ownership"><a class="header" href="#ownership">Ownership</a></h2>
-<p>A variable defined in a function scope is owned by this scope. The runtime goes through the function scope and executes every expression and statement. Once the function scope end, the variables defined in it are dropped or deallocated.</p>
+<p>A variable defined in a function scope is owned by this scope. The runtime goes through the function
+scope and executes every expression and statement. Once the function scope end, the variables
+defined in it are dropped or deallocated.</p>
 <pre><code class="language-move">module book::ownership {
     public fun owner() {
         let a = 1; // a is owned by the `owner` function
@@ -199,9 +204,12 @@
     }
 }
 </code></pre>
-<p>In the example above, the variable <code>a</code> is owned by the <code>owner</code> function, and the variable <code>b</code> is owned by the <code>other</code> function. When each of these functions are called, the variables are defined, and when the function ends, the variables are discarded.</p>
+<p>In the example above, the variable <code>a</code> is owned by the <code>owner</code> function, and the variable <code>b</code> is
+owned by the <code>other</code> function. When each of these functions are called, the variables are defined,
+and when the function ends, the variables are discarded.</p>
 <h2 id="returning-a-value"><a class="header" href="#returning-a-value">Returning a Value</a></h2>
-<p>If we changed the <code>owner</code> function to return the variable <code>a</code>, then the ownership of <code>a</code> would be transferred to the caller of the function.</p>
+<p>If we changed the <code>owner</code> function to return the variable <code>a</code>, then the ownership of <code>a</code> would be
+transferred to the caller of the function.</p>
 <pre><code class="language-move">module book::ownership {
     public fun owner(): u8 {
         let a = 1; // a defined here
@@ -216,7 +224,9 @@
 }
 </code></pre>
 <h2 id="passing-by-value"><a class="header" href="#passing-by-value">Passing by Value</a></h2>
-<p>Additionally, if we passed the variable <code>a</code> to another function, the ownership of <code>a</code> would be transferred to this function. When performing this operation, we <em>move</em> the value from one scope to another. This is also called <em>move semantics</em>.</p>
+<p>Additionally, if we passed the variable <code>a</code> to another function, the ownership of <code>a</code> would be
+transferred to this function. When performing this operation, we <em>move</em> the value from one scope to
+another. This is also called <em>move semantics</em>.</p>
 <pre><code class="language-move">module book::ownership {
     public fun owner(): u8 {
         let a = 10;
@@ -236,7 +246,9 @@
 }
 </code></pre>
 <h2 id="scopes-with-blocks"><a class="header" href="#scopes-with-blocks">Scopes with Blocks</a></h2>
-<p>Function has a main scope, and it can also have sub-scopes via the use of blocks. A block is a sequence of statements and expressions, and it has its own scope. Variables defined in a block are owned by this block, and when the block ends, the variables are dropped.</p>
+<p>Function has a main scope, and it can also have sub-scopes via the use of blocks. A block is a
+sequence of statements and expressions, and it has its own scope. Variables defined in a block are
+owned by this block, and when the block ends, the variables are dropped.</p>
 <pre><code class="language-move">module book::ownership {
     public fun owner() {
         let a = 1; // a is owned by the `owner` function's scope
@@ -251,7 +263,8 @@
     } // a is dropped here
 }
 </code></pre>
-<p>However, shall we use the return value of a block, the ownership of the variable is transferred to the caller of the block.</p>
+<p>However, shall we use the return value of a block, the ownership of the variable is transferred to
+the caller of the block.</p>
 <pre><code class="language-move">module book::ownership {
     public fun owner(): u8 {
         let a = 1; // a is owned by the `owner` function's scope
@@ -264,7 +277,10 @@
 }
 </code></pre>
 <h2 id="copyable-types"><a class="header" href="#copyable-types">Copyable Types</a></h2>
-<p>Some types in Move are <em>copyable</em>, which means that they can be copied without transferring the ownership. This is useful for types that are small and cheap to copy, such as integers and booleans. Move compiler will automatically copy these types when they are passed to a function or returned from a function, or when they're <em>moved</em> to a scope and then accessed in their original scope.</p>
+<p>Some types in Move are <em>copyable</em>, which means that they can be copied without transferring the
+ownership. This is useful for types that are small and cheap to copy, such as integers and booleans.
+Move compiler will automatically copy these types when they are passed to a function or returned
+from a function, or when they're <em>moved</em> to a scope and then accessed in their original scope.</p>
 <h2 id="further-reading"><a class="header" href="#further-reading">Further reading</a></h2>
 <ul>
 <li><a href="/reference/variables.html">Local Variables and Scopes</a> in the Move Language Reference.</li>

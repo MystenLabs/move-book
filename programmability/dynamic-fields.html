@@ -177,13 +177,22 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="dynamic-fields"><a class="header" href="#dynamic-fields">Dynamic Fields</a></h1>
-<p>Sui Object model allows objects to be attached to other objects as <em>dynamic fields</em>. The behavior is similar to how a <code>Map</code> works in other programming languages. However, unlike a <code>Map</code> which in Move would be strictly typed (we have covered it in the <a href="./collections.html">Collections</a> section), dynamic fields allow attaching objects of any type. A similar approach from the world of frontend development would be a JavaScript Object type which allows storing any type of data dynamically.</p>
+<p>Sui Object model allows objects to be attached to other objects as <em>dynamic fields</em>. The behavior is
+similar to how a <code>Map</code> works in other programming languages. However, unlike a <code>Map</code> which in Move
+would be strictly typed (we have covered it in the <a href="./collections.html">Collections</a> section), dynamic
+fields allow attaching objects of any type. A similar approach from the world of frontend
+development would be a JavaScript Object type which allows storing any type of data dynamically.</p>
 <blockquote>
-<p>There's no limit to the number of dynamic fields that can be attached to an object. Thus, dynamic fields can be used to store large amounts of data that don't fit into the object limit size.</p>
+<p>There's no limit to the number of dynamic fields that can be attached to an object. Thus, dynamic
+fields can be used to store large amounts of data that don't fit into the object limit size.</p>
 </blockquote>
-<p>Dynamic Fields allow for a wide range of applications, from splitting data into smaller parts to avoid <a href="./../guides/building-against-limits.html">object size limit</a> to attaching objects as a part of application logic.</p>
+<p>Dynamic Fields allow for a wide range of applications, from splitting data into smaller parts to
+avoid <a href="./../guides/building-against-limits.html">object size limit</a> to attaching objects as a part of
+application logic.</p>
 <h2 id="definition"><a class="header" href="#definition">Definition</a></h2>
-<p>Dynamic Fields are defined in the <code>sui::dynamic_field</code> module of the <a href="./sui-framework.html">Sui Framework</a>. They are attached to object's <code>UID</code> via a <em>name</em>, and can be accessed using that name. There can be only one field with a given name attached to an object.</p>
+<p>Dynamic Fields are defined in the <code>sui::dynamic_field</code> module of the
+<a href="./sui-framework.html">Sui Framework</a>. They are attached to object's <code>UID</code> via a <em>name</em>, and can be
+accessed using that name. There can be only one field with a given name attached to an object.</p>
 <p>File: sui-framework/sources/dynamic_field.move</p>
 <pre><code class="language-move">/// Internal object used for storing the field and value
 public struct Field&lt;Name: copy + drop + store, Value: store&gt; has key {
@@ -196,9 +205,15 @@ public struct Field&lt;Name: copy + drop + store, Value: store&gt; has key {
     value: Value,
 }
 </code></pre>
-<p>As the definition shows, dynamic fields are stored in an internal <code>Field</code> object, which has the <code>UID</code> generated in a deterministic way based on the object ID, the field name, and the field type. The <code>Field</code> object contains the field name and the value bound to it. The constraints on the <code>Name</code> and <code>Value</code> type parameters define the abilities that the key and value must have.</p>
+<p>As the definition shows, dynamic fields are stored in an internal <code>Field</code> object, which has the
+<code>UID</code> generated in a deterministic way based on the object ID, the field name, and the field type.
+The <code>Field</code> object contains the field name and the value bound to it. The constraints on the <code>Name</code>
+and <code>Value</code> type parameters define the abilities that the key and value must have.</p>
 <h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
-<p>The methods available for dynamic fields are straightforward: a field can be added with <code>add</code>, removed with <code>remove</code>, and read with <code>borrow</code> and <code>borrow_mut</code>. Additionally, the <code>exists_</code> method can be used to check if a field exists (for stricter checks with type, there is an <code>exists_with_type</code> method).</p>
+<p>The methods available for dynamic fields are straightforward: a field can be added with <code>add</code>,
+removed with <code>remove</code>, and read with <code>borrow</code> and <code>borrow_mut</code>. Additionally, the <code>exists_</code> method
+can be used to check if a field exists (for stricter checks with type, there is an
+<code>exists_with_type</code> method).</p>
 <pre><code class="language-move">module book::dynamic_collection {
     // a very common alias for `dynamic_field` is `df` since the
     // module name is quite long
@@ -257,11 +272,21 @@ public struct Field&lt;Name: copy + drop + store, Value: store&gt; has key {
     }
 }
 </code></pre>
-<p>In the example above, we define a <code>Character</code> object and two different types of accessories that could never be put together in a vector. However, dynamic fields allow us to store them together in a single object. Both objects are attached to the <code>Character</code> via a <code>vector&lt;u8&gt;</code> (bytestring literal), and can be accessed using their respective keys.</p>
-<p>As you can see, when we attached the accessories to the Character, we passed them <em>by value</em>. In other words, both values were moved to a new scope, and their ownership was transferred to the <code>Character</code> object. If we changed the ownership of <code>Character</code> object, the accessories would have been moved with it.</p>
-<p>And the last important property of dynamic fields we should highlight is that they are <em>accessed through their parent</em>. This means that the <code>Hat</code> and <code>Mustache</code> objects are not directly accessible and follow the same rules as the parent object.</p>
+<p>In the example above, we define a <code>Character</code> object and two different types of accessories that
+could never be put together in a vector. However, dynamic fields allow us to store them together in
+a single object. Both objects are attached to the <code>Character</code> via a <code>vector&lt;u8&gt;</code> (bytestring
+literal), and can be accessed using their respective keys.</p>
+<p>As you can see, when we attached the accessories to the Character, we passed them <em>by value</em>. In
+other words, both values were moved to a new scope, and their ownership was transferred to the
+<code>Character</code> object. If we changed the ownership of <code>Character</code> object, the accessories would have
+been moved with it.</p>
+<p>And the last important property of dynamic fields we should highlight is that they are <em>accessed
+through their parent</em>. This means that the <code>Hat</code> and <code>Mustache</code> objects are not directly accessible
+and follow the same rules as the parent object.</p>
 <h2 id="foreign-types-as-dynamic-fields"><a class="header" href="#foreign-types-as-dynamic-fields">Foreign Types as Dynamic Fields</a></h2>
-<p>Dynamic fields allow objects to carry data of any type, including those defined in other modules. This is possible due to their generic nature and relatively weak constraints on the type parameters. Let's illustrate this by attaching a few different values to a <code>Character</code> object.</p>
+<p>Dynamic fields allow objects to carry data of any type, including those defined in other modules.
+This is possible due to their generic nature and relatively weak constraints on the type parameters.
+Let's illustrate this by attaching a few different values to a <code>Character</code> object.</p>
 <pre><code class="language-move">let mut character = Character { id: object::new(ctx) };
 
 // Attach a `String` via a `vector&lt;u8&gt;` name
@@ -273,12 +298,19 @@ df::add(&amp;mut character.id, 1000u32, 1_000_000_000u64);
 // Attach a `bool` via a `bool` name
 df::add(&amp;mut character.id, true, false);
 </code></pre>
-<p>In this example we showed how different types can be used for both <em>name</em> and the <em>value</em> of a dynamic field. The <code>String</code> is attached via a <code>vector&lt;u8&gt;</code> name, the <code>u64</code> is attached via a <code>u32</code> name, and the <code>bool</code> is attached via a <code>bool</code> name. Anything is possible with dynamic fields!</p>
+<p>In this example we showed how different types can be used for both <em>name</em> and the <em>value</em> of a
+dynamic field. The <code>String</code> is attached via a <code>vector&lt;u8&gt;</code> name, the <code>u64</code> is attached via a <code>u32</code>
+name, and the <code>bool</code> is attached via a <code>bool</code> name. Anything is possible with dynamic fields!</p>
 <h2 id="orphaned-dynamic-fields"><a class="header" href="#orphaned-dynamic-fields">Orphaned Dynamic Fields</a></h2>
 <blockquote>
-<p>To prevent orphaned dynamic fields, please, use <a href="./dynamic-collections.html">Dynamic Collection Types</a> such as <code>Bag</code> as they track the dynamic fields and won't allow unpacking if there are attached fields.</p>
+<p>To prevent orphaned dynamic fields, please, use
+<a href="./dynamic-collections.html">Dynamic Collection Types</a> such as <code>Bag</code> as they track the dynamic
+fields and won't allow unpacking if there are attached fields.</p>
 </blockquote>
-<p>The <code>object::delete()</code> function, which is used to delete a UID, does not track the dynamic fields, and cannot prevent dynamic fields from becoming orphaned. Once the parent UID is deleted, the dynamic fields are not automatically deleted, and they become orphaned. This means that the dynamic fields are still stored in the blockchain, but they will never become accessible again.</p>
+<p>The <code>object::delete()</code> function, which is used to delete a UID, does not track the dynamic fields,
+and cannot prevent dynamic fields from becoming orphaned. Once the parent UID is deleted, the
+dynamic fields are not automatically deleted, and they become orphaned. This means that the dynamic
+fields are still stored in the blockchain, but they will never become accessible again.</p>
 <pre><code class="language-move">let hat = Hat { id: object::new(ctx), color: 0xFF0000 };
 let mut character = Character { id: object::new(ctx) };
 
@@ -292,16 +324,23 @@ id.delete();
 
 // ...`Hat` is now stuck in a limbo, it will never be accessible again
 </code></pre>
-<p>Orphaned objects are not a subject to storage rebate, and the storage fees will remain unclaimed. One way to avoid orphaned dynamic fields during unpacking on an object is to return the <code>UID</code> and store it somewhere temporarily until the dynamic fields are removed and handled properly.</p>
+<p>Orphaned objects are not a subject to storage rebate, and the storage fees will remain unclaimed.
+One way to avoid orphaned dynamic fields during unpacking on an object is to return the <code>UID</code> and
+store it somewhere temporarily until the dynamic fields are removed and handled properly.</p>
 <h2 id="custom-type-as-a-field-name"><a class="header" href="#custom-type-as-a-field-name">Custom Type as a Field Name</a></h2>
-<p>In the examples above, we used primitive types as field names since they have the required set of abilities. But dynamic fields get even more interesting when we use custom types as field names. This allows for a more structured way of storing data, and also allows for protecting the field names from being accessed by other modules.</p>
+<p>In the examples above, we used primitive types as field names since they have the required set of
+abilities. But dynamic fields get even more interesting when we use custom types as field names.
+This allows for a more structured way of storing data, and also allows for protecting the field
+names from being accessed by other modules.</p>
 <pre><code class="language-move">/// A custom type with fields in it.
 public struct AccessoryKey has copy, drop, store { name: String }
 
 /// An empty key, can be attached only once.
 public struct MetadataKey has copy, drop, store {}
 </code></pre>
-<p>Two field names that we defined above are <code>AccessoryKey</code> and <code>MetadataKey</code>. The <code>AccessoryKey</code> has a <code>String</code> field in it, hence it can be used multiple times with different <code>name</code> values. The <code>MetadataKey</code> is an empty key, and can be attached only once.</p>
+<p>Two field names that we defined above are <code>AccessoryKey</code> and <code>MetadataKey</code>. The <code>AccessoryKey</code> has a
+<code>String</code> field in it, hence it can be used multiple times with different <code>name</code> values. The
+<code>MetadataKey</code> is an empty key, and can be attached only once.</p>
 <pre><code class="language-move">let mut character = Character { id: object::new(ctx) };
 
 // Attaching via an `AccessoryKey { name: b&quot;hat&quot; }`
@@ -320,21 +359,35 @@ df::add(
 // Attaching via a `MetadataKey`
 df::add(&amp;mut character.id, MetadataKey {}, 42);
 </code></pre>
-<p>As you can see, custom types do work as field names but as long as they can be <em>constructed</em> by the module, in other words - if they are <em>internal</em> to the module and defined in it. This limitation on struct packing can open up new ways in the design of the application.</p>
-<p>This approach is used in the <a href="">Object Capability</a> pattern, where an application can authorize a foreign object to perform operations in it while not exposing the capabilities to other modules.</p>
+<p>As you can see, custom types do work as field names but as long as they can be <em>constructed</em> by the
+module, in other words - if they are <em>internal</em> to the module and defined in it. This limitation on
+struct packing can open up new ways in the design of the application.</p>
+<p>This approach is used in the <a href="">Object Capability</a> pattern, where an application can authorize a
+foreign object to perform operations in it while not exposing the capabilities to other modules.</p>
 <h2 id="exposing-uid"><a class="header" href="#exposing-uid">Exposing UID</a></h2>
 <div class="warning">
-<p>Mutable access to <code>UID</code> is a security risk. Exposing <code>UID</code> of your type as a mutable reference can lead to unwanted modifications or removal of the object's dynamic fields. Additionally, it affects the <a href="./../storage/transfer-to-object.html">Transfer to Object</a> and <a href="./dynamic-object-fields.html">Dynamic Object Fields</a>. Make sure to understand the implications before exposing the <code>UID</code> as a mutable reference.</p>
+<p>Mutable access to <code>UID</code> is a security risk. Exposing <code>UID</code> of your type as a mutable reference can
+lead to unwanted modifications or removal of the object's dynamic fields. Additionally, it affects
+the <a href="./../storage/transfer-to-object.html">Transfer to Object</a> and
+<a href="./dynamic-object-fields.html">Dynamic Object Fields</a>. Make sure to understand the implications before
+exposing the <code>UID</code> as a mutable reference.</p>
 </div>
-<p>Because dynamic fields are attached to <code>UID</code>s, their usage in other modules depends on whether the <code>UID</code> can be accessed. By default struct visibility protects the <code>id</code> field and won't let other modules access it directly. However, if there's a public accessor method that returns a reference to <code>UID</code>, dynamic fields can be read in other modules.</p>
+<p>Because dynamic fields are attached to <code>UID</code>s, their usage in other modules depends on whether the
+<code>UID</code> can be accessed. By default struct visibility protects the <code>id</code> field and won't let other
+modules access it directly. However, if there's a public accessor method that returns a reference to
+<code>UID</code>, dynamic fields can be read in other modules.</p>
 <pre><code class="language-move">/// Exposes the UID of the character, so that other modules can read
 /// dynamic fields.
 public fun uid(c: &amp;Character): &amp;UID {
     &amp;c.id
 }
 </code></pre>
-<p>In the example above, we show how to expose the <code>UID</code> of a <code>Character</code> object. This solution may work for some applications, however, it is important to remember that exposed <code>UID</code> allows reading <em>any</em> dynamic field attached to the object.</p>
-<p>If you need to expose the <code>UID</code> only within the package, use a restrictive visibility, like <code>public(package)</code>, or even better - use more specific accessor methods that would allow only reading specific fields.</p>
+<p>In the example above, we show how to expose the <code>UID</code> of a <code>Character</code> object. This solution may
+work for some applications, however, it is important to remember that exposed <code>UID</code> allows reading
+<em>any</em> dynamic field attached to the object.</p>
+<p>If you need to expose the <code>UID</code> only within the package, use a restrictive visibility, like
+<code>public(package)</code>, or even better - use more specific accessor methods that would allow only reading
+specific fields.</p>
 <pre><code class="language-move">/// Only allow modules in the same package to access the UID.
 public(package) fun uid_package(c: &amp;Character): &amp;UID {
     &amp;c.id
@@ -349,13 +402,22 @@ public fun borrow&lt;Name: copy + store + drop, Value: store&gt;(
 }
 </code></pre>
 <h2 id="dynamic-fields-vs-fields"><a class="header" href="#dynamic-fields-vs-fields">Dynamic Fields vs Fields</a></h2>
-<p>Dynamic Fields are more expensive than regular fields, as they require additional storage and costs for accessing them. Their flexibility comes at a price, and it is important to understand the implications when making a decision between using dynamic fields and regular fields.</p>
+<p>Dynamic Fields are more expensive than regular fields, as they require additional storage and costs
+for accessing them. Their flexibility comes at a price, and it is important to understand the
+implications when making a decision between using dynamic fields and regular fields.</p>
 <h2 id="limits"><a class="header" href="#limits">Limits</a></h2>
-<p>Dynamic Fields are not subject to the <a href="./../guides/building-against-limits.html">object size limit</a>, and can be used to store large amounts of data. However, they are still subject to the <a href="./../guides/building-against-limits.html">dynamic fields created limit</a>, which is set to 1000 fields per transaction.</p>
+<p>Dynamic Fields are not subject to the <a href="./../guides/building-against-limits.html">object size limit</a>,
+and can be used to store large amounts of data. However, they are still subject to the
+<a href="./../guides/building-against-limits.html">dynamic fields created limit</a>, which is set to 1000 fields
+per transaction.</p>
 <h2 id="applications"><a class="header" href="#applications">Applications</a></h2>
-<p>Dynamic Fields can play a crucial role in applications of any complexity. They open up a variety of different use cases, from storing heterogeneous data to attaching objects as part of the application logic. They allow for certain <a href="./../guides/upgradeability-practices.html">upgradeability practices</a> based on the ability to define them <em>later</em> and change the type of the field.</p>
+<p>Dynamic Fields can play a crucial role in applications of any complexity. They open up a variety of
+different use cases, from storing heterogeneous data to attaching objects as part of the application
+logic. They allow for certain <a href="./../guides/upgradeability-practices.html">upgradeability practices</a>
+based on the ability to define them <em>later</em> and change the type of the field.</p>
 <h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
-<p>In the next section we will cover <a href="./dynamic-object-fields.html">Dynamic Object Fields</a> and explain how they differ from dynamic fields, and what are the implications of using them.</p>
+<p>In the next section we will cover <a href="./dynamic-object-fields.html">Dynamic Object Fields</a> and explain
+how they differ from dynamic fields, and what are the implications of using them.</p>
 
                     </main>
 

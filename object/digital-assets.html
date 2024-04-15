@@ -177,33 +177,56 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="move---language-for-digital-assets"><a class="header" href="#move---language-for-digital-assets">Move - Language for Digital Assets</a></h1>
-<p>Smart-contract programming languages have historically focused on defining and managing digital assets. For example, the ERC-20 standard in Ethereum pioneered a set of standards to interact with digital currency tokens, establishing a blueprint for creating and managing digital currencies on the blockchain. Subsequently, the introduction of the ERC-721 standard marked a significant evolution, popularising the concept of non-fungible tokens (NFTs), which represent unique, indivisible assets. These standards laid the groundwork for the complex digital assets we see today.</p>
+<p>Smart-contract programming languages have historically focused on defining and managing digital
+assets. For example, the ERC-20 standard in Ethereum pioneered a set of standards to interact with
+digital currency tokens, establishing a blueprint for creating and managing digital currencies on
+the blockchain. Subsequently, the introduction of the ERC-721 standard marked a significant
+evolution, popularising the concept of non-fungible tokens (NFTs), which represent unique,
+indivisible assets. These standards laid the groundwork for the complex digital assets we see today.</p>
 <!-- ## Move and Digital Assets -->
 <!-- note: consider "native" -> "fine-grained" -->
-<p>However, Ethereum's programming model lacked a native representation of assets. In other words, externally, a Smart Contract behaved like an asset, but the language itself did not have a way to inherently represent assets. From the start, Move aimed to provide a first-class abstraction for assets, opening up new avenues for thinking about and programming assets.</p>
+<p>However, Ethereum's programming model lacked a native representation of assets. In other words,
+externally, a Smart Contract behaved like an asset, but the language itself did not have a way to
+inherently represent assets. From the start, Move aimed to provide a first-class abstraction for
+assets, opening up new avenues for thinking about and programming assets.</p>
 <!-- Move was initially created in 2018 as part of the Libra project. The language was designed to address shortcomings in existing smart contract languages, especially in handling assets and access control. The Move language aims to provide first-class abstractions for these concepts, improving the safety and productivity of smart contract programming. -->
 <p>It is important to highlight which properties are essential for an asset:</p>
 <ul>
 <li>
-<p><strong>Ownership:</strong> Every asset is associated with an owner(s), mirroring the straightforward concept of ownership in the physical world—just as you own a car, you can own a digital asset. Move enforces ownership in such a way that once an asset is <em>moved</em>, the previous owner completely loses any control over it. This mechanism ensures a clear and secure change of ownership.</p>
+<p><strong>Ownership:</strong> Every asset is associated with an owner(s), mirroring the straightforward concept
+of ownership in the physical world—just as you own a car, you can own a digital asset. Move
+enforces ownership in such a way that once an asset is <em>moved</em>, the previous owner completely
+loses any control over it. This mechanism ensures a clear and secure change of ownership.</p>
 </li>
 <li>
-<p><strong>Non-copyable:</strong> In the real world, unique items cannot be duplicated effortlessly. Move applies this principle to digital assets, ensuring they cannot be arbitrarily copied within the program. This property is crucial for maintaining the scarcity and uniqueness of digital assets, mirroring the intrinsic value of physical assets.</p>
+<p><strong>Non-copyable:</strong> In the real world, unique items cannot be duplicated effortlessly. Move applies
+this principle to digital assets, ensuring they cannot be arbitrarily copied within the program.
+This property is crucial for maintaining the scarcity and uniqueness of digital assets, mirroring
+the intrinsic value of physical assets.</p>
 </li>
 <li>
-<p><strong>Non-discardable:</strong> Just as you cannot accidentally lose a house or a car without a trace, Move ensures that no asset can be discarded or lost in a program. Instead, assets must be explicitly transferred or destroyed. This property guarantees the deliberate handling of digital assets, preventing accidental loss and ensuring accountability in asset management.</p>
+<p><strong>Non-discardable:</strong> Just as you cannot accidentally lose a house or a car without a trace, Move
+ensures that no asset can be discarded or lost in a program. Instead, assets must be explicitly
+transferred or destroyed. This property guarantees the deliberate handling of digital assets,
+preventing accidental loss and ensuring accountability in asset management.</p>
 </li>
 </ul>
-<p>Move managed to encapsulate these properties in its design, becoming an ideal language for digital assets.</p>
+<p>Move managed to encapsulate these properties in its design, becoming an ideal language for digital
+assets.</p>
 <h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
 <ul>
-<li>Move was designed to provide a first-class abstraction for digital assets, enabling developers to create and manage assets natively.</li>
-<li>Essential properties of digital assets include ownership, non-copyability, and non-discardability, which Move enforces in its design.</li>
-<li>Move's asset model mirrors real-world asset management, ensuring secure and accountable asset ownership and transfer.</li>
+<li>Move was designed to provide a first-class abstraction for digital assets, enabling developers to
+create and manage assets natively.</li>
+<li>Essential properties of digital assets include ownership, non-copyability, and non-discardability,
+which Move enforces in its design.</li>
+<li>Move's asset model mirrors real-world asset management, ensuring secure and accountable asset
+ownership and transfer.</li>
 </ul>
 <h2 id="further-reading"><a class="header" href="#further-reading">Further reading</a></h2>
 <ul>
-<li><a href="https://developers.diem.com/papers/diem-move-a-language-with-programmable-resources/2019-06-18.pdf">Move: A Language With Programmable Resources (pdf)</a> by Sam Blackshear, Evan Cheng, David L. Dill, Victor Gao, Ben Maurer, Todd Nowacki, Alistair Pott, Shaz Qadeer, Rain, Dario Russi, Stephane Sezer, Tim Zakian, Runtian Zhou*</li>
+<li><a href="https://developers.diem.com/papers/diem-move-a-language-with-programmable-resources/2019-06-18.pdf">Move: A Language With Programmable Resources (pdf)</a>
+by Sam Blackshear, Evan Cheng, David L. Dill, Victor Gao, Ben Maurer, Todd Nowacki, Alistair Pott,
+Shaz Qadeer, Rain, Dario Russi, Stephane Sezer, Tim Zakian, Runtian Zhou*</li>
 </ul>
 
                     </main>

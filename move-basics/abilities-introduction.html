@@ -177,14 +177,22 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="abilities-introduction"><a class="header" href="#abilities-introduction">Abilities: Introduction</a></h1>
-<p>Move has a unique type system which allows customizing <em>type abilities</em>. <a href="./struct.html">In the previous section</a>, we introduced the <code>struct</code> definition and how to use it. However, the instances of the <code>Artist</code> and <code>Record</code> structs had to be unpacked for the code to compile. This is default behavior of a struct without <em>abilities</em>.</p>
+<p>Move has a unique type system which allows customizing <em>type abilities</em>.
+<a href="./struct.html">In the previous section</a>, we introduced the <code>struct</code> definition and how to use it.
+However, the instances of the <code>Artist</code> and <code>Record</code> structs had to be unpacked for the code to
+compile. This is default behavior of a struct without <em>abilities</em>.</p>
 <blockquote>
-<p>Throughout the book you will see chapters with name <code>Ability: &lt;name&gt;</code>, where <code>&lt;name&gt;</code> is the name of the ability. These chapters will cover the ability in detail, how it works, and how to use it in Move.</p>
+<p>Throughout the book you will see chapters with name <code>Ability: &lt;name&gt;</code>, where <code>&lt;name&gt;</code> is the name
+of the ability. These chapters will cover the ability in detail, how it works, and how to use it
+in Move.</p>
 </blockquote>
 <h2 id="what-are-abilities"><a class="header" href="#what-are-abilities">What are Abilities?</a></h2>
-<p>Abilities are a way to allow certain behaviors for a type. They are a part of the struct declaration and define which behaviours are allowed for the instances of the struct.</p>
+<p>Abilities are a way to allow certain behaviors for a type. They are a part of the struct declaration
+and define which behaviours are allowed for the instances of the struct.</p>
 <h2 id="abilities-syntax"><a class="header" href="#abilities-syntax">Abilities syntax</a></h2>
-<p>Abilities are set in the struct definition using the <code>has</code> keyword followed by a list of abilities. The abilities are separated by commas. Move supports 4 abilities: <code>copy</code>, <code>drop</code>, <code>key</code>, and <code>store</code>, each of them is used to define a specific behaviour for the struct instances.</p>
+<p>Abilities are set in the struct definition using the <code>has</code> keyword followed by a list of abilities.
+The abilities are separated by commas. Move supports 4 abilities: <code>copy</code>, <code>drop</code>, <code>key</code>, and
+<code>store</code>, each of them is used to define a specific behaviour for the struct instances.</p>
 <pre><code class="language-move">/// This struct has the `copy` and `drop` abilities.
 struct VeryAble has copy, drop {
     // field: Type1,
@@ -195,17 +203,27 @@ struct VeryAble has copy, drop {
 <h2 id="overview"><a class="header" href="#overview">Overview</a></h2>
 <p>A quick overview of the abilities:</p>
 <blockquote>
-<p>All of the built-in types, except references, have <code>copy</code>, <code>drop</code> and <code>store</code> abilities. References have <code>copy</code> and <code>drop</code>.</p>
+<p>All of the built-in types, except references, have <code>copy</code>, <code>drop</code> and <code>store</code> abilities.
+References have <code>copy</code> and <code>drop</code>.</p>
 </blockquote>
 <ul>
-<li><code>copy</code> - allows the struct to be <em>copied</em>. Explained in the <a href="./copy-ability.html">Ability: Copy</a> chapter.</li>
-<li><code>drop</code> - allows the struct to be <em>dropped</em> or <em>discarded</em>. Explained in the <a href="./drop-ability.html">Ability: Drop</a> chapter.</li>
-<li><code>key</code> - allows the struct to be used as a <em>key</em> in a storage. Explained in the <a href="./../storage/key-ability.html">Ability: Key</a> chapter.</li>
-<li><code>store</code> - allows the struct to be <em>stored</em> in structs with the <em>key</em> ability. Explained in the <a href="./../storage/store-ability.html">Ability: Store</a> chapter.</li>
+<li><code>copy</code> - allows the struct to be <em>copied</em>. Explained in the <a href="./copy-ability.html">Ability: Copy</a>
+chapter.</li>
+<li><code>drop</code> - allows the struct to be <em>dropped</em> or <em>discarded</em>. Explained in the
+<a href="./drop-ability.html">Ability: Drop</a> chapter.</li>
+<li><code>key</code> - allows the struct to be used as a <em>key</em> in a storage. Explained in the
+<a href="./../storage/key-ability.html">Ability: Key</a> chapter.</li>
+<li><code>store</code> - allows the struct to be <em>stored</em> in structs with the <em>key</em> ability. Explained in the
+<a href="./../storage/store-ability.html">Ability: Store</a> chapter.</li>
 </ul>
-<p>While it is important to mention them here, we will go in detail about each ability in the following chapters and give a proper context on how to use them.</p>
+<p>While it is important to mention them here, we will go in detail about each ability in the following
+chapters and give a proper context on how to use them.</p>
 <h2 id="no-abilities"><a class="header" href="#no-abilities">No abilities</a></h2>
-<p>A struct without abilities cannot be discarded, or copied, or stored in the storage. We call such a struct a <em>Hot Potato</em>. It is a joke, but it is also a good way to remember that a struct without abilities is like a hot potato - it can only be passed around and requires special handling. Hot Potato is one of the most powerful patterns in Move, we go in detail about it in the <a href="./../programmability/hot-potato.html">Hot Potato</a> chapter.</p>
+<p>A struct without abilities cannot be discarded, or copied, or stored in the storage. We call such a
+struct a <em>Hot Potato</em>. It is a joke, but it is also a good way to remember that a struct without
+abilities is like a hot potato - it can only be passed around and requires special handling. Hot
+Potato is one of the most powerful patterns in Move, we go in detail about it in the
+<a href="./../programmability/hot-potato.html">Hot Potato</a> chapter.</p>
 <h2 id="further-reading"><a class="header" href="#further-reading">Further reading</a></h2>
 <ul>
 <li><a href="/reference/type-abilities.html">Type Abilities</a> in the Move Language Reference.</li>

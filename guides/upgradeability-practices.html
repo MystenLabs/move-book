@@ -177,7 +177,12 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="upgradeability-practices"><a class="header" href="#upgradeability-practices">Upgradeability Practices</a></h1>
-<p>To talk about best practices for upgradeability, we need to first understand what can be upgraded in a package. The base premise of upgradeability is that an upgrade should not break public compatibility with the previous version. The parts of the module which can be used in dependent packages should not change their static signature. This applies to modules - a module can not be removed from a package, public structs - they can be used in function signatures and public functions - they can be called from other packages.</p>
+<p>To talk about best practices for upgradeability, we need to first understand what can be upgraded in
+a package. The base premise of upgradeability is that an upgrade should not break public
+compatibility with the previous version. The parts of the module which can be used in dependent
+packages should not change their static signature. This applies to modules - a module can not be
+removed from a package, public structs - they can be used in function signatures and public
+functions - they can be called from other packages.</p>
 <pre><code class="language-move">// module can not be removed from the package
 module book::upgradable {
     // dependencies can be changed (if they are not used in public signatures)
@@ -229,7 +234,11 @@ TODO: Add a section about entry and friend functions
 -->
 <h2 id="versioning-objects"><a class="header" href="#versioning-objects">Versioning objects</a></h2>
 <!-- This practice is for function version locking based on a shared state -->
-<p>To discard previous versions of the package, the objects can be versioned. As long as the object contains a version field, and the code which uses the object expects and asserts a specific version, the code can be force-migrated to the new version. Normally, after an upgrade, admin functions can be used to update the version of the shared state, so that the new version of code can be used, and the old version aborts with a version mismatch.</p>
+<p>To discard previous versions of the package, the objects can be versioned. As long as the object
+contains a version field, and the code which uses the object expects and asserts a specific version,
+the code can be force-migrated to the new version. Normally, after an upgrade, admin functions can
+be used to update the version of the shared state, so that the new version of code can be used, and
+the old version aborts with a version mismatch.</p>
 <pre><code class="language-move">module book::versioned_state {
 
     const EVersionMismatch: u64 = 0;
@@ -251,7 +260,10 @@ TODO: Add a section about entry and friend functions
 </code></pre>
 <h2 id="versioning-configuration-with-dynamic-fields"><a class="header" href="#versioning-configuration-with-dynamic-fields">Versioning configuration with dynamic fields</a></h2>
 <!-- This practice is for versioning the contents / structure of objects -->
-<p>There's a common pattern in Sui which allows changing the stored configuration of an object while retaining the same object signature. This is done by keeping the base object simple and versioned and adding an actual configuration object as a dynamic field. Using this <em>anchor</em> pattern, the configuration can be changed with package upgrades while keeping the same base object signature.</p>
+<p>There's a common pattern in Sui which allows changing the stored configuration of an object while
+retaining the same object signature. This is done by keeping the base object simple and versioned
+and adding an actual configuration object as a dynamic field. Using this <em>anchor</em> pattern, the
+configuration can be changed with package upgrades while keeping the same base object signature.</p>
 <pre><code class="language-move">module book::versioned_config {
     use sui::vec_map::VecMap;
     use std::string::String;

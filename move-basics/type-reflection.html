@@ -177,10 +177,16 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="type-reflection"><a class="header" href="#type-reflection">Type Reflection</a></h1>
-<p>In programming languages <em>reflection</em> is the ability of a program to examine and modify its own structure and behavior. In Move, there's a limited form of reflection that allows you to inspect the type of a value at runtime. This is useful when you need to store type information in a homogeneous collection, or when you need to check if a type belongs to a package.</p>
-<p>Type reflection is implemented in the <a href="./standard-library.html">Standard Library</a> module <code>std::type_name</code>. Expressed very roughly, it gives a single function <code>get&lt;T&gt;()</code> which returns the name of the type <code>T</code>.</p>
+<p>In programming languages <em>reflection</em> is the ability of a program to examine and modify its own
+structure and behavior. In Move, there's a limited form of reflection that allows you to inspect the
+type of a value at runtime. This is useful when you need to store type information in a homogeneous
+collection, or when you need to check if a type belongs to a package.</p>
+<p>Type reflection is implemented in the <a href="./standard-library.html">Standard Library</a> module
+<code>std::type_name</code>. Expressed very roughly, it gives a single function <code>get&lt;T&gt;()</code> which returns the
+name of the type <code>T</code>.</p>
 <h2 id="in-practice"><a class="header" href="#in-practice">In practice</a></h2>
-<p>The module is pretty straightforward, and operations allowed on the result are limited to getting a string representation and extracting the module and address of the type.</p>
+<p>The module is pretty straightforward, and operations allowed on the result are limited to getting a
+string representation and extracting the module and address of the type.</p>
 <pre><code class="language-move">module book::type_reflection {
     use std::ascii::String;
     use std::type_name::{Self, TypeName};
@@ -214,7 +220,8 @@
 }
 </code></pre>
 <h2 id="further-reading"><a class="header" href="#further-reading">Further reading</a></h2>
-<p>Type reflection is an important part of the language, and it is a crucial part of some of the more advanced patterns.</p>
+<p>Type reflection is an important part of the language, and it is a crucial part of some of the more
+advanced patterns.</p>
 
                     </main>
 

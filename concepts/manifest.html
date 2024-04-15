@@ -177,7 +177,9 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="package-manifest"><a class="header" href="#package-manifest">Package Manifest</a></h1>
-<p>The <code>Move.toml</code> is a manifest file that describes the <a href="./packages.html">package</a> and its dependencies. It is written in <a href="https://toml.io/en/">TOML</a> format and contains multiple sections, the most important of which are <code>[package]</code>, <code>[dependencies]</code> and <code>[addresses]</code>.</p>
+<p>The <code>Move.toml</code> is a manifest file that describes the <a href="./packages.html">package</a> and its dependencies.
+It is written in <a href="https://toml.io/en/">TOML</a> format and contains multiple sections, the most
+important of which are <code>[package]</code>, <code>[dependencies]</code> and <code>[addresses]</code>.</p>
 <pre><code class="language-toml">[package]
 name = &quot;my_project&quot;
 version = &quot;0.0.0&quot;
@@ -195,7 +197,9 @@ alice = &quot;0xB0B&quot;
 </code></pre>
 <h2 id="sections"><a class="header" href="#sections">Sections</a></h2>
 <h3 id="package"><a class="header" href="#package">Package</a></h3>
-<p>The <code>[package]</code> section is used to describe the package. None of the fields in this section are published on chain, but they are used in tooling and release management; they also specify the Move edition for the compiler.</p>
+<p>The <code>[package]</code> section is used to describe the package. None of the fields in this section are
+published on chain, but they are used in tooling and release management; they also specify the Move
+edition for the compiler.</p>
 <ul>
 <li><code>name</code> - the name of the package when it is imported;</li>
 <li><code>version</code> - the version of the package, can be used in release management;</li>
@@ -203,27 +207,46 @@ alice = &quot;0xB0B&quot;
 </ul>
 <!-- published-at -->
 <h3 id="dependencies"><a class="header" href="#dependencies">Dependencies</a></h3>
-<p>The <code>[dependencies]</code> section is used to specify the dependencies of the project. Each dependency is specified as a key-value pair, where the key is the name of the dependency, and the value is the dependency specification. The dependency specification can be a git repository URL or a path to the local directory.</p>
+<p>The <code>[dependencies]</code> section is used to specify the dependencies of the project. Each dependency is
+specified as a key-value pair, where the key is the name of the dependency, and the value is the
+dependency specification. The dependency specification can be a git repository URL or a path to the
+local directory.</p>
 <pre><code class="language-toml"># git repository
 Sui = { git = &quot;https://github.com/MystenLabs/sui.git&quot;, subdir = &quot;crates/sui-framework/packages/sui-framework&quot;, rev = &quot;framework/testnet&quot; }
 
 # local directory
 MyPackage = { local = &quot;../my-package&quot; }
 </code></pre>
-<p>Packages also import addresses from other packages. For example, the Sui dependency adds the <code>std</code> and <code>sui</code> addresses to the project. These addresses can be used in the code as aliases for the addresses.</p>
+<p>Packages also import addresses from other packages. For example, the Sui dependency adds the <code>std</code>
+and <code>sui</code> addresses to the project. These addresses can be used in the code as aliases for the
+addresses.</p>
 <h3 id="resolving-version-conflicts-with-override"><a class="header" href="#resolving-version-conflicts-with-override">Resolving version conflicts with override</a></h3>
-<p>Sometimes dependencies have conflicting versions of the same package. For example, if you have two dependencies that use different versions of the Sui package, you can override the dependency in the <code>[dependencies]</code> section. To do so, add the <code>override</code> field to the dependency. The version of the dependency specified in the <code>[dependencies]</code> section will be used instead of the one specified in the dependency itself.</p>
+<p>Sometimes dependencies have conflicting versions of the same package. For example, if you have two
+dependencies that use different versions of the Sui package, you can override the dependency in the
+<code>[dependencies]</code> section. To do so, add the <code>override</code> field to the dependency. The version of the
+dependency specified in the <code>[dependencies]</code> section will be used instead of the one specified in
+the dependency itself.</p>
 <pre><code class="language-toml">[dependencies]
 Sui = { override = true, git = &quot;https://github.com/MystenLabs/sui.git&quot;, subdir = &quot;crates/sui-framework/packages/sui-framework&quot;, rev = &quot;framework/testnet&quot; }
 </code></pre>
 <h3 id="dev-dependencies"><a class="header" href="#dev-dependencies">Dev-dependencies</a></h3>
-<p>It is possible to add <code>[dev-dependencies]</code> section to the manifest. It is used to override dependencies in the dev and test modes. For example, if you want to use a different version of the Sui package in the dev mode, you can add a custom dependency specification to the <code>[dev-dependencies]</code> section.</p>
+<p>It is possible to add <code>[dev-dependencies]</code> section to the manifest. It is used to override
+dependencies in the dev and test modes. For example, if you want to use a different version of the
+Sui package in the dev mode, you can add a custom dependency specification to the
+<code>[dev-dependencies]</code> section.</p>
 <h3 id="addresses"><a class="header" href="#addresses">Addresses</a></h3>
-<p>The <code>[addresses]</code> section is used to add aliases for the addresses. Any address can be specified in this section, and then used in the code as an alias. For example, if you add <code>alice = &quot;0xA11CE&quot;</code> to this section, you can use <code>alice</code> as <code>0xA11CE</code> in the code.</p>
+<p>The <code>[addresses]</code> section is used to add aliases for the addresses. Any address can be specified in
+this section, and then used in the code as an alias. For example, if you add <code>alice = &quot;0xA11CE&quot;</code> to
+this section, you can use <code>alice</code> as <code>0xA11CE</code> in the code.</p>
 <h3 id="dev-addresses"><a class="header" href="#dev-addresses">Dev-addresses</a></h3>
-<p>The <code>[dev-addresses]</code> section is the same as <code>[addresses]</code>, but only works for the test and dev modes. Important to note that it is impossible to introduce new aliases in this section, only override the existing ones. So in the example above, if you add <code>alice = &quot;0xB0B&quot;</code> to this section, the <code>alice</code> address will be <code>0xB0B</code> in the test and dev modes, and <code>0xA11CE</code> in the regular build.</p>
+<p>The <code>[dev-addresses]</code> section is the same as <code>[addresses]</code>, but only works for the test and dev
+modes. Important to note that it is impossible to introduce new aliases in this section, only
+override the existing ones. So in the example above, if you add <code>alice = &quot;0xB0B&quot;</code> to this section,
+the <code>alice</code> address will be <code>0xB0B</code> in the test and dev modes, and <code>0xA11CE</code> in the regular build.</p>
 <h2 id="toml-styles"><a class="header" href="#toml-styles">TOML styles</a></h2>
-<p>The TOML format supports two styles for tables: inline and multiline. The examples above are using the inline style, but it is also possible to use the multiline style. You wouldn't want to use it for the <code>[package]</code> section, but it can be useful for the dependencies.</p>
+<p>The TOML format supports two styles for tables: inline and multiline. The examples above are using
+the inline style, but it is also possible to use the multiline style. You wouldn't want to use it
+for the <code>[package]</code> section, but it can be useful for the dependencies.</p>
 <pre><code class="language-toml"># Inline style
 [dependencies]
 Sui = { override = true, git = &quot;&quot;, subdir = &quot;crates/sui-framework/packages/sui-framework&quot;, rev = &quot;framework/testnet&quot; }

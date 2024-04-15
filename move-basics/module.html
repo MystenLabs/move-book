@@ -188,10 +188,17 @@ Notes:
     - only module can pack and unpack its types
 
  -->
-<p>Module is the base unit of code organization in Move. Modules are used to group and isolate code, and all of the members of the module are private to the module by default. In this section you will learn how to define a module, how to declare its members and how to access them from other modules.</p>
+<p>Module is the base unit of code organization in Move. Modules are used to group and isolate code,
+and all of the members of the module are private to the module by default. In this section you will
+learn how to define a module, how to declare its members and how to access them from other modules.</p>
 <h2 id="module-declaration"><a class="header" href="#module-declaration">Module declaration</a></h2>
-<p>Modules are declared using the <code>module</code> keyword followed by the package address, module name and the module body inside the curly braces <code>{}</code>. The module name should be in <code>snake_case</code> - all lowercase letters with underscores between words. Modules names must be unique in the package.</p>
-<p>Usually, a single file in the <code>sources/</code> folder contains a single module. The file name should match the module name - for example, a <code>donut_shop</code> module should be stored in the <code>donut_shop.move</code> file. You can read more about coding conventions in the <a href="../special-topics/coding-conventions.html">Coding Conventions</a> section.</p>
+<p>Modules are declared using the <code>module</code> keyword followed by the package address, module name and the
+module body inside the curly braces <code>{}</code>. The module name should be in <code>snake_case</code> - all lowercase
+letters with underscores between words. Modules names must be unique in the package.</p>
+<p>Usually, a single file in the <code>sources/</code> folder contains a single module. The file name should match
+the module name - for example, a <code>donut_shop</code> module should be stored in the <code>donut_shop.move</code> file.
+You can read more about coding conventions in the
+<a href="../special-topics/coding-conventions.html">Coding Conventions</a> section.</p>
 <pre><code class="language-Move">module book::my_module {
     // module body
 }
@@ -205,7 +212,10 @@ Notes:
 <li><a href="./struct-methods.html">Struct Methods</a></li>
 </ul>
 <h2 id="address--named-address"><a class="header" href="#address--named-address">Address / Named address</a></h2>
-<p>Module address can be specified as both: an address <em>literal</em> (does not require the <code>@</code> prefix) or a named address specified in the <a href="../concepts/manifest.html">Package Manifest</a>. In the example below, both are identical because there's a <code>book = &quot;0x0&quot;</code> record in the <code>[addresses]</code> section of the <code>Move.toml</code>.</p>
+<p>Module address can be specified as both: an address <em>literal</em> (does not require the <code>@</code> prefix) or a
+named address specified in the <a href="../concepts/manifest.html">Package Manifest</a>. In the example below,
+both are identical because there's a <code>book = &quot;0x0&quot;</code> record in the <code>[addresses]</code> section of the
+<code>Move.toml</code>.</p>
 <pre><code class="language-Move">module 0x0::address_literal { /* ... */ }
 module book::named_address { /* ... */ }
 </code></pre>
@@ -215,7 +225,8 @@ module book::named_address { /* ... */ }
 book = &quot;0x0&quot;
 </code></pre>
 <h2 id="module-members"><a class="header" href="#module-members">Module members</a></h2>
-<p>Module members are declared inside the module body. To illustrate that, let's define a simple module with a struct, a function and a constant:</p>
+<p>Module members are declared inside the module body. To illustrate that, let's define a simple module
+with a struct, a function and a constant:</p>
 <pre><code class="language-Move">module book::my_module_with_members {
     // import
     use book::my_module;

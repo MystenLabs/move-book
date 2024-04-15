@@ -177,11 +177,19 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="the-key-ability"><a class="header" href="#the-key-ability">The Key Ability</a></h1>
-<p>In the <a href="./../move-basics">Basic Syntax</a> chapter we already covered two out of four abilities - <a href="./drop-ability.html">Drop</a> and <a href="./copy-ability.html">Copy</a>. They affect the behaviour of the value in a scope and are not directly related to storage. It is time to cover the <code>key</code> ability, which allows the struct to be stored.</p>
-<p>Historically, the <code>key</code> ability was created to mark the type as a <em>key in the storage</em>. A type with the <code>key</code> ability could be stored at top-level in the storage, and could be <em>directly owned</em> by an account or address. With the introduction of the <a href="./../object">Object Model</a>, the <code>key</code> ability naturally became the defining ability for the object.</p>
+<p>In the <a href="./../move-basics">Basic Syntax</a> chapter we already covered two out of four abilities -
+<a href="./drop-ability.html">Drop</a> and <a href="./copy-ability.html">Copy</a>. They affect the behaviour of the value in a
+scope and are not directly related to storage. It is time to cover the <code>key</code> ability, which allows
+the struct to be stored.</p>
+<p>Historically, the <code>key</code> ability was created to mark the type as a <em>key in the storage</em>. A type with
+the <code>key</code> ability could be stored at top-level in the storage, and could be <em>directly owned</em> by an
+account or address. With the introduction of the <a href="./../object">Object Model</a>, the <code>key</code> ability
+naturally became the defining ability for the object.</p>
 <!-- TODO: What is Sui Verifier - link, later -->
 <h2 id="object-definition"><a class="header" href="#object-definition">Object Definition</a></h2>
-<p>A struct with the <code>key</code> ability is considered an object and can be used in the storage functions. The Sui Verifier will require the first field of the struct to be named <code>id</code> and have the type <code>UID</code>.</p>
+<p>A struct with the <code>key</code> ability is considered an object and can be used in the storage functions.
+The Sui Verifier will require the first field of the struct to be named <code>id</code> and have the type
+<code>UID</code>.</p>
 <pre><code class="language-move">public struct Object has key {
     id: UID, // required
     name: String,
@@ -195,16 +203,23 @@ public fun new(name: String, ctx: &amp;mut TxContext): Object {
     }
 }
 </code></pre>
-<p>A struct with the <code>key</code> ability is still a struct, and can have any number of fields and associated functions. There is no special handling or syntax for packing, accessing or unpacking the struct.</p>
-<p>However, because the first field of an object struct must be of type <code>UID</code> - a non-copyable and non-droppable type (we will get to it very soon!), the struct transitively cannot have <code>drop</code> and <code>copy</code> abilities. Thus, the object is non-discardable by design.</p>
+<p>A struct with the <code>key</code> ability is still a struct, and can have any number of fields and associated
+functions. There is no special handling or syntax for packing, accessing or unpacking the struct.</p>
+<p>However, because the first field of an object struct must be of type <code>UID</code> - a non-copyable and
+non-droppable type (we will get to it very soon!), the struct transitively cannot have <code>drop</code> and
+<code>copy</code> abilities. Thus, the object is non-discardable by design.</p>
 <!-- ## Asset Definition
 
 In the context of the [Object Model](./../object/digital-assets.md), an object with the `key` ability can be considered an asset. It is non-discardable, unique, and can be *owned*.
  -->
 <h2 id="types-with-the-key-ability"><a class="header" href="#types-with-the-key-ability">Types with the <code>key</code> Ability</a></h2>
-<p>Due to the <code>UID</code> requirement for types with <code>key</code>, none of the native types in Move can have the <code>key</code> ability, nor can any of the <a href="./../move-basics/standard-library.html">Standard Library</a> types. The <code>key</code> ability is only present in the <a href="./../programmability/sui-framework.html">Sui Framework</a> and custom types.</p>
+<p>Due to the <code>UID</code> requirement for types with <code>key</code>, none of the native types in Move can have the
+<code>key</code> ability, nor can any of the <a href="./../move-basics/standard-library.html">Standard Library</a> types.
+The <code>key</code> ability is only present in the <a href="./../programmability/sui-framework.html">Sui Framework</a> and
+custom types.</p>
 <h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
-<p>Key ability defines the object in Move, and objects are intended to be <em>stored</em>. In the next section we present the <code>sui::transfer</code> module, which provides native storage functions for objects.</p>
+<p>Key ability defines the object in Move, and objects are intended to be <em>stored</em>. In the next section
+we present the <code>sui::transfer</code> module, which provides native storage functions for objects.</p>
 <h2 id="further-reading"><a class="header" href="#further-reading">Further reading</a></h2>
 <ul>
 <li><a href="/reference/type-abilities.html">Type Abilities</a> in the Move Language Reference.</li>

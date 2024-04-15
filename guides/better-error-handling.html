@@ -177,7 +177,12 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="better-error-handling"><a class="header" href="#better-error-handling">Better error handling</a></h1>
-<p>Whenever execution encounters an abort, transaction fails and abort code is returned to the caller. Move VM returns the module name that aborted the transaction and the abort code. This behavior is not fully transparent to the caller of the transaction, especially when a single function contains multiple calls to the same function which may abort. In this case, the caller will not know which call aborted the transaction, and it will be hard to debug the issue or provide meaningful error message to the user.</p>
+<p>Whenever execution encounters an abort, transaction fails and abort code is returned to the caller.
+Move VM returns the module name that aborted the transaction and the abort code. This behavior is
+not fully transparent to the caller of the transaction, especially when a single function contains
+multiple calls to the same function which may abort. In this case, the caller will not know which
+call aborted the transaction, and it will be hard to debug the issue or provide meaningful error
+message to the user.</p>
 <pre><code class="language-move">module book::module_a {
     use book::module_b;
 
@@ -190,9 +195,15 @@
     }
 }
 </code></pre>
-<p>The example above illustrates the case when a single function contains multiple calls which may abort. If the caller of the <code>do_something</code> function receives an abort code <code>0</code>, it will be hard to understand which call to <code>module_b::get_field</code> aborted the transaction. To address this problem, there are common patterns that can be used to improve error handling.</p>
+<p>The example above illustrates the case when a single function contains multiple calls which may
+abort. If the caller of the <code>do_something</code> function receives an abort code <code>0</code>, it will be hard to
+understand which call to <code>module_b::get_field</code> aborted the transaction. To address this problem,
+there are common patterns that can be used to improve error handling.</p>
 <h2 id="rule-1-handle-all-possible-scenarios"><a class="header" href="#rule-1-handle-all-possible-scenarios">Rule 1: Handle all possible scenarios</a></h2>
-<p>It is considered a good practice to provide a safe &quot;check&quot; function that returns a boolean value indicating whether an operation can be performed safely. If the <code>module_b</code> provides a function <code>has_field</code> that returns a boolean value indicating whether a field exists, the <code>do_something</code> function can be rewritten as follows:</p>
+<p>It is considered a good practice to provide a safe &quot;check&quot; function that returns a boolean value
+indicating whether an operation can be performed safely. If the <code>module_b</code> provides a function
+<code>has_field</code> that returns a boolean value indicating whether a field exists, the <code>do_something</code>
+function can be rewritten as follows:</p>
 <pre><code class="language-move">module book::module_a {
     use book::module_b;
 
@@ -210,9 +221,12 @@
     }
 }
 </code></pre>
-<p>By adding custom checks before each call to <code>module_b::get_field</code>, the developer of the <code>module_a</code> takes control over the error handling. And it allows implementing the second rule.</p>
+<p>By adding custom checks before each call to <code>module_b::get_field</code>, the developer of the <code>module_a</code>
+takes control over the error handling. And it allows implementing the second rule.</p>
 <h2 id="rule-2-abort-with-different-codes"><a class="header" href="#rule-2-abort-with-different-codes">Rule 2: Abort with different codes</a></h2>
-<p>The second trick, once the abort codes are handled by the caller module, is to use different abort codes for different scenarios. This way, the caller module can provide a meaningful error message to the user. The <code>module_a</code> can be rewritten as follows:</p>
+<p>The second trick, once the abort codes are handled by the caller module, is to use different abort
+codes for different scenarios. This way, the caller module can provide a meaningful error message to
+the user. The <code>module_a</code> can be rewritten as follows:</p>
 <pre><code class="language-move">module book::module_a {
     use book::module_b;
 
@@ -232,9 +246,14 @@
     }
 }
 </code></pre>
-<p>Now, the caller module can provide a meaningful error message to the user. If the caller receives an abort code <code>0</code>, it can be translated to &quot;Field 1 does not exist&quot;. If the caller receives an abort code <code>1</code>, it can be translated to &quot;Field 2 does not exist&quot;. And so on.</p>
+<p>Now, the caller module can provide a meaningful error message to the user. If the caller receives an
+abort code <code>0</code>, it can be translated to &quot;Field 1 does not exist&quot;. If the caller receives an abort
+code <code>1</code>, it can be translated to &quot;Field 2 does not exist&quot;. And so on.</p>
 <h2 id="rule-3-return-bool-instead-of-assert"><a class="header" href="#rule-3-return-bool-instead-of-assert">Rule 3: Return bool instead of assert</a></h2>
-<p>A developer is often tempted to add a public function that would assert all the conditions and abort the execution. However, it is a better practice to create a function that returns a boolean value instead. This way, the caller module can handle the error and provide a meaningful error message to the user.</p>
+<p>A developer is often tempted to add a public function that would assert all the conditions and abort
+the execution. However, it is a better practice to create a function that returns a boolean value
+instead. This way, the caller module can handle the error and provide a meaningful error message to
+the user.</p>
 <pre><code class="language-move">module book::some_app_assert {
 
     const ENotAuthorized: u64 = 0;
@@ -280,7 +299,8 @@
     }
 }
 </code></pre>
-<p>Utilizing these three rules will make the error handling more transparent to the caller of the transaction, and it will allow other developers to use custom abort codes in their modules.</p>
+<p>Utilizing these three rules will make the error handling more transparent to the caller of the
+transaction, and it will allow other developers to use custom abort codes in their modules.</p>
 
                     </main>
 

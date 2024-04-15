@@ -194,7 +194,9 @@ Links:
     - your first move
 
  -->
-<p>To represent <a href="./../concepts/address.html">addresses</a>, Move uses a special type called <code>address</code>. It is a 32 byte value that can be used to represent any address on the blockchain. Addresses are used in two syntax forms: hexadecimal addresses prefixed with <code>0x</code> and named addresses.</p>
+<p>To represent <a href="./../concepts/address.html">addresses</a>, Move uses a special type called <code>address</code>. It is
+a 32 byte value that can be used to represent any address on the blockchain. Addresses are used in
+two syntax forms: hexadecimal addresses prefixed with <code>0x</code> and named addresses.</p>
 <pre><code class="language-move">// address literal
 let value: address = @0x1;
 
@@ -202,9 +204,14 @@ let value: address = @0x1;
 let value = @std;
 let other = @sui;
 </code></pre>
-<p>An address literal starts with the <code>@</code> symbol followed by a hexadecimal number or an identifier. The hexadecimal number is interpreted as a 32 byte value. The identifier is looked up in the <a href="./../concepts/manifest.html">Move.toml</a> file and replaced with the corresponding address by the compiler. If the identifier is not found in the Move.toml file, the compiler will throw an error.</p>
+<p>An address literal starts with the <code>@</code> symbol followed by a hexadecimal number or an identifier. The
+hexadecimal number is interpreted as a 32 byte value. The identifier is looked up in the
+<a href="./../concepts/manifest.html">Move.toml</a> file and replaced with the corresponding address by the
+compiler. If the identifier is not found in the Move.toml file, the compiler will throw an error.</p>
 <h2 id="conversion"><a class="header" href="#conversion">Conversion</a></h2>
-<p>Sui Framework offers a set of helper functions to work with addresses. Given that the address type is a 32 byte value, it can be converted to a <code>u256</code> type and vice versa. It can also be converted to and from a <code>vector&lt;u8&gt;</code> type.</p>
+<p>Sui Framework offers a set of helper functions to work with addresses. Given that the address type
+is a 32 byte value, it can be converted to a <code>u256</code> type and vice versa. It can also be converted to
+and from a <code>vector&lt;u8&gt;</code> type.</p>
 <p>Example: Convert an address to a <code>u256</code> type and back.</p>
 <pre><code class="language-move">use sui::address;
 

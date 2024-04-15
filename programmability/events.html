@@ -177,9 +177,13 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="events"><a class="header" href="#events">Events</a></h1>
-<p>Events are a way to notify off-chain listeners about on-chain events. They are used to emit additional information about the transaction that is not stored - and, hence, can't be accessed - on-chain. Events are emitted by the <code>sui::event</code> module located in the <a href="./sui-framework.html">Sui Framework</a>.</p>
+<p>Events are a way to notify off-chain listeners about on-chain events. They are used to emit
+additional information about the transaction that is not stored - and, hence, can't be accessed -
+on-chain. Events are emitted by the <code>sui::event</code> module located in the
+<a href="./sui-framework.html">Sui Framework</a>.</p>
 <blockquote>
-<p>Any type with the <a href="./../move-basics/copy-ability.html">copy</a> and <a href="./../move-basics/drop-ability.html">drop</a> abilities can be emitted as an event.</p>
+<p>Any type with the <a href="./../move-basics/copy-ability.html">copy</a> and
+<a href="./../move-basics/drop-ability.html">drop</a> abilities can be emitted as an event.</p>
 </blockquote>
 <p>File: sui-framework/sources/event.move</p>
 <pre><code class="language-move">module sui::event {
@@ -194,7 +198,8 @@
 }
 </code></pre>
 <h2 id="emitting-events"><a class="header" href="#emitting-events">Emitting Events</a></h2>
-<p>Events are emitted using the <code>emit</code> function in the <code>sui::event</code> module. The function takes a single argument - the event to be emitted. The event data is passed by value,</p>
+<p>Events are emitted using the <code>emit</code> function in the <code>sui::event</code> module. The function takes a single
+argument - the event to be emitted. The event data is passed by value,</p>
 <pre><code class="language-move">module book::events {
     use sui::coin::Coin;
     use sui::sui::SUI;
@@ -225,9 +230,15 @@
     }
 }
 </code></pre>
-<p>The Sui Verifier requires the type passed to the <code>emit</code> function to be <em>internal to the module</em>. So emitting a type from another module will result in a compilation error. Primitive types, although they match the <em>copy</em> and <em>drop</em> requirement, are not allowed to be emitted as events.</p>
+<p>The Sui Verifier requires the type passed to the <code>emit</code> function to be <em>internal to the module</em>. So
+emitting a type from another module will result in a compilation error. Primitive types, although
+they match the <em>copy</em> and <em>drop</em> requirement, are not allowed to be emitted as events.</p>
 <h2 id="event-structure"><a class="header" href="#event-structure">Event Structure</a></h2>
-<p>Events are a part of the transaction result and are stored in the <em>transaction effects</em>. As such, they natively have the <code>sender</code> field which is the address who sent the transaction. So adding a &quot;sender&quot; field to the event is not necessary. Similarly, event metadata contains the timestamp. But it is important to note that the timestamp is relative to the node and may vary a little from node to node.</p>
+<p>Events are a part of the transaction result and are stored in the <em>transaction effects</em>. As such,
+they natively have the <code>sender</code> field which is the address who sent the transaction. So adding a
+&quot;sender&quot; field to the event is not necessary. Similarly, event metadata contains the timestamp. But
+it is important to note that the timestamp is relative to the node and may vary a little from node
+to node.</p>
 <!-- ## Reliability -->
 
                     </main>

@@ -177,9 +177,15 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="collections"><a class="header" href="#collections">Collections</a></h1>
-<p>Collection types are a fundamental part of any programming language. They are used to store a collection of data, such as a list of items. The <code>vector</code> type has already been covered in the <a href="./../move-basics/vector.html">vector section</a>, and in this chapter we will cover the vector-based collection types offered by the <a href="./sui-framework.html">Sui Framework</a>.</p>
+<p>Collection types are a fundamental part of any programming language. They are used to store a
+collection of data, such as a list of items. The <code>vector</code> type has already been covered in the
+<a href="./../move-basics/vector.html">vector section</a>, and in this chapter we will cover the vector-based
+collection types offered by the <a href="./sui-framework.html">Sui Framework</a>.</p>
 <h2 id="vector"><a class="header" href="#vector">Vector</a></h2>
-<p>While we have previously covered the <code>vector</code> type in the <a href="./../move-basics/vector.html">vector section</a>, it is worth going over it again in a new context. This time we will cover the usage of the <code>vector</code> type in objects and how it can be used in an application.</p>
+<p>While we have previously covered the <code>vector</code> type in the
+<a href="./../move-basics/vector.html">vector section</a>, it is worth going over it again in a new context. This
+time we will cover the usage of the <code>vector</code> type in objects and how it can be used in an
+application.</p>
 <pre><code class="language-move">module book::collections_vector {
     use std::string::String;
 
@@ -263,7 +269,9 @@ assert!(set1 == set2, 0);
 }
 </code></pre>
 <h2 id="vecset"><a class="header" href="#vecset">VecSet</a></h2>
-<p><code>VecSet</code> is a collection type that stores a set of unique items. It is similar to a <code>vector</code>, but it does not allow duplicate items. This makes it useful for storing a collection of unique items, such as a list of unique IDs or addresses.</p>
+<p><code>VecSet</code> is a collection type that stores a set of unique items. It is similar to a <code>vector</code>, but it
+does not allow duplicate items. This makes it useful for storing a collection of unique items, such
+as a list of unique IDs or addresses.</p>
 <pre><code class="language-move">module book::collections_vec_set {
     use sui::vec_set::{Self, VecSet};
 
@@ -290,8 +298,13 @@ assert!(set1 == set2, 0);
 </code></pre>
 <p>VecSet will fail on attempt to insert a an item that already exists in the set.</p>
 <h2 id="vecmap"><a class="header" href="#vecmap">VecMap</a></h2>
-<p><code>VecMap</code> is a collection type that stores a map of key-value pairs. It is similar to a <code>VecSet</code>, but it allows you to associate a value with each item in the set. This makes it useful for storing a collection of key-value pairs, such as a list of addresses and their balances, or a list of user IDs and their associated data.</p>
-<p>Keys in a <code>VecMap</code> are unique, and each key can only be associated with a single value. If you try to insert a key-value pair with a key that already exists in the map, the old value will be replaced with the new value.</p>
+<p><code>VecMap</code> is a collection type that stores a map of key-value pairs. It is similar to a <code>VecSet</code>, but
+it allows you to associate a value with each item in the set. This makes it useful for storing a
+collection of key-value pairs, such as a list of addresses and their balances, or a list of user IDs
+and their associated data.</p>
+<p>Keys in a <code>VecMap</code> are unique, and each key can only be associated with a single value. If you try
+to insert a key-value pair with a key that already exists in the map, the old value will be replaced
+with the new value.</p>
 <pre><code class="language-move">module book::collections {
     use std::string::String;
     use sui::vec_map::{Self, VecMap};
@@ -316,11 +329,17 @@ assert!(set1 == set2, 0);
 }
 </code></pre>
 <h2 id="limitations"><a class="header" href="#limitations">Limitations</a></h2>
-<p>Standard collection types are a great way to store typed data with guaranteed safety and consistency. However, they are limited by the type of data they can store - the type system won't allow you to store a wrong type in a collection; and they're limited in size - by the object size limit. They will work for relatively small-sized sets and lists, but for larger collections you may need to use a different approach.</p>
-<p>Another limitations on collection types is inability to compare them. Because the order of insertion is not guaranteed, an attempt to compare a <code>VecSet</code> to another <code>VecSet</code> may not yield the expected results.</p>
+<p>Standard collection types are a great way to store typed data with guaranteed safety and
+consistency. However, they are limited by the type of data they can store - the type system won't
+allow you to store a wrong type in a collection; and they're limited in size - by the object size
+limit. They will work for relatively small-sized sets and lists, but for larger collections you may
+need to use a different approach.</p>
+<p>Another limitations on collection types is inability to compare them. Because the order of insertion
+is not guaranteed, an attempt to compare a <code>VecSet</code> to another <code>VecSet</code> may not yield the expected
+results.</p>
 <blockquote>
-<p>This behavior is caught by the linter and will emit a warning:
-<em>Comparing collections of type 'sui::vec_set::VecSet' may yield unexpected result</em></p>
+<p>This behavior is caught by the linter and will emit a warning: <em>Comparing collections of type
+'sui::vec_set::VecSet' may yield unexpected result</em></p>
 </blockquote>
 <pre><code class="language-move">let mut set1 = vec_set::empty();
 set1.insert(1);
@@ -332,16 +351,21 @@ set2.insert(1);
 
 assert!(set1 == set2, 0);
 </code></pre>
-<p>In the example above, the comparison will fail because the order of insertion is not guaranteed, and the two <code>VecSet</code> instances may have different orders of elements. And the comparison will fail even if the two <code>VecSet</code> instances contain the same elements.</p>
+<p>In the example above, the comparison will fail because the order of insertion is not guaranteed, and
+the two <code>VecSet</code> instances may have different orders of elements. And the comparison will fail even
+if the two <code>VecSet</code> instances contain the same elements.</p>
 <h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
 <ul>
 <li>Vector is a native type that allows storing a list of items.</li>
 <li>VecSet is built on top of vector and allows storing sets of unique items.</li>
 <li>VecMap is used to store key-value pairs in a map-like structure.</li>
-<li>Vector-based collections are strictly typed and limited by the object size limit and are best suited for small-sized sets and lists.</li>
+<li>Vector-based collections are strictly typed and limited by the object size limit and are best
+suited for small-sized sets and lists.</li>
 </ul>
 <h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
-<p>In the next section we will cover <a href="./dynamic-fields.html">Dynamic Fields</a> - an important primitive that allows for <a href="./dynamic-collections.html">Dynamic Collections</a> - a way to store large collections of data in a more flexible, yet more expensive way.</p>
+<p>In the next section we will cover <a href="./dynamic-fields.html">Dynamic Fields</a> - an important primitive
+that allows for <a href="./dynamic-collections.html">Dynamic Collections</a> - a way to store large collections
+of data in a more flexible, yet more expensive way.</p>
 
                     </main>
 

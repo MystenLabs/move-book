@@ -177,9 +177,14 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="custom-types-with-struct"><a class="header" href="#custom-types-with-struct">Custom Types with Struct</a></h1>
-<p>Move type system shines when it comes to defining custom types. User defined types can be custom tailored to the specific needs of the application. Not just on the data level, but also in its behavior. In this section we introduce the struct definition and how to use it.</p>
+<p>Move type system shines when it comes to defining custom types. User defined types can be custom
+tailored to the specific needs of the application. Not just on the data level, but also in its
+behavior. In this section we introduce the struct definition and how to use it.</p>
 <h2 id="struct"><a class="header" href="#struct">Struct</a></h2>
-<p>To define a custom type, you can use the <code>struct</code> keyword followed by the name of the type. After the name, you can define the fields of the struct. Each field is defined with the <code>field_name: field_type</code> syntax. Field definitions must be separated by commas. The fields can be of any type, including other structs.</p>
+<p>To define a custom type, you can use the <code>struct</code> keyword followed by the name of the type. After
+the name, you can define the fields of the struct. Each field is defined with the
+<code>field_name: field_type</code> syntax. Field definitions must be separated by commas. The fields can be of
+any type, including other structs.</p>
 <blockquote>
 <p>Move does not support recursive structs, meaning a struct cannot contain itself as a field.</p>
 </blockquote>
@@ -203,18 +208,28 @@ public struct Record {
     edition: Option&lt;u16&gt;,
 }
 </code></pre>
-<p>In the example above, we define a <code>Record</code> struct with five fields. The <code>title</code> field is of type <code>String</code>, the <code>artist</code> field is of type <code>Artist</code>, the <code>year</code> field is of type <code>u16</code>, the <code>is_debut</code> field is of type <code>bool</code>, and the <code>edition</code> field is of type <code>Option&lt;u16&gt;</code>. The <code>edition</code> field is of type <code>Option&lt;u16&gt;</code> to represent that the edition is optional.</p>
-<p>Structs are private by default, meaning they cannot be imported and used outside of the module they are defined in. Their fields are also private and can't be accessed from outside the module. See <a href="./visibility.html">visibility</a> for more information on different visibility modifiers.</p>
+<p>In the example above, we define a <code>Record</code> struct with five fields. The <code>title</code> field is of type
+<code>String</code>, the <code>artist</code> field is of type <code>Artist</code>, the <code>year</code> field is of type <code>u16</code>, the <code>is_debut</code>
+field is of type <code>bool</code>, and the <code>edition</code> field is of type <code>Option&lt;u16&gt;</code>. The <code>edition</code> field is of
+type <code>Option&lt;u16&gt;</code> to represent that the edition is optional.</p>
+<p>Structs are private by default, meaning they cannot be imported and used outside of the module they
+are defined in. Their fields are also private and can't be accessed from outside the module. See
+<a href="./visibility.html">visibility</a> for more information on different visibility modifiers.</p>
 <blockquote>
-<p>Fields of a struct are private and can only be accessed by the module defining the struct. Reading and writing the fields of a struct in other modules is only possible if the module defining the struct provides public functions to access the fields.</p>
+<p>Fields of a struct are private and can only be accessed by the module defining the struct. Reading
+and writing the fields of a struct in other modules is only possible if the module defining the
+struct provides public functions to access the fields.</p>
 </blockquote>
 <h2 id="create-and-use-an-instance"><a class="header" href="#create-and-use-an-instance">Create and use an instance</a></h2>
-<p>We described how struct <em>definition</em> works. Now let's see how to initialize a struct and use it. A struct can be initialized using the <code>struct_name { field1: value1, field2: value2, ... }</code> syntax. The fields can be initialized in any order, and all of the fields must be set.</p>
+<p>We described how struct <em>definition</em> works. Now let's see how to initialize a struct and use it. A
+struct can be initialized using the <code>struct_name { field1: value1, field2: value2, ... }</code> syntax.
+The fields can be initialized in any order, and all of the fields must be set.</p>
 <pre><code class="language-move">let mut artist = Artist {
     name: b&quot;The Beatles&quot;.to_string()
 };
 </code></pre>
-<p>In the example above, we create an instance of the <code>Artist</code> struct and set the <code>name</code> field to a string &quot;The Beatles&quot;.</p>
+<p>In the example above, we create an instance of the <code>Artist</code> struct and set the <code>name</code> field to a
+string &quot;The Beatles&quot;.</p>
 <p>To access the fields of a struct, you can use the <code>.</code> operator followed by the field name.</p>
 <pre><code class="language-move">// Access the `name` field of the `Artist` struct.
 let artist_name = artist.name;
@@ -228,7 +243,8 @@ artist.name = string::utf8(b&quot;Led Zeppelin&quot;);
 // Check that the `name` field has been mutated.
 assert!(artist.name == string::utf8(b&quot;Led Zeppelin&quot;), 1);
 </code></pre>
-<p>Only module defining the struct can access its fields (both mutably and immutably). So the above code should be in the same module as the <code>Artist</code> struct.</p>
+<p>Only module defining the struct can access its fields (both mutably and immutably). So the above
+code should be in the same module as the <code>Artist</code> struct.</p>
 <!-- ## Accessing Fields
 
 Struct fields are private and can be accessed only by the module defining the struct. To access the fields of a struct, you can use the `.` operator followed by the field name.
@@ -249,12 +265,17 @@ assert!(artist.name == string::utf8(b"Led Zeppelin"), 1);
 ```
 -->
 <h2 id="unpacking-a-struct"><a class="header" href="#unpacking-a-struct">Unpacking a struct</a></h2>
-<p>Structs are non-discardable by default, meaning that the initiated struct value must be used: either stored or <em>unpacked</em>. Unpacking a struct means deconstructing it into its fields. This is done using the <code>let</code> keyword followed by the struct name and the field names.</p>
+<p>Structs are non-discardable by default, meaning that the initiated struct value must be used: either
+stored or <em>unpacked</em>. Unpacking a struct means deconstructing it into its fields. This is done using
+the <code>let</code> keyword followed by the struct name and the field names.</p>
 <pre><code class="language-move">// Unpack the `Artist` struct and create a new variable `name`
 // with the value of the `name` field.
 let Artist { name } = artist;
 </code></pre>
-<p>In the example above we unpack the <code>Artist</code> struct and create a new variable <code>name</code> with the value of the <code>name</code> field. Because the variable is not used, the compiler will raise a warning. To suppress the warning, you can use the underscore <code>_</code> to indicate that the variable is intentionally unused.</p>
+<p>In the example above we unpack the <code>Artist</code> struct and create a new variable <code>name</code> with the value
+of the <code>name</code> field. Because the variable is not used, the compiler will raise a warning. To
+suppress the warning, you can use the underscore <code>_</code> to indicate that the variable is intentionally
+unused.</p>
 <pre><code class="language-move">// Unpack the `Artist` struct and ignore the `name` field.
 let Artist { name: _ } = artist;
 </code></pre>

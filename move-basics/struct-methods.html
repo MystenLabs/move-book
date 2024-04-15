@@ -177,9 +177,14 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="struct-methods"><a class="header" href="#struct-methods">Struct Methods</a></h1>
-<p>Move Compiler supports <em>receiver syntax</em>, which allows defining methods which can be called on instances of a struct. This is similar to the method syntax in other programming languages. It is a convenient way to define functions which operate on the fields of a struct.</p>
+<p>Move Compiler supports <em>receiver syntax</em>, which allows defining methods which can be called on
+instances of a struct. This is similar to the method syntax in other programming languages. It is a
+convenient way to define functions which operate on the fields of a struct.</p>
 <h2 id="method-syntax"><a class="header" href="#method-syntax">Method syntax</a></h2>
-<p>If the first argument of a function is a struct internal to the module, then the function can be called using the <code>.</code> operator. If the function uses a struct from another module, then method won't be associated with the struct by default. In this case, the function can be called using the standard function call syntax.</p>
+<p>If the first argument of a function is a struct internal to the module, then the function can be
+called using the <code>.</code> operator. If the function uses a struct from another module, then method won't
+be associated with the struct by default. In this case, the function can be called using the
+standard function call syntax.</p>
 <p>When a module is imported, the methods are automatically associated with the struct.</p>
 <pre><code class="language-move">module book::hero {
     /// A struct representing a hero.
@@ -215,7 +220,8 @@
 }
 </code></pre>
 <h2 id="method-aliases"><a class="header" href="#method-aliases">Method Aliases</a></h2>
-<p>For modules that define multiple structs and their methods, it is possible to define method aliases to avoid name conflicts, or to provide a better-named method for a struct.</p>
+<p>For modules that define multiple structs and their methods, it is possible to define method aliases
+to avoid name conflicts, or to provide a better-named method for a struct.</p>
 <p>The syntax for aliases is:</p>
 <pre><code class="language-move">// for local method association
 use fun function_path as Type.method_name;
@@ -224,9 +230,13 @@ use fun function_path as Type.method_name;
 public use fun function_path as Type.method_name;
 </code></pre>
 <blockquote>
-<p>Public aliases are only allowed for structs defined in the same module. If a struct is defined in another module, an alias can still be created but cannot be made public.</p>
+<p>Public aliases are only allowed for structs defined in the same module. If a struct is defined in
+another module, an alias can still be created but cannot be made public.</p>
 </blockquote>
-<p>In the example below, we changed the <code>hero</code> module and added another type - <code>Villain</code>. Both <code>Hero</code> and <code>Villain</code> have similar field names and methods. And to avoid name conflicts, we prefixed methods with <code>hero_</code> and <code>villain_</code> respectively. However, we can create aliases for these methods so that they can be called on the instances of the structs without the prefix.</p>
+<p>In the example below, we changed the <code>hero</code> module and added another type - <code>Villain</code>. Both <code>Hero</code>
+and <code>Villain</code> have similar field names and methods. And to avoid name conflicts, we prefixed methods
+with <code>hero_</code> and <code>villain_</code> respectively. However, we can create aliases for these methods so that
+they can be called on the instances of the structs without the prefix.</p>
 <pre><code class="language-move">module book::hero_and_villain {
     /// A struct representing a hero.
     public struct Hero has drop {
@@ -267,9 +277,15 @@ public use fun function_path as Type.method_name;
     }
 }
 </code></pre>
-<p>As you can see, in the test function, we called the <code>health</code> method on the instances of <code>Hero</code> and <code>Villain</code> without the prefix. The compiler will automatically associate the methods with the structs.</p>
+<p>As you can see, in the test function, we called the <code>health</code> method on the instances of <code>Hero</code> and
+<code>Villain</code> without the prefix. The compiler will automatically associate the methods with the
+structs.</p>
 <h2 id="aliasing-an-external-modules-method"><a class="header" href="#aliasing-an-external-modules-method">Aliasing an external module's method</a></h2>
-<p>It is also possible to associate a function defined in another module with a struct from the current module. Following the same approach, we can create an alias for the method defined in another module. Let's use the <code>bcs::to_bytes</code> method from the <a href="./standard-library.html">Standard Library</a> and associate it with the <code>Hero</code> struct. It will allow serializing the <code>Hero</code> struct to a vector of bytes.</p>
+<p>It is also possible to associate a function defined in another module with a struct from the current
+module. Following the same approach, we can create an alias for the method defined in another
+module. Let's use the <code>bcs::to_bytes</code> method from the <a href="./standard-library.html">Standard Library</a> and
+associate it with the <code>Hero</code> struct. It will allow serializing the <code>Hero</code> struct to a vector of
+bytes.</p>
 <pre><code class="language-move">// TODO: better example (external module...)
 module book::hero_to_bytes {
     // Alias for the `bcs::to_bytes` method. Imported aliases should be defined

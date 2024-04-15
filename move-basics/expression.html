@@ -177,12 +177,18 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="expression"><a class="header" href="#expression">Expression</a></h1>
-<p>In programming languages expression is a unit of code which returns a value, in Move, almost everything is an expression, - with the sole exception of <code>let</code> statement which is a declaration. In this section, we cover the types of expressions and introduce the concept of scope.</p>
+<p>In programming languages expression is a unit of code which returns a value, in Move, almost
+everything is an expression, - with the sole exception of <code>let</code> statement which is a declaration. In
+this section, we cover the types of expressions and introduce the concept of scope.</p>
 <blockquote>
-<p>Expressions are sequenced with semicolons <code>;</code>. If there's &quot;no expression&quot; after the semicolon, the compiler will insert a unit <code>()</code> - an empty expression.</p>
+<p>Expressions are sequenced with semicolons <code>;</code>. If there's &quot;no expression&quot; after the semicolon, the
+compiler will insert a unit <code>()</code> - an empty expression.</p>
 </blockquote>
 <h2 id="literals"><a class="header" href="#literals">Literals</a></h2>
-<p>In the <a href="./primitive-types.html">Primitive Types</a> section, we introduced the basic types of Move. And to illustrate them, we used literals. A literal is a notation for representing a fixed value in the source code. Literals are used to initialize variables and to pass arguments to functions. Move has the following literals:</p>
+<p>In the <a href="./primitive-types.html">Primitive Types</a> section, we introduced the basic types of Move. And
+to illustrate them, we used literals. A literal is a notation for representing a fixed value in the
+source code. Literals are used to initialize variables and to pass arguments to functions. Move has
+the following literals:</p>
 <ul>
 <li><code>true</code> and <code>false</code> for boolean values</li>
 <li><code>0</code>, <code>1</code>, <code>123123</code> or other numeric for integer values</li>
@@ -198,14 +204,17 @@ let x = x&quot;0A&quot;;    // x'0A' is a byte vector literal
 let c = vector[1, 2, 3]; // vector[] is a vector literal
 </code></pre>
 <h2 id="operators"><a class="header" href="#operators">Operators</a></h2>
-<p>Ariphmetic, logical, and bitwise operators are used to perform operations on values. The result of an operation is a value, so operators are also expressions.</p>
+<p>Ariphmetic, logical, and bitwise operators are used to perform operations on values. The result of
+an operation is a value, so operators are also expressions.</p>
 <pre><code class="language-move">let sum = 1 + 2;   // 1 + 2 is an expression
 let sum = (1 + 2); // the same expression with parentheses
 let is_true = true &amp;&amp; false; // true &amp;&amp; false is an expression
 let is_true = (true &amp;&amp; false); // the same expression with parentheses
 </code></pre>
 <h2 id="blocks"><a class="header" href="#blocks">Blocks</a></h2>
-<p>A block is a sequence of statements and expressions, and it returns the value of the last expression in the block. A block is written as a pair of curly braces <code>{}</code>. A block is an expression, so it can be used anywhere an expression is expected.</p>
+<p>A block is a sequence of statements and expressions, and it returns the value of the last expression
+in the block. A block is written as a pair of curly braces <code>{}</code>. A block is an expression, so it can
+be used anywhere an expression is expected.</p>
 <pre><code class="language-move">// block with an empty expression, however, the compiler will
 // insert an empty expression automatically: `let none = { () }`
 // let none = {};
@@ -225,7 +234,10 @@ let none = {
 };
 </code></pre>
 <h2 id="function-calls"><a class="header" href="#function-calls">Function Calls</a></h2>
-<p>We go into detail about functions in the <a href="./functions.html">Functions</a> section. However, we already used function calls in the previous sections, so it's worth mentioning them here. A function call is an expression that calls a function and returns the value of the last expression in the function body.</p>
+<p>We go into detail about functions in the <a href="./functions.html">Functions</a> section. However, we already
+used function calls in the previous sections, so it's worth mentioning them here. A function call is
+an expression that calls a function and returns the value of the last expression in the function
+body.</p>
 <pre><code class="language-move">fun add(a: u8, b: u8): u8 {
     a + b
 }
@@ -236,7 +248,9 @@ fun some_other() {
 }
 </code></pre>
 <h2 id="control-flow-expressions"><a class="header" href="#control-flow-expressions">Control Flow Expressions</a></h2>
-<p>Control flow expressions are used to control the flow of the program. They are also expressions, so they return a value. We cover control flow expressions in the <a href="./control-flow.html">Control Flow</a> section. Here's a very brief overview:</p>
+<p>Control flow expressions are used to control the flow of the program. They are also expressions, so
+they return a value. We cover control flow expressions in the <a href="./control-flow.html">Control Flow</a>
+section. Here's a very brief overview:</p>
 <pre><code class="language-move">// if is an expression, so it returns a value; if there are 2 branches,
 // the types of the branches must match.
 if (bool_expr) expr1 else expr2;

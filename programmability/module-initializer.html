@@ -177,9 +177,14 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="module-initializer"><a class="header" href="#module-initializer">Module Initializer</a></h1>
-<p>A common use case in many applications is to run certain code just once when the package is published. Imagine a simple store module that needs to create the main Store object upon its publication. In Sui, this is achieved by defining an <code>init</code> function within the module. This function will automatically be called when the module is published.</p>
+<p>A common use case in many applications is to run certain code just once when the package is
+published. Imagine a simple store module that needs to create the main Store object upon its
+publication. In Sui, this is achieved by defining an <code>init</code> function within the module. This
+function will automatically be called when the module is published.</p>
 <blockquote>
-<p>All of the modules' <code>init</code> functions are called during the publishing process. Currently, this behavior is limited to the publish command and does not extend to <a href="./package-upgrades.html">package upgrades</a>.</p>
+<p>All of the modules' <code>init</code> functions are called during the publishing process. Currently, this
+behavior is limited to the publish command and does not extend to
+<a href="./package-upgrades.html">package upgrades</a>.</p>
 </blockquote>
 <pre><code class="language-move">module book::shop {
     /// The Capability which grants the Shop owner the right to manage
@@ -227,21 +232,34 @@ module book::bank {
 <p>The function is called on publish, if it is present in the module and follows the rules:</p>
 <ul>
 <li>The function has to be named <code>init</code>, be private and have no return values.</li>
-<li>Takes one or two arguments: <a href="./one-time-witness.html">One Time Witness</a> (optional) and <a href="./transaction-context.html">TxContext</a>. With `TxContext always being the last argument.</li>
+<li>Takes one or two arguments: <a href="./one-time-witness.html">One Time Witness</a> (optional) and
+<a href="./transaction-context.html">TxContext</a>. With `TxContext always being the last argument.</li>
 </ul>
 <pre><code class="language-move">fun init(ctx: &amp;mut TxContext) { /* ... */}
 fun init(otw: OTW, ctx: &amp;mut TxContext) { /* ... */ }
 </code></pre>
-<p>TxContext can also be passed as immutable reference: <code>&amp;TxContext</code>. However, practically speaking, it should always be <code>&amp;mut TxContext</code> since the <code>init</code> function can't access the onchain state and to create new objects it requires the mutable reference to the context.</p>
+<p>TxContext can also be passed as immutable reference: <code>&amp;TxContext</code>. However, practically speaking, it
+should always be <code>&amp;mut TxContext</code> since the <code>init</code> function can't access the onchain state and to
+create new objects it requires the mutable reference to the context.</p>
 <pre><code class="language-move">fun init(ctx: &amp;TxContext) { /* ... */}
 fun init(otw: OTW, ctx: &amp;TxContext) { /* ... */ }
 </code></pre>
 <h2 id="trust-and-security"><a class="header" href="#trust-and-security">Trust and security</a></h2>
-<p>While <code>init</code> function can be used to create sensitive objects once, it is important to know that the same object (eg. <code>StoreOwnerCap</code> from the first example) can still be created in another function. Especially given that new functions can be added to the module during an upgrade. So the <code>init</code> function is a good place to set up the initial state of the module, but it is not a security measure on its own.</p>
-<p>There are ways to guarantee that the object was created only once, such as the <a href="./one-time-witness.html">One Time Witness</a>. And there are ways to limit or disable the upgrade of the module, which we will cover in the <a href="./package-upgrades.html">Package Upgrades</a> chapter.</p>
+<p>While <code>init</code> function can be used to create sensitive objects once, it is important to know that the
+same object (eg. <code>StoreOwnerCap</code> from the first example) can still be created in another function.
+Especially given that new functions can be added to the module during an upgrade. So the <code>init</code>
+function is a good place to set up the initial state of the module, but it is not a security measure
+on its own.</p>
+<p>There are ways to guarantee that the object was created only once, such as the
+<a href="./one-time-witness.html">One Time Witness</a>. And there are ways to limit or disable the upgrade of the
+module, which we will cover in the <a href="./package-upgrades.html">Package Upgrades</a> chapter.</p>
 <h2 id="next-steps"><a class="header" href="#next-steps">Next steps</a></h2>
-<p>As follows from the definition, the <code>init</code> function is guaranteed to be called only once when the module is published. So it is a good place to put the code that initializes module's objects and sets up the environment and configuration.</p>
-<p>For example, if there's a <a href="./capability.html">Capability</a> which is required for certain actions, it should be created in the <code>init</code> function. In the next chapter we will talk about the <code>Capability</code> pattern in more detail.</p>
+<p>As follows from the definition, the <code>init</code> function is guaranteed to be called only once when the
+module is published. So it is a good place to put the code that initializes module's objects and
+sets up the environment and configuration.</p>
+<p>For example, if there's a <a href="./capability.html">Capability</a> which is required for certain actions, it
+should be created in the <code>init</code> function. In the next chapter we will talk about the <code>Capability</code>
+pattern in more detail.</p>
 
                     </main>
 

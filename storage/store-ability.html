@@ -177,14 +177,20 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="ability-store"><a class="header" href="#ability-store">Ability: Store</a></h1>
-<p>Now that you have an understanding of top-level storage functions which are enabled by the <a href="./key-ability.html"><code>key</code></a> ability, we can talk about the last ability in the list - <code>store</code>.</p>
+<p>Now that you have an understanding of top-level storage functions which are enabled by the
+<a href="./key-ability.html"><code>key</code></a> ability, we can talk about the last ability in the list - <code>store</code>.</p>
 <h2 id="definition"><a class="header" href="#definition">Definition</a></h2>
-<p>The <code>store</code> is a special ability that allows a type to be <em>stored</em> in objects. This ability is required for the type to be used as a field in a struct that has the <code>key</code> ability. Another way to put it is that the <code>store</code> ability allows the value to be <em>wrapped</em> in an object.</p>
+<p>The <code>store</code> is a special ability that allows a type to be <em>stored</em> in objects. This ability is
+required for the type to be used as a field in a struct that has the <code>key</code> ability. Another way to
+put it is that the <code>store</code> ability allows the value to be <em>wrapped</em> in an object.</p>
 <blockquote>
-<p>The <code>store</code> ability also relaxes restrictions on transfer operations. We talk about it more in the <a href="./restricted-and-public-transfer.html">Restricted and Public Transfer</a> section.</p>
+<p>The <code>store</code> ability also relaxes restrictions on transfer operations. We talk about it more in the
+<a href="./restricted-and-public-transfer.html">Restricted and Public Transfer</a> section.</p>
 </blockquote>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
-<p>In previous sections we already used types with the <code>store</code> ability: all objects must have a <code>UID</code> field, which we used in examples; we also used the <code>String</code> type as a part of the <code>Config</code> struct. The <code>String</code> type also has the <code>store</code> ability.</p>
+<p>In previous sections we already used types with the <code>store</code> ability: all objects must have a <code>UID</code>
+field, which we used in examples; we also used the <code>String</code> type as a part of the <code>Config</code> struct.
+The <code>String</code> type also has the <code>store</code> ability.</p>
 <pre><code class="language-move">/// This type has the `store` ability.
 public struct Storable has store {}
 

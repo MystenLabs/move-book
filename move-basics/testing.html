@@ -177,9 +177,14 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="testing"><a class="header" href="#testing">Testing</a></h1>
-<p>A crucial part of any software development, and even more - blockchain development, is testing. Here, we will cover the basics of testing in Move and how to write and organize tests for your Move code.</p>
+<p>A crucial part of any software development, and even more - blockchain development, is testing.
+Here, we will cover the basics of testing in Move and how to write and organize tests for your Move
+code.</p>
 <h2 id="the-test-attribute"><a class="header" href="#the-test-attribute">The <code>#[test]</code> attribute</a></h2>
-<p>Tests in Move are functions marked with the <code>#[test]</code> attribute. This attribute tells the compiler that the function is a test function, and it should be run when the tests are executed. Test functions are regular functions, but they must take no any arguments and have no return value. They are excluded from the bytecode, and are never published.</p>
+<p>Tests in Move are functions marked with the <code>#[test]</code> attribute. This attribute tells the compiler
+that the function is a test function, and it should be run when the tests are executed. Test
+functions are regular functions, but they must take no any arguments and have no return value. They
+are excluded from the bytecode, and are never published.</p>
 <pre><code class="language-move">module book::testing {
     // Test attribute is placed before the `fun` keyword. Can be both above or
     // right before the `fun` keyword: `#[test] fun my_test() { ... }`
@@ -198,7 +203,9 @@
 }
 </code></pre>
 <h2 id="running-tests"><a class="header" href="#running-tests">Running Tests</a></h2>
-<p>To run tests, you can use the <code>sui move test</code> command. This command will first build the package in the <em>test mode</em> and then run all the tests found in the package. During test mode, modules from both <code>sources/</code> and <code>tests/</code> directories are processed, and the tests are executed.</p>
+<p>To run tests, you can use the <code>sui move test</code> command. This command will first build the package in
+the <em>test mode</em> and then run all the tests found in the package. During test mode, modules from both
+<code>sources/</code> and <code>tests/</code> directories are processed, and the tests are executed.</p>
 <pre><code class="language-bash">$ sui move test
 &gt; INCLUDING DEPENDENCY Sui
 &gt; INCLUDING DEPENDENCY MoveStdlib
@@ -208,11 +215,15 @@
 </code></pre>
 <!-- TODO: fill output -->
 <h2 id="test-fail-cases-with-expected_failure"><a class="header" href="#test-fail-cases-with-expected_failure">Test Fail Cases with <code>#[expected_failure]</code></a></h2>
-<p>Tests for fail cases can be marked with <code>#[expected_failure]</code>. This attribute placed on a <code>#[test]</code> function tells the compiler that the test is expected to fail. This is useful when you want to test that a function fails when a certain condition is met.</p>
+<p>Tests for fail cases can be marked with <code>#[expected_failure]</code>. This attribute placed on a <code>#[test]</code>
+function tells the compiler that the test is expected to fail. This is useful when you want to test
+that a function fails when a certain condition is met.</p>
 <blockquote>
 <p>This attribute can only be placed on a <code>#[test]</code> function.</p>
 </blockquote>
-<p>The attribute can take an argument for abort code, which is the expected abort code when the test fails. If the test fails with a different abort code, the test will fail. If the execution did not abort, the test will also fail.</p>
+<p>The attribute can take an argument for abort code, which is the expected abort code when the test
+fails. If the test fails with a different abort code, the test will fail. If the execution did not
+abort, the test will also fail.</p>
 <pre><code class="language-move">module book::testing_failure {
 
     const EInvalidArgument: u64 = 0;
@@ -230,9 +241,13 @@
     }
 }
 </code></pre>
-<p>The <code>abort_code</code> argument can use constants defined in the tests module as well as imported from other modules. This is the only case where constants can be used and &quot;accessed&quot; in other modules.</p>
+<p>The <code>abort_code</code> argument can use constants defined in the tests module as well as imported from
+other modules. This is the only case where constants can be used and &quot;accessed&quot; in other modules.</p>
 <h2 id="utilities-with-test_only"><a class="header" href="#utilities-with-test_only">Utilities with <code>#[test_only]</code></a></h2>
-<p>In some cases, it is helpful to give the test environment access to some of the internal functions or features. It simplifies the testing process and allows for more thorough testing. However, it is important to remember that these functions should not be included in the final package. This is where the <code>#[test_only]</code> attribute comes in handy.</p>
+<p>In some cases, it is helpful to give the test environment access to some of the internal functions
+or features. It simplifies the testing process and allows for more thorough testing. However, it is
+important to remember that these functions should not be included in the final package. This is
+where the <code>#[test_only]</code> attribute comes in handy.</p>
 <pre><code class="language-move">module book::testing {
     // Public function which uses the `secret` function.
     public fun multiply_by_secret(x: u64): u64 {
@@ -258,7 +273,8 @@
     }
 }
 </code></pre>
-<p>Functions marked with the <code>#[test_only]</code> will be available to the test environment, and to the other modules if their visibility is set so.</p>
+<p>Functions marked with the <code>#[test_only]</code> will be available to the test environment, and to the other
+modules if their visibility is set so.</p>
 <h2 id="further-reading"><a class="header" href="#further-reading">Further Reading</a></h2>
 <ul>
 <li><a href="https://move-book.com/reference/unit-testing.html">Unit Testing</a> in the Move Language Reference.</li>

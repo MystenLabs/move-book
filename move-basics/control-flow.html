@@ -195,20 +195,27 @@ Links:
     - coding conventions (control flow)
 
  -->
-<p>Control flow statements are used to control the flow of execution in a program. They are used to make decisions, to repeat a block of code, and to exit a block of code early. Move has the following control flow statements (explained in detail below):</p>
+<p>Control flow statements are used to control the flow of execution in a program. They are used to
+make decisions, to repeat a block of code, and to exit a block of code early. Move has the following
+control flow statements (explained in detail below):</p>
 <ul>
-<li><a href="#conditional-statements"><code>if</code> and <code>if-else</code></a> - making decisions on whether to execute a block of code</li>
+<li><a href="#conditional-statements"><code>if</code> and <code>if-else</code></a> - making decisions on whether to execute a block of
+code</li>
 <li><a href="#repeating-statements-with-loops"><code>loop</code> and <code>while</code> loops</a> - repeating a block of code</li>
 <li><a href="#exiting-a-loop-early"><code>break</code> and <code>continue</code> statements</a> - exiting a loop early</li>
 <li><a href="#return"><code>return</code></a> statement - exiting a function early</li>
 </ul>
 <h2 id="conditional-statements"><a class="header" href="#conditional-statements">Conditional Statements</a></h2>
-<p>The <code>if</code> expression is used to make decisions in a program. It evaluates a <a href="./expression.html#literals">boolean expression</a> and executes a block of code if the expression is true. Paired with <code>else</code>, it can execute a different block of code if the expression is false.</p>
+<p>The <code>if</code> expression is used to make decisions in a program. It evaluates a
+<a href="./expression.html#literals">boolean expression</a> and executes a block of code if the expression is
+true. Paired with <code>else</code>, it can execute a different block of code if the expression is false.</p>
 <p>The syntax for the <code>if</code> expression is:</p>
 <pre><code class="language-move">if (&lt;bool_expression&gt;) &lt;expression&gt;;
 if (&lt;bool_expression&gt;) &lt;expression&gt; else &lt;expression&gt;;
 </code></pre>
-<p>Just like any other expression, <code>if</code> requires a semicolon, if there are other expressions following it. The <code>else</code> keyword is optional, except for the case when the resulting value is assigned to a variable. We will cover this below.</p>
+<p>Just like any other expression, <code>if</code> requires a semicolon, if there are other expressions following
+it. The <code>else</code> keyword is optional, except for the case when the resulting value is assigned to a
+variable. We will cover this below.</p>
 <pre><code class="language-move">    #[test]
     fun test_if() {
         let x = 5;
@@ -232,14 +239,27 @@ if (&lt;bool_expression&gt;) &lt;expression&gt; else &lt;expression&gt;;
         assert!(y == 1, 0);
     }
 </code></pre>
-<p>Here we assign the value of the <code>if</code> expression to the variable <code>y</code>. If <code>x</code> is greater than 0, <code>y</code> will be assigned the value 1, otherwise 0. The <code>else</code> block is necessary, because both branches must return a value of the same type. If we omit the <code>else</code> block, the compiler will throw an error.</p>
+<p>Here we assign the value of the <code>if</code> expression to the variable <code>y</code>. If <code>x</code> is greater than 0, <code>y</code>
+will be assigned the value 1, otherwise 0. The <code>else</code> block is necessary, because both branches must
+return a value of the same type. If we omit the <code>else</code> block, the compiler will throw an error.</p>
 <!-- TODO: add an error -->
-<p>Conditional expressions are one of the most important control flow statements in Move. They can use either user provided input or some already stored data to make decisions. In particular, they are used in the <a href="./assert-and-abort.html"><code>assert!</code> macro</a> to check if a condition is true, and if not, to abort execution. We will get to it very soon!</p>
+<p>Conditional expressions are one of the most important control flow statements in Move. They can use
+either user provided input or some already stored data to make decisions. In particular, they are
+used in the <a href="./assert-and-abort.html"><code>assert!</code> macro</a> to check if a condition is true, and if not, to
+abort execution. We will get to it very soon!</p>
 <h2 id="repeating-statements-with-loops"><a class="header" href="#repeating-statements-with-loops">Repeating Statements with Loops</a></h2>
-<p>Loops are used to execute a block of code multiple times. Move has two built-in types of loops: <code>loop</code> and <code>while</code>. In many cases they can be used interchangeably, but usually <code>while</code> is used when the number of iterations is known in advance, and <code>loop</code> is used when the number of iterations is not known in advance or there are multiple exit points.</p>
-<p>Loops are helpful when dealing with collections, such as vectors, or when we want to repeat a block of code until a certain condition is met. However, it is important to be careful with loops, as they can lead to infinite loops, which can lead to gas exhaustion and the transaction being aborted.</p>
+<p>Loops are used to execute a block of code multiple times. Move has two built-in types of loops:
+<code>loop</code> and <code>while</code>. In many cases they can be used interchangeably, but usually <code>while</code> is used when
+the number of iterations is known in advance, and <code>loop</code> is used when the number of iterations is
+not known in advance or there are multiple exit points.</p>
+<p>Loops are helpful when dealing with collections, such as vectors, or when we want to repeat a block
+of code until a certain condition is met. However, it is important to be careful with loops, as they
+can lead to infinite loops, which can lead to gas exhaustion and the transaction being aborted.</p>
 <h2 id="the-while-loop"><a class="header" href="#the-while-loop">The <code>while</code> loop</a></h2>
-<p>The <code>while</code> statement is used to execute a block of code as long as a boolean expression is true. Just like we've seen with <code>if</code>, the boolean expression is evaluated before each iteration of the loop. Just like conditional statements, the <code>while</code> loop is an expression and requires a semicolon if there are other expressions following it.</p>
+<p>The <code>while</code> statement is used to execute a block of code as long as a boolean expression is true.
+Just like we've seen with <code>if</code>, the boolean expression is evaluated before each iteration of the
+loop. Just like conditional statements, the <code>while</code> loop is an expression and requires a semicolon
+if there are other expressions following it.</p>
 <p>The syntax for the <code>while</code> loop is:</p>
 <pre><code class="language-move">while (&lt;bool_expression&gt;) { &lt;expressions&gt;; };
 </code></pre>
@@ -270,7 +290,9 @@ if (&lt;bool_expression&gt;) &lt;expression&gt; else &lt;expression&gt;;
     }
 </code></pre>
 <h2 id="infinite-loop"><a class="header" href="#infinite-loop">Infinite <code>loop</code></a></h2>
-<p>Now let's imagine a scenario where the boolean expression is always <code>true</code>. For example, if we literally passed <code>true</code> to the <code>while</code> condition. As you might expect, this would create an infinite loop, and this is almost what the <code>loop</code> statement works like.</p>
+<p>Now let's imagine a scenario where the boolean expression is always <code>true</code>. For example, if we
+literally passed <code>true</code> to the <code>while</code> condition. As you might expect, this would create an infinite
+loop, and this is almost what the <code>loop</code> statement works like.</p>
 <pre><code class="language-move">    #[test, expected_failure(out_of_gas, location=Self)]
     fun test_infinite_while() {
         let mut x = 0;
@@ -302,13 +324,20 @@ if (&lt;bool_expression&gt;) &lt;expression&gt; else &lt;expression&gt;;
     }
 </code></pre>
 <!-- TODO: that's a weak point lmao -->
-<p>Infinite loops on their own are not very useful in Move, since every operation in Move costs gas, and an infinite loop will lead to gas exhaustion. However, they can be used in combination with <code>break</code> and <code>continue</code> statements to create more complex loops.</p>
+<p>Infinite loops on their own are not very useful in Move, since every operation in Move costs gas,
+and an infinite loop will lead to gas exhaustion. However, they can be used in combination with
+<code>break</code> and <code>continue</code> statements to create more complex loops.</p>
 <h2 id="exiting-a-loop-early"><a class="header" href="#exiting-a-loop-early">Exiting a Loop Early</a></h2>
-<p>As we already mentioned, infinite loops are rather useless on their own. And that's where we introduce the <code>break</code> and <code>continue</code> statements. They are used to exit a loop early, and to skip the rest of the current iteration, respectively.</p>
+<p>As we already mentioned, infinite loops are rather useless on their own. And that's where we
+introduce the <code>break</code> and <code>continue</code> statements. They are used to exit a loop early, and to skip the
+rest of the current iteration, respectively.</p>
 <p>Syntax for the <code>break</code> statement is (without a semicolon):</p>
 <pre><code class="language-move">break
 </code></pre>
-<p>The <code>break</code> statement is used to stop the execution of a loop and exit it early. It is often used in combination with a conditional statement to exit the loop when a certain condition is met. To illustrate this point, let's turn the infinite <code>loop</code> from the previous example into something that looks and behaves more like a <code>while</code> loop:</p>
+<p>The <code>break</code> statement is used to stop the execution of a loop and exit it early. It is often used in
+combination with a conditional statement to exit the loop when a certain condition is met. To
+illustrate this point, let's turn the infinite <code>loop</code> from the previous example into something that
+looks and behaves more like a <code>while</code> loop:</p>
 <pre><code class="language-move">    #[test]
     fun test_break_loop() {
         let mut x = 0;
@@ -326,9 +355,12 @@ if (&lt;bool_expression&gt;) &lt;expression&gt; else &lt;expression&gt;;
         assert!(x == 5, 0);
     }
 </code></pre>
-<p>Almost identical to the <code>while</code> loop, right? The <code>break</code> statement is used to exit the loop when <code>x</code> is 5. If we remove the <code>break</code> statement, the loop will run forever, just like the previous example.</p>
+<p>Almost identical to the <code>while</code> loop, right? The <code>break</code> statement is used to exit the loop when <code>x</code>
+is 5. If we remove the <code>break</code> statement, the loop will run forever, just like the previous example.</p>
 <h2 id="skipping-an-iteration"><a class="header" href="#skipping-an-iteration">Skipping an Iteration</a></h2>
-<p>The <code>continue</code> statement is used to skip the rest of the current iteration and start the next one. Similarly to <code>break</code>, it is used in combination with a conditional statement to skip the rest of the iteration when a certain condition is met.</p>
+<p>The <code>continue</code> statement is used to skip the rest of the current iteration and start the next one.
+Similarly to <code>break</code>, it is used in combination with a conditional statement to skip the rest of the
+iteration when a certain condition is met.</p>
 <p>Syntax for the <code>continue</code> statement is (without a semicolon):</p>
 <pre><code class="language-move">continue
 </code></pre>
@@ -359,7 +391,9 @@ if (&lt;bool_expression&gt;) &lt;expression&gt; else &lt;expression&gt;;
 </code></pre>
 <p><code>break</code> and <code>continue</code> statements can be used in both <code>while</code> and <code>loop</code> loops.</p>
 <h2 id="early-return"><a class="header" href="#early-return">Early Return</a></h2>
-<p>The <code>return</code> statement is used to exit a <a href="./function.html">function</a> early and return a value. It is often used in combination with a conditional statement to exit the function when a certain condition is met. The syntax for the <code>return</code> statement is:</p>
+<p>The <code>return</code> statement is used to exit a <a href="./function.html">function</a> early and return a value. It is
+often used in combination with a conditional statement to exit the function when a certain condition
+is met. The syntax for the <code>return</code> statement is:</p>
 <pre><code class="language-move">return &lt;expression&gt;
 </code></pre>
 <p>Here is an example of a function that returns a value when a certain condition is met:</p>
@@ -384,7 +418,9 @@ if (&lt;bool_expression&gt;) &lt;expression&gt; else &lt;expression&gt;;
         assert!(is_positive(1) == true, 0);
     }
 </code></pre>
-<p>Unlike in other languages, the <code>return</code> statement is not required for the last expression in a function. The last expression in a function block is automatically returned. However, the <code>return</code> statement is useful when we want to exit a function early if a certain condition is met.</p>
+<p>Unlike in other languages, the <code>return</code> statement is not required for the last expression in a
+function. The last expression in a function block is automatically returned. However, the <code>return</code>
+statement is useful when we want to exit a function early if a certain condition is met.</p>
 
                     </main>
 

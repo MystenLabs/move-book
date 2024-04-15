@@ -177,11 +177,19 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="pattern-capability"><a class="header" href="#pattern-capability">Pattern: Capability</a></h1>
-<p>In programming, a <em>capability</em> is a token that gives the owner the right to perform a specific action. It is a pattern that is used to control access to resources and operations. A simple example of a capability is a key to a door. If you have the key, you can open the door. If you don't have the key, you can't open the door. A more practical example is an Admin Capability which allows the owner to perform administrative operations, which regular users cannot.</p>
+<p>In programming, a <em>capability</em> is a token that gives the owner the right to perform a specific
+action. It is a pattern that is used to control access to resources and operations. A simple example
+of a capability is a key to a door. If you have the key, you can open the door. If you don't have
+the key, you can't open the door. A more practical example is an Admin Capability which allows the
+owner to perform administrative operations, which regular users cannot.</p>
 <h2 id="capability-is-an-object"><a class="header" href="#capability-is-an-object">Capability is an Object</a></h2>
-<p>In the <a href="./../concepts/object-model.html">Sui Object Model</a>, capabilities are represented as objects. An owner of an object can pass this object to a function to prove that they have the right to perform a specific action. Due to strict typing, the function taking a capability as an argument can only be called with the correct capability.</p>
+<p>In the <a href="./../concepts/object-model.html">Sui Object Model</a>, capabilities are represented as objects.
+An owner of an object can pass this object to a function to prove that they have the right to
+perform a specific action. Due to strict typing, the function taking a capability as an argument can
+only be called with the correct capability.</p>
 <blockquote>
-<p>There's a convention to name capabilities with the <code>Cap</code> suffix, for example, <code>AdminCap</code> or <code>KioskOwnerCap</code>.</p>
+<p>There's a convention to name capabilities with the <code>Cap</code> suffix, for example, <code>AdminCap</code> or
+<code>KioskOwnerCap</code>.</p>
 </blockquote>
 <pre><code class="language-move">module book::capability {
     use std::string::String;
@@ -224,7 +232,8 @@
 }
 </code></pre>
 <h2 id="using-init-for-admin-capability"><a class="header" href="#using-init-for-admin-capability">Using <code>init</code> for Admin Capability</a></h2>
-<p>A very common practice is to create a single <code>AdminCap</code> object on package publish. This way, the application can have a setup phase where the admin account prepares the state of the application.</p>
+<p>A very common practice is to create a single <code>AdminCap</code> object on package publish. This way, the
+application can have a setup phase where the admin account prepares the state of the application.</p>
 <pre><code class="language-move">module book::admin_cap {
     /// The capability granting the admin privileges in the system.
     /// Created only once in the `init` function.
@@ -241,8 +250,12 @@
 }
 </code></pre>
 <h2 id="address-check-vs-capability"><a class="header" href="#address-check-vs-capability">Address check vs Capability</a></h2>
-<p>Utilizing objects as capabilities is a relatively new concept in blockchain programming. And in other smart-contract languages, authorization is often performed by checking the address of the sender. This pattern is still viable on Sui, however, overall recommendation is to use capabilities for better security, discoverability, and code organization.</p>
-<p>Let's look at how the <code>new</code> function that creates a user would look like if it was using the address check:</p>
+<p>Utilizing objects as capabilities is a relatively new concept in blockchain programming. And in
+other smart-contract languages, authorization is often performed by checking the address of the
+sender. This pattern is still viable on Sui, however, overall recommendation is to use capabilities
+for better security, discoverability, and code organization.</p>
+<p>Let's look at how the <code>new</code> function that creates a user would look like if it was using the address
+check:</p>
 <pre><code class="language-move">/// Error code for unauthorized access.
 const ENotAuthorized: u64 = 0;
 
@@ -268,12 +281,22 @@ public fun new(_: &amp;AdminCap, ctx: &amp;mut TxContext): User {
 </code></pre>
 <p>Using capabilities has several advantages over the address check:</p>
 <ul>
-<li>Migration of admin rights is easier with capabilities due to them being objects. In case of address, if the admin address changes, all the functions that check the address need to be updated - hence, require a <a href="./package-upgrades.html">package upgrade</a>.</li>
-<li>Function signatures are more descriptive with capabilities. It is clear that the <code>new</code> function requires the <code>AdminCap</code> to be passed as an argument. And this function can't be called without it.</li>
-<li>Object Capabilities don't require extra checks in the function body, and hence, decrease the chance of a developer mistake.</li>
-<li>An owned Capability also serves in discovery. The owner of the AdminCap can see the object in their account (via a Wallet or Explorer), and know that they have the admin rights. This is less transparent with the address check.</li>
+<li>Migration of admin rights is easier with capabilities due to them being objects. In case of
+address, if the admin address changes, all the functions that check the address need to be
+updated - hence, require a <a href="./package-upgrades.html">package upgrade</a>.</li>
+<li>Function signatures are more descriptive with capabilities. It is clear that the <code>new</code> function
+requires the <code>AdminCap</code> to be passed as an argument. And this function can't be called without it.</li>
+<li>Object Capabilities don't require extra checks in the function body, and hence, decrease the
+chance of a developer mistake.</li>
+<li>An owned Capability also serves in discovery. The owner of the AdminCap can see the object in
+their account (via a Wallet or Explorer), and know that they have the admin rights. This is less
+transparent with the address check.</li>
 </ul>
-<p>However, the address approach has its own advantages. For example, if an address is multisig, and transaction building gets more complex, it might be easier to check the address. Also, if there's a central object of the application that is used in every function, it can store the admin address, and this would simplify migration. The central object approach is also valuable for revokable capabilities, where the admin can revoke the capability from the user.</p>
+<p>However, the address approach has its own advantages. For example, if an address is multisig, and
+transaction building gets more complex, it might be easier to check the address. Also, if there's a
+central object of the application that is used in every function, it can store the admin address,
+and this would simplify migration. The central object approach is also valuable for revokable
+capabilities, where the admin can revoke the capability from the user.</p>
 
                     </main>
 

@@ -177,7 +177,9 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="one-time-witness"><a class="header" href="#one-time-witness">One Time Witness</a></h1>
-<p>While regular <a href="./witness-pattern.html">Witness</a> is a great way to statically prove the ownership of a type, there are cases, where we need to ensure that a witness is used only once. And this is the purpose of the One Time Witness (OTW).</p>
+<p>While regular <a href="./witness-pattern.html">Witness</a> is a great way to statically prove the ownership of a
+type, there are cases, where we need to ensure that a witness is used only once. And this is the
+purpose of the One Time Witness (OTW).</p>
 <!--
 Notes to self:
   - background first or definition first - which one is better?
@@ -185,7 +187,9 @@ Notes to self:
   - if we removed the OTW from docs, then we should give definition first.
 -->
 <h2 id="definition"><a class="header" href="#definition">Definition</a></h2>
-<p>The One Time Witness is a special type of witness that can be used only once. It cannot be manually created, and it is guaranteed to be unique per module. Sui Adapter treats a type as a One Time Witness if it follows these rules:</p>
+<p>The One Time Witness is a special type of witness that can be used only once. It cannot be manually
+created, and it is guaranteed to be unique per module. Sui Adapter treats a type as a One Time
+Witness if it follows these rules:</p>
 <ol>
 <li>Has only <code>drop</code> ability.</li>
 <li>Has no fields.</li>
@@ -204,9 +208,14 @@ Notes to self:
     }
 }
 </code></pre>
-<p>The One Time Witness cannot be constructed manually, and any code attempting to do so will result in a compilation error. The OTW can be received as the first argument in the <a href="./module-initializer.html">module initializer</a>. And because the <code>init</code> function is called only once per module, the OTW is guaranteed to be instantiated only once.</p>
+<p>The One Time Witness cannot be constructed manually, and any code attempting to do so will result in
+a compilation error. The OTW can be received as the first argument in the
+<a href="./module-initializer.html">module initializer</a>. And because the <code>init</code> function is called only once
+per module, the OTW is guaranteed to be instantiated only once.</p>
 <h2 id="enforcing-the-otw"><a class="header" href="#enforcing-the-otw">Enforcing the OTW</a></h2>
-<p>To check if a type is a One Time Witness, <code>sui::types</code> module of the <a href="./sui-framework.html">Sui Framework</a> offers a special function <code>is_one_time_witness</code> that can be used to check if the type is a One Time Witness.</p>
+<p>To check if a type is a One Time Witness, <code>sui::types</code> module of the
+<a href="./sui-framework.html">Sui Framework</a> offers a special function <code>is_one_time_witness</code> that can be used
+to check if the type is a One Time Witness.</p>
 <pre><code class="language-move">use sui::types;
 
 const ENotOneTimeWitness: u64 = 1;
@@ -311,8 +320,13 @@ TODO: add a story behind TreasuryCap and Coin
 
 -->
 <h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
-<p>The One Time Witness pattern is a great way to ensure that a type is used only once. Most of the developers should understand how to define and receive the OTW, while the OTW checks and enforcement is mostly needed in libraries and frameworks. For example, the <code>sui::coin</code> module requires a One Time Witness in the <code>coin::create_currency</code> method, therefore enforcing that the <code>coin::TreasuryCap</code> is created only once.</p>
-<p>One Time Witness is a powerful tool which lays the foundation for the <a href="./publisher.html">Publisher</a> object, which we will cover in the next section.</p>
+<p>The One Time Witness pattern is a great way to ensure that a type is used only once. Most of the
+developers should understand how to define and receive the OTW, while the OTW checks and enforcement
+is mostly needed in libraries and frameworks. For example, the <code>sui::coin</code> module requires a One
+Time Witness in the <code>coin::create_currency</code> method, therefore enforcing that the <code>coin::TreasuryCap</code>
+is created only once.</p>
+<p>One Time Witness is a powerful tool which lays the foundation for the <a href="./publisher.html">Publisher</a>
+object, which we will cover in the next section.</p>
 <!--
 
 ## Questions

@@ -177,7 +177,11 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="function"><a class="header" href="#function">Function</a></h1>
-<p>Functions are the building blocks of Move programs. They are called from <a href="../concepts/user-interaction.html">user transactions</a> and from other functions and group executable code into reusable units. Functions can take arguments and return a value. They are declared with the <code>fun</code> keyword at the module level. Just like any other module member, by default they're private and can only be accessed from within the module.</p>
+<p>Functions are the building blocks of Move programs. They are called from
+<a href="../concepts/user-interaction.html">user transactions</a> and from other functions and group executable
+code into reusable units. Functions can take arguments and return a value. They are declared with
+the <code>fun</code> keyword at the module level. Just like any other module member, by default they're private
+and can only be accessed from within the module.</p>
 <pre><code class="language-move">module book::math {
     /// Function takes two arguments of type `u64` and returns their sum.
     /// The `public` visibility modifier makes the function accessible from
@@ -193,18 +197,29 @@
     }
 }
 </code></pre>
-<p>In this example, we define a function <code>add</code> that takes two arguments of type <code>u64</code> and returns their sum. The function is called from the <code>test_add</code> function, which is a test function located in the same module. In the test we compare the result of the <code>add</code> function with the expected value and abort the execution if the result is different.</p>
+<p>In this example, we define a function <code>add</code> that takes two arguments of type <code>u64</code> and returns their
+sum. The function is called from the <code>test_add</code> function, which is a test function located in the
+same module. In the test we compare the result of the <code>add</code> function with the expected value and
+abort the execution if the result is different.</p>
 <h2 id="function-declaration"><a class="header" href="#function-declaration">Function declaration</a></h2>
 <blockquote>
-<p>There's a convention to call functions in Move with the <code>snake_case</code> naming convention. This means that the function name should be all lowercase with words separated by underscores. For example, <code>do_something</code>, <code>add</code>, <code>get_balance</code>, <code>is_authorized</code>, and so on.</p>
+<p>There's a convention to call functions in Move with the <code>snake_case</code> naming convention. This means
+that the function name should be all lowercase with words separated by underscores. For example,
+<code>do_something</code>, <code>add</code>, <code>get_balance</code>, <code>is_authorized</code>, and so on.</p>
 </blockquote>
-<p>A function is declared with the <code>fun</code> keyword followed by the function name (a valid Move identifier), a list of arguments in parentheses, and a return type. The function body is a block of code that contains a sequence of statements and expressions. The last expression in the function body is the return value of the function.</p>
+<p>A function is declared with the <code>fun</code> keyword followed by the function name (a valid Move
+identifier), a list of arguments in parentheses, and a return type. The function body is a block of
+code that contains a sequence of statements and expressions. The last expression in the function
+body is the return value of the function.</p>
 <pre><code class="language-move">fun return_nothing() {
     // empty expression, function returns `()`
 }
 </code></pre>
 <h2 id="accessing-functions"><a class="header" href="#accessing-functions">Accessing functions</a></h2>
-<p>Just like any other module member, functions can be imported and accessed via a path. The path consists of the module path and the function name separated by <code>::</code>. For example, if you have a function called <code>add</code> in the <code>math</code> module in the <code>book</code> package, the path to it will be <code>book::math::add</code>, or, if the module is imported, <code>math::add</code>.</p>
+<p>Just like any other module member, functions can be imported and accessed via a path. The path
+consists of the module path and the function name separated by <code>::</code>. For example, if you have a
+function called <code>add</code> in the <code>math</code> module in the <code>book</code> package, the path to it will be
+<code>book::math::add</code>, or, if the module is imported, <code>math::add</code>.</p>
 <pre><code class="language-move">module book::use_math {
     use book::math;
 
@@ -215,19 +230,23 @@
 }
 </code></pre>
 <h2 id="multiple-return-values"><a class="header" href="#multiple-return-values">Multiple return values</a></h2>
-<p>Move functions can return multiple values, which is useful when you need to return more than one value from a function. The return type of the function is a tuple of types. The return value is a tuple of expressions.</p>
+<p>Move functions can return multiple values, which is useful when you need to return more than one
+value from a function. The return type of the function is a tuple of types. The return value is a
+tuple of expressions.</p>
 <pre><code class="language-move">fun get_name_and_age(): (vector&lt;u8&gt;, u8) {
     (b&quot;John&quot;, 25)
 }
 </code></pre>
-<p>Result of a function call with tuple return has to be unpacked into variables via <code>let (tuple)</code> syntax:</p>
+<p>Result of a function call with tuple return has to be unpacked into variables via <code>let (tuple)</code>
+syntax:</p>
 <pre><code class="language-move">// Tuple must be destructured to access its elements.
 // Name and age are declared as immutable variables.
 let (name, age) = get_name_and_age();
 assert!(name == b&quot;John&quot;, 0);
 assert!(age == 25, 0);
 </code></pre>
-<p>If any of the declared values need to be declared as mutable, the <code>mut</code> keyword is placed before the variable name:</p>
+<p>If any of the declared values need to be declared as mutable, the <code>mut</code> keyword is placed before the
+variable name:</p>
 <pre><code class="language-move">// declare name as mutable, age as immutable
 let (mut name, age) = get_name_and_age();
 </code></pre>

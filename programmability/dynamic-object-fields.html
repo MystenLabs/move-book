@@ -178,14 +178,22 @@
                     <main>
                         <h1 id="dynamic-object-fields"><a class="header" href="#dynamic-object-fields">Dynamic Object Fields</a></h1>
 <blockquote>
-<p>This section expands on the <a href="./dynamic-fields.html">Dynamic Fields</a>. Please, read it first to understand the basics of dynamic fields.</p>
+<p>This section expands on the <a href="./dynamic-fields.html">Dynamic Fields</a>. Please, read it first to
+understand the basics of dynamic fields.</p>
 </blockquote>
-<p>Another variation of dynamic fields is <em>dynamic object fields</em>, which have certain differences from regular dynamic fields. In this section, we will cover the specifics of dynamic object fields and explain how they differ from regular dynamic fields.</p>
+<p>Another variation of dynamic fields is <em>dynamic object fields</em>, which have certain differences from
+regular dynamic fields. In this section, we will cover the specifics of dynamic object fields and
+explain how they differ from regular dynamic fields.</p>
 <blockquote>
-<p>General recommendation is to avoid using dynamic object fields in favor of (just) dynamic fields, especially if there's no need for direct discovery through the ID. The extra costs of dynamic object fields may not be justified by the benefits they provide.</p>
+<p>General recommendation is to avoid using dynamic object fields in favor of (just) dynamic fields,
+especially if there's no need for direct discovery through the ID. The extra costs of dynamic
+object fields may not be justified by the benefits they provide.</p>
 </blockquote>
 <h2 id="definition"><a class="header" href="#definition">Definition</a></h2>
-<p>Dynamic Object Fields are defined in the <code>sui::dynamic_object_fields</code> module in the <a href="./sui-framework.html">Sui Framework</a>. They are similar to dynamic fields in many ways, but unlike them, dynamic object fields have an extra constraint on the <code>Value</code> type. The <code>Value</code> must have a combination of <code>key</code> and <code>store</code>, not just <code>store</code> as in the case of dynamic fields.</p>
+<p>Dynamic Object Fields are defined in the <code>sui::dynamic_object_fields</code> module in the
+<a href="./sui-framework.html">Sui Framework</a>. They are similar to dynamic fields in many ways, but unlike
+them, dynamic object fields have an extra constraint on the <code>Value</code> type. The <code>Value</code> must have a
+combination of <code>key</code> and <code>store</code>, not just <code>store</code> as in the case of dynamic fields.</p>
 <p>They're less explicit in their framework definition, as the concept itself is more abstract:</p>
 <p>File: sui-framework/sources/dynamic_object_fields.move</p>
 <pre><code class="language-move">/// Internal object used for storing the field and the name associated with the
@@ -195,8 +203,10 @@ public struct Wrapper&lt;Name&gt; has copy, drop, store {
     name: Name,
 }
 </code></pre>
-<p>Unlike <code>Field</code> type in the <a href="./dynamic-fields.html#definition">Dynamic Fields</a> section, the <code>Wrapper</code> type only stores the name of the field. The value is the object itself, and is <em>not wrapped</em>.</p>
-<p>The constraints on the <code>Value</code> type become visible in the methods available for dynamic object fields. Here's the signature for the <code>add</code> function:</p>
+<p>Unlike <code>Field</code> type in the <a href="./dynamic-fields.html#definition">Dynamic Fields</a> section, the <code>Wrapper</code>
+type only stores the name of the field. The value is the object itself, and is <em>not wrapped</em>.</p>
+<p>The constraints on the <code>Value</code> type become visible in the methods available for dynamic object
+fields. Here's the signature for the <code>add</code> function:</p>
 <pre><code class="language-move">/// Adds a dynamic object field to the object `object: &amp;mut UID` at field
 /// specified by `name: Name`. Aborts with `EFieldAlreadyExists` if the object
 /// already has that field with that name.
@@ -207,7 +217,9 @@ public fun add&lt;Name: copy + drop + store, Value: key + store&gt;(
     value: Value,
 ) { /* implementation omitted */ }
 </code></pre>
-<p>The rest of the methods which are identical to the ones in the <a href="./dynamic-fields.html#usage">Dynamic Fields</a> section have the same constraints on the <code>Value</code> type. Let's list them for reference:</p>
+<p>The rest of the methods which are identical to the ones in the
+<a href="./dynamic-fields.html#usage">Dynamic Fields</a> section have the same constraints on the <code>Value</code> type.
+Let's list them for reference:</p>
 <ul>
 <li><code>add</code> - adds a dynamic object field to the object</li>
 <li><code>remove</code> - removes a dynamic object field from the object</li>
@@ -216,11 +228,17 @@ public fun add&lt;Name: copy + drop + store, Value: key + store&gt;(
 <li><code>exists_</code> - checks if a dynamic object field exists</li>
 <li><code>exists_with_type</code> - checks if a dynamic object field exists with a specific type</li>
 </ul>
-<p>Additionally, there is an <code>id</code> method which returns the <code>ID</code> of the <code>Value</code> object without specifying its type.</p>
+<p>Additionally, there is an <code>id</code> method which returns the <code>ID</code> of the <code>Value</code> object without
+specifying its type.</p>
 <h2 id="usage--differences-with-dynamic-fields"><a class="header" href="#usage--differences-with-dynamic-fields">Usage &amp; Differences with Dynamic Fields</a></h2>
-<p>The main difference between dynamic fields and dynamic object fields is that the latter allows storing <em>only objects</em> as values. This means that you can't store primitive types like <code>u64</code> or <code>bool</code>. It may be considered a limitation, if not for the fact that dynamic object fields are <em>not wrapped</em> into a separate object.</p>
+<p>The main difference between dynamic fields and dynamic object fields is that the latter allows
+storing <em>only objects</em> as values. This means that you can't store primitive types like <code>u64</code> or
+<code>bool</code>. It may be considered a limitation, if not for the fact that dynamic object fields are <em>not
+wrapped</em> into a separate object.</p>
 <blockquote>
-<p>The relaxed requirement for wrapping keeps the object available for off-chain discovery via its ID. However, this property may not be outstanding if wrapped object indexing is implemented, making the dynamic object fields a redundant feature.</p>
+<p>The relaxed requirement for wrapping keeps the object available for off-chain discovery via its
+ID. However, this property may not be outstanding if wrapped object indexing is implemented,
+making the dynamic object fields a redundant feature.</p>
 </blockquote>
 <pre><code class="language-move">module book::dynamic_object_field {
     use std::string::String;
@@ -268,9 +286,15 @@ public fun add&lt;Name: copy + drop + store, Value: key + store&gt;(
 }
 </code></pre>
 <h2 id="pricing-differences"><a class="header" href="#pricing-differences">Pricing Differences</a></h2>
-<p>Dynamic Object Fields come a little more exensive than dynamic fields. Because of their internal structure, they require 2 objects: the Wrapper for Name and the Value. Because of this, the cost of adding and accessing object fields (loading 2 objects compared to 1 for dynamic fields) is higher.</p>
+<p>Dynamic Object Fields come a little more exensive than dynamic fields. Because of their internal
+structure, they require 2 objects: the Wrapper for Name and the Value. Because of this, the cost of
+adding and accessing object fields (loading 2 objects compared to 1 for dynamic fields) is higher.</p>
 <h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
-<p>Both dynamic field and dynamic object fields are powerful features which allow for innovative solutions in applications. However, they are relatively low-level and require careful handling to avoid orphaned fields. In the next section, we will introduce a higher-level abstraction - <a href="./dynamic-collections.html">Dynamic Collections</a> - which can help with managing dynamic fields and objects more effectively.</p>
+<p>Both dynamic field and dynamic object fields are powerful features which allow for innovative
+solutions in applications. However, they are relatively low-level and require careful handling to
+avoid orphaned fields. In the next section, we will introduce a higher-level abstraction -
+<a href="./dynamic-collections.html">Dynamic Collections</a> - which can help with managing dynamic fields and
+objects more effectively.</p>
 
                     </main>
 

@@ -177,23 +177,33 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="move-2024-migration-guide"><a class="header" href="#move-2024-migration-guide">Move 2024 Migration Guide</a></h1>
-<p>Move 2024 is the new edition of the Move language that is maintained by Mysten Labs. This guide is intended to help you understand the differences between the 2024 edition and the previous version of the Move language.</p>
+<p>Move 2024 is the new edition of the Move language that is maintained by Mysten Labs. This guide is
+intended to help you understand the differences between the 2024 edition and the previous version of
+the Move language.</p>
 <blockquote>
-<p>This guide provides a high-level overview of the changes in the new edition. For a more detailed and exhaustive list of changes, refer to the <a href="https://docs.sui.io/guides/developer/advanced/move-2024-migration">Sui Documentation</a>.</p>
+<p>This guide provides a high-level overview of the changes in the new edition. For a more detailed
+and exhaustive list of changes, refer to the
+<a href="https://docs.sui.io/guides/developer/advanced/move-2024-migration">Sui Documentation</a>.</p>
 </blockquote>
 <h2 id="using-the-new-edition"><a class="header" href="#using-the-new-edition">Using the New Edition</a></h2>
-<p>To use the new edition, you need to specify the edition in the <code>move</code> file. The edition is specified in the <code>move</code> file using the <code>edition</code> keyword. Currently, the only available edition is <code>2024.beta</code>.</p>
+<p>To use the new edition, you need to specify the edition in the <code>move</code> file. The edition is specified
+in the <code>move</code> file using the <code>edition</code> keyword. Currently, the only available edition is
+<code>2024.beta</code>.</p>
 <pre><code class="language-ini">edition = &quot;2024.beta&quot;;
 </code></pre>
 <h2 id="migration-tool"><a class="header" href="#migration-tool">Migration Tool</a></h2>
-<p>The Move CLI has a migration tool that updates the code to the new edition. To use the migration tool, run the following command:</p>
+<p>The Move CLI has a migration tool that updates the code to the new edition. To use the migration
+tool, run the following command:</p>
 <pre><code class="language-bash">$ sui move migrate
 </code></pre>
-<p>The migration tool will update the code to use the <code>let mut</code> syntax, the new <code>public</code> modifier for strucs, and the <code>public(package)</code> function visibility instead of <code>friend</code> declarations.</p>
+<p>The migration tool will update the code to use the <code>let mut</code> syntax, the new <code>public</code> modifier for
+strucs, and the <code>public(package)</code> function visibility instead of <code>friend</code> declarations.</p>
 <h2 id="mutable-bindings-with-let-mut"><a class="header" href="#mutable-bindings-with-let-mut">Mutable bindings with <code>let mut</code></a></h2>
-<p>Move 2024 introduces <code>let mut</code> syntax to declare mutable variables. The <code>let mut</code> syntax is used to declare a mutable variable that can be changed after it is declared.</p>
+<p>Move 2024 introduces <code>let mut</code> syntax to declare mutable variables. The <code>let mut</code> syntax is used to
+declare a mutable variable that can be changed after it is declared.</p>
 <blockquote>
-<p><code>let mut</code> declaration is now required for mutable variables. Compiler will emit an error if you try to reassign a variable without the <code>mut</code> keyword.</p>
+<p><code>let mut</code> declaration is now required for mutable variables. Compiler will emit an error if you
+try to reassign a variable without the <code>mut</code> keyword.</p>
 </blockquote>
 <pre><code class="language-move">// Move 2020
 let x: u64 = 10;
@@ -203,7 +213,8 @@ x = 20;
 let mut x: u64 = 10;
 x = 20;
 </code></pre>
-<p>Additionally, the <code>mut</code> keyword is used in tuple destructuring and function arguments to declare mutable variables.</p>
+<p>Additionally, the <code>mut</code> keyword is used in tuple destructuring and function arguments to declare
+mutable variables.</p>
 <pre><code class="language-move">// takes by value and mutates
 fun takes_by_value_and_mutates(mut v: Value): Value {
     v.field = 10;
@@ -224,7 +235,8 @@ fun unpack() {
 }
 </code></pre>
 <h2 id="friends-are-deprecated"><a class="header" href="#friends-are-deprecated">Friends are Deprecated</a></h2>
-<p>In Move 2024, the <code>friend</code> keyword is deprecated. Instead, you can use the <code>public(package)</code> visibility modifier to make functions visible to other modules in the same package.</p>
+<p>In Move 2024, the <code>friend</code> keyword is deprecated. Instead, you can use the <code>public(package)</code>
+visibility modifier to make functions visible to other modules in the same package.</p>
 <pre><code class="language-move">// Move 2020
 friend book::friend_module;
 public(friend) fun protected_function() {}
@@ -233,7 +245,8 @@ public(friend) fun protected_function() {}
 public(package) fun protected_function_2024() {}
 </code></pre>
 <h2 id="struct-visibility"><a class="header" href="#struct-visibility">Struct Visibility</a></h2>
-<p>In Move 2024, structs get a visibility modifier. Currently, the only available visibility modifier is <code>public</code>.</p>
+<p>In Move 2024, structs get a visibility modifier. Currently, the only available visibility modifier
+is <code>public</code>.</p>
 <pre><code class="language-move">// Move 2020
 struct Book {}
 
@@ -241,9 +254,13 @@ struct Book {}
 public struct Book {}
 </code></pre>
 <h2 id="method-syntax"><a class="header" href="#method-syntax">Method Syntax</a></h2>
-<p>In the new edition, functions which have a struct as the first argument are associated with the struct. This means that the function can be called using the dot notation. Methods defined in the same module with the type are automatically exported.</p>
+<p>In the new edition, functions which have a struct as the first argument are associated with the
+struct. This means that the function can be called using the dot notation. Methods defined in the
+same module with the type are automatically exported.</p>
 <blockquote>
-<p>Methods are automatically exported if the type is defined in the same module as the method. It is impossible to export methods for types defined in other modules. However, you can create <a href="#method-aliases">custom aliases</a> for methods in the module scope.</p>
+<p>Methods are automatically exported if the type is defined in the same module as the method. It is
+impossible to export methods for types defined in other modules. However, you can create
+<a href="#method-aliases">custom aliases</a> for methods in the module scope.</p>
 </blockquote>
 <pre><code class="language-move">public fun count(c: &amp;Counter): u64 { /* ... */ }
 
@@ -256,7 +273,8 @@ fun use_counter() {
 }
 </code></pre>
 <h2 id="methods-for-built-in-types"><a class="header" href="#methods-for-built-in-types">Methods for Built-in Types</a></h2>
-<p>In Move 2024, some of the native and standard types received associated methods. For example, the <code>vector</code> type has a <code>to_string</code> method that converts the vector into a UTF8 string.</p>
+<p>In Move 2024, some of the native and standard types received associated methods. For example, the
+<code>vector</code> type has a <code>to_string</code> method that converts the vector into a UTF8 string.</p>
 <pre><code class="language-move">fun aliases() {
     // vector to string and ascii string
     let str: String = b&quot;Hello, World!&quot;.to_string();
@@ -266,9 +284,12 @@ fun use_counter() {
     let bytes = @0xa11ce.to_bytes();
 }
 </code></pre>
-<p>For the full list of built-in aliases, refer to the <a href="../move-basics/standard-library.html#source-code">Standard Library</a> and <a href="../programmability/sui-framework.html#source-code">Sui Framework</a> source code.</p>
+<p>For the full list of built-in aliases, refer to the
+<a href="../move-basics/standard-library.html#source-code">Standard Library</a> and
+<a href="../programmability/sui-framework.html#source-code">Sui Framework</a> source code.</p>
 <h2 id="borrowing-operator"><a class="header" href="#borrowing-operator">Borrowing Operator</a></h2>
-<p>Some of the built-in types support borrowing operators. The borrowing operator is used to get a reference to the element at the specified index. The borrowing operator is defined as <code>[]</code>.</p>
+<p>Some of the built-in types support borrowing operators. The borrowing operator is used to get a
+reference to the element at the specified index. The borrowing operator is defined as <code>[]</code>.</p>
 <pre><code class="language-move">fun play_vec() {
     let v = vector[1,2,3,4];
     let first = &amp;v[0];         // calls vector::borrow(v, 0)
@@ -286,7 +307,8 @@ fun use_counter() {
 <li><code>sui::object_bag::ObjectBag</code></li>
 <li><code>sui::linked_table::LinkedTable</code></li>
 </ul>
-<p>To implement the borrowing operator for a custom type, you need to add a <code>#[syntax(index)]</code> attribute to the methods.</p>
+<p>To implement the borrowing operator for a custom type, you need to add a <code>#[syntax(index)]</code>
+attribute to the methods.</p>
 <pre><code class="language-move">#[syntax(index)]
 public fun borrow(c: &amp;List&lt;T&gt;, key: String): &amp;T { /* ... */ }
 
@@ -294,7 +316,8 @@ public fun borrow(c: &amp;List&lt;T&gt;, key: String): &amp;T { /* ... */ }
 public fun borrow_mut(c: &amp;mut List&lt;T&gt;, key: String): &amp;mut T { /* ... */ }
 </code></pre>
 <h2 id="method-aliases"><a class="header" href="#method-aliases">Method Aliases</a></h2>
-<p>In Move 2024, methods can be associated with types. The alias can be defined for any type locally to the module; or publicly, if the type is defined in the same module.</p>
+<p>In Move 2024, methods can be associated with types. The alias can be defined for any type locally to
+the module; or publicly, if the type is defined in the same module.</p>
 <pre><code class="language-move">// my_module.move
 // Local: type is foreign to the module
 use fun my_custom_function as vector.do_magic;

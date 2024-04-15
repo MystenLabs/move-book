@@ -177,9 +177,16 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="object-display"><a class="header" href="#object-display">Object Display</a></h1>
-<p>Objects on Sui are explicit in their structure and behavior and can be displayed in an understandable way. However, to support richer metadata for clients, there's a standard and efficient way of &quot;describing&quot; them to the client - the <code>Display</code> object defined in the <a href="./sui-framework.html">Sui Framework</a>.</p>
+<p>Objects on Sui are explicit in their structure and behavior and can be displayed in an
+understandable way. However, to support richer metadata for clients, there's a standard and
+efficient way of &quot;describing&quot; them to the client - the <code>Display</code> object defined in the
+<a href="./sui-framework.html">Sui Framework</a>.</p>
 <h2 id="background"><a class="header" href="#background">Background</a></h2>
-<p>Historically, there were different attempts to agree on a standard structure of an object so it can be displayed in a user interface. One of the approaches was to define certain fields in the object struct which, when present, would be used in the UI. This approach was not flexible enough and required developers to define the same fields in every object, and sometimes the fields did not make sense for the object.</p>
+<p>Historically, there were different attempts to agree on a standard structure of an object so it can
+be displayed in a user interface. One of the approaches was to define certain fields in the object
+struct which, when present, would be used in the UI. This approach was not flexible enough and
+required developers to define the same fields in every object, and sometimes the fields did not make
+sense for the object.</p>
 <pre><code class="language-move">/// An attempt to standardize the object structure for display.
 public struct CounterWithDisplay has key {
     id: UID,
@@ -194,12 +201,20 @@ public struct CounterWithDisplay has key {
     // ...
 }
 </code></pre>
-<p>If any of the fields contained static data, it would be duplicated in every object. And, since Move does not have interfaces, it is not possible to know if an object has a specific field without &quot;manually&quot; checking the object's type, which makes the client fetching more complex.</p>
+<p>If any of the fields contained static data, it would be duplicated in every object. And, since Move
+does not have interfaces, it is not possible to know if an object has a specific field without
+&quot;manually&quot; checking the object's type, which makes the client fetching more complex.</p>
 <h2 id="object-display-1"><a class="header" href="#object-display-1">Object Display</a></h2>
-<p>To address these issues, Sui introduces a standard way of describing an object for display. Instead of defining fields in the object struct, the display metadata is stored in a separate object, which is associated with the type. This way, the display metadata is not duplicated, and it is easy to extend and maintain.</p>
-<p>Another important feature of Sui Display is the ability to define templates and use object fields in those templates. Not only it allows for a more flexible display, but it also frees the developer from the need to define the same fields with the same names and types in every object.</p>
+<p>To address these issues, Sui introduces a standard way of describing an object for display. Instead
+of defining fields in the object struct, the display metadata is stored in a separate object, which
+is associated with the type. This way, the display metadata is not duplicated, and it is easy to
+extend and maintain.</p>
+<p>Another important feature of Sui Display is the ability to define templates and use object fields in
+those templates. Not only it allows for a more flexible display, but it also frees the developer
+from the need to define the same fields with the same names and types in every object.</p>
 <blockquote>
-<p>The Object Display is natively supported by the Sui Fullnode, and the client can fetch the display metadata for any object if the object type has a Display associated with it.</p>
+<p>The Object Display is natively supported by the Sui Fullnode, and the client can fetch the display
+metadata for any object if the object type has a Display associated with it.</p>
 </blockquote>
 <pre><code class="language-move">module book::arena {
     use std::string::String;
@@ -252,24 +267,37 @@ public struct CounterWithDisplay has key {
 }
 </code></pre>
 <h2 id="creator-privilege"><a class="header" href="#creator-privilege">Creator Privilege</a></h2>
-<p>While the objects can be owned by accounts and may be a subject to <a href="./../object/true-ownership.html">True Ownership</a>, the Display can be owned by the creator of the object. This way, the creator can update the display metadata and apply the changes globally without the need to update every object. The creator can also transfer Display to another account or even build an application around the object with custom functionality to manage the metadata.</p>
+<p>While the objects can be owned by accounts and may be a subject to
+<a href="./../object/true-ownership.html">True Ownership</a>, the Display can be owned by the creator of the
+object. This way, the creator can update the display metadata and apply the changes globally without
+the need to update every object. The creator can also transfer Display to another account or even
+build an application around the object with custom functionality to manage the metadata.</p>
 <h2 id="standard-fields"><a class="header" href="#standard-fields">Standard Fields</a></h2>
 <p>The fields that are supported most widely are:</p>
 <ul>
 <li><code>name</code> - A name for the object. The name is displayed when users view the object.</li>
-<li><code>description</code> - A description for the object. The description is displayed when users view the object.</li>
+<li><code>description</code> - A description for the object. The description is displayed when users view the
+object.</li>
 <li><code>link</code> - A link to the object to use in an application.</li>
 <li><code>image_url</code> - A URL or a blob with the image for the object.</li>
-<li><code>thumbnail_url</code> - A URL to a smaller image to use in wallets, explorers, and other products as a preview.</li>
+<li><code>thumbnail_url</code> - A URL to a smaller image to use in wallets, explorers, and other products as a
+preview.</li>
 <li><code>project_url</code> - A link to a website associated with the object or creator.</li>
 <li><code>creator</code> - A string that indicates the object creator.</li>
 </ul>
 <blockquote>
-<p>Please, refer to the <a href="https://docs.sui.io/standards/display">Sui Documentation</a> for the most up-to-date list of supported fields.</p>
+<p>Please, refer to the <a href="https://docs.sui.io/standards/display">Sui Documentation</a> for the most
+up-to-date list of supported fields.</p>
 </blockquote>
-<p>While there's a standard set of fields, the Display object does not enforce them. The developer can define any fields they need, and the client can use them as they see fit. Some applications may require additional fields, and omit other, and the Display is flexible enough to support them.</p>
+<p>While there's a standard set of fields, the Display object does not enforce them. The developer can
+define any fields they need, and the client can use them as they see fit. Some applications may
+require additional fields, and omit other, and the Display is flexible enough to support them.</p>
 <h2 id="working-with-display"><a class="header" href="#working-with-display">Working with Display</a></h2>
-<p>The <code>Display</code> object is defined in the <code>sui::display</code> module. It is a generic struct that takes a phantom type as a parameter. The phantom type is used to associate the <code>Display</code> object with the type it describes. The <code>fields</code> of the <code>Display</code> object are a <code>VecMap</code> of key-value pairs, where the key is the field name and the value is the field value. The <code>version</code> field is used to version the display metadata, and is updated on the <code>update_display</code> call.</p>
+<p>The <code>Display</code> object is defined in the <code>sui::display</code> module. It is a generic struct that takes a
+phantom type as a parameter. The phantom type is used to associate the <code>Display</code> object with the
+type it describes. The <code>fields</code> of the <code>Display</code> object are a <code>VecMap</code> of key-value pairs, where the
+key is the field name and the value is the field value. The <code>version</code> field is used to version the
+display metadata, and is updated on the <code>update_display</code> call.</p>
 <p>File: sui-framework/sources/display.move</p>
 <pre><code class="language-move">struct Display&lt;phantom T: key&gt; has key, store {
     id: UID,
@@ -280,9 +308,12 @@ public struct CounterWithDisplay has key {
     version: u16
 }
 </code></pre>
-<p>The <a href="./publisher.html">Publisher</a> object is required to a new Display, since it serves as the proof of ownership of type.</p>
+<p>The <a href="./publisher.html">Publisher</a> object is required to a new Display, since it serves as the proof of
+ownership of type.</p>
 <h2 id="template-syntax"><a class="header" href="#template-syntax">Template Syntax</a></h2>
-<p>Currently, Display supports simple string interpolation and can use struct fields (and paths) in its templates. The syntax is trivial - <code>{path}</code> is replaced with the value of the field at the path. The path is a dot-separated list of field names, starting from the root object in case of nested fields.</p>
+<p>Currently, Display supports simple string interpolation and can use struct fields (and paths) in its
+templates. The syntax is trivial - <code>{path}</code> is replaced with the value of the field at the path. The
+path is a dot-separated list of field names, starting from the root object in case of nested fields.</p>
 <pre><code class="language-move">/// Some common metadata for objects.
 public struct Metadata has store {
     name: String,
@@ -305,7 +336,8 @@ public struct LittlePony has key, store {
 }
 </code></pre>
 <h2 id="multiple-display-objects"><a class="header" href="#multiple-display-objects">Multiple Display Objects</a></h2>
-<p>There's no restriction to how many <code>Display&lt;T&gt;</code> objects can be created for a specific <code>T</code>. However, the most recently updated <code>Display&lt;T&gt;</code> will be used by the fullnode.</p>
+<p>There's no restriction to how many <code>Display&lt;T&gt;</code> objects can be created for a specific <code>T</code>. However,
+the most recently updated <code>Display&lt;T&gt;</code> will be used by the fullnode.</p>
 <h2 id="further-reading"><a class="header" href="#further-reading">Further Reading</a></h2>
 <ul>
 <li><a href="https://docs.sui.io/standards/display">Sui Object Display</a> is Sui Documentation</li>

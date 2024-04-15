@@ -195,12 +195,18 @@ Notes:
 Links:
     - constants (previous section)
  -->
-<p>A transaction can either succeed or fail. Successful execution applies all the changes made to objects and on-chain data, and the transaction is committed to the blockchain. If a transaction aborts, and changes are not applied. The <code>abort</code> keyword is used to abort a transaction and revert the changes made so far.</p>
+<p>A transaction can either succeed or fail. Successful execution applies all the changes made to
+objects and on-chain data, and the transaction is committed to the blockchain. If a transaction
+aborts, and changes are not applied. The <code>abort</code> keyword is used to abort a transaction and revert
+the changes made so far.</p>
 <blockquote>
-<p>It is important to note that there is no catch mechanism in Move. If a transaction aborts, the changes made so far are reverted, and the transaction is considered failed.</p>
+<p>It is important to note that there is no catch mechanism in Move. If a transaction aborts, the
+changes made so far are reverted, and the transaction is considered failed.</p>
 </blockquote>
 <h2 id="abort"><a class="header" href="#abort">Abort</a></h2>
-<p>The <code>abort</code> keyword is used to abort the execution of a transaction. It is used in combination with an abort code, which will be returned to the caller of the transaction. The abort code is an integer of type <code>u64</code> and can be any value.</p>
+<p>The <code>abort</code> keyword is used to abort the execution of a transaction. It is used in combination with
+an abort code, which will be returned to the caller of the transaction. The abort code is an integer
+of type <code>u64</code> and can be any value.</p>
 <pre><code class="language-move">let user_has_access = true;
 
 // abort with a predefined constant if `user_has_access` is false
@@ -215,7 +221,10 @@ if (user_has_access) {
 </code></pre>
 <p>The code above will, of course, abort with abort code <code>1</code>.</p>
 <h2 id="assert"><a class="header" href="#assert">assert!</a></h2>
-<p>The <code>assert!</code> macro is a built-in macro that can be used to assert a condition. If the condition is false, the transaction will abort with the given abort code. The <code>assert!</code> macro is a convenient way to abort a transaction if a condition is not met. The macro shortens the code otherwise written with an <code>if</code> expression + <code>abort</code>.</p>
+<p>The <code>assert!</code> macro is a built-in macro that can be used to assert a condition. If the condition is
+false, the transaction will abort with the given abort code. The <code>assert!</code> macro is a convenient way
+to abort a transaction if a condition is not met. The macro shortens the code otherwise written with
+an <code>if</code> expression + <code>abort</code>.</p>
 <pre><code class="language-move">// aborts if `user_has_access` is `false` with abort code 0
 assert!(user_has_access, 0);
 
@@ -225,7 +234,10 @@ if (!user_has_access) {
 };
 </code></pre>
 <h2 id="error-constants"><a class="header" href="#error-constants">Error constants</a></h2>
-<p>To make error codes more descriptive, it is a good practice to define error constants. Error constants are defined as <code>const</code> declarations and are usually prefixed with <code>E</code> followed by a camel case name. Error constants are no different from other constants and don't have special handling. So their addition is purely a practice for better code readability.</p>
+<p>To make error codes more descriptive, it is a good practice to define error constants. Error
+constants are defined as <code>const</code> declarations and are usually prefixed with <code>E</code> followed by a camel
+case name. Error constants are no different from other constants and don't have special handling. So
+their addition is purely a practice for better code readability.</p>
 <pre><code class="language-move">/// Error code for when the user has no access.
 const ENoAccess: u64 = 0;
 /// Trying to access a field that does not exist.
@@ -243,7 +255,8 @@ public fun update_record(/* ... , */ user_has_access: bool, field_exists: bool) 
 <h2 id="further-reading"><a class="header" href="#further-reading">Further reading</a></h2>
 <ul>
 <li><a href="/reference/abort-and-assert.html">Abort and Assert</a> in the Move Language Reference.</li>
-<li>We suggest reading the <a href="./../guides/better-error-handling.html">Better Error Handling</a> guide to learn about best practices for error handling in Move.</li>
+<li>We suggest reading the <a href="./../guides/better-error-handling.html">Better Error Handling</a> guide to
+learn about best practices for error handling in Move.</li>
 </ul>
 
                     </main>

@@ -177,20 +177,32 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="option"><a class="header" href="#option">Option</a></h1>
-<p>Option is a type that represents an optional value which may or may not exist. The concept of Option in Move is borrowed from Rust, and it is a very useful primitive in Move. <code>Option</code> is defined in the <a href="./standard-library.html">Standard Library</a>, and is defined as follows:</p>
+<p>Option is a type that represents an optional value which may or may not exist. The concept of Option
+in Move is borrowed from Rust, and it is a very useful primitive in Move. <code>Option</code> is defined in the
+<a href="./standard-library.html">Standard Library</a>, and is defined as follows:</p>
 <p>File: move-stdlib/source/option.move</p>
-<pre><code class="language-move">/// Abstraction of a value that may or may not be present.
+<pre><code class="language-move">// File: move-stdlib/source/option.move
+/// Abstraction of a value that may or may not be present.
 struct Option&lt;Element&gt; has copy, drop, store {
     vec: vector&lt;Element&gt;
 }
 </code></pre>
 <blockquote>
-<p>The 'std::option' module is implicitly imported in every module, and you don't need to add an import.</p>
+<p>The 'std::option' module is implicitly imported in every module, and you don't need to add an
+import.</p>
 </blockquote>
-<p>The <code>Option</code> is a generic type which takes a type parameter <code>Element</code>. It has a single field <code>vec</code> which is a <code>vector</code> of <code>Element</code>. Vector can have length 0 or 1, and this is used to represent the presence or absence of a value.</p>
-<p>Option type has two variants: <code>Some</code> and <code>None</code>. <code>Some</code> variant contains a value and <code>None</code> variant represents the absence of a value. The <code>Option</code> type is used to represent the absence of a value in a type-safe way, and it is used to avoid the need for empty or <code>undefined</code> values.</p>
+<p>The <code>Option</code> is a generic type which takes a type parameter <code>Element</code>. It has a single field <code>vec</code>
+which is a <code>vector</code> of <code>Element</code>. Vector can have length 0 or 1, and this is used to represent the
+presence or absence of a value.</p>
+<p>Option type has two variants: <code>Some</code> and <code>None</code>. <code>Some</code> variant contains a value and <code>None</code> variant
+represents the absence of a value. The <code>Option</code> type is used to represent the absence of a value in
+a type-safe way, and it is used to avoid the need for empty or <code>undefined</code> values.</p>
 <h2 id="in-practice"><a class="header" href="#in-practice">In Practice</a></h2>
-<p>To showcase why Option type is necessary, let's look at an example. Consider an application which takes a user input and stores it in a variable. Some fields are required, and some are optional. For example, a user's middle name is optional. While we could use an empty string to represent the absence of a middle name, it would require extra checks to differentiate between an empty string and a missing middle name. Instead, we can use the <code>Option</code> type to represent the middle name.</p>
+<p>To showcase why Option type is necessary, let's look at an example. Consider an application which
+takes a user input and stores it in a variable. Some fields are required, and some are optional. For
+example, a user's middle name is optional. While we could use an empty string to represent the
+absence of a middle name, it would require extra checks to differentiate between an empty string and
+a missing middle name. Instead, we can use the <code>Option</code> type to represent the middle name.</p>
 <pre><code class="language-move">module book::user_registry {
     use std::string::String;
 
@@ -211,9 +223,13 @@ struct Option&lt;Element&gt; has copy, drop, store {
     }
 }
 </code></pre>
-<p>In the example above, the <code>middle_name</code> field is of type <code>Option&lt;String&gt;</code>. This means that the <code>middle_name</code> field can either contain a <code>String</code> value or be empty. This makes it clear that the middle name is optional, and it avoids the need for extra checks to differentiate between an empty string and a missing middle name.</p>
+<p>In the example above, the <code>middle_name</code> field is of type <code>Option&lt;String&gt;</code>. This means that the
+<code>middle_name</code> field can either contain a <code>String</code> value or be empty. This makes it clear that the
+middle name is optional, and it avoids the need for extra checks to differentiate between an empty
+string and a missing middle name.</p>
 <h2 id="using-option"><a class="header" href="#using-option">Using Option</a></h2>
-<p>To use the <code>Option</code> type, you need to import the <code>std::option</code> module and use the <code>Option</code> type. You can then create an <code>Option</code> value using the <code>some</code> or <code>none</code> methods.</p>
+<p>To use the <code>Option</code> type, you need to import the <code>std::option</code> module and use the <code>Option</code> type. You
+can then create an <code>Option</code> value using the <code>some</code> or <code>none</code> methods.</p>
 <pre><code class="language-move">// `option::some` creates an `Option` value with a value.
 let mut opt = option::some(b&quot;Alice&quot;);
 

@@ -177,27 +177,60 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="ownership"><a class="header" href="#ownership">Ownership</a></h1>
-<p>Sui introduces four distinct ownership types for objects: single owner, shared state, immutable shared state, and object-owner. Each model offers unique characteristics and suits different use cases, enhancing flexibility and control in object management.</p>
+<p>Sui introduces four distinct ownership types for objects: single owner, shared state, immutable
+shared state, and object-owner. Each model offers unique characteristics and suits different use
+cases, enhancing flexibility and control in object management.</p>
 <h2 id="account-owner-or-single-owner"><a class="header" href="#account-owner-or-single-owner">Account Owner (or Single Owner)</a></h2>
-<p>The account owner, also known as the <em>single owner</em> model, is the foundational ownership type in Sui. Here, an object is owned by a single account, granting that account exclusive control over the object within the behaviors associated with its type. This model embodies the concept of <em>true ownership</em>, where the account possesses complete authority over the object, making it inaccessible to others for modification or transfer. This level of ownership clarity is a significant advantage over other blockchain systems, where ownership definitions can be more ambiguous, and smart contracts may have the ability to alter or transfer assets without the owner's consent.</p>
+<p>The account owner, also known as the <em>single owner</em> model, is the foundational ownership type in
+Sui. Here, an object is owned by a single account, granting that account exclusive control over the
+object within the behaviors associated with its type. This model embodies the concept of <em>true
+ownership</em>, where the account possesses complete authority over the object, making it inaccessible
+to others for modification or transfer. This level of ownership clarity is a significant advantage
+over other blockchain systems, where ownership definitions can be more ambiguous, and smart
+contracts may have the ability to alter or transfer assets without the owner's consent.</p>
 <!-- TODO: add an example -->
 <h2 id="shared-state"><a class="header" href="#shared-state">Shared State</a></h2>
-<p>Single owner model has its limitations: for example, it is very tricky to implement a marketplace for digital assets without a shared state. For a generic marketplace scenario, imagine that Alice owns an asset X, and she wants to sell it by putting it into a shared marketplace. Then Bob can come and buy the asset directly from the marketplace. The reason why this is tricky is that it is impossible to write a smart contract that would &quot;lock&quot; the asset in Alice's account and take it out when Bob buys it. First, it will be a violation of the single owner model, and second, it requires a shared access to the asset.</p>
-<p>To facilitate a problem of shared data access, Sui has introduced a shared ownership model. In this model, an object can be shared with the network. Shared objects can be read and modified by any account on the network, and the rules of interaction are defined by the implementation of the object. Typical uses for shared objects are: marketplaces, shared resources, escrows, and other scenarios where multiple accounts need access to the same state.</p>
+<p>Single owner model has its limitations: for example, it is very tricky to implement a marketplace
+for digital assets without a shared state. For a generic marketplace scenario, imagine that Alice
+owns an asset X, and she wants to sell it by putting it into a shared marketplace. Then Bob can come
+and buy the asset directly from the marketplace. The reason why this is tricky is that it is
+impossible to write a smart contract that would &quot;lock&quot; the asset in Alice's account and take it out
+when Bob buys it. First, it will be a violation of the single owner model, and second, it requires a
+shared access to the asset.</p>
+<p>To facilitate a problem of shared data access, Sui has introduced a shared ownership model. In this
+model, an object can be shared with the network. Shared objects can be read and modified by any
+account on the network, and the rules of interaction are defined by the implementation of the
+object. Typical uses for shared objects are: marketplaces, shared resources, escrows, and other
+scenarios where multiple accounts need access to the same state.</p>
 <h2 id="immutable-frozen-state"><a class="header" href="#immutable-frozen-state">Immutable (Frozen) State</a></h2>
-<p>Sui also offers the <em>frozen object</em> model, where an object becomes permanently read-only. These immutable objects, while readable, cannot be modified or moved, providing a stable and constant state accessible to all network participants. Frozen objects are ideal for public data, reference materials, and other use cases where the state permanence is desirable.</p>
+<p>Sui also offers the <em>frozen object</em> model, where an object becomes permanently read-only. These
+immutable objects, while readable, cannot be modified or moved, providing a stable and constant
+state accessible to all network participants. Frozen objects are ideal for public data, reference
+materials, and other use cases where the state permanence is desirable.</p>
 <h2 id="object-owner"><a class="header" href="#object-owner">Object Owner</a></h2>
-<p>The last ownership model in Sui is the <em>object owner</em>. In this model, an object is owned by another object. This feature allows creating complex relationships between objects, store large heterogenious collections, and implementing extensible and modular systems. Practically speaking, since the transactions are initiated by accounts, the transaction still accesses the parent object, but it can then access the child objects through the parent object.</p>
-<p>A use case we love to mention is a game character. Alice can own the Hero object from a game, and the Hero can own items: also represented as objects, like a &quot;Map&quot;, or a &quot;Compass&quot;. Alice may take the &quot;Map&quot; from the &quot;Hero&quot; object, and then send it to Bob, or sell it on a marketplace. With object owner, it becomes very natural to imagine how the assets can be structured and managed in relation to each other.</p>
+<p>The last ownership model in Sui is the <em>object owner</em>. In this model, an object is owned by another
+object. This feature allows creating complex relationships between objects, store large
+heterogenious collections, and implementing extensible and modular systems. Practically speaking,
+since the transactions are initiated by accounts, the transaction still accesses the parent object,
+but it can then access the child objects through the parent object.</p>
+<p>A use case we love to mention is a game character. Alice can own the Hero object from a game, and
+the Hero can own items: also represented as objects, like a &quot;Map&quot;, or a &quot;Compass&quot;. Alice may take
+the &quot;Map&quot; from the &quot;Hero&quot; object, and then send it to Bob, or sell it on a marketplace. With object
+owner, it becomes very natural to imagine how the assets can be structured and managed in relation
+to each other.</p>
 <h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
 <ul>
-<li><strong>Single Owner:</strong> Objects are owned by a single account, granting exclusive control over the object.</li>
-<li><strong>Shared State:</strong> Objects can be shared with the network, allowing multiple accounts to read and modify the object.</li>
+<li><strong>Single Owner:</strong> Objects are owned by a single account, granting exclusive control over the
+object.</li>
+<li><strong>Shared State:</strong> Objects can be shared with the network, allowing multiple accounts to read and
+modify the object.</li>
 <li><strong>Immutable State:</strong> Objects become permanently read-only, providing a stable and constant state.</li>
-<li><strong>Object Owner:</strong> Objects can own other objects, enabling complex relationships and modular systems.</li>
+<li><strong>Object Owner:</strong> Objects can own other objects, enabling complex relationships and modular
+systems.</li>
 </ul>
 <h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
-<p>In the next section we will talk about transaction execution paths in Sui, and how the ownership models affect the transaction execution.</p>
+<p>In the next section we will talk about transaction execution paths in Sui, and how the ownership
+models affect the transaction execution.</p>
 
                     </main>
 

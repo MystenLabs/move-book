@@ -213,7 +213,11 @@ Links:
 
  -->
 <h2 id="drop-ability"><a class="header" href="#drop-ability">Drop ability</a></h2>
-<p>The <code>drop</code> ability - the simplest of them - allows the instance of a struct to be <em>ignored</em> or <em>discarded</em>. In many programming languages this behavior is considered default. However, in Move, a struct without the <code>drop</code> ability is not allowed to be ignored. This is a safety feature of the Move language, which ensures that all assets are properly handled. An attempt to ignore a struct without the <code>drop</code> ability will result in a compilation error.</p>
+<p>The <code>drop</code> ability - the simplest of them - allows the instance of a struct to be <em>ignored</em> or
+<em>discarded</em>. In many programming languages this behavior is considered default. However, in Move, a
+struct without the <code>drop</code> ability is not allowed to be ignored. This is a safety feature of the Move
+language, which ensures that all assets are properly handled. An attempt to ignore a struct without
+the <code>drop</code> ability will result in a compilation error.</p>
 <pre><code class="language-move">module book::drop_ability {
 
     /// This struct has the `drop` ability.
@@ -237,8 +241,15 @@ Links:
     }
 }
 </code></pre>
-<p>The <code>drop</code> ability is often used on custom collection types to eliminate the need for special handling of the collection when it is no longer needed. For example, a <code>vector</code> type has the <code>drop</code> ability, which allows the vector to be ignored when it is no longer needed. However, the biggest feature of Move's type system is the ability to not have <code>drop</code>. This ensures that the assets are properly handled and not ignored.</p>
-<p>A struct with a single <code>drop</code> ability is called a <em>Witness</em>. We explain the concept of a <em>Witness</em> in the <a href="./../programmability/witness-and-abstract-implementation.html">Witness and Abstract Implementation</a> section.</p>
+<p>The <code>drop</code> ability is often used on custom collection types to eliminate the need for special
+handling of the collection when it is no longer needed. For example, a <code>vector</code> type has the <code>drop</code>
+ability, which allows the vector to be ignored when it is no longer needed. However, the biggest
+feature of Move's type system is the ability to not have <code>drop</code>. This ensures that the assets are
+properly handled and not ignored.</p>
+<p>A struct with a single <code>drop</code> ability is called a <em>Witness</em>. We explain the concept of a <em>Witness</em>
+in the
+<a href="./../programmability/witness-and-abstract-implementation.html">Witness and Abstract Implementation</a>
+section.</p>
 <h2 id="types-with-the-drop-ability"><a class="header" href="#types-with-the-drop-ability">Types with the <code>drop</code> Ability</a></h2>
 <p>All native types in Move have the <code>drop</code> ability. This includes:</p>
 <ul>

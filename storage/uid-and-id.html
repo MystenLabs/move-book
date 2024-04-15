@@ -177,7 +177,9 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="uid-and-id"><a class="header" href="#uid-and-id">UID and ID</a></h1>
-<p>The <code>UID</code> type is defined in the <code>sui::object</code> module and is a wrapper around an <code>ID</code> which, in turn, wraps the <code>address</code> type. The UIDs on Sui are guaranteed to be unique, and can't be reused after the object was deleted.</p>
+<p>The <code>UID</code> type is defined in the <code>sui::object</code> module and is a wrapper around an <code>ID</code> which, in
+turn, wraps the <code>address</code> type. The UIDs on Sui are guaranteed to be unique, and can't be reused
+after the object was deleted.</p>
 <pre><code class="language-move">// File: sui-framework/sources/object.move
 /// UID is a unique identifier of an object
 public struct UID has store {
@@ -193,16 +195,24 @@ public struct ID has store, drop {
 <h2 id="fresh-uid-generation"><a class="header" href="#fresh-uid-generation">Fresh UID generation:</a></h2>
 <ul>
 <li>UID is derived from the <code>tx_hash</code> and an <code>index</code> which is incremented for each new UID.</li>
-<li>The <code>derive_id</code> function is implemented in the <code>sui::tx_context</code> module, and that is why TxContext is required for UID generation.</li>
-<li>Sui Verifier will not allow using a UID that wasn't created in the same function. That prevents UIDs from being pre-generated and reused after the object was unpacked.</li>
+<li>The <code>derive_id</code> function is implemented in the <code>sui::tx_context</code> module, and that is why TxContext
+is required for UID generation.</li>
+<li>Sui Verifier will not allow using a UID that wasn't created in the same function. That prevents
+UIDs from being pre-generated and reused after the object was unpacked.</li>
 </ul>
-<p>New UID is created with the <code>object::new(ctx)</code> function. It takes a mutable reference to TxContext, and returns a new UID.</p>
+<p>New UID is created with the <code>object::new(ctx)</code> function. It takes a mutable reference to TxContext,
+and returns a new UID.</p>
 <pre><code class="language-move">let ctx = &amp;mut tx_context::dummy();
 let uid = object::new(ctx);
 </code></pre>
-<p>On Sui, <code>UID</code> acts as a representation of an object, and allows defining behaviors and features of an object. One of the key-features - <a href="">Dynamic Fields</a> - is possible because of the <code>UID</code> type being explicit. Additionally, it allows the <a href="">Transfer To Object (TTO)</a> which we will explain later in this chapter.</p>
+<p>On Sui, <code>UID</code> acts as a representation of an object, and allows defining behaviors and features of
+an object. One of the key-features - <a href="">Dynamic Fields</a> - is possible because of the <code>UID</code> type
+being explicit. Additionally, it allows the <a href="">Transfer To Object (TTO)</a> which we will explain later
+in this chapter.</p>
 <h2 id="uid-lifecycle"><a class="header" href="#uid-lifecycle">UID lifecycle</a></h2>
-<p>The <code>UID</code> type is created with the <code>object::new(ctx)</code> function, and it is destroyed with the <code>object::delete(uid)</code> function. The <code>object::delete</code> consumes the UID <em>by value</em>, and it is impossible to delete it unless the value was unpacked from an Object.</p>
+<p>The <code>UID</code> type is created with the <code>object::new(ctx)</code> function, and it is destroyed with the
+<code>object::delete(uid)</code> function. The <code>object::delete</code> consumes the UID <em>by value</em>, and it is
+impossible to delete it unless the value was unpacked from an Object.</p>
 <pre><code class="language-move">let ctx = &amp;mut tx_context::dummy();
 
 let char = Character {
@@ -213,20 +223,32 @@ let Character { id } = char;
 id.delete();
 </code></pre>
 <h2 id="keeping-the-uid"><a class="header" href="#keeping-the-uid">Keeping the UID</a></h2>
-<p>The <code>UID</code> does not need to be deleted immediately after the object struct is unpacked. Sometimes it may carry <a href="./../programmability/dynamic-fields.html">Dynamic Fields</a> or objects transferred to it via <a href="./transfer-to-object.html">Transfer To Object</a>. In such cases, the UID may be kept and stored in a separate object.</p>
+<p>The <code>UID</code> does not need to be deleted immediately after the object struct is unpacked. Sometimes it
+may carry <a href="./../programmability/dynamic-fields.html">Dynamic Fields</a> or objects transferred to it via
+<a href="./transfer-to-object.html">Transfer To Object</a>. In such cases, the UID may be kept and stored in a
+separate object.</p>
 <h2 id="proof-of-deletion"><a class="header" href="#proof-of-deletion">Proof of Deletion</a></h2>
-<p>The ability to return the UID of an object may be utilized in pattern called <em>proof of deletion</em>. It is a rarely used technique, but it may be useful in some cases, for example, the creator or an application may incentivize the deletion of an object by exchanging the deleted IDs for some reward.</p>
-<p>In framework development this method could be used ignore / bypass certain restrictions on &quot;taking&quot; the object. If there's a container that enforces certain logic on transfers, like Kiosk does, there could be a special scenario of skipping the checks by providing a proof of deletion.</p>
+<p>The ability to return the UID of an object may be utilized in pattern called <em>proof of deletion</em>. It
+is a rarely used technique, but it may be useful in some cases, for example, the creator or an
+application may incentivize the deletion of an object by exchanging the deleted IDs for some reward.</p>
+<p>In framework development this method could be used ignore / bypass certain restrictions on &quot;taking&quot;
+the object. If there's a container that enforces certain logic on transfers, like Kiosk does, there
+could be a special scenario of skipping the checks by providing a proof of deletion.</p>
 <p>This is one of the open topics for exploration and research, and it may be used in various ways.</p>
 <h2 id="id"><a class="header" href="#id">ID</a></h2>
-<p>When talking about <code>UID</code>s we should also mention the <code>ID</code> type. It is a wrapper around the <code>address</code> type, and is used to represent an address-pointer. Usually, <code>ID</code> is used to point at an object, however, there's no restriction, and no guarantee that the <code>ID</code> points to an existing object.</p>
+<p>When talking about <code>UID</code>s we should also mention the <code>ID</code> type. It is a wrapper around the <code>address</code>
+type, and is used to represent an address-pointer. Usually, <code>ID</code> is used to point at an object,
+however, there's no restriction, and no guarantee that the <code>ID</code> points to an existing object.</p>
 <blockquote>
-<p>ID can be received as a transaction argument in a <a href="">Transaction Block</a>. Alternatively, ID can be created from an <code>address</code> value using <code>to_id()</code> function.</p>
+<p>ID can be received as a transaction argument in a <a href="">Transaction Block</a>. Alternatively, ID can be
+created from an <code>address</code> value using <code>to_id()</code> function.</p>
 </blockquote>
 <pre><code class="language-move">
 </code></pre>
 <h2 id="fresh_object_address"><a class="header" href="#fresh_object_address">fresh_object_address</a></h2>
-<p>TxContext provides the <code>fresh_object_address</code> function which can be utilized to create unique addresses and <code>ID</code>s - it may be useful in some application that assign unique identifiers to user actions - for example, an order_id in a marketplace.</p>
+<p>TxContext provides the <code>fresh_object_address</code> function which can be utilized to create unique
+addresses and <code>ID</code>s - it may be useful in some application that assign unique identifiers to user
+actions - for example, an order_id in a marketplace.</p>
 
                     </main>
 

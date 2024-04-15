@@ -177,23 +177,37 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="storage-functions"><a class="header" href="#storage-functions">Storage Functions</a></h1>
-<p>The module that defines main storage operations is <code>sui::transfer</code>. It is implicitly imported in all packages that depend on the <a href="./../programmability/sui-framework.html">Sui Framework</a>, so, like other implicitly imported modules (e.g. <code>std::option</code> or <code>std::vector</code>), it does not require adding a use statement.</p>
+<p>The module that defines main storage operations is <code>sui::transfer</code>. It is implicitly imported in all
+packages that depend on the <a href="./../programmability/sui-framework.html">Sui Framework</a>, so, like other
+implicitly imported modules (e.g. <code>std::option</code> or <code>std::vector</code>), it does not require adding a use
+statement.</p>
 <h2 id="overview"><a class="header" href="#overview">Overview</a></h2>
-<p>The <code>transfer</code> module provides functions to perform all three storage operations matching <a href="./../object/ownership.html">ownership types</a> which we explained before:</p>
+<p>The <code>transfer</code> module provides functions to perform all three storage operations matching
+<a href="./../object/ownership.html">ownership types</a> which we explained before:</p>
 <blockquote>
-<p>On this page we will only talk about so-called <em>restricted</em> storage operations, later we will cover <em>public</em> ones, after the <code>store</code> ability is introduced.</p>
+<p>On this page we will only talk about so-called <em>restricted</em> storage operations, later we will
+cover <em>public</em> ones, after the <code>store</code> ability is introduced.</p>
 </blockquote>
 <ol>
 <li><em>Transfer</em> - send an object to an address, put it into <em>account owned</em> state;</li>
 <li><em>Share</em> - put an object into a <em>shared</em> state, so it is available to everyone;</li>
-<li><em>Freeze</em> - put an object into <em>immutable</em> state, so it becomes a public constant and can never change.</li>
+<li><em>Freeze</em> - put an object into <em>immutable</em> state, so it becomes a public constant and can never
+change.</li>
 </ol>
-<p>The <code>transfer</code> module is a go-to for most of the storage operations, except a special case with <a href="./../programmability/dynamic-fields.html">Dynamic Fields</a> awaits us in the next chapter.</p>
+<p>The <code>transfer</code> module is a go-to for most of the storage operations, except a special case with
+<a href="./../programmability/dynamic-fields.html">Dynamic Fields</a> awaits us in the next chapter.</p>
 <h2 id="ownerships-and-references-a-quick-recap"><a class="header" href="#ownerships-and-references-a-quick-recap">Ownerships and References: A Quick Recap</a></h2>
-<p>In the <a href="./../move-basics/ownership-and-scope.html">Ownership and Scope</a> and <a href="./../move-basics/references.html">References</a> chapters, we covered the basics of ownership and references in Move. It is important that you understand these concepts when using storage functions. Let's do a quick recap of the most important points:</p>
+<p>In the <a href="./../move-basics/ownership-and-scope.html">Ownership and Scope</a> and
+<a href="./../move-basics/references.html">References</a> chapters, we covered the basics of ownership and
+references in Move. It is important that you understand these concepts when using storage functions.
+Let's do a quick recap of the most important points:</p>
 <ul>
-<li>The <em>move</em> semantics in Move means that the value is <em>moved</em> from one scope to another. In other words, if an instance of a type is passed to a function <em>by value</em>, it is <em>moved</em> to the function scope and can't be accessed in the caller scope anymore.</li>
-<li>To maintain the ownership of the value, you can pass it <em>by reference</em>. Either by <em>immutable reference</em> <code>&amp;T</code> or <em>mutable reference</em> <code>&amp;mut T</code>. Then the value is <em>borrowed</em> and can be accessed in the caller scope, however the owner stays the same.</li>
+<li>The <em>move</em> semantics in Move means that the value is <em>moved</em> from one scope to another. In other
+words, if an instance of a type is passed to a function <em>by value</em>, it is <em>moved</em> to the function
+scope and can't be accessed in the caller scope anymore.</li>
+<li>To maintain the ownership of the value, you can pass it <em>by reference</em>. Either by <em>immutable
+reference</em> <code>&amp;T</code> or <em>mutable reference</em> <code>&amp;mut T</code>. Then the value is <em>borrowed</em> and can be accessed
+in the caller scope, however the owner stays the same.</li>
 </ul>
 <pre><code class="language-move">/// Moved by value
 public fun take&lt;T&gt;(value: T) { /* value is moved here! */ abort 0 }
@@ -210,11 +224,16 @@ public fun borrow_mut&lt;T&gt;(value: &amp;mut T) { /* value is mutably borrowed
     - the objects must be specified in the transaction by their ID
  -->
 <h2 id="transfer"><a class="header" href="#transfer">Transfer</a></h2>
-<p>The <code>transfer::transfer</code> function is a public function used to transfer an object to another address. Its signature is as follows, only accepts a type with the <a href="./key-ability.html"><code>key</code> ability</a> and an <a href="./../move-basics/address.html">address</a> of the recipient. Please, note that the object is passed into the function <em>by value</em>, therefore it is <em>moved</em> to the function scope and then moved to the recipient address:</p>
+<p>The <code>transfer::transfer</code> function is a public function used to transfer an object to another
+address. Its signature is as follows, only accepts a type with the <a href="./key-ability.html"><code>key</code> ability</a>
+and an <a href="./../move-basics/address.html">address</a> of the recipient. Please, note that the object is
+passed into the function <em>by value</em>, therefore it is <em>moved</em> to the function scope and then moved to
+the recipient address:</p>
 <pre><code class="language-move">// File: sui-framework/sources/transfer.move
 public fun transfer&lt;T: key&gt;(obj: T, recipient: address);
 </code></pre>
-<p>In the next example, you can see how it can be used in a module that defines and sends an object to the transaction sender.</p>
+<p>In the next example, you can see how it can be used in a module that defines and sends an object to
+the transaction sender.</p>
 <pre><code class="language-move">module book::transfer_to_sender {
 
     /// A struct with `key` is an object. The first field is `id: UID`!
@@ -239,12 +258,17 @@ public fun transfer&lt;T: key&gt;(obj: T, recipient: address);
     }
 }
 </code></pre>
-<p>When the module is published, the <code>init</code> function will get called, and the <code>AdminCap</code> object which we created there will be <em>transferred</em> to the transaction sender. The <code>ctx.sender()</code> function returns the sender address for the current transaction.</p>
-<p>Once the <code>AdminCap</code> has been transferred to the sender, let's say <code>0xa11ce</code>, the sender, and only the sender, will be able to access the object. The object is now <em>account owned</em>.</p>
+<p>When the module is published, the <code>init</code> function will get called, and the <code>AdminCap</code> object which
+we created there will be <em>transferred</em> to the transaction sender. The <code>ctx.sender()</code> function
+returns the sender address for the current transaction.</p>
+<p>Once the <code>AdminCap</code> has been transferred to the sender, let's say <code>0xa11ce</code>, the sender, and only
+the sender, will be able to access the object. The object is now <em>account owned</em>.</p>
 <blockquote>
-<p>Account owned objects are a subject to <em>true ownership</em> - only the account owner can access them. This is a fundamental concept in the Sui storage model.</p>
+<p>Account owned objects are a subject to <em>true ownership</em> - only the account owner can access them.
+This is a fundamental concept in the Sui storage model.</p>
 </blockquote>
-<p>Let's extend the example with a function that uses <code>AdminCap</code> to authorize a mint of a new object and its transfer to another address:</p>
+<p>Let's extend the example with a function that uses <code>AdminCap</code> to authorize a mint of a new object
+and its transfer to another address:</p>
 <pre><code class="language-move">/// Some `Gift` object that the admin can `mint_and_transfer`.
 public struct Gift has key { id: UID }
 
@@ -256,21 +280,32 @@ public fun mint_and_transfer(
     transfer::transfer(gift, recipient);
 }
 </code></pre>
-<p>The <code>mint_and_transfer</code> function is a public function that &quot;could&quot; be called by anyone, but it requires an <code>AdminCap</code> object to be passed as the first argument by reference. Without it, the function will not be callable. This is a simple way to restrict access to privileged functions called <em><a href="./../programmability/capability.html">Capability</a></em>. Because the <code>AdminCap</code> object is <em>account owned</em>, only <code>0xa11ce</code> will be able to call the <code>mint_and_transfer</code> function.</p>
-<p>The <code>Gift</code>s sent to recipients will also be <em>account owned</em>, each gift being unique and owned exclusively by the recipient.</p>
+<p>The <code>mint_and_transfer</code> function is a public function that &quot;could&quot; be called by anyone, but it
+requires an <code>AdminCap</code> object to be passed as the first argument by reference. Without it, the
+function will not be callable. This is a simple way to restrict access to privileged functions
+called <em><a href="./../programmability/capability.html">Capability</a></em>. Because the <code>AdminCap</code> object is <em>account
+owned</em>, only <code>0xa11ce</code> will be able to call the <code>mint_and_transfer</code> function.</p>
+<p>The <code>Gift</code>s sent to recipients will also be <em>account owned</em>, each gift being unique and owned
+exclusively by the recipient.</p>
 <p>A quick recap:</p>
 <ul>
 <li><code>transfer</code> function is used to send an object to an address;</li>
 <li>The object becomes <em>account owned</em> and can only be accessed by the recipient;</li>
-<li>Functions can be gated by requiring an object to be passed as an argument, creating a <em>capability</em>.</li>
+<li>Functions can be gated by requiring an object to be passed as an argument, creating a
+<em>capability</em>.</li>
 </ul>
 <h2 id="freeze"><a class="header" href="#freeze">Freeze</a></h2>
-<p>The <code>transfer::freeze</code> function is public function used to put an object into an <em>immutable</em> state. Once an object is <em>frozen</em>, it can never be changed, and it can be accessed by anyone by immutable reference.</p>
-<p>The function signature is as follows, only accepts a type with the <a href="./key-ability.html"><code>key</code> ability</a>. Just like all other storage functions, it takes the object <em>by value</em>:</p>
+<p>The <code>transfer::freeze</code> function is public function used to put an object into an <em>immutable</em> state.
+Once an object is <em>frozen</em>, it can never be changed, and it can be accessed by anyone by immutable
+reference.</p>
+<p>The function signature is as follows, only accepts a type with the
+<a href="./key-ability.html"><code>key</code> ability</a>. Just like all other storage functions, it takes the object <em>by
+value</em>:</p>
 <pre><code class="language-move">// File: sui-framework/sources/transfer.move
 public fun freeze_object&lt;T: key&gt;(obj: T);
 </code></pre>
-<p>Let's expand on the previous example and add a function that allows the admin to create a <code>Config</code> object and freeze it:</p>
+<p>Let's expand on the previous example and add a function that allows the admin to create a <code>Config</code>
+object and freeze it:</p>
 <pre><code class="language-move">/// Some `Config` object that the admin can `create_and_freeze`.
 public struct Config has key {
     id: UID,
@@ -296,11 +331,17 @@ public fun create_and_freeze(
 /// Can access the object by immutable reference!
 public fun message(c: &amp;Config): String { c.message }
 </code></pre>
-<p>Config is an object that has a <code>message</code> field, and the <code>create_and_freeze</code> function creates a new <code>Config</code> and freezes it. Once the object is frozen, it can be accessed by anyone by immutable reference. The <code>message</code> function is a public function that returns the message from the <code>Config</code> object. Config is now publicly available by its ID, and the message can be read by anyone.</p>
+<p>Config is an object that has a <code>message</code> field, and the <code>create_and_freeze</code> function creates a new
+<code>Config</code> and freezes it. Once the object is frozen, it can be accessed by anyone by immutable
+reference. The <code>message</code> function is a public function that returns the message from the <code>Config</code>
+object. Config is now publicly available by its ID, and the message can be read by anyone.</p>
 <blockquote>
-<p>Function definitions are not connected to the object's state. It is possible to define a function that takes a mutable reference to an object that is used as frozen. However, it won't be callable on a frozen object.</p>
+<p>Function definitions are not connected to the object's state. It is possible to define a function
+that takes a mutable reference to an object that is used as frozen. However, it won't be callable
+on a frozen object.</p>
 </blockquote>
-<p>The <code>message</code> function can be called on an immutable <code>Config</code> object, however, two functions below are not callable on a frozen object:</p>
+<p>The <code>message</code> function can be called on an immutable <code>Config</code> object, however, two functions below
+are not callable on a frozen object:</p>
 <pre><code class="language-move">// === Functions below can't be called on a frozen object! ===
 
 /// The function can be defined, but it won't be callable on a frozen object.
@@ -317,10 +358,16 @@ public fun delete_config(c: Config) {
 <p>To summarize:</p>
 <ul>
 <li><code>freeze_object</code> function is used to put an object into an <em>immutable</em> state;</li>
-<li>Once an object is <em>frozen</em>, it can never be changed, deleted or transferred, and it can be accessed by anyone by immutable reference;</li>
+<li>Once an object is <em>frozen</em>, it can never be changed, deleted or transferred, and it can be
+accessed by anyone by immutable reference;</li>
 </ul>
 <h2 id="owned---frozen"><a class="header" href="#owned---frozen">Owned -&gt; Frozen</a></h2>
-<p>Since the <code>transfer::freeze</code> signature accepts any type with the <code>key</code> ability, it can take an object that was created in the same scope, but it can also take an object that was owned by an account. This means that the <code>freeze_object</code> function can be used to <em>freeze</em> an object that was <em>transferred</em> to the sender. For security concerns, we would not want to freeze the <code>AdminCap</code> object - it would be a security risk to allow access to it to anyone. However, we can freeze the <code>Gift</code> object that was minted and transferred to the recipient:</p>
+<p>Since the <code>transfer::freeze</code> signature accepts any type with the <code>key</code> ability, it can take an
+object that was created in the same scope, but it can also take an object that was owned by an
+account. This means that the <code>freeze_object</code> function can be used to <em>freeze</em> an object that was
+<em>transferred</em> to the sender. For security concerns, we would not want to freeze the <code>AdminCap</code>
+object - it would be a security risk to allow access to it to anyone. However, we can freeze the
+<code>Gift</code> object that was minted and transferred to the recipient:</p>
 <blockquote>
 <p>Single Owner -&gt; Immutable conversion is possible!</p>
 </blockquote>
@@ -330,13 +377,19 @@ public fun freeze_gift(gift: Gift) {
 }
 </code></pre>
 <h2 id="share"><a class="header" href="#share">Share</a></h2>
-<p>The <code>transfer::share</code> function is a public function used to put an object into a <em>shared</em> state. Once an object is <em>shared</em>, it can be accessed by anyone by a mutable reference (hence, immutable too). The function signature is as follows, only accepts a type with the <a href="./key-ability.html"><code>key</code> ability</a>:</p>
+<p>The <code>transfer::share</code> function is a public function used to put an object into a <em>shared</em> state.
+Once an object is <em>shared</em>, it can be accessed by anyone by a mutable reference (hence, immutable
+too). The function signature is as follows, only accepts a type with the
+<a href="./key-ability.html"><code>key</code> ability</a>:</p>
 <pre><code class="language-move">// File: sui-framework/sources/transfer.move
 public fun share_object&lt;T: key&gt;(obj: T);
 </code></pre>
 <p>Once an object is <em>shared</em>, it is publicly available as a mutable reference.</p>
 <h2 id="special-case-shared-object-deletion"><a class="header" href="#special-case-shared-object-deletion">Special Case: Shared Object Deletion</a></h2>
-<p>While the shared object can't normally be taken by value, there is one special case where it can - if the function that takes it deletes the object. This is a special case in the Sui storage model, and it is used to allow the deletion of shared objects. To show how it works, we will create a function that creates and shares a Config object and then another one that deletes it:</p>
+<p>While the shared object can't normally be taken by value, there is one special case where it can -
+if the function that takes it deletes the object. This is a special case in the Sui storage model,
+and it is used to allow the deletion of shared objects. To show how it works, we will create a
+function that creates and shares a Config object and then another one that deletes it:</p>
 <pre><code class="language-move">/// Creates a new `Config` object and shares it.
 public fun create_and_share(message: String, ctx: &amp;mut TxContext) {
     let config = Config {
@@ -348,7 +401,8 @@ public fun create_and_share(message: String, ctx: &amp;mut TxContext) {
     transfer::share_object(config);
 }
 </code></pre>
-<p>The <code>create_and_share</code> function creates a new <code>Config</code> object and shares it. The object is now publicly available as a mutable reference. Let's create a function that deletes the shared object:</p>
+<p>The <code>create_and_share</code> function creates a new <code>Config</code> object and shares it. The object is now
+publicly available as a mutable reference. Let's create a function that deletes the shared object:</p>
 <pre><code class="language-move">/// Deletes the `Config` object, takes it by value.
 /// Can be called on a shared object!
 public fun delete_config(c: Config) {
@@ -356,7 +410,9 @@ public fun delete_config(c: Config) {
     id.delete()
 }
 </code></pre>
-<p>The <code>delete_config</code> function takes the <code>Config</code> object by value and deletes it, and Sui Verifier would allow this call. However, if the function returned the <code>Config</code> object back or attempted to <code>freeze</code> or <code>transfer</code> it, the Sui Verifier would reject the transaction.</p>
+<p>The <code>delete_config</code> function takes the <code>Config</code> object by value and deletes it, and Sui Verifier
+would allow this call. However, if the function returned the <code>Config</code> object back or attempted to
+<code>freeze</code> or <code>transfer</code> it, the Sui Verifier would reject the transaction.</p>
 <pre><code class="language-move">// Won't work!
 public fun transfer_shared(c: Config, to: address) {
     transfer::transfer(c, to);
@@ -369,7 +425,11 @@ public fun transfer_shared(c: Config, to: address) {
 <li>Shared objects can be deleted, but they can't be transferred or frozen.</li>
 </ul>
 <h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
-<p>Now that you know main features of the <code>transfer</code> module, you can start building more complex applications on Sui that involve storage operations. In the next chapter, we will cover the <a href="./store-ability.html">Store Ability</a> which allows storing data inside objects and relaxes transfer restrictions which we barely touched on here. And after that we will cover the <a href="./uid-and-id.html">UID and ID</a> types which are the most important types in the Sui storage model.</p>
+<p>Now that you know main features of the <code>transfer</code> module, you can start building more complex
+applications on Sui that involve storage operations. In the next chapter, we will cover the
+<a href="./store-ability.html">Store Ability</a> which allows storing data inside objects and relaxes transfer
+restrictions which we barely touched on here. And after that we will cover the
+<a href="./uid-and-id.html">UID and ID</a> types which are the most important types in the Sui storage model.</p>
 
                     </main>
 

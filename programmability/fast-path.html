@@ -177,11 +177,24 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="fast-path"><a class="header" href="#fast-path">Fast Path</a></h1>
-<p>Due to the object model and the data organization model of Sui, some operations can be performed in a more efficient and parallelized way. This is called the <strong>fast path</strong>. Transaction that touches shared state requires consensus because it can be accessed by multiple parties at the same time. However, if the transaction only touches the private state (owned objects), there is no need for consensus. This is the fast path.</p>
-<p>We have a favorite example for this: a coffee machine and a coffee cup. The coffee machine placed in the office is a shared resource - everyone can use it, but there can be only one user at a time. The coffee cup, on the other hand, is a private resource - it belongs to a specific person, and only that person can use it. To make coffee, one needs to use the coffee machine and wait if there's someone else using it. However, once the coffee is made and poured into the cup, the person can take the cup and drink the coffee without waiting for anyone else.</p>
-<p>The same principle applies to Sui. If a transaction only touches the private state (the cup with coffee), it can be executed without consensus. If it touches the shared state (the coffee machine), it requires consensus. This is the fast path.</p>
+<p>Due to the object model and the data organization model of Sui, some operations can be performed in
+a more efficient and parallelized way. This is called the <strong>fast path</strong>. Transaction that touches
+shared state requires consensus because it can be accessed by multiple parties at the same time.
+However, if the transaction only touches the private state (owned objects), there is no need for
+consensus. This is the fast path.</p>
+<p>We have a favorite example for this: a coffee machine and a coffee cup. The coffee machine placed in
+the office is a shared resource - everyone can use it, but there can be only one user at a time. The
+coffee cup, on the other hand, is a private resource - it belongs to a specific person, and only
+that person can use it. To make coffee, one needs to use the coffee machine and wait if there's
+someone else using it. However, once the coffee is made and poured into the cup, the person can take
+the cup and drink the coffee without waiting for anyone else.</p>
+<p>The same principle applies to Sui. If a transaction only touches the private state (the cup with
+coffee), it can be executed without consensus. If it touches the shared state (the coffee machine),
+it requires consensus. This is the fast path.</p>
 <h2 id="frozen-objects"><a class="header" href="#frozen-objects">Frozen objects</a></h2>
-<p>Consensus is only required for mutating the shared state. If the object is immutable, it is treated as a &quot;constant&quot; and can be accessed in parallel. Frozen objects can be used to share unchangeable data between multiple parties without requiring consensus.</p>
+<p>Consensus is only required for mutating the shared state. If the object is immutable, it is treated
+as a &quot;constant&quot; and can be accessed in parallel. Frozen objects can be used to share unchangeable
+data between multiple parties without requiring consensus.</p>
 <h2 id="in-practice"><a class="header" href="#in-practice">In practice</a></h2>
 <pre><code class="language-move">module book::coffee_machine {
     /// Coffee machine is a shared object, hence requires `key` ability.
@@ -222,7 +235,10 @@
 }
 </code></pre>
 <h2 id="special-case-clock"><a class="header" href="#special-case-clock">Special case: Clock</a></h2>
-<p>The <code>Clock</code> object with the reserved address <code>0x6</code> is a special case of a shared object which cannot be passed by a mutable reference in a regular transaction. An attempt to do so will not succeed, and the transaction will be rejected. Because of this limitation, the <code>Clock</code> object can only be accessed immutably, which allows executing transactions in parallel without consensus.</p>
+<p>The <code>Clock</code> object with the reserved address <code>0x6</code> is a special case of a shared object which cannot
+be passed by a mutable reference in a regular transaction. An attempt to do so will not succeed, and
+the transaction will be rejected. Because of this limitation, the <code>Clock</code> object can only be
+accessed immutably, which allows executing transactions in parallel without consensus.</p>
 <!-- Add more on why and how -->
 
                     </main>

@@ -177,7 +177,10 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="transaction"><a class="header" href="#transaction">Transaction</a></h1>
-<p>Transaction is a fundamental concept in the blockchain world. It is a way to interact with a blockchain. Transactions are used to change the state of the blockchain, and they are the only way to do so. In Move, transactions are used to call functions in a package, deploy new packages, and upgrade existing ones.</p>
+<p>Transaction is a fundamental concept in the blockchain world. It is a way to interact with a
+blockchain. Transactions are used to change the state of the blockchain, and they are the only way
+to do so. In Move, transactions are used to call functions in a package, deploy new packages, and
+upgrade existing ones.</p>
 <!--
 
 - how user interacts with a program
@@ -196,12 +199,16 @@
 <ul>
 <li>a sender - the <a href="./what-is-an-account.html">account</a> that <em>signs</em> the transaction;</li>
 <li>a list (or a chain) of commands - the operations to be executed;</li>
-<li>command inputs - the arguments for the commands: either <code>pure</code> - simple values like numbers or strings, or <code>object</code> - objects that the transaction will access;</li>
+<li>command inputs - the arguments for the commands: either <code>pure</code> - simple values like numbers or
+strings, or <code>object</code> - objects that the transaction will access;</li>
 <li>a gas object - the <code>Coin</code> object used to pay for the transaction;</li>
 <li>gas price and budget - the cost of the transaction;</li>
 </ul>
 <h2 id="commands"><a class="header" href="#commands">Commands</a></h2>
-<p>Sui transactions may consist of multiple commands. Each command is a single built-in command (like publishing a package) or a call to a function in an already published package. The commands are executed in the order they are listed in the transaction, and they can use the results of the previous commands, forming a chain. Transaction either succeeds or fails as a whole.</p>
+<p>Sui transactions may consist of multiple commands. Each command is a single built-in command (like
+publishing a package) or a call to a function in an already published package. The commands are
+executed in the order they are listed in the transaction, and they can use the results of the
+previous commands, forming a chain. Transaction either succeeds or fails as a whole.</p>
 <p>Schematically, a transaction looks like this (in pseudo-code):</p>
 <pre><code>Inputs:
 - sender = 0xa11ce
@@ -213,15 +220,18 @@ Commands:
 </code></pre>
 <p>In this example, the transaction consists of three commands:</p>
 <ol>
-<li><code>SplitCoins</code> - a built-in command that splits a new coin from the passed object, in this case, the <code>Gas</code> object;</li>
-<li><code>MoveCall</code> - a command that calls a function <code>purchase</code> in a package <code>0xAAA</code>, module <code>market</code> with the given arguments - the <code>payment</code> object;</li>
+<li><code>SplitCoins</code> - a built-in command that splits a new coin from the passed object, in this case,
+the <code>Gas</code> object;</li>
+<li><code>MoveCall</code> - a command that calls a function <code>purchase</code> in a package <code>0xAAA</code>, module <code>market</code>
+with the given arguments - the <code>payment</code> object;</li>
 <li><code>TransferObjects</code> - a built-in command that transfers the object to the recipient.</li>
 </ol>
 <!--
 > There are multiple different implementations of transaction building, for example
 -->
 <h2 id="transaction-effects"><a class="header" href="#transaction-effects">Transaction Effects</a></h2>
-<p>Transaction effects are the changes that a transaction makes to the blockchain state. More specifically, a transaction can change the state in the following ways:</p>
+<p>Transaction effects are the changes that a transaction makes to the blockchain state. More
+specifically, a transaction can change the state in the following ways:</p>
 <ul>
 <li>use the gas object to pay for the transaction;</li>
 <li>create, update, or delete objects;</li>
@@ -231,10 +241,13 @@ Commands:
 <ul>
 <li>Transaction Digest - the hash of the transaction which is used to identify the transaction;</li>
 <li>Transaction Data - the inputs, commands and gas object used in the transaction;</li>
-<li>Transaction Effects - the status and the &quot;effects&quot; of the transaction, more specifically: the status of the transaction, updates to objects and their new versions, the gas object used, the gas cost of the transaction, and the events emitted by the transaction;</li>
+<li>Transaction Effects - the status and the &quot;effects&quot; of the transaction, more specifically: the
+status of the transaction, updates to objects and their new versions, the gas object used, the gas
+cost of the transaction, and the events emitted by the transaction;</li>
 <li>Events - the custom <a href="./../programmability/events.html">events</a> emitted by the transaction;</li>
 <li>Object Changes - the changes made to the objects, including the <em>change of ownership</em>;</li>
-<li>Balance Changes - the changes made to the aggregate balances of the account involved in the transaction;</li>
+<li>Balance Changes - the changes made to the aggregate balances of the account involved in the
+transaction;</li>
 </ul>
 
                     </main>

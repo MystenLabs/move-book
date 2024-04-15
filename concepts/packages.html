@@ -192,10 +192,14 @@
         - leave a note that packages are also *upgradable*
 
 -->
-<p>Move is a language for writing smart contracts - programs that stored and run on the blockchain. A single program is organized into a package. A package is published on the blockchain and is identified by an <a href="./address.html">address</a>. A published package can be interacted with by sending <a href="./what-is-a-transaction.html">transactions</a> calling its functions. It can also act as a dependency for other packages.</p>
+<p>Move is a language for writing smart contracts - programs that stored and run on the blockchain. A
+single program is organized into a package. A package is published on the blockchain and is
+identified by an <a href="./address.html">address</a>. A published package can be interacted with by sending
+<a href="./what-is-a-transaction.html">transactions</a> calling its functions. It can also act as a dependency
+for other packages.</p>
 <blockquote>
-<p>To create a new package, use the <code>sui move new</code> command.
-To learn more about the command, run <code>sui move new --help</code>.</p>
+<p>To create a new package, use the <code>sui move new</code> command. To learn more about the command, run
+<code>sui move new --help</code>.</p>
 </blockquote>
 <p>Package consists of modules - separate scopes that contain functions, types, and other items.</p>
 <pre><code>package 0x...
@@ -207,7 +211,9 @@ To learn more about the command, run <code>sui move new --help</code>.</p>
         fun hello_package()
 </code></pre>
 <h2 id="package-structure"><a class="header" href="#package-structure">Package Structure</a></h2>
-<p>Locally, a package is a directory with a <code>Move.toml</code> file and a <code>sources</code> directory. The <code>Move.toml</code> file - called the &quot;package manifest&quot; - contains metadata about the package, and the <code>sources</code> directory contains the source code for the modules. Package usually looks like this:</p>
+<p>Locally, a package is a directory with a <code>Move.toml</code> file and a <code>sources</code> directory. The <code>Move.toml</code>
+file - called the &quot;package manifest&quot; - contains metadata about the package, and the <code>sources</code>
+directory contains the source code for the modules. Package usually looks like this:</p>
 <pre><code>sources/
     my_module.move
     another_module.move
@@ -218,9 +224,14 @@ examples/
     using_my_module.move
 Move.toml
 </code></pre>
-<p>The <code>tests</code> directory is optional and contains tests for the package. Code placed into the <code>tests</code> directory is not published on-chain and is only availably in tests. The <code>examples</code> directory can be used for code examples, and is also not published on-chain.</p>
+<p>The <code>tests</code> directory is optional and contains tests for the package. Code placed into the <code>tests</code>
+directory is not published on-chain and is only availably in tests. The <code>examples</code> directory can be
+used for code examples, and is also not published on-chain.</p>
 <h2 id="published-package"><a class="header" href="#published-package">Published Package</a></h2>
-<p>During development, package doesn't have an address and it needs to be set to <code>0x0</code>. Once a package is published, it gets a single unique <a href="./address.html">address</a> on the blockchain containing its modules' bytecode. A published package becomes <em>immutable</em> and can be interacted with by sending transactions.</p>
+<p>During development, package doesn't have an address and it needs to be set to <code>0x0</code>. Once a package
+is published, it gets a single unique <a href="./address.html">address</a> on the blockchain containing its
+modules' bytecode. A published package becomes <em>immutable</em> and can be interacted with by sending
+transactions.</p>
 <pre><code>0x...
     my_module: &lt;bytecode&gt;
     another_module: &lt;bytecode&gt;
