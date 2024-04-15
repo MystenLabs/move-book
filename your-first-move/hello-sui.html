@@ -178,8 +178,8 @@
                     <main>
                         <h1 id="hello-sui"><a class="header" href="#hello-sui">Hello, Sui!</a></h1>
 <p>In the <a href="./hello-world.html">previous section</a> we created a new package and demonstrated the basic flow
-of creating, building and testing a Move package. In this section, we will write a simple
-application that uses the storage model, and can be interacted with. To do this, we will create a
+of creating, building, and testing a Move package. In this section, we will write a simple
+application that uses the storage model and can be interacted with. To do this, we will create a
 simple todo list application.</p>
 <h2 id="create-a-new-package"><a class="header" href="#create-a-new-package">Create a New Package</a></h2>
 <p>Following the same flow as in <a href="./hello-world.html">Hello, World!</a>, we will create a new package called
@@ -287,8 +287,8 @@ and demonstration purposes, we will use <em>sui devnet</em> environment.</p>
 <p>If you already have an account set up, you can skip this step.</p>
 </blockquote>
 <p>If you are doing it for the first time, you will need to create a new account. To do this, run the
-<code>sui client</code> command, then the CLI will prompt you multiple questions, the answers are marked below
-with <code>&gt;</code>:</p>
+<code>sui client</code> command, then the CLI will prompt you with multiple questions. The answers are marked
+below with <code>&gt;</code>:</p>
 <pre><code class="language-bash">$ sui client
 Config file [&quot;/path/to/home/.sui/sui_config/client.yaml&quot;] doesn't exist, do you want to connect to a Sui Full node server [y/N]?
 &gt; y
@@ -305,8 +305,8 @@ configuration file. You can now use this account to interact with the network.</
 </code></pre>
 <p>The command will output the address of your account, it starts with <code>0x</code> followed by 64 characters.</p>
 <h2 id="requesting-coins"><a class="header" href="#requesting-coins">Requesting Coins</a></h2>
-<p>In <em>devnet</em> and <em>testnet</em> environments, CLI provides a way to request coins to your account, so you
-can interact with the network. To request coins, run the <code>sui client faucet</code> command:</p>
+<p>In <em>devnet</em> and <em>testnet</em> environments, the CLI provides a way to request coins to your account, so
+you can interact with the network. To request coins, run the <code>sui client faucet</code> command:</p>
 <pre><code class="language-bash">$ sui client faucet
 Request successful. It can take up to 1 minute to get the coin. Run sui client gas to check your gas coins.
 </code></pre>
@@ -363,15 +363,16 @@ BUILDING todo_list
 Successfully verified dependencies on-chain against source.
 Transaction Digest: GpcDV6JjjGQMRwHpEz582qsd5MpCYgSwrDAq1JXcpFjW
 </code></pre>
-<p>As you can see, when we run <code>publish</code> command, the CLI first builds the package, then verifies the
-dependencies on-chain, and finally publishes the package. The output of the command is the
+<p>As you can see, when we run the <code>publish</code> command, the CLI first builds the package, then verifies
+the dependencies on-chain, and finally publishes the package. The output of the command is the
 transaction digest, which is a unique identifier of the transaction and can be used to query the
 transaction status.</p>
 <h3 id="transaction-data"><a class="header" href="#transaction-data">Transaction Data</a></h3>
-<p>Next section is <code>TransactionData</code> which contains the information about the transaction we just sent.
-It features fields like <code>sender</code> which is your address, the <code>gas_budget</code> that we set, as well as the
-Coin we used for payment. It also prints the Commands that were run by the CLI, in our case it's
-<code>Publish</code> and <code>TransferObject</code> - the latter transfers a special object <code>UpgradeCap</code> to the sender.</p>
+<p>The section titled <code>TransactionData</code> contains the information about the transaction we just sent. It
+features fields like <code>sender</code>, which is your address, the <code>gas_budget</code> set with the <code>--gas-budget</code>
+argument, and the Coin we used for payment. It also prints the Commands that were run by the CLI. In
+this example, the commands <code>Publish</code> and <code>TransferObject</code> were run - the latter transfers a special
+object <code>UpgradeCap</code> to the sender.</p>
 <pre><code class="language-plaintext">╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 │ Transaction Data                                                                                             │
 ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
