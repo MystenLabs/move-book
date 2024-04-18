@@ -107,6 +107,10 @@ build process but uses them in _test_ and _dev_ modes. The tests are written in 
 with the `#[test]` attribute. Tests can be grouped in a separate module (then it's usually called
 _module_name_tests.move_), or inside the module they're testing.
 
+Modules, imports, constants and functions can be annotated with `#[test_only]`. This attribute is
+used to exclude modules, functions or imports from the build process. This is useful when you want to
+add helpers for your tests without including them in the code that will be published on chain.
+
 The _hello_world_tests.move_ file contains a commented out test module template:
 
 ```move
@@ -232,6 +236,13 @@ If you're running the tests outside of the package folder, you can specify the p
 
 ```bash
 $ sui move test --path hello_world
+```
+
+You can also run a single or multiple tests at once by specifying a string. All the tests names
+containing the string will be run:
+
+```bash
+$ sui move test test_hello
 ```
 
 ## Next Steps
