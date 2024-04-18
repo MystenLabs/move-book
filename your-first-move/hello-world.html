@@ -261,6 +261,9 @@ module from other modules or transactions.</p>
 build process but uses them in <em>test</em> and <em>dev</em> modes. The tests are written in Move and are marked
 with the <code>#[test]</code> attribute. Tests can be grouped in a separate module (then it's usually called
 <em>module_name_tests.move</em>), or inside the module they're testing.</p>
+<p>Modules, imports, constants and functions can be annotated with <code>#[test_only]</code>. This attribute is
+used to exclude modules, functions or imports from the build process. This is useful when you want to
+add helpers for your tests without including them in the code that will be published on chain.</p>
 <p>The <em>hello_world_tests.move</em> file contains a commented out test module template:</p>
 <pre><code class="language-move">/*
 #[test_only]
@@ -357,6 +360,10 @@ Test result: OK. Total tests: 1; passed: 1; failed: 0
 </code></pre>
 <p>If you're running the tests outside of the package folder, you can specify the path to the package:</p>
 <pre><code class="language-bash">$ sui move test --path hello_world
+</code></pre>
+<p>You can also run a single or multiple tests at once by specifying a string. All the tests names
+containing the string will be run:</p>
+<pre><code class="language-bash">$ sui move test test_hello
 </code></pre>
 <h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
 <p>In this section, we explained the basics of a Move package: its structure, the manifest, the build,

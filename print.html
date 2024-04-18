@@ -186,26 +186,24 @@
 <div style="break-before: page; page-break-before: always;"></div><h1 id="foreword"><a class="header" href="#foreword">Foreword</a></h1>
 <p>This book is dedicated to Move, a smart contract language that captures the essence of safe programming with digital assets. Move is designed around the following values:</p>
 <ol>
-<li>
-<p>Secure by default
-Insecure languages are a serious barrier both to accessible smart contract development and to mainstream adoption of digital assets. The first duty of a smart contract language is to prevent as many potential safety issues as possible (e.g. re-entrancy, missing access control checks, arithmetic overflow, ...) by construction. Any changes to Move should preserve or enhance its existing security guarantees.</p>
-</li>
-<li>
-<p>Expressive by nature
-Move must enable programmers to write any smart contract they can imagine. But we care as much about the way it <em>feels</em> to write Move as we do about what Move allows you to do--the language should be rich enough that the features needed for a task are available, and minimal enough that the choice is obvious. The Move toolchain should be a productivity enhancer and a thought partner.</p>
-</li>
-<li>
-<p>Intuitive for all
-Smart contracts are only one part of a useful application. Move should understand the broader context of its usage and design with both the smart contract developer and the application developer in mind. It should be easy for developers to learn how to read Move-managed state, build Move powered transactions, and write new Move code.</p>
-</li>
+<li>Secure by default</li>
 </ol>
+<p>Insecure languages are a serious barrier both to accessible smart contract development and to mainstream adoption of digital assets. The first duty of a smart contract language is to prevent as many potential safety issues as possible (e.g. re-entrancy, missing access control checks, arithmetic overflow, ...) by construction. Any changes to Move should preserve or enhance its existing security guarantees.</p>
+<ol start="2">
+<li>Expressive by nature</li>
+</ol>
+<p>Move must enable programmers to write any smart contract they can imagine. But we care as much about the way it <em>feels</em> to write Move as we do about what Move allows you to do--the language should be rich enough that the features needed for a task are available, and minimal enough that the choice is obvious. The Move toolchain should be a productivity enhancer and a thought partner.</p>
+<ol start="3">
+<li>Intuitive for all</li>
+</ol>
+<p>Smart contracts are only one part of a useful application. Move should understand the broader context of its usage and design with both the smart contract developer and the application developer in mind. It should be easy for developers to learn how to read Move-managed state, build Move powered transactions, and write new Move code.</p>
 <p>The core technical elements of Move are:</p>
 <ul>
-<li>Safe, familiar, and flexible abstractions for digital assets via programmable <em>objects</em></li>
-<li>A rich <em>ability</em> system (inspired by linear types) that gives programmers extreme control of how values are created, destroyed, stored, copied, and transferred</li>
-<li>A <em>module</em> system with strong encapsulation features to enable code reuse while maintaining this control</li>
-<li><em>Dynamic fields</em> for creating hierarchical relationships between objects</li>
-<li><em>Programmable transaction blocks</em> (PTBs) to enable atomic client-side composition of Move-powered APIs</li>
+<li>Safe, familiar, and flexible abstractions for digital assets via programmable <em>objects</em>.</li>
+<li>A rich <em>ability</em> system (inspired by linear types) that gives programmers extreme control of how values are created, destroyed, stored, copied, and transferred.</li>
+<li>A <em>module</em> system with strong encapsulation features to enable code reuse while maintaining this control.</li>
+<li><em>Dynamic fields</em> for creating hierarchical relationships between objects.</li>
+<li><em>Programmable transaction blocks</em> (PTBs) to enable atomic client-side composition of Move-powered APIs.</li>
 </ul>
 <p>Move was born in 2018 as part of Facebook's Libra project. It was publicly revealed in 2019, the first Move-powered network launched in 2020. As of April 2024, there are numerous Move-powered chains in production with several more in the works. Move is an embedded language with a platform-agnostic core, which means it takes on a slightly different personality in each chain that uses it.</p>
 <p>Creating a new programming language and bootstrapping a community around it is an ambitious, long term project. A language has to be an order of magnitude better than alternatives in relevant ways to have a chance, but even then the quality of the community matters more than the technical fundamentals. Move is a young language, but it's off to a good start in terms of both differentiation and community. A small, but fanatical group of smart contract programmers and core contributors united by the Move values are pushing the boundaries of what smart contracts can do, the applications they can enable, and who can (safely) write them. If that inspires you, read on!</p>
@@ -370,6 +368,9 @@ module from other modules or transactions.</p>
 build process but uses them in <em>test</em> and <em>dev</em> modes. The tests are written in Move and are marked
 with the <code>#[test]</code> attribute. Tests can be grouped in a separate module (then it's usually called
 <em>module_name_tests.move</em>), or inside the module they're testing.</p>
+<p>Modules, imports, constants and functions can be annotated with <code>#[test_only]</code>. This attribute is
+used to exclude modules, functions or imports from the build process. This is useful when you want to
+add helpers for your tests without including them in the code that will be published on chain.</p>
 <p>The <em>hello_world_tests.move</em> file contains a commented out test module template:</p>
 <pre><code class="language-move">/*
 #[test_only]
@@ -466,6 +467,10 @@ Test result: OK. Total tests: 1; passed: 1; failed: 0
 </code></pre>
 <p>If you're running the tests outside of the package folder, you can specify the path to the package:</p>
 <pre><code class="language-bash">$ sui move test --path hello_world
+</code></pre>
+<p>You can also run a single or multiple tests at once by specifying a string. All the tests names
+containing the string will be run:</p>
+<pre><code class="language-bash">$ sui move test test_hello
 </code></pre>
 <h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
 <p>In this section, we explained the basics of a Move package: its structure, the manifest, the build,
