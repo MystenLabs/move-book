@@ -4,13 +4,7 @@
 
     Things that we don't have:
         - VM and bytecode
-        - why Move is safe
-        - double spending and compiler checks
         - borrow checker
-        - papers and research behind Move and Sui
-
-        - use capability and not address
-        - ownership
 
     Thoughts:
         - someone will jump, some sections will be skipped, some will be read in a different order;
@@ -21,28 +15,11 @@
         - people who know Sui but don't know Move
         - people who tried Move and Sui and need more
 
-
  -->
 
 <!--
 
-comparison to docs.sui.io
-    - strings (+)
-    - collections (+)
-    - module initializer (+)
-    - entry functions (+)
-    - one-time-witness (+)
-    - patterns
-        - capability
-        - witness
-        - transferable witness
-        - hot potato
-        - id pointer
-    - conventions
-
 - wrapped objects ???
-- shared objects
-- table and bag
 - gas considerations
 - custom transfer rules
 - object and package versioning
@@ -58,7 +35,6 @@ comparison to docs.sui.io
   - [Install Sui](before-we-begin/install-sui.md)
   - [Set up your IDE](before-we-begin/ide-support.md)
   - [Move 2024](before-we-begin/move-2024.md)
-  <!-- - [Your First Move](your-first-move/README.md) -->
 - [Hello, World!](your-first-move/hello-world.md)
 - [Hello, Sui!](your-first-move/hello-sui.md)
 <!--
