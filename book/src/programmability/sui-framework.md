@@ -43,6 +43,14 @@ still part of the same framework._
 
 </div>
 
+## Utilities
+
+<div class="modules-table">
+
+| Module                                                                                   | Description                                                                 | Chapter                                         |
+| ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ----------------------------------------------- |
+| [sui::bcs](https://docs.sui.io/references/framework/sui-framework/bcs)                   | Implements the BCS encoding and decoding functions                          | [Binary Canonical Serialization](./bcs.md)     |
+
 ## Exported Addresses
 
 Sui Framework exports two named addresses: `sui = 0x2` and `std = 0x1` from the std dependency.
