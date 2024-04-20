@@ -130,4 +130,4 @@ from a function, or when they're _moved_ to a scope and then accessed in their o
 
 ## Further reading
 
-- [Local Variables and Scopes](/reference/variables.html) in the Move Language Reference.
+- [Local Variables and Scopes](/reference/variables.html) in the Move Reference.

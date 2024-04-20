@@ -59,4 +59,4 @@ we present the `sui::transfer` module, which provides native storage functions f
 
 ## Further reading
 
-- [Type Abilities](/reference/type-abilities.html) in the Move Language Reference.
+- [Type Abilities](/reference/type-abilities.html) in the Move Reference.

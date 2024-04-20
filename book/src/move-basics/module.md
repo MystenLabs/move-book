@@ -69,4 +69,4 @@ with a struct, a function and a constant:
 
 ## Further reading
 
-- [Modules](/reference/modules.html) in the Move Language Reference.
+- [Modules](/reference/modules.html) in the Move Reference.

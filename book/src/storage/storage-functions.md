@@ -21,12 +21,12 @@ The `transfer` module provides functions to perform all three storage operations
 The `transfer` module is a go-to for most of the storage operations, except a special case with
 [Dynamic Fields](./../programmability/dynamic-fields.md) awaits us in the next chapter.
 
-## Ownerships and References: A Quick Recap
+## Ownership and References: A Quick Recap
 
 In the [Ownership and Scope](./../move-basics/ownership-and-scope.md) and
 [References](./../move-basics/references.md) chapters, we covered the basics of ownership and
 references in Move. It is important that you understand these concepts when using storage functions.
-Let's do a quick recap of the most important points:
+Here is a quick recap of the most important points:
 
 - The _move_ semantics in Move means that the value is _moved_ from one scope to another. In other
   words, if an instance of a type is passed to a function _by value_, it is _moved_ to the function
@@ -98,8 +98,8 @@ When the module is published, the `init` function will get called, and the `Admi
 we created there will be _transferred_ to the transaction sender. The `ctx.sender()` function
 returns the sender address for the current transaction.
 
-Once the `AdminCap` has been transferred to the sender, let's say `0xa11ce`, the sender, and only
-the sender, will be able to access the object. The object is now _account owned_.
+Once the `AdminCap` has been transferred to the sender, for example, to `0xa11ce`, the sender, and
+only the sender, will be able to access the object. The object is now _account owned_.
 
 > Account owned objects are a subject to _true ownership_ - only the account owner can access them.
 > This is a fundamental concept in the Sui storage model.

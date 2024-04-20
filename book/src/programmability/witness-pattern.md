@@ -1,16 +1,16 @@
 # Pattern: Witness
 
-Almost every combination of [abilities](../move-basics/abilities-introduction.md) is a pattern in
-Move. One of the most important ones is the _Witness pattern_ - a type that has the
+Almost every combination of [abilities](../move-basics/abilities-introduction.md) forms a pattern in
+Move. And one of the most important ones is the _Witness pattern_ - a type that with the
 [`drop`](./../move-basics/drop-ability.md) ability. It is used to instantiate generic types with a
-specific type parameter by providing a _proof of ownership_ of this type.
+concrete type parameter by providing a _proof of ownership_ of this type.
 
 ## Definition
 
 A Witness is a type that has the `drop` ability. It is not very useful on its own, within a single
-module, but rather serves as an initialization proof for generic types. For example, if there is a
-generic type `Custom<T>`, where `T` is a type parameter, a witness may be used to initialize it,
-while also ensuring that no other module can create a `Custom<T>` with the the same `T`.
+module, but rather serves as an initialization value for generic types. For example, if there is a
+generic type `Custom<T>`, where `T` is a type parameter, a witness may be used to instantiate it,
+while also ensuring that no other module can create a `Custom<T>` with the same `T`.
 
 ```move
 {{#include ../../../packages/samples/sources/programmability/witness-pattern.move:definition}}
@@ -18,9 +18,9 @@ while also ensuring that no other module can create a `Custom<T>` with the the s
 
 ## Use Cases
 
-- **Generic Types**: Witness is a powerful tool to instantiate generic types with a specific type
+- **Generic Types**: Witness is a powerful tool to instantiate generic types with a concrete type
   parameter. It ensures that the type is created only by the module that owns the type.
-- **Proof of Ownership**: Witness acts as a proof of ownership of a specific type. It is used to
+- **Proof of Ownership**: Witness acts as a proof of ownership of a concrete type. It is used to
   authorize certain actions on the type.
 - **Authorization**: Witness can be used to authorize certain actions on the type.
 - **Interface-like Behaviors**: Witness can be used to create abstract class-like behaviors in Move.
@@ -54,7 +54,7 @@ Compare the example above with the following one:
 
 ```move
 /// Coin does not store the `T`, and we need some way to
-/// initialize it with a specific type!
+/// initialize it with a concrete type!
 public struct Coin<phantom T> { value: u64 }
 
 /// Something is missing here! Anyone can create a `Coin<T>` with any `T`.
@@ -62,8 +62,8 @@ public fun new_coin<T>(value: u64): Coin<T> { Coin { value } }
 ```
 
 While the `new_container` function requires the `T` value to be passed, the `new_coin` function is
-missing this part. And this implmentation of the `new_coin` allows anyone to create a `Coin<T>` with
-any `T`. And, naturally, this is not the behaviour we want.
+missing this part. And this implementation of the `new_coin` allows anyone to create a `Coin<T>`
+with any `T`. And, naturally, this is not the behaviour we want.
 
 Now, how can we fix this? We want to ensure that only a specific module can create a `Coin<T>` with
 its `T`. Otherwise, the type signature of `Coin<T>` makes little sense. And similar to the
@@ -258,16 +258,14 @@ module book::concert {
 
 ## Summary
 
-- Witness is a type with the `drop` ability, used to instantiate generic types with a specific type
+- Witness is a type with the `drop` ability, used to instantiate generic types with a concrete type
   parameter.
-- It acts as a proof of ownership of a specific type and may be used to authorize certain actions on
-  the type.
+- It acts as a proof of ownership of a type and may be used for type-based authorization.
 - Witness can be also used to create abstract class-like behaviors in Move.
 - Transferable Witness is a variation of the Witness that has the `store` ability, allowing it to be
   stored in objects. It may be useful in certain applications, but not encouraged.
-- Metadata types can be used as _Witnesses_ to authorize certain actions on a type, also acting as a
-  proof of ownership. This can be useful in consumer-facing applications, such as ticketing systems,
-  or NFTs.
+- Metadata types can be used as _Witnesses_. This can be useful in consumer-facing applications,
+  such as ticketing systems, or NFTs.
 - Witnesses do not guarantee uniqueness, and the [One Time Witness](./one-time-witness.md) pattern
   is introduced to address this issue.
 

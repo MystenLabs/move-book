@@ -125,4 +125,4 @@ parameter does not have the specified abilities, the code will not compile.
 
 ## Further Reading
 
-- [Generics](/reference/generics.html) in the Move Language Reference.
+- [Generics](/reference/generics.html) in the Move Reference.

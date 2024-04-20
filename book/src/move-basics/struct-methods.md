@@ -62,4 +62,4 @@ bytes.
 
 ## Further reading
 
-- [Method Syntax](/reference/method-syntax.html) in the Move Language Reference.
+- [Method Syntax](/reference/method-syntax.html) in the Move Reference.
