@@ -85,9 +85,13 @@ however, there's no restriction, and no guarantee that the `ID` points to an exi
 > ID can be received as a transaction argument in a [Transaction Block](). Alternatively, ID can be
 > created from an `address` value using `to_id()` function.
 
+<!--
 ```move
 
+TODO: !!!!
+
 ```
+-->
 
 ## fresh_object_address
 
