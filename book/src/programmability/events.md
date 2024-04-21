@@ -7,6 +7,7 @@ on-chain. Events are emitted by the `sui::event` module located in the
 
 > Any custom type with the [copy](./../move-basics/copy-ability.md) and
 > [drop](./../move-basics/drop-ability.md) abilities can be emitted as an event.
+> Sui Verifier requires the type to be internal to the module.
 
 ```move
 // File: sui-framework/sources/event.move
