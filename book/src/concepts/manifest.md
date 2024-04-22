@@ -114,4 +114,4 @@ local = "../my-package"
 
 ## Further Reading
 
-- [Packages](/reference/packages.html) in The Move Reference.
+- [Packages](/reference/packages.html) in the Move Reference.
