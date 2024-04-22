@@ -43,10 +43,10 @@ module book::module_a {
         assert!(module_b::has_field(1), ENoField);
         let field_1 = module_b::get_field(1);
         /* ... */
-        assert!(module_b::has_field(1), ENoField);
+        assert!(module_b::has_field(2), ENoField);
         let field_2 = module_b::get_field(2);
         /* ... */
-        assert!(module_b::has_field(1), ENoField);
+        assert!(module_b::has_field(3), ENoField);
         let field_3 = module_b::get_field(3);
     }
 }
@@ -73,10 +73,10 @@ module book::module_a {
         assert!(module_b::has_field(1), ENoFieldA);
         let field_1 = module_b::get_field(1);
         /* ... */
-        assert!(module_b::has_field(1), ENoFieldB);
+        assert!(module_b::has_field(2), ENoFieldB);
         let field_2 = module_b::get_field(2);
         /* ... */
-        assert!(module_b::has_field(1), ENoFieldC);
+        assert!(module_b::has_field(3), ENoFieldC);
         let field_3 = module_b::get_field(3);
     }
 }
