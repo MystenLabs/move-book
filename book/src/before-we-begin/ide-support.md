@@ -5,8 +5,7 @@ basic features like syntax highlighting and error messages, though they differ i
 features. Whatever IDE you choose, you'll need to use the terminal to run the
 [Move CLI](./install-sui.md).
 
-> **IntelliJ Plugin does not support Move 2024 edition, some syntax won't get highlighted and not
-> supported.**
+> **IntelliJ Plugin does not support Move 2024 edition, some syntax won't get highlighted.**
 
 ## VSCode
 
