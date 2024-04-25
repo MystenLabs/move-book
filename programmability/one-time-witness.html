@@ -178,8 +178,8 @@
                     <main>
                         <h1 id="one-time-witness"><a class="header" href="#one-time-witness">One Time Witness</a></h1>
 <p>While regular <a href="./witness-pattern.html">Witness</a> is a great way to statically prove the ownership of a
-type, there are cases, where we need to ensure that a witness is used only once. And this is the
-purpose of the One Time Witness (OTW).</p>
+type, there are cases, where we need to ensure that a Witness is instantiated only once. And this is
+the purpose of the One Time Witness (OTW).</p>
 <!--
 Notes to self:
   - background first or definition first - which one is better?
@@ -200,7 +200,7 @@ Witness if it follows these rules:</p>
 <pre><code class="language-move">module book::one_time {
     /// The OTW for the `book::one_time` module.
     /// Only `drop`, no fields, no generics, all uppercase.
-    struct ONE_TIME has drop {}
+    public struct ONE_TIME has drop {}
 
     /// Receive the instance of `ONE_TIME` as the first argument.
     fun init(otw: ONE_TIME, ctx: &amp;mut TxContext) {

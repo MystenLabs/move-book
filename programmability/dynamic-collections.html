@@ -213,8 +213,8 @@ collection types.</p>
 <p>Bag, as the name suggests, acts as a &quot;bag&quot; of heterogeneous values. It is a simple, non-generic type
 that can store any data. Bag will never allow orphaned fields, as it tracks the number of fields and
 can't be destroyed if it's not empty.</p>
-<p>File: sui-framework/sources/bag.move</p>
-<pre><code class="language-move">public struct Bag has key, store {
+<pre><code class="language-move">// File: sui-framework/sources/bag.move
+public struct Bag has key, store {
     /// the ID of this bag
     id: UID,
     /// the number of key-value pairs in the bag
@@ -261,8 +261,8 @@ bag.destroy_empty();
 <h2 id="table"><a class="header" href="#table">Table</a></h2>
 <p>Table is a typed dynamic collection that has a fixed type for keys and values. It is defined in the
 <code>sui::table</code> module.</p>
-<p>File: sui-framework/sources/table.move</p>
-<pre><code class="language-move">public struct Table&lt;phantom K: copy + drop + store, phantom V: store&gt; has key, store {
+<pre><code class="language-move">// File: sui-framework/sources/table.move
+public struct Table&lt;phantom K: copy + drop + store, phantom V: store&gt; has key, store {
     /// the ID of this table
     id: UID,
     /// the number of key-value pairs in the table

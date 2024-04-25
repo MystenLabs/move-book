@@ -184,29 +184,53 @@
 <p>If you're looking for The Move Reference, you can find it <a href="/reference">here</a>.</p>
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="foreword"><a class="header" href="#foreword">Foreword</a></h1>
-<p>This book is dedicated to Move, a smart contract language that captures the essence of safe programming with digital assets. Move is designed around the following values:</p>
+<p>This book is dedicated to Move, a smart contract language that captures the essence of safe
+programming with digital assets. Move is designed around the following values:</p>
 <ol>
-<li>Secure by default</li>
+<li>
+<p><strong>Secure by default:</strong> Insecure languages are a serious barrier both to accessible smart contract
+development and to mainstream adoption of digital assets. The first duty of a smart contract
+language is to prevent as many potential safety issues as possible (e.g. re-entrancy, missing
+access control checks, arithmetic overflow, ...) by construction. Any changes to Move should
+preserve or enhance its existing security guarantees.</p>
+</li>
+<li>
+<p><strong>Expressive by nature:</strong> Move must enable programmers to write any smart contract they can
+imagine. But we care as much about the way it <em>feels</em> to write Move as we do about what Move
+allows you to do - the language should be rich enough that the features needed for a task are
+available, and minimal enough that the choice is obvious. The Move toolchain should be a
+productivity enhancer and a thought partner.</p>
+</li>
+<li>
+<p><strong>Intuitive for all:</strong> Smart contracts are only one part of a useful application. Move should
+understand the broader context of its usage and design with both the smart contract developer and
+the application developer in mind. It should be easy for developers to learn how to read
+Move-managed state, build Move powered transactions, and write new Move code.</p>
+</li>
 </ol>
-<p>Insecure languages are a serious barrier both to accessible smart contract development and to mainstream adoption of digital assets. The first duty of a smart contract language is to prevent as many potential safety issues as possible (e.g. re-entrancy, missing access control checks, arithmetic overflow, ...) by construction. Any changes to Move should preserve or enhance its existing security guarantees.</p>
-<ol start="2">
-<li>Expressive by nature</li>
-</ol>
-<p>Move must enable programmers to write any smart contract they can imagine. But we care as much about the way it <em>feels</em> to write Move as we do about what Move allows you to do--the language should be rich enough that the features needed for a task are available, and minimal enough that the choice is obvious. The Move toolchain should be a productivity enhancer and a thought partner.</p>
-<ol start="3">
-<li>Intuitive for all</li>
-</ol>
-<p>Smart contracts are only one part of a useful application. Move should understand the broader context of its usage and design with both the smart contract developer and the application developer in mind. It should be easy for developers to learn how to read Move-managed state, build Move powered transactions, and write new Move code.</p>
 <p>The core technical elements of Move are:</p>
 <ul>
 <li>Safe, familiar, and flexible abstractions for digital assets via programmable <em>objects</em>.</li>
-<li>A rich <em>ability</em> system (inspired by linear types) that gives programmers extreme control of how values are created, destroyed, stored, copied, and transferred.</li>
-<li>A <em>module</em> system with strong encapsulation features to enable code reuse while maintaining this control.</li>
+<li>A rich <em>ability</em> system (inspired by linear types) that gives programmers extreme control of how
+values are created, destroyed, stored, copied, and transferred.</li>
+<li>A <em>module</em> system with strong encapsulation features to enable code reuse while maintaining this
+control.</li>
 <li><em>Dynamic fields</em> for creating hierarchical relationships between objects.</li>
-<li><em>Programmable transaction blocks</em> (PTBs) to enable atomic client-side composition of Move-powered APIs.</li>
+<li><em>Programmable transaction blocks</em> (PTBs) to enable atomic client-side composition of Move-powered
+APIs.</li>
 </ul>
-<p>Move was born in 2018 as part of Facebook's Libra project. It was publicly revealed in 2019, the first Move-powered network launched in 2020. As of April 2024, there are numerous Move-powered chains in production with several more in the works. Move is an embedded language with a platform-agnostic core, which means it takes on a slightly different personality in each chain that uses it.</p>
-<p>Creating a new programming language and bootstrapping a community around it is an ambitious, long term project. A language has to be an order of magnitude better than alternatives in relevant ways to have a chance, but even then the quality of the community matters more than the technical fundamentals. Move is a young language, but it's off to a good start in terms of both differentiation and community. A small, but fanatical group of smart contract programmers and core contributors united by the Move values are pushing the boundaries of what smart contracts can do, the applications they can enable, and who can (safely) write them. If that inspires you, read on!</p>
+<p>Move was born in 2018 as part of Facebook's Libra project. It was publicly revealed in 2019, the
+first Move-powered network launched in 2020. As of April 2024, there are numerous Move-powered
+chains in production with several more in the works. Move is an embedded language with a
+platform-agnostic core, which means it takes on a slightly different personality in each chain that
+uses it.</p>
+<p>Creating a new programming language and bootstrapping a community around it is an ambitious, long
+term project. A language has to be an order of magnitude better than alternatives in relevant ways
+to have a chance, but even then the quality of the community matters more than the technical
+fundamentals. Move is a young language, but it's off to a good start in terms of both
+differentiation and community. A small, but fanatical group of smart contract programmers and core
+contributors united by the Move values are pushing the boundaries of what smart contracts can do,
+the applications they can enable, and who can (safely) write them. If that inspires you, read on!</p>
 <p>— Sam Blackshear, creator of Move</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="before-we-begin"><a class="header" href="#before-we-begin">Before we begin</a></h1>
 <p>Move requires an environment to run and develop applications, and in this small chapter we will
@@ -246,14 +270,13 @@ basic features like syntax highlighting and error messages, though they differ i
 features. Whatever IDE you choose, you'll need to use the terminal to run the
 <a href="before-we-begin/./install-sui.html">Move CLI</a>.</p>
 <blockquote>
-<p><strong>IntelliJ Plugin does not support Move 2024 edition fully, some syntax won't get highlighted and
-not supported.</strong></p>
+<p><strong>IntelliJ Plugin does not support Move 2024 edition, some syntax won't get highlighted.</strong></p>
 </blockquote>
 <h2 id="vscode"><a class="header" href="#vscode">VSCode</a></h2>
 <ul>
 <li><a href="https://code.visualstudio.com/">VSCode</a> is a free and open source IDE from Microsoft.</li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=move.move-analyzer">Move Analyzer</a> is a
-language server extension for Move maintained by <a href="https://mystenlabs.com">MystenLabs</a>.</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=mysten.move">Move (Extension)</a> is a language
+server extension for Move maintained by <a href="https://mystenlabs.com">MystenLabs</a>.</li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=damirka.move-syntax">Move Syntax</a> a simple
 syntax highlighting extension for Move by <a href="https://github.com/damirka/">Damir Shamanaev</a>.</li>
 </ul>
@@ -911,7 +934,7 @@ transactions.</p>
 <ul>
 <li><a href="concepts/./manifest.html">Package Manifest</a></li>
 <li><a href="concepts/./address.html">Address</a></li>
-<li><a href="concepts//reference/packages.html">Packages</a> in the Move Language Reference.</li>
+<li><a href="concepts//reference/packages.html">Packages</a> in the Move Reference.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="package-manifest"><a class="header" href="#package-manifest">Package Manifest</a></h1>
 <p>The <code>Move.toml</code> is a manifest file that describes the <a href="concepts/./packages.html">package</a> and its dependencies.
@@ -1001,7 +1024,7 @@ local = &quot;../my-package&quot;
 </code></pre>
 <h2 id="further-reading-1"><a class="header" href="#further-reading-1">Further Reading</a></h2>
 <ul>
-<li><a href="concepts//reference/packages.html">Packages</a> in the Move Language Reference.</li>
+<li><a href="concepts//reference/packages.html">Packages</a> in the Move Reference.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="address"><a class="header" href="#address">Address</a></h1>
 <!--
@@ -1238,7 +1261,7 @@ with a struct, a function and a constant:</p>
 </code></pre>
 <h2 id="further-reading-4"><a class="header" href="#further-reading-4">Further reading</a></h2>
 <ul>
-<li><a href="move-basics//reference/modules.html">Modules</a> in the Move Language Reference.</li>
+<li><a href="move-basics//reference/modules.html">Modules</a> in the Move Reference.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="comments"><a class="header" href="#comments">Comments</a></h1>
 <!--
@@ -1424,8 +1447,8 @@ let z = x + y;
 </code></pre>
 <h2 id="further-reading-5"><a class="header" href="#further-reading-5">Further reading</a></h2>
 <ul>
-<li><a href="move-basics//reference/primitive-types/bool.html">Bool</a> in the Move Language Reference.</li>
-<li><a href="move-basics//reference/primitive-types/integers.html">Integer</a> in the Move Language Reference.</li>
+<li><a href="move-basics//reference/primitive-types/bool.html">Bool</a> in the Move Reference.</li>
+<li><a href="move-basics//reference/primitive-types/integers.html">Integer</a> in the Move Reference.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="address-type"><a class="header" href="#address-type">Address Type</a></h1>
 <!--
@@ -1483,7 +1506,7 @@ let addr_as_string: String = address::to_string(@0x1);
 </code></pre>
 <h2 id="further-reading-6"><a class="header" href="#further-reading-6">Further reading</a></h2>
 <ul>
-<li><a href="move-basics//reference/primitive-types/address.html">Address</a> in the Move Language Reference.</li>
+<li><a href="move-basics//reference/primitive-types/address.html">Address</a> in the Move Reference.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="expression"><a class="header" href="#expression">Expression</a></h1>
 <p>In programming languages expression is a unit of code which returns a value, in Move, almost
@@ -1675,7 +1698,7 @@ let Artist { name: _ } = artist;
 </code></pre>
 <h2 id="further-reading-7"><a class="header" href="#further-reading-7">Further reading</a></h2>
 <ul>
-<li><a href="move-basics//reference/structs.html">Structs</a> in the Move Language Reference.</li>
+<li><a href="move-basics//reference/structs.html">Structs</a> in the Move Reference.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="abilities-introduction"><a class="header" href="#abilities-introduction">Abilities: Introduction</a></h1>
 <p>Move has a unique type system which allows customizing <em>type abilities</em>.
@@ -1727,7 +1750,7 @@ Potato is one of the most powerful patterns in Move, we go in detail about it in
 <a href="move-basics/./../programmability/hot-potato.html">Hot Potato</a> chapter.</p>
 <h2 id="further-reading-8"><a class="header" href="#further-reading-8">Further reading</a></h2>
 <ul>
-<li><a href="move-basics//reference/type-abilities.html">Type Abilities</a> in the Move Language Reference.</li>
+<li><a href="move-basics//reference/type-abilities.html">Type Abilities</a> in the Move Reference.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="abilities-drop"><a class="header" href="#abilities-drop">Abilities: Drop</a></h1>
 <!-- TODO: reiterate, given that we introduce abilities one by one -->
@@ -1819,7 +1842,7 @@ section.</p>
 </ul>
 <h2 id="further-reading-9"><a class="header" href="#further-reading-9">Further reading</a></h2>
 <ul>
-<li><a href="move-basics//reference/type-abilities.html">Type Abilities</a> in the Move Language Reference.</li>
+<li><a href="move-basics//reference/type-abilities.html">Type Abilities</a> in the Move Reference.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="importing-modules"><a class="header" href="#importing-modules">Importing Modules</a></h1>
 <!--
@@ -2064,7 +2087,7 @@ explicit call to <code>destroy_empty</code> function.</p>
 </code></pre>
 <h2 id="further-reading-10"><a class="header" href="#further-reading-10">Further reading</a></h2>
 <ul>
-<li><a href="move-basics//reference/primitive-types/vector.html">Vector</a> in the Move Language Reference.</li>
+<li><a href="move-basics//reference/primitive-types/vector.html">Vector</a> in the Move Reference.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="option"><a class="header" href="#option">Option</a></h1>
 <p>Option is a type that represents an optional value which may or may not exist. The concept of Option
@@ -2569,7 +2592,7 @@ the constants need to be changed, only the config module needs to be updated dur
 upgrade.</p>
 <h2 id="links-1"><a class="header" href="#links-1">Links</a></h2>
 <ul>
-<li><a href="move-basics//reference/constants.html">Constants</a> in the Move Language Reference</li>
+<li><a href="move-basics//reference/constants.html">Constants</a> in the Move Reference</li>
 <li><a href="move-basics/./../guides/coding-conventions.html#constant">Coding conventions for constants</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="assert-and-abort"><a class="header" href="#assert-and-abort">Assert and Abort</a></h1>
@@ -2650,7 +2673,7 @@ public fun update_record(/* ... , */ user_has_access: bool, field_exists: bool) 
 </code></pre>
 <h2 id="further-reading-11"><a class="header" href="#further-reading-11">Further reading</a></h2>
 <ul>
-<li><a href="move-basics//reference/abort-and-assert.html">Abort and Assert</a> in the Move Language Reference.</li>
+<li><a href="move-basics//reference/abort-and-assert.html">Abort and Assert</a> in the Move Reference.</li>
 <li>We suggest reading the <a href="move-basics/./../guides/better-error-handling.html">Better Error Handling</a> guide to
 learn about best practices for error handling in Move.</li>
 </ul>
@@ -2734,7 +2757,7 @@ let (_, age) = get_name_and_age();
 </code></pre>
 <h2 id="further-reading-12"><a class="header" href="#further-reading-12">Further reading</a></h2>
 <ul>
-<li><a href="move-basics//reference/functions.html">Functions</a> in the Move Language Reference.</li>
+<li><a href="move-basics//reference/functions.html">Functions</a> in the Move Reference.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="struct-methods"><a class="header" href="#struct-methods">Struct Methods</a></h1>
 <p>Move Compiler supports <em>receiver syntax</em>, which allows defining methods which can be called on
@@ -2872,7 +2895,7 @@ module book::hero_to_bytes {
 </code></pre>
 <h2 id="further-reading-13"><a class="header" href="#further-reading-13">Further reading</a></h2>
 <ul>
-<li><a href="move-basics//reference/method-syntax.html">Method Syntax</a> in the Move Language Reference.</li>
+<li><a href="move-basics//reference/method-syntax.html">Method Syntax</a> in the Move Reference.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="visibility-modifiers"><a class="header" href="#visibility-modifiers">Visibility Modifiers</a></h1>
 <p>Every module member has a visibility. By default, all module members are <em>private</em> - meaning they
@@ -3046,7 +3069,7 @@ Move compiler will automatically copy these types when they are passed to a func
 from a function, or when they're <em>moved</em> to a scope and then accessed in their original scope.</p>
 <h2 id="further-reading-14"><a class="header" href="#further-reading-14">Further reading</a></h2>
 <ul>
-<li><a href="move-basics//reference/variables.html">Local Variables and Scopes</a> in the Move Language Reference.</li>
+<li><a href="move-basics//reference/variables.html">Local Variables and Scopes</a> in the Move Reference.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="abilities-copy"><a class="header" href="#abilities-copy">Abilities: Copy</a></h1>
 <p>In Move, the <em>copy</em> ability on a type indicates that the instance or the value of the type can be
@@ -3095,7 +3118,7 @@ for them.</p>
 </ul>
 <h2 id="further-reading-15"><a class="header" href="#further-reading-15">Further reading</a></h2>
 <ul>
-<li><a href="move-basics//reference/type-abilities.html">Type Abilities</a> in the Move Language Reference.</li>
+<li><a href="move-basics//reference/type-abilities.html">Type Abilities</a> in the Move Reference.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="references"><a class="header" href="#references">References</a></h1>
 <!--
@@ -3416,7 +3439,7 @@ fun test_constraints() {
 </code></pre>
 <h2 id="further-reading-16"><a class="header" href="#further-reading-16">Further Reading</a></h2>
 <ul>
-<li><a href="move-basics//reference/generics.html">Generics</a> in the Move Language Reference.</li>
+<li><a href="move-basics//reference/generics.html">Generics</a> in the Move Reference.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="type-reflection"><a class="header" href="#type-reflection">Type Reflection</a></h1>
 <p>In programming languages <em>reflection</em> is the ability of a program to examine and modify its own
@@ -3565,7 +3588,7 @@ where the <code>#[test_only]</code> attribute comes in handy.</p>
 modules if their visibility is set so.</p>
 <h2 id="further-reading-18"><a class="header" href="#further-reading-18">Further Reading</a></h2>
 <ul>
-<li><a href="https://move-book.com/reference/unit-testing.html">Unit Testing</a> in the Move Language Reference.</li>
+<li><a href="https://move-book.com/reference/unit-testing.html">Unit Testing</a> in the Move Reference.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="object-model"><a class="header" href="#object-model">Object Model</a></h1>
 <p>This chapter describes the Object Model of Sui. It focuses on the theory and concepts behind the
@@ -3856,7 +3879,7 @@ custom types.</p>
 we present the <code>sui::transfer</code> module, which provides native storage functions for objects.</p>
 <h2 id="further-reading-22"><a class="header" href="#further-reading-22">Further reading</a></h2>
 <ul>
-<li><a href="storage//reference/type-abilities.html">Type Abilities</a> in the Move Language Reference.</li>
+<li><a href="storage//reference/type-abilities.html">Type Abilities</a> in the Move Reference.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="storage-functions"><a class="header" href="#storage-functions">Storage Functions</a></h1>
 <p>The module that defines main storage operations is <code>sui::transfer</code>. It is implicitly imported in all
@@ -3878,11 +3901,11 @@ change.</li>
 </ol>
 <p>The <code>transfer</code> module is a go-to for most of the storage operations, except a special case with
 <a href="storage/./../programmability/dynamic-fields.html">Dynamic Fields</a> awaits us in the next chapter.</p>
-<h2 id="ownerships-and-references-a-quick-recap"><a class="header" href="#ownerships-and-references-a-quick-recap">Ownerships and References: A Quick Recap</a></h2>
+<h2 id="ownership-and-references-a-quick-recap"><a class="header" href="#ownership-and-references-a-quick-recap">Ownership and References: A Quick Recap</a></h2>
 <p>In the <a href="storage/./../move-basics/ownership-and-scope.html">Ownership and Scope</a> and
 <a href="storage/./../move-basics/references.html">References</a> chapters, we covered the basics of ownership and
 references in Move. It is important that you understand these concepts when using storage functions.
-Let's do a quick recap of the most important points:</p>
+Here is a quick recap of the most important points:</p>
 <ul>
 <li>The <em>move</em> semantics in Move means that the value is <em>moved</em> from one scope to another. In other
 words, if an instance of a type is passed to a function <em>by value</em>, it is <em>moved</em> to the function
@@ -3943,8 +3966,8 @@ the transaction sender.</p>
 <p>When the module is published, the <code>init</code> function will get called, and the <code>AdminCap</code> object which
 we created there will be <em>transferred</em> to the transaction sender. The <code>ctx.sender()</code> function
 returns the sender address for the current transaction.</p>
-<p>Once the <code>AdminCap</code> has been transferred to the sender, let's say <code>0xa11ce</code>, the sender, and only
-the sender, will be able to access the object. The object is now <em>account owned</em>.</p>
+<p>Once the <code>AdminCap</code> has been transferred to the sender, for example, to <code>0xa11ce</code>, the sender, and
+only the sender, will be able to access the object. The object is now <em>account owned</em>.</p>
 <blockquote>
 <p>Account owned objects are a subject to <em>true ownership</em> - only the account owner can access them.
 This is a fundamental concept in the Sui storage model.</p>
@@ -4158,7 +4181,7 @@ public struct MegaConfig has key {
 </ul>
 <h2 id="further-reading-23"><a class="header" href="#further-reading-23">Further reading</a></h2>
 <ul>
-<li><a href="storage//reference/type-abilities.html">Type Abilities</a> in the Move Language Reference.</li>
+<li><a href="storage//reference/type-abilities.html">Type Abilities</a> in the Move Reference.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="uid-and-id"><a class="header" href="#uid-and-id">UID and ID</a></h1>
 <p>The <code>UID</code> type is defined in the <code>sui::object</code> module and is a wrapper around an <code>ID</code> which, in
@@ -4227,8 +4250,13 @@ however, there's no restriction, and no guarantee that the <code>ID</code> point
 <p>ID can be received as a transaction argument in a <a href="storage/">Transaction Block</a>. Alternatively, ID can be
 created from an <code>address</code> value using <code>to_id()</code> function.</p>
 </blockquote>
-<pre><code class="language-move">
-</code></pre>
+<!--
+```move
+
+TODO: !!!!
+
+```
+-->
 <h2 id="fresh_object_address"><a class="header" href="#fresh_object_address">fresh_object_address</a></h2>
 <p>TxContext provides the <code>fresh_object_address</code> function which can be utilized to create unique
 addresses and <code>ID</code>s - it may be useful in some application that assign unique identifiers to user
@@ -4747,72 +4775,6 @@ application.</p>
         books: vector&lt;Book&gt;
     }
 }
-
-#[allow(unused_variable, unused_field)]
-module book::collections_vec_set {
-    use sui::vec_set::{Self, VecSet};
-
-    public struct App has drop {
-        /// `VecSet` used in the struct definition
-        subscribers: VecSet&lt;address&gt;
-    }
-
-    #[test]
-    fun vec_set_playground() {
-        let set = vec_set::empty&lt;u8&gt;(); // create an empty set
-        let mut set = vec_set::singleton(1); // create a set with a single item
-
-        set.insert(2); // add an item to the set
-        set.insert(3);
-
-        assert!(set.contains(&amp;1), 0); // check if an item is in the set
-        assert!(set.size() == 3, 1); // get the number of items in the set
-        assert!(!set.is_empty(), 2); // check if the set is empty
-
-        set.remove(&amp;2); // remove an item from the set
-    }
-}
-
-#[allow(unused_field, unused_variable)]
-module book::collections {
-    use std::string::String;
-    use sui::vec_map::{Self, VecMap};
-
-    public struct Metadata has drop {
-        name: String,
-        /// `VecMap` used in the struct definition
-        attributes: VecMap&lt;String, String&gt;
-    }
-
-    #[test]
-    fun vec_map_playground() {
-        let mut map = vec_map::empty(); // create an empty map
-
-        map.insert(2, b&quot;two&quot;.to_string()); // add a key-value pair to the map
-        map.insert(3, b&quot;three&quot;.to_string());
-
-        assert!(map.contains(&amp;2), 0); // check if a key is in the map
-
-        map.remove(&amp;2); // remove a key-value pair from the map
-    }
-}
-
-#[allow(unused_field, unused_variable, lint(collection_equality))]
-module book::collections_compare_vec_set {
-use sui::vec_set;
-#[test, expected_failure]
-fun test_compare() {
-let mut set1 = vec_set::empty();
-set1.insert(1);
-set1.insert(2);
-
-let mut set2 = vec_set::empty();
-set2.insert(2);
-set2.insert(1);
-
-assert!(set1 == set2, 0);
-}
-}
 </code></pre>
 <h2 id="vecset"><a class="header" href="#vecset">VecSet</a></h2>
 <p><code>VecSet</code> is a collection type that stores a set of unique items. It is similar to a <code>vector</code>, but it
@@ -5310,8 +5272,8 @@ collection types.</p>
 <p>Bag, as the name suggests, acts as a &quot;bag&quot; of heterogeneous values. It is a simple, non-generic type
 that can store any data. Bag will never allow orphaned fields, as it tracks the number of fields and
 can't be destroyed if it's not empty.</p>
-<p>File: sui-framework/sources/bag.move</p>
-<pre><code class="language-move">public struct Bag has key, store {
+<pre><code class="language-move">// File: sui-framework/sources/bag.move
+public struct Bag has key, store {
     /// the ID of this bag
     id: UID,
     /// the number of key-value pairs in the bag
@@ -5358,8 +5320,8 @@ bag.destroy_empty();
 <h2 id="table"><a class="header" href="#table">Table</a></h2>
 <p>Table is a typed dynamic collection that has a fixed type for keys and values. It is defined in the
 <code>sui::table</code> module.</p>
-<p>File: sui-framework/sources/table.move</p>
-<pre><code class="language-move">public struct Table&lt;phantom K: copy + drop + store, phantom V: store&gt; has key, store {
+<pre><code class="language-move">// File: sui-framework/sources/table.move
+public struct Table&lt;phantom K: copy + drop + store, phantom V: store&gt; has key, store {
     /// the ID of this table
     id: UID,
     /// the number of key-value pairs in the table
@@ -5429,8 +5391,8 @@ Depending on the needs of your project, you may choose to -->
 TODO: ... -->
 <div style="break-before: page; page-break-before: always;"></div><h1 id="one-time-witness"><a class="header" href="#one-time-witness">One Time Witness</a></h1>
 <p>While regular <a href="programmability/./witness-pattern.html">Witness</a> is a great way to statically prove the ownership of a
-type, there are cases, where we need to ensure that a witness is used only once. And this is the
-purpose of the One Time Witness (OTW).</p>
+type, there are cases, where we need to ensure that a Witness is instantiated only once. And this is
+the purpose of the One Time Witness (OTW).</p>
 <!--
 Notes to self:
   - background first or definition first - which one is better?
@@ -5451,7 +5413,7 @@ Witness if it follows these rules:</p>
 <pre><code class="language-move">module book::one_time {
     /// The OTW for the `book::one_time` module.
     /// Only `drop`, no fields, no generics, all uppercase.
-    struct ONE_TIME has drop {}
+    public struct ONE_TIME has drop {}
 
     /// Receive the instance of `ONE_TIME` as the first argument.
     fun init(otw: ONE_TIME, ctx: &amp;mut TxContext) {
@@ -5753,10 +5715,11 @@ metadata for any object if the object type has a Display associated with it.</p>
 </code></pre>
 <h2 id="creator-privilege"><a class="header" href="#creator-privilege">Creator Privilege</a></h2>
 <p>While the objects can be owned by accounts and may be a subject to
-<a href="programmability/./../object/true-ownership.html">True Ownership</a>, the Display can be owned by the creator of the
-object. This way, the creator can update the display metadata and apply the changes globally without
-the need to update every object. The creator can also transfer Display to another account or even
-build an application around the object with custom functionality to manage the metadata.</p>
+<a href="programmability/./../object/ownership.html#account-owner-or-single-owner">True Ownership</a>, the Display can be owned
+by the creator of the object. This way, the creator can update the display metadata and apply the
+changes globally without the need to update every object. The creator can also transfer Display to
+another account or even build an application around the object with custom functionality to manage
+the metadata.</p>
 <h2 id="standard-fields"><a class="header" href="#standard-fields">Standard Fields</a></h2>
 <p>The fields that are supported most widely are:</p>
 <ul>
@@ -6448,7 +6411,7 @@ module book::common_pracices { /* ... */ }
 <h3 id="constant"><a class="header" href="#constant">Constant</a></h3>
 <ol>
 <li>Constants should be in <code>SCREAMING_SNAKE_CASE</code>.</li>
-<li>Error constants should be in <code>ECamelCase</code></li>
+<li>Error constants should be in <code>EPascalCase</code></li>
 </ol>
 <pre><code class="language-move">const MAX_PRICE: u64 = 1000;
 const EInvalidInput: u64 = 0;
@@ -6463,7 +6426,7 @@ public fun create_if_not_exists() { /* ... */ }
 </code></pre>
 <h3 id="struct-1"><a class="header" href="#struct-1">Struct</a></h3>
 <ol>
-<li>Struct names should be in <code>CamelCase</code>.</li>
+<li>Struct names should be in <code>PascalCase</code>.</li>
 <li>Struct fields should be in <code>snake_case</code>.</li>
 <li>Capabilities should be suffixed with <code>Cap</code>.</li>
 </ol>
