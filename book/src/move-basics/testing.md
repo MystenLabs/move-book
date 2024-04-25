@@ -120,4 +120,4 @@ modules if their visibility is set so.
 
 ## Further Reading
 
-- [Unit Testing](https://move-book.com/reference/unit-testing.html) in the Move Language Reference.
+- [Unit Testing](https://move-book.com/reference/unit-testing.html) in the Move Reference.

@@ -18,6 +18,7 @@ module book::collections_vector {
         books: vector<Book>
     }
 }
+// ANCHOR_END: vector
 
 #[allow(unused_variable, unused_field)]
 // ANCHOR: vec_set

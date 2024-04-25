@@ -42,10 +42,11 @@ from the need to define the same fields with the same names and types in every o
 ## Creator Privilege
 
 While the objects can be owned by accounts and may be a subject to
-[True Ownership](./../object/true-ownership.md), the Display can be owned by the creator of the
-object. This way, the creator can update the display metadata and apply the changes globally without
-the need to update every object. The creator can also transfer Display to another account or even
-build an application around the object with custom functionality to manage the metadata.
+[True Ownership](./../object/ownership.md#account-owner-or-single-owner), the Display can be owned
+by the creator of the object. This way, the creator can update the display metadata and apply the
+changes globally without the need to update every object. The creator can also transfer Display to
+another account or even build an application around the object with custom functionality to manage
+the metadata.
 
 ## Standard Fields
 

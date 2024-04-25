@@ -58,4 +58,4 @@ Potato is one of the most powerful patterns in Move, we go in detail about it in
 
 ## Further reading
 
-- [Type Abilities](/reference/type-abilities.html) in the Move Language Reference.
+- [Type Abilities](/reference/type-abilities.html) in the Move Reference.

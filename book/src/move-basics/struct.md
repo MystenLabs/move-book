@@ -83,4 +83,4 @@ unused.
 
 ## Further reading
 
-- [Structs](/reference/structs.html) in the Move Language Reference.
+- [Structs](/reference/structs.html) in the Move Reference.

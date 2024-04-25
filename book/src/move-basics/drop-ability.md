@@ -78,4 +78,4 @@ All of the types defined in the standard library have the `drop` ability as well
 
 ## Further reading
 
-- [Type Abilities](/reference/type-abilities.html) in the Move Language Reference.
+- [Type Abilities](/reference/type-abilities.html) in the Move Reference.

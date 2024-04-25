@@ -57,4 +57,4 @@ Example: Convert an address into a string.
 
 ## Further reading
 
-- [Address](/reference/primitive-types/address.html) in the Move Language Reference.
+- [Address](/reference/primitive-types/address.html) in the Move Reference.

@@ -46,4 +46,4 @@ explicit call to `destroy_empty` function.
 
 ## Further reading
 
-- [Vector](/reference/primitive-types/vector.html) in the Move Language Reference.
+- [Vector](/reference/primitive-types/vector.html) in the Move Reference.

@@ -1,8 +1,8 @@
 # One Time Witness
 
 While regular [Witness](./witness-pattern.md) is a great way to statically prove the ownership of a
-type, there are cases, where we need to ensure that a witness is used only once. And this is the
-purpose of the One Time Witness (OTW).
+type, there are cases, where we need to ensure that a Witness is instantiated only once. And this is
+the purpose of the One Time Witness (OTW).
 
 <!--
 Notes to self:
@@ -25,16 +25,7 @@ Witness if it follows these rules:
 Here is an example of a One Time Witness:
 
 ```move
-module book::one_time {
-    /// The OTW for the `book::one_time` module.
-    /// Only `drop`, no fields, no generics, all uppercase.
-    struct ONE_TIME has drop {}
-
-    /// Receive the instance of `ONE_TIME` as the first argument.
-    fun init(otw: ONE_TIME, ctx: &mut TxContext) {
-        // do something with the OTW
-    }
-}
+{{#include ../../../packages/samples/sources/programmability/one-time-witness.move:definition}}
 ```
 
 The One Time Witness cannot be constructed manually, and any code attempting to do so will result in

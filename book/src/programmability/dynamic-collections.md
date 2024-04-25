@@ -44,9 +44,8 @@ Bag, as the name suggests, acts as a "bag" of heterogeneous values. It is a simp
 that can store any data. Bag will never allow orphaned fields, as it tracks the number of fields and
 can't be destroyed if it's not empty.
 
-File: sui-framework/sources/bag.move
-
 ```move
+// File: sui-framework/sources/bag.move
 public struct Bag has key, store {
     /// the ID of this bag
     id: UID,
@@ -81,9 +80,8 @@ Defined in the `sui::object_bag` module. Identical to [Bag](#bag), but uses
 Table is a typed dynamic collection that has a fixed type for keys and values. It is defined in the
 `sui::table` module.
 
-File: sui-framework/sources/table.move
-
 ```move
+// File: sui-framework/sources/table.move
 public struct Table<phantom K: copy + drop + store, phantom V: store> has key, store {
     /// the ID of this table
     id: UID,

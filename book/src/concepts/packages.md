@@ -76,4 +76,4 @@ transactions.
 
 - [Package Manifest](./manifest.md)
 - [Address](./address.md)
-- [Packages](/reference/packages.html) in the Move Language Reference.
+- [Packages](/reference/packages.html) in the Move Reference.

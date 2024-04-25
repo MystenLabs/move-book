@@ -73,4 +73,4 @@ If some of the arguments are not used, they can be ignored with the `_` symbol:
 
 ## Further reading
 
-- [Functions](/reference/functions.html) in the Move Language Reference.
+- [Functions](/reference/functions.html) in the Move Reference.

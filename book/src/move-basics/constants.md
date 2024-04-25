@@ -70,5 +70,5 @@ upgrade.
 
 ## Links
 
-- [Constants](/reference/constants.html) in the Move Language Reference
+- [Constants](/reference/constants.html) in the Move Reference
 - [Coding conventions for constants](./../guides/coding-conventions.md#constant)

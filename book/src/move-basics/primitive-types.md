@@ -147,5 +147,5 @@ let z = x + y;
 
 ## Further reading
 
-- [Bool](/reference/primitive-types/bool.html) in the Move Language Reference.
-- [Integer](/reference/primitive-types/integers.html) in the Move Language Reference.
+- [Bool](/reference/primitive-types/bool.html) in the Move Reference.
+- [Integer](/reference/primitive-types/integers.html) in the Move Reference.

@@ -15,7 +15,7 @@ module book::common_pracices { /* ... */ }
 ### Constant
 
 1. Constants should be in `SCREAMING_SNAKE_CASE`.
-2. Error constants should be in `ECamelCase`
+2. Error constants should be in `EPascalCase`
 
 ```move
 const MAX_PRICE: u64 = 1000;
@@ -34,7 +34,7 @@ public fun create_if_not_exists() { /* ... */ }
 
 ### Struct
 
-1. Struct names should be in `CamelCase`.
+1. Struct names should be in `PascalCase`.
 2. Struct fields should be in `snake_case`.
 3. Capabilities should be suffixed with `Cap`.
 
