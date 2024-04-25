@@ -43,7 +43,7 @@ let sum = {
 let none = {
     let a = 1;
     let b = 2;
-    a + b // not returned - semicolon.
+    a + b; // not returned - semicolon.
     // compiler automatically inserts an empty expression `()`
 };
 // ANCHOR_END: block
