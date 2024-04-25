@@ -5,12 +5,12 @@ additional information about the transaction that is not stored - and, hence, ca
 on-chain. Events are emitted by the `sui::event` module located in the
 [Sui Framework](./sui-framework.md).
 
-> Any type with the [copy](./../move-basics/copy-ability.md) and
+> Any custom type with the [copy](./../move-basics/copy-ability.md) and
 > [drop](./../move-basics/drop-ability.md) abilities can be emitted as an event.
-
-File: sui-framework/sources/event.move
+> Sui Verifier requires the type to be internal to the module.
 
 ```move
+// File: sui-framework/sources/event.move
 module sui::event {
     /// Emit a custom Move event, sending the data offchain.
     ///

@@ -98,7 +98,6 @@
   - [Module Initializer](./programmability/module-initializer.md)
   - [Pattern: Capability](./programmability/capability.md)
   - [Epoch and Time](./programmability/epoch-and-time.md)
-  - [Fast Path](./programmability/fast-path.md)
   - [Collections](./programmability/collections.md)
   - [Dynamic Fields](./programmability/dynamic-fields.md)
   - [Dynamic Object Fields](./programmability/dynamic-object-fields.md)
@@ -118,7 +117,7 @@
   - [Authorization Patterns]()<!-- (./programmability/authorization-patterns.md) -->
   - [Cryptography and Hashing]()<!-- (./programmability/cryptography-and-hashing.md) -->
   - [Randomness]()<!-- (./programmability/randomness.md) -->
-  - [BCS]() <!-- (./programmability/bcs.md) -->
+  - [BCS](./programmability/bcs.md)
 
 # Guides
 
@@ -139,11 +138,3 @@
 - [C - Publications](./appendix/publications.md)
 - [D - Contributing](./appendix/contributing.md)
 - [E - Acknowledgements](./appendix/acknowledgements.md)
-
-<!--
-
-- [Patterns]()
-    - [Getters and Setters]()
-    - [Abstract Class]()
-    - [Hot Potato]()
-    - [Request + Policy]()
