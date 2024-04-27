@@ -1,9 +1,9 @@
 # String
 
-While Move does not have a built-in to represent strings, it does have two standard implementations
-for strings in the [Standard Library](./standard-library.md). The `std::string` module defines a
-`String` type and methods for UTF-8 encoded strings, and the second module, `std::ascii`, provides
-an ASCII `String` type and its methods.
+While Move does not have a built-in type to represent strings, it does have two standard
+implementations for strings in the [Standard Library](./standard-library.md). The `std::string`
+module defines a `String` type and methods for UTF-8 encoded strings, and the second module,
+`std::ascii`, provides an ASCII `String` type and its methods.
 
 > Sui execution environment automatically converts bytevector into `String` in transaction inputs.
 > So in many cases, String does not to be constructed in the
@@ -23,8 +23,9 @@ TODO:
 ## Strings are bytes
 
 No matter which type of string you use, it is important to know that strings are just bytes. The
-wrappers provided by the `string` and `ascii` modules are just that: wrappers. They do provide more
-checks and functionality compared a vector, but under the hood, they are just vectors of bytes.
+wrappers provided by the `string` and `ascii` modules are just that: wrappers. They do provide
+safety checks and methods to work with strings, but at the end of the day, they are just vectors of
+bytes.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/string.move:custom}}
@@ -34,8 +35,7 @@ checks and functionality compared a vector, but under the hood, they are just ve
 
 While there are two types of strings in the standard library, the `string` module should be
 considered the default. It has native implementations of many common operations, and hence is more
-efficient than the `ascii` module, which is fully implemented in Move. To create a string or perform
-operations on it, you must import the `string` module.
+efficient than the `ascii` module, which is fully implemented in Move.
 
 ### Definition
 
@@ -49,7 +49,7 @@ public struct String has copy, drop, store {
 }
 ```
 
-### Creating a UTF-8 String
+### Creating a String
 
 To create a new UTF-8 `String` instance, you can use the `string::utf8` method. The
 [Standard Library](./standard-library.md) provides an alias `.to_string()` on the `vector<u8>` for
