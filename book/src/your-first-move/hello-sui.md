@@ -65,7 +65,7 @@ below with `>`:
 $ sui client
 Config file ["/path/to/home/.sui/sui_config/client.yaml"] doesn't exist, do you want to connect to a Sui Full node server [y/N]?
 > y
-Sui Full node server URL (Defaults to Sui Devnet if not specified) :
+Sui Full node server URL (Defaults to Sui Testnet if not specified) :
 >
 Select key scheme to generate keypair (0 for ed25519, 1 for secp256k1, 2: for secp256r1):
 > 0
@@ -104,7 +104,7 @@ $ sui client balance
 │ ╭──────────────────────────────────╮   │
 │ │ coin  balance (raw)  balance     │   │
 │ ├──────────────────────────────────┤   │
-│ │ Sui   10000000000    10.00 SUI   │   │
+│ │ Sui   1000000000    10.00 SUI   │   │
 │ ╰──────────────────────────────────╯   │
 ╰────────────────────────────────────────╯
 ```
@@ -387,7 +387,7 @@ object to our account. The transaction will look like this:
 
 ```bash
 $ sui client ptb \
---gas-budget 1000000000 \
+--gas-budget 100000000 \
 --assign sender @$MY_ADDRESS \
 --move-call $PACKAGE_ID::todo_list::new \
 --assign list \
@@ -401,7 +401,7 @@ the transaction.
 
 ```bash
 # sets the gas budget for the transaction
---gas-budget 1000000000 \n
+--gas-budget 100000000 \n
 # registers a variable "sender=@..."
 --assign sender @$MY_ADDRESS \n
 ```
@@ -441,7 +441,7 @@ Transaction Digest: BJwYEnuuMzU4Y8cTwMoJbbQA6cLwPmwxvsRpSmvThoK8
 ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
 │ Sender: 0x091ef55506ad814920adcef32045f9078f2f6e9a72f4cf253a1e6274157380a1                                   │
 │ Gas Owner: 0x091ef55506ad814920adcef32045f9078f2f6e9a72f4cf253a1e6274157380a1                                │
-│ Gas Budget: 1000000000 MIST                                                                                  │
+│ Gas Budget: 100000000 MIST                                                                                  │
 │ Gas Price: 1000 MIST                                                                                         │
 │ Gas Payment:                                                                                                 │
 │  ┌──                                                                                                         │
@@ -626,7 +626,7 @@ Now we can construct the transaction to add an item to the list. The command wil
 
 ```bash
 $ sui client ptb \
---gas-budget 1000000000 \
+--gas-budget 100000000 \
 --move-call $PACKAGE_ID::todo_list::add @$LIST_ID "'Finish the Hello, Sui chapter'"
 ```
 
@@ -709,7 +709,7 @@ this:
 
 ```bash
 $ sui client ptb \
---gas-budget 1000000000 \
+--gas-budget 100000000 \
 --move-call $PACKAGE_ID::todo_list::add @$LIST_ID "'Finish Concepts chapter'" \
 --move-call $PACKAGE_ID::todo_list::add @$LIST_ID "'Read the Move Basics chapter'" \
 --move-call $PACKAGE_ID::todo_list::add @$LIST_ID "'Learn about Object Model'" \
