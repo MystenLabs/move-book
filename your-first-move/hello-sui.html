@@ -266,7 +266,7 @@ below with <code>&gt;</code>:</p>
 <pre><code class="language-bash">$ sui client
 Config file [&quot;/path/to/home/.sui/sui_config/client.yaml&quot;] doesn't exist, do you want to connect to a Sui Full node server [y/N]?
 &gt; y
-Sui Full node server URL (Defaults to Sui Devnet if not specified) :
+Sui Full node server URL (Defaults to Sui Testnet if not specified) :
 &gt;
 Select key scheme to generate keypair (0 for ed25519, 1 for secp256k1, 2: for secp256r1):
 &gt; 0
@@ -293,7 +293,7 @@ the <code>sui client balance</code> command:</p>
 │ ╭──────────────────────────────────╮   │
 │ │ coin  balance (raw)  balance     │   │
 │ ├──────────────────────────────────┤   │
-│ │ Sui   10000000000    10.00 SUI   │   │
+│ │ Sui   1000000000    1.00 SUI     │   │
 │ ╰──────────────────────────────────╯   │
 ╰────────────────────────────────────────╯
 </code></pre>
@@ -524,7 +524,7 @@ $ export MY_ADDRESS=$(sui client active-address)
 <code>new</code> function in the <code>todo_list</code> package to create a new list, and then we will transfer the list
 object to our account. The transaction will look like this:</p>
 <pre><code class="language-bash">$ sui client ptb \
---gas-budget 1000000000 \
+--gas-budget 100000000 \
 --assign sender @$MY_ADDRESS \
 --move-call $PACKAGE_ID::todo_list::new \
 --assign list \
@@ -535,7 +535,7 @@ define the actual commands and actions that the transaction will perform. The fi
 make are utility calls to set the sender address to the command inputs and set the gas budget for
 the transaction.</p>
 <pre><code class="language-bash"># sets the gas budget for the transaction
---gas-budget 1000000000 \n
+--gas-budget 100000000 \n
 # registers a variable &quot;sender=@...&quot;
 --assign sender @$MY_ADDRESS \n
 </code></pre>
@@ -565,7 +565,7 @@ transaction digest, the transaction data, and the transaction effects.</p>
 ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
 │ Sender: 0x091ef55506ad814920adcef32045f9078f2f6e9a72f4cf253a1e6274157380a1                                   │
 │ Gas Owner: 0x091ef55506ad814920adcef32045f9078f2f6e9a72f4cf253a1e6274157380a1                                │
-│ Gas Budget: 1000000000 MIST                                                                                  │
+│ Gas Budget: 100000000 MIST                                                                                  │
 │ Gas Price: 1000 MIST                                                                                         │
 │ Gas Payment:                                                                                                 │
 │  ┌──                                                                                                         │
@@ -731,7 +731,7 @@ then add one more variable for the list object.</p>
 </code></pre>
 <p>Now we can construct the transaction to add an item to the list. The command will look like this:</p>
 <pre><code class="language-bash">$ sui client ptb \
---gas-budget 1000000000 \
+--gas-budget 100000000 \
 --move-call $PACKAGE_ID::todo_list::add @$LIST_ID &quot;'Finish the Hello, Sui chapter'&quot;
 </code></pre>
 <p>In this command, we are calling the <code>add</code> function in the <code>todo_list</code> package. The function takes
@@ -798,7 +798,7 @@ Now you can check the list object to see if the item was added.</p>
 Using the same list object, we will add three more items and remove one. The command will look like
 this:</p>
 <pre><code class="language-bash">$ sui client ptb \
---gas-budget 1000000000 \
+--gas-budget 100000000 \
 --move-call $PACKAGE_ID::todo_list::add @$LIST_ID &quot;'Finish Concepts chapter'&quot; \
 --move-call $PACKAGE_ID::todo_list::add @$LIST_ID &quot;'Read the Move Basics chapter'&quot; \
 --move-call $PACKAGE_ID::todo_list::add @$LIST_ID &quot;'Learn about Object Model'&quot; \
