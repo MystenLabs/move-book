@@ -20,26 +20,48 @@ module book::custom_string {
 }
 // ANCHOR_END: custom
 
-// ANCHOR: ascii
 module book::string_ascii {
     // use std::ascii::String;
 
+    #[allow(unused_variable)]
     #[test]
     fun using_strings() {
-        // strings are normally created using the `utf8` function
-        // let mut hello = string::utf8(b"Hello");
-        // let world = string::utf8(b", World!");
+// ANCHOR: ascii
+// the module is `std::ascii` and the type is `String`
+use std::ascii::{Self, String};
 
-        // // strings can be concatenated using the `append_utf8` function
-        // let hello_world = hello.append_utf8(*world.bytes());
+// strings can be created using the `string` function
+// type declaration is not necessary, we put it here for clarity
+let hey: String = ascii::string(b"Hey");
 
-        // // just like any other type, strings can be compared
-        // assert!(hello_world == string::utf8(b"Hello, World!"), 0x0);
+// there is a handy alias `.to_ascii_string()` on the `vector<u8>` type
+let hey = b"Hey".to_ascii_string();
+
+// ANCHOR_END: ascii
     }
 }
-// ANCHOR_END: ascii
 
 module book::string_safe_utf {
+
+}
+
+#[allow(unused_variable)]
+module book::string_utf {
+    #[test]
+    fun using_strings() {
+// ANCHOR: utf8
+// the module is `std::string` and the type is `String`
+use std::string::{Self, String};
+
+// strings are normally created using the `utf8` function
+// type declaration is not necessary, we put it here for clarity
+let hello: String = string::utf8(b"Hello");
+
+// The `.to_string()` alias on the `vector<u8>` is more convenient
+let hello = b"Hello".to_string();
+// ANCHOR_END: utf8
+    }
+
     #[test]
     fun safe_strings() {
 // ANCHOR: safe_utf8
@@ -53,22 +75,5 @@ let invalid = b"\xFF".try_to_string();
 
 assert!(invalid.is_none(), 0); // abort if the value is valid UTF-8
 // ANCHOR_END: safe_utf8
-    }
-}
-
-module book::string_utf {
-    #[test]
-    fun using_strings() {
-// ANCHOR: utf8
-// strings are normally created using the `utf8` function
-let mut hello = b"Hello".to_string();
-let world = b", World!".to_string();
-
-// strings can be concatenated using the `append_utf8` function
-hello.append_utf8(*world.bytes()); // mutates the value
-
-// just like any other type, strings can be compared
-assert!(hello == b"Hello, World!".to_string(), 0x0);
-// ANCHOR_END: utf8
     }
 }
