@@ -177,9 +177,10 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="string"><a class="header" href="#string">String</a></h1>
-<p>While Move does not have a built-in to represent strings, it does have a <code>string</code> module in the
-<a href="./standard-library.html">Standard Library</a> that provides a <code>String</code> type. The <code>string</code> module
-represents UTF-8 encoded strings, and another module, <code>ascii</code>, provides an ASCII-only <code>String</code> type.</p>
+<p>While Move does not have a built-in type to represent strings, it does have two standard
+implementations for strings in the <a href="./standard-library.html">Standard Library</a>. The <code>std::string</code>
+module defines a <code>String</code> type and methods for UTF-8 encoded strings, and the second module,
+<code>std::ascii</code>, provides an ASCII <code>String</code> type and its methods.</p>
 <blockquote>
 <p>Sui execution environment automatically converts bytevector into <code>String</code> in transaction inputs.
 So in many cases, String does not to be constructed in the
@@ -197,8 +198,9 @@ TODO:
 -->
 <h2 id="strings-are-bytes"><a class="header" href="#strings-are-bytes">Strings are bytes</a></h2>
 <p>No matter which type of string you use, it is important to know that strings are just bytes. The
-wrappers provided by the <code>string</code> and <code>ascii</code> modules are just that: wrappers. They do provide extra
-checks and functionality than a vector of bytes, but under the hood, they are just vectors of bytes.</p>
+wrappers provided by the <code>string</code> and <code>ascii</code> modules are just that: wrappers. They do provide
+safety checks and methods to work with strings, but at the end of the day, they are just vectors of
+bytes.</p>
 <pre><code class="language-move">module book::custom_string {
     /// Anyone can implement a custom string-like type by wrapping a vector.
     public struct MyString {
@@ -216,30 +218,66 @@ checks and functionality than a vector of bytes, but under the hood, they are ju
     }
 }
 </code></pre>
-<p>Both standard types provide conversions from and to vectors of bytes.</p>
 <h2 id="working-with-utf-8-strings"><a class="header" href="#working-with-utf-8-strings">Working with UTF-8 Strings</a></h2>
 <p>While there are two types of strings in the standard library, the <code>string</code> module should be
 considered the default. It has native implementations of many common operations, and hence is more
-efficient than the <code>ascii</code> module. To create a string or perform operations on it, you must import
-the <code>string</code> module:</p>
-<pre><code class="language-move">// strings are normally created using the `utf8` function
-let mut hello = b&quot;Hello&quot;.to_string();
-let world = b&quot;, World!&quot;.to_string();
-
-// strings can be concatenated using the `append_utf8` function
-hello.append_utf8(*world.bytes()); // mutates the value
-
-// just like any other type, strings can be compared
-assert!(hello == b&quot;Hello, World!&quot;.to_string(), 0x0);
+efficient than the <code>ascii</code> module, which is fully implemented in Move.</p>
+<h3 id="definition"><a class="header" href="#definition">Definition</a></h3>
+<p>The <code>String</code> type in the <code>std::string</code> module is defined as follows:</p>
+<pre><code class="language-move">// File: move-stdlib/sources/string.move
+/// A `String` holds a sequence of bytes which is guaranteed to be in utf8 format.
+public struct String has copy, drop, store {
+    bytes: vector&lt;u8&gt;,
+}
 </code></pre>
-<h2 id="safe-utf-8-operations"><a class="header" href="#safe-utf-8-operations">Safe UTF-8 Operations</a></h2>
-<p>The default <code>utf8</code> method is potentially unsafe, as it does not check that the bytes passed to it
-are valid UTF-8. If you are not sure that the bytes you are passing are valid UTF-8, you should use
-the <code>try_utf8</code> method instead. It returns an <code>Option&lt;String&gt;</code>, which is <code>None</code> if the bytes are not
-valid UTF-8:</p>
+<h3 id="creating-a-string"><a class="header" href="#creating-a-string">Creating a String</a></h3>
+<p>To create a new UTF-8 <code>String</code> instance, you can use the <code>string::utf8</code> method. The
+<a href="./standard-library.html">Standard Library</a> provides an alias <code>.to_string()</code> on the <code>vector&lt;u8&gt;</code> for
+convenience.</p>
+<pre><code class="language-move">// the module is `std::string` and the type is `String`
+use std::string::{Self, String};
+
+// strings are normally created using the `utf8` function
+// type declaration is not necessary, we put it here for clarity
+let hello: String = string::utf8(b&quot;Hello&quot;);
+
+// The `.to_string()` alias on the `vector&lt;u8&gt;` is more convenient
+let hello = b&quot;Hello&quot;.to_string();
+</code></pre>
+<h3 id="common-operations"><a class="header" href="#common-operations">Common Operations</a></h3>
+<p>UTF8 String provides a number of methods to work with strings. The most common operations on strings
+are: concatenation, slicing, and getting the length. Additionally, for custom string operations, the
+<code>bytes()</code> method can be used to get the underlying byte vector.</p>
+<pre><code class="language-move">let mut str = b&quot;Hello,&quot;.to_string();
+let another = b&quot; World!&quot;.to_string();
+
+// append(String) adds the content to the end of the string
+str.append(another);
+
+// `sub_string(start, end)` copies a slice of the string
+str.sub_string(0, 5); // &quot;Hello&quot;
+
+// `length()` returns the number of bytes in the string
+str.length(); // 12 (bytes)
+
+// methods can also be chained! Get a length of a substring
+str.sub_string(0, 5).length(); // 5 (bytes)
+
+// whether the string is empty
+str.is_empty(); // false
+
+// get the underlying byte vector for custom operations
+let bytes: &amp;vector&lt;u8&gt; = str.bytes();
+</code></pre>
+<h3 id="safe-utf-8-operations"><a class="header" href="#safe-utf-8-operations">Safe UTF-8 Operations</a></h3>
+<p>The default <code>utf8</code> method may abort if the bytes passed into it are not valid UTF-8. If you are not
+sure that the bytes you are passing are valid, you should use the <code>try_utf8</code> method instead. It
+returns an <code>Option&lt;String&gt;</code>, which contains no value if the bytes are not valid UTF-8, and a string
+otherwise.</p>
 <blockquote>
-<p>The <code>try_*</code> pattern is used throughout the standard library to indicate that a function may fail.
-For more information, see the <a href="./error-handling.html">Error Handling</a> section.</p>
+<p>Hint: the name that starts with <code>try_*</code> indicates that the function returns an Option with the
+expected result or <code>none</code> if the operation fails. It is a common naming convention borrowed from
+Rust.</p>
 </blockquote>
 <pre><code class="language-move">// this is a valid UTF-8 string
 let hello = b&quot;Hello&quot;.try_to_string();
@@ -251,31 +289,15 @@ let invalid = b&quot;\xFF&quot;.try_to_string();
 
 assert!(invalid.is_none(), 0); // abort if the value is valid UTF-8
 </code></pre>
+<h3 id="utf-8-limitations"><a class="header" href="#utf-8-limitations">UTF-8 Limitations</a></h3>
+<p>The <code>string</code> module does not provide a way to access individual characters in a string. This is
+because UTF-8 is a variable-length encoding, and the length of a character can be anywhere from 1 to
+4 bytes. Similarly, the <code>length()</code> method returns the number of bytes in the string, not the number
+of characters.</p>
+<p>However, methods like <code>sub_string</code> and <code>insert</code> check character boundaries and will abort when the
+index is in the middle of a character.</p>
 <h2 id="ascii-strings"><a class="header" href="#ascii-strings">ASCII Strings</a></h2>
 <p>This section is coming soon!</p>
-<!-- TODO: ASCII strings -->
-<!-- ```move
-module book::string_ascii {
-    // use std::ascii::String;
-
-    #[test]
-    fun using_strings() {
-        // strings are normally created using the `utf8` function
-        // let mut hello = string::utf8(b"Hello");
-        // let world = string::utf8(b", World!");
-
-        // // strings can be concatenated using the `append_utf8` function
-        // let hello_world = hello.append_utf8(*world.bytes());
-
-        // // just like any other type, strings can be compared
-        // assert!(hello_world == string::utf8(b"Hello, World!"), 0x0);
-    }
-}
-```
--->
-<!-- ## Summary
-
- TODO: summary -->
 
                     </main>
 
