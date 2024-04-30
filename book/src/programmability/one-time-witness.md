@@ -1,7 +1,7 @@
 # One Time Witness
 
 While regular [Witness](./witness-pattern.md) is a great way to statically prove the ownership of a
-type, there are cases, where we need to ensure that a Witness is instantiated only once. And this is
+type, there are cases where we need to ensure that a Witness is instantiated only once. And this is
 the purpose of the One Time Witness (OTW).
 
 <!--
@@ -13,9 +13,8 @@ Notes to self:
 
 ## Definition
 
-The OTW is a special type of witness that can be used only once. It cannot be manually
-created, and it is guaranteed to be unique per module. Sui Adapter treats a type as a One Time
-Witness if it follows these rules:
+The OTW is a special type of Witness that can be used only once. It cannot be manually
+created and it is guaranteed to be unique per module. Sui Adapter treats a type as an OTW if it follows these rules:
 
 1. Has only `drop` ability.
 2. Has no fields.
@@ -150,11 +149,11 @@ TODO: add a story behind TreasuryCap and Coin
 
 The OTW pattern is a great way to ensure that a type is used only once. Most of the
 developers should understand how to define and receive the OTW, while the OTW checks and enforcement
-is mostly needed in libraries and frameworks. For example, the `sui::coin` module requires a One
-Time Witness in the `coin::create_currency` method, therefore enforcing that the `coin::TreasuryCap`
+is mostly needed in libraries and frameworks. For example, the `sui::coin` module requires an OTW
+in the `coin::create_currency` method, therefore enforcing that the `coin::TreasuryCap`
 is created only once.
 
-OTW is a powerful tool which lays the foundation for the [Publisher](./publisher.md)
+OTW is a powerful tool that lays the foundation for the [Publisher](./publisher.md)
 object, which we will cover in the next section.
 
 <!--
