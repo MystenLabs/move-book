@@ -1,4 +1,4 @@
-# Abilities: Copy
+# Ability: Copy
 
 In Move, the _copy_ ability on a type indicates that the instance or the value of the type can be
 copied. While this behavior may feel very natural when working with numbers or other simple types,

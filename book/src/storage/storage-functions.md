@@ -1,25 +1,25 @@
 # Storage Functions
 
-The module that defines main storage operations is `sui::transfer`. It is implicitly imported in all
-packages that depend on the [Sui Framework](./../programmability/sui-framework.md), so, like other
-implicitly imported modules (e.g. `std::option` or `std::vector`), it does not require adding a use
-statement.
+The `sui::transfer` module defines all storage operations in Sui. It provides functions to transfer
+an object to an address, share and freeze an object. These functions are used to manage the
+ownership of objects in the Sui storage model.
 
 ## Overview
+
+> On this page we will only talk about so-called _restricted_ storage operations, which can be
+> performed only by the module declaring the object. [Later](./transfer-restrictions.md) we will
+> cover _public_ ones, after the [`store` ability](./store-ability.md) is introduced.
 
 The `transfer` module provides functions to perform all three storage operations matching
 [ownership types](./../object/ownership.md) which we explained before:
 
-> On this page we will only talk about so-called _restricted_ storage operations, later we will
-> cover _public_ ones, after the `store` ability is introduced.
-
-1. _Transfer_ - send an object to an address, put it into _account owned_ state;
+1. _Transfer_ - send an object to an _address_, put it into _address-owned_ state;
 2. _Share_ - put an object into a _shared_ state, so it is available to everyone;
 3. _Freeze_ - put an object into _immutable_ state, so it becomes a public constant and can never
    change.
 
 The `transfer` module is a go-to for most of the storage operations, except a special case with
-[Dynamic Fields](./../programmability/dynamic-fields.md) awaits us in the next chapter.
+[Dynamic Fields](./../programmability/dynamic-fields.md) which awaits its own chapter.
 
 ## Ownership and References: A Quick Recap
 
@@ -35,6 +35,8 @@ Here is a quick recap of the most important points:
   reference_ `&T` or _mutable reference_ `&mut T`. Then the value is _borrowed_ and can be accessed
   in the caller scope, however the owner stays the same.
 
+Here is an example of how all three types of access can be used in Move:
+
 ```move
 /// Moved by value
 public fun take<T>(value: T) { /* value is moved here! */ abort 0 }
@@ -46,7 +48,14 @@ public fun borrow<T>(value: &T) { /* value is borrowed here! can be read */ abor
 public fun borrow_mut<T>(value: &mut T) { /* value is mutably borrowed here! */ abort 0 }
 ```
 
-<!-- TODO part on:
+In the `take` function, the value is _moved_ to the function scope and can't be accessed in the
+caller scope anymore. In the `borrow` function, the value is _borrowed_ by immutable reference and
+can be read in the function scope while not changing ownership. In the `borrow_mut` function, the
+value is _mutably borrowed_ and can be read and modified in the function scope while also not
+changing the owner.
+
+<!--
+TODO part on:
     - object does not have an associated storage type
     - the same type of object can be stored differently
     - the objects must be specified in the transaction by their ID
@@ -56,159 +65,105 @@ public fun borrow_mut<T>(value: &mut T) { /* value is mutably borrowed here! */ 
 
 The `transfer::transfer` function is a public function used to transfer an object to another
 address. Its signature is as follows, only accepts a type with the [`key` ability](./key-ability.md)
-and an [address](./../move-basics/address.md) of the recipient. Please, note that the object is
-passed into the function _by value_, therefore it is _moved_ to the function scope and then moved to
-the recipient address:
+and an [address](./../move-basics/address.md) of the recipient. Note that the object is passed into
+the function _by value_, therefore it is _moved_ to the function scope and then moved to the
+recipient address:
 
 ```move
 // File: sui-framework/sources/transfer.move
 public fun transfer<T: key>(obj: T, recipient: address);
 ```
 
-In the next example, you can see how it can be used in a module that defines and sends an object to
-the transaction sender.
+Once the object is transferred, it becomes _address owned_ and can only be accessed by the
+recipient. Let's imagine a scenario where Alice creates an object with a unique ID `0x0B7` and
+transfers it to Bob. Alice will no longer be able to access the object, but Bob, being a new owner,
+can access it by its ID.
+
+### Example
+
+In this example, we declare an `AdminCap` object - an admin
+[capability](../programmability/capability.md) - which is created once in the `init` function and
+then transferred to the transaction sender.
+
+> The module `init` function is a special function that is called when the module is published. We
+> cover it in the [Module Initializer](./../programmability/module-initializer.md) chapter.
 
 ```move
-module book::transfer_to_sender {
-
-    /// A struct with `key` is an object. The first field is `id: UID`!
-    public struct AdminCap has key { id: UID }
-
-    /// Init function is a special function that is called when the module
-    /// is published. It is a good place to create application objects.
-    fun init(ctx: &mut TxContext) {
-        // Create a new `AdminCap` object, in this scope.
-        let admin_cap = AdminCap { id: object::new(ctx) };
-
-        // Transfer the object to the transaction sender.
-        transfer::transfer(admin_cap, ctx.sender());
-
-        // admin_cap is gone! Can't be accessed anymore.
-    }
-
-    /// Transfers the `AdminCap` object to the `recipient`. Thus, the recipient
-    /// becomes the owner of the object, and only they can access it.
-    public fun transfer_admin_cap(cap: AdminCap, recipient: address) {
-        transfer::transfer(cap, recipient);
-    }
-}
+{{#include ../../../packages/samples/sources/storage/storage-functions.move:transfer}}
 ```
 
-When the module is published, the `init` function will get called, and the `AdminCap` object which
-we created there will be _transferred_ to the transaction sender. The `ctx.sender()` function
-returns the sender address for the current transaction.
+When the module is published, the `init` function will get called, and the newly created `AdminCap`
+object will be _transferred_ to the transaction sender. The `ctx.sender()` function returns the
+sender address for the current transaction.
 
-Once the `AdminCap` has been transferred to the sender, for example, to `0xa11ce`, the sender, and
-only the sender, will be able to access the object. The object is now _account owned_.
+Once the `AdminCap` has been transferred to the sender address, the sender, and only the sender,
+will be able to access the object. The object is now _address owned_.
+
+### Usage
 
 > Account owned objects are a subject to _true ownership_ - only the account owner can access them.
 > This is a fundamental concept in the Sui storage model.
 
-Let's extend the example with a function that uses `AdminCap` to authorize a mint of a new object
-and its transfer to another address:
+Now, that the publisher has the `AdminCap` object, they can use it to authorize certain functions.
+In the example below, the `mint_and_transfer` function is a public function that requires the
+`AdminCap` object to be passed as the first argument by reference. Without it, the function will not
+be callable. The function creates a new `Gift` object and transfers it to the recipient:
 
 ```move
-/// Some `Gift` object that the admin can `mint_and_transfer`.
-public struct Gift has key { id: UID }
-
-/// Creates a new `Gift` object and transfers it to the `recipient`.
-public fun mint_and_transfer(
-    _: &AdminCap, recipient: address, ctx: &mut TxContext
-) {
-    let gift = object::new(ctx);
-    transfer::transfer(gift, recipient);
-}
+{{#include ../../../packages/samples/sources/storage/storage-functions.move:mint_and_transfer}}
 ```
 
-The `mint_and_transfer` function is a public function that "could" be called by anyone, but it
-requires an `AdminCap` object to be passed as the first argument by reference. Without it, the
-function will not be callable. This is a simple way to restrict access to privileged functions
-called _[Capability](./../programmability/capability.md)_. Because the `AdminCap` object is _account
-owned_, only `0xa11ce` will be able to call the `mint_and_transfer` function.
-
-The `Gift`s sent to recipients will also be _account owned_, each gift being unique and owned
+The `Gift`s sent to recipients will also be _address owned_, each gift being unique and owned
 exclusively by the recipient.
 
-A quick recap:
+### Summary
 
 - `transfer` function is used to send an object to an address;
-- The object becomes _account owned_ and can only be accessed by the recipient;
-- Functions can be gated by requiring an object to be passed as an argument, creating a
-  _capability_.
+- The object becomes _address owned_ and can only be accessed by the recipient;
+- Functions can be _"gated"_ by a capability - only callable if an object is presented as an
+  argument.
 
-## Freeze
+## Freeze Object
 
-The `transfer::freeze` function is public function used to put an object into an _immutable_ state.
-Once an object is _frozen_, it can never be changed, and it can be accessed by anyone by immutable
-reference.
+The `transfer` function implements exclusive ownership, but there are applications which require
+data to be accessible by everyone - for example, a configuration object. To allow this, Sui provides
+a way to _freeze_ an object, making it _immutable_ and publicly accessible. For that, the
+`transfer::freeze` function is used.
 
 The function signature is as follows, only accepts a type with the
 [`key` ability](./key-ability.md). Just like all other storage functions, it takes the object _by
-value_:
+value_. Unlike the `transfer` function, it does not require an address to transfer the object to, as
+the object is not transferred but _frozen_ in place:
 
 ```move
 // File: sui-framework/sources/transfer.move
 public fun freeze_object<T: key>(obj: T);
 ```
 
-Let's expand on the previous example and add a function that allows the admin to create a `Config`
-object and freeze it:
+### Usage
+
+To demonstrate the `freeze_object` function, let's create a `Config` object that the admin can
+create and freeze. The `Config` object has a `message` field, and the `create_and_freeze` function
+creates a new `Config` object and freezes it. Once the object is frozen, it can be accessed by
+anyone on the network by immutable reference:
 
 ```move
-/// Some `Config` object that the admin can `create_and_freeze`.
-public struct Config has key {
-    id: UID,
-    message: String
-}
-
-/// Creates a new `Config` object and freezes it.
-public fun create_and_freeze(
-    _: &AdminCap,
-    message: String,
-    ctx: &mut TxContext
-) {
-    let config = Config {
-        id: object::new(ctx),
-        message
-    };
-
-    // Freeze the object so it becomes immutable.
-    transfer::freeze_object(config);
-}
-
-/// Returns the message from the `Config` object.
-/// Can access the object by immutable reference!
-public fun message(c: &Config): String { c.message }
+{{#include ../../../packages/samples/sources/storage/storage-functions.move:freeze}}
 ```
 
-Config is an object that has a `message` field, and the `create_and_freeze` function creates a new
-`Config` and freezes it. Once the object is frozen, it can be accessed by anyone by immutable
-reference. The `message` function is a public function that returns the message from the `Config`
-object. Config is now publicly available by its ID, and the message can be read by anyone.
-
-> Function definitions are not connected to the object's state. It is possible to define a function
-> that takes a mutable reference to an object that is used as frozen. However, it won't be callable
-> on a frozen object.
-
 The `message` function can be called on an immutable `Config` object, however, two functions below
-are not callable on a frozen object:
+are not callable on a frozen object, as they require a mutable reference and the object by value
+(respectively):
 
 ```move
 // === Functions below can't be called on a frozen object! ===
 
-/// The function can be defined, but it won't be callable on a frozen object.
-/// Only immutable references are allowed.
-public fun message_mut(c: &mut Config): &mut String { &mut c.message }
+{{#include ../../../packages/samples/sources/storage/storage-functions.move:modify_config}}
 
-/// Deletes the `Config` object, takes it by value.
-/// Can't be called on a frozen object!
-public fun delete_config(c: Config) {
-    let Config { id, message: _ } = c;
-    id.delete()
-}
+{{#include ../../../packages/samples/sources/storage/storage-functions.move:delete_config}}
 ```
 
-To summarize:
+### Summary
 
 - `freeze_object` function is used to put an object into an _immutable_ state;
 - Once an object is _frozen_, it can never be changed, deleted or transferred, and it can be
@@ -226,18 +181,21 @@ object - it would be a security risk to allow access to it to anyone. However, w
 > Single Owner -> Immutable conversion is possible!
 
 ```move
-/// Freezes the `Gift` object so it becomes immutable.
-public fun freeze_gift(gift: Gift) {
-    transfer::freeze_object(gift);
-}
+{{#include ../../../packages/samples/sources/storage/storage-functions.move:freeze_owned}}
 ```
 
-## Share
+## Share Object
 
-The `transfer::share` function is a public function used to put an object into a _shared_ state.
-Once an object is _shared_, it can be accessed by anyone by a mutable reference (hence, immutable
-too). The function signature is as follows, only accepts a type with the
-[`key` ability](./key-ability.md):
+The last storage operation we will cover in this chapter is _sharing_ an object. The `transfer`
+function puts an object into an _address owned_ state, and the `freeze` makes it public and
+_immutable_. The _shared_ state is a state where the object is publicly available to everyone and
+can be accessed by a mutable reference.
+
+> Shared objects are require consensus, however, read operations can be executed in parallel.
+
+The function signature is as follows, only accepts a type with the
+[`key` ability](./key-ability.md). The object is passed into the function _by value_, and does not
+require any other arguments:
 
 ```move
 // File: sui-framework/sources/transfer.move
@@ -246,50 +204,45 @@ public fun share_object<T: key>(obj: T);
 
 Once an object is _shared_, it is publicly available as a mutable reference.
 
-## Special Case: Shared Object Deletion
+### Usage
+
+To demonstrate the `share_object` function, let's create another function which, instead of freezing
+the `Config` object, shares it. The `create_and_share` function creates a new `Config` object and
+calles the `transfer::share_object` on it. The object created this way can be modified by the admin:
+
+```move
+{{#include ../../../packages/samples/sources/storage/storage-functions.move:share}}
+```
+
+The functions that could not be called on a frozen object can now be called on a shared object:
+
+```move
+// === Functions below can be called on a shared object! ===
+
+{{#include ../../../packages/samples/sources/storage/storage-functions.move:modify_config}}
+```
+
+### Special Case: Shared Object Deletion
 
 While the shared object can't normally be taken by value, there is one special case where it can -
-if the function that takes it deletes the object. This is a special case in the Sui storage model,
-and it is used to allow the deletion of shared objects. To show how it works, we will create a
-function that creates and shares a Config object and then another one that deletes it:
+if the function that takes it deletes the object (or re-shares it). This is a special case in the
+Sui storage model, and it is used to allow the deletion of shared objects. The `delete_config`
+function defined below will work:
 
 ```move
-/// Creates a new `Config` object and shares it.
-public fun create_and_share(message: String, ctx: &mut TxContext) {
-    let config = Config {
-        id: object::new(ctx),
-        message
-    };
-
-    // Share the object so it becomes shared.
-    transfer::share_object(config);
-}
+{{#include ../../../packages/samples/sources/storage/storage-functions.move:delete_config}}
 ```
 
-The `create_and_share` function creates a new `Config` object and shares it. The object is now
-publicly available as a mutable reference. Let's create a function that deletes the shared object:
+However, an attempt to transfer or freeze a shared object will result in an error:
 
 ```move
-/// Deletes the `Config` object, takes it by value.
-/// Can be called on a shared object!
-public fun delete_config(c: Config) {
-    let Config { id, message: _ } = c;
-    id.delete()
-}
-```
-
-The `delete_config` function takes the `Config` object by value and deletes it, and Sui Verifier
-would allow this call. However, if the function returned the `Config` object back or attempted to
-`freeze` or `transfer` it, the Sui Verifier would reject the transaction.
-
-```move
-// Won't work!
+// Won't work! Can't change ownership from shared to address owned.
 public fun transfer_shared(c: Config, to: address) {
     transfer::transfer(c, to);
 }
 ```
 
-To summarize:
+### Summary
 
 - `share_object` function is used to put an object into a _shared_ state;
 - Once an object is _shared_, it can be accessed by anyone by a mutable reference;

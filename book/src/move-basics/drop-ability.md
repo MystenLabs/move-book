@@ -1,4 +1,4 @@
-# Abilities: Drop
+# Ability: Drop
 
 <!-- TODO: reiterate, given that we introduce abilities one by one -->
 

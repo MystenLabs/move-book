@@ -1,22 +1,21 @@
-# The Key Ability
+# Ability: Key
 
 In the [Basic Syntax](./../move-basics) chapter we already covered two out of four abilities -
 [Drop](./drop-ability.md) and [Copy](./copy-ability.md). They affect the behaviour of the value in a
-scope and are not directly related to storage. It is time to cover the `key` ability, which allows
-the struct to be stored.
+scope and are not directly related to storage. Here, we introduce the `key` ability, which defines
+the storage behaviour of a type.
 
 Historically, the `key` ability was created to mark the type as a _key in the storage_. A type with
 the `key` ability could be stored at top-level in the storage, and could be _directly owned_ by an
-account or address. With the introduction of the [Object Model](./../object), the `key` ability
+account or an address. With the introduction of the [Object Model](./../object), the `key` ability
 naturally became the defining ability for the object.
 
 <!-- TODO: What is Sui Verifier - link, later -->
 
 ## Object Definition
 
-A struct with the `key` ability is considered an object and can be used in the storage functions.
-The Sui Verifier will require the first field of the struct to be named `id` and have the type
-`UID`.
+A struct with the `key` ability is considered an object and can be used in storage functions. The
+Sui Verifier will require the first field of the struct to be named `id` and have the type `UID`.
 
 ```move
 public struct Object has key {
@@ -40,10 +39,18 @@ However, because the first field of an object struct must be of type `UID` - a n
 non-droppable type (we will get to it very soon!), the struct transitively cannot have `drop` and
 `copy` abilities. Thus, the object is non-discardable by design.
 
-<!-- ## Asset Definition
+## Object Creation
 
-In the context of the [Object Model](./../object/digital-assets.md), an object with the `key` ability can be considered an asset. It is non-discardable, unique, and can be *owned*.
- -->
+New UID is generated using the `object::new` function as shown in the example above. The
+`object::new` takes a mutable reference to the transaction context and returns a new UID. The UID is
+unique within the scope of the transaction and is used as the `id` field of the object. The
+`TxContext` is an argument that is passed to the function automatically by the execution layer. We
+will cover them in more detail in the following chapters: [UID](./uid-and-id.md) and
+[Transaction Context](./../programmability/transaction-context.md).
+
+> Both, the `sui::object` and `sui::tx_context` modules are implicitly imported by the compiler, so
+> there is no need to import them explicitly. We explain it in more detail in the
+> [Sui Framework](./../programmability/sui-framework.md) chapter.
 
 ## Types with the `key` Ability
 
