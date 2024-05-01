@@ -5658,7 +5658,7 @@ Depending on the needs of your project, you may choose to -->
 TODO: ... -->
 <div style="break-before: page; page-break-before: always;"></div><h1 id="one-time-witness"><a class="header" href="#one-time-witness">One Time Witness</a></h1>
 <p>While regular <a href="programmability/./witness-pattern.html">Witness</a> is a great way to statically prove the ownership of a
-type, there are cases, where we need to ensure that a Witness is instantiated only once. And this is
+type, there are cases where we need to ensure that a Witness is instantiated only once. And this is
 the purpose of the One Time Witness (OTW).</p>
 <!--
 Notes to self:
@@ -5667,16 +5667,15 @@ Notes to self:
   - if we removed the OTW from docs, then we should give definition first.
 -->
 <h2 id="definition-4"><a class="header" href="#definition-4">Definition</a></h2>
-<p>The One Time Witness is a special type of witness that can be used only once. It cannot be manually
-created, and it is guaranteed to be unique per module. Sui Adapter treats a type as a One Time
-Witness if it follows these rules:</p>
+<p>The OTW is a special type of Witness that can be used only once. It cannot be manually
+created and it is guaranteed to be unique per module. Sui Adapter treats a type as an OTW if it follows these rules:</p>
 <ol>
 <li>Has only <code>drop</code> ability.</li>
 <li>Has no fields.</li>
 <li>Is not a generic type.</li>
 <li>Named after the module with all uppercase letters.</li>
 </ol>
-<p>Here is an example of a One Time Witness:</p>
+<p>Here is an example of an OTW:</p>
 <pre><code class="language-move">module book::one_time {
     /// The OTW for the `book::one_time` module.
     /// Only `drop`, no fields, no generics, all uppercase.
@@ -5688,19 +5687,19 @@ Witness if it follows these rules:</p>
     }
 }
 </code></pre>
-<p>The One Time Witness cannot be constructed manually, and any code attempting to do so will result in
+<p>The OTW cannot be constructed manually, and any code attempting to do so will result in
 a compilation error. The OTW can be received as the first argument in the
 <a href="programmability/./module-initializer.html">module initializer</a>. And because the <code>init</code> function is called only once
 per module, the OTW is guaranteed to be instantiated only once.</p>
 <h2 id="enforcing-the-otw"><a class="header" href="#enforcing-the-otw">Enforcing the OTW</a></h2>
-<p>To check if a type is a One Time Witness, <code>sui::types</code> module of the
+<p>To check if a type is an OTW, <code>sui::types</code> module of the
 <a href="programmability/./sui-framework.html">Sui Framework</a> offers a special function <code>is_one_time_witness</code> that can be used
-to check if the type is a One Time Witness.</p>
+to check if the type is an OTW.</p>
 <pre><code class="language-move">use sui::types;
 
 const ENotOneTimeWitness: u64 = 1;
 
-/// Takes a One Time Witness as an argument, aborts if the type is not OTW.
+/// Takes an OTW as an argument, aborts if the type is not OTW.
 public fun takes_witness&lt;T: drop&gt;(otw: T) {
     assert!(types::is_one_time_witness(&amp;otw), ENotOneTimeWitness);
 }
@@ -5768,11 +5767,11 @@ The example above has no protection against issuing multiple `TreasuryCap`s with
 - the module cannot be upgraded to issue more `TreasuryCap`s.
 - the module code does not contain any backdoors to issue more `TreasuryCap`s.
 
-However, it is not possible to check any of these conditions inside the Move code. And to prevent the need for trust, Sui introduces the One Time Witness pattern.
+However, it is not possible to check any of these conditions inside the Move code. And to prevent the need for trust, Sui introduces the OTW pattern.
 
 ## Solving the Coin Problem
 
-To solve the case of multiple `TreasuryCap`s, we can use the One Time Witness pattern. By defining the `COIN_OTW` type as a One Time Witness, we can ensure that the `COIN_OTW` is used only once. The `COIN_OTW` is then used to create a new `TreasuryCap` and mint a new `Coin`.
+To solve the case of multiple `TreasuryCap`s, we can use the OTW pattern. By defining the `COIN_OTW` type as an OTW, we can ensure that the `COIN_OTW` is used only once. The `COIN_OTW` is then used to create a new `TreasuryCap` and mint a new `Coin`.
 
 ```move
 
@@ -5781,7 +5780,7 @@ With
 ```move
 module book::coin_otw {
 
-    /// The One Time Witness for the `book::coin_otw` module.
+    /// The OTW for the `book::coin_otw` module.
     struct COIN_OTW has drop {}
 
     /// Receive the instance of `COIN_OTW` as the first argument.
@@ -5800,12 +5799,12 @@ TODO: add a story behind TreasuryCap and Coin
 
 -->
 <h2 id="summary-7"><a class="header" href="#summary-7">Summary</a></h2>
-<p>The One Time Witness pattern is a great way to ensure that a type is used only once. Most of the
+<p>The OTW pattern is a great way to ensure that a type is used only once. Most of the
 developers should understand how to define and receive the OTW, while the OTW checks and enforcement
-is mostly needed in libraries and frameworks. For example, the <code>sui::coin</code> module requires a One
-Time Witness in the <code>coin::create_currency</code> method, therefore enforcing that the <code>coin::TreasuryCap</code>
+is mostly needed in libraries and frameworks. For example, the <code>sui::coin</code> module requires an OTW
+in the <code>coin::create_currency</code> method, therefore enforcing that the <code>coin::TreasuryCap</code>
 is created only once.</p>
-<p>One Time Witness is a powerful tool which lays the foundation for the <a href="programmability/./publisher.html">Publisher</a>
+<p>OTW is a powerful tool that lays the foundation for the <a href="programmability/./publisher.html">Publisher</a>
 object, which we will cover in the next section.</p>
 <!--
 
