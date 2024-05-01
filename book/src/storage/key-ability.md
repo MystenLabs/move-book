@@ -46,7 +46,7 @@ New UID is generated using the `object::new` function as shown in the example ab
 unique within the scope of the transaction and is used as the `id` field of the object. The
 `TxContext` is an argument that is passed to the function automatically by the execution layer. We
 will cover them in more detail in the following chapters: [UID](./uid-and-id.md) and
-[Transaction Context](./../programmability/transaction-context.md).
+[Transaction Context](./../storage/transaction-context.html).
 
 > Both, the `sui::object` and `sui::tx_context` modules are implicitly imported by the compiler, so
 > there is no need to import them explicitly. We explain it in more detail in the

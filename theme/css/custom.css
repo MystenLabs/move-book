@@ -2,6 +2,7 @@
 
 :root {
     --warning-border: orange;
+    --error-border: rgb(177, 69, 69);
 }
 
 /* Changing styles */
@@ -83,4 +84,11 @@ strong {
     color: var(--warning-border);
     font-weight: bold;
     font-size: 2rem;
+}
+
+
+/* Highlight last comment in the `fails` code block */
+
+code.fails>:last-child {
+    color: var(--error-border) !important;
 }
