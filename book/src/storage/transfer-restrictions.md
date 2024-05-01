@@ -81,6 +81,6 @@ To expand on the example above:
 
 The decision on whether to add the `store` ability to a type should be made carefully. On one hand,
 it is de-facto a requirement for the type to be _usable_ by other applications. On the other hand,
-it allows _wrapping_ and changing the intented storage model. For example, a character may be
-intented to be owned by accounts, but with the `store` ability it can be frozen (cannot be shared -
+it allows _wrapping_ and changing the intended storage model. For example, a character may be
+intended to be owned by accounts, but with the `store` ability it can be frozen (cannot be shared -
 this transition is restricted).

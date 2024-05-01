@@ -32,7 +32,7 @@ coin.value();
 When a method is called, the compiler will statically determine which function is called based on
 the type of the receiver (the argument on the left-hand side of the `.`). The compiler maintains a
 mapping from type and method name to the module and function name that should be called. This
-mapping is created fom the `use fun` aliases that are currently in scope, and from the appropriate
+mapping is created form the `use fun` aliases that are currently in scope, and from the appropriate
 functions in the receiver type's defining module. In all cases, the receiver type is the first
 argument to the function, whether by-value or by-reference.
 
