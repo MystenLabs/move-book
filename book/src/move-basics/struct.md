@@ -1,6 +1,6 @@
 # Custom Types with Struct
 
-Move type system shines when it comes to defining custom types. User defined types can be custom
+Move's type system shines when it comes to defining custom types. User defined types can be custom
 tailored to the specific needs of the application. Not just on the data level, but also in its
 behavior. In this section we introduce the struct definition and how to use it.
 
