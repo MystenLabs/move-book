@@ -26,7 +26,7 @@ the following literals:
 
 ## Operators
 
-Ariphmetic, logical, and bitwise operators are used to perform operations on values. The result of
+Arithmetic, logical, and bitwise operators are used to perform operations on values. The result of
 an operation is a value, so operators are also expressions.
 
 ```move
