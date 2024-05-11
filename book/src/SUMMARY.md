@@ -93,7 +93,7 @@
   - [Transaction Context](./storage/transaction-context.md)
   - [UID and ID](./storage/uid-and-id.md)
   - [Restricted and Public Transfer](./storage/transfer-restrictions.md)
-  - [Transfer to Object?]() <!-- (./storage/transfer-to-object.md) -->
+  - [Transfer to Object?]() <!-- ./storage/transfer-to-object.md) -->
 - [Advanced Programmability](./programmability/README.md)
   - [Module Initializer](./programmability/module-initializer.md)
   - [Pattern: Capability](./programmability/capability.md)
