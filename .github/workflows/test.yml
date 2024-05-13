@@ -14,10 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      steps:
       - name: Download Sui
         uses: jaxxstorm/action-install-gh-release@v1.10.0
-        with: # Grab a specific tag with caching
+        with:
           repo: MystenLabs/sui
           platform: ubuntu
           tag: 'mainnet-${{ env.VERSION }}'
