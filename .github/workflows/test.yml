@@ -22,14 +22,17 @@ jobs:
           rename-to: sui-archive
           cache: enable
           extension: '.tgz'
-      # - run: 'which sui'
+      # The code below is unpacking the .tgz because the action used above does
+      # not recognize the extension. The PR to the action repo is open and once
+      # it's in (and if) we'll be able to remove this.
       - run: 'ls /opt/hostedtoolcache/'
       - name: Unpack the archive (.tgz is not supported currently)
         run: 'tar -xvzf /opt/hostedtoolcache/MystenLabs/sui/latest/ubuntu-x64/sui-archive'
       - name: Move binaries to $PATH
         run: mv sui* /opt/hostedtoolcache/MystenLabs/sui/latest/ubuntu-x64
       - run: chmod 0755 /opt/hostedtoolcache/MystenLabs/sui/latest/ubuntu-x64/sui
-      - run: 'sui --help'
+
+      # Run the tests in every directory using the latest mainnet binary
       - run: 'sui move test --path packages/samples'
       - run: 'sui move test --path packages/reference'
       - run: 'sui move test --path packages/todo_list'
