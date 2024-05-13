@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Download Sui
-        uses: jaxxstorm/action-install-gh-release@v1.10.0
+        uses: damirka/action-install-gh-release@v1.10.0
         with:
           repo: MystenLabs/sui
           platform: ubuntu
