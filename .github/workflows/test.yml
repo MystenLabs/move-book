@@ -24,8 +24,11 @@ jobs:
           extension: '.tgz'
       # - run: 'which sui'
       - run: 'ls /opt/hostedtoolcache/'
-      - run: 'tar -xvzf /opt/hostedtoolcache/MystenLabs/sui/latest/ubuntu-x64/sui-archive'
-      - run: 'ls /opt/hostedtoolcache/MystenLabs/sui/latest/ubuntu-x64/sui-archive'
+      - name: Unpack the archive (.tgz is not supported currently)
+        run: 'tar -xvzf /opt/hostedtoolcache/MystenLabs/sui/latest/ubuntu-x64/sui-archive'
+      - name: Move binaries to $PATH
+        run: mv sui* /opt/hostedtoolcache/MystenLabs/sui/latest/ubuntu-x64
+      - run: chmod 0755 /opt/hostedtoolcache/MystenLabs/sui/latest/ubuntu-x64/sui
       - run: 'sui --help'
       - run: 'sui move test --path packages/samples'
       - run: 'sui move test --path packages/reference'
