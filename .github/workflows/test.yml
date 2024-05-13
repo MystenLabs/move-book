@@ -22,6 +22,7 @@ jobs:
           version: '${{ env.VERSION }}'
       - run: 'which sui'
       - run: 'sui --help'
+      - run: "echo 'https://github.com/MystenLabs/sui/releases/download/mainnet-v${{ env.VERSION }}/sui-mainnet-v${{ env.VERSION }}-ubuntu-x86_64.tgz'"
       - run: 'sui move test --path packages/samples'
       - run: 'sui move test --path packages/reference'
       - run: 'sui move test --path packages/todo_list'
