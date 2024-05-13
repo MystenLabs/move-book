@@ -15,16 +15,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Download Sui
-        uses: damirka/action-install-gh-release@v1.10.0
+        uses: jaxxstorm/action-install-gh-release@v1.10.0
         with:
           repo: MystenLabs/sui
           platform: ubuntu
-          # tag: 'mainnet-${{ env.VERSION }}'
+          rename-to: sui-archive
           cache: enable
-          chmod: 0755
           extension: '.tgz'
       # - run: 'which sui'
-      - run: 'ls /opt/hostedtoolcache/MystenLabs/sui/latest/ubuntu-x64'
+      - run: 'ls /opt/hostedtoolcache/'
+      - run: 'tar -xvzf ./opt/hostedtoolcache/sui-archive'
       - run: 'sui --help'
       - run: 'sui move test --path packages/samples'
       - run: 'sui move test --path packages/reference'
