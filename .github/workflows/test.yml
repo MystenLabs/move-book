@@ -4,7 +4,7 @@ name: Make sure packages compile
 # Currently, requires explicit setup, ideally it should be fetched
 # automatically
 env:
-  VERSION: '1.24.1'
+  VERSION: 'v1.24.1'
 
 on:
   pull_request:
@@ -14,12 +14,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: "echo 'https://github.com/MystenLabs/sui/releases/download/mainnet-v${{ env.VERSION }}/sui-mainnet-v${{ env.VERSION }}-ubuntu-x86_64.tgz'"
-      - uses: supplypike/setup-bin@v4
-        with:
-          uri: 'https://github.com/MystenLabs/sui/releases/download/mainnet-v${{ env.VERSION }}/sui-mainnet-v${{ env.VERSION }}-ubuntu-x86_64.tgz'
-          name: 'sui'
-          version: '${{ env.VERSION }}'
+      steps:
+      - name: Download Sui
+        uses: jaxxstorm/action-install-gh-release@v1.10.0
+        with: # Grab a specific tag with caching
+          repo: MystenLabs/sui
+          platform: ubuntu
+          tag: 'mainnet-${{ env.VERSION }}'
+          cache: enable
       - run: 'which sui'
       - run: 'sui --help'
       - run: 'sui move test --path packages/samples'
