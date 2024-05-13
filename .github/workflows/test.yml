@@ -1,0 +1,26 @@
+name: Make sure packages compile
+
+# Set the VERSION variable to use when downloading the binary
+# Currently, requires explicit setup, ideally it should be fetched
+# automatically
+env:
+  VERSION: '1.24.1'
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: supplypike/setup-bin@v4
+        with:
+          uri: 'https://github.com/MystenLabs/sui/releases/download/mainnet-v${{ env.VERSION }}/sui-mainnet-v${{ env.VERSION }}-ubuntu-x86_64.tgz'
+          name: 'sui'
+          version: '${{ env.VERSION }}'
+      - run: 'sui move test --path packages/samples'
+      - run: 'sui move test --path packages/reference'
+      - run: 'sui move test --path packages/todo_list'
+      - run: 'sui move test --path packages/hello_world'
