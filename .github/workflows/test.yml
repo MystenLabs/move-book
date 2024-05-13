@@ -24,6 +24,7 @@ jobs:
           chmod: 0755
           extension: '.tgz'
       # - run: 'which sui'
+      - run: 'ls /opt/hostedtoolcache/MystenLabs/sui/latest/ubuntu-x64'
       - run: 'sui --help'
       - run: 'sui move test --path packages/samples'
       - run: 'sui move test --path packages/reference'
