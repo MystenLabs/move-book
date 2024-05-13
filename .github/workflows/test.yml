@@ -22,7 +22,7 @@ jobs:
           tag: 'mainnet-${{ env.VERSION }}'
           cache: enable
           extension: '.tgz'
-      - run: 'which sui'
+      # - run: 'which sui'
       - run: 'sui --help'
       - run: 'sui move test --path packages/samples'
       - run: 'sui move test --path packages/reference'
