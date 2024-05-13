@@ -1,16 +1,16 @@
-name: Make sure packages compile
+name: Run tests for Move packages
 
 # Set the VERSION variable to use when downloading the binary
 # Currently, requires explicit setup, ideally it should be fetched
 # automatically
-env:
-  VERSION: 'v1.24.1'
+# env:
+#   VERSION: 'v1.24.1'
 
 on:
   pull_request:
 
 jobs:
-  deploy:
+  download-binary:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -19,8 +19,9 @@ jobs:
         with:
           repo: MystenLabs/sui
           platform: ubuntu
-          tag: 'mainnet-${{ env.VERSION }}'
+          # tag: 'mainnet-${{ env.VERSION }}'
           cache: enable
+          chmod: 0755
           extension: '.tgz'
       # - run: 'which sui'
       - run: 'sui --help'
