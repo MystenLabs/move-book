@@ -25,7 +25,7 @@ jobs:
       # - run: 'which sui'
       - run: 'ls /opt/hostedtoolcache/'
       - run: 'tar -xvzf /opt/hostedtoolcache/MystenLabs/sui/latest/ubuntu-x64/sui-archive'
-      - run: 'ls /opt/hostedtoolcache/MystenLabs/sui/latest/ubuntu-x64'
+      - run: 'ls /opt/hostedtoolcache/MystenLabs/sui/latest/ubuntu-x64/sui-archive'
       - run: 'sui --help'
       - run: 'sui move test --path packages/samples'
       - run: 'sui move test --path packages/reference'
