@@ -1,0 +1,39 @@
+name: Run tests for Move packages
+
+# Set the VERSION variable to use when downloading the binary
+# Currently, requires explicit setup, ideally it should be fetched
+# automatically
+# env:
+#   VERSION: 'v1.24.1'
+
+on:
+  pull_request:
+
+jobs:
+  download-binary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download Sui
+        uses: jaxxstorm/action-install-gh-release@v1.10.0
+        with:
+          repo: MystenLabs/sui
+          platform: ubuntu
+          rename-to: sui-archive
+          cache: enable
+          extension: '.tgz'
+      # The code below is unpacking the .tgz because the action used above does
+      # not recognize the extension. The PR to the action repo is open and once
+      # it's in (and if) we'll be able to remove this.
+      - run: 'ls /opt/hostedtoolcache/'
+      - name: Unpack the archive (.tgz is not supported currently)
+        run: 'tar -xvzf /opt/hostedtoolcache/MystenLabs/sui/latest/ubuntu-x64/sui-archive'
+      - name: Move binaries to $PATH
+        run: mv sui* /opt/hostedtoolcache/MystenLabs/sui/latest/ubuntu-x64
+      - run: chmod 0755 /opt/hostedtoolcache/MystenLabs/sui/latest/ubuntu-x64/sui
+
+      # Run the tests in every directory using the latest mainnet binary
+      - run: 'sui move test --path packages/samples'
+      - run: 'sui move test --path packages/reference'
+      - run: 'sui move test --path packages/todo_list'
+      - run: 'sui move test --path packages/hello_world'

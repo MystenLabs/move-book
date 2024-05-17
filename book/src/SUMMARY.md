@@ -69,7 +69,7 @@
   - [String](./move-basics/string.md)
   - [Control Flow](./move-basics/control-flow.md)
   - [Constants](./move-basics/constants.md)
-  - [Assert and Abort](./move-basics/assert-and-abort.md)
+  - [Aborting Execution](./move-basics/assert-and-abort.md)
   - [Function](./move-basics/function.md)
   - [Struct Methods](./move-basics/struct-methods.md)
   - [Visibility Modifiers](./move-basics/visibility.md)
