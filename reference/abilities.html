@@ -16,7 +16,6 @@
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-        
           gtag('config', 'G-B1E7R0BHX4');
         </script>
 
@@ -327,7 +326,7 @@ public struct MyData has key {
 <h2 id="conditional-abilities-and-generic-types"><a class="header" href="#conditional-abilities-and-generic-types">Conditional Abilities and Generic Types</a></h2>
 <p>When abilities are annotated on a generic type, not all instances of that type are guaranteed to
 have that ability. Consider this struct declaration:</p>
-<pre><code class="language-move">public struct Cup&lt;T&gt; has copy, drop, store, key { item: T }
+<pre><code class="language-move">// public struct Cup&lt;T&gt; has copy, drop, store, key { item: T }
 </code></pre>
 <p>It might be very helpful if <code>Cup</code> could hold any type, regardless of its abilities. The type system
 can <em>see</em> the type parameter, so it should be able to remove abilities from <code>Cup</code> if it <em>sees</em> a
