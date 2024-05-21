@@ -278,7 +278,7 @@ with either equality <code>==</code> or non-equality <code>!=</code>, the value 
 <p>But, a programmer can <em>always</em> borrow the value first instead of directly comparing the value, and
 reference types have the <a href="./abilities.html"><code>drop</code> ability</a>. For example</p>
 <pre><code class="language-move=">module 0x42::example {
-    public struct Coin as store { value: u64 }
+    public struct Coin has store { value: u64 }
     fun swap_if_equal(c1: Coin, c2: Coin): (Coin, Coin) {
         let are_equal = &amp;c1 == c2; // valid, note `c2` is automatically borrowed
         if (are_equal) (c2, c1) else (c1, c2)
