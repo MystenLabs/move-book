@@ -1,7 +1,7 @@
 # Advanced Programmability
 
-In previous chapters we've covered [the basics of Move](./../move-basics/README.md) and
-[Sui Storage Model](./../programmability/README.md). Now it's time to dive deeper into the advanced
+In previous chapters we've covered [the basics of Move](./../move-basics) and
+[Sui Storage Model](./../storage). Now it's time to dive deeper into the advanced
 topics of Sui programmability.
 
 This chapter introduces more complex concepts, practices and features of Move and Sui that are
