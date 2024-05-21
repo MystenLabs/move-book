@@ -21,9 +21,9 @@ module todo_list::todo_list_tests {
 #[test_only]
 module todo_list::todo_list_tests {
     // uncomment this line to import the module
-    use todo_list::todo_list;
+    // use todo_list::todo_list;
 
-    const ENotImplemented: u64 = 0;
+    // const ENotImplemented: u64 = 0;
 
     // #[test]
     // fun test_todo() {
