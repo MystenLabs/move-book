@@ -39,14 +39,7 @@ To check if a type is an OTW, `sui::types` module of the
 to check if the type is an OTW.
 
 ```move
-use sui::types;
-
-const ENotOneTimeWitness: u64 = 1;
-
-/// Takes an OTW as an argument, aborts if the type is not OTW.
-public fun takes_witness<T: drop>(otw: T) {
-    assert!(types::is_one_time_witness(&otw), ENotOneTimeWitness);
-}
+{{#include ../../../packages/samples/sources/programmability/one-time-witness.move:usage}}
 ```
 
 <!-- ## Background

@@ -102,7 +102,7 @@
   - [Dynamic Fields](./programmability/dynamic-fields.md)
   - [Dynamic Object Fields](./programmability/dynamic-object-fields.md)
   - [Dynamic Collections](./programmability/dynamic-collections.md)
-  - [Pattern: Witness]() <!-- ()./programmability/witness-pattern.md) -->
+  - [Pattern: Witness](./programmability/witness-pattern.md)
   - [One Time Witness](./programmability/one-time-witness.md)
   - [Publisher Authority](./programmability/publisher.md)
   - [Display](./programmability/display.md) <!-- End Block: from Witness to Display -->

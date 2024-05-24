@@ -14,3 +14,16 @@ module book::one_time {
     }
 }
 // ANCHOR_END: definition
+
+module book::one_time_usage {
+// ANCHOR: usage
+use sui::types;
+
+const ENotOneTimeWitness: u64 = 1;
+
+/// Takes an OTW as an argument, aborts if the type is not OTW.
+public fun takes_witness<T: drop>(otw: T) {
+    assert!(types::is_one_time_witness(&otw), ENotOneTimeWitness);
+}
+// ANCHOR_END: usage
+}
