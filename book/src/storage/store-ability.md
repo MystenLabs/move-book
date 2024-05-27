@@ -1,11 +1,12 @@
 # Ability: Store
 
-Now that you have an understanding of top-level storage functions which are enabled by the
-[`key`](./key-ability.md) ability, we can talk about the last ability in the list - `store`.
+Now that you have an understanding of the [top-level storage functions](./storage-functions.md)
+which are enabled by the [`key`](./key-ability.md) ability, we can talk about the last ability in
+the list - `store`.
 
 ## Definition
 
-The `store` is a special ability that allows a type to be _stored_ in objects. This ability is
+The `store` is an ability that allows a type to be _stored_ inside other objects. This ability is
 required for the type to be used as a field in a struct that has the `key` ability. Another way to
 put it is that the `store` ability allows the value to be _wrapped_ in an object.
 
@@ -19,20 +20,7 @@ field, which we used in examples; we also used the `String` type as a part of th
 The `String` type also has the `store` ability.
 
 ```move
-/// This type has the `store` ability.
-public struct Storable has store {}
-
-/// Config contains a `Storable` field which must have the `store` ability.
-public struct Config has key, store {
-    id: UID,
-    stores: Storable,
-}
-
-/// MegaConfig contains a `Config` field which has the `store` ability.
-public struct MegaConfig has key {
-    id: UID,
-    config: Config, // there it is!
-}
+{{#include ../../../packages/samples/sources/storage/store-ability.move:store}}
 ```
 
 ## Types with the `store` Ability
@@ -47,7 +35,7 @@ All native types (except for references) in Move have the `store` ability. This 
 All of the types defined in the standard library have the `store` ability as well. This includes:
 
 - [Option](./../move-basics/option.md)
-- [String](./../move-basics/string.md)
+- [String](./../move-basics/string.md) (both ASCII and UTF-8)
 - [TypeName](./../move-basics/type-reflection.md#typename)
 
 ## Further reading

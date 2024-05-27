@@ -1,11 +1,16 @@
 # Transaction Context
 
 Every transaction has the execution context. The context is a set of predefined variables that are
-available to the program during execution. For example, every transaction has a sender address, and
-the transaction context contains a variable that holds the sender address.
+available to the program during execution. For example,
+[every transaction](./../concepts/what-is-a-transaction.md) has a sender
+[address](./../concepts/address.md), and the transaction context contains a variable that holds it.
+Transaction Context is an essential part of appications on Sui, as it is required to create new
+objects in the system.
 
-The transaction context is available to the program through the `TxContext` struct. The struct is
-defined in the `sui::tx_context` module and contains the following fields:
+## Definition
+
+The transaction context is available to the program through the `TxContext` type. It is defined in
+the `sui::tx_context` module and contains the following fields:
 
 ```move
 // File: sui-framework/sources/tx_context.move
@@ -27,10 +32,10 @@ struct TxContext has drop {
 }
 ```
 
-Transaction context cannot be constructed manually or directly modified. It is created by the system
-and passed to the function as a reference in a transaction. Any function called in a
-[Transaction](./../concepts/what-is-a-transaction.md) has access to the context and can pass it into
-the nested calls.
+Transaction context cannot be constructed manually or directly modified. Instead, it is constructed
+by the runtime and passed to the function as a reference in a transaction. Any function called in a
+[Transaction Block](./../concepts/what-is-a-transaction.md) has access to the context and can pass
+it into other functions. 
 
 > `TxContext` has to be the last argument in the function signature.
 
@@ -41,7 +46,7 @@ getters are defined in the `sui::tx_context` module and are available to the pro
 don't require `&mut` because they don't modify the context.
 
 ```move
-{{#include ../../../packages/samples/sources/programmability/transaction-context.move:reading}}
+{{#include ../../../packages/samples/sources/storage/transaction-context.move:reading}}
 ```
 
 ## Mutability
@@ -77,3 +82,13 @@ public fun fresh_object_address(ctx: &mut TxContext): address {
     id
 }
 ```
+
+## Summary
+
+- The transaction context is a set of predefined variables available to the program during
+  execution.
+- The context is passed to the program as a reference and cannot be stored nor constructed manually.
+- The context contains the sender's address, the transaction hash, the epoch number, the epoch
+  timestamp, and the number of fresh IDs created during the transaction.
+- The `TxContext` is required to create new UIDs. The UIDs are derived from the transaction digest
+  and an index.
