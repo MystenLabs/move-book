@@ -9,7 +9,7 @@ Functions are declared with the `fun` keyword followed by the function name, typ
 parameters, a return type, and finally the function body.
 
 ```text
-<visibility>? <entry>? fun <identifier><[type_parameters: constraint],*>([identifier: type],*): <return_type> <function_body>
+<visibility>? <entry>? <macro>? fun <identifier><[type_parameters: constraint],*>([identifier: type],*): <return_type> <function_body>
 ```
 
 For example
@@ -146,6 +146,33 @@ module a::m_test {
     fun my_test_helper(): u64 { a::m::foo() } // valid!
 }
 ```
+
+### `macro` modifier
+
+Unlike normal functions, `macro` functions do not exist at runtime. Instead, the function is
+substituted and inlined at each call site during compilation. Leveraging this, `macro` functions
+have additional functionality that is not available to normal functions, namely the ability to
+create higher-order functions with lambda arguments. These lambda arguments allow for parts of the
+function's body to be passed as an argument by the caller. For example, the following is a simple
+loop macro, where the body of the loop is passed as a lambda:
+
+```move
+macro fun ntimes($n: u64, $body: |u64| -> ()) {
+    let n = $n;
+    let mut i = 0;
+    while (i < n) {
+        $body(i);
+        i = i + 1;
+    }
+}
+
+fun example() {
+    let mut sum = 0;
+    ntimes!(10, |i| sum = sum + i );
+}
+```
+
+See the chapter on [macros](./macros.md) for more information.
 
 ### Name
 
