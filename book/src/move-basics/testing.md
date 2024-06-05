@@ -8,7 +8,7 @@ code.
 
 Tests in Move are functions marked with the `#[test]` attribute. This attribute tells the compiler
 that the function is a test function, and it should be run when the tests are executed. Test
-functions are regular functions, but they must take no any arguments and have no return value. They
+functions are regular functions, but they must take no arguments and have no return value. They
 are excluded from the bytecode, and are never published.
 
 ```move
@@ -62,7 +62,7 @@ abort, the test will also fail.
 ```move
 module book::testing_failure {
 
-    const EInvalidArgument: u64 = 0;
+    const EInvalidArgument: u64 = 1;
 
     #[test]
     #[expected_failure(abort_code = 0)]
@@ -73,7 +73,7 @@ module book::testing_failure {
     // attributes can be grouped together
     #[test, expected_failure(abort_code = EInvalidArgument)]
     fun test_fail_1() {
-        abort 1 // aborts with 0
+        abort 1 // aborts with 1
     }
 }
 ```
