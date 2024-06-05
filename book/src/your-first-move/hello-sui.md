@@ -165,6 +165,47 @@ the dependencies on-chain, and finally publishes the package. The output of the 
 transaction digest, which is a unique identifier of the transaction and can be used to query the
 transaction status.
 
+<details>
+<summary>On dependency error</summary>
+
+If you encounter an error regarding the on-chain version of the packages that your
+package depends on, like the following, then you need to update the revision `rev`
+of your dependencies.
+
+```bash
+Failed to publish the Move module(s), reason: [warning] Multiple source verification errors found:
+
+- Local dependency did not match its on-chain version at 0000000000000000000000000000000000000000000000000000000000000002::Sui::vec_set
+- Local dependency did not match its on-chain version at 0000000000000000000000000000000000000000000000000000000000000002::Sui::vec_map
+
+This may indicate that the on-chain version(s) of your package's dependencies may behave differently than the source version(s) your package was built against.
+
+Fix this by rebuilding your packages with source versions matching on-chain versions of dependencies, or ignore this warning by re-running with the --skip-dependency-verification flag.
+```
+
+The revision `rev` can refer to a branch, commit, or tag.
+If you are deploying on `devnet`, and the `Move.toml` refers to the `testnet`
+revision of the `Sui` package, then you can update the `Move.toml` file from:
+
+```move
+Sui = {
+  git = "https://github.com/MystenLabs/sui.git",
+  subdir = "crates/sui-framework/packages/sui-framework",
+  rev = "framework/testnet"
+}
+```
+
+to:
+
+```move
+Sui = {
+  git = "https://github.com/MystenLabs/sui.git",
+  subdir = "crates/sui-framework/packages/sui-framework",
+  rev = "framework/devnet"
+}
+```
+</details>
+
 ### Transaction Data
 
 The section titled `TransactionData` contains the information about the transaction we just sent. It
