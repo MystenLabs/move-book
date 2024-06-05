@@ -115,7 +115,7 @@ public struct Gift has key { id: UID }
 public fun mint_and_transfer(
     _: &AdminCap, recipient: address, ctx: &mut TxContext
 ) {
-    let gift = object::new(ctx);
+    let gift = Gift { id: object::new(ctx) };
     transfer::transfer(gift, recipient);
 }
 ```
