@@ -5,7 +5,7 @@ published. Imagine a simple store module that needs to create the main Store obj
 publication. In Sui, this is achieved by defining an `init` function within the module. This
 function will automatically be called when the module is published.
 
-> All of the modules' `init` functions are called during the publishing process. Currently, this
+> All of the module's `init` functions are called during the publishing process. Currently, this
 > behavior is limited to the publish command and does not extend to
 > [package upgrades](./package-upgrades.md).
 
@@ -25,7 +25,7 @@ The function is called on publish, if it is present in the module and follows th
 
 - The function has to be named `init`, be private and have no return values.
 - Takes one or two arguments: [One Time Witness](./one-time-witness.md) (optional) and
-  [TxContext](./transaction-context.md). With `TxContext always being the last argument.
+  [TxContext](./transaction-context.md). With `TxContext` always being the last argument.
 
 ```move
 fun init(ctx: &mut TxContext) { /* ... */}
