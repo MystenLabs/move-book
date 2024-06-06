@@ -34,7 +34,7 @@ updated during checkpoints by the system, which stores the current time in milli
 Unix Epoch. The `Clock` object is defined in the `sui::clock` module and has a reserved address
 `0x6`.
 
-Clock is a shared object, but it a transaction attempting to access it mutably will fail. This
+Clock is a shared object, but if a transaction attempting to access it mutably will fail. This
 limitation allows parallel access to the `Clock` object, which is important for maintaining
 performance.
 
