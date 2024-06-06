@@ -48,7 +48,7 @@ module book::witness_source {
 }
 ```
 
-The instance of the struct `W` is passed into the `new` function to create an `Instance<W>`, thereby
+The instance of the struct `W` is passed into the `new_instance` function to create an `Instance<W>`, thereby
 proving that the module `book::witness_source` owns the type `W`.
 
 ## Instantiating a Generic Type
