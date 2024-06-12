@@ -237,7 +237,7 @@ used to define a storable <a href="./abilities/object.html">object</a>), structs
 the other can be used, and not both. If declared after the struct's fields, the ability declaration
 must be terminated with a semicolon:</p>
 <pre><code class="language-move">module a::m {
-    public PreNamedAbilities has copy, drop { x: u64, y: bool }
+    public struct PreNamedAbilities has copy, drop { x: u64, y: bool }
     public struct PostNamedAbilities { x: u64, y: bool } has copy, drop;
     public struct PostNamedAbilitiesInvalid { x: u64, y: bool } has copy, drop
     //                                                                        ^ ERROR! missing semicolon
@@ -245,7 +245,7 @@ must be terminated with a semicolon:</p>
     public struct NamedInvalidAbilities has copy { x: u64, y: bool } has drop;
     //                                                               ^ ERROR! duplicate ability declaration
 
-    public PrePositionalAbilities has copy, drop (u64, bool)
+    public struct PrePositionalAbilities has copy, drop (u64, bool)
     public struct PostPositionalAbilities (u64, bool) has copy, drop;
     public struct PostPositionalAbilitiesInvalid (u64, bool) has copy, drop
     //                                                                     ^ ERROR! missing semicolon
@@ -254,7 +254,7 @@ must be terminated with a semicolon:</p>
 }
 </code></pre>
 <p>For more details, see the section on
-<a href="./abilities.html#annotating-structs">annotating a struct's abilities</a>.</p>
+<a href="./abilities.html#annotating-structs-and-enums">annotating a struct's abilities</a>.</p>
 <h3 id="naming"><a class="header" href="#naming">Naming</a></h3>
 <p>Structs must start with a capital letter <code>A</code> to <code>Z</code>. After the first letter, struct names can
 contain underscores <code>_</code>, letters <code>a</code> to <code>z</code>, letters <code>A</code> to <code>Z</code>, or digits <code>0</code> to <code>9</code>.</p>

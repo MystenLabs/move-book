@@ -2426,7 +2426,7 @@ used to define a storable <a href="./abilities/object.html">object</a>), structs
 the other can be used, and not both. If declared after the struct's fields, the ability declaration
 must be terminated with a semicolon:</p>
 <pre><code class="language-move">module a::m {
-    public PreNamedAbilities has copy, drop { x: u64, y: bool }
+    public struct PreNamedAbilities has copy, drop { x: u64, y: bool }
     public struct PostNamedAbilities { x: u64, y: bool } has copy, drop;
     public struct PostNamedAbilitiesInvalid { x: u64, y: bool } has copy, drop
     //                                                                        ^ ERROR! missing semicolon
@@ -2434,7 +2434,7 @@ must be terminated with a semicolon:</p>
     public struct NamedInvalidAbilities has copy { x: u64, y: bool } has drop;
     //                                                               ^ ERROR! duplicate ability declaration
 
-    public PrePositionalAbilities has copy, drop (u64, bool)
+    public struct PrePositionalAbilities has copy, drop (u64, bool)
     public struct PostPositionalAbilities (u64, bool) has copy, drop;
     public struct PostPositionalAbilitiesInvalid (u64, bool) has copy, drop
     //                                                                     ^ ERROR! missing semicolon
@@ -2443,7 +2443,7 @@ must be terminated with a semicolon:</p>
 }
 </code></pre>
 <p>For more details, see the section on
-<a href="./abilities.html#annotating-structs">annotating a struct's abilities</a>.</p>
+<a href="./abilities.html#annotating-structs-and-enums">annotating a struct's abilities</a>.</p>
 <h3 id="naming"><a class="header" href="#naming">Naming</a></h3>
 <p>Structs must start with a capital letter <code>A</code> to <code>Z</code>. After the first letter, struct names can
 contain underscores <code>_</code>, letters <code>a</code> to <code>z</code>, letters <code>A</code> to <code>Z</code>, or digits <code>0</code> to <code>9</code>.</p>
@@ -3324,15 +3324,19 @@ details.</li>
 </ul>
 <p>Note that none of the primitive types have <code>key</code>, meaning none of them can be used directly with
 storage operations.</p>
-<h2 id="annotating-structs"><a class="header" href="#annotating-structs">Annotating Structs</a></h2>
-<p>To declare that a <code>struct</code> has an ability, it is declared with <code>has &lt;ability&gt;</code> after the struct name
-and either before or after the fields. For example:</p>
+<h2 id="annotating-structs-and-enums"><a class="header" href="#annotating-structs-and-enums">Annotating Structs and Enums</a></h2>
+<p>To declare that a <code>struct</code> or <code>enum</code> has an ability, it is declared with <code>has &lt;ability&gt;</code> after the
+datatype name and either before or after the fields/variants. For example:</p>
 <pre><code class="language-move">public struct Ignorable has drop { f: u64 }
 public struct Pair has copy, drop, store { x: u64, y: u64 }
 public struct MyVec(vector&lt;u64&gt;) has copy, drop, store;
+
+public enum IgnorableEnum has drop { Variant }
+public enum PairEnum has copy, drop, store { Variant }
+public enum MyVecEnum { Variant } has copy, drop, store;
 </code></pre>
-<p>In this case: <code>Ignorable</code> has the <code>drop</code> ability. <code>Pair</code> and <code>MyVec</code> both have <code>copy</code>, <code>drop</code>, and
-<code>store</code>.</p>
+<p>In this case: <code>Ignorable*</code> has the <code>drop</code> ability. <code>Pair*</code> and <code>MyVec*</code> both have <code>copy</code>, <code>drop</code>,
+and <code>store</code>.</p>
 <p>All of these abilities have strong guarantees over these gated operations. The operation can be
 performed on the value only if it has that ability; even if the value is deeply nested inside of
 some other collection!</p>
@@ -3349,12 +3353,27 @@ reachability rules for the abilities given above. If a struct is declared with t
 </ul>
 </li>
 </ul>
+<p>An enum can have any of these abilities with the exception of <code>key</code>, which enums cannot have because
+they cannot be top-level values (objects) in storage. The same rules apply to fields of enum
+variants as they do for struct fields though. In particular, if an enum is declared with the
+ability...</p>
+<ul>
+<li><code>copy</code>, all fields of all variants must have <code>copy</code>.</li>
+<li><code>drop</code>, all fields of all variants must have <code>drop</code>.</li>
+<li><code>store</code>, all fields of all variants must have <code>store</code>.</li>
+<li><code>key</code>, is not allowed on enums as previously mentioned.</li>
+</ul>
 <p>For example:</p>
 <pre><code class="language-move">// A struct without any abilities
 public struct NoAbilities {}
 
 public struct WantsCopy has copy {
     f: NoAbilities, // ERROR 'NoAbilities' does not have 'copy'
+}
+
+public enum WantsCopyEnum has copy {
+    Variant1
+    Variant2(NoAbilities), // ERROR 'NoAbilities' does not have 'copy'
 }
 </code></pre>
 <p>and similarly:</p>
@@ -3363,6 +3382,11 @@ public struct NoAbilities {}
 
 public struct MyData has key {
     f: NoAbilities, // Error 'NoAbilities' does not have 'store'
+}
+
+public struct MyDataEnum has store {
+    Variant1,
+    Variant2(NoAbilities), // Error 'NoAbilities' does not have 'store'
 }
 </code></pre>
 <h2 id="conditional-abilities-and-generic-types"><a class="header" href="#conditional-abilities-and-generic-types">Conditional Abilities and Generic Types</a></h2>
