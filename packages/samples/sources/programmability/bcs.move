@@ -25,7 +25,7 @@ use sui::bcs;
 let bool_bytes = bcs::to_bytes(&true);
 // 0x2a - just a single byte
 let u8_bytes = bcs::to_bytes(&42u8);
-// 0x000000000000002a - 8 bytes
+// 0x2a00000000000000 - 8 bytes
 let u64_bytes = bcs::to_bytes(&42u64);
 // address is a fixed sequence of 32 bytes
 // 0x0000000000000000000000000000000000000000000000000000000000000002
