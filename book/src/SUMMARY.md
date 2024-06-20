@@ -109,7 +109,7 @@
   - [Events](./programmability/events.md)
   - [Balance & Coin]() <!-- ./programmability/balance-and-coin.md) -->
   - [Sui Framework](./programmability/sui-framework.md)
-  - [Pattern: Hot Potato]() <!-- ./programmability/hot-potato.md) -->
+  - [Pattern: Hot Potato](./programmability/hot-potato-pattern.md)
   - [Pattern: Request]()
   - [Pattern: Object Capability]()
   - [Package Upgrades]()<!-- (./programmability/package-upgrades.md) -->
