@@ -78,7 +78,7 @@ This is one of the open topics for exploration and research, and it may be used 
 
 ## ID
 
-When talking about `UID`s we should also mention the `ID` type. It is a wrapper around the `address`
+When talking about `UID` we should also mention the `ID` type. It is a wrapper around the `address`
 type, and is used to represent an address-pointer. Usually, `ID` is used to point at an object,
 however, there's no restriction, and no guarantee that the `ID` points to an existing object.
 
@@ -96,5 +96,5 @@ TODO: !!!!
 ## fresh_object_address
 
 TxContext provides the `fresh_object_address` function which can be utilized to create unique
-addresses and `ID`s - it may be useful in some application that assign unique identifiers to user
+addresses and `ID` - it may be useful in some application that assign unique identifiers to user
 actions - for example, an order_id in a marketplace.
