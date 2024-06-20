@@ -196,9 +196,9 @@ put it is that the <code>store</code> ability allows the value to be <em>wrapped
 <a href="./restricted-and-public-transfer.html">Restricted and Public Transfer</a> section.</p>
 </blockquote>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
-<p>In previous sections we already used types with the <code>store</code> ability: all objects must have a <code>UID</code>
-field, which we used in examples; we also used the <code>String</code> type as a part of the <code>Config</code> struct.
-The <code>String</code> type also has the <code>store</code> ability.</p>
+<p>In previous sections we already used types with the <code>key</code> ability: all objects must have a <code>UID</code>
+field, which we used in examples; we also used the <code>Storable</code> type as a part of the <code>Config</code> struct.
+The <code>Config</code> type also has the <code>store</code> ability.</p>
 <pre><code class="language-move">/// This type has the `store` ability.
 public struct Storable has store {}
 
