@@ -10,7 +10,7 @@ required for the type to be used as a field in a struct that has the `key` abili
 put it is that the `store` ability allows the value to be _wrapped_ in an object.
 
 > The `store` ability also relaxes restrictions on transfer operations. We talk about it more in the
-> [Restricted and Public Transfer](./restricted-and-public-transfer.md) section.
+> [Restricted and Public Transfer](./transfer-restrictions.md) section.
 
 ## Example
 

@@ -70,9 +70,9 @@ The ability to return the UID of an object may be utilized in pattern called _pr
 is a rarely used technique, but it may be useful in some cases, for example, the creator or an
 application may incentivize the deletion of an object by exchanging the deleted IDs for some reward.
 
-In framework development this method could be used to ignore / bypass certain restrictions on "taking"
-the object. If there's a container that enforces certain logic on transfers, like Kiosk does, there
-could be a special scenario of skipping the checks by providing a proof of deletion.
+In framework development this method could be used to ignore / bypass certain restrictions on
+"taking" the object. If there's a container that enforces certain logic on transfers, like Kiosk
+does, there could be a special scenario of skipping the checks by providing a proof of deletion.
 
 This is one of the open topics for exploration and research, and it may be used in various ways.
 
@@ -82,8 +82,9 @@ When talking about `UID` we should also mention the `ID` type. It is a wrapper a
 type, and is used to represent an address-pointer. Usually, `ID` is used to point at an object,
 however, there's no restriction, and no guarantee that the `ID` points to an existing object.
 
-> ID can be received as a transaction argument in a [Transaction Block](). Alternatively, ID can be
-> created from an `address` value using `to_id()` function.
+> ID can be received as a transaction argument in a
+> [Transaction Block](./../concepts/what-is-a-transaction.md). Alternatively, ID can be created from
+> an `address` value using `to_id()` function.
 
 <!--
 ```move

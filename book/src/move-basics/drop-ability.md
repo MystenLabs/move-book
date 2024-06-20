@@ -38,8 +38,6 @@ Links:
 
  -->
 
-## Drop ability
-
 The `drop` ability - the simplest of them - allows the instance of a struct to be _ignored_ or
 _discarded_. In many programming languages this behavior is considered default. However, in Move, a
 struct without the `drop` ability is not allowed to be ignored. This is a safety feature of the Move

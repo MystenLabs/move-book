@@ -8,7 +8,7 @@ owner to perform administrative operations, which regular users cannot.
 
 ## Capability is an Object
 
-In the [Sui Object Model](./../concepts/object-model.md), capabilities are represented as objects.
+In the [Sui Object Model](./../object/), capabilities are represented as objects.
 An owner of an object can pass this object to a function to prove that they have the right to
 perform a specific action. Due to strict typing, the function taking a capability as an argument can
 only be called with the correct capability.
