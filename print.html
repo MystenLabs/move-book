@@ -4326,7 +4326,7 @@ public struct Gift has key { id: UID }
 public fun mint_and_transfer(
     _: &amp;AdminCap, recipient: address, ctx: &amp;mut TxContext
 ) {
-    let gift = object::new(ctx);
+    let gift = Gift { id: object::new(ctx) };
     transfer::transfer(gift, recipient);
 }
 </code></pre>
