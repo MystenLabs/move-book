@@ -38,7 +38,7 @@ ObjectK with `key` and ObjectKS with `key + store` abilities, and module B tries
 /// Defines `ObjectK` and `ObjectKS` with `key` and `key + store`
 /// abilities respectively
 module book::transfer_a {
-    public struct ObjectX has key { id: UID }
+    public struct ObjectK has key { id: UID }
     public struct ObjectKS has key, store { id: UID }
 }
 
@@ -48,7 +48,7 @@ module book::transfer_b {
     // types are not internal to this module
     use book::transfer_a::{ObjectK, ObjectKS};
 
-    // Fails! ObjectX is not `store`, and ObjectX is not internal to this module
+    // Fails! ObjectK is not `store`, and ObjectK is not internal to this module
     public fun transfer_k(k: ObjectK, to: address) {
         sui::transfer::transfer(k, to);
     }
@@ -72,10 +72,10 @@ module book::transfer_b {
 
 To expand on the example above:
 
-- [ ] `transfer_x` fails because ObjectK is not internal to module `transfer_b`
-- [ ] `transfer_y` fails because ObjectKS is not internal to module `transfer_b`
-- [ ] `public_transfer_x` fails because ObjectK does not have the `store` ability
-- [x] `public_transfer_y` works because ObjectKS has the `store` ability and the transfer is public
+- [ ] `transfer_k` fails because ObjectK is not internal to module `transfer_b`
+- [ ] `transfer_ks` fails because ObjectKS is not internal to module `transfer_b`
+- [ ] `public_transfer_k` fails because ObjectK does not have the `store` ability
+- [x] `public_transfer_ks` works because ObjectKS has the `store` ability and the transfer is public
 
 ## Implications of `store`
 

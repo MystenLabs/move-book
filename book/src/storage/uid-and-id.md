@@ -70,7 +70,7 @@ The ability to return the UID of an object may be utilized in pattern called _pr
 is a rarely used technique, but it may be useful in some cases, for example, the creator or an
 application may incentivize the deletion of an object by exchanging the deleted IDs for some reward.
 
-In framework development this method could be used ignore / bypass certain restrictions on "taking"
+In framework development this method could be used to ignore / bypass certain restrictions on "taking"
 the object. If there's a container that enforces certain logic on transfers, like Kiosk does, there
 could be a special scenario of skipping the checks by providing a proof of deletion.
 

@@ -95,7 +95,7 @@ fields are still stored in the blockchain, but they will never become accessible
 ```
 
 Orphaned objects are not a subject to storage rebate, and the storage fees will remain unclaimed.
-One way to avoid orphaned dynamic fields during unpacking on an object is to return the `UID` and
+One way to avoid orphaned dynamic fields during unpacking of an object is to return the `UID` and
 store it somewhere temporarily until the dynamic fields are removed and handled properly.
 
 ## Custom Type as a Field Name
