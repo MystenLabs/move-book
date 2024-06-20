@@ -254,7 +254,7 @@ another. This is also called <em>move semantics</em>.</p>
 }
 </code></pre>
 <h2 id="scopes-with-blocks"><a class="header" href="#scopes-with-blocks">Scopes with Blocks</a></h2>
-<p>Function has a main scope, and it can also have sub-scopes via the use of blocks. A block is a
+<p>Each function has a main scope, and it can also have sub-scopes via the use of blocks. A block is a
 sequence of statements and expressions, and it has its own scope. Variables defined in a block are
 owned by this block, and when the block ends, the variables are dropped.</p>
 <pre><code class="language-move">module book::ownership {

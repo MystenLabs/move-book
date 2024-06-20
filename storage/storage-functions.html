@@ -247,7 +247,7 @@ the transaction sender.</p>
     /// A struct with `key` is an object. The first field is `id: UID`!
     public struct AdminCap has key { id: UID }
 
-    /// Init function is a special function that is called when the module
+    /// `init` function is a special function that is called when the module
     /// is published. It is a good place to create application objects.
     fun init(ctx: &amp;mut TxContext) {
         // Create a new `AdminCap` object, in this scope.
@@ -303,7 +303,7 @@ exclusively by the recipient.</p>
 <em>capability</em>.</li>
 </ul>
 <h2 id="freeze"><a class="header" href="#freeze">Freeze</a></h2>
-<p>The <code>transfer::freeze</code> function is public function used to put an object into an <em>immutable</em> state.
+<p>The <code>transfer::freeze_object</code> function is public function used to put an object into an <em>immutable</em> state.
 Once an object is <em>frozen</em>, it can never be changed, and it can be accessed by anyone by immutable
 reference.</p>
 <p>The function signature is as follows, only accepts a type with the
@@ -365,12 +365,12 @@ public fun delete_config(c: Config) {
 </code></pre>
 <p>To summarize:</p>
 <ul>
-<li><code>freeze_object</code> function is used to put an object into an <em>immutable</em> state;</li>
+<li><code>transfer::freeze_object</code> function is used to put an object into an <em>immutable</em> state;</li>
 <li>Once an object is <em>frozen</em>, it can never be changed, deleted or transferred, and it can be
 accessed by anyone by immutable reference;</li>
 </ul>
 <h2 id="owned---frozen"><a class="header" href="#owned---frozen">Owned -&gt; Frozen</a></h2>
-<p>Since the <code>transfer::freeze</code> signature accepts any type with the <code>key</code> ability, it can take an
+<p>Since the <code>transfer::freeze_object</code> signature accepts any type with the <code>key</code> ability, it can take an
 object that was created in the same scope, but it can also take an object that was owned by an
 account. This means that the <code>freeze_object</code> function can be used to <em>freeze</em> an object that was
 <em>transferred</em> to the sender. For security concerns, we would not want to freeze the <code>AdminCap</code>
@@ -385,7 +385,7 @@ public fun freeze_gift(gift: Gift) {
 }
 </code></pre>
 <h2 id="share"><a class="header" href="#share">Share</a></h2>
-<p>The <code>transfer::share</code> function is a public function used to put an object into a <em>shared</em> state.
+<p>The <code>transfer::share_object</code> function is a public function used to put an object into a <em>shared</em> state.
 Once an object is <em>shared</em>, it can be accessed by anyone by a mutable reference (hence, immutable
 too). The function signature is as follows, only accepts a type with the
 <a href="./key-ability.html"><code>key</code> ability</a>:</p>
@@ -418,7 +418,7 @@ public fun delete_config(c: Config) {
     id.delete()
 }
 </code></pre>
-<p>The <code>delete_config</code> function takes the <code>Config</code> object by value and deletes it, and Sui Verifier
+<p>The <code>delete_config</code> function takes the <code>Config</code> object by value and deletes it, and the Sui Verifier
 would allow this call. However, if the function returned the <code>Config</code> object back or attempted to
 <code>freeze</code> or <code>transfer</code> it, the Sui Verifier would reject the transaction.</p>
 <pre><code class="language-move">// Won't work!

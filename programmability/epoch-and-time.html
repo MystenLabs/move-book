@@ -213,7 +213,7 @@ needs to know the current validator set.</p>
 updated during checkpoints by the system, which stores the current time in milliseconds since the
 Unix Epoch. The <code>Clock</code> object is defined in the <code>sui::clock</code> module and has a reserved address
 <code>0x6</code>.</p>
-<p>Clock is a shared object, but it a transaction attempting to access it mutably will fail. This
+<p>Clock is a shared object, but a transaction attempting to access it mutably will fail. This
 limitation allows parallel access to the <code>Clock</code> object, which is important for maintaining
 performance.</p>
 <pre><code class="language-move">// File: sui-framework/clock.move

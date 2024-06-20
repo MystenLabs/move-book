@@ -191,7 +191,7 @@ code.</p>
 <h2 id="the-test-attribute"><a class="header" href="#the-test-attribute">The <code>#[test]</code> attribute</a></h2>
 <p>Tests in Move are functions marked with the <code>#[test]</code> attribute. This attribute tells the compiler
 that the function is a test function, and it should be run when the tests are executed. Test
-functions are regular functions, but they must take no any arguments and have no return value. They
+functions are regular functions, but they must take no arguments and have no return value. They
 are excluded from the bytecode, and are never published.</p>
 <pre><code class="language-move">module book::testing {
     // Test attribute is placed before the `fun` keyword. Can be both above or
@@ -234,7 +234,7 @@ fails. If the test fails with a different abort code, the test will fail. If the
 abort, the test will also fail.</p>
 <pre><code class="language-move">module book::testing_failure {
 
-    const EInvalidArgument: u64 = 0;
+    const EInvalidArgument: u64 = 1;
 
     #[test]
     #[expected_failure(abort_code = 0)]
@@ -245,7 +245,7 @@ abort, the test will also fail.</p>
     // attributes can be grouped together
     #[test, expected_failure(abort_code = EInvalidArgument)]
     fun test_fail_1() {
-        abort 1 // aborts with 0
+        abort 1 // aborts with 1
     }
 }
 </code></pre>

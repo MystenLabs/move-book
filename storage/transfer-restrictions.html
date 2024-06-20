@@ -216,7 +216,7 @@ ObjectK with <code>key</code> and ObjectKS with <code>key + store</code> abiliti
 <pre><code class="language-move">/// Defines `ObjectK` and `ObjectKS` with `key` and `key + store`
 /// abilities respectively
 module book::transfer_a {
-    public struct ObjectX has key { id: UID }
+    public struct ObjectK has key { id: UID }
     public struct ObjectKS has key, store { id: UID }
 }
 
@@ -226,7 +226,7 @@ module book::transfer_b {
     // types are not internal to this module
     use book::transfer_a::{ObjectK, ObjectKS};
 
-    // Fails! ObjectX is not `store`, and ObjectX is not internal to this module
+    // Fails! ObjectK is not `store`, and ObjectK is not internal to this module
     public fun transfer_k(k: ObjectK, to: address) {
         sui::transfer::transfer(k, to);
     }
@@ -250,13 +250,13 @@ module book::transfer_b {
 <p>To expand on the example above:</p>
 <ul>
 <li><input disabled="" type="checkbox"/>
-<code>transfer_x</code> fails because ObjectK is not internal to module <code>transfer_b</code></li>
+<code>transfer_k</code> fails because ObjectK is not internal to module <code>transfer_b</code></li>
 <li><input disabled="" type="checkbox"/>
-<code>transfer_y</code> fails because ObjectKS is not internal to module <code>transfer_b</code></li>
+<code>transfer_ks</code> fails because ObjectKS is not internal to module <code>transfer_b</code></li>
 <li><input disabled="" type="checkbox"/>
-<code>public_transfer_x</code> fails because ObjectK does not have the <code>store</code> ability</li>
+<code>public_transfer_k</code> fails because ObjectK does not have the <code>store</code> ability</li>
 <li><input disabled="" type="checkbox" checked=""/>
-<code>public_transfer_y</code> works because ObjectKS has the <code>store</code> ability and the transfer is public</li>
+<code>public_transfer_ks</code> works because ObjectKS has the <code>store</code> ability and the transfer is public</li>
 </ul>
 <h2 id="implications-of-store"><a class="header" href="#implications-of-store">Implications of <code>store</code></a></h2>
 <p>The decision on whether to add the <code>store</code> ability to a type should be made carefully. On one hand,

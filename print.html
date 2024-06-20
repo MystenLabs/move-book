@@ -2487,7 +2487,7 @@ module defines a <code>String</code> type and methods for UTF-8 encoded strings,
 <code>std::ascii</code>, provides an ASCII <code>String</code> type and its methods.</p>
 <blockquote>
 <p>Sui execution environment automatically converts bytevector into <code>String</code> in transaction inputs.
-So in many cases, String does not to be constructed in the
+So in many cases, a String does not need to be constructed in the
 <a href="move-basics/./../concepts/what-is-a-transaction.html">Transaction Block</a>.</p>
 </blockquote>
 <!--
@@ -3377,7 +3377,7 @@ another. This is also called <em>move semantics</em>.</p>
 }
 </code></pre>
 <h2 id="scopes-with-blocks"><a class="header" href="#scopes-with-blocks">Scopes with Blocks</a></h2>
-<p>Function has a main scope, and it can also have sub-scopes via the use of blocks. A block is a
+<p>Each function has a main scope, and it can also have sub-scopes via the use of blocks. A block is a
 sequence of statements and expressions, and it has its own scope. Variables defined in a block are
 owned by this block, and when the block ends, the variables are dropped.</p>
 <pre><code class="language-move">module book::ownership {
@@ -3839,7 +3839,7 @@ code.</p>
 <h2 id="the-test-attribute"><a class="header" href="#the-test-attribute">The <code>#[test]</code> attribute</a></h2>
 <p>Tests in Move are functions marked with the <code>#[test]</code> attribute. This attribute tells the compiler
 that the function is a test function, and it should be run when the tests are executed. Test
-functions are regular functions, but they must take no any arguments and have no return value. They
+functions are regular functions, but they must take no arguments and have no return value. They
 are excluded from the bytecode, and are never published.</p>
 <pre><code class="language-move">module book::testing {
     // Test attribute is placed before the `fun` keyword. Can be both above or
@@ -3882,7 +3882,7 @@ fails. If the test fails with a different abort code, the test will fail. If the
 abort, the test will also fail.</p>
 <pre><code class="language-move">module book::testing_failure {
 
-    const EInvalidArgument: u64 = 0;
+    const EInvalidArgument: u64 = 1;
 
     #[test]
     #[expected_failure(abort_code = 0)]
@@ -3893,7 +3893,7 @@ abort, the test will also fail.</p>
     // attributes can be grouped together
     #[test, expected_failure(abort_code = EInvalidArgument)]
     fun test_fail_1() {
-        abort 1 // aborts with 0
+        abort 1 // aborts with 1
     }
 }
 </code></pre>
@@ -4289,7 +4289,7 @@ the transaction sender.</p>
     /// A struct with `key` is an object. The first field is `id: UID`!
     public struct AdminCap has key { id: UID }
 
-    /// Init function is a special function that is called when the module
+    /// `init` function is a special function that is called when the module
     /// is published. It is a good place to create application objects.
     fun init(ctx: &amp;mut TxContext) {
         // Create a new `AdminCap` object, in this scope.
@@ -4345,7 +4345,7 @@ exclusively by the recipient.</p>
 <em>capability</em>.</li>
 </ul>
 <h2 id="freeze"><a class="header" href="#freeze">Freeze</a></h2>
-<p>The <code>transfer::freeze</code> function is public function used to put an object into an <em>immutable</em> state.
+<p>The <code>transfer::freeze_object</code> function is public function used to put an object into an <em>immutable</em> state.
 Once an object is <em>frozen</em>, it can never be changed, and it can be accessed by anyone by immutable
 reference.</p>
 <p>The function signature is as follows, only accepts a type with the
@@ -4407,12 +4407,12 @@ public fun delete_config(c: Config) {
 </code></pre>
 <p>To summarize:</p>
 <ul>
-<li><code>freeze_object</code> function is used to put an object into an <em>immutable</em> state;</li>
+<li><code>transfer::freeze_object</code> function is used to put an object into an <em>immutable</em> state;</li>
 <li>Once an object is <em>frozen</em>, it can never be changed, deleted or transferred, and it can be
 accessed by anyone by immutable reference;</li>
 </ul>
 <h2 id="owned---frozen"><a class="header" href="#owned---frozen">Owned -&gt; Frozen</a></h2>
-<p>Since the <code>transfer::freeze</code> signature accepts any type with the <code>key</code> ability, it can take an
+<p>Since the <code>transfer::freeze_object</code> signature accepts any type with the <code>key</code> ability, it can take an
 object that was created in the same scope, but it can also take an object that was owned by an
 account. This means that the <code>freeze_object</code> function can be used to <em>freeze</em> an object that was
 <em>transferred</em> to the sender. For security concerns, we would not want to freeze the <code>AdminCap</code>
@@ -4427,7 +4427,7 @@ public fun freeze_gift(gift: Gift) {
 }
 </code></pre>
 <h2 id="share"><a class="header" href="#share">Share</a></h2>
-<p>The <code>transfer::share</code> function is a public function used to put an object into a <em>shared</em> state.
+<p>The <code>transfer::share_object</code> function is a public function used to put an object into a <em>shared</em> state.
 Once an object is <em>shared</em>, it can be accessed by anyone by a mutable reference (hence, immutable
 too). The function signature is as follows, only accepts a type with the
 <a href="storage/./key-ability.html"><code>key</code> ability</a>:</p>
@@ -4460,7 +4460,7 @@ public fun delete_config(c: Config) {
     id.delete()
 }
 </code></pre>
-<p>The <code>delete_config</code> function takes the <code>Config</code> object by value and deletes it, and Sui Verifier
+<p>The <code>delete_config</code> function takes the <code>Config</code> object by value and deletes it, and the Sui Verifier
 would allow this call. However, if the function returned the <code>Config</code> object back or attempted to
 <code>freeze</code> or <code>transfer</code> it, the Sui Verifier would reject the transaction.</p>
 <pre><code class="language-move">// Won't work!
@@ -4583,7 +4583,7 @@ separate object.</p>
 <p>The ability to return the UID of an object may be utilized in pattern called <em>proof of deletion</em>. It
 is a rarely used technique, but it may be useful in some cases, for example, the creator or an
 application may incentivize the deletion of an object by exchanging the deleted IDs for some reward.</p>
-<p>In framework development this method could be used ignore / bypass certain restrictions on &quot;taking&quot;
+<p>In framework development this method could be used to ignore / bypass certain restrictions on &quot;taking&quot;
 the object. If there's a container that enforces certain logic on transfers, like Kiosk does, there
 could be a special scenario of skipping the checks by providing a proof of deletion.</p>
 <p>This is one of the open topics for exploration and research, and it may be used in various ways.</p>
@@ -4638,7 +4638,7 @@ ObjectK with <code>key</code> and ObjectKS with <code>key + store</code> abiliti
 <pre><code class="language-move">/// Defines `ObjectK` and `ObjectKS` with `key` and `key + store`
 /// abilities respectively
 module book::transfer_a {
-    public struct ObjectX has key { id: UID }
+    public struct ObjectK has key { id: UID }
     public struct ObjectKS has key, store { id: UID }
 }
 
@@ -4648,7 +4648,7 @@ module book::transfer_b {
     // types are not internal to this module
     use book::transfer_a::{ObjectK, ObjectKS};
 
-    // Fails! ObjectX is not `store`, and ObjectX is not internal to this module
+    // Fails! ObjectK is not `store`, and ObjectK is not internal to this module
     public fun transfer_k(k: ObjectK, to: address) {
         sui::transfer::transfer(k, to);
     }
@@ -4672,13 +4672,13 @@ module book::transfer_b {
 <p>To expand on the example above:</p>
 <ul>
 <li><input disabled="" type="checkbox"/>
-<code>transfer_x</code> fails because ObjectK is not internal to module <code>transfer_b</code></li>
+<code>transfer_k</code> fails because ObjectK is not internal to module <code>transfer_b</code></li>
 <li><input disabled="" type="checkbox"/>
-<code>transfer_y</code> fails because ObjectKS is not internal to module <code>transfer_b</code></li>
+<code>transfer_ks</code> fails because ObjectKS is not internal to module <code>transfer_b</code></li>
 <li><input disabled="" type="checkbox"/>
-<code>public_transfer_x</code> fails because ObjectK does not have the <code>store</code> ability</li>
+<code>public_transfer_k</code> fails because ObjectK does not have the <code>store</code> ability</li>
 <li><input disabled="" type="checkbox" checked=""/>
-<code>public_transfer_y</code> works because ObjectKS has the <code>store</code> ability and the transfer is public</li>
+<code>public_transfer_ks</code> works because ObjectKS has the <code>store</code> ability and the transfer is public</li>
 </ul>
 <h2 id="implications-of-store"><a class="header" href="#implications-of-store">Implications of <code>store</code></a></h2>
 <p>The decision on whether to add the <code>store</code> ability to a type should be made carefully. On one hand,
@@ -4995,7 +4995,7 @@ needs to know the current validator set.</p>
 updated during checkpoints by the system, which stores the current time in milliseconds since the
 Unix Epoch. The <code>Clock</code> object is defined in the <code>sui::clock</code> module and has a reserved address
 <code>0x6</code>.</p>
-<p>Clock is a shared object, but it a transaction attempting to access it mutably will fail. This
+<p>Clock is a shared object, but a transaction attempting to access it mutably will fail. This
 limitation allows parallel access to the <code>Clock</code> object, which is important for maintaining
 performance.</p>
 <pre><code class="language-move">// File: sui-framework/clock.move
@@ -5304,7 +5304,7 @@ id.delete();
 // ...`Hat` is now stuck in a limbo, it will never be accessible again
 </code></pre>
 <p>Orphaned objects are not a subject to storage rebate, and the storage fees will remain unclaimed.
-One way to avoid orphaned dynamic fields during unpacking on an object is to return the <code>UID</code> and
+One way to avoid orphaned dynamic fields during unpacking of an object is to return the <code>UID</code> and
 store it somewhere temporarily until the dynamic fields are removed and handled properly.</p>
 <h2 id="custom-type-as-a-field-name"><a class="header" href="#custom-type-as-a-field-name">Custom Type as a Field Name</a></h2>
 <p>In the examples above, we used primitive types as field names since they have the required set of
