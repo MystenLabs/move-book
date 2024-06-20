@@ -14,9 +14,9 @@ put it is that the `store` ability allows the value to be _wrapped_ in an object
 
 ## Example
 
-In previous sections we already used types with the `store` ability: all objects must have a `UID`
-field, which we used in examples; we also used the `String` type as a part of the `Config` struct.
-The `String` type also has the `store` ability.
+In previous sections we already used types with the `key` ability: all objects must have a `UID`
+field, which we used in examples; we also used the `Storable` type as a part of the `Config` struct.
+The `Config` type also has the `store` ability.
 
 ```move
 /// This type has the `store` ability.
