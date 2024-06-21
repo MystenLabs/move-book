@@ -239,17 +239,18 @@ separate object.</p>
 <p>The ability to return the UID of an object may be utilized in pattern called <em>proof of deletion</em>. It
 is a rarely used technique, but it may be useful in some cases, for example, the creator or an
 application may incentivize the deletion of an object by exchanging the deleted IDs for some reward.</p>
-<p>In framework development this method could be used to ignore / bypass certain restrictions on &quot;taking&quot;
-the object. If there's a container that enforces certain logic on transfers, like Kiosk does, there
-could be a special scenario of skipping the checks by providing a proof of deletion.</p>
+<p>In framework development this method could be used to ignore / bypass certain restrictions on
+&quot;taking&quot; the object. If there's a container that enforces certain logic on transfers, like Kiosk
+does, there could be a special scenario of skipping the checks by providing a proof of deletion.</p>
 <p>This is one of the open topics for exploration and research, and it may be used in various ways.</p>
 <h2 id="id"><a class="header" href="#id">ID</a></h2>
 <p>When talking about <code>UID</code> we should also mention the <code>ID</code> type. It is a wrapper around the <code>address</code>
 type, and is used to represent an address-pointer. Usually, <code>ID</code> is used to point at an object,
 however, there's no restriction, and no guarantee that the <code>ID</code> points to an existing object.</p>
 <blockquote>
-<p>ID can be received as a transaction argument in a <a href="">Transaction Block</a>. Alternatively, ID can be
-created from an <code>address</code> value using <code>to_id()</code> function.</p>
+<p>ID can be received as a transaction argument in a
+<a href="./../concepts/what-is-a-transaction.html">Transaction Block</a>. Alternatively, ID can be created from
+an <code>address</code> value using <code>to_id()</code> function.</p>
 </blockquote>
 <!--
 ```move

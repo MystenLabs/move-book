@@ -2110,7 +2110,6 @@ Links:
     - key and store abilities (later chapter)
 
  -->
-<h2 id="drop-ability"><a class="header" href="#drop-ability">Drop ability</a></h2>
 <p>The <code>drop</code> ability - the simplest of them - allows the instance of a struct to be <em>ignored</em> or
 <em>discarded</em>. In many programming languages this behavior is considered default. However, in Move, a
 struct without the <code>drop</code> ability is not allowed to be ignored. This is a safety feature of the Move
@@ -4180,7 +4179,7 @@ object model and explore how to use objects in your Sui applications. If you hav
 <!-- Mention what Sui Verifier is! Bytecode level verification. -->
 <div style="break-before: page; page-break-before: always;"></div><h1 id="the-key-ability"><a class="header" href="#the-key-ability">The Key Ability</a></h1>
 <p>In the <a href="storage/./../move-basics">Basic Syntax</a> chapter we already covered two out of four abilities -
-<a href="storage/./drop-ability.html">Drop</a> and <a href="storage/./copy-ability.html">Copy</a>. They affect the behaviour of the value in a
+<a href="storage/./../move-basics/drop-ability.html">Drop</a> and <a href="storage/./../move-basics/copy-ability.html">Copy</a>. They affect the behaviour of the value in a
 scope and are not directly related to storage. It is time to cover the <code>key</code> ability, which allows
 the struct to be stored.</p>
 <p>Historically, the <code>key</code> ability was created to mark the type as a <em>key in the storage</em>. A type with
@@ -4345,9 +4344,9 @@ exclusively by the recipient.</p>
 <em>capability</em>.</li>
 </ul>
 <h2 id="freeze"><a class="header" href="#freeze">Freeze</a></h2>
-<p>The <code>transfer::freeze_object</code> function is public function used to put an object into an <em>immutable</em> state.
-Once an object is <em>frozen</em>, it can never be changed, and it can be accessed by anyone by immutable
-reference.</p>
+<p>The <code>transfer::freeze_object</code> function is public function used to put an object into an <em>immutable</em>
+state. Once an object is <em>frozen</em>, it can never be changed, and it can be accessed by anyone by
+immutable reference.</p>
 <p>The function signature is as follows, only accepts a type with the
 <a href="storage/./key-ability.html"><code>key</code> ability</a>. Just like all other storage functions, it takes the object <em>by
 value</em>:</p>
@@ -4412,8 +4411,8 @@ public fun delete_config(c: Config) {
 accessed by anyone by immutable reference;</li>
 </ul>
 <h2 id="owned---frozen"><a class="header" href="#owned---frozen">Owned -&gt; Frozen</a></h2>
-<p>Since the <code>transfer::freeze_object</code> signature accepts any type with the <code>key</code> ability, it can take an
-object that was created in the same scope, but it can also take an object that was owned by an
+<p>Since the <code>transfer::freeze_object</code> signature accepts any type with the <code>key</code> ability, it can take
+an object that was created in the same scope, but it can also take an object that was owned by an
 account. This means that the <code>freeze_object</code> function can be used to <em>freeze</em> an object that was
 <em>transferred</em> to the sender. For security concerns, we would not want to freeze the <code>AdminCap</code>
 object - it would be a security risk to allow access to it to anyone. However, we can freeze the
@@ -4427,9 +4426,9 @@ public fun freeze_gift(gift: Gift) {
 }
 </code></pre>
 <h2 id="share"><a class="header" href="#share">Share</a></h2>
-<p>The <code>transfer::share_object</code> function is a public function used to put an object into a <em>shared</em> state.
-Once an object is <em>shared</em>, it can be accessed by anyone by a mutable reference (hence, immutable
-too). The function signature is as follows, only accepts a type with the
+<p>The <code>transfer::share_object</code> function is a public function used to put an object into a <em>shared</em>
+state. Once an object is <em>shared</em>, it can be accessed by anyone by a mutable reference (hence,
+immutable too). The function signature is as follows, only accepts a type with the
 <a href="storage/./key-ability.html"><code>key</code> ability</a>:</p>
 <pre><code class="language-move">// File: sui-framework/sources/transfer.move
 public fun share_object&lt;T: key&gt;(obj: T);
@@ -4489,7 +4488,7 @@ required for the type to be used as a field in a struct that has the <code>key</
 put it is that the <code>store</code> ability allows the value to be <em>wrapped</em> in an object.</p>
 <blockquote>
 <p>The <code>store</code> ability also relaxes restrictions on transfer operations. We talk about it more in the
-<a href="storage/./restricted-and-public-transfer.html">Restricted and Public Transfer</a> section.</p>
+<a href="storage/./transfer-restrictions.html">Restricted and Public Transfer</a> section.</p>
 </blockquote>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <p>In previous sections we already used types with the <code>key</code> ability: all objects must have a <code>UID</code>
@@ -4583,17 +4582,18 @@ separate object.</p>
 <p>The ability to return the UID of an object may be utilized in pattern called <em>proof of deletion</em>. It
 is a rarely used technique, but it may be useful in some cases, for example, the creator or an
 application may incentivize the deletion of an object by exchanging the deleted IDs for some reward.</p>
-<p>In framework development this method could be used to ignore / bypass certain restrictions on &quot;taking&quot;
-the object. If there's a container that enforces certain logic on transfers, like Kiosk does, there
-could be a special scenario of skipping the checks by providing a proof of deletion.</p>
+<p>In framework development this method could be used to ignore / bypass certain restrictions on
+&quot;taking&quot; the object. If there's a container that enforces certain logic on transfers, like Kiosk
+does, there could be a special scenario of skipping the checks by providing a proof of deletion.</p>
 <p>This is one of the open topics for exploration and research, and it may be used in various ways.</p>
 <h2 id="id"><a class="header" href="#id">ID</a></h2>
 <p>When talking about <code>UID</code> we should also mention the <code>ID</code> type. It is a wrapper around the <code>address</code>
 type, and is used to represent an address-pointer. Usually, <code>ID</code> is used to point at an object,
 however, there's no restriction, and no guarantee that the <code>ID</code> points to an existing object.</p>
 <blockquote>
-<p>ID can be received as a transaction argument in a <a href="storage/">Transaction Block</a>. Alternatively, ID can be
-created from an <code>address</code> value using <code>to_id()</code> function.</p>
+<p>ID can be received as a transaction argument in a
+<a href="storage/./../concepts/what-is-a-transaction.html">Transaction Block</a>. Alternatively, ID can be created from
+an <code>address</code> value using <code>to_id()</code> function.</p>
 </blockquote>
 <!--
 ```move
@@ -4852,7 +4852,7 @@ of a capability is a key to a door. If you have the key, you can open the door. 
 the key, you can't open the door. A more practical example is an Admin Capability which allows the
 owner to perform administrative operations, which regular users cannot.</p>
 <h2 id="capability-is-an-object"><a class="header" href="#capability-is-an-object">Capability is an Object</a></h2>
-<p>In the <a href="programmability/./../concepts/object-model.html">Sui Object Model</a>, capabilities are represented as objects.
+<p>In the <a href="programmability/./../object/">Sui Object Model</a>, capabilities are represented as objects.
 An owner of an object can pass this object to a function to prove that they have the right to
 perform a specific action. Due to strict typing, the function taking a capability as an argument can
 only be called with the correct capability.</p>
@@ -5341,7 +5341,7 @@ df::add(&amp;mut character.id, MetadataKey {}, 42);
 <p>As you can see, custom types do work as field names but as long as they can be <em>constructed</em> by the
 module, in other words - if they are <em>internal</em> to the module and defined in it. This limitation on
 struct packing can open up new ways in the design of the application.</p>
-<p>This approach is used in the <a href="programmability/">Object Capability</a> pattern, where an application can authorize a
+<p>This approach is used in the <a href="programmability/./object-capability.html">Object Capability</a> pattern, where an application can authorize a
 foreign object to perform operations in it while not exposing the capabilities to other modules.</p>
 <h2 id="exposing-uid"><a class="header" href="#exposing-uid">Exposing UID</a></h2>
 <div class="warning">

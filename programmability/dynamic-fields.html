@@ -370,7 +370,7 @@ df::add(&amp;mut character.id, MetadataKey {}, 42);
 <p>As you can see, custom types do work as field names but as long as they can be <em>constructed</em> by the
 module, in other words - if they are <em>internal</em> to the module and defined in it. This limitation on
 struct packing can open up new ways in the design of the application.</p>
-<p>This approach is used in the <a href="">Object Capability</a> pattern, where an application can authorize a
+<p>This approach is used in the <a href="./object-capability.html">Object Capability</a> pattern, where an application can authorize a
 foreign object to perform operations in it while not exposing the capabilities to other modules.</p>
 <h2 id="exposing-uid"><a class="header" href="#exposing-uid">Exposing UID</a></h2>
 <div class="warning">
