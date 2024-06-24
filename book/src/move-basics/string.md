@@ -6,7 +6,7 @@ module defines a `String` type and methods for UTF-8 encoded strings, and the se
 `std::ascii`, provides an ASCII `String` type and its methods.
 
 > Sui execution environment automatically converts bytevector into `String` in transaction inputs.
-> So in many cases, String does not to be constructed in the
+> So in many cases, a String does not need to be constructed in the
 > [Transaction Block](./../concepts/what-is-a-transaction.md).
 
 <!--

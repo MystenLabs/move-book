@@ -1,7 +1,7 @@
 # The Key Ability
 
 In the [Basic Syntax](./../move-basics) chapter we already covered two out of four abilities -
-[Drop](./drop-ability.md) and [Copy](./copy-ability.md). They affect the behaviour of the value in a
+[Drop](./../move-basics/drop-ability.md) and [Copy](./../move-basics/copy-ability.md). They affect the behaviour of the value in a
 scope and are not directly related to storage. It is time to cover the `key` ability, which allows
 the struct to be stored.
 

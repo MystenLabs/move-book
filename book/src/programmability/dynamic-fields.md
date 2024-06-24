@@ -95,7 +95,7 @@ fields are still stored in the blockchain, but they will never become accessible
 ```
 
 Orphaned objects are not a subject to storage rebate, and the storage fees will remain unclaimed.
-One way to avoid orphaned dynamic fields during unpacking on an object is to return the `UID` and
+One way to avoid orphaned dynamic fields during unpacking of an object is to return the `UID` and
 store it somewhere temporarily until the dynamic fields are removed and handled properly.
 
 ## Custom Type as a Field Name
@@ -121,7 +121,7 @@ As you can see, custom types do work as field names but as long as they can be _
 module, in other words - if they are _internal_ to the module and defined in it. This limitation on
 struct packing can open up new ways in the design of the application.
 
-This approach is used in the [Object Capability]() pattern, where an application can authorize a
+This approach is used in the [Object Capability](./object-capability.md) pattern, where an application can authorize a
 foreign object to perform operations in it while not exposing the capabilities to other modules.
 
 ## Exposing UID

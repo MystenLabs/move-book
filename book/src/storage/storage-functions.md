@@ -74,7 +74,7 @@ module book::transfer_to_sender {
     /// A struct with `key` is an object. The first field is `id: UID`!
     public struct AdminCap has key { id: UID }
 
-    /// Init function is a special function that is called when the module
+    /// `init` function is a special function that is called when the module
     /// is published. It is a good place to create application objects.
     fun init(ctx: &mut TxContext) {
         // Create a new `AdminCap` object, in this scope.
@@ -115,7 +115,7 @@ public struct Gift has key { id: UID }
 public fun mint_and_transfer(
     _: &AdminCap, recipient: address, ctx: &mut TxContext
 ) {
-    let gift = object::new(ctx);
+    let gift = Gift { id: object::new(ctx) };
     transfer::transfer(gift, recipient);
 }
 ```
@@ -138,9 +138,9 @@ A quick recap:
 
 ## Freeze
 
-The `transfer::freeze` function is public function used to put an object into an _immutable_ state.
-Once an object is _frozen_, it can never be changed, and it can be accessed by anyone by immutable
-reference.
+The `transfer::freeze_object` function is public function used to put an object into an _immutable_
+state. Once an object is _frozen_, it can never be changed, and it can be accessed by anyone by
+immutable reference.
 
 The function signature is as follows, only accepts a type with the
 [`key` ability](./key-ability.md). Just like all other storage functions, it takes the object _by
@@ -210,14 +210,14 @@ public fun delete_config(c: Config) {
 
 To summarize:
 
-- `freeze_object` function is used to put an object into an _immutable_ state;
+- `transfer::freeze_object` function is used to put an object into an _immutable_ state;
 - Once an object is _frozen_, it can never be changed, deleted or transferred, and it can be
   accessed by anyone by immutable reference;
 
 ## Owned -> Frozen
 
-Since the `transfer::freeze` signature accepts any type with the `key` ability, it can take an
-object that was created in the same scope, but it can also take an object that was owned by an
+Since the `transfer::freeze_object` signature accepts any type with the `key` ability, it can take
+an object that was created in the same scope, but it can also take an object that was owned by an
 account. This means that the `freeze_object` function can be used to _freeze_ an object that was
 _transferred_ to the sender. For security concerns, we would not want to freeze the `AdminCap`
 object - it would be a security risk to allow access to it to anyone. However, we can freeze the
@@ -234,9 +234,9 @@ public fun freeze_gift(gift: Gift) {
 
 ## Share
 
-The `transfer::share` function is a public function used to put an object into a _shared_ state.
-Once an object is _shared_, it can be accessed by anyone by a mutable reference (hence, immutable
-too). The function signature is as follows, only accepts a type with the
+The `transfer::share_object` function is a public function used to put an object into a _shared_
+state. Once an object is _shared_, it can be accessed by anyone by a mutable reference (hence,
+immutable too). The function signature is as follows, only accepts a type with the
 [`key` ability](./key-ability.md):
 
 ```move
@@ -278,7 +278,7 @@ public fun delete_config(c: Config) {
 }
 ```
 
-The `delete_config` function takes the `Config` object by value and deletes it, and Sui Verifier
+The `delete_config` function takes the `Config` object by value and deletes it, and the Sui Verifier
 would allow this call. However, if the function returned the `Config` object back or attempted to
 `freeze` or `transfer` it, the Sui Verifier would reject the transaction.
 

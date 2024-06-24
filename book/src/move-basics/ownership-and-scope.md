@@ -90,7 +90,7 @@ module book::ownership {
 
 ## Scopes with Blocks
 
-Function has a main scope, and it can also have sub-scopes via the use of blocks. A block is a
+Each function has a main scope, and it can also have sub-scopes via the use of blocks. A block is a
 sequence of statements and expressions, and it has its own scope. Variables defined in a block are
 owned by this block, and when the block ends, the variables are dropped.
 

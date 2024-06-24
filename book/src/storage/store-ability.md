@@ -10,13 +10,13 @@ required for the type to be used as a field in a struct that has the `key` abili
 put it is that the `store` ability allows the value to be _wrapped_ in an object.
 
 > The `store` ability also relaxes restrictions on transfer operations. We talk about it more in the
-> [Restricted and Public Transfer](./restricted-and-public-transfer.md) section.
+> [Restricted and Public Transfer](./transfer-restrictions.md) section.
 
 ## Example
 
-In previous sections we already used types with the `store` ability: all objects must have a `UID`
-field, which we used in examples; we also used the `String` type as a part of the `Config` struct.
-The `String` type also has the `store` ability.
+In previous sections we already used types with the `key` ability: all objects must have a `UID`
+field, which we used in examples; we also used the `Storable` type as a part of the `Config` struct.
+The `Config` type also has the `store` ability.
 
 ```move
 /// This type has the `store` ability.
