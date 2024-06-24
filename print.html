@@ -3327,10 +3327,15 @@ defined in it are dropped or deallocated.</p>
         let a = 1; // a is owned by the `owner` function
     } // a is dropped here
 
+    public fun other() {
+        let b = 2; // b is owned by the `other` function
+    } // b is dropped here
+
     #[test]
     fun test_owner() {
         owner();
-        // a is not valid here
+        other();
+        // a &amp; b is not valid here
     }
 }
 </code></pre>
@@ -4818,7 +4823,7 @@ module book::bank {
 <ul>
 <li>The function has to be named <code>init</code>, be private and have no return values.</li>
 <li>Takes one or two arguments: <a href="programmability/./one-time-witness.html">One Time Witness</a> (optional) and
-<a href="programmability/./transaction-context.html">TxContext</a>. With `TxContext always being the last argument.</li>
+<a href="programmability/./transaction-context.html">TxContext</a>. With <code>TxContext</code> always being the last argument.</li>
 </ul>
 <pre><code class="language-move">fun init(ctx: &amp;mut TxContext) { /* ... */}
 fun init(otw: OTW, ctx: &amp;mut TxContext) { /* ... */ }
@@ -5711,7 +5716,7 @@ has a matching implementation, like the module <code>book::witness_source</code>
     }
 }
 </code></pre>
-<p>The instance of the struct <code>W</code> is passed into the <code>new</code> function to create an <code>Instance&lt;W&gt;</code>, thereby
+<p>The instance of the struct <code>W</code> is passed into the <code>new_instance</code> function to create an <code>Instance&lt;W&gt;</code>, thereby
 proving that the module <code>book::witness_source</code> owns the type <code>W</code>.</p>
 <h2 id="instantiating-a-generic-type"><a class="header" href="#instantiating-a-generic-type">Instantiating a Generic Type</a></h2>
 <p>Witness allows generic types to be instantiated with a concrete type. This is useful for inheriting
@@ -5987,7 +5992,7 @@ public fun admin_action(cap: &amp;Publisher, /* app objects... */ param: u64) {
 }
 </code></pre>
 <p>However, Publisher misses some native properties of <a href="programmability/./capability.html">Capabilities</a>, such as type
-safety and expressiveness. The signature for the <code>admin_function</code> is not very explicit, can be
+safety and expressiveness. The signature for the <code>admin_action</code> is not very explicit, can be
 called by anyone else. And due to <code>Publisher</code> object being standard, there now is a risk of
 unauthorized access if the <code>from_module</code> check is not performed. So it's important to be cautious
 when using the <code>Publisher</code> object as an admin role.</p>
@@ -6383,7 +6388,7 @@ value and encode it as a vector of bytes.</p>
 let bool_bytes = bcs::to_bytes(&amp;true);
 // 0x2a - just a single byte
 let u8_bytes = bcs::to_bytes(&amp;42u8);
-// 0x000000000000002a - 8 bytes
+// 0x2a00000000000000 - 8 bytes
 let u64_bytes = bcs::to_bytes(&amp;42u64);
 // address is a fixed sequence of 32 bytes
 // 0x0000000000000000000000000000000000000000000000000000000000000002

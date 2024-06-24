@@ -325,7 +325,7 @@ let (x, y, z, q) = (0, 1, 2); // ERROR!
 x = 1;
 </code></pre>
 <h3 id="multiple-declarations-with-structs"><a class="header" href="#multiple-declarations-with-structs">Multiple declarations with structs</a></h3>
-<p><code>let</code> can also introduce more than one local at a time when destructuring (or matching against) a
+<p><code>let</code> can also introduce more than one local variables at a time when destructuring (or matching against) a
 struct. In this form, the <code>let</code> creates a set of local variables that are initialized to the values
 of the fields from a struct. The syntax looks like this:</p>
 <pre><code class="language-move">public struct T { f1: u64, f2: u64 }
@@ -338,7 +338,7 @@ of the fields from a struct. The syntax looks like this:</p>
 <pre><code class="language-move">public struct P(u64, u64)
 </code></pre>
 <p>and</p>
-<pre><code class="language-move">let P(local1, local2) = T { f1: 1, f2: 2 };
+<pre><code class="language-move">let P (local1, local2) = P ( 1, 2 );
 // local1: u64
 // local2: u64
 </code></pre>

@@ -225,7 +225,7 @@ has a matching implementation, like the module <code>book::witness_source</code>
     }
 }
 </code></pre>
-<p>The instance of the struct <code>W</code> is passed into the <code>new</code> function to create an <code>Instance&lt;W&gt;</code>, thereby
+<p>The instance of the struct <code>W</code> is passed into the <code>new_instance</code> function to create an <code>Instance&lt;W&gt;</code>, thereby
 proving that the module <code>book::witness_source</code> owns the type <code>W</code>.</p>
 <h2 id="instantiating-a-generic-type"><a class="header" href="#instantiating-a-generic-type">Instantiating a Generic Type</a></h2>
 <p>Witness allows generic types to be instantiated with a concrete type. This is useful for inheriting

@@ -241,7 +241,7 @@ module book::bank {
 <ul>
 <li>The function has to be named <code>init</code>, be private and have no return values.</li>
 <li>Takes one or two arguments: <a href="./one-time-witness.html">One Time Witness</a> (optional) and
-<a href="./transaction-context.html">TxContext</a>. With `TxContext always being the last argument.</li>
+<a href="./transaction-context.html">TxContext</a>. With <code>TxContext</code> always being the last argument.</li>
 </ul>
 <pre><code class="language-move">fun init(ctx: &amp;mut TxContext) { /* ... */}
 fun init(otw: OTW, ctx: &amp;mut TxContext) { /* ... */ }

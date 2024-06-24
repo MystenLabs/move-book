@@ -221,7 +221,7 @@ value and encode it as a vector of bytes.</p>
 let bool_bytes = bcs::to_bytes(&amp;true);
 // 0x2a - just a single byte
 let u8_bytes = bcs::to_bytes(&amp;42u8);
-// 0x000000000000002a - 8 bytes
+// 0x2a00000000000000 - 8 bytes
 let u64_bytes = bcs::to_bytes(&amp;42u64);
 // address is a fixed sequence of 32 bytes
 // 0x0000000000000000000000000000000000000000000000000000000000000002

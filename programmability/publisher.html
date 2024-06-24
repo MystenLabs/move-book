@@ -248,7 +248,7 @@ public fun admin_action(cap: &amp;Publisher, /* app objects... */ param: u64) {
 }
 </code></pre>
 <p>However, Publisher misses some native properties of <a href="./capability.html">Capabilities</a>, such as type
-safety and expressiveness. The signature for the <code>admin_function</code> is not very explicit, can be
+safety and expressiveness. The signature for the <code>admin_action</code> is not very explicit, can be
 called by anyone else. And due to <code>Publisher</code> object being standard, there now is a risk of
 unauthorized access if the <code>from_module</code> check is not performed. So it's important to be cautious
 when using the <code>Publisher</code> object as an admin role.</p>

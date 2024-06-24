@@ -205,10 +205,15 @@ defined in it are dropped or deallocated.</p>
         let a = 1; // a is owned by the `owner` function
     } // a is dropped here
 
+    public fun other() {
+        let b = 2; // b is owned by the `other` function
+    } // b is dropped here
+
     #[test]
     fun test_owner() {
         owner();
-        // a is not valid here
+        other();
+        // a &amp; b is not valid here
     }
 }
 </code></pre>
