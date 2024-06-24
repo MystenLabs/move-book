@@ -25,10 +25,15 @@ module book::ownership {
         let a = 1; // a is owned by the `owner` function
     } // a is dropped here
 
+    public fun other() {
+        let b = 2; // b is owned by the `other` function
+    } // b is dropped here
+
     #[test]
     fun test_owner() {
         owner();
-        // a is not valid here
+        other();
+        // a & b is not valid here
     }
 }
 ```

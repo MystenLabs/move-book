@@ -203,7 +203,7 @@ x = 1;
 
 ### Multiple declarations with structs
 
-`let` can also introduce more than one local at a time when destructuring (or matching against) a
+`let` can also introduce more than one local variables at a time when destructuring (or matching against) a
 struct. In this form, the `let` creates a set of local variables that are initialized to the values
 of the fields from a struct. The syntax looks like this:
 
@@ -226,7 +226,7 @@ public struct P(u64, u64)
 and
 
 ```move
-let P(local1, local2) = T { f1: 1, f2: 2 };
+let P (local1, local2) = P ( 1, 2 );
 // local1: u64
 // local2: u64
 ```

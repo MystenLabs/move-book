@@ -25,7 +25,7 @@ The function is called on publish, if it is present in the module and follows th
 
 - The function has to be named `init`, be private and have no return values.
 - Takes one or two arguments: [One Time Witness](./one-time-witness.md) (optional) and
-  [TxContext](./transaction-context.md). With `TxContext always being the last argument.
+  [TxContext](./transaction-context.md). With `TxContext` always being the last argument.
 
 ```move
 fun init(ctx: &mut TxContext) { /* ... */}
