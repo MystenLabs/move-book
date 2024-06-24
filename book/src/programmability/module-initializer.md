@@ -5,7 +5,7 @@ published. Imagine a simple store module that needs to create the main Store obj
 publication. In Sui, this is achieved by defining an `init` function within the module. This
 function will automatically be called when the module is published.
 
-> All of the module's `init` functions are called during the publishing process. Currently, this
+> All of the modules' `init` functions are called during the publishing process. Currently, this
 > behavior is limited to the publish command and does not extend to
 > [package upgrades](./package-upgrades.md).
 
