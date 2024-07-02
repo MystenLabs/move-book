@@ -25,27 +25,27 @@ outer label to escape both loops at once:
 fun sum_until_threshold(input: &vector<vector<u64>>, threshold: u64): u64 {
     let mut sum = 0;
     let mut i = 0;
-    let input_size = vector::length(vec);
+    let input_size = input.length();
 
     'outer: loop {
         // breaks to outer since it is the closest enclosing loop
         if (i >= input_size) break sum;
 
-        let vec = vector::borrow(input, i);
-        let size = vector::length(vec);
+        let vec = &input[i];
+        let size = vec.length();
         let mut j = 0;
 
         while (j < size) {
-            let v_entry = *vector::borrow(vec, j);
+            let v_entry = vec[j];
             if (sum + v_entry < threshold) {
                 sum = sum + v_entry;
             } else {
                 // the next element we saw would break the threshold,
                 // so we return the current sum
                 break 'outer sum
-            }
+            };
             j = j + 1;
-        }
+        };
         i = i + 1;
     }
 }
@@ -56,18 +56,18 @@ bodies of code. For example, if we were processing a large table where each entr
 that might see us continuing the inner or outer loop, we could express that code using labels:
 
 ```move
-'outer: loop {
+let x = 'outer: loop {
     ...
     'inner: while (cond) {
         ...
-        if (cond0) { break 'outer value }
+        if (cond0) { break 'outer value };
         ...
         if (cond1) { continue 'inner }
         else if (cond2) { continue 'outer }
         ...
     }
-    ...
-}
+        ...
+};
 ```
 
 ## Labeled Blocks
