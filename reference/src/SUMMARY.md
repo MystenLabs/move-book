@@ -22,7 +22,7 @@
   - [Conditional Expressions](control-flow/conditionals.md)
   - [Loops](control-flow/loops.md)
   - [Labeled Control FLow](control-flow/labeled-control-flow.md)
-  - [Patterm Matching](control-flow/pattern-matching.md)
+  - [Pattern Matching](control-flow/pattern-matching.md)
 - [Functions](functions.md)
 - [Structs](structs.md)
 - [Enums](enums.md)

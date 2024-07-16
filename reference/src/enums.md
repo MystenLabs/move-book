@@ -194,7 +194,7 @@ You can pattern match on Move values by value, immutable reference, and mutable 
 pattern matching by value, the value is moved into the match arm. When pattern matching by
 reference, the value is borrowed into the match arm (either immutably or mutably). We'll go through
 a brief description of pattern matching using `match` here, but for more information on pattern
-matching using `match` in Move see the [Pattern Matching](./control-flow/pattern_matching.md)
+matching using `match` in Move see the [Pattern Matching](./control-flow/pattern-matching.md)
 section.
 
 A `match` statement is used to pattern match on a Move value and consists of a number of _match
@@ -259,14 +259,14 @@ module a::m {
     }
 
     public fun incr_enum_variant1(simple_enum: &mut SimpleEnum) {
-        match simple_enum {
+        match (simple_enum) {
             SimpleEnum::Variant1(mut value) => *value += 1,
             _ => (),
         }
     }
 
     public fun incr_enum_variant2(simple_enum: &mut SimpleEnum) {
-        match simple_enum {
+        match (simple_enum) {
             SimpleEnum::Variant2(mut value) => *value += 1,
             _ => (),
         }
@@ -299,8 +299,8 @@ module a::m {
     public enum X { Variant { x: u64 } }
 
     public fun bad(x: X) {
-        match x {
-            _ => ()
+        match (x) {
+            _ => (),
            // ^ ERROR! value of type `X` is not consumed or destructured in this match arm
         }
     }
@@ -315,9 +315,9 @@ module a::m {
     public enum X { Variant { x: u64 } }
 
     public fun good(x: X) {
-        match x {
+        match (x) {
             // OK! Compiles since the value is destructured
-            X::Variant { x: _ } => ()
+            X::Variant { x: _ } => (),
         }
     }
 }
