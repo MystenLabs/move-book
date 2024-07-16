@@ -217,7 +217,7 @@ match (1) {
 Similarly, the following would also result in a type error because `MyEnum` and `MyStruct` are
 different types:
 
-```
+```move
 match (MyStruct { x: 0, y: 0 }) {
     MyEnum::Variant(..) => 1,
     // TYPE ERROR: expected type MyEnum, found MyStruct
