@@ -422,7 +422,7 @@ hljs.registerLanguage('move', function(hljs) {
   let KEYWORDS = [
     ...'public native friend entry macro'.split(' '),
     ...'let mut abort'.split(' '),
-    ...'if else while loop break continue'.split(' '),
+    ...'if else while loop break continue match'.split(' '),
   ];
 
   return {
@@ -497,8 +497,8 @@ hljs.registerLanguage('move', function(hljs) {
       {
         // struct definition
         scope: 'struct',
-        begin: 'struct',
-        keywords: 'struct',
+        begin: '\\b(struct|enum)\\b',
+        keywords: ['struct', 'enum'],
         end: /(?=[\)}])/,
         relevance: 10,
         contains: [
@@ -613,7 +613,7 @@ hljs.registerLanguage('move', function(hljs) {
       {
         // function call
         scope: 'title.function.invoke',
-        match: /\b[a-z_][a-z_0-9]*(?=\()/,
+        match: /\b[a-z_][a-z_0-9]*(\!?)(?=\()/,
       }
     ]
   };
