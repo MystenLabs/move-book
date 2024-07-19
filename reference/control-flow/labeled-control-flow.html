@@ -185,10 +185,14 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="labeled-control-flow"><a class="header" href="#labeled-control-flow">Labeled Control Flow</a></h1>
-<p>Move supports labeled control flow, allowing you to define and transfer control to specific labels
-in a function. For example, we can nest two loops and use <code>break</code> and <code>continue</code> with those labels
-to precisely specify control flow. You can prefix any <code>loop</code> or <code>while</code> form with a <code>'label:</code> form
-to allow breaking or continuing directly there.</p>
+<p>Move supports labeled control flow when writing both loops and blocks of code, allowing you
+to <code>break</code> and <code>continue</code> loops and <code>return</code> from blocks (which can be particularly helpful in the
+presence of macros).</p>
+<h2 id="loops"><a class="header" href="#loops">Loops</a></h2>
+<p>Loops allow you to define and transfer control to specific labels in a function. For example, we can
+nest two loops and use <code>break</code> and <code>continue</code> with those labels to precisely specify control flow.
+You can prefix any <code>loop</code> or <code>while</code> form with a <code>'label:</code> form to allow breaking or continuing
+directly there.</p>
 <p>To demonstrate this behavior, consider a function that takes nested vectors of numbers (i.e.,
 <code>vector&lt;vector&lt;u64&gt;&gt;</code>) to sum against some threshold, which behaves as follows:</p>
 <ul>
@@ -201,18 +205,18 @@ outer label to escape both loops at once:</p>
 <pre><code class="language-move">fun sum_until_threshold(input: &amp;vector&lt;vector&lt;u64&gt;&gt;, threshold: u64): u64 {
     let mut sum = 0;
     let mut i = 0;
-    let input_size = vector::length(vec);
+    let input_size = input.length();
 
     'outer: loop {
         // breaks to outer since it is the closest enclosing loop
         if (i &gt;= input_size) break sum;
 
-        let vec = vector::borrow(input, i);
-        let size = vector::length(vec);
+        let vec = &amp;input[i];
+        let size = vec.length();
         let mut j = 0;
 
         while (j &lt; size) {
-            let v_entry = *vector::borrow(vec, j);
+            let v_entry = vec[j];
             if (sum + v_entry &lt; threshold) {
                 sum = sum + v_entry;
             } else {
@@ -229,17 +233,78 @@ outer label to escape both loops at once:</p>
 <p>These sorts of labels can also be used with a nested loop form, providing precise control in larger
 bodies of code. For example, if we were processing a large table where each entry required iteration
 that might see us continuing the inner or outer loop, we could express that code using labels:</p>
-<pre><code class="language-move">'outer: loop {
+<pre><code class="language-move">let x = 'outer: loop {
     ...
     'inner: while (cond) {
         ...
         if (cond0) { break 'outer value };
         ...
         if (cond1) { continue 'inner }
-        else if (cond2) { continue 'outer };
+        else if (cond2) { continue 'outer }
         ...
     }
-    ...
+        ...
+};
+</code></pre>
+<h2 id="labeled-blocks"><a class="header" href="#labeled-blocks">Labeled Blocks</a></h2>
+<p>Labeled blocks allow you to write Move programs that contain intra-function non-local control flow,
+including inside of macro lambdas and returning values:</p>
+<pre><code class="language-move">fun named_return(n: u64): vector&lt;u8&gt; {
+    let x = 'a: {
+        if (n % 2 == 0) {
+            return 'a b&quot;even&quot;
+        };
+        b&quot;odd&quot;
+    };
+    x
+}
+</code></pre>
+<p>In this simple example, the program checks if the input <code>n</code> is even. If it is, the program leaves
+the block labeled <code>'a:</code> with the value <code>b&quot;even&quot;</code>. If not, the code continues, ending the block
+labeled <code>'a:</code> with the value <code>b&quot;odd&quot;</code>. At the end, we set <code>x</code> to the value and then return it.</p>
+<p>This control flow feature works across macro bodies as well. For example, suppose we wanted to write
+a function to find the first even number in a vector, and that we have some macro <code>for_ref</code> that
+iterates the vector elements in a loop:</p>
+<pre><code class="language-move">macro fun for_ref&lt;$T&gt;($vs: &amp;vector&lt;$T&gt;, $f: |&amp;$T|) {
+    let vs = $vs;
+    let mut i = 0;
+    let end = vs.length();
+    while (i &lt; end) {
+        $f(vs.borrow(i));
+        i = i + 1;
+    }
+}
+</code></pre>
+<p>Using <code>for_ref</code> and a label, we can write a lambda expression to pass <code>for_ref</code> that will escape the
+loop, returning the first even number it finds:</p>
+<pre><code class="language-move">fun find_first_even(vs: vector&lt;u64&gt;): Option&lt;u64&gt; {
+    'result: {
+        for_ref!(&amp;vs, |n| if (*n % 2 == 0) { return 'result option::some(*n)});
+        option::none()
+    }
+}
+</code></pre>
+<p>This function will iterate <code>vs</code> until it finds an even number, and return that (or return
+<code>option::none()</code> if no even number exists). This makes named labels a powerful tool for interacting
+with control flow macros such as <code>for!</code>, allowing you to customize iteration behavior in those
+contexts.</p>
+<h2 id="restrictions"><a class="header" href="#restrictions">Restrictions</a></h2>
+<p>To clarify program behavior, you may only use <code>break</code> and <code>continue</code> with loop labels, while
+<code>return</code> will only work with block labels. To this end, the following programs produce errors:</p>
+<pre><code>fun bad_loop() {
+    'name: loop {
+        return 'name 5
+            // ^^^^^ Invalid usage of 'return' with a loop block label
+    }
+}
+
+fun bad_block() {
+    'name: {
+        continue 'name;
+              // ^^^^^ Invalid usage of 'break' with a loop block label
+        break 'name;
+           // ^^^^^ Invalid usage of 'break' with a loop block label
+    }
 }
 </code></pre>
 
