@@ -9,8 +9,8 @@ These expression substitution mechanics make `macro` functions similar
 [to macros found in other programming languages](<https://en.wikipedia.org/wiki/Macro_(computer_science)>);
 however, they are more constrained in Move than you might expect from other languages. The
 parameters and return values of `macro` functions are still typed--though this can be partially
-relaxed with the [`_` type](TODO). The upside of this restriction however, is that `macro` functions
-can be used anywhere a normal function can be used, which is notably helpful with
+relaxed with the [`_` type](../generics.md#_-type). The upside of this restriction however, is that
+`macro` functions can be used anywhere a normal function can be used, which is notably helpful with
 [method syntax](../method-syntax.md).
 
 A more extensive
@@ -43,10 +43,11 @@ macro fun map<$T, $U>($v: vector<$T>, $f: |$T| -> $U): vector<$U> {
 }
 ```
 
-The `$` is there to indicate that these do not behave like their normal, non-macro counterparts. For
-type parameters, they can be instantiated with any type (even a reference type `&` or `&mut`), and
-they will satisfy any constraint. Similarly for parameters, they will not be evaluated eagerly, and
-instead the argument expression will be substituted at each usage.
+The `$` is there to indicate that the parameters (both type and value parameters) do not behave like
+their normal, non-macro counterparts. For type parameters, they can be instantiated with any type
+(even a reference type `&` or `&mut`), and they will satisfy any constraint. Similarly for
+parameters, they will not be evaluated eagerly, and instead the argument expression will be
+substituted at each usage.
 
 ## Lambdas
 
