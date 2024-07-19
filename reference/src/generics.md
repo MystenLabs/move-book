@@ -163,8 +163,9 @@ let bar = Bar<u64, _> { x: 0, y: vector[b"hello"] };
 //                 ^ vector<u8> is inferred
 ```
 
-The placeholder `_` cannot be used in any signatures, only in expressions. This means function
-signatures, constant signatures, and datatype fields cannot use the `_` type.
+The placeholder `_` may only appear in expressions and macro function definitions, not signatures.
+This means you cannot use `_` as pat of the definition of a function
+parameter, function return type, constant definition type, and datatype field.
 
 ## Integers
 

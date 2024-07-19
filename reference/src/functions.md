@@ -149,12 +149,12 @@ module a::m_test {
 
 ### `macro` modifier
 
-Unlike normal functions, `macro` functions do not exist at runtime. Instead, the function is
-substituted and inlined at each call site during compilation. Leveraging this, `macro` functions
-have additional functionality that is not available to normal functions, namely the ability to
-create higher-order functions with lambda arguments. These lambda arguments allow for parts of the
-function's body to be passed as an argument by the caller. For example, the following is a simple
-loop macro, where the body of the loop is passed as a lambda:
+Unlike normal functions, `macro` functions do not exist at runtime. Instead, these functions are
+substituted inline at each call site during compilation. These `macro` functions leverage this
+compilation process to provide functionality beyond standard functions, such as accepting
+higher-order _lambda_-style functions as arguments. These lambda arguments, also expanded
+during compilation, allow you to pass parts of the function body to the macro as  arguments.
+For instance, consider the following simple loop macro, where the loop body is supplied as a lambda:
 
 ```move
 macro fun ntimes($n: u64, $body: |u64| -> ()) {
