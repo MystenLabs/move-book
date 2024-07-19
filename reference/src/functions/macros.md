@@ -1,16 +1,16 @@
 # Macro Functions
 
-Macro functions are a way of defining functions that are expanded during compilation at each call site.
-The arguments of the macro are not evaluated eagerly like a normal function, and instead are
+Macro functions are a way of defining functions that are expanded during compilation at each call
+site. The arguments of the macro are not evaluated eagerly like a normal function, and instead are
 substituted by expression. In addition, the caller can supply code to the macro via
 [lambdas](#lambdas).
 
 These expression substitution mechanics make `macro` functions similar
 [to macros found in other programming languages](<https://en.wikipedia.org/wiki/Macro_(computer_science)>);
-however, they are more constrained in Move than you might expect from other languages. The parameters
-and return values of `macro` functions are still typed--though this can be partially relaxed with
-the [`_` type](TODO). The upside of this restriction however, is that `macro` functions can be used
-anywhere a normal function can be used, which is notably helpful with
+however, they are more constrained in Move than you might expect from other languages. The
+parameters and return values of `macro` functions are still typed--though this can be partially
+relaxed with the [`_` type](TODO). The upside of this restriction however, is that `macro` functions
+can be used anywhere a normal function can be used, which is notably helpful with
 [method syntax](../method-syntax.md).
 
 A more extensive
@@ -50,9 +50,9 @@ instead the argument expression will be substituted at each usage.
 
 ## Lambdas
 
-Lambdas are a new type of expression that can only be used with `macro`s. These are used to pass code
-from the caller into the body of the `macro`. While the substition is done at compile time, they are
-used similarly to [anonymous functions](https://en.wikipedia.org/wiki/Anonymous_function),
+Lambdas are a new type of expression that can only be used with `macro`s. These are used to pass
+code from the caller into the body of the `macro`. While the substition is done at compile time,
+they are used similarly to [anonymous functions](https://en.wikipedia.org/wiki/Anonymous_function),
 [lambdas](https://en.wikipedia.org/wiki/Lambda_calculus), or
 [closures](<https://en.wikipedia.org/wiki/Closure_(computer_programming)>) in other languages.
 
@@ -124,6 +124,7 @@ to a variable. For example, the following is code will produce an error:
 let f = |x| 2 * x;
 //      ^^^^^^^^^ Error! Lambdas must be used directly in 'macro' calls
 let doubled: vector<u64> = map!(vector[1, 2, 3], f);
+```
 
 ## Typing
 
@@ -332,9 +333,9 @@ In the example above, the `dup` macro had a local variable `a` that was used to 
 `$x`. You might ask, what would happen if the variable was instead named `x`? Would that conflict
 with the `x` in the lambda?
 
-The short answer is, no. `macro` functions are [hygienic](https://en.wikipedia.org/wiki/Hygienic_macro),
-meaning that the expansion of `macro`s and lambdas will not accidentally capture variables from
-another scope.
+The short answer is, no. `macro` functions are
+[hygienic](https://en.wikipedia.org/wiki/Hygienic_macro), meaning that the expansion of `macro`s and
+lambdas will not accidentally capture variables from another scope.
 
 The compiler does this by associating a unique number with each scope. When the `macro` is expanded,
 the macro body gets its own scope. Additionally, the arguments are rescoped on each usage.
