@@ -459,9 +459,8 @@ let result: vector<u64> = vector['a: {
 }];
 ```
 
-Where `return 'a 0` will return to the block `'a: { ... }` and not to the caller's body.
-
-<!-- TODO link to block control flow -->
+Where `return 'a 0` will return to the block `'a: { ... }` and not to the caller's body. See the
+section on [labeled control flow](../control-flow/labeled-control-flow.md) for more details.
 
 Similarly, `return` in a lambda will return from the lambda, not from the `macro` body and not from
 the outer function.
@@ -489,6 +488,71 @@ let result = {
     }
 };
 ```
+
+This can often be helpful when using "loop"-like macros to break early. For example in the
+`vector::any` macro
+
+```move
+public macro fun any<$T>($v: &vector<$T>, $f: |&$T| -> bool): bool {
+    let v = $v;
+    'any: {
+        v.do_ref!(|e| if ($f(e)) return 'any true);
+        false
+    }
+}
+```
+
+The `return 'any true` exits from the "loop" early when the condition is met. Otherwise, the macro
+"returns" `false`.
+
+### Method Syntax
+
+When applicable, `macro` functions can be called using [method syntax](../method-syntax.md). When
+using method syntax, the evaluation of the arguments will change in that the first argument (the
+"receiver" of the method) will be evaluated outside of the macro expansion. This example is
+contrived, but will concisely demonstrate the behavior.
+
+```move
+public struct S() has copy, drop;
+public fun foo(): S { abort 0 }
+public macro fun maybe_s($s: S, $cond: bool): S {
+    if ($cond) $s
+    else S()
+}
+```
+
+Even though `foo()` will abort, it's return type can be used to start a method call.
+
+`$s` will not be evaluated if `$cond` is `false`. Son under a normal non-method call, an argument of
+`foo()` would not be evaluated and would not abort.
+
+```move
+maybe_s!(foo(), false) // does not abort
+```
+
+It becomes more clear as to why it does not abort when looking at the expanded form
+
+```move
+if (false) foo()
+else S()
+```
+
+However, when using method syntax, the first argument is evaluated before the macro is expanded.
+
+```move
+foo().maybe_s!(false) // aborts
+```
+
+We can see this more clearly when looking the expanded form
+
+```move
+let tmp = foo(); // aborts
+if (false) tmp
+else S()
+```
+
+Conceptually, the receiver for a method call is bound to a temporary variable before the macro is
+expanded, which forces the evaluation and thus the abort.
 
 ### Parameter Limitations
 
