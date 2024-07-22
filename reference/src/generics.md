@@ -152,6 +152,21 @@ module a::m {
 }
 ```
 
+### `_` Type
+
+In some cases, you might want to explicitly annotate some of the type arguments, but let the
+compiler infer the others. The `_` type serves as such a placeholder for the compiler to infer the
+type.
+
+```move
+let bar = Bar<u64, _> { x: 0, y: vector[b"hello"] };
+//                 ^ vector<u8> is inferred
+```
+
+The placeholder `_` may only appear in expressions and macro function definitions, not signatures.
+This means you cannot use `_` as part of the definition of a function parameter, function return
+type, constant definition type, and datatype field.
+
 ## Integers
 
 In Move, the integer types `u8`, `u16`, `u32`, `u64`, `u128`, and `u256` are all distinct types.
