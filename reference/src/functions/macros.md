@@ -521,10 +521,11 @@ public macro fun maybe_s($s: S, $cond: bool): S {
 }
 ```
 
-Even though `foo()` will abort, it's return type can be used to start a method call.
+Even though `foo()` will abort, its return type can be used to start a method call.
 
-`$s` will not be evaluated if `$cond` is `false`. Son under a normal non-method call, an argument of
-`foo()` would not be evaluated and would not abort.
+`$s` will not be evaluated if `$cond` is `false`, and under a normal non-method call, an argument of
+`foo()` would not be evaluated and would not abort. The following example demonstrates `$s` not
+being evaluated with an argument of `foo()`.
 
 ```move
 maybe_s!(foo(), false) // does not abort
@@ -537,7 +538,8 @@ if (false) foo()
 else S()
 ```
 
-However, when using method syntax, the first argument is evaluated before the macro is expanded.
+However, when using method syntax, the first argument is evaluated before the macro is expanded. So
+the same argument of `foo()` for `$s` will now be evaluated and will abort.
 
 ```move
 foo().maybe_s!(false) // aborts
