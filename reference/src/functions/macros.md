@@ -20,7 +20,8 @@ may come in the future.
 ## Syntax
 
 `macro` functions have a similar syntax to normal functions. However, all type parameter names and
-all parameter names must start with a `$`.
+all parameter names must start with a `$`. Note that `_` can still be used by itself, but not as a
+prefix, and `$_` must be used instead.
 
 ```text
 <visibility>? macro fun <identifier><[$type_parameters: constraint],*>([$identifier: type],*): <return_type> <function_body>
@@ -489,8 +490,8 @@ let result = {
 };
 ```
 
-This can often be helpful when using "loop"-like macros to break early. For example in the
-`vector::any` macro
+In addition to returning from the lambda, a label can be used to return to the outer function. In
+the `vector::any` macro, a `return` with a label is used to return from the entire `macro` early
 
 ```move
 public macro fun any<$T>($v: &vector<$T>, $f: |&$T| -> bool): bool {
@@ -567,9 +568,9 @@ macro fun no($x: _): _ {
 }
 ```
 
-The reason is that if the argument if `$x` was not a reference, it would be borrowed first, which
-would could re-interpret the argument. To get around this limitation, you should bind the argument
-to a local variable.
+The reason is that if the argument `$x` was not a reference, it would be borrowed first, which would
+could re-interpret the argument. To get around this limitation, you should bind the argument to a
+local variable.
 
 ```move
 macro fun yes($x: _): _ {

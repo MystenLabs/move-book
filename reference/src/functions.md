@@ -152,9 +152,9 @@ module a::m_test {
 Unlike normal functions, `macro` functions do not exist at runtime. Instead, these functions are
 substituted inline at each call site during compilation. These `macro` functions leverage this
 compilation process to provide functionality beyond standard functions, such as accepting
-higher-order _lambda_-style functions as arguments. These lambda arguments, also expanded
-during compilation, allow you to pass parts of the function body to the macro as  arguments.
-For instance, consider the following simple loop macro, where the loop body is supplied as a lambda:
+higher-order _lambda_-style functions as arguments. These lambda arguments, also expanded during
+compilation, allow you to pass parts of the function body to the macro as arguments. For instance,
+consider the following simple loop macro, where the loop body is supplied as a lambda:
 
 ```move
 macro fun ntimes($n: u64, $body: |u64| -> ()) {
@@ -168,7 +168,7 @@ macro fun ntimes($n: u64, $body: |u64| -> ()) {
 
 fun example() {
     let mut sum = 0;
-    ntimes!(10, |i| sum = sum + i );
+    ntimes!(10, |x| sum = sum + x );
 }
 ```
 
