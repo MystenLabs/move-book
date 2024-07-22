@@ -2692,7 +2692,7 @@ can be reused, either being called from other functions or as entry points for e
 <h2 id="declaration"><a class="header" href="#declaration">Declaration</a></h2>
 <p>Functions are declared with the <code>fun</code> keyword followed by the function name, type parameters,
 parameters, a return type, and finally the function body.</p>
-<pre><code class="language-text">&lt;visibility&gt;? &lt;entry&gt;? fun &lt;identifier&gt;&lt;[type_parameters: constraint],*&gt;([identifier: type],*): &lt;return_type&gt; &lt;function_body&gt;
+<pre><code class="language-text">&lt;visibility&gt;? &lt;entry&gt;? &lt;macro&gt;? fun &lt;identifier&gt;&lt;[type_parameters: constraint],*&gt;([identifier: type],*): &lt;return_type&gt; &lt;function_body&gt;
 </code></pre>
 <p>For example</p>
 <pre><code class="language-move">fun foo&lt;T1, T2&gt;(x: u64, y: T1, z: T2): (T2, T1, u64) { (z, y, x) }
@@ -2800,6 +2800,28 @@ module a::m_test {
     fun my_test_helper(): u64 { a::m::foo() } // valid!
 }
 </code></pre>
+<h3 id="macro-modifier"><a class="header" href="#macro-modifier"><code>macro</code> modifier</a></h3>
+<p>Unlike normal functions, <code>macro</code> functions do not exist at runtime. Instead, these functions are
+substituted inline at each call site during compilation. These <code>macro</code> functions leverage this
+compilation process to provide functionality beyond standard functions, such as accepting
+higher-order <em>lambda</em>-style functions as arguments. These lambda arguments, also expanded during
+compilation, allow you to pass parts of the function body to the macro as arguments. For instance,
+consider the following simple loop macro, where the loop body is supplied as a lambda:</p>
+<pre><code class="language-move">macro fun ntimes($n: u64, $body: |u64| -&gt; ()) {
+    let n = $n;
+    let mut i = 0;
+    while (i &lt; n) {
+        $body(i);
+        i = i + 1;
+    }
+}
+
+fun example() {
+    let mut sum = 0;
+    ntimes!(10, |x| sum = sum + x );
+}
+</code></pre>
+<p>See the chapter on <a href="./macros.html">macros</a> for more information.</p>
 <h3 id="name"><a class="header" href="#name">Name</a></h3>
 <p>Function names can start with letters <code>a</code> to <code>z</code>. After the first character, function names can
 contain underscores <code>_</code>, letters <code>a</code> to <code>z</code>, letters <code>A</code> to <code>Z</code>, or digits <code>0</code> to <code>9</code>.</p>
@@ -3815,6 +3837,16 @@ type inference cannot infer the type.</p>
     }
 }
 </code></pre>
+<h3 id="_-type"><a class="header" href="#_-type"><code>_</code> Type</a></h3>
+<p>In some cases, you might want to explicitly annotate some of the type arguments, but let the
+compiler infer the others. The <code>_</code> type serves as such a placeholder for the compiler to infer the
+type.</p>
+<pre><code class="language-move">let bar = Bar&lt;u64, _&gt; { x: 0, y: vector[b&quot;hello&quot;] };
+//                 ^ vector&lt;u8&gt; is inferred
+</code></pre>
+<p>The placeholder <code>_</code> may only appear in expressions and macro function definitions, not signatures.
+This means you cannot use <code>_</code> as part of the definition of a function parameter, function return
+type, constant definition type, and datatype field.</p>
 <h2 id="integers-1"><a class="header" href="#integers-1">Integers</a></h2>
 <p>In Move, the integer types <code>u8</code>, <code>u16</code>, <code>u32</code>, <code>u64</code>, <code>u128</code>, and <code>u256</code> are all distinct types.
 However, each one of these types can be created with the same numerical value syntax. In other

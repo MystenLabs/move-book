@@ -190,7 +190,7 @@ can be reused, either being called from other functions or as entry points for e
 <h2 id="declaration"><a class="header" href="#declaration">Declaration</a></h2>
 <p>Functions are declared with the <code>fun</code> keyword followed by the function name, type parameters,
 parameters, a return type, and finally the function body.</p>
-<pre><code class="language-text">&lt;visibility&gt;? &lt;entry&gt;? fun &lt;identifier&gt;&lt;[type_parameters: constraint],*&gt;([identifier: type],*): &lt;return_type&gt; &lt;function_body&gt;
+<pre><code class="language-text">&lt;visibility&gt;? &lt;entry&gt;? &lt;macro&gt;? fun &lt;identifier&gt;&lt;[type_parameters: constraint],*&gt;([identifier: type],*): &lt;return_type&gt; &lt;function_body&gt;
 </code></pre>
 <p>For example</p>
 <pre><code class="language-move">fun foo&lt;T1, T2&gt;(x: u64, y: T1, z: T2): (T2, T1, u64) { (z, y, x) }
@@ -298,6 +298,28 @@ module a::m_test {
     fun my_test_helper(): u64 { a::m::foo() } // valid!
 }
 </code></pre>
+<h3 id="macro-modifier"><a class="header" href="#macro-modifier"><code>macro</code> modifier</a></h3>
+<p>Unlike normal functions, <code>macro</code> functions do not exist at runtime. Instead, these functions are
+substituted inline at each call site during compilation. These <code>macro</code> functions leverage this
+compilation process to provide functionality beyond standard functions, such as accepting
+higher-order <em>lambda</em>-style functions as arguments. These lambda arguments, also expanded during
+compilation, allow you to pass parts of the function body to the macro as arguments. For instance,
+consider the following simple loop macro, where the loop body is supplied as a lambda:</p>
+<pre><code class="language-move">macro fun ntimes($n: u64, $body: |u64| -&gt; ()) {
+    let n = $n;
+    let mut i = 0;
+    while (i &lt; n) {
+        $body(i);
+        i = i + 1;
+    }
+}
+
+fun example() {
+    let mut sum = 0;
+    ntimes!(10, |x| sum = sum + x );
+}
+</code></pre>
+<p>See the chapter on <a href="./macros.html">macros</a> for more information.</p>
 <h3 id="name"><a class="header" href="#name">Name</a></h3>
 <p>Function names can start with letters <code>a</code> to <code>z</code>. After the first character, function names can
 contain underscores <code>_</code>, letters <code>a</code> to <code>z</code>, letters <code>A</code> to <code>Z</code>, or digits <code>0</code> to <code>9</code>.</p>

@@ -294,6 +294,16 @@ type inference cannot infer the type.</p>
     }
 }
 </code></pre>
+<h3 id="_-type"><a class="header" href="#_-type"><code>_</code> Type</a></h3>
+<p>In some cases, you might want to explicitly annotate some of the type arguments, but let the
+compiler infer the others. The <code>_</code> type serves as such a placeholder for the compiler to infer the
+type.</p>
+<pre><code class="language-move">let bar = Bar&lt;u64, _&gt; { x: 0, y: vector[b&quot;hello&quot;] };
+//                 ^ vector&lt;u8&gt; is inferred
+</code></pre>
+<p>The placeholder <code>_</code> may only appear in expressions and macro function definitions, not signatures.
+This means you cannot use <code>_</code> as part of the definition of a function parameter, function return
+type, constant definition type, and datatype field.</p>
 <h2 id="integers"><a class="header" href="#integers">Integers</a></h2>
 <p>In Move, the integer types <code>u8</code>, <code>u16</code>, <code>u32</code>, <code>u64</code>, <code>u128</code>, and <code>u256</code> are all distinct types.
 However, each one of these types can be created with the same numerical value syntax. In other
