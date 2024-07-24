@@ -20,19 +20,14 @@ calls, and none of the modules can keep it.
 A hot potato can be any struct with no abilities. For example, the following struct is a hot potato:
 
 ```move
-public struct Request {}
+{{#include ../../../packages/samples/sources/programmability/hot-potato-pattern.move:definition}}
 ```
 
 Because the `Request` has no abilities and cannot be stored or ignored, the module must provide a
 function to unpack it. For example:
 
 ```move
-/// Constructs a new `Request`
-public fun new_request(): Request { Request {} }
-
-/// Unpacks the `Request`. Due to the nature of the hot potato, this function
-/// must be called to avoid aborting the transaction.
-public fun confirm_request(request: Request) {}
+{{#include ../../../packages/samples/sources/programmability/hot-potato-pattern.move:new_request}}
 ```
 
 ## Example Usage
@@ -43,41 +38,7 @@ borrowed object, and the ID of the container, ensuring that the borrowed value w
 another and is returned to the correct container.
 
 ```move
-module book::container_borrow {
-    const EContainerEmpty: u64 = 0;
-
-    /// A generic container for any Object with `key + store`. The Option type
-    /// is used to allow taking and putting the value back.
-    public struct Container<T: key + store> has key {
-        id: UID,
-        value: Option<T>,
-    }
-
-    /// A Hot Potato struct that is used to ensure the borrowed value is returned.
-    public struct Promise {
-        /// The ID of the borrowed object. Ensures that there wasn't a value swap.
-        id: ID,
-        /// The ID of the container. Ensures that the borrowed value is returned to
-        /// the correct container.
-        container_id: ID,
-    }
-
-    /// A module that allows borrowing the value from the container.
-    public fun borrow_val<T>(container: &mut Container<T>): (T, Promise) {
-        assert!(container.value.is_some(), EContainerEmpty);
-        let value = container.value.extract();
-        let id = object::id(&value);
-        (value, Promise { id, container_id: object::id(container) })
-    }
-
-    /// Put the taken item back into the container.
-    public fun return_val<T>(container: &mut Container<T>, value: T, promise: Promise) {
-        let Promise { id, container_id } = promise;
-        assert!(object::id(&container) == container_id);
-        assert!(object::id(&value) == id);
-        container.value.fill(value);
-    }
-}
+{{#include ../../../packages/samples/sources/programmability/hot-potato-pattern.move:container_borrow}}
 ```
 
 ## Applications
@@ -101,12 +62,6 @@ returned to the lender.
 An example usage of this pattern may look like this:
 
 ```move
-# #[test]
-# fun perform_flash_loan() {
-#    let lender = new_lender();
-#    let borrower = new_borrower();
-#    let amount = 100;
-
 // Borrow the funds from the lender.
 let (asset_a, potato) = lender.borrow(amount);
 
@@ -118,7 +73,6 @@ let proceeds = another_contract::do_something(asset_b);
 let pay_back = proceeds.split(amount, ctx);
 lender.repay(pay_back, potato);
 transfer::public_transfer(proceeds, ctx.sender());
-# }
 ```
 
 ### Variable-path execution
@@ -130,37 +84,7 @@ some shops work - you take the item from the shelf, and then you go to the cashi
 it.
 
 ```move
-# module book::phone_market {
-
-/// A `Phone`. Can be purchased in a store.
-public struct Phone has key, store { id: UID }
-
-/// A ticket that must be paid to purchase the `Phone`.
-public struct Ticket { amount: u64 }
-
-/// Return the `Phone` and the `Ticket` that must be paid to purchase it.
-public fun purchase_phone(ctx: &mut TxContext): (Phone, Ticket) {
-    (
-        Phone { id: object::new(ctx) },
-        Ticket { amount: 100 }
-    )
-}
-
-/// The customer may pay for the `Phone` with `BonusPoints` or `SUI`.
-public fun pay_in_bonus_points(ticket: Ticket, payment: Coin<BONUS>) {
-    let Ticket { amount } = ticket;
-    assert!(bonus_points.value() == amount);
-    abort 0 // omitting the rest of the function
-}
-
-/// The customer may pay for the `Phone` with `USD`.
-public fun pay_in_usd(ticket: Ticket, payment: Coin<USD>) {
-    let Ticket { amount } = ticket;
-    assert!(usd.value() == amount);
-    abort 0 // omitting the rest of the function
-}
-
-# }
+{{#include ../../../packages/samples/sources/programmability/hot-potato-pattern.move:phone_shop}}
 ```
 
 This decoupling technique allows separating the purchase logic from the payment logic, making the
@@ -175,7 +99,7 @@ define ways to interact with the hot potato, for example, stamp it with a type s
 extract some information from it. This way, the hot potato can be passed between different modules,
 and even different packages within the same transaction.
 
-The most important compositional pattern is the [Request Patten](./request-pattern.md), which we will
+The most important compositional pattern is the [Request Pattern](./request-pattern.md), which we will
 cover in the next section.
 
 ## Summary
