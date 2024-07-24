@@ -165,7 +165,7 @@ public fun pay_in_usd(ticket: Ticket, payment: Coin<USD>) {
 
 This decoupling technique allows separating the purchase logic from the payment logic, making the
 code more modular and easier to maintain. The `Ticket` could be split into its own module, providing
-a basic interface for the payment, and the store implementation could be extended to support other
+a basic interface for the payment, and the shop implementation could be extended to support other
 goods without changing the payment logic.
 
 ### Compositional Patterns
