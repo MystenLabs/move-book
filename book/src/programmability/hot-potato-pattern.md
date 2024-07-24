@@ -108,15 +108,15 @@ An example usage of this pattern may look like this:
 #    let amount = 100;
 
 // Borrow the funds from the lender.
-let (asset_a, potato) = loan::borrow(&mut lender, amount);
+let (asset_a, potato) = lender.borrow(amount);
 
 // Perform some operations with the borrowed funds.
-let asset_b = dex::trade(&mut dex, loan);
+let asset_b = dex.trade(loan);
 let proceeds = another_contract::do_something(asset_b);
 
 // Keep the commission and return the rest to the lender.
-let pay_back = coin::split(proceeds, amount);
-loan::repay(&mut lender, pay_back, potato);
+let pay_back = proceeds.split(amount, ctx);
+lender.repay(pay_back, potato);
 transfer::public_transfer(proceeds, ctx.sender());
 # }
 ```
