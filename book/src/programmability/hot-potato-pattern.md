@@ -80,8 +80,7 @@ transfer::public_transfer(proceeds, ctx.sender());
 The hot potato pattern can be used to introduce variation in the execution path. For example, if
 there is a module which allows purchasing a `Phone` for some "Bonus Points" or for USD, the hot
 potato can be used to decouple the purchase from the payment. The approach is very similar to how
-some shops work - you take the item from the shelf, and then you go to the cashier to pay for
-it.
+some shops work - you take the item from the shelf, and then you go to the cashier to pay for it.
 
 ```move
 {{#include ../../../packages/samples/sources/programmability/hot-potato-pattern.move:phone_shop}}
@@ -99,13 +98,24 @@ define ways to interact with the hot potato, for example, stamp it with a type s
 extract some information from it. This way, the hot potato can be passed between different modules,
 and even different packages within the same transaction.
 
-The most important compositional pattern is the [Request Pattern](./request-pattern.md), which we will
-cover in the next section.
+The most important compositional pattern is the [Request Pattern](./request-pattern.md), which we
+will cover in the next section.
+
+### Usage in the Sui Framework
+
+The pattern is used in various forms in the Sui Framework. Here are some examples:
+
+- `sui::borrow` - uses hot potato to ensure that the borrowed value is returned to the correct
+  container.
+- `sui::transfer_policy` - defines a `TransferRequest` - a hot potato which can only be consumed if
+  all conditions are met.
+- `sui::token` - in the Closed Loop Token system, an `ActionRequest` carries the information about
+  the performed action and collects approvals similarly to `TransferRequest`.
 
 ## Summary
 
 - A hot potato is a struct without abilities, it must come with a way to create and destroy it.
-- Hot potatoes are used to ensure that some action is taken before the transaction ends, similar to a
-  callback.
+- Hot potatoes are used to ensure that some action is taken before the transaction ends, similar to
+  a callback.
 - Most common use cases for hot potato are borrowing, flash loans, variable-path execution, and
   compositional patterns.
