@@ -1,0 +1,395 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Pattern: Hot Potato - The Move Book</title>
+
+
+        <!-- Custom HTML head -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-B1E7R0BHX4"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-B1E7R0BHX4');
+        </script>
+
+        <meta name="description" content="First book about the Move programming language and the Move VM. Move documentation, Move tutorials and language reference.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../theme/css/custom.css">
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> The Move Book</a></li><li class="chapter-item expanded "><a href="../foreword.html"><strong aria-hidden="true">2.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../before-we-begin/index.html"><strong aria-hidden="true">3.</strong> Before we begin</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../before-we-begin/install-sui.html"><strong aria-hidden="true">3.1.</strong> Install Sui</a></li><li class="chapter-item expanded "><a href="../before-we-begin/ide-support.html"><strong aria-hidden="true">3.2.</strong> Set up your IDE</a></li><li class="chapter-item expanded "><a href="../before-we-begin/move-2024.html"><strong aria-hidden="true">3.3.</strong> Move 2024</a></li></ol></li><li class="chapter-item expanded "><a href="../your-first-move/hello-world.html"><strong aria-hidden="true">4.</strong> Hello, World!</a></li><li class="chapter-item expanded "><a href="../your-first-move/hello-sui.html"><strong aria-hidden="true">5.</strong> Hello, Sui!</a></li><li class="chapter-item expanded "><a href="../concepts/index.html"><strong aria-hidden="true">6.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../concepts/packages.html"><strong aria-hidden="true">6.1.</strong> Package</a></li><li class="chapter-item expanded "><a href="../concepts/manifest.html"><strong aria-hidden="true">6.2.</strong> Manifest</a></li><li class="chapter-item expanded "><a href="../concepts/address.html"><strong aria-hidden="true">6.3.</strong> Address</a></li><li class="chapter-item expanded "><a href="../concepts/what-is-an-account.html"><strong aria-hidden="true">6.4.</strong> Account</a></li><li class="chapter-item expanded "><a href="../concepts/what-is-a-transaction.html"><strong aria-hidden="true">6.5.</strong> Transaction</a></li></ol></li><li class="chapter-item expanded "><a href="../move-basics/index.html"><strong aria-hidden="true">7.</strong> Move Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../move-basics/module.html"><strong aria-hidden="true">7.1.</strong> Module</a></li><li class="chapter-item expanded "><a href="../move-basics/comments.html"><strong aria-hidden="true">7.2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../move-basics/primitive-types.html"><strong aria-hidden="true">7.3.</strong> Primitive Types</a></li><li class="chapter-item expanded "><a href="../move-basics/address.html"><strong aria-hidden="true">7.4.</strong> Address Type</a></li><li class="chapter-item expanded "><a href="../move-basics/expression.html"><strong aria-hidden="true">7.5.</strong> Expression</a></li><li class="chapter-item expanded "><a href="../move-basics/struct.html"><strong aria-hidden="true">7.6.</strong> Struct</a></li><li class="chapter-item expanded "><a href="../move-basics/abilities-introduction.html"><strong aria-hidden="true">7.7.</strong> Abilities: Introduction</a></li><li class="chapter-item expanded "><a href="../move-basics/drop-ability.html"><strong aria-hidden="true">7.8.</strong> Ability: Drop</a></li><li class="chapter-item expanded "><a href="../move-basics/importing-modules.html"><strong aria-hidden="true">7.9.</strong> Importing Modules</a></li><li class="chapter-item expanded "><a href="../move-basics/standard-library.html"><strong aria-hidden="true">7.10.</strong> Standard Library</a></li><li class="chapter-item expanded "><a href="../move-basics/vector.html"><strong aria-hidden="true">7.11.</strong> Vector</a></li><li class="chapter-item expanded "><a href="../move-basics/option.html"><strong aria-hidden="true">7.12.</strong> Option</a></li><li class="chapter-item expanded "><a href="../move-basics/string.html"><strong aria-hidden="true">7.13.</strong> String</a></li><li class="chapter-item expanded "><a href="../move-basics/control-flow.html"><strong aria-hidden="true">7.14.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../move-basics/constants.html"><strong aria-hidden="true">7.15.</strong> Constants</a></li><li class="chapter-item expanded "><a href="../move-basics/assert-and-abort.html"><strong aria-hidden="true">7.16.</strong> Aborting Execution</a></li><li class="chapter-item expanded "><a href="../move-basics/function.html"><strong aria-hidden="true">7.17.</strong> Function</a></li><li class="chapter-item expanded "><a href="../move-basics/struct-methods.html"><strong aria-hidden="true">7.18.</strong> Struct Methods</a></li><li class="chapter-item expanded "><a href="../move-basics/visibility.html"><strong aria-hidden="true">7.19.</strong> Visibility Modifiers</a></li><li class="chapter-item expanded "><a href="../move-basics/ownership-and-scope.html"><strong aria-hidden="true">7.20.</strong> Ownership and Scope</a></li><li class="chapter-item expanded "><a href="../move-basics/copy-ability.html"><strong aria-hidden="true">7.21.</strong> Ability: Copy</a></li><li class="chapter-item expanded "><a href="../move-basics/references.html"><strong aria-hidden="true">7.22.</strong> References</a></li><li class="chapter-item expanded "><a href="../move-basics/generics.html"><strong aria-hidden="true">7.23.</strong> Generics</a></li><li class="chapter-item expanded "><a href="../move-basics/type-reflection.html"><strong aria-hidden="true">7.24.</strong> Type Reflection</a></li><li class="chapter-item expanded "><a href="../move-basics/testing.html"><strong aria-hidden="true">7.25.</strong> Testing</a></li></ol></li><li class="chapter-item expanded "><a href="../object/index.html"><strong aria-hidden="true">8.</strong> Object Model</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../object/digital-assets.html"><strong aria-hidden="true">8.1.</strong> Language for Digital Assets</a></li><li class="chapter-item expanded "><a href="../object/evolution-of-move.html"><strong aria-hidden="true">8.2.</strong> Evolution of Move</a></li><li class="chapter-item expanded "><a href="../object/object-model.html"><strong aria-hidden="true">8.3.</strong> What is an Object?</a></li><li class="chapter-item expanded "><a href="../object/ownership.html"><strong aria-hidden="true">8.4.</strong> Ownership</a></li><li class="chapter-item expanded "><a href="../object/fast-path-and-consensus.html"><strong aria-hidden="true">8.5.</strong> Fast Path & Consensus</a></li></ol></li><li class="chapter-item expanded "><a href="../storage/index.html"><strong aria-hidden="true">9.</strong> Using Objects</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../storage/key-ability.html"><strong aria-hidden="true">9.1.</strong> Ability: Key</a></li><li class="chapter-item expanded "><a href="../storage/storage-functions.html"><strong aria-hidden="true">9.2.</strong> Storage Functions</a></li><li class="chapter-item expanded "><a href="../storage/store-ability.html"><strong aria-hidden="true">9.3.</strong> Ability: Store</a></li><li class="chapter-item expanded "><a href="../storage/uid-and-id.html"><strong aria-hidden="true">9.4.</strong> UID and ID</a></li><li class="chapter-item expanded "><a href="../storage/transfer-restrictions.html"><strong aria-hidden="true">9.5.</strong> Restricted and Public Transfer</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.6.</strong> Transfer to Object?</div></li></ol></li><li class="chapter-item expanded "><a href="../programmability/index.html"><strong aria-hidden="true">10.</strong> Advanced Programmability</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../programmability/transaction-context.html"><strong aria-hidden="true">10.1.</strong> Transaction Context</a></li><li class="chapter-item expanded "><a href="../programmability/module-initializer.html"><strong aria-hidden="true">10.2.</strong> Module Initializer</a></li><li class="chapter-item expanded "><a href="../programmability/capability.html"><strong aria-hidden="true">10.3.</strong> Pattern: Capability</a></li><li class="chapter-item expanded "><a href="../programmability/epoch-and-time.html"><strong aria-hidden="true">10.4.</strong> Epoch and Time</a></li><li class="chapter-item expanded "><a href="../programmability/collections.html"><strong aria-hidden="true">10.5.</strong> Collections</a></li><li class="chapter-item expanded "><a href="../programmability/dynamic-fields.html"><strong aria-hidden="true">10.6.</strong> Dynamic Fields</a></li><li class="chapter-item expanded "><a href="../programmability/dynamic-object-fields.html"><strong aria-hidden="true">10.7.</strong> Dynamic Object Fields</a></li><li class="chapter-item expanded "><a href="../programmability/dynamic-collections.html"><strong aria-hidden="true">10.8.</strong> Dynamic Collections</a></li><li class="chapter-item expanded "><a href="../programmability/witness-pattern.html"><strong aria-hidden="true">10.9.</strong> Pattern: Witness</a></li><li class="chapter-item expanded "><a href="../programmability/one-time-witness.html"><strong aria-hidden="true">10.10.</strong> One Time Witness</a></li><li class="chapter-item expanded "><a href="../programmability/publisher.html"><strong aria-hidden="true">10.11.</strong> Publisher Authority</a></li><li class="chapter-item expanded "><a href="../programmability/display.html"><strong aria-hidden="true">10.12.</strong> Display</a></li><li class="chapter-item expanded "><a href="../programmability/events.html"><strong aria-hidden="true">10.13.</strong> Events</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">10.14.</strong> Balance & Coin</div></li><li class="chapter-item expanded "><a href="../programmability/sui-framework.html"><strong aria-hidden="true">10.15.</strong> Sui Framework</a></li><li class="chapter-item expanded "><a href="../programmability/hot-potato-pattern.html" class="active"><strong aria-hidden="true">10.16.</strong> Pattern: Hot Potato</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">10.17.</strong> Pattern: Request</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">10.18.</strong> Pattern: Object Capability</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">10.19.</strong> Package Upgrades</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">10.20.</strong> Transaction Blocks</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">10.21.</strong> Authorization Patterns</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">10.22.</strong> Cryptography and Hashing</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">10.23.</strong> Randomness</div></li><li class="chapter-item expanded "><a href="../programmability/bcs.html"><strong aria-hidden="true">10.24.</strong> BCS</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Guides</li><li class="chapter-item expanded "><a href="../guides/2024-migration-guide.html"><strong aria-hidden="true">11.</strong> 2024 Migration Guide</a></li><li class="chapter-item expanded "><a href="../guides/upgradeability-practices.html"><strong aria-hidden="true">12.</strong> Upgradability Practices</a></li><li class="chapter-item expanded "><a href="../guides/building-against-limits.html"><strong aria-hidden="true">13.</strong> Building against Limits</a></li><li class="chapter-item expanded "><a href="../guides/better-error-handling.html"><strong aria-hidden="true">14.</strong> Better error handling</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.</strong> Open-sourcing Libraries</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">16.</strong> Creating an NFT Collection</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.</strong> Tests with Objects</div></li><li class="chapter-item expanded "><a href="../guides/coding-conventions.html"><strong aria-hidden="true">18.</strong> Coding Conventions</a></li><li class="chapter-item expanded affix "><li class="part-title">Appendix</li><li class="chapter-item expanded "><a href="../appendix/glossary.html"><strong aria-hidden="true">19.</strong> A - Glossary</a></li><li class="chapter-item expanded "><a href="../appendix/reserved-addresses.html"><strong aria-hidden="true">20.</strong> B - Reserved Addresses</a></li><li class="chapter-item expanded "><a href="../appendix/publications.html"><strong aria-hidden="true">21.</strong> C - Publications</a></li><li class="chapter-item expanded "><a href="../appendix/contributing.html"><strong aria-hidden="true">22.</strong> D - Contributing</a></li><li class="chapter-item expanded "><a href="../appendix/acknowledgements.html"><strong aria-hidden="true">23.</strong> E - Acknowledgements</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The Move Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/MystenLabs/move-book" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/MystenLabs/move-book/edit/second-edition/src/programmability/hot-potato-pattern.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="pattern-hot-potato"><a class="header" href="#pattern-hot-potato">Pattern: Hot Potato</a></h1>
+<p>A case in the abilities system - a struct without any abilities - is called <em>hot potato</em>. It cannot
+be stored (not as <a href="./../storage/key-ability.html">an object</a> nor as
+<a href="./../storage/store-ability.html">a field in another struct</a>), it cannot be
+<a href="./../move-basics/copy-ability.html">copied</a> or <a href="./../move-basics/drop-ability.html">discarded</a>. Hence,
+once constructed, it must be gracefully <a href="./../move-basics/struct.html">unpacked by its module</a>, or the
+transaction will abort due to unused value without drop.</p>
+<blockquote>
+<p>If you're familiar with languages that support <em>callbacks</em>, you can think of a hot potato as an
+obligation to call a callback function. If you don't call it, the transaction will abort.</p>
+</blockquote>
+<p>The name comes from the children's game where a ball is passed quickly between players, and none of
+the players want to be the last one holding it when the music stops, or they are out of the game.
+This is the best illustration of the pattern - the instance of a hot-potato struct is passed between
+calls, and none of the modules can keep it.</p>
+<h2 id="defining-a-hot-potato"><a class="header" href="#defining-a-hot-potato">Defining a Hot Potato</a></h2>
+<p>A hot potato can be any struct with no abilities. For example, the following struct is a hot potato:</p>
+<pre><code class="language-move">public struct Request {}
+</code></pre>
+<p>Because the <code>Request</code> has no abilities and cannot be stored or ignored, the module must provide a
+function to unpack it. For example:</p>
+<pre><code class="language-move">/// Constructs a new `Request`
+public fun new_request(): Request { Request {} }
+
+/// Unpacks the `Request`. Due to the nature of the hot potato, this function
+/// must be called to avoid aborting the transaction.
+public fun confirm_request(request: Request) {
+    let Request {} = request;
+}
+</code></pre>
+<h2 id="example-usage"><a class="header" href="#example-usage">Example Usage</a></h2>
+<p>In the following example, the <code>Promise</code> hot potato is used to ensure that the borrowed value, when
+taken from the container, is returned back to it. The <code>Promise</code> struct contains the ID of the
+borrowed object, and the ID of the container, ensuring that the borrowed value was not swapped for
+another and is returned to the correct container.</p>
+<pre><code class="language-move">/// A generic container for any Object with `key + store`. The Option type
+/// is used to allow taking and putting the value back.
+public struct Container&lt;T: key + store&gt; has key {
+    id: UID,
+    value: Option&lt;T&gt;,
+}
+
+/// A Hot Potato struct that is used to ensure the borrowed value is returned.
+public struct Promise {
+    /// The ID of the borrowed object. Ensures that there wasn't a value swap.
+    id: ID,
+    /// The ID of the container. Ensures that the borrowed value is returned to
+    /// the correct container.
+    container_id: ID,
+}
+
+/// A module that allows borrowing the value from the container.
+public fun borrow_val&lt;T: key + store&gt;(container: &amp;mut Container&lt;T&gt;): (T, Promise) {
+    assert!(container.value.is_some());
+    let value = container.value.extract();
+    let id = object::id(&amp;value);
+    (value, Promise { id, container_id: object::id(container) })
+}
+
+/// Put the taken item back into the container.
+public fun return_val&lt;T: key + store&gt;(
+    container: &amp;mut Container&lt;T&gt;, value: T, promise: Promise
+) {
+    let Promise { id, container_id } = promise;
+    assert!(object::id(container) == container_id);
+    assert!(object::id(&amp;value) == id);
+    container.value.fill(value);
+}
+</code></pre>
+<h2 id="applications"><a class="header" href="#applications">Applications</a></h2>
+<p>Below we list some of the common use cases for the hot potato pattern.</p>
+<h3 id="borrowing"><a class="header" href="#borrowing">Borrowing</a></h3>
+<p>As shown in the <a href="#example-usage">example above</a>, the hot potato is very effective for borrowing with
+a guarantee that the borrowed value is returned to the correct container. While the example focuses
+on a value stored inside an <code>Option</code>, the same pattern can be applied to any other storage type, say
+a <a href="./dynamic-fields.html">dynamic field</a>.</p>
+<h3 id="flash-loans"><a class="header" href="#flash-loans">Flash Loans</a></h3>
+<p>Canonical example of the hot potato pattern is flash loans. A flash loan is a loan that is borrowed
+and repaid in the same transaction. The borrowed funds are used to perform some operations, and the
+repaid funds are returned to the lender. The hot potato pattern ensures that the borrowed funds are
+returned to the lender.</p>
+<p>An example usage of this pattern may look like this:</p>
+<pre><code class="language-move">// Borrow the funds from the lender.
+let (asset_a, potato) = lender.borrow(amount);
+
+// Perform some operations with the borrowed funds.
+let asset_b = dex.trade(loan);
+let proceeds = another_contract::do_something(asset_b);
+
+// Keep the commission and return the rest to the lender.
+let pay_back = proceeds.split(amount, ctx);
+lender.repay(pay_back, potato);
+transfer::public_transfer(proceeds, ctx.sender());
+</code></pre>
+<h3 id="variable-path-execution"><a class="header" href="#variable-path-execution">Variable-path execution</a></h3>
+<p>The hot potato pattern can be used to introduce variation in the execution path. For example, if
+there is a module which allows purchasing a <code>Phone</code> for some &quot;Bonus Points&quot; or for USD, the hot
+potato can be used to decouple the purchase from the payment. The approach is very similar to how
+some shops work - you take the item from the shelf, and then you go to the cashier to pay for it.</p>
+<pre><code class="language-move">/// A `Phone`. Can be purchased in a store.
+public struct Phone has key, store { id: UID }
+
+/// A ticket that must be paid to purchase the `Phone`.
+public struct Ticket { amount: u64 }
+
+/// Return the `Phone` and the `Ticket` that must be paid to purchase it.
+public fun purchase_phone(ctx: &amp;mut TxContext): (Phone, Ticket) {
+    (
+        Phone { id: object::new(ctx) },
+        Ticket { amount: 100 }
+    )
+}
+
+/// The customer may pay for the `Phone` with `BonusPoints` or `SUI`.
+public fun pay_in_bonus_points(ticket: Ticket, payment: Coin&lt;BONUS&gt;) {
+    let Ticket { amount } = ticket;
+    assert!(payment.value() == amount);
+    abort 0 // omitting the rest of the function
+}
+
+/// The customer may pay for the `Phone` with `USD`.
+public fun pay_in_usd(ticket: Ticket, payment: Coin&lt;USD&gt;) {
+    let Ticket { amount } = ticket;
+    assert!(payment.value() == amount);
+    abort 0 // omitting the rest of the function
+}
+</code></pre>
+<p>This decoupling technique allows separating the purchase logic from the payment logic, making the
+code more modular and easier to maintain. The <code>Ticket</code> could be split into its own module, providing
+a basic interface for the payment, and the shop implementation could be extended to support other
+goods without changing the payment logic.</p>
+<h3 id="compositional-patterns"><a class="header" href="#compositional-patterns">Compositional Patterns</a></h3>
+<p>Hot potato can be used to link together different modules in a compositional way. Its module may
+define ways to interact with the hot potato, for example, stamp it with a type signature, or to
+extract some information from it. This way, the hot potato can be passed between different modules,
+and even different packages within the same transaction.</p>
+<p>The most important compositional pattern is the <a href="./request-pattern.html">Request Pattern</a>, which we
+will cover in the next section.</p>
+<h3 id="usage-in-the-sui-framework"><a class="header" href="#usage-in-the-sui-framework">Usage in the Sui Framework</a></h3>
+<p>The pattern is used in various forms in the Sui Framework. Here are some examples:</p>
+<ul>
+<li><code>sui::borrow</code> - uses hot potato to ensure that the borrowed value is returned to the correct
+container.</li>
+<li><code>sui::transfer_policy</code> - defines a <code>TransferRequest</code> - a hot potato which can only be consumed if
+all conditions are met.</li>
+<li><code>sui::token</code> - in the Closed Loop Token system, an <code>ActionRequest</code> carries the information about
+the performed action and collects approvals similarly to <code>TransferRequest</code>.</li>
+</ul>
+<h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
+<ul>
+<li>A hot potato is a struct without abilities, it must come with a way to create and destroy it.</li>
+<li>Hot potatoes are used to ensure that some action is taken before the transaction ends, similar to
+a callback.</li>
+<li>Most common use cases for hot potato are borrowing, flash loans, variable-path execution, and
+compositional patterns.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../programmability/sui-framework.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../programmability/bcs.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../programmability/sui-framework.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../programmability/bcs.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../theme/switcher.js"></script>
+
+
+    </div>
+    </body>
+</html>
