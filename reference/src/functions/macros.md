@@ -53,7 +53,7 @@ substituted at each usage.
 ## Lambdas
 
 Lambdas are a new type of expression that can only be used with `macro`s. These are used to pass
-code from the caller into the body of the `macro`. While the substition is done at compile time,
+code from the caller into the body of the `macro`. While the substitution is done at compile time,
 they are used similarly to [anonymous functions](https://en.wikipedia.org/wiki/Anonymous_function),
 [lambdas](https://en.wikipedia.org/wiki/Lambda_calculus), or
 [closures](<https://en.wikipedia.org/wiki/Closure_(computer_programming)>) in other languages.
@@ -151,7 +151,7 @@ macro fun call_foo<$T, $U>($x: $T): &$U {
 }
 ```
 
-This macro will only expand succesfully if `$T` has a method `foo` that returns a reference `&$U`.
+This macro will only expand successfully if `$T` has a method `foo` that returns a reference `&$U`.
 As described in the [hygiene](#hygiene) section, `foo` will be resolved based on the scope where
 `call_foo` was defined--not where it was expanded.
 
