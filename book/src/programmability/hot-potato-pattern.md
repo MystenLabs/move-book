@@ -126,7 +126,7 @@ transfer::public_transfer(proceeds, ctx.sender());
 The hot potato pattern can be used to introduce variation in the execution path. For example, if
 there is a module which allows purchasing a `Phone` for some "Bonus Points" or for USD, the hot
 potato can be used to decouple the purchase from the payment. The approach is very similar to how
-some of the shops work - you take the item from the shelf, and then you go to the cashier to pay for
+some shops work - you take the item from the shelf, and then you go to the cashier to pay for
 it.
 
 ```move
