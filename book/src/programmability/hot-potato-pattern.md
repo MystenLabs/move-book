@@ -181,7 +181,7 @@ cover in the next section.
 ## Summary
 
 - A hot potato is a struct without abilities, it must come with a way to create and destroy it.
-- Hot potato is used to ensure that some action is taken before the transaction ends, similar to a
+- Hot potatoes are used to ensure that some action is taken before the transaction ends, similar to a
   callback.
 - Most common use cases for hot potato are borrowing, flash loans, variable-path execution, and
   compositional patterns.
