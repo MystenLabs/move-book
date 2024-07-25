@@ -1,0 +1,769 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Macro Functions - The Move Reference</title>
+
+
+        <!-- Custom HTML head -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-B1E7R0BHX4"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-B1E7R0BHX4');
+        </script>
+
+        <meta name="description" content="The Move Language Reference maintained by the Move core team.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../theme/css/custom.css">
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">The Move Reference</a></li><li class="chapter-item expanded affix "><li class="part-title">Getting Started</li><li class="chapter-item expanded "><a href="../modules.html"><strong aria-hidden="true">1.</strong> Modules</a></li><li class="chapter-item expanded affix "><li class="part-title">Basic Concepts</li><li class="chapter-item expanded "><a href="../primitive-types.html"><strong aria-hidden="true">2.</strong> Primitive Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../primitive-types/integers.html"><strong aria-hidden="true">2.1.</strong> Integers</a></li><li class="chapter-item expanded "><a href="../primitive-types/bool.html"><strong aria-hidden="true">2.2.</strong> Bool</a></li><li class="chapter-item expanded "><a href="../primitive-types/address.html"><strong aria-hidden="true">2.3.</strong> Address</a></li><li class="chapter-item expanded "><a href="../primitive-types/vector.html"><strong aria-hidden="true">2.4.</strong> Vector</a></li><li class="chapter-item expanded "><a href="../primitive-types/references.html"><strong aria-hidden="true">2.5.</strong> References</a></li><li class="chapter-item expanded "><a href="../primitive-types/tuples.html"><strong aria-hidden="true">2.6.</strong> Tuples and Unit</a></li></ol></li><li class="chapter-item expanded "><a href="../variables.html"><strong aria-hidden="true">3.</strong> Local Variables and Scopes</a></li><li class="chapter-item expanded "><a href="../equality.html"><strong aria-hidden="true">4.</strong> Equality</a></li><li class="chapter-item expanded "><a href="../abort-and-assert.html"><strong aria-hidden="true">5.</strong> Abort and Assert</a></li><li class="chapter-item expanded "><a href="../control-flow.html"><strong aria-hidden="true">6.</strong> Control Flow</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../control-flow/conditionals.html"><strong aria-hidden="true">6.1.</strong> Conditional Expressions</a></li><li class="chapter-item expanded "><a href="../control-flow/loops.html"><strong aria-hidden="true">6.2.</strong> Loops</a></li><li class="chapter-item expanded "><a href="../control-flow/labeled-control-flow.html"><strong aria-hidden="true">6.3.</strong> Labeled Control FLow</a></li><li class="chapter-item expanded "><a href="../control-flow/pattern-matching.html"><strong aria-hidden="true">6.4.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="../functions.html"><strong aria-hidden="true">7.</strong> Functions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../functions/macros.html" class="active"><strong aria-hidden="true">7.1.</strong> Macro Functions</a></li></ol></li><li class="chapter-item expanded "><a href="../structs.html"><strong aria-hidden="true">8.</strong> Structs</a></li><li class="chapter-item expanded "><a href="../enums.html"><strong aria-hidden="true">9.</strong> Enums</a></li><li class="chapter-item expanded "><a href="../constants.html"><strong aria-hidden="true">10.</strong> Constants</a></li><li class="chapter-item expanded "><a href="../generics.html"><strong aria-hidden="true">11.</strong> Generics</a></li><li class="chapter-item expanded "><a href="../abilities.html"><strong aria-hidden="true">12.</strong> Type Abilities</a></li><li class="chapter-item expanded "><a href="../uses.html"><strong aria-hidden="true">13.</strong> Uses and Aliases</a></li><li class="chapter-item expanded affix "><li class="part-title">Advanced Concepts</li><li class="chapter-item expanded "><a href="../method-syntax.html"><strong aria-hidden="true">14.</strong> Method Syntax</a></li><li class="chapter-item expanded "><a href="../index-syntax.html"><strong aria-hidden="true">15.</strong> Index Syntax Methods</a></li><li class="chapter-item expanded affix "><li class="part-title">Tooling</li><li class="chapter-item expanded "><a href="../packages.html"><strong aria-hidden="true">16.</strong> Packages</a></li><li class="chapter-item expanded "><a href="../unit-testing.html"><strong aria-hidden="true">17.</strong> Unit Tests</a></li><li class="chapter-item expanded affix "><li class="part-title">Reference</li><li class="chapter-item expanded "><a href="../coding-conventions.html"><strong aria-hidden="true">18.</strong> Coding Conventions</a></li><li class="chapter-item expanded affix "><li class="part-title">Deprecated</li><li class="chapter-item expanded "><a href="../friends.html"><strong aria-hidden="true">19.</strong> Friends</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The Move Reference</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/MystenLabs/move-book" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/move-language/move/edit/main/language/documentation/book/src/functions/macros.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="macro-functions"><a class="header" href="#macro-functions">Macro Functions</a></h1>
+<p>Macro functions are a way of defining functions that are expanded during compilation at each call
+site. The arguments of the macro are not evaluated eagerly like a normal function, and instead are
+substituted by expression. In addition, the caller can supply code to the macro via
+<a href="#lambdas">lambdas</a>.</p>
+<p>These expression substitution mechanics make <code>macro</code> functions similar
+<a href="https://en.wikipedia.org/wiki/Macro_(computer_science)">to macros found in other programming languages</a>;
+however, they are more constrained in Move than you might expect from other languages. The
+parameters and return values of <code>macro</code> functions are still typed--though this can be partially
+relaxed with the <a href="../generics.html#_-type"><code>_</code> type</a>. The upside of this restriction however, is that
+<code>macro</code> functions can be used anywhere a normal function can be used, which is notably helpful with
+<a href="../method-syntax.html">method syntax</a>.</p>
+<p>A more extensive
+<a href="https://en.wikipedia.org/wiki/Macro_(computer_science)#Syntactic_macros">syntactic macro</a> system
+may come in the future.</p>
+<h2 id="syntax"><a class="header" href="#syntax">Syntax</a></h2>
+<p><code>macro</code> functions have a similar syntax to normal functions. However, all type parameter names and
+all parameter names must start with a <code>$</code>. Note that <code>_</code> can still be used by itself, but not as a
+prefix, and <code>$_</code> must be used instead.</p>
+<pre><code class="language-text">&lt;visibility&gt;? macro fun &lt;identifier&gt;&lt;[$type_parameters: constraint],*&gt;([$identifier: type],*): &lt;return_type&gt; &lt;function_body&gt;
+</code></pre>
+<p>For example, the following <code>macro</code> function takes a vector and a lambda, and applies the lambda to
+each element of the vector to construct a new vector.</p>
+<pre><code class="language-move">macro fun map&lt;$T, $U&gt;($v: vector&lt;$T&gt;, $f: |$T| -&gt; $U): vector&lt;$U&gt; {
+    let mut v = $v;
+    v.reverse();
+    let mut i = 0;
+    let mut result = vector[];
+    while (!v.is_empty()) {
+        result.push_back($f(v.pop_back()));
+        i = i + 1;
+    };
+    result
+}
+</code></pre>
+<p>The <code>$</code> is there to indicate that the parameters (both type and value parameters) do not behave like
+their normal, non-macro counterparts. For type parameters, they can be instantiated with any type
+(even a reference type <code>&amp;</code> or <code>&amp;mut</code>), and they will satisfy any constraint. Similarly for
+parameters, they will not be evaluated eagerly, and instead the argument expression will be
+substituted at each usage.</p>
+<h2 id="lambdas"><a class="header" href="#lambdas">Lambdas</a></h2>
+<p>Lambdas are a new type of expression that can only be used with <code>macro</code>s. These are used to pass
+code from the caller into the body of the <code>macro</code>. While the substition is done at compile time,
+they are used similarly to <a href="https://en.wikipedia.org/wiki/Anonymous_function">anonymous functions</a>,
+<a href="https://en.wikipedia.org/wiki/Lambda_calculus">lambdas</a>, or
+<a href="https://en.wikipedia.org/wiki/Closure_(computer_programming)">closures</a> in other languages.</p>
+<p>As seen in the example above (<code>$f: |$T| -&gt; $U</code>), lambda types are defined with the syntax</p>
+<pre><code class="language-text">|&lt;type&gt;,*| (-&gt; &lt;type&gt;)?
+</code></pre>
+<p>A few examples</p>
+<pre><code class="language-move">|u64, u64| -&gt; u128 // a lambda that takes two u64s and returns a u128
+|&amp;mut vector&lt;u8&gt;| -&gt; &amp;mut u8 // a lambda that takes a &amp;mut vector&lt;u8&gt; and returns a &amp;mut u8
+</code></pre>
+<p>If the return type is not annotated, it is unit <code>()</code> by default.</p>
+<pre><code class="language-move">// the following are euiqvalent
+|&amp;mut vector&lt;u8&gt;, u64|
+|&amp;mut vector&lt;u8&gt;, u64| -&gt; ()
+</code></pre>
+<p>Lambda expressions are then defined at the call site of the <code>macro</code> with the syntax</p>
+<pre><code class="language-text">|(&lt;identifier&gt; (: &lt;type&gt;)?),*| &lt;expression&gt;
+|(&lt;identifier&gt; (: &lt;type&gt;)?),*| -&gt; &lt;type&gt; { &lt;expression&gt; }
+</code></pre>
+<p>Note that if the return type is annotated, the body of the lambda must be enclosed in <code>{}</code>.</p>
+<p>Using the <code>map</code> macro defined above</p>
+<pre><code class="language-move">let v = vector[1, 2, 3];
+let doubled: vector&lt;u64&gt; = map!(v, |x| 2 * x);
+let bytes: vector&lt;vector&lt;u8&gt;&gt; = map!(v, |x| std::bcs::to_bytes(&amp;x));
+</code></pre>
+<p>And with type annotations</p>
+<pre><code class="language-move">let doubled: vector&lt;u64&gt; = map!(v, |x: u64| 2 * x); // return type annotation optional
+let bytes: vector&lt;vector&lt;u8&gt;&gt; = map!(v, |x: u64| -&gt; vector&lt;u8&gt; { std::bcs::to_bytes(&amp;x) });
+</code></pre>
+<h3 id="capturing"><a class="header" href="#capturing">Capturing</a></h3>
+<p>Lambda expressions can also refer to variables in the scope where the lambda is defined. This is
+sometimes called &quot;capturing&quot;.</p>
+<pre><code class="language-move">let res = foo();
+let incremented = map!(vector[1, 2, 3], |x| x + res);
+</code></pre>
+<p>Any variable can be captured, including mutable and immutable references.</p>
+<p>See the <a href="#iterating-over-a-vector">Examples</a> section for more complicated usages.</p>
+<h3 id="limitations"><a class="header" href="#limitations">Limitations</a></h3>
+<p>Currently, lambdas can only be used directly in the call of a <code>macro</code> function. They cannot be bound
+to a variable. For example, the following is code will produce an error:</p>
+<pre><code class="language-move">let f = |x| 2 * x;
+//      ^^^^^^^^^ Error! Lambdas must be used directly in 'macro' calls
+let doubled: vector&lt;u64&gt; = map!(vector[1, 2, 3], f);
+</code></pre>
+<h2 id="typing"><a class="header" href="#typing">Typing</a></h2>
+<p>Like normal functions, <code>macro</code> functions are typed--the types of the parameters and return value
+must be annotated. However, the body of the function is not type checked until the macro is
+expanded. This means that not all usages of a given macro may be valid. For example</p>
+<pre><code class="language-move">macro fun add_one&lt;$T&gt;($x: $T): $T {
+    $x + 1
+}
+</code></pre>
+<p>The above macro will not type check if <code>$T</code> is not a primitive integer type.</p>
+<p>This can be particularly useful in conjunction with <a href="../method-syntax.html">method syntax</a>, where the
+function is not resolved until after the macro is expanded.</p>
+<pre><code class="language-move">macro fun call_foo&lt;$T, $U&gt;($x: $T): &amp;$U {
+    $x.foo()
+}
+</code></pre>
+<p>This macro will only expand succesfully if <code>$T</code> has a method <code>foo</code> that returns a reference <code>&amp;$U</code>.
+As described in the <a href="#hygiene">hygiene</a> section, <code>foo</code> will be resolved based on the scope where
+<code>call_foo</code> was defined--not where it was expanded.</p>
+<h3 id="type-parameters"><a class="header" href="#type-parameters">Type Parameters</a></h3>
+<p>Type parameters can be instantiated with any type, including reference types <code>&amp;</code> and <code>&amp;mut</code>. They
+can also be instantiated with <a href="../primitive-types/tuple.html">tuple types</a>, though the utility of this
+is limited currently since tuples cannot be bound to a variable.</p>
+<p>This relaxation forces the constraints of a type parameter to be satisfied at the call site in a way
+that does not normally occur. It is generally recommended however to add all necessary constraints
+to a type parameter. For example</p>
+<pre><code class="language-move">public struct NoAbilities()
+public struct CopyBox&lt;T: copy&gt; has copy, drop { value: T }
+macro fun make_box&lt;$T&gt;($x: $T): CopyBox&lt;$T&gt; {
+    CopyBox { value: $x }
+}
+</code></pre>
+<p>This macro will expand only if <code>$T</code> is instantiated with a type with the <code>copy</code> ability.</p>
+<pre><code class="language-move">make_box!(1); // Valid!
+make_box!(NoAbilities()); // Error! 'NoAbilities' does not have the copy ability
+</code></pre>
+<p>The suggested declaration of <code>make_box</code> would be to add the <code>copy</code> constraint to the type parameter.
+This then communicates to the caller that the type must have the <code>copy</code> ability.</p>
+<pre><code class="language-move">macro fun make_box&lt;$T: copy&gt;($x: $T): CopyBox&lt;$T&gt; {
+    CopyBox { value: $x }
+}
+</code></pre>
+<p>One might reasonably ask then, why have this relaxation if the recommendation is not to use it? The
+constraints on type parameters simply cannot be enforced in all cases because the bodies are not
+checked until expansion. In the following example, the <code>copy</code> constraint on <code>$T</code> is not necessary in
+the signature, but is necessary in the body.</p>
+<pre><code class="language-move">macro fun read_ref&lt;$T&gt;($r: &amp;$T): $T {
+    *$r
+}
+</code></pre>
+<p>If however, you want to have an extremely relaxed type signature, it is instead recommended to use
+the <a href="#_-type"><code>_</code> type</a>.</p>
+<h3 id="_-type"><a class="header" href="#_-type"><code>_</code> Type</a></h3>
+<p>Normally, the <a href="../generics.html#_-type"><code>_</code> placeholder type</a> is used in expressions to allow for
+partial annotations of type arguments. However, with <code>macro</code> functions, the <code>_</code> type can be used in
+place of type parameters to relax the signature for any type. This should increase the ergonomics of
+declaring &quot;generic&quot; <code>macro</code> functions.</p>
+<p>For example, we could take any combination of integers and add them together.</p>
+<pre><code class="language-move">macro fun add($x: _, $y: _, $z: _): u256 {
+    ($x as u256) + ($y as u256) + ($z as u256)
+}
+</code></pre>
+<p>Additionally, the <code>_</code> type can be instantiated <em>multiple</em> times with different types. For example</p>
+<pre><code class="language-move">public struct Box&lt;T&gt; has copy, drop, store { value: T }
+macro fun create_two($f: |_| -&gt; Box&lt;_&gt;): (Box&lt;u8&gt;, Box&lt;u16&gt;) {
+    ($f(0u8), $f(0u16))
+}
+</code></pre>
+<p>If we declared the function with type parameters instead, the types would have to unify to a common
+type, which is not possible in this case.</p>
+<pre><code class="language-move">macro fun create_two&lt;$T&gt;($f: |$T| -&gt; Box&lt;$T&gt;): (Box&lt;u8&gt;, Box&lt;u16&gt;) {
+    ($f(0u8), $f(0u16))
+    //           ^^^^ Error! expected `u8` but found `u16`
+}
+...
+let (a, b) = create_two!(|value| Box { value });
+</code></pre>
+<p>In this case, <code>$T</code> must be instantiated with a single type, but inference finds that <code>$T</code> must be
+bound to both <code>u8</code> and <code>u16</code>.</p>
+<p>There is a tradeoff however, as the <code>_</code> type conveys less meaning and intention for the caller.
+Consider <code>map</code> macro from above redeclared with <code>_</code> instead of <code>$T</code> and <code>$U</code>.</p>
+<pre><code class="language-move">macro fun map($v: vector&lt;_&gt;, $f: |_| -&gt; _): vector&lt;_&gt; {
+</code></pre>
+<p>There is no longer any indication of behavior of <code>$f</code> at the type level. The caller must gain
+understanding from comments or the body of the macro.</p>
+<h2 id="expansion-and-substitution"><a class="header" href="#expansion-and-substitution">Expansion and Substitution</a></h2>
+<p>The body of the <code>macro</code> is substituted into the call site at compile time. Each parameter is
+replaced by the <em>expression</em>, not the value, of its argument. For lambdas, additional local
+variables can have values bound within the context of the <code>macro</code> body.</p>
+<p>Taking a very simple example</p>
+<pre><code class="language-move">macro fun apply($f: |u64| -&gt; u64, $x: u64): u64 {
+    $f($x)
+}
+</code></pre>
+<p>With the call site</p>
+<pre><code class="language-move">let incremented = apply!(|x| x + 1, 5);
+</code></pre>
+<p>This will roughly be expanded to</p>
+<pre><code class="language-move">let incremented = {
+    let x = { 5 };
+    { x + 1 }
+};
+</code></pre>
+<p>Again, the value of <code>x</code> is not substituted, but the expression <code>5</code> is. This might mean that an
+argument is evaluated multiple times, or not at all, depending on the body of the <code>macro</code>.</p>
+<pre><code class="language-move">macro fun dup($f: |u64, u64| -&gt; u64, $x: u64): u64 {
+    $f($x, $x)
+}
+</code></pre>
+<pre><code class="language-move">let sum = dup!(|x, y| x + y, foo());
+</code></pre>
+<p>is expanded to</p>
+<pre><code class="language-move">let sum = {
+    let x = { foo() };
+    let y = { foo() };
+    { x + y }
+};
+</code></pre>
+<p>Note that <code>foo()</code> will be called twice. Which would not happen if <code>dup</code> were a normal function.</p>
+<p>It is often recommended to create predictable evaluation behavior by binding arguments to local
+variables.</p>
+<pre><code class="language-move">macro fun dup($f: |u64, u64| -&gt; u64, $x: u64): u64 {
+    let a = $x;
+    $f(a, a)
+}
+</code></pre>
+<p>Now that same call site will expand to</p>
+<pre><code class="language-move">let sum = {
+    let a = { foo() };
+    {
+        let x = { a };
+        let y = { a };
+        { x + y }
+    }
+};
+</code></pre>
+<h3 id="hygiene"><a class="header" href="#hygiene">Hygiene</a></h3>
+<p>In the example above, the <code>dup</code> macro had a local variable <code>a</code> that was used to bind the argument
+<code>$x</code>. You might ask, what would happen if the variable was instead named <code>x</code>? Would that conflict
+with the <code>x</code> in the lambda?</p>
+<p>The short answer is, no. <code>macro</code> functions are
+<a href="https://en.wikipedia.org/wiki/Hygienic_macro">hygienic</a>, meaning that the expansion of <code>macro</code>s and
+lambdas will not accidentally capture variables from another scope.</p>
+<p>The compiler does this by associating a unique number with each scope. When the <code>macro</code> is expanded,
+the macro body gets its own scope. Additionally, the arguments are rescoped on each usage.</p>
+<p>Modifying the <code>dup</code> macro to use <code>x</code> instead of <code>a</code></p>
+<pre><code class="language-move">macro fun dup($f: |u64, u64| -&gt; u64, $x: u64): u64 {
+    let a = $x;
+    $f(a, a)
+}
+</code></pre>
+<p>The expansion of the call site</p>
+<pre><code class="language-move">// let sum = dup!(|x, y| x + y, foo());
+let sum = {
+    let x#1 = { foo() };
+    {
+        let x#2 = { x#1 };
+        let y#2 = { x#1 };
+        { x#2 + y#2 }
+    }
+};
+</code></pre>
+<p>This is an approximation of the compiler's internal representation, some details are omitted for the
+simplicity of this example.</p>
+<p>And each usage of an argument is rescoped so that the different usages do not conflict.</p>
+<pre><code class="language-move">macro fun apply_twice($f: |u64| -&gt; u64, $x: u64): u64 {
+    $f($x) + $f($x)
+}
+</code></pre>
+<pre><code class="language-move">let result = apply_twice!(|x| x + 1, { let x = 5; x });
+</code></pre>
+<p>Expands to</p>
+<pre><code class="language-move">let result = {
+    {
+        let x#1 = { let x#2 = { 5 }; x#2 };
+        { x#1 + x#1 }
+    }
+    +
+    {
+        let x#3 = { let x#4 = { 5 }; x#4 };
+        { x#3 + x#3 }
+    }
+};
+</code></pre>
+<p>Similar to variable hygiene, <a href="../method-syntax.html">method resolution</a> is also scoped to the macro
+definition. For example</p>
+<pre><code class="language-move">public struct S { f: u64, g: u64 }
+
+fun f(s: &amp;S): u64 {
+    s.f
+}
+fun g(s: &amp;S): u64 {
+    s.g
+}
+
+use fun f as foo;
+macro fun call_foo($s: &amp;S): u64 {
+    let s = $s;
+    s.foo()
+}
+</code></pre>
+<p>The method call <code>foo</code> will in this case always resolve to the function <code>f</code>, even if <code>call_foo</code> is
+used in a scope where <code>foo</code> is bound to a different function, such as <code>g</code>.</p>
+<pre><code class="language-move">fun example(s: &amp;S): u64 {
+    use fun g as foo;
+    call_foo!(s) // expands to 'f(s)', not 'g(s)'
+}
+</code></pre>
+<p>Due to this though, unused <code>use fun</code> declarations might not get warnings in modules with <code>macro</code>
+functions.</p>
+<h3 id="control-flow"><a class="header" href="#control-flow">Control Flow</a></h3>
+<p>Similar to variable hygiene, control flow constructs are also always scoped to where they are
+defined, not to where they are expanded.</p>
+<pre><code class="language-move">macro fun maybe_div($x: u64, $y: u64): u64 {
+    let x = $x;
+    let y = $y;
+    if (y == 0) return 0;
+    x / y
+}
+</code></pre>
+<p>At the call site, <code>return</code> will always return from the <code>macro</code> body, not from the caller.</p>
+<pre><code class="language-move">let result: vector&lt;u64&gt; = vector[maybe_div!(10, 0)];
+</code></pre>
+<p>Will expand to</p>
+<pre><code class="language-move">let result: vector&lt;u64&gt; = vector['a: {
+    let x = { 10 };
+    let y = { 0 };
+    if (y == 0) return 'a 0;
+    x / y
+}];
+</code></pre>
+<p>Where <code>return 'a 0</code> will return to the block <code>'a: { ... }</code> and not to the caller's body. See the
+section on <a href="../control-flow/labeled-control-flow.html">labeled control flow</a> for more details.</p>
+<p>Similarly, <code>return</code> in a lambda will return from the lambda, not from the <code>macro</code> body and not from
+the outer function.</p>
+<pre><code class="language-move">macro fun apply($f: |u64| -&gt; u64, $x: u64): u64 {
+    $f($x)
+}
+</code></pre>
+<p>and</p>
+<pre><code class="language-move">let result = apply!(|x| { if (x == 0) return 0; x + 1 }, 100);
+</code></pre>
+<p>will expand to</p>
+<pre><code class="language-move">let result = {
+    let x = { 100 };
+    'a: {
+        if (x == 0) return 'a 0;
+        x + 1
+    }
+};
+</code></pre>
+<p>In addition to returning from the lambda, a label can be used to return to the outer function. In
+the <code>vector::any</code> macro, a <code>return</code> with a label is used to return from the entire <code>macro</code> early</p>
+<pre><code class="language-move">public macro fun any&lt;$T&gt;($v: &amp;vector&lt;$T&gt;, $f: |&amp;$T| -&gt; bool): bool {
+    let v = $v;
+    'any: {
+        v.do_ref!(|e| if ($f(e)) return 'any true);
+        false
+    }
+}
+</code></pre>
+<p>The <code>return 'any true</code> exits from the &quot;loop&quot; early when the condition is met. Otherwise, the macro
+&quot;returns&quot; <code>false</code>.</p>
+<h3 id="method-syntax"><a class="header" href="#method-syntax">Method Syntax</a></h3>
+<p>When applicable, <code>macro</code> functions can be called using <a href="../method-syntax.html">method syntax</a>. When
+using method syntax, the evaluation of the arguments will change in that the first argument (the
+&quot;receiver&quot; of the method) will be evaluated outside of the macro expansion. This example is
+contrived, but will concisely demonstrate the behavior.</p>
+<pre><code class="language-move">public struct S() has copy, drop;
+public fun foo(): S { abort 0 }
+public macro fun maybe_s($s: S, $cond: bool): S {
+    if ($cond) $s
+    else S()
+}
+</code></pre>
+<p>Even though <code>foo()</code> will abort, its return type can be used to start a method call.</p>
+<p><code>$s</code> will not be evaluated if <code>$cond</code> is <code>false</code>, and under a normal non-method call, an argument of
+<code>foo()</code> would not be evaluated and would not abort. The following example demonstrates <code>$s</code> not
+being evaluated with an argument of <code>foo()</code>.</p>
+<pre><code class="language-move">maybe_s!(foo(), false) // does not abort
+</code></pre>
+<p>It becomes more clear as to why it does not abort when looking at the expanded form</p>
+<pre><code class="language-move">if (false) foo()
+else S()
+</code></pre>
+<p>However, when using method syntax, the first argument is evaluated before the macro is expanded. So
+the same argument of <code>foo()</code> for <code>$s</code> will now be evaluated and will abort.</p>
+<pre><code class="language-move">foo().maybe_s!(false) // aborts
+</code></pre>
+<p>We can see this more clearly when looking the expanded form</p>
+<pre><code class="language-move">let tmp = foo(); // aborts
+if (false) tmp
+else S()
+</code></pre>
+<p>Conceptually, the receiver for a method call is bound to a temporary variable before the macro is
+expanded, which forces the evaluation and thus the abort.</p>
+<h3 id="parameter-limitations"><a class="header" href="#parameter-limitations">Parameter Limitations</a></h3>
+<p>The parameters of a <code>macro</code> function must always be used as expressions. They cannot be used in
+sutations where the argument might be re-interpreted. For example, the following is not allowed</p>
+<pre><code class="language-move">macro fun no($x: _): _ {
+    $x.f
+}
+</code></pre>
+<p>The reason is that if the argument <code>$x</code> was not a reference, it would be borrowed first, which would
+could re-interpret the argument. To get around this limitation, you should bind the argument to a
+local variable.</p>
+<pre><code class="language-move">macro fun yes($x: _): _ {
+    let x = $x;
+    x.f
+}
+</code></pre>
+<h2 id="examples"><a class="header" href="#examples">Examples</a></h2>
+<h3 id="lazy-arguments-assert_eq"><a class="header" href="#lazy-arguments-assert_eq">Lazy arguments: assert_eq</a></h3>
+<pre><code class="language-move">macro fun assert_eq&lt;$T&gt;($left: $T, $right: $T, $code: u64) {
+    let left = $left;
+    let right = $right;
+    if (left != right) {
+        std::debug::print(&amp;b&quot;assertion failed.\n left: &quot;);
+        std::debug::print(&amp;left);
+        std::debug::print(&amp;b&quot;\n does not equal right: &quot;);
+        std::debug::print(&amp;right);
+        abort $code;
+    }
+}
+</code></pre>
+<p>In this case the argument to <code>$code</code> is not evaluated unless the assertion fails.</p>
+<pre><code class="language-move">assert_eq!(vector[true, false], vector[true, false], 1 / 0); // division by zero is not evaluated
+</code></pre>
+<h3 id="any-integer-square-root"><a class="header" href="#any-integer-square-root">Any integer square root</a></h3>
+<p>This macro calculates the integer square root for any integer type, besides <code>u256</code>.</p>
+<p><code>$T</code> is the type of the input and <code>$bitsize</code> is the number of bits in that type, for example <code>u8</code>
+has 8 bits. <code>$U</code> should be set to the next larger integer type, for example <code>u16</code> for <code>u8</code>.</p>
+<p>In this <code>macro</code>, the type of the integer literals are <code>1</code> and <code>0</code> are annotated, e.g. <code>(1: $U)</code>
+allowing for the type of the literal to differ with each call. Similarly, <code>as</code> can be used with the
+type parameters <code>$T</code> and <code>$U</code>. This macro will then only successfully expand if <code>$T</code> and <code>$U</code> are
+instantiated with the integer types.</p>
+<pre><code class="language-move">macro fun num_sqrt&lt;$T, $U&gt;($x: $T, $bitsize: u8): $T {
+    let x = $x;
+    let mut bit = (1: $U) &lt;&lt; $bitsize;
+    let mut res = (0: $U);
+    let mut x = x as $U;
+
+    while (bit != 0) {
+        if (x &gt;= res + bit) {
+            x = x - (res + bit);
+            res = (res &gt;&gt; 1) + bit;
+        } else {
+            res = res &gt;&gt; 1;
+        };
+        bit = bit &gt;&gt; 2;
+    };
+
+    res as $T
+}
+</code></pre>
+<h3 id="iterating-over-a-vector"><a class="header" href="#iterating-over-a-vector">Iterating over a vector</a></h3>
+<p>The two <code>macro</code>s iterate over a vector, immutably and mutably respectively.</p>
+<pre><code class="language-move">macro fun for_imm&lt;$T&gt;($v: &amp;vector&lt;$T&gt;, $f: |&amp;$T|) {
+    let v = $v;
+    let n = v.length();
+    let mut i = 0;
+    while (i &lt; n) {
+        $f(&amp;v[i]);
+        i = i + 1;
+    }
+}
+
+macro fun for_mut&lt;$T&gt;($v: &amp;mut vector&lt;$T&gt;, $f: |&amp;mut $T|) {
+    let v = $v;
+    let n = v.length();
+    let mut i = 0;
+    while (i &lt; n) {
+        $f(&amp;mut v[i]);
+        i = i + 1;
+    }
+}
+</code></pre>
+<p>A few examples of usage</p>
+<pre><code class="language-move">fun imm_examples(v: &amp;vector&lt;u64&gt;) {
+    // print all elements
+    for_imm!(v, |x| std::debug::print(x));
+
+    // sum all elements
+    let mut sum = 0;
+    for_imm!(v, |x| sum = sum + x);
+
+    // find the max element
+    let mut max = 0;
+    for_imm!(v, |x| if (x &gt; max) max = x);
+}
+
+fun mut_examples(v: &amp;mut vector&lt;u64&gt;) {
+    // increment each element
+    for_mut!(v, |x| *x = *x + 1);
+
+    // set each element to the previous value, and the first to last value
+    let mut prev = v[v.length() - 1];
+    for_mut!(v, |x| {
+        let tmp = *x;
+        *x = prev;
+        prev = tmp;
+    });
+
+    // set the max element to 0
+    let mut max = &amp;mut 0;
+    for_mut!(v, |x| if (*x &gt; *max) max = x);
+    *max = 0;
+}
+</code></pre>
+<h3 id="non-loop-lambda-usage"><a class="header" href="#non-loop-lambda-usage">Non-loop lambda usage</a></h3>
+<p>Lambdas do not need to be used in loops, and are often useful for conditionally applying code.</p>
+<pre><code class="language-move">macro fun inspect&lt;$T&gt;($opt: &amp;Option&lt;$T&gt;, $f: |&amp;$T|) {
+    let opt = $opt;
+    if (opt.is_some()) $f(opt.borrow())
+}
+
+macro fun is_some_and&lt;$T&gt;($opt: &amp;Option&lt;$T&gt;, $f: |&amp;$T| -&gt; bool): bool {
+    let opt = $opt;
+    if (opt.is_some()) $f(opt.borrow())
+    else false
+}
+
+macro fun map&lt;$T, $U&gt;($opt: Option&lt;$T&gt;, $f: |$T| -&gt; $U): Option&lt;$U&gt; {
+    let opt = $opt;
+    if (opt.is_some()) {
+        option::some($f(opt.destroy_some()))
+    } else {
+        opt.destroy_none();
+        option::none()
+    }
+}
+</code></pre>
+<p>And some examples of usage</p>
+<pre><code class="language-move">fun examples(opt: Option&lt;u64&gt;) {
+    // print the value if it exists
+    inspect!(&amp;opt, |x| std::debug::print(x));
+
+    // check if the value is 0
+    let is_zero = is_some_and!(&amp;opt, |x| *x == 0);
+
+    // upcast the u64 to a u256
+    let str_opt = map!(opt, |x| x as u256);
+}
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../functions.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../structs.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../functions.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../structs.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../theme/switcher.js"></script>
+
+
+    </div>
+    </body>
+</html>
