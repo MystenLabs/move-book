@@ -24,6 +24,7 @@
   - [Labeled Control FLow](control-flow/labeled-control-flow.md)
   - [Pattern Matching](control-flow/pattern-matching.md)
 - [Functions](functions.md)
+  - [Macro Functions](functions/macros.md)
 - [Structs](structs.md)
 - [Enums](enums.md)
 - [Constants](constants.md)
