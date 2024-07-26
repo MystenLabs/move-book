@@ -2926,7 +2926,7 @@ module b::other {
 }
 </code></pre>
 <p>Type arguments can be either specified or inferred. Both calls are equivalent.</p>
-<pre><code class="language-move">module aexample {
+<pre><code class="language-move">module a::example {
     public fun id&lt;T&gt;(x: T): T { x }
 }
 
@@ -3031,7 +3031,7 @@ parameters, they will not be evaluated eagerly, and instead the argument express
 substituted at each usage.</p>
 <h2 id="lambdas"><a class="header" href="#lambdas">Lambdas</a></h2>
 <p>Lambdas are a new type of expression that can only be used with <code>macro</code>s. These are used to pass
-code from the caller into the body of the <code>macro</code>. While the substition is done at compile time,
+code from the caller into the body of the <code>macro</code>. While the substitution is done at compile time,
 they are used similarly to <a href="https://en.wikipedia.org/wiki/Anonymous_function">anonymous functions</a>,
 <a href="https://en.wikipedia.org/wiki/Lambda_calculus">lambdas</a>, or
 <a href="https://en.wikipedia.org/wiki/Closure_(computer_programming)">closures</a> in other languages.</p>
@@ -3043,7 +3043,7 @@ they are used similarly to <a href="https://en.wikipedia.org/wiki/Anonymous_func
 |&amp;mut vector&lt;u8&gt;| -&gt; &amp;mut u8 // a lambda that takes a &amp;mut vector&lt;u8&gt; and returns a &amp;mut u8
 </code></pre>
 <p>If the return type is not annotated, it is unit <code>()</code> by default.</p>
-<pre><code class="language-move">// the following are euiqvalent
+<pre><code class="language-move">// the following are equivalent
 |&amp;mut vector&lt;u8&gt;, u64|
 |&amp;mut vector&lt;u8&gt;, u64| -&gt; ()
 </code></pre>
@@ -3091,7 +3091,7 @@ function is not resolved until after the macro is expanded.</p>
     $x.foo()
 }
 </code></pre>
-<p>This macro will only expand succesfully if <code>$T</code> has a method <code>foo</code> that returns a reference <code>&amp;$U</code>.
+<p>This macro will only expand successfully if <code>$T</code> has a method <code>foo</code> that returns a reference <code>&amp;$U</code>.
 As described in the <a href="functions/macros.html#hygiene">hygiene</a> section, <code>foo</code> will be resolved based on the scope where
 <code>call_foo</code> was defined--not where it was expanded.</p>
 <h3 id="type-parameters-1"><a class="header" href="#type-parameters-1">Type Parameters</a></h3>
@@ -3155,7 +3155,7 @@ let (a, b) = create_two!(|value| Box { value });
 <p>In this case, <code>$T</code> must be instantiated with a single type, but inference finds that <code>$T</code> must be
 bound to both <code>u8</code> and <code>u16</code>.</p>
 <p>There is a tradeoff however, as the <code>_</code> type conveys less meaning and intention for the caller.
-Consider <code>map</code> macro from above redeclared with <code>_</code> instead of <code>$T</code> and <code>$U</code>.</p>
+Consider <code>map</code> macro from above re-declared with <code>_</code> instead of <code>$T</code> and <code>$U</code>.</p>
 <pre><code class="language-move">macro fun map($v: vector&lt;_&gt;, $f: |_| -&gt; _): vector&lt;_&gt; {
 </code></pre>
 <p>There is no longer any indication of behavior of <code>$f</code> at the type level. The caller must gain
@@ -3219,7 +3219,7 @@ with the <code>x</code> in the lambda?</p>
 <a href="https://en.wikipedia.org/wiki/Hygienic_macro">hygienic</a>, meaning that the expansion of <code>macro</code>s and
 lambdas will not accidentally capture variables from another scope.</p>
 <p>The compiler does this by associating a unique number with each scope. When the <code>macro</code> is expanded,
-the macro body gets its own scope. Additionally, the arguments are rescoped on each usage.</p>
+the macro body gets its own scope. Additionally, the arguments are re-scoped on each usage.</p>
 <p>Modifying the <code>dup</code> macro to use <code>x</code> instead of <code>a</code></p>
 <pre><code class="language-move">macro fun dup($f: |u64, u64| -&gt; u64, $x: u64): u64 {
     let a = $x;
@@ -3239,7 +3239,7 @@ let sum = {
 </code></pre>
 <p>This is an approximation of the compiler's internal representation, some details are omitted for the
 simplicity of this example.</p>
-<p>And each usage of an argument is rescoped so that the different usages do not conflict.</p>
+<p>And each usage of an argument is re-scoped so that the different usages do not conflict.</p>
 <pre><code class="language-move">macro fun apply_twice($f: |u64| -&gt; u64, $x: u64): u64 {
     $f($x) + $f($x)
 }
@@ -3373,7 +3373,7 @@ else S()
 expanded, which forces the evaluation and thus the abort.</p>
 <h3 id="parameter-limitations"><a class="header" href="#parameter-limitations">Parameter Limitations</a></h3>
 <p>The parameters of a <code>macro</code> function must always be used as expressions. They cannot be used in
-sutations where the argument might be re-interpreted. For example, the following is not allowed</p>
+situations where the argument might be re-interpreted. For example, the following is not allowed</p>
 <pre><code class="language-move">macro fun no($x: _): _ {
     $x.f
 }
