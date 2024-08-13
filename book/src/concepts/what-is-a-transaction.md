@@ -24,7 +24,7 @@ Transactions consist of:
 
 - a sender - the [account](./what-is-an-account.md) that _signs_ the transaction;
 - a list (or a chain) of commands - the operations to be executed;
-- command inputs - the arguments for the commands: either `pure` - simple* values like numbers or
+- command inputs - the arguments for the commands: either `pure` - simple values like numbers or
   strings, or `object` - objects that the transaction will access;
 - a gas object - the `Coin` object used to pay for the transaction;
 - gas price and budget - the cost of the transaction;
@@ -32,6 +32,27 @@ Transactions consist of:
 <sup>* Notice that custom structures defined in Move packages cannot be created and passed to
 MoveVM as transaction inputs. They always need to be instantiated/created inside MoveVM. There are
 only some exceptions to this such as: `ID` and `String`</sup>
+
+## Inputs
+
+Transaction inputs are the arguments for the transaction and are split between 2 types:
+- Pure arguments: These are mostly [primitive types](../move-basics/primitive-types.html) with some
+extra additions. A pure argument can be:
+    - boolean
+    - integer (u8, u16, u32, u64, u128, u256)
+    - address
+    - std::ascii::String
+    - std::string::String
+    - vector of the above types
+    - Option of the above types
+    - ID, a special type that refers to a unique identifier of an object
+- Object arguments: These are objects or references of objects that the transaction will access. An
+object argument needs to be either a shared object, a frozen object, or an object that the
+transaction sender owns, in order for the transaction to be successfull.
+For more see [Object Model](http://localhost:3000/object/index.html).
+
+Note that a single command inside a transaction can also have a previous command's result as input.
+These results/inputs can be anything from a simple value, an object, or any kind of Move struct.
 
 ## Commands
 

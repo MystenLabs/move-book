@@ -52,7 +52,9 @@ Structs encode similarly to simple types. Here is how to encode a struct using B
 {{#include ../../../packages/samples/sources/programmability/bcs.move:encode_struct}}
 ```
 
-Note that encoding a struct does not make much sense in interacting with the Move VM, as custom structs cannot be created this way to use in MoveVM. See also [Transaction](../concepts/what-is-a-transaction.html).
+Note that encoding a custom struct does not make much sense in interacting with the Move VM, as
+custom structs cannot be created this way to use in MoveVM. See also
+[Transaction Inputs](../concepts/what-is-a-transaction.html#inputs).
 
 ## Decoding
 
