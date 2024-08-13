@@ -74,7 +74,7 @@ A few examples
 If the return type is not annotated, it is unit `()` by default.
 
 ```move
-// the following are euiqvalent
+// the following are equivalent
 |&mut vector<u8>, u64|
 |&mut vector<u8>, u64| -> ()
 ```
@@ -243,7 +243,7 @@ In this case, `$T` must be instantiated with a single type, but inference finds 
 bound to both `u8` and `u16`.
 
 There is a tradeoff however, as the `_` type conveys less meaning and intention for the caller.
-Consider `map` macro from above redeclared with `_` instead of `$T` and `$U`.
+Consider `map` macro from above re-declared with `_` instead of `$T` and `$U`.
 
 ```move
 macro fun map($v: vector<_>, $f: |_| -> _): vector<_> {
@@ -340,7 +340,7 @@ The short answer is, no. `macro` functions are
 lambdas will not accidentally capture variables from another scope.
 
 The compiler does this by associating a unique number with each scope. When the `macro` is expanded,
-the macro body gets its own scope. Additionally, the arguments are rescoped on each usage.
+the macro body gets its own scope. Additionally, the arguments are re-scoped on each usage.
 
 Modifying the `dup` macro to use `x` instead of `a`
 
@@ -368,7 +368,7 @@ let sum = {
 This is an approximation of the compiler's internal representation, some details are omitted for the
 simplicity of this example.
 
-And each usage of an argument is rescoped so that the different usages do not conflict.
+And each usage of an argument is re-scoped so that the different usages do not conflict.
 
 ```move
 macro fun apply_twice($f: |u64| -> u64, $x: u64): u64 {
@@ -560,7 +560,7 @@ expanded, which forces the evaluation and thus the abort.
 ### Parameter Limitations
 
 The parameters of a `macro` function must always be used as expressions. They cannot be used in
-sutations where the argument might be re-interpreted. For example, the following is not allowed
+situations where the argument might be re-interpreted. For example, the following is not allowed
 
 ```move
 macro fun no($x: _): _ {

@@ -331,7 +331,7 @@ module b::other {
 Type arguments can be either specified or inferred. Both calls are equivalent.
 
 ```move
-module aexample {
+module a::example {
     public fun id<T>(x: T): T { x }
 }
 
