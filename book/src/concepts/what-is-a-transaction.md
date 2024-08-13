@@ -24,10 +24,14 @@ Transactions consist of:
 
 - a sender - the [account](./what-is-an-account.md) that _signs_ the transaction;
 - a list (or a chain) of commands - the operations to be executed;
-- command inputs - the arguments for the commands: either `pure` - simple values like numbers or
+- command inputs - the arguments for the commands: either `pure` - simple* values like numbers or
   strings, or `object` - objects that the transaction will access;
 - a gas object - the `Coin` object used to pay for the transaction;
 - gas price and budget - the cost of the transaction;
+
+<sup>* Notice that custom structures defined in Move packages cannot be created and passed to
+MoveVM as transaction inputs. They always need to be instantiated/created inside MoveVM. There are
+only some exceptions to this such as: `ID` and `String`</sup>
 
 ## Commands
 
