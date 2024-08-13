@@ -29,10 +29,6 @@ Transactions consist of:
 - a gas object - the `Coin` object used to pay for the transaction;
 - gas price and budget - the cost of the transaction;
 
-<sup>* Notice that custom structures defined in Move packages cannot be created and passed to
-MoveVM as transaction inputs. They always need to be instantiated/created inside MoveVM. There are
-only some exceptions to this such as: `ID` and `String`</sup>
-
 ## Inputs
 
 Transaction inputs are the arguments for the transaction and are split between 2 types:
