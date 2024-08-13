@@ -26,7 +26,7 @@ as a list of unique IDs or addresses.
 {{#include ../../../packages/samples/sources/programmability/collections.move:vec_set}}
 ```
 
-VecSet will fail on attempt to insert a an item that already exists in the set.
+VecSet will fail on attempt to insert an item that already exists in the set.
 
 ## VecMap
 

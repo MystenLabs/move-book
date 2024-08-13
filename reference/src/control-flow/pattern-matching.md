@@ -596,7 +596,7 @@ public struct MyStruct2 {
 fun wild_match(x: MyStruct) {
     match (x) {
         MyStruct(.., 1) => 1,
-        // OK! The `..` pattern can be used at the begining of the constructor pattern
+        // OK! The `..` pattern can be used at the beginning of the constructor pattern
         MyStruct(1, ..) => 2,
         // OK! The `..` pattern can be used at the end of the constructor pattern
         MyStruct(1, .., 1) => 3,
