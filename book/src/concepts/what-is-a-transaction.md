@@ -43,8 +43,8 @@ extra additions. A pure argument can be:
     - address
     - std::ascii::String
     - std::string::String
-    - vector of the above types
-    - Option of the above types
+    - vector of pure types
+    - Option of pure types
     - ID, a special type that refers to a unique identifier of an object
 - Object arguments: These are objects or references of objects that the transaction will access. An
 object argument needs to be either a shared object, a frozen object, or an object that the
