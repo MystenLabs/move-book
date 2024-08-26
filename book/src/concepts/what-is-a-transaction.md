@@ -45,7 +45,7 @@ extra additions. A pure argument can be:
 - Object arguments: These are objects or references of objects that the transaction will access. An
 object argument needs to be either a shared object, a frozen object, or an object that the
 transaction sender owns, in order for the transaction to be successfull.
-For more see [Object Model](http://localhost:3000/object/index.html).
+For more see [Object Model](../object/index.html).
 
 ## Commands
 
