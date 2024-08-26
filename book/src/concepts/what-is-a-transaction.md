@@ -47,9 +47,6 @@ object argument needs to be either a shared object, a frozen object, or an objec
 transaction sender owns, in order for the transaction to be successfull.
 For more see [Object Model](http://localhost:3000/object/index.html).
 
-Note that a single command inside a transaction can also have a previous command's result as input.
-These results/inputs can be anything from a simple value, an object, or any kind of Move struct.
-
 ## Commands
 
 Sui transactions may consist of multiple commands. Each command is a single built-in command (like
