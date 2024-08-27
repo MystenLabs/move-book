@@ -4,7 +4,6 @@
 #[allow(unused_variable)]
 module book::vector_syntax {
 #[test] fun test_vector() {
-
 // ANCHOR: literal
 // An empty vector of bool elements.
 let empty: vector<bool> = vector[];
@@ -21,7 +20,6 @@ let vv: vector<vector<u8>> = vector[
 }
 
 #[test] fun vector_methods() {
-
 // ANCHOR: methods
 let mut v = vector[10u8, 20, 30];
 
@@ -34,7 +32,6 @@ let last_value = v.pop_back();
 assert!(last_value == 40, 2);
 // ANCHOR_END: methods
 }
-
 }
 
 
