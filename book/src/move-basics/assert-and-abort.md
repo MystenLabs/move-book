@@ -45,7 +45,8 @@ The code above will, of course, abort with abort code `1`.
 The `assert!` macro is a built-in macro that can be used to assert a condition. If the condition is
 false, the transaction will abort with the given abort code. The `assert!` macro is a convenient way
 to abort a transaction if a condition is not met. The macro shortens the code otherwise written with
-an `if` expression + `abort`. The `code` argument is required and has to be a `u64` value.
+an `if` expression + `abort`. The `code` argument is optional, but has to be a `u64` value or an
+`#[error]` (see below for more information).
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/assert-and-abort.move:assert}}
@@ -61,6 +62,16 @@ code and make it easier to understand the abort scenarios.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/assert-and-abort.move:error_const}}
+```
+
+## Error messages
+
+Move 2024 introduces a special type of error constant, marked with the `#[error]` attribute. This
+attribute allows the error constant to be of type `vector<u8>` and can be used to store an error
+message.
+
+```move
+{{#include ../../../packages/samples/sources/move-basics/assert-and-abort.move:error_attribute}}
 ```
 
 ## Further reading

@@ -50,3 +50,22 @@ public fun update_record(/* ... , */ user_has_access: bool, field_exists: bool) 
     /* ... */
 }
 // ANCHOR_END: error_const
+
+public struct User { is_authorized: bool, value: u64 }
+
+// ANCHOR: error_attribute
+#[error]
+const ENotAuthorized: vector<u8> = b"The user is not authorized to perform this action";
+
+#[error]
+const EValueTooLow: vector<u8> = b"The value is too low, it should be at least 10";
+
+/// Performs an action on behalf of the user.
+public fun update_value(user: &mut User, value: u64) {
+    assert!(user.is_authorized, ENotAuthorized);
+    assert!(value >= 10, EValueTooLow);
+
+    user.value = value;
+}
+// ANCHOR_END: error_attribute
+}
