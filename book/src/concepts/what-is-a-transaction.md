@@ -41,7 +41,7 @@ extra additions. A pure argument can be:
     - [`std::ascii::String`](../move-basics/string.html#ascii-strings), ASCII strings.
     - [`vector<T>`](../move-basics/vector.html), where `T` is a pure type.
     - [`std::option::Option<T>`](../move-basics/option.html), where `T` is a pure type.
-    - [`std::object::ID`](../storage/uid-and-id.html), takes part in the Unique IDentifier (UID) of an object. See also [What is an Object](../object/object-model.html).
+    - [`std::object::ID`](../storage/uid-and-id.html), typically points to an object. See also [What is an Object](../object/object-model.html).
 - Object arguments: These are objects or references of objects that the transaction will access. An
 object argument needs to be either a shared object, a frozen object, or an object that the
 transaction sender owns, in order for the transaction to be successfull.
