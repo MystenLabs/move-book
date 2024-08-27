@@ -1453,6 +1453,27 @@ strings, or <code>object</code> - objects that the transaction will access;</li>
 <li>a gas object - the <code>Coin</code> object used to pay for the transaction;</li>
 <li>gas price and budget - the cost of the transaction;</li>
 </ul>
+<h2 id="inputs"><a class="header" href="#inputs">Inputs</a></h2>
+<p>Transaction inputs are the arguments for the transaction and are split between 2 types:</p>
+<ul>
+<li>Pure arguments: These are mostly <a href="concepts/../move-basics/primitive-types.html">primitive types</a> with some
+extra additions. A pure argument can be:
+<ul>
+<li><a href="concepts/../move-basics/primitive-types.html#booleans"><code>bool</code></a>.</li>
+<li><a href="concepts/../move-basics/primitive-types.html#integers">integer</a> (<code>u8</code>, <code>u16</code>, <code>u32</code>, <code>u64</code>, <code>u128</code>, <code>u256</code>).</li>
+<li><a href="concepts/../move-basics/address.html"><code>address</code></a>.</li>
+<li><a href="concepts/../move-basics/string.html"><code>std::string::String</code></a>, UTF8 strings.</li>
+<li><a href="concepts/../move-basics/string.html#ascii-strings"><code>std::ascii::String</code></a>, ASCII strings.</li>
+<li><a href="concepts/../move-basics/vector.html"><code>vector&lt;T&gt;</code></a>, where <code>T</code> is a pure type.</li>
+<li><a href="concepts/../move-basics/option.html"><code>std::option::Option&lt;T&gt;</code></a>, where <code>T</code> is a pure type.</li>
+<li><a href="concepts/../storage/uid-and-id.html"><code>std::object::ID</code></a>, typically points to an object. See also <a href="concepts/../object/object-model.html">What is an Object</a>.</li>
+</ul>
+</li>
+<li>Object arguments: These are objects or references of objects that the transaction will access. An
+object argument needs to be either a shared object, a frozen object, or an object that the
+transaction sender owns, in order for the transaction to be successfull.
+For more see <a href="concepts/../object/index.html">Object Model</a>.</li>
+</ul>
 <h2 id="commands"><a class="header" href="#commands">Commands</a></h2>
 <p>Sui transactions may consist of multiple commands. Each command is a single built-in command (like
 publishing a package) or a call to a function in an already published package. The commands are
