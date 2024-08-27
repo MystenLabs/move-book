@@ -6,7 +6,7 @@ For simple values, Move has a number of built-in primitive types. They're the ba
 other types. The primitive types are:
 
 - [Booleans](#booleans)
-- [Unsigned Integers](#integers)
+- [Unsigned Integers](#integer-types)
 - [Address](./address.md) - covered in the next section
 
 However, before we get to the types, let's first look at how to declare and assign variables in

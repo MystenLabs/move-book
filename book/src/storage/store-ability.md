@@ -40,7 +40,7 @@ public struct MegaConfig has key {
 All native types (except for references) in Move have the `store` ability. This includes:
 
 - [bool](./../move-basics/primitive-types.md#booleans)
-- [unsigned integers](./../move-basics/primitive-types.md#integers)
+- [unsigned integers](./../move-basics/primitive-types.md#integer-types)
 - [vector](./../move-basics/vector.md)
 - [address](./../move-basics/address.md)
 

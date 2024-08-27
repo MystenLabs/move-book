@@ -35,7 +35,7 @@ Transaction inputs are the arguments for the transaction and are split between 2
 - Pure arguments: These are mostly [primitive types](../move-basics/primitive-types.html) with some
 extra additions. A pure argument can be:
     - [`bool`](../move-basics/primitive-types.html#booleans).
-    - [integer](../move-basics/primitive-types.html#integers) (`u8`, `u16`, `u32`, `u64`, `u128`, `u256`).
+    - [unsigned integer](../move-basics/primitive-types.html#integer-types) (`u8`, `u16`, `u32`, `u64`, `u128`, `u256`).
     - [`address`](../move-basics/address.html).
     - [`std::string::String`](../move-basics/string.html), UTF8 strings.
     - [`std::ascii::String`](../move-basics/string.html#ascii-strings), ASCII strings.
