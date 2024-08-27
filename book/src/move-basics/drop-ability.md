@@ -64,7 +64,7 @@ section.
 All native types in Move have the `drop` ability. This includes:
 
 - [bool](./../move-basics/primitive-types.md#booleans)
-- [unsigned integers](./../move-basics/primitive-types.md#integers)
+- [unsigned integers](./../move-basics/primitive-types.md#integer-types)
 - [vector](./../move-basics/vector.md)
 - [address](./../move-basics/address.md)
 
