@@ -129,7 +129,7 @@ contexts.
 To clarify program behavior, you may only use `break` and `continue` with loop labels, while
 `return` will only work with block labels. To this end, the following programs produce errors:
 
-```
+```move
 fun bad_loop() {
     'name: loop {
         return 'name 5
