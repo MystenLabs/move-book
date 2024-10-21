@@ -378,9 +378,7 @@ are typically named after the module defined in the file. For example, in our ca
 <em>hello_world.move</em> and the Move CLI has already placed commented out code inside:</p>
 <pre><code class="language-move">/*
 /// Module: hello_world
-module hello_world::hello_world {
-
-}
+module hello_world::hello_world;
 */
 </code></pre>
 <blockquote>
@@ -404,21 +402,20 @@ add helpers for your tests without including them in the code that will be publi
 <p>The <em>hello_world_tests.move</em> file contains a commented out test module template:</p>
 <pre><code class="language-move">/*
 #[test_only]
-module hello_world::hello_world_tests {
-    // uncomment this line to import the module
-    // use hello_world::hello_world;
+module hello_world::hello_world_tests;
+// uncomment this line to import the module
+// use hello_world::hello_world;
 
-    const ENotImplemented: u64 = 0;
+const ENotImplemented: u64 = 0;
 
-    #[test]
-    fun test_hello_world() {
-        // pass
-    }
+#[test]
+fun test_hello_world() {
+    // pass
+}
 
-    #[test, expected_failure(abort_code = hello_world::hello_world_tests::ENotImplemented)]
-    fun test_hello_world_fail() {
-        abort ENotImplemented
-    }
+#[test, expected_failure(abort_code = hello_world::hello_world_tests::ENotImplemented)]
+fun test_hello_world_fail() {
+    abort ENotImplemented
 }
 */
 </code></pre>
@@ -435,14 +432,14 @@ excludes comments and some identifiers (for example, for constants).</p>
 with the following:</p>
 <pre><code class="language-move">/// The module `hello_world` under named address `hello_world`.
 /// The named address is set in the `Move.toml`.
-module hello_world::hello_world {
-    // Imports the `String` type from the Standard Library
-    use std::string::String;
+module hello_world::hello_world;
 
-    /// Returns the &quot;Hello, World!&quot; as a `String`.
-    public fun hello_world(): String {
-        b&quot;Hello, World!&quot;.to_string()
-    }
+// Imports the `String` type from the Standard Library
+use std::string::String;
+
+/// Returns the &quot;Hello, World!&quot; as a `String`.
+public fun hello_world(): String {
+    b&quot;Hello, World!&quot;.to_string()
 }
 </code></pre>
 <p>During compilation, the code is built, but not run. A compiled package only includes functions that
@@ -473,13 +470,13 @@ provides the execution environment. The tests can be placed in both the source f
 the compiler. We explain tests in depth in the <a href="your-first-move/./../move-basics/testing.html">Testing</a> section.</p>
 <p>Replace the contents of the <code>tests/hello_world_tests.move</code> with the following content:</p>
 <pre><code class="language-move">#[test_only]
-module hello_world::hello_world_tests {
-    use hello_world::hello_world;
+module hello_world::hello_world_tests;
 
-    #[test]
-    fun test_hello_world() {
-        assert!(hello_world::hello_world() == b&quot;Hello, World!&quot;.to_string(), 0);
-    }
+use hello_world::hello_world;
+
+#[test]
+fun test_hello_world() {
+    assert!(hello_world::hello_world() == b&quot;Hello, World!&quot;.to_string(), 0);
 }
 </code></pre>
 <p>Here we import the <code>hello_world</code> module, and call its <code>hello_world</code> function to test that the output
@@ -1541,14 +1538,20 @@ Notes:
 and all of the members of the module are private to the module by default. In this section you will
 learn how to define a module, how to declare its members and how to access them from other modules.</p>
 <h2 id="module-declaration"><a class="header" href="#module-declaration">Module declaration</a></h2>
-<p>Modules are declared using the <code>module</code> keyword followed by the package address, module name and the
-module body inside the curly braces <code>{}</code>. The module name should be in <code>snake_case</code> - all lowercase
-letters with underscores between words. Modules names must be unique in the package.</p>
+<p>Modules are declared using the <code>module</code> keyword followed by the package address, module name,
+semicolon, and the module body. The module name should be in <code>snake_case</code> - all lowercase letters
+with underscores between words. Modules names must be unique in the package.</p>
 <p>Usually, a single file in the <code>sources/</code> folder contains a single module. The file name should match
 the module name - for example, a <code>donut_shop</code> module should be stored in the <code>donut_shop.move</code> file.
 You can read more about coding conventions in the
 <a href="move-basics/../special-topics/coding-conventions.html">Coding Conventions</a> section.</p>
-<pre><code class="language-Move">
+<blockquote>
+<p>If you need to declare more than one module in a file, you must use <a href="move-basics/module.html#module-block">Module Block</a>.</p>
+</blockquote>
+<pre><code class="language-Move">// Module label.
+module book::my_module;
+
+// module body
 </code></pre>
 <p>Structs, functions, constants and imports all part of the module:</p>
 <ul>
@@ -1574,6 +1577,27 @@ book = &quot;0x0&quot;
 <h2 id="module-members"><a class="header" href="#module-members">Module members</a></h2>
 <p>Module members are declared inside the module body. To illustrate that, let's define a simple module
 with a struct, a function and a constant:</p>
+<pre><code class="language-Move">module book::my_module_with_members;
+
+// import
+use book::my_module;
+
+// a constant
+const CONST: u8 = 0;
+
+// a struct
+public struct Struct {}
+
+// method alias
+public use fun function as Struct.struct_fun;
+
+// function
+fun function(_: &amp;Struct) { /* function body */ }
+</code></pre>
+<h2 id="module-block"><a class="header" href="#module-block">Module block</a></h2>
+<p>Pre-2024 edition of Move required <em>module block</em> - the contents of the module need to be surrounded
+by curly braces <code>{}</code>. The main reason to use block and not <em>label</em> is if you need to define more
+than one module in a file.</p>
 <pre><code class="language-Move">module book::my_block_module_with_members {
     // import
     use book::my_module;
@@ -1619,17 +1643,36 @@ yourself or other developers, to temporarily remove a part of your code, or to g
 documentation. There are three types of comments in Move: line comment, block comment, and doc
 comment.</p>
 <h2 id="line-comment"><a class="header" href="#line-comment">Line comment</a></h2>
-<pre><code class="language-Move">{{#include ../../../packages/samples/sources/move-basics/comments.move:line}}
-</code></pre>
 <p>You can use double slash <code>//</code> to comment out the rest of the line. Everything after <code>//</code> will be
 ignored by the compiler.</p>
-<pre><code class="language-Move">{{#include ../../../packages/samples/sources/move-basics/comments.move:line_2}}
+<pre><code class="language-Move">module book::comments_line;
+
+// let's add a note to everything!
+fun some_function_with_numbers() {
+    let a = 10;
+    // let b = 10 this line is commented and won't be executed
+    let b = 5; // here comment is placed after code
+    a + b; // result is 15, not 10!
+}
 </code></pre>
 <h2 id="block-comment"><a class="header" href="#block-comment">Block comment</a></h2>
 <p>Block comments are used to comment out a block of code. They start with <code>/*</code> and end with <code>*/</code>.
 Everything between <code>/*</code> and <code>*/</code> will be ignored by the compiler. You can use block comments to
 comment out a single line or multiple lines. You can even use them to comment out a part of a line.</p>
-<pre><code class="language-Move">{{#include ../../../packages/samples/sources/move-basics/comments.move:block}}
+<pre><code class="language-Move">module book::comments_block;
+
+fun /* you can comment everywhere */ go_wild() {
+    /* here
+        there
+        everywhere */ let a = 10;
+    let b = /* even here */ 10; /* and again */
+    a + b;
+}
+/* you can use it to remove certain expressions or definitions
+fun empty_commented_out() {
+
+}
+*/
 </code></pre>
 <p>This example is a bit extreme, but it shows how you can use block comments to comment out a part of
 a line.</p>
@@ -1637,7 +1680,21 @@ a line.</p>
 <p>Documentation comments are special comments that are used to generate documentation for your code.
 They are similar to block comments, but they start with three slashes <code>///</code> and are placed before
 the definition of the item they document.</p>
-<pre><code class="language-Move">{{#include ../../../packages/samples/sources/move-basics/comments.move:doc}}
+<pre><code class="language-Move">/// Module has documentation!
+module book::comments_doc;
+
+/// This is a 0x0 address constant!
+const AN_ADDRESS: address = @0x0;
+
+/// This is a struct!
+public struct AStruct {
+    /// This is a field of a struct!
+    a_field: u8,
+}
+
+/// This function does something!
+/// And it's documented!
+fun do_something() {}
 </code></pre>
 <!-- TODO: docgen, which members are in the documentation -->
 <div style="break-before: page; page-break-before: always;"></div><h1 id="primitive-types"><a class="header" href="#primitive-types">Primitive Types</a></h1>
@@ -2183,26 +2240,50 @@ public fun new(): Character { Character {} }
 </code></pre>
 <p>Another module defined in the same package can import the first module using the <code>use</code> keyword.</p>
 <pre><code class="language-move">// File: sources/module_two.move
+module book::module_two;
 
+use book::module_one; // importing module_one from the same package
+
+/// Calls the `new` function from the `module_one` module.
+public fun create_and_ignore() {
+    let _ = module_one::new();
+}
 </code></pre>
 <h2 id="importing-members"><a class="header" href="#importing-members">Importing Members</a></h2>
 <p>You can also import specific members from a module. This is useful when you only need a single
 function or a single type from a module. The syntax is the same as for importing a module, but you
 add the member name after the module path.</p>
-<pre><code class="language-move">
+<pre><code class="language-move">{{#include ../../../packages/samples/sources/move-basics/importing-modules-members.move:members}}
 </code></pre>
 <h2 id="grouping-imports"><a class="header" href="#grouping-imports">Grouping Imports</a></h2>
 <p>Imports can be grouped into a single <code>use</code> statement using the curly braces <code>{}</code>. This is useful
 when you need to import multiple members from the same module. Move allows grouping imports from the
 same module and from the same package.</p>
-<pre><code class="language-move">
+<pre><code class="language-move">module book::grouped_imports;
+
+// imports the `new` function and the `Character` struct from
+// the `module_one` module
+use book::module_one::{new, Character};
+
+/// Calls the `new` function from the `module_one` module.
+public fun create_character(): Character {
+    new()
+}
 </code></pre>
 <p>Single function imports are less common in Move, since the function names can overlap and cause
 confusion. A recommended practice is to import the entire module and use the module path to access
 the function. Types have unique names and should be imported individually.</p>
 <p>To import members and the module itself in the group import, you can use the <code>Self</code> keyword. The
 <code>Self</code> keyword refers to the module itself and can be used to import the module and its members.</p>
-<pre><code class="language-move">
+<pre><code class="language-move">module book::self_imports;
+
+// imports the `Character` struct, and the `module_one` module
+use book::module_one::{Self, Character};
+
+/// Calls the `new` function from the `module_one` module.
+public fun create_character(): Character {
+    module_one::new()
+}
 </code></pre>
 <h2 id="resolving-name-conflicts"><a class="header" href="#resolving-name-conflicts">Resolving Name Conflicts</a></h2>
 <p>When importing multiple members from different modules, it is possible to have name conflicts. For
@@ -2210,7 +2291,15 @@ example, if you import two modules that both have a function with the same name,
 use the module path to access the function. It is also possible to have modules with the same name
 in different packages. To resolve the conflict and avoid ambiguity, Move offers the <code>as</code> keyword to
 rename the imported member.</p>
-<pre><code class="language-move">
+<pre><code class="language-move">module book::conflict_resolution;
+
+// `as` can be placed after any import, including group imports
+use book::module_one::{Self as mod, Character as Char};
+
+/// Calls the `new` function from the `module_one` module.
+public fun create(): Char {
+    mod::new()
+}
 </code></pre>
 <h2 id="adding-an-external-dependency"><a class="header" href="#adding-an-external-dependency">Adding an External Dependency</a></h2>
 <p>Every new package generated via the <code>sui</code> binary features a <code>Move.toml</code> file with a single
@@ -2234,7 +2323,10 @@ instead of the address. For example, instead of <code>0x2::coin</code> module, y
 Standard Library package and can be used to access the standard library modules.</p>
 <p>To import a module from another package, you use the <code>use</code> keyword followed by the module path. The
 module path consists of the package address (or alias) and the module name separated by <code>::</code>.</p>
-<pre><code class="language-move">
+<pre><code class="language-move">module book::imports;
+
+use std::string; // std = 0x1, string is a module in the standard library
+use sui::coin;   // sui = 0x2, coin is a module in the Sui Framework
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="standard-library"><a class="header" href="#standard-library">Standard Library</a></h1>
 <!-- The Move standard library provides a set of modules  -->
@@ -2807,32 +2899,66 @@ Links:
 give names to static values that are used throughout a module. For example, if there's a default
 price for a product, you might define a constant for it. Constants are stored in the module's
 bytecode, and each time they are used, the value is copied.</p>
-<pre><code class="language-move">
+<pre><code class="language-move">module book::shop_price;
+
+use sui::{coin::Coin, sui::SUI};
+
+/// The price of an item in the shop.
+const ITEM_PRICE: u64 = 100;
+/// The owner of the shop, an address.
+const SHOP_OWNER: address = @0xa11ce;
+
+/// An item sold in the shop.
+public struct Item {}
+
+/// Purchase an item from the shop.
+public fun purchase(coin: Coin&lt;SUI&gt;): Item {
+    assert!(coin.value() == ITEM_PRICE, 0);
+
+    transfer::public_transfer(coin, SHOP_OWNER);
+
+    Item {}
+}
 </code></pre>
 <h2 id="naming-convention"><a class="header" href="#naming-convention">Naming Convention</a></h2>
 <p>Constants must start with a capital letter - this is enforced at the compiler level. For constants
 used as a value, there's a convention to use uppercase letters and underscores to separate words.
 It's a way to make constants stand out from other identifiers in the code. One exception is made for
 <a href="move-basics/./assert-and-abort.html#assert-and-abort">error constants</a>, which are written in ECamelCase.</p>
-<pre><code class="language-move">
+<pre><code class="language-move">/// Price of the item used at the shop.
+const ITEM_PRICE: u64 = 100;
+
+/// Error constant.
+const EItemNotFound: u64 = 1;
 </code></pre>
 <h2 id="constants-are-immutable"><a class="header" href="#constants-are-immutable">Constants are Immutable</a></h2>
 <p>Constants can't be changed and assigned new values. They are part of the package bytecode, and
 inherently immutable.</p>
-<pre><code class="language-move">module book::immutable_constants {
-    const ITEM_PRICE: u64 = 100;
+<pre><code class="language-move">module book::immutable_constants;
 
-    // emits an error
-    fun change_price() {
-        ITEM_PRICE = 200;
-    }
+const ITEM_PRICE: u64 = 100;
+
+// emits an error
+fun change_price() {
+    ITEM_PRICE = 200;
 }
 </code></pre>
 <h2 id="using-config-pattern"><a class="header" href="#using-config-pattern">Using Config Pattern</a></h2>
 <p>A common use case for an application is to define a set of constants that are used throughout the
 codebase. But due to constants being private to the module, they can't be accessed from other
 modules. One way to solve this is to define a &quot;config&quot; module that exports the constants.</p>
-<pre><code class="language-move">
+<pre><code class="language-move">module book::config;
+
+const ITEM_PRICE: u64 = 100;
+const TAX_RATE: u64 = 10;
+const SHIPPING_COST: u64 = 5;
+
+/// Returns the price of an item.
+public fun item_price(): u64 { ITEM_PRICE }
+/// Returns the tax rate.
+public fun tax_rate(): u64 { TAX_RATE }
+/// Returns the shipping cost.
+public fun shipping_cost(): u64 { SHIPPING_COST }
 </code></pre>
 <p>This way other modules can import and read the constants, and the update process is simplified. If
 the constants need to be changed, only the config module needs to be updated during the package
@@ -2931,20 +3057,7 @@ learn about best practices for error handling in Move.</li>
 code into reusable units. Functions can take arguments and return a value. They are declared with
 the <code>fun</code> keyword at the module level. Just like any other module member, by default they're private
 and can only be accessed from within the module.</p>
-<pre><code class="language-move">module book::math;
-
-/// Function takes two arguments of type `u64` and returns their sum.
-/// The `public` visibility modifier makes the function accessible from
-/// outside the module.
-public fun add(a: u64, b: u64): u64 {
-    a + b
-}
-
-#[test]
-fun test_add() {
-    let sum = add(1, 2);
-    assert!(sum == 3, 0);
-}
+<pre><code class="language-move">{{#include ../../../packages/samples/sources/move-basics/function_math.move:math}}
 </code></pre>
 <p>In this example, we define a function <code>add</code> that takes two arguments of type <code>u64</code> and returns their
 sum. The function is called from the <code>test_add</code> function, which is a test function located in the
@@ -2969,7 +3082,14 @@ body is the return value of the function.</p>
 consists of the module path and the function name separated by <code>::</code>. For example, if you have a
 function called <code>add</code> in the <code>math</code> module in the <code>book</code> package, the path to it will be
 <code>book::math::add</code>, or, if the module is imported, <code>math::add</code>.</p>
-<pre><code class="language-move">
+<pre><code class="language-move">module book::use_math;
+
+use book::math;
+
+fun call_add() {
+    // function is called via the path
+    let sum = math::add(1, 2);
+}
 </code></pre>
 <h2 id="multiple-return-values"><a class="header" href="#multiple-return-values">Multiple return values</a></h2>
 <p>Move functions can return multiple values, which is useful when you need to return more than one
@@ -3061,7 +3181,45 @@ another module, an alias can still be created but cannot be made public.</p>
 and <code>Villain</code> have similar field names and methods. And to avoid name conflicts, we prefixed methods
 with <code>hero_</code> and <code>villain_</code> respectively. However, we can create aliases for these methods so that
 they can be called on the instances of the structs without the prefix.</p>
-<pre><code class="language-move">
+<pre><code class="language-move">module book::hero_and_villain;
+
+/// A struct representing a hero.
+public struct Hero has drop {
+    health: u8,
+}
+
+/// A struct representing a villain.
+public struct Villain has drop {
+    health: u8,
+}
+
+/// Create a new Hero.
+public fun new_hero(): Hero { Hero { health: 100 } }
+
+/// Create a new Villain.
+public fun new_villain(): Villain { Villain { health: 100 } }
+
+// Alias for the `hero_health` method. Will be imported automatically when
+// the module is imported.
+public use fun hero_health as Hero.health;
+
+public fun hero_health(hero: &amp;Hero): u8 { hero.health }
+
+// Alias for the `villain_health` method. Will be imported automatically
+// when the module is imported.
+public use fun villain_health as Villain.health;
+
+public fun villain_health(villain: &amp;Villain): u8 { villain.health }
+
+#[test]
+// Test the methods of the `Hero` and `Villain` structs.
+fun test_associated_methods() {
+    let hero = new_hero();
+    assert!(hero.health() == 100, 1);
+
+    let villain = new_villain();
+    assert!(villain.health() == 100, 3);
+}
 </code></pre>
 <p>As you can see, in the test function, we called the <code>health</code> method on the instances of <code>Hero</code> and
 <code>Villain</code> without the prefix. The compiler will automatically associate the methods with the
@@ -3072,7 +3230,29 @@ module. Following the same approach, we can create an alias for the method defin
 module. Let's use the <code>bcs::to_bytes</code> method from the <a href="move-basics/./standard-library.html">Standard Library</a> and
 associate it with the <code>Hero</code> struct. It will allow serializing the <code>Hero</code> struct to a vector of
 bytes.</p>
-<pre><code class="language-move">
+<pre><code class="language-move">// TODO: better example (external module...)
+module book::hero_to_bytes;
+
+// Alias for the `bcs::to_bytes` method. Imported aliases should be defined
+// in the top of the module.
+// public use fun bcs::to_bytes as Hero.to_bytes;
+
+/// A struct representing a hero.
+public struct Hero has drop {
+    health: u8,
+    mana: u8,
+}
+
+/// Create a new Hero.
+public fun new(): Hero { Hero { health: 100, mana: 100 } }
+
+#[test]
+// Test the methods of the `Hero` struct.
+fun test_hero_serialize() {
+    // let mut hero = new();
+    // let serialized = hero.to_bytes();
+    // assert!(serialized.length() == 3, 1);
+}
 </code></pre>
 <h2 id="further-reading-13"><a class="header" href="#further-reading-13">Further reading</a></h2>
 <ul>
@@ -3087,60 +3267,60 @@ can't be called from other modules.</p>
 <h2 id="internal-visibility"><a class="header" href="#internal-visibility">Internal Visibility</a></h2>
 <p>A function or a struct defined in a module which has no visibility modifier is <em>private</em> to the
 module. It can't be called from other modules.</p>
-<pre><code class="language-move">module book::internal_visibility {
-    // This function can be called from other functions in the same module
-    fun internal() { /* ... */ }
+<pre><code class="language-move">module book::internal_visibility;
 
-    // Same module -&gt; can call internal()
-    fun call_internal() {
-        internal();
-    }
+// This function can be called from other functions in the same module
+fun internal() { /* ... */ }
+
+// Same module -&gt; can call internal()
+fun call_internal() {
+    internal();
 }
 </code></pre>
 <!-- Move compiler won't allow this code to compile: -->
 <!-- TODO: add failure flag to example -->
-<pre><code class="language-move">module book::try_calling_internal {
-    use book::internal_visibility;
+<pre><code class="language-move">module book::try_calling_internal;
 
-    // Different module -&gt; can't call internal()
-    fun try_calling_internal() {
-        internal_visibility::internal();
-    }
+use book::internal_visibility;
+
+// Different module -&gt; can't call internal()
+fun try_calling_internal() {
+    internal_visibility::internal();
 }
 </code></pre>
 <h2 id="public-visibility"><a class="header" href="#public-visibility">Public Visibility</a></h2>
 <p>A struct or a function can be made <em>public</em> by adding the <code>public</code> keyword before the <code>fun</code> or
 <code>struct</code> keyword.</p>
-<pre><code class="language-move">module book::public_visibility {
-    // This function can be called from other modules
-    public fun public() { /* ... */ }
-}
+<pre><code class="language-move">module book::public_visibility;
+
+// This function can be called from other modules
+public fun public() { /* ... */ }
 </code></pre>
 <p>A public function can be imported and called from other modules. The following code will compile:</p>
 <pre><code class="language-move">module book::try_calling_public {
-    use book::public_visibility;
 
-    // Different module -&gt; can call public()
-    fun try_calling_public() {
-        public_visibility::public();
-    }
+use book::public_visibility;
+
+// Different module -&gt; can call public()
+fun try_calling_public() {
+    public_visibility::public();
 }
 </code></pre>
 <h2 id="package-visibility"><a class="header" href="#package-visibility">Package Visibility</a></h2>
 <p>Move 2024 introduces the <em>package visibility</em> modifier. A function with <em>package visibility</em> can be
 called from any module within the same package. It can't be called from other packages.</p>
-<pre><code class="language-move">module book::package_visibility {
-    public(package) fun package_only() { /* ... */ }
-}
+<pre><code class="language-move">module book::package_visibility;
+
+public(package) fun package_only() { /* ... */ }
 </code></pre>
 <p>A package function can be called from any module within the same package:</p>
-<pre><code class="language-move">module book::try_calling_package {
-    use book::package_visibility;
+<pre><code class="language-move">module book::try_calling_package;
 
-    // Same package `book` -&gt; can call package_only()
-    fun try_calling_package() {
-        package_visibility::package_only();
-    }
+use book::package_visibility;
+
+// Same package `book` -&gt; can call package_only()
+fun try_calling_package() {
+    package_visibility::package_only();
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ownership-and-scope"><a class="header" href="#ownership-and-scope">Ownership and Scope</a></h1>
@@ -3159,21 +3339,21 @@ works.</p>
 <p>A variable defined in a function scope is owned by this scope. The runtime goes through the function
 scope and executes every expression and statement. Once the function scope end, the variables
 defined in it are dropped or deallocated.</p>
-<pre><code class="language-move">module book::ownership {
-    public fun owner() {
-        let a = 1; // a is owned by the `owner` function
-    } // a is dropped here
+<pre><code class="language-move">module book::ownership;
 
-    public fun other() {
-        let b = 2; // b is owned by the `other` function
-    } // b is dropped here
+public fun owner() {
+    let a = 1; // a is owned by the `owner` function
+} // a is dropped here
 
-    #[test]
-    fun test_owner() {
-        owner();
-        other();
-        // a &amp; b is not valid here
-    }
+public fun other() {
+    let b = 2; // b is owned by the `other` function
+} // b is dropped here
+
+#[test]
+fun test_owner() {
+    owner();
+    other();
+    // a &amp; b is not valid here
 }
 </code></pre>
 <p>In the example above, the variable <code>a</code> is owned by the <code>owner</code> function, and the variable <code>b</code> is
@@ -3182,70 +3362,70 @@ and when the function ends, the variables are discarded.</p>
 <h2 id="returning-a-value"><a class="header" href="#returning-a-value">Returning a Value</a></h2>
 <p>If we changed the <code>owner</code> function to return the variable <code>a</code>, then the ownership of <code>a</code> would be
 transferred to the caller of the function.</p>
-<pre><code class="language-move">module book::ownership {
-    public fun owner(): u8 {
-        let a = 1; // a defined here
-        a // scope ends, a is returned
-    }
+<pre><code class="language-move">module book::ownership;
 
-    #[test]
-    fun test_owner() {
-        let a = owner();
-        // a is valid here
-    } // a is dropped here
+public fun owner(): u8 {
+    let a = 1; // a defined here
+    a // scope ends, a is returned
 }
+
+#[test]
+fun test_owner() {
+    let a = owner();
+    // a is valid here
+} // a is dropped here
 </code></pre>
 <h2 id="passing-by-value"><a class="header" href="#passing-by-value">Passing by Value</a></h2>
 <p>Additionally, if we passed the variable <code>a</code> to another function, the ownership of <code>a</code> would be
 transferred to this function. When performing this operation, we <em>move</em> the value from one scope to
 another. This is also called <em>move semantics</em>.</p>
-<pre><code class="language-move">module book::ownership {
-    public fun owner(): u8 {
-        let a = 10;
-        a
-    } // a is returned
+<pre><code class="language-move">module book::ownership;
 
-    public fun take_ownership(v: u8) {
-        // v is owned by `take_ownership`
-    } // v is dropped here
+public fun owner(): u8 {
+    let a = 10;
+    a
+} // a is returned
 
-    #[test]
-    fun test_owner() {
-        let a = owner();
-        take_ownership(a);
-        // a is not valid here
-    }
+public fun take_ownership(v: u8) {
+    // v is owned by `take_ownership`
+} // v is dropped here
+
+#[test]
+fun test_owner() {
+    let a = owner();
+    take_ownership(a);
+    // a is not valid here
 }
 </code></pre>
 <h2 id="scopes-with-blocks"><a class="header" href="#scopes-with-blocks">Scopes with Blocks</a></h2>
 <p>Each function has a main scope, and it can also have sub-scopes via the use of blocks. A block is a
 sequence of statements and expressions, and it has its own scope. Variables defined in a block are
 owned by this block, and when the block ends, the variables are dropped.</p>
-<pre><code class="language-move">module book::ownership {
-    public fun owner() {
-        let a = 1; // a is owned by the `owner` function's scope
+<pre><code class="language-move">module book::ownership;
+
+public fun owner() {
+    let a = 1; // a is owned by the `owner` function's scope
+    {
+        let b = 2; // b is owned by the block
         {
-            let b = 2; // b is owned by the block
-            {
-                let c = 3; // c is owned by the block
-            }; // c is dropped here
-        }; // b is dropped here
-        // a = b; // error: b is not valid here
-        // a = c; // error: c is not valid here
-    } // a is dropped here
-}
+            let c = 3; // c is owned by the block
+        }; // c is dropped here
+    }; // b is dropped here
+    // a = b; // error: b is not valid here
+    // a = c; // error: c is not valid here
+} // a is dropped here
 </code></pre>
 <p>However, shall we use the return value of a block, the ownership of the variable is transferred to
 the caller of the block.</p>
-<pre><code class="language-move">module book::ownership {
-    public fun owner(): u8 {
-        let a = 1; // a is owned by the `owner` function's scope
-        let b = {
-            let c = 2; // c is owned by the block
-            c // c is returned
-        }; // c is dropped here
-        a + b // both a and b are valid here
-    }
+<pre><code class="language-move">module book::ownership;
+
+public fun owner(): u8 {
+    let a = 1; // a is owned by the `owner` function's scope
+    let b = {
+        let c = 2; // c is owned by the block
+        c // c is returned
+    }; // c is dropped here
+    a + b // both a and b are valid here
 }
 </code></pre>
 <h2 id="copyable-types"><a class="header" href="#copyable-types">Copyable Types</a></h2>
@@ -3353,7 +3533,6 @@ public struct Card { uses: u8 }
 /// Purchase a metro pass card.
 public fun purchase(/* pass a Coin */): Card {
     Card { uses: USES }
-}
 }
 </code></pre>
 <!-- In [the previous section](./ownership-and-scope.md) we explained the ownership and scope in Move. We showed how the value is *moved* to a new scope, and how it changes the owner. In this section, we will explain how to *borrow* a reference to a value to avoid moving it, and how Move's *borrow checker* ensures that the references are used correctly. -->
@@ -3682,21 +3861,21 @@ code.</p>
 that the function is a test function, and it should be run when the tests are executed. Test
 functions are regular functions, but they must take no arguments and have no return value. They
 are excluded from the bytecode, and are never published.</p>
-<pre><code class="language-move">module book::testing {
-    // Test attribute is placed before the `fun` keyword. Can be both above or
-    // right before the `fun` keyword: `#[test] fun my_test() { ... }`
-    // The name of the test would be `book::testing::simple_test`.
-    #[test]
-    fun simple_test() {
-        let sum = 2 + 2;
-        assert!(sum == 4, 1);
-    }
+<pre><code class="language-move">module book::testing;
 
-    // The name of the test would be `book::testing::more_advanced_test`.
-    #[test] fun more_advanced_test() {
-        let sum = 2 + 2 + 2;
-        assert!(sum == 4, 1);
-    }
+// Test attribute is placed before the `fun` keyword. Can be both above or
+// right before the `fun` keyword: `#[test] fun my_test() { ... }`
+// The name of the test would be `book::testing::simple_test`.
+#[test]
+fun simple_test() {
+    let sum = 2 + 2;
+    assert!(sum == 4);
+}
+
+// The name of the test would be `book::testing::more_advanced_test`.
+#[test] fun more_advanced_test() {
+    let sum = 2 + 2 + 2;
+    assert!(sum == 4);
 }
 </code></pre>
 <h2 id="running-tests-1"><a class="header" href="#running-tests-1">Running Tests</a></h2>
@@ -3721,21 +3900,20 @@ that a function fails when a certain condition is met.</p>
 <p>The attribute can take an argument for abort code, which is the expected abort code when the test
 fails. If the test fails with a different abort code, the test will fail. If the execution did not
 abort, the test will also fail.</p>
-<pre><code class="language-move">module book::testing_failure {
+<pre><code class="language-move">module book::testing_failure;
 
-    const EInvalidArgument: u64 = 1;
+const EInvalidArgument: u64 = 1;
 
-    #[test]
-    #[expected_failure(abort_code = 0)]
-    fun test_fail() {
-        abort 0 // aborts with 0
-    }
+#[test]
+#[expected_failure(abort_code = 0)]
+fun test_fail() {
+    abort 0 // aborts with 0
+}
 
-    // attributes can be grouped together
-    #[test, expected_failure(abort_code = EInvalidArgument)]
-    fun test_fail_1() {
-        abort 1 // aborts with 1
-    }
+// attributes can be grouped together
+#[test, expected_failure(abort_code = EInvalidArgument)]
+fun test_fail_1() {
+    abort 1 // aborts with 1
 }
 </code></pre>
 <p>The <code>abort_code</code> argument can use constants defined in the tests module as well as imported from
@@ -3745,29 +3923,29 @@ other modules. This is the only case where constants can be used and &quot;acces
 or features. It simplifies the testing process and allows for more thorough testing. However, it is
 important to remember that these functions should not be included in the final package. This is
 where the <code>#[test_only]</code> attribute comes in handy.</p>
-<pre><code class="language-move">module book::testing {
-    // Public function which uses the `secret` function.
-    public fun multiply_by_secret(x: u64): u64 {
-        x * secret()
-    }
+<pre><code class="language-move">module book::testing;
 
-    /// Private function which is not available to the public.
-    fun secret(): u64 { 100 }
+// Public function which uses the `secret` function.
+public fun multiply_by_secret(x: u64): u64 {
+    x * secret()
+}
 
-    #[test_only]
-    /// This function is only available for testing purposes in tests and other
-    /// test-only functions. Mind the visibility - for `#[test_only]` it is
-    /// common to use `public` visibility.
-    public fun secret_for_testing(): u64 {
-        secret()
-    }
+/// Private function which is not available to the public.
+fun secret(): u64 { 100 }
 
-    #[test]
-    // In the test environment we have access to the `secret_for_testing` function.
-    fun test_multiply_by_secret() {
-        let expected = secret_for_testing() * 2;
-        assert!(multiply_by_secret(2) == expected, 1);
-    }
+#[test_only]
+/// This function is only available for testing purposes in tests and other
+/// test-only functions. Mind the visibility - for `#[test_only]` it is
+/// common to use `public` visibility.
+public fun secret_for_testing(): u64 {
+    secret()
+}
+
+#[test]
+// In the test environment we have access to the `secret_for_testing` function.
+fun test_multiply_by_secret() {
+    let expected = secret_for_testing() * 2;
+    assert!(multiply_by_secret(2) == expected);
 }
 </code></pre>
 <p>Functions marked with the <code>#[test_only]</code> will be available to the test environment, and to the other
@@ -4640,7 +4818,19 @@ fun init(ctx: &amp;mut TxContext) {
 }
 </code></pre>
 <p>In the same package, another module can have its own <code>init</code> function, encapsulating distinct logic.</p>
-<pre><code class="language-move">
+<pre><code class="language-move">// In the same package as the `shop` module
+module book::bank;
+
+public struct Bank has key {
+    id: UID,
+    /* ... */
+}
+
+fun init(ctx: &amp;mut TxContext) {
+    transfer::share_object(Bank {
+        id: object::new(ctx)
+    });
+}
 </code></pre>
 <h2 id="init-features"><a class="header" href="#init-features"><code>init</code> features</a></h2>
 <p>The function is called on publish, if it is present in the module and follows the rules:</p>
@@ -4732,7 +4922,20 @@ public fun update(account: &amp;mut Account, name: String) {
 <h2 id="using-init-for-admin-capability"><a class="header" href="#using-init-for-admin-capability">Using <code>init</code> for Admin Capability</a></h2>
 <p>A very common practice is to create a single <code>AdminCap</code> object on package publish. This way, the
 application can have a setup phase where the admin account prepares the state of the application.</p>
-<pre><code class="language-move">
+<pre><code class="language-move">module book::admin_cap;
+
+/// The capability granting the admin privileges in the system.
+/// Created only once in the `init` function.
+public struct AdminCap has key { id: UID }
+
+/// Create the AdminCap object on package publish and transfer it to the
+/// package owner.
+fun init(ctx: &amp;mut TxContext) {
+    transfer::transfer(
+        AdminCap { id: object::new(ctx) },
+        ctx.sender()
+    )
+}
 </code></pre>
 <h2 id="address-check-vs-capability"><a class="header" href="#address-check-vs-capability">Address check vs Capability</a></h2>
 <p>Utilizing objects as capabilities is a relatively new concept in blockchain programming. And in
@@ -4741,10 +4944,28 @@ sender. This pattern is still viable on Sui, however, overall recommendation is 
 for better security, discoverability, and code organization.</p>
 <p>Let's look at how the <code>new</code> function that creates a user would look like if it was using the address
 check:</p>
-<pre><code class="language-move">
+<pre><code class="language-move">/// Error code for unauthorized access.
+const ENotAuthorized: u64 = 0;
+
+/// The application admin address.
+const APPLICATION_ADMIN: address = @0xa11ce;
+
+/// Creates a new user in the system. Requires the sender to be the application
+/// admin.
+public fun new(ctx: &amp;mut TxContext): User {
+    assert!(ctx.sender() == APPLICATION_ADMIN, ENotAuthorized);
+    User { id: object::new(ctx) }
+}
 </code></pre>
 <p>And now, let's see how the same function would look like with the capability:</p>
-<pre><code class="language-move">
+<pre><code class="language-move">/// Grants the owner the right to create new users in the system.
+public struct AdminCap {}
+
+/// Creates a new user in the system. Requires the `AdminCap` capability to be
+/// passed as the first argument.
+public fun new(_: &amp;AdminCap, ctx: &amp;mut TxContext): User {
+    User { id: object::new(ctx) }
+}
 </code></pre>
 <p>Using capabilities has several advantages over the address check:</p>
 <ul>
@@ -4859,7 +5080,29 @@ public struct BookStore has key, store {
 <p><code>VecSet</code> is a collection type that stores a set of unique items. It is similar to a <code>vector</code>, but it
 does not allow duplicate items. This makes it useful for storing a collection of unique items, such
 as a list of unique IDs or addresses.</p>
-<pre><code class="language-move">
+<pre><code class="language-move">module book::collections_vec_set;
+
+use sui::vec_set::{Self, VecSet};
+
+public struct App has drop {
+    /// `VecSet` used in the struct definition
+    subscribers: VecSet&lt;address&gt;
+}
+
+#[test]
+fun vec_set_playground() {
+    let set = vec_set::empty&lt;u8&gt;(); // create an empty set
+    let mut set = vec_set::singleton(1); // create a set with a single item
+
+    set.insert(2); // add an item to the set
+    set.insert(3);
+
+    assert!(set.contains(&amp;1), 0); // check if an item is in the set
+    assert!(set.size() == 3, 1); // get the number of items in the set
+    assert!(!set.is_empty(), 2); // check if the set is empty
+
+    set.remove(&amp;2); // remove an item from the set
+}
 </code></pre>
 <p>VecSet will fail on attempt to insert an item that already exists in the set.</p>
 <h2 id="vecmap"><a class="header" href="#vecmap">VecMap</a></h2>
@@ -4870,7 +5113,28 @@ and their associated data.</p>
 <p>Keys in a <code>VecMap</code> are unique, and each key can only be associated with a single value. If you try
 to insert a key-value pair with a key that already exists in the map, the old value will be replaced
 with the new value.</p>
-<pre><code class="language-move">
+<pre><code class="language-move">module book::collections_vec_map;
+
+use std::string::String;
+use sui::vec_map::{Self, VecMap};
+
+public struct Metadata has drop {
+    name: String,
+    /// `VecMap` used in the struct definition
+    attributes: VecMap&lt;String, String&gt;
+}
+
+#[test]
+fun vec_map_playground() {
+    let mut map = vec_map::empty(); // create an empty map
+
+    map.insert(2, b&quot;two&quot;.to_string()); // add a key-value pair to the map
+    map.insert(3, b&quot;three&quot;.to_string());
+
+    assert!(map.contains(&amp;2), 0); // check if a key is in the map
+
+    map.remove(&amp;2); // remove a key-value pair from the map
+}
 </code></pre>
 <h2 id="limitations"><a class="header" href="#limitations">Limitations</a></h2>
 <p>Standard collection types are a great way to store typed data with guaranteed safety and
@@ -4885,7 +5149,15 @@ results.</p>
 <p>This behavior is caught by the linter and will emit a warning: <em>Comparing collections of type
 'sui::vec_set::VecSet' may yield unexpected result</em></p>
 </blockquote>
-<pre><code class="language-move">
+<pre><code class="language-move">let mut set1 = vec_set::empty();
+set1.insert(1);
+set1.insert(2);
+
+let mut set2 = vec_set::empty();
+set2.insert(2);
+set2.insert(1);
+
+assert!(set1 == set2); // aborts!
 </code></pre>
 <p>In the example above, the comparison will fail because the order of insertion is not guaranteed, and
 the two <code>VecSet</code> instances may have different orders of elements. And the comparison will fail even
@@ -5434,29 +5706,29 @@ to create a <code>Instance&lt;T&gt;</code> instance.</p>
 <p>It is often the case that the witness struct is not stored, and for that the function may require
 the <a href="programmability/./../move-basics/drop-ability.html">Drop</a> ability for the type.</p>
 </blockquote>
-<pre><code class="language-move">module book::witness {
-    /// A struct that requires a witness to be created.
-    public struct Instance&lt;T&gt; { t: T }
+<pre><code class="language-move">module book::witness;
 
-    /// Create a new instance of `Instance&lt;T&gt;` with the provided T.
-    public fun new&lt;T&gt;(witness: T): Instance&lt;T&gt; {
-        Instance { t: witness }
-    }
+/// A struct that requires a witness to be created.
+public struct Instance&lt;T&gt; { t: T }
+
+/// Create a new instance of `Instance&lt;T&gt;` with the provided T.
+public fun new&lt;T&gt;(witness: T): Instance&lt;T&gt; {
+    Instance { t: witness }
 }
 </code></pre>
 <p>The only way to construct an <code>Instance&lt;T&gt;</code> is to call the <code>new</code> function with an instance of the
 type <code>T</code>. This is a basic example of the witness pattern in Move. A module providing a witness often
 has a matching implementation, like the module <code>book::witness_source</code> below:</p>
-<pre><code class="language-move">module book::witness_source {
-    use book::witness::{Self, Instance};
+<pre><code class="language-move">module book::witness_source;
 
-    /// A struct used as a witness.
-    public struct W {}
+use book::witness::{Self, Instance};
 
-    /// Create a new instance of `Instance&lt;W&gt;`.
-    public fun new_instance(): Instance&lt;W&gt; {
-        witness::new(W {})
-    }
+/// A struct used as a witness.
+public struct W {}
+
+/// Create a new instance of `Instance&lt;W&gt;`.
+public fun new_instance(): Instance&lt;W&gt; {
+    witness::new(W {})
 }
 </code></pre>
 <p>The instance of the struct <code>W</code> is passed into the <code>new_instance</code> function to create an <code>Instance&lt;W&gt;</code>, thereby
@@ -5928,16 +6200,16 @@ on-chain. Events are emitted by the <code>sui::event</code> module located in th
 Sui Verifier requires the type to be internal to the module.</p>
 </blockquote>
 <pre><code class="language-move">// File: sui-framework/sources/event.move
-module sui::event {
-    /// Emit a custom Move event, sending the data offchain.
-    ///
-    /// Used for creating custom indexes and tracking onchain
-    /// activity in a way that suits a specific application the most.
-    ///
-    /// The type `T` is the main way to index the event, and can contain
-    /// phantom parameters, eg `emit(MyEvent&lt;phantom T&gt;)`.
-    public native fun emit&lt;T: copy + drop&gt;(event: T);
-}
+module sui::event;
+
+/// Emit a custom Move event, sending the data offchain.
+///
+/// Used for creating custom indexes and tracking onchain
+/// activity in a way that suits a specific application the most.
+///
+/// The type `T` is the main way to index the event, and can contain
+/// phantom parameters, eg `emit(MyEvent&lt;phantom T&gt;)`.
+public native fun emit&lt;T: copy + drop&gt;(event: T);
 </code></pre>
 <h2 id="emitting-events"><a class="header" href="#emitting-events">Emitting Events</a></h2>
 <p>Events are emitted using the <code>emit</code> function in the <code>sui::event</code> module. The function takes a single

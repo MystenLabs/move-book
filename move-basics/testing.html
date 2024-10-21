@@ -192,21 +192,21 @@ code.</p>
 that the function is a test function, and it should be run when the tests are executed. Test
 functions are regular functions, but they must take no arguments and have no return value. They
 are excluded from the bytecode, and are never published.</p>
-<pre><code class="language-move">module book::testing {
-    // Test attribute is placed before the `fun` keyword. Can be both above or
-    // right before the `fun` keyword: `#[test] fun my_test() { ... }`
-    // The name of the test would be `book::testing::simple_test`.
-    #[test]
-    fun simple_test() {
-        let sum = 2 + 2;
-        assert!(sum == 4, 1);
-    }
+<pre><code class="language-move">module book::testing;
 
-    // The name of the test would be `book::testing::more_advanced_test`.
-    #[test] fun more_advanced_test() {
-        let sum = 2 + 2 + 2;
-        assert!(sum == 4, 1);
-    }
+// Test attribute is placed before the `fun` keyword. Can be both above or
+// right before the `fun` keyword: `#[test] fun my_test() { ... }`
+// The name of the test would be `book::testing::simple_test`.
+#[test]
+fun simple_test() {
+    let sum = 2 + 2;
+    assert!(sum == 4);
+}
+
+// The name of the test would be `book::testing::more_advanced_test`.
+#[test] fun more_advanced_test() {
+    let sum = 2 + 2 + 2;
+    assert!(sum == 4);
 }
 </code></pre>
 <h2 id="running-tests"><a class="header" href="#running-tests">Running Tests</a></h2>
@@ -231,21 +231,20 @@ that a function fails when a certain condition is met.</p>
 <p>The attribute can take an argument for abort code, which is the expected abort code when the test
 fails. If the test fails with a different abort code, the test will fail. If the execution did not
 abort, the test will also fail.</p>
-<pre><code class="language-move">module book::testing_failure {
+<pre><code class="language-move">module book::testing_failure;
 
-    const EInvalidArgument: u64 = 1;
+const EInvalidArgument: u64 = 1;
 
-    #[test]
-    #[expected_failure(abort_code = 0)]
-    fun test_fail() {
-        abort 0 // aborts with 0
-    }
+#[test]
+#[expected_failure(abort_code = 0)]
+fun test_fail() {
+    abort 0 // aborts with 0
+}
 
-    // attributes can be grouped together
-    #[test, expected_failure(abort_code = EInvalidArgument)]
-    fun test_fail_1() {
-        abort 1 // aborts with 1
-    }
+// attributes can be grouped together
+#[test, expected_failure(abort_code = EInvalidArgument)]
+fun test_fail_1() {
+    abort 1 // aborts with 1
 }
 </code></pre>
 <p>The <code>abort_code</code> argument can use constants defined in the tests module as well as imported from
@@ -255,29 +254,29 @@ other modules. This is the only case where constants can be used and &quot;acces
 or features. It simplifies the testing process and allows for more thorough testing. However, it is
 important to remember that these functions should not be included in the final package. This is
 where the <code>#[test_only]</code> attribute comes in handy.</p>
-<pre><code class="language-move">module book::testing {
-    // Public function which uses the `secret` function.
-    public fun multiply_by_secret(x: u64): u64 {
-        x * secret()
-    }
+<pre><code class="language-move">module book::testing;
 
-    /// Private function which is not available to the public.
-    fun secret(): u64 { 100 }
+// Public function which uses the `secret` function.
+public fun multiply_by_secret(x: u64): u64 {
+    x * secret()
+}
 
-    #[test_only]
-    /// This function is only available for testing purposes in tests and other
-    /// test-only functions. Mind the visibility - for `#[test_only]` it is
-    /// common to use `public` visibility.
-    public fun secret_for_testing(): u64 {
-        secret()
-    }
+/// Private function which is not available to the public.
+fun secret(): u64 { 100 }
 
-    #[test]
-    // In the test environment we have access to the `secret_for_testing` function.
-    fun test_multiply_by_secret() {
-        let expected = secret_for_testing() * 2;
-        assert!(multiply_by_secret(2) == expected, 1);
-    }
+#[test_only]
+/// This function is only available for testing purposes in tests and other
+/// test-only functions. Mind the visibility - for `#[test_only]` it is
+/// common to use `public` visibility.
+public fun secret_for_testing(): u64 {
+    secret()
+}
+
+#[test]
+// In the test environment we have access to the `secret_for_testing` function.
+fun test_multiply_by_secret() {
+    let expected = secret_for_testing() * 2;
+    assert!(multiply_by_secret(2) == expected);
 }
 </code></pre>
 <p>Functions marked with the <code>#[test_only]</code> will be available to the test environment, and to the other

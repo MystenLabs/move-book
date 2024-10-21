@@ -441,7 +441,7 @@ hljs.registerLanguage('move', function(hljs) {
         // module definition
         scope: 'module',
         begin: /\bmodule\b/,
-        end: /\{/,
+        end: /[;{]/,
         keywords: 'module',
         contains: [
           BLOCK_COMMENT,

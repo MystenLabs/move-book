@@ -199,29 +199,29 @@ to create a <code>Instance&lt;T&gt;</code> instance.</p>
 <p>It is often the case that the witness struct is not stored, and for that the function may require
 the <a href="./../move-basics/drop-ability.html">Drop</a> ability for the type.</p>
 </blockquote>
-<pre><code class="language-move">module book::witness {
-    /// A struct that requires a witness to be created.
-    public struct Instance&lt;T&gt; { t: T }
+<pre><code class="language-move">module book::witness;
 
-    /// Create a new instance of `Instance&lt;T&gt;` with the provided T.
-    public fun new&lt;T&gt;(witness: T): Instance&lt;T&gt; {
-        Instance { t: witness }
-    }
+/// A struct that requires a witness to be created.
+public struct Instance&lt;T&gt; { t: T }
+
+/// Create a new instance of `Instance&lt;T&gt;` with the provided T.
+public fun new&lt;T&gt;(witness: T): Instance&lt;T&gt; {
+    Instance { t: witness }
 }
 </code></pre>
 <p>The only way to construct an <code>Instance&lt;T&gt;</code> is to call the <code>new</code> function with an instance of the
 type <code>T</code>. This is a basic example of the witness pattern in Move. A module providing a witness often
 has a matching implementation, like the module <code>book::witness_source</code> below:</p>
-<pre><code class="language-move">module book::witness_source {
-    use book::witness::{Self, Instance};
+<pre><code class="language-move">module book::witness_source;
 
-    /// A struct used as a witness.
-    public struct W {}
+use book::witness::{Self, Instance};
 
-    /// Create a new instance of `Instance&lt;W&gt;`.
-    public fun new_instance(): Instance&lt;W&gt; {
-        witness::new(W {})
-    }
+/// A struct used as a witness.
+public struct W {}
+
+/// Create a new instance of `Instance&lt;W&gt;`.
+public fun new_instance(): Instance&lt;W&gt; {
+    witness::new(W {})
 }
 </code></pre>
 <p>The instance of the struct <code>W</code> is passed into the <code>new_instance</code> function to create an <code>Instance&lt;W&gt;</code>, thereby

@@ -248,9 +248,7 @@ are typically named after the module defined in the file. For example, in our ca
 <em>hello_world.move</em> and the Move CLI has already placed commented out code inside:</p>
 <pre><code class="language-move">/*
 /// Module: hello_world
-module hello_world::hello_world {
-
-}
+module hello_world::hello_world;
 */
 </code></pre>
 <blockquote>
@@ -274,21 +272,20 @@ add helpers for your tests without including them in the code that will be publi
 <p>The <em>hello_world_tests.move</em> file contains a commented out test module template:</p>
 <pre><code class="language-move">/*
 #[test_only]
-module hello_world::hello_world_tests {
-    // uncomment this line to import the module
-    // use hello_world::hello_world;
+module hello_world::hello_world_tests;
+// uncomment this line to import the module
+// use hello_world::hello_world;
 
-    const ENotImplemented: u64 = 0;
+const ENotImplemented: u64 = 0;
 
-    #[test]
-    fun test_hello_world() {
-        // pass
-    }
+#[test]
+fun test_hello_world() {
+    // pass
+}
 
-    #[test, expected_failure(abort_code = hello_world::hello_world_tests::ENotImplemented)]
-    fun test_hello_world_fail() {
-        abort ENotImplemented
-    }
+#[test, expected_failure(abort_code = hello_world::hello_world_tests::ENotImplemented)]
+fun test_hello_world_fail() {
+    abort ENotImplemented
 }
 */
 </code></pre>
@@ -305,14 +302,14 @@ excludes comments and some identifiers (for example, for constants).</p>
 with the following:</p>
 <pre><code class="language-move">/// The module `hello_world` under named address `hello_world`.
 /// The named address is set in the `Move.toml`.
-module hello_world::hello_world {
-    // Imports the `String` type from the Standard Library
-    use std::string::String;
+module hello_world::hello_world;
 
-    /// Returns the &quot;Hello, World!&quot; as a `String`.
-    public fun hello_world(): String {
-        b&quot;Hello, World!&quot;.to_string()
-    }
+// Imports the `String` type from the Standard Library
+use std::string::String;
+
+/// Returns the &quot;Hello, World!&quot; as a `String`.
+public fun hello_world(): String {
+    b&quot;Hello, World!&quot;.to_string()
 }
 </code></pre>
 <p>During compilation, the code is built, but not run. A compiled package only includes functions that
@@ -343,13 +340,13 @@ provides the execution environment. The tests can be placed in both the source f
 the compiler. We explain tests in depth in the <a href="./../move-basics/testing.html">Testing</a> section.</p>
 <p>Replace the contents of the <code>tests/hello_world_tests.move</code> with the following content:</p>
 <pre><code class="language-move">#[test_only]
-module hello_world::hello_world_tests {
-    use hello_world::hello_world;
+module hello_world::hello_world_tests;
 
-    #[test]
-    fun test_hello_world() {
-        assert!(hello_world::hello_world() == b&quot;Hello, World!&quot;.to_string(), 0);
-    }
+use hello_world::hello_world;
+
+#[test]
+fun test_hello_world() {
+    assert!(hello_world::hello_world() == b&quot;Hello, World!&quot;.to_string(), 0);
 }
 </code></pre>
 <p>Here we import the <code>hello_world</code> module, and call its <code>hello_world</code> function to test that the output

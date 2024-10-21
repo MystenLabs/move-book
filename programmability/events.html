@@ -194,16 +194,16 @@ on-chain. Events are emitted by the <code>sui::event</code> module located in th
 Sui Verifier requires the type to be internal to the module.</p>
 </blockquote>
 <pre><code class="language-move">// File: sui-framework/sources/event.move
-module sui::event {
-    /// Emit a custom Move event, sending the data offchain.
-    ///
-    /// Used for creating custom indexes and tracking onchain
-    /// activity in a way that suits a specific application the most.
-    ///
-    /// The type `T` is the main way to index the event, and can contain
-    /// phantom parameters, eg `emit(MyEvent&lt;phantom T&gt;)`.
-    public native fun emit&lt;T: copy + drop&gt;(event: T);
-}
+module sui::event;
+
+/// Emit a custom Move event, sending the data offchain.
+///
+/// Used for creating custom indexes and tracking onchain
+/// activity in a way that suits a specific application the most.
+///
+/// The type `T` is the main way to index the event, and can contain
+/// phantom parameters, eg `emit(MyEvent&lt;phantom T&gt;)`.
+public native fun emit&lt;T: copy + drop&gt;(event: T);
 </code></pre>
 <h2 id="emitting-events"><a class="header" href="#emitting-events">Emitting Events</a></h2>
 <p>Events are emitted using the <code>emit</code> function in the <code>sui::event</code> module. The function takes a single

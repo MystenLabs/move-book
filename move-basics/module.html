@@ -199,14 +199,20 @@ Notes:
 and all of the members of the module are private to the module by default. In this section you will
 learn how to define a module, how to declare its members and how to access them from other modules.</p>
 <h2 id="module-declaration"><a class="header" href="#module-declaration">Module declaration</a></h2>
-<p>Modules are declared using the <code>module</code> keyword followed by the package address, module name and the
-module body inside the curly braces <code>{}</code>. The module name should be in <code>snake_case</code> - all lowercase
-letters with underscores between words. Modules names must be unique in the package.</p>
+<p>Modules are declared using the <code>module</code> keyword followed by the package address, module name,
+semicolon, and the module body. The module name should be in <code>snake_case</code> - all lowercase letters
+with underscores between words. Modules names must be unique in the package.</p>
 <p>Usually, a single file in the <code>sources/</code> folder contains a single module. The file name should match
 the module name - for example, a <code>donut_shop</code> module should be stored in the <code>donut_shop.move</code> file.
 You can read more about coding conventions in the
 <a href="../special-topics/coding-conventions.html">Coding Conventions</a> section.</p>
-<pre><code class="language-Move">
+<blockquote>
+<p>If you need to declare more than one module in a file, you must use <a href="#module-block">Module Block</a>.</p>
+</blockquote>
+<pre><code class="language-Move">// Module label.
+module book::my_module;
+
+// module body
 </code></pre>
 <p>Structs, functions, constants and imports all part of the module:</p>
 <ul>
@@ -232,6 +238,27 @@ book = &quot;0x0&quot;
 <h2 id="module-members"><a class="header" href="#module-members">Module members</a></h2>
 <p>Module members are declared inside the module body. To illustrate that, let's define a simple module
 with a struct, a function and a constant:</p>
+<pre><code class="language-Move">module book::my_module_with_members;
+
+// import
+use book::my_module;
+
+// a constant
+const CONST: u8 = 0;
+
+// a struct
+public struct Struct {}
+
+// method alias
+public use fun function as Struct.struct_fun;
+
+// function
+fun function(_: &amp;Struct) { /* function body */ }
+</code></pre>
+<h2 id="module-block"><a class="header" href="#module-block">Module block</a></h2>
+<p>Pre-2024 edition of Move required <em>module block</em> - the contents of the module need to be surrounded
+by curly braces <code>{}</code>. The main reason to use block and not <em>label</em> is if you need to define more
+than one module in a file.</p>
 <pre><code class="language-Move">module book::my_block_module_with_members {
     // import
     use book::my_module;

@@ -189,20 +189,7 @@
 code into reusable units. Functions can take arguments and return a value. They are declared with
 the <code>fun</code> keyword at the module level. Just like any other module member, by default they're private
 and can only be accessed from within the module.</p>
-<pre><code class="language-move">module book::math;
-
-/// Function takes two arguments of type `u64` and returns their sum.
-/// The `public` visibility modifier makes the function accessible from
-/// outside the module.
-public fun add(a: u64, b: u64): u64 {
-    a + b
-}
-
-#[test]
-fun test_add() {
-    let sum = add(1, 2);
-    assert!(sum == 3, 0);
-}
+<pre><code class="language-move">{{#include ../../../packages/samples/sources/move-basics/function_math.move:math}}
 </code></pre>
 <p>In this example, we define a function <code>add</code> that takes two arguments of type <code>u64</code> and returns their
 sum. The function is called from the <code>test_add</code> function, which is a test function located in the
@@ -227,7 +214,14 @@ body is the return value of the function.</p>
 consists of the module path and the function name separated by <code>::</code>. For example, if you have a
 function called <code>add</code> in the <code>math</code> module in the <code>book</code> package, the path to it will be
 <code>book::math::add</code>, or, if the module is imported, <code>math::add</code>.</p>
-<pre><code class="language-move">
+<pre><code class="language-move">module book::use_math;
+
+use book::math;
+
+fun call_add() {
+    // function is called via the path
+    let sum = math::add(1, 2);
+}
 </code></pre>
 <h2 id="multiple-return-values"><a class="header" href="#multiple-return-values">Multiple return values</a></h2>
 <p>Move functions can return multiple values, which is useful when you need to return more than one

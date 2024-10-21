@@ -192,60 +192,60 @@ can't be called from other modules.</p>
 <h2 id="internal-visibility"><a class="header" href="#internal-visibility">Internal Visibility</a></h2>
 <p>A function or a struct defined in a module which has no visibility modifier is <em>private</em> to the
 module. It can't be called from other modules.</p>
-<pre><code class="language-move">module book::internal_visibility {
-    // This function can be called from other functions in the same module
-    fun internal() { /* ... */ }
+<pre><code class="language-move">module book::internal_visibility;
 
-    // Same module -&gt; can call internal()
-    fun call_internal() {
-        internal();
-    }
+// This function can be called from other functions in the same module
+fun internal() { /* ... */ }
+
+// Same module -&gt; can call internal()
+fun call_internal() {
+    internal();
 }
 </code></pre>
 <!-- Move compiler won't allow this code to compile: -->
 <!-- TODO: add failure flag to example -->
-<pre><code class="language-move">module book::try_calling_internal {
-    use book::internal_visibility;
+<pre><code class="language-move">module book::try_calling_internal;
 
-    // Different module -&gt; can't call internal()
-    fun try_calling_internal() {
-        internal_visibility::internal();
-    }
+use book::internal_visibility;
+
+// Different module -&gt; can't call internal()
+fun try_calling_internal() {
+    internal_visibility::internal();
 }
 </code></pre>
 <h2 id="public-visibility"><a class="header" href="#public-visibility">Public Visibility</a></h2>
 <p>A struct or a function can be made <em>public</em> by adding the <code>public</code> keyword before the <code>fun</code> or
 <code>struct</code> keyword.</p>
-<pre><code class="language-move">module book::public_visibility {
-    // This function can be called from other modules
-    public fun public() { /* ... */ }
-}
+<pre><code class="language-move">module book::public_visibility;
+
+// This function can be called from other modules
+public fun public() { /* ... */ }
 </code></pre>
 <p>A public function can be imported and called from other modules. The following code will compile:</p>
 <pre><code class="language-move">module book::try_calling_public {
-    use book::public_visibility;
 
-    // Different module -&gt; can call public()
-    fun try_calling_public() {
-        public_visibility::public();
-    }
+use book::public_visibility;
+
+// Different module -&gt; can call public()
+fun try_calling_public() {
+    public_visibility::public();
 }
 </code></pre>
 <h2 id="package-visibility"><a class="header" href="#package-visibility">Package Visibility</a></h2>
 <p>Move 2024 introduces the <em>package visibility</em> modifier. A function with <em>package visibility</em> can be
 called from any module within the same package. It can't be called from other packages.</p>
-<pre><code class="language-move">module book::package_visibility {
-    public(package) fun package_only() { /* ... */ }
-}
+<pre><code class="language-move">module book::package_visibility;
+
+public(package) fun package_only() { /* ... */ }
 </code></pre>
 <p>A package function can be called from any module within the same package:</p>
-<pre><code class="language-move">module book::try_calling_package {
-    use book::package_visibility;
+<pre><code class="language-move">module book::try_calling_package;
 
-    // Same package `book` -&gt; can call package_only()
-    fun try_calling_package() {
-        package_visibility::package_only();
-    }
+use book::package_visibility;
+
+// Same package `book` -&gt; can call package_only()
+fun try_calling_package() {
+    package_visibility::package_only();
 }
 </code></pre>
 

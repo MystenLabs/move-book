@@ -220,7 +220,19 @@ fun init(ctx: &amp;mut TxContext) {
 }
 </code></pre>
 <p>In the same package, another module can have its own <code>init</code> function, encapsulating distinct logic.</p>
-<pre><code class="language-move">
+<pre><code class="language-move">// In the same package as the `shop` module
+module book::bank;
+
+public struct Bank has key {
+    id: UID,
+    /* ... */
+}
+
+fun init(ctx: &amp;mut TxContext) {
+    transfer::share_object(Bank {
+        id: object::new(ctx)
+    });
+}
 </code></pre>
 <h2 id="init-features"><a class="header" href="#init-features"><code>init</code> features</a></h2>
 <p>The function is called on publish, if it is present in the module and follows the rules:</p>
