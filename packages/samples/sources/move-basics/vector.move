@@ -41,17 +41,17 @@ assert!(last_value == 40, 2);
 module book::non_droppable_vec {
 
 // ANCHOR: no_drop
-    /// A struct without `drop` ability.
-    public struct NoDrop {}
+/// A struct without `drop` ability.
+public struct NoDrop {}
 
-    #[test]
-    fun test_destroy_empty() {
-        // Initialize a vector of `NoDrop` elements.
-        let v = vector<NoDrop>[];
+#[test]
+fun test_destroy_empty() {
+    // Initialize a vector of `NoDrop` elements.
+    let v = vector<NoDrop>[];
 
-        // While we know that `v` is empty, we still need to call
-        // the explicit `destroy_empty` function to discard the vector.
-        v.destroy_empty();
-    }
+    // While we know that `v` is empty, we still need to call
+    // the explicit `destroy_empty` function to discard the vector.
+    v.destroy_empty();
+}
 // ANCHOR_END: no_drop
 }

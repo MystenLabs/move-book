@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 #[allow(unused_variable)]
-module book::copy_ability {
+module book::copy_ability;
 
 // ANCHOR: copyable
 public struct Copyable has copy {}
@@ -24,4 +24,3 @@ let Copyable {} = c; // doesn't have `drop`
 // ANCHOR: copy_drop
 public struct Value has copy, drop {}
 // ANCHOR_END: copy_drop
-}

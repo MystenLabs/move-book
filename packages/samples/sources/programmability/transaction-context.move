@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 #[allow(unused_variable)]
-module book::transaction_context {
+module book::transaction_context;
 
 // ANCHOR: reading
 public fun some_action(ctx: &TxContext) {
@@ -12,5 +12,3 @@ public fun some_action(ctx: &TxContext) {
     // ...
 }
 // ANCHOR_END: reading
-
-}

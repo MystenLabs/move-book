@@ -1,7 +1,7 @@
 // Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-module book::assert_abort {
+module book::assert_abort;
 
 #[test, expected_failure(abort_code = 1, location=Self)]
 fun test_abort() {
@@ -50,4 +50,3 @@ public fun update_record(/* ... , */ user_has_access: bool, field_exists: bool) 
     /* ... */
 }
 // ANCHOR_END: error_const
-}

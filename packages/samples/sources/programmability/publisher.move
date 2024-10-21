@@ -1,35 +1,32 @@
 // Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
+#[allow(unused_variable)]
 // ANCHOR: publisher
-module book::publisher {
-    /// Some type defined in the module.
-    public struct Book {}
+module book::publisher;
 
-    /// The OTW for the module.
-    public struct PUBLISHER has drop {}
+use sui::package::{Self, Publisher};
 
-    /// Uses the One Time Witness to claim the Publisher object.
-    fun init(otw: PUBLISHER, ctx: &mut TxContext) {
-        // Claim the Publisher object.
-        let publisher = sui::package::claim(otw, ctx);
+/// Some type defined in the module.
+public struct Book {}
 
-        // Usually it is transferred to the sender.
-        // It can also be stored in another object.
-        transfer::public_transfer(publisher, ctx.sender())
-    }
+/// The OTW for the module.
+public struct PUBLISHER has drop {}
+
+/// Uses the One Time Witness to claim the Publisher object.
+fun init(otw: PUBLISHER, ctx: &mut TxContext) {
+    // Claim the Publisher object.
+    let publisher: Publisher = sui::package::claim(otw, ctx);
+
+    // Usually it is transferred to the sender.
+    // It can also be stored in another object.
+    transfer::public_transfer(publisher, ctx.sender())
 }
 // ANCHOR_END: publisher
 
-#[allow(unused_variable)]
-module book::use_publisher {
-    use sui::package::{Self, Publisher};
+public struct USE_PUBLISHER has drop {}
 
-    public struct Book {}
-
-    public struct USE_PUBLISHER has drop {}
-
-    const ENotAuthorized: u64 = 1;
+const ENotAuthorized: u64 = 1;
 
 
 #[test]
@@ -56,4 +53,3 @@ public fun admin_action(cap: &Publisher, /* app objects... */ param: u64) {
     // perform application-specific action
 }
 // ANCHOR_END: publisher_as_admin
-}
