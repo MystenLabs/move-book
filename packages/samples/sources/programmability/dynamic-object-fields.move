@@ -3,48 +3,48 @@
 
 #[allow(unused_variable)]
 // ANCHOR: usage
-module book::dynamic_object_field {
-    use std::string::String;
+module book::dynamic_object_field;
 
-    // there are two common aliases for the long module name: `dof` and
-    // `ofield`. Both are commonly used and met in different projects.
-    use sui::dynamic_object_field as dof;
-    use sui::dynamic_field as df;
+use std::string::String;
 
-    /// The `Character` that we will use for the example
-    public struct Character has key { id: UID }
+// there are two common aliases for the long module name: `dof` and
+// `ofield`. Both are commonly used and met in different projects.
+use sui::dynamic_object_field as dof;
+use sui::dynamic_field as df;
 
-    /// Metadata that doesn't have the `key` ability
-    public struct Metadata has store, drop { name: String }
+/// The `Character` that we will use for the example
+public struct Character has key { id: UID }
 
-    /// Accessory that has the `key` and `store` abilities.
-    public struct Accessory has key, store { id: UID }
+/// Metadata that doesn't have the `key` ability
+public struct Metadata has store, drop { name: String }
 
-    #[test]
-    fun equip_accessory() {
-        let ctx = &mut tx_context::dummy();
-        let mut character = Character { id: object::new(ctx) };
+/// Accessory that has the `key` and `store` abilities.
+public struct Accessory has key, store { id: UID }
 
-        // Create an accessory and attach it to the character
-        let hat = Accessory { id: object::new(ctx) };
+#[test]
+fun equip_accessory() {
+    let ctx = &mut tx_context::dummy();
+    let mut character = Character { id: object::new(ctx) };
 
-        // Add the hat to the character. Just like with `dynamic_fields`
-        dof::add(&mut character.id, b"hat_key", hat);
+    // Create an accessory and attach it to the character
+    let hat = Accessory { id: object::new(ctx) };
 
-        // However for non-key structs we can only use `dynamic_field`
-        df::add(&mut character.id, b"metadata_key", Metadata {
-            name: b"John".to_string()
-        });
+    // Add the hat to the character. Just like with `dynamic_fields`
+    dof::add(&mut character.id, b"hat_key", hat);
 
-        // Borrow the hat from the character
-        let hat_id = dof::id(&character.id, b"hat_key").extract(); // Option<ID>
-        let hat_ref: &Accessory = dof::borrow(&character.id, b"hat_key");
-        let hat_mut: &mut Accessory = dof::borrow_mut(&mut character.id, b"hat_key");
-        let hat: Accessory = dof::remove(&mut character.id, b"hat_key");
+    // However for non-key structs we can only use `dynamic_field`
+    df::add(&mut character.id, b"metadata_key", Metadata {
+        name: b"John".to_string()
+    });
 
-        // Clean up, Metadata is an orphan now.
-        sui::test_utils::destroy(hat);
-        sui::test_utils::destroy(character);
-    }
+    // Borrow the hat from the character
+    let hat_id = dof::id(&character.id, b"hat_key").extract(); // Option<ID>
+    let hat_ref: &Accessory = dof::borrow(&character.id, b"hat_key");
+    let hat_mut: &mut Accessory = dof::borrow_mut(&mut character.id, b"hat_key");
+    let hat: Accessory = dof::remove(&mut character.id, b"hat_key");
+
+    // Clean up, Metadata is an orphan now.
+    sui::test_utils::destroy(hat);
+    sui::test_utils::destroy(character);
 }
 // ANCHOR_END: usage

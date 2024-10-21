@@ -1,7 +1,7 @@
 // Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 #[allow(unused_variable, unused_field)]
-module book::generics {
+module book::generics;
 
 // ANCHOR: container
 /// Container for any type `T`.
@@ -29,10 +29,6 @@ fun test_container() {
     let Container { value: _ } = container;
 }
 // ANCHOR_END: test_container
-}
-
-#[allow(unused_variable, unused_field)]
-module book::generics_multiple {
 
 // ANCHOR: pair
 /// A pair of values of any type `T` and `U`.
@@ -82,11 +78,8 @@ fun test_swap_type_params() {
     assert!(ps1 == pf2, 0x0); // true == true
 }
 // ANCHOR_END: test_pair_swap
-}
 
-#[allow(unused_variable, unused_field)]
-module book::generics_user {
-    use std::string::String;
+use std::string::String;
 
 // ANCHOR: user
 /// A user record with name, age, and some generic metadata
@@ -109,10 +102,6 @@ public fun update_age<T>(user: &mut User<T>, age: u8) {
     user.age = age;
 }
 // ANCHOR_END: update_user
-}
-
-#[allow(unused_variable, unused_field)]
-module book::generics_phantom {
 
 // ANCHOR: phantom
 /// A generic type with a phantom type parameter.
@@ -135,10 +124,6 @@ fun test_phantom_type() {
     let Coin { value: _ } = coin2;
 }
 // ANCHOR_END: test_phantom
-}
-
-#[allow(unused_variable, unused_field)]
-module book::generics_constraints {
 
 // ANCHOR: constraints
 /// A generic type with a type parameter that has the `drop` ability.
@@ -165,5 +150,3 @@ fun test_constraints() {
     // let copyable_droppable = CopyableDroppable<NoAbilities> { value: 10 };
 }
 // ANCHOR_END: test_constraints
-
-}

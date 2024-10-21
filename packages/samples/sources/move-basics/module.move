@@ -1,12 +1,6 @@
 // Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-// ANCHOR: module
-module book::my_module {
-    // module body
-}
-// ANCHOR_END: module
-
 // ANCHOR: address_literal
 module 0x0::address_literal { /* ... */ }
 module book::named_address { /* ... */ }
@@ -14,7 +8,7 @@ module book::named_address { /* ... */ }
 
 #[allow(unused_function, unused_const, unused_use)]
 // ANCHOR: members
-module book::my_module_with_members {
+module book::my_block_module_with_members {
     // import
     use book::my_module;
 
@@ -29,5 +23,11 @@ module book::my_module_with_members {
 
     // function
     fun function(_: &Struct) { /* function body */ }
+}
+
+// module block allows multiple module definitions in the
+// same file but this is not a recommended practice
+module book::another_module_in_the_file {
+    // ...
 }
 // ANCHOR_END: members

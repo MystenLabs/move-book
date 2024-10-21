@@ -1,14 +1,13 @@
 // Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-module book::witness_definition {
+module book::witness_definition;
+
 // ANCHOR: definition
 /// Canonical definition of a witness - a type with the `drop` ability.
 public struct MyWitness has drop {}
 // ANCHOR_END: definition
-}
 
-module book::regulated_coin {
 // ANCHOR: regulated_coin
 /// A custom RegulatedCoin type with implementable functions.
 public struct RegulatedCoin<phantom T> has key {
@@ -42,4 +41,3 @@ public fun join<T>(coin: &mut RegulatedCoin<T>, other: RegulatedCoin<T>) {
     id.delete();
 }
 // ANCHOR_END: regulated_coin
-}

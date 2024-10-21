@@ -2,33 +2,33 @@
 // SPDX-License-Identifier: Apache-2.0
 
 // ANCHOR: emit
-module book::events {
-    use sui::coin::Coin;
-    use sui::sui::SUI;
-    use sui::event;
+module book::events;
 
-    /// The item that can be purchased.
-    public struct Item has key { id: UID }
+use sui::coin::Coin;
+use sui::sui::SUI;
+use sui::event;
 
-    /// Event emitted when an item is purchased. Contains the ID of the item and
-    /// the price for which it was purchased.
-    public struct ItemPurchased has copy, drop {
-        item: ID,
-        price: u64
-    }
+/// The item that can be purchased.
+public struct Item has key { id: UID }
 
-    /// A marketplace function which performs the purchase of an item.
-    public fun purchase(coin: Coin<SUI>, ctx: &mut TxContext) {
-        let item = Item { id: object::new(ctx) };
+/// Event emitted when an item is purchased. Contains the ID of the item and
+/// the price for which it was purchased.
+public struct ItemPurchased has copy, drop {
+    item: ID,
+    price: u64
+}
 
-        // Create an instance of `ItemPurchased` and pass it to `event::emit`.
-        event::emit(ItemPurchased {
-            item: object::id(&item),
-            price: coin.value()
-        });
+/// A marketplace function which performs the purchase of an item.
+public fun purchase(coin: Coin<SUI>, ctx: &mut TxContext) {
+    let item = Item { id: object::new(ctx) };
 
-        // Omitting the rest of the implementation to keep the example simple.
-        abort 0
-    }
+    // Create an instance of `ItemPurchased` and pass it to `event::emit`.
+    event::emit(ItemPurchased {
+        item: object::id(&item),
+        price: coin.value()
+    });
+
+    // Omitting the rest of the implementation to keep the example simple.
+    abort 0
 }
 // ANCHOR_END: emit

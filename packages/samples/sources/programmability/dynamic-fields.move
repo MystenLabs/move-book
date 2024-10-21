@@ -2,62 +2,63 @@
 // SPDX-License-Identifier: Apache-2.0
 
 // ANCHOR: usage
-module book::dynamic_collection {
-    // a very common alias for `dynamic_field` is `df` since the
-    // module name is quite long
-    use sui::dynamic_field as df;
-    use std::string::String;
+module book::dynamic_fields;
 
-    /// The object that we will attach dynamic fields to.
-    public struct Character has key {
-        id: UID
-    }
+// a very common alias for `dynamic_field` is `df` since the
+// module name is quite long
+use sui::dynamic_field as df;
+use std::string::String;
 
-    // List of different accessories that can be attached to a character.
-    // They must have the `store` ability.
-    public struct Hat has key, store { id: UID, color: u32 }
-    public struct Mustache has key, store { id: UID }
+/// The object that we will attach dynamic fields to.
+public struct Character has key {
+    id: UID
+}
 
-    #[test]
-    fun test_character_and_accessories() {
-        let ctx = &mut tx_context::dummy();
-        let mut character = Character { id: object::new(ctx) };
+// List of different accessories that can be attached to a character.
+// They must have the `store` ability.
+public struct Hat has key, store { id: UID, color: u32 }
+public struct Mustache has key, store { id: UID }
 
-        // Attach a hat to the character's UID
-        df::add(
-            &mut character.id,
-            b"hat_key",
-            Hat { id: object::new(ctx), color: 0xFF0000 }
-        );
+#[test]
+fun test_character_and_accessories() {
+    let ctx = &mut tx_context::dummy();
+    let mut character = Character { id: object::new(ctx) };
 
-        // Similarly, attach a mustache to the character's UID
-        df::add(
-            &mut character.id,
-            b"mustache_key",
-            Mustache { id: object::new(ctx) }
-        );
+    // Attach a hat to the character's UID
+    df::add(
+        &mut character.id,
+        b"hat_key",
+        Hat { id: object::new(ctx), color: 0xFF0000 }
+    );
 
-        // Check that the hat and mustache are attached to the character
-        //
-        assert!(df::exists_(&character.id, b"hat_key"), 0);
-        assert!(df::exists_(&character.id, b"mustache_key"), 1);
+    // Similarly, attach a mustache to the character's UID
+    df::add(
+        &mut character.id,
+        b"mustache_key",
+        Mustache { id: object::new(ctx) }
+    );
 
-        // Modify the color of the hat
-        let hat: &mut Hat = df::borrow_mut(&mut character.id, b"hat_key");
-        hat.color = 0x00FF00;
+    // Check that the hat and mustache are attached to the character
+    //
+    assert!(df::exists_(&character.id, b"hat_key"), 0);
+    assert!(df::exists_(&character.id, b"mustache_key"), 1);
 
-        // Remove the hat and mustache from the character
-        let hat: Hat = df::remove(&mut character.id, b"hat_key");
-        let mustache: Mustache = df::remove(&mut character.id, b"mustache_key");
+    // Modify the color of the hat
+    let hat: &mut Hat = df::borrow_mut(&mut character.id, b"hat_key");
+    hat.color = 0x00FF00;
 
-        // Check that the hat and mustache are no longer attached to the character
-        assert!(!df::exists_(&character.id, b"hat_key"), 0);
-        assert!(!df::exists_(&character.id, b"mustache_key"), 1);
+    // Remove the hat and mustache from the character
+    let hat: Hat = df::remove(&mut character.id, b"hat_key");
+    let mustache: Mustache = df::remove(&mut character.id, b"mustache_key");
 
-        sui::test_utils::destroy(character);
-        sui::test_utils::destroy(mustache);
-        sui::test_utils::destroy(hat);
-    }
+    // Check that the hat and mustache are no longer attached to the character
+    assert!(!df::exists_(&character.id, b"hat_key"), 0);
+    assert!(!df::exists_(&character.id, b"mustache_key"), 1);
+
+    sui::test_utils::destroy(character);
+    sui::test_utils::destroy(mustache);
+    sui::test_utils::destroy(hat);
+}
 // ANCHOR_END: usage
 
 
@@ -149,5 +150,4 @@ df::add(
 df::add(&mut character.id, MetadataKey {}, 42);
 // ANCHOR_END: custom_type_usage
 sui::test_utils::destroy(character);
-}
 }

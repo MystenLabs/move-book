@@ -2,8 +2,9 @@
 // SPDX-License-Identifier: Apache-2.0
 
 #[allow(unused_variable, unused_field)]
-module book::struct_syntax {
-    use std::string::{Self, String};
+module book::struct_syntax;
+
+use std::string::{Self, String};
 
 // ANCHOR: def
 /// A struct representing an artist.
@@ -35,7 +36,6 @@ let mut artist = Artist {
 };
 // ANCHOR_END: pack
 
-
 // ANCHOR: access
 // Access the `name` field of the `Artist` struct.
 let artist_name = artist.name;
@@ -64,6 +64,4 @@ let artist = Artist {
 // Unpack the `Artist` struct and ignore the `name` field.
 let Artist { name: _ } = artist;
 // ANCHOR_END: unpack_ignore
-
-}
 }
