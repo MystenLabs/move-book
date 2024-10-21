@@ -209,6 +209,25 @@ and which module implements it.</p>
 <tr><td>std::fixed_point32</td><td>Provides the <code>FixedPoint32</code> type</td><td>-</td></tr>
 </tbody></table>
 </div></div>
+<h2 id="integer-modules"><a class="header" href="#integer-modules">Integer Modules</a></h2>
+<p>The Move Standard Library provides a set of functions associated with integer types. These functions
+are split into multiple modules, each associated with a specific integer type. The modules should
+not be imported directly, but their functions are available on every integer value.</p>
+<blockquote>
+<p>All of the modules provide the same set of functions. Namely, <code>max</code>, <code>diff</code>,
+<code>divide_and_round_up</code>, <code>sqrt</code> and <code>pow</code>.</p>
+</blockquote>
+<!-- Custom CSS addition in the theme/custom.css  -->
+<div class="modules-table">
+<div class="table-wrapper"><table><thead><tr><th>Module</th><th>Description</th></tr></thead><tbody>
+<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/u8">std::u8</a></td><td>Functions for the <code>u8</code> type</td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/u64">std::16</a></td><td>Functions for the <code>u16</code> type</td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/u64">std::u32</a></td><td>Functions for the <code>u32</code> type</td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/u64">std::u64</a></td><td>Functions for the <code>u64</code> type</td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/u128">std::u128</a></td><td>Functions for the <code>u128</code> type</td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/u256">std::u256</a></td><td>Functions for the <code>u256</code> type</td></tr>
+</tbody></table>
+</div></div>
 <h2 id="exported-addresses"><a class="header" href="#exported-addresses">Exported Addresses</a></h2>
 <p>Standard Library exports one named address - <code>std = 0x1</code>.</p>
 <pre><code class="language-toml">[addresses]

@@ -187,7 +187,6 @@
 <p>Option is a type that represents an optional value which may or may not exist. The concept of Option
 in Move is borrowed from Rust, and it is a very useful primitive in Move. <code>Option</code> is defined in the
 <a href="./standard-library.html">Standard Library</a>, and is defined as follows:</p>
-<p>File: move-stdlib/source/option.move</p>
 <pre><code class="language-move">// File: move-stdlib/source/option.move
 /// Abstraction of a value that may or may not be present.
 struct Option&lt;Element&gt; has copy, drop, store {
@@ -241,16 +240,16 @@ can then create an <code>Option</code> value using the <code>some</code> or <cod
 let mut opt = option::some(b&quot;Alice&quot;);
 
 // `option.is_some()` returns true if option contains a value.
-assert!(opt.is_some(), 1);
+assert!(opt.is_some());
 
 // internal value can be `borrow`ed and `borrow_mut`ed.
-assert!(opt.borrow() == &amp;b&quot;Alice&quot;, 0);
+assert!(opt.borrow() == &amp;b&quot;Alice&quot;);
 
 // `option.extract` takes the value out of the option, leaving the option empty.
 let inner = opt.extract();
 
 // `option.is_none()` returns true if option is None.
-assert!(opt.is_none(), 2);
+assert!(opt.is_none());
 </code></pre>
 
                     </main>

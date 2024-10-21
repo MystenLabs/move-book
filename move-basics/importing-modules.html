@@ -232,7 +232,15 @@ public fun create_and_ignore() {
 <p>You can also import specific members from a module. This is useful when you only need a single
 function or a single type from a module. The syntax is the same as for importing a module, but you
 add the member name after the module path.</p>
-<pre><code class="language-move">{{#include ../../../packages/samples/sources/move-basics/importing-modules-members.move:members}}
+<pre><code class="language-move">module book::more_imports;
+
+use book::module_one::new;       // imports the `new` function from the `module_one` module
+use book::module_one::Character; // importing the `Character` struct from the `module_one` module
+
+/// Calls the `new` function from the `module_one` module.
+public fun create_character(): Character {
+    new()
+}
 </code></pre>
 <h2 id="grouping-imports"><a class="header" href="#grouping-imports">Grouping Imports</a></h2>
 <p>Imports can be grouped into a single <code>use</code> statement using the curly braces <code>{}</code>. This is useful

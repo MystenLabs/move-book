@@ -289,12 +289,12 @@ Rust.</p>
 <pre><code class="language-move">// this is a valid UTF-8 string
 let hello = b&quot;Hello&quot;.try_to_string();
 
-assert!(hello.is_some(), 0); // abort if the value is not valid UTF-8
+assert!(hello.is_some()); // abort if the value is not valid UTF-8
 
 // this is not a valid UTF-8 string
 let invalid = b&quot;\xFF&quot;.try_to_string();
 
-assert!(invalid.is_none(), 0); // abort if the value is valid UTF-8
+assert!(invalid.is_none()); // abort if the value is valid UTF-8
 </code></pre>
 <h3 id="utf-8-limitations"><a class="header" href="#utf-8-limitations">UTF-8 Limitations</a></h3>
 <p>The <code>string</code> module does not provide a way to access individual characters in a string. This is

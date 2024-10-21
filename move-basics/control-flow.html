@@ -243,7 +243,7 @@ fun test_if_else() {
         0
     };
 
-    assert!(y == 1, 0);
+    assert!(y == 1);
 }
 </code></pre>
 <p>Here we assign the value of the <code>if</code> expression to the variable <code>y</code>. If <code>x</code> is greater than 0, <code>y</code>
@@ -291,9 +291,9 @@ fun while_loop(mut x: u8): u8 {
 
 #[test]
 fun test_while() {
-    assert!(while_loop(0) == 10, 0); // 10 times
-    assert!(while_loop(5) == 5, 0);  // 5 times
-    assert!(while_loop(10) == 0, 0); // loop never executed
+    assert!(while_loop(0) == 10); // 10 times
+    assert!(while_loop(5) == 5);  // 5 times
+    assert!(while_loop(10) == 0); // loop never executed
 }
 </code></pre>
 <h2 id="infinite-loop"><a class="header" href="#infinite-loop">Infinite <code>loop</code></a></h2>
@@ -310,7 +310,7 @@ fun test_infinite_while() {
     };
 
     // This line will never be executed.
-    assert!(x == 5, 0);
+    assert!(x == 5);
 }
 </code></pre>
 <p>An infinite <code>while</code>, or <code>while</code> without a condition, is a <code>loop</code>. The syntax for it is simple:</p>
@@ -327,7 +327,7 @@ fun test_infinite_loop() {
     };
 
     // This line will never be executed.
-    assert!(x == 5, 0);
+    assert!(x == 5);
 }
 </code></pre>
 <!-- TODO: that's a weak point lmao -->
@@ -359,7 +359,7 @@ fun test_break_loop() {
         }
     };
 
-    assert!(x == 5, 0);
+    assert!(x == 5);
 }
 </code></pre>
 <p>Almost identical to the <code>while</code> loop, right? The <code>break</code> statement is used to exit the loop when <code>x</code>
@@ -393,7 +393,7 @@ fun test_continue_loop() {
         }
     };
 
-    assert!(x == 10, 0); // 10
+    assert!(x == 10); // 10
 }
 </code></pre>
 <p><code>break</code> and <code>continue</code> statements can be used in both <code>while</code> and <code>loop</code> loops.</p>
@@ -420,9 +420,9 @@ fun is_positive(x: u8): bool {
 
 #[test]
 fun test_return() {
-    assert!(is_positive(5) == false, 0);
-    assert!(is_positive(0) == false, 0);
-    assert!(is_positive(1) == true, 0);
+    assert!(is_positive(5) == false);
+    assert!(is_positive(0) == false);
+    assert!(is_positive(1) == true);
 }
 </code></pre>
 <p>Unlike in other languages, the <code>return</code> statement is not required for the last expression in a

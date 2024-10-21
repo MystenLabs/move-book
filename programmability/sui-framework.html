@@ -221,6 +221,9 @@ still part of the same framework.</em></p>
 <div class="modules-table">
 <div class="table-wrapper"><table><thead><tr><th>Module</th><th>Description</th><th>Chapter</th></tr></thead><tbody>
 <tr><td><a href="https://docs.sui.io/references/framework/sui-framework/bcs">sui::bcs</a></td><td>Implements the BCS encoding and decoding functions</td><td><a href="./bcs.html">Binary Canonical Serialization</a></td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/sui-framework/borrow">sui::borrow</a></td><td>Implements the borrowing mechanic for borrowing by <em>value</em></td><td><a href="./hot-potato-pattern.html">Hot Potato</a></td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/sui-framework/hex">sui::hex</a></td><td>Implements the hex encoding and decoding functions</td><td>-</td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/sui-framework/types">sui::types</a></td><td>Provides a way to check if the type is a One-Time-Witness</td><td><a href="./one-time-witness.html">One Time Witness</a></td></tr>
 </tbody></table>
 </div>
 <h2 id="exported-addresses"><a class="header" href="#exported-addresses">Exported Addresses</a></h2>
@@ -265,11 +268,12 @@ Commerce:
 - sui::transfer_policy
 
 
-- sui::bcs
-- sui::hex
-- sui::math
-- sui::types
-- sui::borrow
+Utilities:
++ sui::bcs
++ sui::hex
+- sui::math (deprecated)
++ sui::types
++ sui::borrow
 
 
 - sui::authenticator

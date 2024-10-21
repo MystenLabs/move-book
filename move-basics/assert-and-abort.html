@@ -231,7 +231,8 @@ if (user_has_access) {
 <p>The <code>assert!</code> macro is a built-in macro that can be used to assert a condition. If the condition is
 false, the transaction will abort with the given abort code. The <code>assert!</code> macro is a convenient way
 to abort a transaction if a condition is not met. The macro shortens the code otherwise written with
-an <code>if</code> expression + <code>abort</code>. The <code>code</code> argument is required and has to be a <code>u64</code> value.</p>
+an <code>if</code> expression + <code>abort</code>. The <code>code</code> argument is optional, but has to be a <code>u64</code> value or an
+<code>#[error]</code> (see below for more information).</p>
 <pre><code class="language-move">// aborts if `user_has_access` is `false` with abort code 0
 assert!(user_has_access, 0);
 
@@ -258,6 +259,24 @@ public fun update_record(/* ... , */ user_has_access: bool, field_exists: bool) 
     assert!(field_exists, ENoField);
 
     /* ... */
+}
+</code></pre>
+<h2 id="error-messages"><a class="header" href="#error-messages">Error messages</a></h2>
+<p>Move 2024 introduces a special type of error constant, marked with the <code>#[error]</code> attribute. This
+attribute allows the error constant to be of type <code>vector&lt;u8&gt;</code> and can be used to store an error
+message.</p>
+<pre><code class="language-move">#[error]
+const ENotAuthorized: vector&lt;u8&gt; = b&quot;The user is not authorized to perform this action&quot;;
+
+#[error]
+const EValueTooLow: vector&lt;u8&gt; = b&quot;The value is too low, it should be at least 10&quot;;
+
+/// Performs an action on behalf of the user.
+public fun update_value(user: &amp;mut User, value: u64) {
+    assert!(user.is_authorized, ENotAuthorized);
+    assert!(value &gt;= 10, EValueTooLow);
+
+    user.value = value;
 }
 </code></pre>
 <h2 id="further-reading"><a class="header" href="#further-reading">Further reading</a></h2>

@@ -231,11 +231,11 @@ fun init(otw: PUBLISHER, ctx: &amp;mut TxContext) {
 authority over a type:</p>
 <pre><code class="language-move">// Checks if the type is from the same module, hence the `Publisher` has the
 // authority over it.
-assert!(publisher.from_module&lt;Book&gt;(), 0);
+assert!(publisher.from_module&lt;Book&gt;());
 
 // Checks if the type is from the same package, hence the `Publisher` has the
 // authority over it.
-assert!(publisher.from_package&lt;Book&gt;(), 0);
+assert!(publisher.from_package&lt;Book&gt;());
 </code></pre>
 <h2 id="publisher-as-admin-role"><a class="header" href="#publisher-as-admin-role">Publisher as Admin Role</a></h2>
 <p>For small applications or simple use cases, the Publisher object can be used as an admin

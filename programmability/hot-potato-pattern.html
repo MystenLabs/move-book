@@ -324,12 +324,13 @@ will cover in the next section.</p>
 <h3 id="usage-in-the-sui-framework"><a class="header" href="#usage-in-the-sui-framework">Usage in the Sui Framework</a></h3>
 <p>The pattern is used in various forms in the Sui Framework. Here are some examples:</p>
 <ul>
-<li><code>sui::borrow</code> - uses hot potato to ensure that the borrowed value is returned to the correct
-container.</li>
-<li><code>sui::transfer_policy</code> - defines a <code>TransferRequest</code> - a hot potato which can only be consumed if
-all conditions are met.</li>
-<li><code>sui::token</code> - in the Closed Loop Token system, an <code>ActionRequest</code> carries the information about
-the performed action and collects approvals similarly to <code>TransferRequest</code>.</li>
+<li><a href="https://docs.sui.io/references/framework/sui-framework/borrow">sui::borrow</a> - uses hot potato to
+ensure that the borrowed value is returned to the correct container.</li>
+<li><a href="https://docs.sui.io/references/framework/sui-framework/transfer_policy">sui::transfer_policy</a> -
+defines a <code>TransferRequest</code> - a hot potato which can only be consumed if all conditions are met.</li>
+<li><a href="https://docs.sui.io/references/framework/sui-framework/token">sui::token</a> - in the Closed Loop
+Token system, an <code>ActionRequest</code> carries the information about the performed action and collects
+approvals similarly to <code>TransferRequest</code>.</li>
 </ul>
 <h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
 <ul>

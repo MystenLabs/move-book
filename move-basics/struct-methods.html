@@ -222,8 +222,8 @@ fun test_methods() {
     let mut hero = new();
     hero.heal_spell();
 
-    assert!(hero.health() == 110, 1);
-    assert!(hero.mana() == 90, 2);
+    assert!(hero.health() == 110);
+    assert!(hero.mana() == 90);
 }
 </code></pre>
 <h2 id="method-aliases"><a class="header" href="#method-aliases">Method Aliases</a></h2>
@@ -278,10 +278,10 @@ public fun villain_health(villain: &amp;Villain): u8 { villain.health }
 // Test the methods of the `Hero` and `Villain` structs.
 fun test_associated_methods() {
     let hero = new_hero();
-    assert!(hero.health() == 100, 1);
+    assert!(hero.health() == 100);
 
     let villain = new_villain();
-    assert!(villain.health() == 100, 3);
+    assert!(villain.health() == 100);
 }
 </code></pre>
 <p>As you can see, in the test function, we called the <code>health</code> method on the instances of <code>Hero</code> and

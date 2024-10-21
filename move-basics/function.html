@@ -236,8 +236,8 @@ syntax:</p>
 <pre><code class="language-move">// Tuple must be destructured to access its elements.
 // Name and age are declared as immutable variables.
 let (name, age) = get_name_and_age();
-assert!(name == b&quot;John&quot;, 0);
-assert!(age == 25, 0);
+assert!(name == b&quot;John&quot;);
+assert!(age == 25);
 </code></pre>
 <p>If any of the declared values need to be declared as mutable, the <code>mut</code> keyword is placed before the
 variable name:</p>

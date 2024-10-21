@@ -2014,13 +2014,13 @@ string &quot;The Beatles&quot;.</p>
 let artist_name = artist.name;
 
 // Access a field of the `Artist` struct.
-assert!(artist.name == string::utf8(b&quot;The Beatles&quot;), 0);
+assert!(artist.name == b&quot;The Beatles&quot;.to_string());
 
 // Mutate the `name` field of the `Artist` struct.
-artist.name = string::utf8(b&quot;Led Zeppelin&quot;);
+artist.name = b&quot;Led Zeppelin&quot;.to_string();
 
 // Check that the `name` field has been mutated.
-assert!(artist.name == string::utf8(b&quot;Led Zeppelin&quot;), 1);
+assert!(artist.name == b&quot;Led Zeppelin&quot;.to_string());
 </code></pre>
 <p>Only module defining the struct can access its fields (both mutably and immutably). So the above
 code should be in the same module as the <code>Artist</code> struct.</p>
@@ -2034,13 +2034,13 @@ Struct fields are private and can be accessed only by the module defining the st
 let artist_name = artist.name;
 
 // Access a field of the `Artist` struct.
-assert!(artist.name == string::utf8(b"The Beatles"), 0);
+assert!(artist.name == b"The Beatles".to_string());
 
 // Mutate the `name` field of the `Artist` struct.
-artist.name = string::utf8(b"Led Zeppelin");
+artist.name = b"Led Zeppelin".to_string();
 
 // Check that the `name` field has been mutated.
-assert!(artist.name == string::utf8(b"Led Zeppelin"), 1);
+assert!(artist.name == b"Led Zeppelin".to_string());
 ```
 -->
 <h2 id="unpacking-a-struct"><a class="header" href="#unpacking-a-struct">Unpacking a struct</a></h2>
@@ -2253,7 +2253,15 @@ public fun create_and_ignore() {
 <p>You can also import specific members from a module. This is useful when you only need a single
 function or a single type from a module. The syntax is the same as for importing a module, but you
 add the member name after the module path.</p>
-<pre><code class="language-move">{{#include ../../../packages/samples/sources/move-basics/importing-modules-members.move:members}}
+<pre><code class="language-move">module book::more_imports;
+
+use book::module_one::new;       // imports the `new` function from the `module_one` module
+use book::module_one::Character; // importing the `Character` struct from the `module_one` module
+
+/// Calls the `new` function from the `module_one` module.
+public fun create_character(): Character {
+    new()
+}
 </code></pre>
 <h2 id="grouping-imports"><a class="header" href="#grouping-imports">Grouping Imports</a></h2>
 <p>Imports can be grouped into a single <code>use</code> statement using the curly braces <code>{}</code>. This is useful
@@ -2354,6 +2362,25 @@ and which module implements it.</p>
 <tr><td>std::fixed_point32</td><td>Provides the <code>FixedPoint32</code> type</td><td>-</td></tr>
 </tbody></table>
 </div></div>
+<h2 id="integer-modules"><a class="header" href="#integer-modules">Integer Modules</a></h2>
+<p>The Move Standard Library provides a set of functions associated with integer types. These functions
+are split into multiple modules, each associated with a specific integer type. The modules should
+not be imported directly, but their functions are available on every integer value.</p>
+<blockquote>
+<p>All of the modules provide the same set of functions. Namely, <code>max</code>, <code>diff</code>,
+<code>divide_and_round_up</code>, <code>sqrt</code> and <code>pow</code>.</p>
+</blockquote>
+<!-- Custom CSS addition in the theme/custom.css  -->
+<div class="modules-table">
+<div class="table-wrapper"><table><thead><tr><th>Module</th><th>Description</th></tr></thead><tbody>
+<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/u8">std::u8</a></td><td>Functions for the <code>u8</code> type</td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/u64">std::16</a></td><td>Functions for the <code>u16</code> type</td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/u64">std::u32</a></td><td>Functions for the <code>u32</code> type</td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/u64">std::u64</a></td><td>Functions for the <code>u64</code> type</td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/u128">std::u128</a></td><td>Functions for the <code>u128</code> type</td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/u256">std::u256</a></td><td>Functions for the <code>u256</code> type</td></tr>
+</tbody></table>
+</div></div>
 <h2 id="exported-addresses"><a class="header" href="#exported-addresses">Exported Addresses</a></h2>
 <p>Standard Library exports one named address - <code>std = 0x1</code>.</p>
 <pre><code class="language-toml">[addresses]
@@ -2412,13 +2439,13 @@ commonly used operations:</p>
 </ul>
 <pre><code class="language-move">let mut v = vector[10u8, 20, 30];
 
-assert!(v.length() == 3, 0);
-assert!(!v.is_empty(), 1);
+assert!(v.length() == 3);
+assert!(!v.is_empty());
 
 v.push_back(40);
 let last_value = v.pop_back();
 
-assert!(last_value == 40, 2);
+assert!(last_value == 40);
 </code></pre>
 <h2 id="destroying-a-vector-of-non-droppable-types"><a class="header" href="#destroying-a-vector-of-non-droppable-types">Destroying a Vector of non-droppable types</a></h2>
 <p>A vector of non-droppable types cannot be discarded. If you define a vector of types without <code>drop</code>
@@ -2445,7 +2472,6 @@ fun test_destroy_empty() {
 <p>Option is a type that represents an optional value which may or may not exist. The concept of Option
 in Move is borrowed from Rust, and it is a very useful primitive in Move. <code>Option</code> is defined in the
 <a href="move-basics/./standard-library.html">Standard Library</a>, and is defined as follows:</p>
-<p>File: move-stdlib/source/option.move</p>
 <pre><code class="language-move">// File: move-stdlib/source/option.move
 /// Abstraction of a value that may or may not be present.
 struct Option&lt;Element&gt; has copy, drop, store {
@@ -2499,16 +2525,16 @@ can then create an <code>Option</code> value using the <code>some</code> or <cod
 let mut opt = option::some(b&quot;Alice&quot;);
 
 // `option.is_some()` returns true if option contains a value.
-assert!(opt.is_some(), 1);
+assert!(opt.is_some());
 
 // internal value can be `borrow`ed and `borrow_mut`ed.
-assert!(opt.borrow() == &amp;b&quot;Alice&quot;, 0);
+assert!(opt.borrow() == &amp;b&quot;Alice&quot;);
 
 // `option.extract` takes the value out of the option, leaving the option empty.
 let inner = opt.extract();
 
 // `option.is_none()` returns true if option is None.
-assert!(opt.is_none(), 2);
+assert!(opt.is_none());
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="string"><a class="header" href="#string">String</a></h1>
 <p>While Move does not have a built-in type to represent strings, it does have two standard
@@ -2616,12 +2642,12 @@ Rust.</p>
 <pre><code class="language-move">// this is a valid UTF-8 string
 let hello = b&quot;Hello&quot;.try_to_string();
 
-assert!(hello.is_some(), 0); // abort if the value is not valid UTF-8
+assert!(hello.is_some()); // abort if the value is not valid UTF-8
 
 // this is not a valid UTF-8 string
 let invalid = b&quot;\xFF&quot;.try_to_string();
 
-assert!(invalid.is_none(), 0); // abort if the value is valid UTF-8
+assert!(invalid.is_none()); // abort if the value is valid UTF-8
 </code></pre>
 <h3 id="utf-8-limitations"><a class="header" href="#utf-8-limitations">UTF-8 Limitations</a></h3>
 <p>The <code>string</code> module does not provide a way to access individual characters in a string. This is
@@ -2692,7 +2718,7 @@ fun test_if_else() {
         0
     };
 
-    assert!(y == 1, 0);
+    assert!(y == 1);
 }
 </code></pre>
 <p>Here we assign the value of the <code>if</code> expression to the variable <code>y</code>. If <code>x</code> is greater than 0, <code>y</code>
@@ -2740,9 +2766,9 @@ fun while_loop(mut x: u8): u8 {
 
 #[test]
 fun test_while() {
-    assert!(while_loop(0) == 10, 0); // 10 times
-    assert!(while_loop(5) == 5, 0);  // 5 times
-    assert!(while_loop(10) == 0, 0); // loop never executed
+    assert!(while_loop(0) == 10); // 10 times
+    assert!(while_loop(5) == 5);  // 5 times
+    assert!(while_loop(10) == 0); // loop never executed
 }
 </code></pre>
 <h2 id="infinite-loop"><a class="header" href="#infinite-loop">Infinite <code>loop</code></a></h2>
@@ -2759,7 +2785,7 @@ fun test_infinite_while() {
     };
 
     // This line will never be executed.
-    assert!(x == 5, 0);
+    assert!(x == 5);
 }
 </code></pre>
 <p>An infinite <code>while</code>, or <code>while</code> without a condition, is a <code>loop</code>. The syntax for it is simple:</p>
@@ -2776,7 +2802,7 @@ fun test_infinite_loop() {
     };
 
     // This line will never be executed.
-    assert!(x == 5, 0);
+    assert!(x == 5);
 }
 </code></pre>
 <!-- TODO: that's a weak point lmao -->
@@ -2808,7 +2834,7 @@ fun test_break_loop() {
         }
     };
 
-    assert!(x == 5, 0);
+    assert!(x == 5);
 }
 </code></pre>
 <p>Almost identical to the <code>while</code> loop, right? The <code>break</code> statement is used to exit the loop when <code>x</code>
@@ -2842,7 +2868,7 @@ fun test_continue_loop() {
         }
     };
 
-    assert!(x == 10, 0); // 10
+    assert!(x == 10); // 10
 }
 </code></pre>
 <p><code>break</code> and <code>continue</code> statements can be used in both <code>while</code> and <code>loop</code> loops.</p>
@@ -2869,9 +2895,9 @@ fun is_positive(x: u8): bool {
 
 #[test]
 fun test_return() {
-    assert!(is_positive(5) == false, 0);
-    assert!(is_positive(0) == false, 0);
-    assert!(is_positive(1) == true, 0);
+    assert!(is_positive(5) == false);
+    assert!(is_positive(0) == false);
+    assert!(is_positive(1) == true);
 }
 </code></pre>
 <p>Unlike in other languages, the <code>return</code> statement is not required for the last expression in a
@@ -2913,7 +2939,7 @@ public struct Item {}
 
 /// Purchase an item from the shop.
 public fun purchase(coin: Coin&lt;SUI&gt;): Item {
-    assert!(coin.value() == ITEM_PRICE, 0);
+    assert!(coin.value() == ITEM_PRICE);
 
     transfer::public_transfer(coin, SHOP_OWNER);
 
@@ -3016,7 +3042,8 @@ if (user_has_access) {
 <p>The <code>assert!</code> macro is a built-in macro that can be used to assert a condition. If the condition is
 false, the transaction will abort with the given abort code. The <code>assert!</code> macro is a convenient way
 to abort a transaction if a condition is not met. The macro shortens the code otherwise written with
-an <code>if</code> expression + <code>abort</code>. The <code>code</code> argument is required and has to be a <code>u64</code> value.</p>
+an <code>if</code> expression + <code>abort</code>. The <code>code</code> argument is optional, but has to be a <code>u64</code> value or an
+<code>#[error]</code> (see below for more information).</p>
 <pre><code class="language-move">// aborts if `user_has_access` is `false` with abort code 0
 assert!(user_has_access, 0);
 
@@ -3043,6 +3070,24 @@ public fun update_record(/* ... , */ user_has_access: bool, field_exists: bool) 
     assert!(field_exists, ENoField);
 
     /* ... */
+}
+</code></pre>
+<h2 id="error-messages"><a class="header" href="#error-messages">Error messages</a></h2>
+<p>Move 2024 introduces a special type of error constant, marked with the <code>#[error]</code> attribute. This
+attribute allows the error constant to be of type <code>vector&lt;u8&gt;</code> and can be used to store an error
+message.</p>
+<pre><code class="language-move">#[error]
+const ENotAuthorized: vector&lt;u8&gt; = b&quot;The user is not authorized to perform this action&quot;;
+
+#[error]
+const EValueTooLow: vector&lt;u8&gt; = b&quot;The value is too low, it should be at least 10&quot;;
+
+/// Performs an action on behalf of the user.
+public fun update_value(user: &amp;mut User, value: u64) {
+    assert!(user.is_authorized, ENotAuthorized);
+    assert!(value &gt;= 10, EValueTooLow);
+
+    user.value = value;
 }
 </code></pre>
 <h2 id="further-reading-11"><a class="header" href="#further-reading-11">Further reading</a></h2>
@@ -3104,8 +3149,8 @@ syntax:</p>
 <pre><code class="language-move">// Tuple must be destructured to access its elements.
 // Name and age are declared as immutable variables.
 let (name, age) = get_name_and_age();
-assert!(name == b&quot;John&quot;, 0);
-assert!(age == 25, 0);
+assert!(name == b&quot;John&quot;);
+assert!(age == 25);
 </code></pre>
 <p>If any of the declared values need to be declared as mutable, the <code>mut</code> keyword is placed before the
 variable name:</p>
@@ -3159,8 +3204,8 @@ fun test_methods() {
     let mut hero = new();
     hero.heal_spell();
 
-    assert!(hero.health() == 110, 1);
-    assert!(hero.mana() == 90, 2);
+    assert!(hero.health() == 110);
+    assert!(hero.mana() == 90);
 }
 </code></pre>
 <h2 id="method-aliases"><a class="header" href="#method-aliases">Method Aliases</a></h2>
@@ -3215,10 +3260,10 @@ public fun villain_health(villain: &amp;Villain): u8 { villain.health }
 // Test the methods of the `Hero` and `Villain` structs.
 fun test_associated_methods() {
     let hero = new_hero();
-    assert!(hero.health() == 100, 1);
+    assert!(hero.health() == 100);
 
     let villain = new_villain();
-    assert!(villain.health() == 100, 3);
+    assert!(villain.health() == 100);
 }
 </code></pre>
 <p>As you can see, in the test function, we called the <code>health</code> method on the instances of <code>Hero</code> and
@@ -3584,7 +3629,7 @@ fun test_card_2024() {
     let mut card = purchase();
 
     card.enter_metro(); // modify the card but don't move it
-    assert!(card.is_valid(), 0); // read the card!
+    assert!(card.is_valid()); // read the card!
 
     card.enter_metro(); // modify the card but don't move it
     card.enter_metro(); // modify the card but don't move it
@@ -3612,7 +3657,7 @@ fun test_card_2024() {
     let mut card = purchase();
 
     card.enter_metro(); // modify the card but don't move it
-    assert!(card.is_valid(), 0); // read the card!
+    assert!(card.is_valid()); // read the card!
 
     card.enter_metro(); // modify the card but don't move it
     card.enter_metro(); // modify the card but don't move it
@@ -3711,8 +3756,8 @@ fun test_swap_type_params() {
     let Pair { first: pf1, second: ps1 } = pair1; // first1: u8, second1: bool
     let Pair { first: pf2, second: ps2 } = pair2; // first2: bool, second2: u8
 
-    assert!(pf1 == ps2, 0x0); // 10 == 10
-    assert!(ps1 == pf2, 0x0); // true == true
+    assert!(pf1 == ps2); // 10 == 10
+    assert!(ps1 == pf2); // true == true
 }
 </code></pre>
 <p>Types for variables <code>pair1</code> and <code>pair2</code> are different, and the comparison will not compile.</p>
@@ -3846,7 +3891,7 @@ fun test_type_reflection() {
     let (type_name, module_name, _address_str) = do_i_know_you&lt;MyType&gt;();
 
     //
-    assert!(module_name == b&quot;type_reflection&quot;.to_ascii_string(), 1);
+    assert!(module_name == b&quot;type_reflection&quot;.to_ascii_string());
 }
 </code></pre>
 <h2 id="further-reading-17"><a class="header" href="#further-reading-17">Further reading</a></h2>
@@ -5097,9 +5142,9 @@ fun vec_set_playground() {
     set.insert(2); // add an item to the set
     set.insert(3);
 
-    assert!(set.contains(&amp;1), 0); // check if an item is in the set
-    assert!(set.size() == 3, 1); // get the number of items in the set
-    assert!(!set.is_empty(), 2); // check if the set is empty
+    assert!(set.contains(&amp;1)); // check if an item is in the set
+    assert!(set.size() == 3); // get the number of items in the set
+    assert!(!set.is_empty()); // check if the set is empty
 
     set.remove(&amp;2); // remove an item from the set
 }
@@ -5131,7 +5176,7 @@ fun vec_map_playground() {
     map.insert(2, b&quot;two&quot;.to_string()); // add a key-value pair to the map
     map.insert(3, b&quot;three&quot;.to_string());
 
-    assert!(map.contains(&amp;2), 0); // check if a key is in the map
+    assert!(map.contains(&amp;2)); // check if a key is in the map
 
     map.remove(&amp;2); // remove a key-value pair from the map
 }
@@ -5991,11 +6036,11 @@ fun init(otw: PUBLISHER, ctx: &amp;mut TxContext) {
 authority over a type:</p>
 <pre><code class="language-move">// Checks if the type is from the same module, hence the `Publisher` has the
 // authority over it.
-assert!(publisher.from_module&lt;Book&gt;(), 0);
+assert!(publisher.from_module&lt;Book&gt;());
 
 // Checks if the type is from the same package, hence the `Publisher` has the
 // authority over it.
-assert!(publisher.from_package&lt;Book&gt;(), 0);
+assert!(publisher.from_package&lt;Book&gt;());
 </code></pre>
 <h2 id="publisher-as-admin-role"><a class="header" href="#publisher-as-admin-role">Publisher as Admin Role</a></h2>
 <p>For small applications or simple use cases, the Publisher object can be used as an admin
@@ -6292,6 +6337,9 @@ still part of the same framework.</em></p>
 <div class="modules-table">
 <div class="table-wrapper"><table><thead><tr><th>Module</th><th>Description</th><th>Chapter</th></tr></thead><tbody>
 <tr><td><a href="https://docs.sui.io/references/framework/sui-framework/bcs">sui::bcs</a></td><td>Implements the BCS encoding and decoding functions</td><td><a href="programmability/./bcs.html">Binary Canonical Serialization</a></td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/sui-framework/borrow">sui::borrow</a></td><td>Implements the borrowing mechanic for borrowing by <em>value</em></td><td><a href="programmability/./hot-potato-pattern.html">Hot Potato</a></td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/sui-framework/hex">sui::hex</a></td><td>Implements the hex encoding and decoding functions</td><td>-</td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/sui-framework/types">sui::types</a></td><td>Provides a way to check if the type is a One-Time-Witness</td><td><a href="programmability/./one-time-witness.html">One Time Witness</a></td></tr>
 </tbody></table>
 </div>
 <h2 id="exported-addresses-1"><a class="header" href="#exported-addresses-1">Exported Addresses</a></h2>
@@ -6336,11 +6384,12 @@ Commerce:
 - sui::transfer_policy
 
 
-- sui::bcs
-- sui::hex
-- sui::math
-- sui::types
-- sui::borrow
+Utilities:
++ sui::bcs
++ sui::hex
+- sui::math (deprecated)
++ sui::types
++ sui::borrow
 
 
 - sui::authenticator
@@ -6509,12 +6558,13 @@ will cover in the next section.</p>
 <h3 id="usage-in-the-sui-framework"><a class="header" href="#usage-in-the-sui-framework">Usage in the Sui Framework</a></h3>
 <p>The pattern is used in various forms in the Sui Framework. Here are some examples:</p>
 <ul>
-<li><code>sui::borrow</code> - uses hot potato to ensure that the borrowed value is returned to the correct
-container.</li>
-<li><code>sui::transfer_policy</code> - defines a <code>TransferRequest</code> - a hot potato which can only be consumed if
-all conditions are met.</li>
-<li><code>sui::token</code> - in the Closed Loop Token system, an <code>ActionRequest</code> carries the information about
-the performed action and collects approvals similarly to <code>TransferRequest</code>.</li>
+<li><a href="https://docs.sui.io/references/framework/sui-framework/borrow">sui::borrow</a> - uses hot potato to
+ensure that the borrowed value is returned to the correct container.</li>
+<li><a href="https://docs.sui.io/references/framework/sui-framework/transfer_policy">sui::transfer_policy</a> -
+defines a <code>TransferRequest</code> - a hot potato which can only be consumed if all conditions are met.</li>
+<li><a href="https://docs.sui.io/references/framework/sui-framework/token">sui::token</a> - in the Closed Loop
+Token system, an <code>ActionRequest</code> carries the information about the performed action and collects
+approvals similarly to <code>TransferRequest</code>.</li>
 </ul>
 <h2 id="summary-9"><a class="header" href="#summary-9">Summary</a></h2>
 <ul>
@@ -6583,7 +6633,7 @@ custom_bytes.append(bcs::to_bytes(&amp;b&quot;hello, world!&quot;.to_string()));
 custom_bytes.append(bcs::to_bytes(&amp;true));
 
 // struct is just a sequence of fields, so the bytes should be the same!
-assert!(&amp;struct_bytes == &amp;custom_bytes, 0);
+assert!(&amp;struct_bytes == &amp;custom_bytes);
 </code></pre>
 <h2 id="decoding"><a class="header" href="#decoding">Decoding</a></h2>
 <p>Because BCS does not self-describe and Move is statically typed, decoding requires prior knowledge of the data type. The <code>sui::bcs</code> module provides various functions to assist with this process.</p>
@@ -6600,12 +6650,12 @@ let mut bcs = bcs::new(x&quot;010000000000000000&quot;);
 // Same bytes can be read differently, for example: Option&lt;u64&gt;
 let value: Option&lt;u64&gt; = bcs.peel_option_u64();
 
-assert!(value.is_some(), 0);
-assert!(value.borrow() == &amp;0, 1);
+assert!(value.is_some());
+assert!(value.borrow() == &amp;0);
 
 let remainder = bcs.into_remainder_bytes();
 
-assert!(remainder.length() == 0, 2);
+assert!(remainder.length() == 0);
 </code></pre>
 <p>There is a common practice to use multiple variables in a single <code>let</code> statement during decoding. It
 makes code a little bit more readable and helps to avoid unnecessary copying of the data.</p>
@@ -6635,7 +6685,7 @@ while (len &gt; 0) {
     len = len - 1;
 };
 
-assert!(vec.length() == 1, 0);
+assert!(vec.length() == 1);
 </code></pre>
 <p>For most common scenarios, <code>bcs</code> module provides a basic set of functions for decoding vectors:</p>
 <ul>
@@ -6656,14 +6706,14 @@ option, you would treat it like a vector and check its length (first byte - eith
 <pre><code class="language-move">let mut bcs = bcs::new(x&quot;00&quot;);
 let is_some = bcs.peel_bool();
 
-assert!(is_some == false, 0);
+assert!(is_some == false);
 
 let mut bcs = bcs::new(x&quot;0101&quot;);
 let is_some = bcs.peel_bool();
 let value = bcs.peel_u8();
 
-assert!(is_some == true, 1);
-assert!(value == 1, 2);
+assert!(is_some == true);
+assert!(value == 1);
 </code></pre>
 <blockquote>
 <p>If you need to decode an option of a custom type, use the method in the code snippet above.</p>
@@ -6680,7 +6730,7 @@ assert!(value == 1, 2);
 <p>Structs are decoded field by field, and there is no standard function to automatically decode bytes
 into a Move struct, and it would have been a violation of the Move's type system. Instead, you need
 to decode each field manually.</p>
-<pre><code class="language-move">// some bytes... 
+<pre><code class="language-move">// some bytes...
 let mut bcs = bcs::new(x&quot;0101010F0000000000F00000000000&quot;);
 
 let (age, is_active, name) = (

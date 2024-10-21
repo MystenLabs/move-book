@@ -242,13 +242,13 @@ string &quot;The Beatles&quot;.</p>
 let artist_name = artist.name;
 
 // Access a field of the `Artist` struct.
-assert!(artist.name == string::utf8(b&quot;The Beatles&quot;), 0);
+assert!(artist.name == b&quot;The Beatles&quot;.to_string());
 
 // Mutate the `name` field of the `Artist` struct.
-artist.name = string::utf8(b&quot;Led Zeppelin&quot;);
+artist.name = b&quot;Led Zeppelin&quot;.to_string();
 
 // Check that the `name` field has been mutated.
-assert!(artist.name == string::utf8(b&quot;Led Zeppelin&quot;), 1);
+assert!(artist.name == b&quot;Led Zeppelin&quot;.to_string());
 </code></pre>
 <p>Only module defining the struct can access its fields (both mutably and immutably). So the above
 code should be in the same module as the <code>Artist</code> struct.</p>
@@ -262,13 +262,13 @@ Struct fields are private and can be accessed only by the module defining the st
 let artist_name = artist.name;
 
 // Access a field of the `Artist` struct.
-assert!(artist.name == string::utf8(b"The Beatles"), 0);
+assert!(artist.name == b"The Beatles".to_string());
 
 // Mutate the `name` field of the `Artist` struct.
-artist.name = string::utf8(b"Led Zeppelin");
+artist.name = b"Led Zeppelin".to_string();
 
 // Check that the `name` field has been mutated.
-assert!(artist.name == string::utf8(b"Led Zeppelin"), 1);
+assert!(artist.name == b"Led Zeppelin".to_string());
 ```
 -->
 <h2 id="unpacking-a-struct"><a class="header" href="#unpacking-a-struct">Unpacking a struct</a></h2>

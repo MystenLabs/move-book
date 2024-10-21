@@ -281,7 +281,7 @@ fun test_card_2024() {
     let mut card = purchase();
 
     card.enter_metro(); // modify the card but don't move it
-    assert!(card.is_valid(), 0); // read the card!
+    assert!(card.is_valid()); // read the card!
 
     card.enter_metro(); // modify the card but don't move it
     card.enter_metro(); // modify the card but don't move it
@@ -309,7 +309,7 @@ fun test_card_2024() {
     let mut card = purchase();
 
     card.enter_metro(); // modify the card but don't move it
-    assert!(card.is_valid(), 0); // read the card!
+    assert!(card.is_valid()); // read the card!
 
     card.enter_metro(); // modify the card but don't move it
     card.enter_metro(); // modify the card but don't move it

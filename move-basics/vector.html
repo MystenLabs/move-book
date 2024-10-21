@@ -219,13 +219,13 @@ commonly used operations:</p>
 </ul>
 <pre><code class="language-move">let mut v = vector[10u8, 20, 30];
 
-assert!(v.length() == 3, 0);
-assert!(!v.is_empty(), 1);
+assert!(v.length() == 3);
+assert!(!v.is_empty());
 
 v.push_back(40);
 let last_value = v.pop_back();
 
-assert!(last_value == 40, 2);
+assert!(last_value == 40);
 </code></pre>
 <h2 id="destroying-a-vector-of-non-droppable-types"><a class="header" href="#destroying-a-vector-of-non-droppable-types">Destroying a Vector of non-droppable types</a></h2>
 <p>A vector of non-droppable types cannot be discarded. If you define a vector of types without <code>drop</code>
