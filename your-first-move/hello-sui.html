@@ -201,45 +201,45 @@ application. Replace the contents of the <em>sources/todo_list.move</em> file wi
 sections. Try to focus on what's at hand right now.</p>
 </blockquote>
 <pre><code class="language-move">/// Module: todo_list
-module todo_list::todo_list {
-    use std::string::String;
+module todo_list::todo_list;
 
-    /// List of todos. Can be managed by the owner and shared with others.
-    public struct TodoList has key, store {
-        id: UID,
-        items: vector&lt;String&gt;
-    }
+use std::string::String;
 
-    /// Create a new todo list.
-    public fun new(ctx: &amp;mut TxContext): TodoList {
-        let list = TodoList {
-            id: object::new(ctx),
-            items: vector[]
-        };
+/// List of todos. Can be managed by the owner and shared with others.
+public struct TodoList has key, store {
+    id: UID,
+    items: vector&lt;String&gt;
+}
 
-        (list)
-    }
+/// Create a new todo list.
+public fun new(ctx: &amp;mut TxContext): TodoList {
+    let list = TodoList {
+        id: object::new(ctx),
+        items: vector[]
+    };
 
-    /// Add a new todo item to the list.
-    public fun add(list: &amp;mut TodoList, item: String) {
-        list.items.push_back(item);
-    }
+    (list)
+}
 
-    /// Remove a todo item from the list by index.
-    public fun remove(list: &amp;mut TodoList, index: u64): String {
-        list.items.remove(index)
-    }
+/// Add a new todo item to the list.
+public fun add(list: &amp;mut TodoList, item: String) {
+    list.items.push_back(item);
+}
 
-    /// Delete the list and the capability to manage it.
-    public fun delete(list: TodoList) {
-        let TodoList { id, items: _ } = list;
-        id.delete();
-    }
+/// Remove a todo item from the list by index.
+public fun remove(list: &amp;mut TodoList, index: u64): String {
+    list.items.remove(index)
+}
 
-    /// Get the number of items in the list.
-    public fun length(list: &amp;TodoList): u64 {
-        list.items.length()
-    }
+/// Delete the list and the capability to manage it.
+public fun delete(list: TodoList) {
+    let TodoList { id, items: _ } = list;
+    id.delete();
+}
+
+/// Get the number of items in the list.
+public fun length(list: &amp;TodoList): u64 {
+    list.items.length()
 }
 </code></pre>
 <h2 id="build-the-package"><a class="header" href="#build-the-package">Build the package</a></h2>

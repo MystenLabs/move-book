@@ -206,9 +206,7 @@ letters with underscores between words. Modules names must be unique in the pack
 the module name - for example, a <code>donut_shop</code> module should be stored in the <code>donut_shop.move</code> file.
 You can read more about coding conventions in the
 <a href="../special-topics/coding-conventions.html">Coding Conventions</a> section.</p>
-<pre><code class="language-Move">module book::my_module {
-    // module body
-}
+<pre><code class="language-Move">
 </code></pre>
 <p>Structs, functions, constants and imports all part of the module:</p>
 <ul>
@@ -234,7 +232,7 @@ book = &quot;0x0&quot;
 <h2 id="module-members"><a class="header" href="#module-members">Module members</a></h2>
 <p>Module members are declared inside the module body. To illustrate that, let's define a simple module
 with a struct, a function and a constant:</p>
-<pre><code class="language-Move">module book::my_module_with_members {
+<pre><code class="language-Move">module book::my_block_module_with_members {
     // import
     use book::my_module;
 
@@ -249,6 +247,12 @@ with a struct, a function and a constant:</p>
 
     // function
     fun function(_: &amp;Struct) { /* function body */ }
+}
+
+// module block allows multiple module definitions in the
+// same file but this is not a recommended practice
+module book::another_module_in_the_file {
+    // ...
 }
 </code></pre>
 <h2 id="further-reading"><a class="header" href="#further-reading">Further reading</a></h2>

@@ -529,45 +529,45 @@ application. Replace the contents of the <em>sources/todo_list.move</em> file wi
 sections. Try to focus on what's at hand right now.</p>
 </blockquote>
 <pre><code class="language-move">/// Module: todo_list
-module todo_list::todo_list {
-    use std::string::String;
+module todo_list::todo_list;
 
-    /// List of todos. Can be managed by the owner and shared with others.
-    public struct TodoList has key, store {
-        id: UID,
-        items: vector&lt;String&gt;
-    }
+use std::string::String;
 
-    /// Create a new todo list.
-    public fun new(ctx: &amp;mut TxContext): TodoList {
-        let list = TodoList {
-            id: object::new(ctx),
-            items: vector[]
-        };
+/// List of todos. Can be managed by the owner and shared with others.
+public struct TodoList has key, store {
+    id: UID,
+    items: vector&lt;String&gt;
+}
 
-        (list)
-    }
+/// Create a new todo list.
+public fun new(ctx: &amp;mut TxContext): TodoList {
+    let list = TodoList {
+        id: object::new(ctx),
+        items: vector[]
+    };
 
-    /// Add a new todo item to the list.
-    public fun add(list: &amp;mut TodoList, item: String) {
-        list.items.push_back(item);
-    }
+    (list)
+}
 
-    /// Remove a todo item from the list by index.
-    public fun remove(list: &amp;mut TodoList, index: u64): String {
-        list.items.remove(index)
-    }
+/// Add a new todo item to the list.
+public fun add(list: &amp;mut TodoList, item: String) {
+    list.items.push_back(item);
+}
 
-    /// Delete the list and the capability to manage it.
-    public fun delete(list: TodoList) {
-        let TodoList { id, items: _ } = list;
-        id.delete();
-    }
+/// Remove a todo item from the list by index.
+public fun remove(list: &amp;mut TodoList, index: u64): String {
+    list.items.remove(index)
+}
 
-    /// Get the number of items in the list.
-    public fun length(list: &amp;TodoList): u64 {
-        list.items.length()
-    }
+/// Delete the list and the capability to manage it.
+public fun delete(list: TodoList) {
+    let TodoList { id, items: _ } = list;
+    id.delete();
+}
+
+/// Get the number of items in the list.
+public fun length(list: &amp;TodoList): u64 {
+    list.items.length()
 }
 </code></pre>
 <h2 id="build-the-package"><a class="header" href="#build-the-package">Build the package</a></h2>
@@ -1548,9 +1548,7 @@ letters with underscores between words. Modules names must be unique in the pack
 the module name - for example, a <code>donut_shop</code> module should be stored in the <code>donut_shop.move</code> file.
 You can read more about coding conventions in the
 <a href="move-basics/../special-topics/coding-conventions.html">Coding Conventions</a> section.</p>
-<pre><code class="language-Move">module book::my_module {
-    // module body
-}
+<pre><code class="language-Move">
 </code></pre>
 <p>Structs, functions, constants and imports all part of the module:</p>
 <ul>
@@ -1576,7 +1574,7 @@ book = &quot;0x0&quot;
 <h2 id="module-members"><a class="header" href="#module-members">Module members</a></h2>
 <p>Module members are declared inside the module body. To illustrate that, let's define a simple module
 with a struct, a function and a constant:</p>
-<pre><code class="language-Move">module book::my_module_with_members {
+<pre><code class="language-Move">module book::my_block_module_with_members {
     // import
     use book::my_module;
 
@@ -1591,6 +1589,12 @@ with a struct, a function and a constant:</p>
 
     // function
     fun function(_: &amp;Struct) { /* function body */ }
+}
+
+// module block allows multiple module definitions in the
+// same file but this is not a recommended practice
+module book::another_module_in_the_file {
+    // ...
 }
 </code></pre>
 <h2 id="further-reading-4"><a class="header" href="#further-reading-4">Further reading</a></h2>
@@ -1615,42 +1619,17 @@ yourself or other developers, to temporarily remove a part of your code, or to g
 documentation. There are three types of comments in Move: line comment, block comment, and doc
 comment.</p>
 <h2 id="line-comment"><a class="header" href="#line-comment">Line comment</a></h2>
-<pre><code class="language-Move">module book::comments_line {
-    fun some_function() {
-        // this is a comment line
-    }
-}
+<pre><code class="language-Move">{{#include ../../../packages/samples/sources/move-basics/comments.move:line}}
 </code></pre>
 <p>You can use double slash <code>//</code> to comment out the rest of the line. Everything after <code>//</code> will be
 ignored by the compiler.</p>
-<pre><code class="language-Move">module book::comments_line_2 {
-    // let's add a note to everything!
-    fun some_function_with_numbers() {
-        let a = 10;
-        // let b = 10 this line is commented and won't be executed
-        let b = 5; // here comment is placed after code
-        a + b; // result is 15, not 10!
-    }
-}
+<pre><code class="language-Move">{{#include ../../../packages/samples/sources/move-basics/comments.move:line_2}}
 </code></pre>
 <h2 id="block-comment"><a class="header" href="#block-comment">Block comment</a></h2>
 <p>Block comments are used to comment out a block of code. They start with <code>/*</code> and end with <code>*/</code>.
 Everything between <code>/*</code> and <code>*/</code> will be ignored by the compiler. You can use block comments to
 comment out a single line or multiple lines. You can even use them to comment out a part of a line.</p>
-<pre><code class="language-Move">module book::comments_block {
-    fun /* you can comment everywhere */ go_wild() {
-        /* here
-           there
-           everywhere */ let a = 10;
-        let b = /* even here */ 10; /* and again */
-        a + b;
-    }
-    /* you can use it to remove certain expressions or definitions
-    fun empty_commented_out() {
-
-    }
-    */
-}
+<pre><code class="language-Move">{{#include ../../../packages/samples/sources/move-basics/comments.move:block}}
 </code></pre>
 <p>This example is a bit extreme, but it shows how you can use block comments to comment out a part of
 a line.</p>
@@ -1658,22 +1637,7 @@ a line.</p>
 <p>Documentation comments are special comments that are used to generate documentation for your code.
 They are similar to block comments, but they start with three slashes <code>///</code> and are placed before
 the definition of the item they document.</p>
-<pre><code class="language-Move">/// Module has documentation!
-module book::comments_doc {
-
-    /// This is a 0x0 address constant!
-    const AN_ADDRESS: address = @0x0;
-
-    /// This is a struct!
-    public struct AStruct {
-        /// This is a field of a struct!
-        a_field: u8,
-    }
-
-    /// This function does something!
-    /// And it's documented!
-    fun do_something() {}
-}
+<pre><code class="language-Move">{{#include ../../../packages/samples/sources/move-basics/comments.move:doc}}
 </code></pre>
 <!-- TODO: docgen, which members are in the documentation -->
 <div style="break-before: page; page-break-before: always;"></div><h1 id="primitive-types"><a class="header" href="#primitive-types">Primitive Types</a></h1>
@@ -2134,27 +2098,26 @@ Links:
 struct without the <code>drop</code> ability is not allowed to be ignored. This is a safety feature of the Move
 language, which ensures that all assets are properly handled. An attempt to ignore a struct without
 the <code>drop</code> ability will result in a compilation error.</p>
-<pre><code class="language-move">module book::drop_ability {
+<pre><code class="language-move">module book::drop_ability;
 
-    /// This struct has the `drop` ability.
-    public struct IgnoreMe has drop {
-        a: u8,
-        b: u8,
-    }
+/// This struct has the `drop` ability.
+public struct IgnoreMe has drop {
+    a: u8,
+    b: u8,
+}
 
-    /// This struct does not have the `drop` ability.
-    public struct NoDrop {}
+/// This struct does not have the `drop` ability.
+public struct NoDrop {}
 
-    #[test]
-    // Create an instance of the `IgnoreMe` struct and ignore it.
-    // Even though we constructed the instance, we don't need to unpack it.
-    fun test_ignore() {
-        let no_drop = NoDrop {};
-        let _ = IgnoreMe { a: 1, b: 2 }; // no need to unpack
+#[test]
+// Create an instance of the `IgnoreMe` struct and ignore it.
+// Even though we constructed the instance, we don't need to unpack it.
+fun test_ignore() {
+    let no_drop = NoDrop {};
+    let _ = IgnoreMe { a: 1, b: 2 }; // no need to unpack
 
-        // The value must be unpacked for the code to compile.
-        let NoDrop {} = no_drop; // OK
-    }
+    // The value must be unpacked for the code to compile.
+    let NoDrop {} = no_drop; // OK
 }
 </code></pre>
 <p>The <code>drop</code> ability is often used on custom collection types to eliminate the need for special
@@ -2210,68 +2173,36 @@ your own code.</p>
 <p>Modules defined in the same package can import each other. The <code>use</code> keyword is followed by the
 module path, which consists of the package address (or alias) and the module name separated by <code>::</code>.</p>
 <pre><code class="language-move">// File: sources/module_one.move
-module book::module_one {
-    /// Struct defined in the same module.
-    public struct Character has drop {}
+module book::module_one;
 
-    /// Simple function that creates a new `Character` instance.
-    public fun new(): Character { Character {} }
-}
+/// Struct defined in the same module.
+public struct Character has drop {}
+
+/// Simple function that creates a new `Character` instance.
+public fun new(): Character { Character {} }
 </code></pre>
 <p>Another module defined in the same package can import the first module using the <code>use</code> keyword.</p>
 <pre><code class="language-move">// File: sources/module_two.move
-module book::module_two {
-    use book::module_one; // importing module_one from the same package
 
-    /// Calls the `new` function from the `module_one` module.
-    public fun create_and_ignore() {
-        let _ = module_one::new();
-    }
-}
 </code></pre>
 <h2 id="importing-members"><a class="header" href="#importing-members">Importing Members</a></h2>
 <p>You can also import specific members from a module. This is useful when you only need a single
 function or a single type from a module. The syntax is the same as for importing a module, but you
 add the member name after the module path.</p>
-<pre><code class="language-move">module book::more_imports {
-    use book::module_one::new;       // imports the `new` function from the `module_one` module
-    use book::module_one::Character; // importing the `Character` struct from the `module_one` module
-
-    /// Calls the `new` function from the `module_one` module.
-    public fun create_character(): Character {
-        new()
-    }
-}
+<pre><code class="language-move">
 </code></pre>
 <h2 id="grouping-imports"><a class="header" href="#grouping-imports">Grouping Imports</a></h2>
 <p>Imports can be grouped into a single <code>use</code> statement using the curly braces <code>{}</code>. This is useful
 when you need to import multiple members from the same module. Move allows grouping imports from the
 same module and from the same package.</p>
-<pre><code class="language-move">module book::grouped_imports {
-    // imports the `new` function and the `Character` struct from
-    /// the `module_one` module
-    use book::module_one::{new, Character};
-
-    /// Calls the `new` function from the `module_one` module.
-    public fun create_character(): Character {
-        new()
-    }
-}
+<pre><code class="language-move">
 </code></pre>
 <p>Single function imports are less common in Move, since the function names can overlap and cause
 confusion. A recommended practice is to import the entire module and use the module path to access
 the function. Types have unique names and should be imported individually.</p>
 <p>To import members and the module itself in the group import, you can use the <code>Self</code> keyword. The
 <code>Self</code> keyword refers to the module itself and can be used to import the module and its members.</p>
-<pre><code class="language-move">module book::self_imports {
-    // imports the `Character` struct, and the `module_one` module
-    use book::module_one::{Self, Character};
-
-    /// Calls the `new` function from the `module_one` module.
-    public fun create_character(): Character {
-        module_one::new()
-    }
-}
+<pre><code class="language-move">
 </code></pre>
 <h2 id="resolving-name-conflicts"><a class="header" href="#resolving-name-conflicts">Resolving Name Conflicts</a></h2>
 <p>When importing multiple members from different modules, it is possible to have name conflicts. For
@@ -2279,15 +2210,7 @@ example, if you import two modules that both have a function with the same name,
 use the module path to access the function. It is also possible to have modules with the same name
 in different packages. To resolve the conflict and avoid ambiguity, Move offers the <code>as</code> keyword to
 rename the imported member.</p>
-<pre><code class="language-move">module book::conflict_resolution {
-    // `as` can be placed after any import, including group imports
-    use book::module_one::{Self as mod, Character as Char};
-
-    /// Calls the `new` function from the `module_one` module.
-    public fun create(): Char {
-        mod::new()
-    }
-}
+<pre><code class="language-move">
 </code></pre>
 <h2 id="adding-an-external-dependency"><a class="header" href="#adding-an-external-dependency">Adding an External Dependency</a></h2>
 <p>Every new package generated via the <code>sui</code> binary features a <code>Move.toml</code> file with a single
@@ -2311,10 +2234,7 @@ instead of the address. For example, instead of <code>0x2::coin</code> module, y
 Standard Library package and can be used to access the standard library modules.</p>
 <p>To import a module from another package, you use the <code>use</code> keyword followed by the module path. The
 module path consists of the package address (or alias) and the module name separated by <code>::</code>.</p>
-<pre><code class="language-move">module book::imports {
-    use std::string; // std = 0x1, string is a module in the standard library
-    use sui::coin;   // sui = 0x2, coin is a module in the Sui Framework
-}
+<pre><code class="language-move">
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="standard-library"><a class="header" href="#standard-library">Standard Library</a></h1>
 <!-- The Move standard library provides a set of modules  -->
@@ -2412,18 +2332,18 @@ assert!(last_value == 40, 2);
 <p>A vector of non-droppable types cannot be discarded. If you define a vector of types without <code>drop</code>
 ability, the vector value cannot be ignored. However, if the vector is empty, compiler requires an
 explicit call to <code>destroy_empty</code> function.</p>
-<pre><code class="language-move">    /// A struct without `drop` ability.
-    public struct NoDrop {}
+<pre><code class="language-move">/// A struct without `drop` ability.
+public struct NoDrop {}
 
-    #[test]
-    fun test_destroy_empty() {
-        // Initialize a vector of `NoDrop` elements.
-        let v = vector&lt;NoDrop&gt;[];
+#[test]
+fun test_destroy_empty() {
+    // Initialize a vector of `NoDrop` elements.
+    let v = vector&lt;NoDrop&gt;[];
 
-        // While we know that `v` is empty, we still need to call
-        // the explicit `destroy_empty` function to discard the vector.
-        v.destroy_empty();
-    }
+    // While we know that `v` is empty, we still need to call
+    // the explicit `destroy_empty` function to discard the vector.
+    v.destroy_empty();
+}
 </code></pre>
 <h2 id="further-reading-10"><a class="header" href="#further-reading-10">Further reading</a></h2>
 <ul>
@@ -2456,24 +2376,24 @@ takes a user input and stores it in a variable. Some fields are required, and so
 example, a user's middle name is optional. While we could use an empty string to represent the
 absence of a middle name, it would require extra checks to differentiate between an empty string and
 a missing middle name. Instead, we can use the <code>Option</code> type to represent the middle name.</p>
-<pre><code class="language-move">module book::user_registry {
-    use std::string::String;
+<pre><code class="language-move">module book::user_registry;
 
-    /// A struct representing a user record.
-    public struct User has drop {
-        first_name: String,
-        middle_name: Option&lt;String&gt;,
-        last_name: String,
-    }
+use std::string::String;
 
-    /// Create a new `User` struct with the given fields.
-    public fun register(
-        first_name: String,
-        middle_name: Option&lt;String&gt;,
-        last_name: String,
-    ): User {
-        User { first_name, middle_name, last_name }
-    }
+/// A struct representing a user record.
+public struct User has drop {
+    first_name: String,
+    middle_name: Option&lt;String&gt;,
+    last_name: String,
+}
+
+/// Create a new `User` struct with the given fields.
+public fun register(
+    first_name: String,
+    middle_name: Option&lt;String&gt;,
+    last_name: String,
+): User {
+    User { first_name, middle_name, last_name }
 }
 </code></pre>
 <p>In the example above, the <code>middle_name</code> field is of type <code>Option&lt;String&gt;</code>. This means that the
@@ -2523,21 +2443,21 @@ TODO:
 wrappers provided by the <code>string</code> and <code>ascii</code> modules are just that: wrappers. They do provide
 safety checks and methods to work with strings, but at the end of the day, they are just vectors of
 bytes.</p>
-<pre><code class="language-move">module book::custom_string {
-    /// Anyone can implement a custom string-like type by wrapping a vector.
-    public struct MyString {
-        bytes: vector&lt;u8&gt;,
-    }
+<pre><code class="language-move">module book::custom_string;
 
-    /// Implement a `from_bytes` function to convert a vector of bytes to a string.
-    public fun from_bytes(bytes: vector&lt;u8&gt;): MyString {
-        MyString { bytes }
-    }
+/// Anyone can implement a custom string-like type by wrapping a vector.
+public struct MyString {
+    bytes: vector&lt;u8&gt;,
+}
 
-    /// Implement a `bytes` function to convert a string to a vector of bytes.
-    public fun bytes(self: &amp;MyString): &amp;vector&lt;u8&gt; {
-        &amp;self.bytes
-    }
+/// Implement a `from_bytes` function to convert a vector of bytes to a string.
+public fun from_bytes(bytes: vector&lt;u8&gt;): MyString {
+    MyString { bytes }
+}
+
+/// Implement a `bytes` function to convert a string to a vector of bytes.
+public fun bytes(self: &amp;MyString): &amp;vector&lt;u8&gt; {
+    &amp;self.bytes
 }
 </code></pre>
 <h2 id="working-with-utf-8-strings"><a class="header" href="#working-with-utf-8-strings">Working with UTF-8 Strings</a></h2>
@@ -2660,28 +2580,28 @@ if (&lt;bool_expression&gt;) &lt;expression&gt; else &lt;expression&gt;;
 <p>Just like any other expression, <code>if</code> requires a semicolon, if there are other expressions following
 it. The <code>else</code> keyword is optional, except for the case when the resulting value is assigned to a
 variable. We will cover this below.</p>
-<pre><code class="language-move">    #[test]
-    fun test_if() {
-        let x = 5;
+<pre><code class="language-move">#[test]
+fun test_if() {
+    let x = 5;
 
-        // `x &gt; 0` is a boolean expression.
-        if (x &gt; 0) {
-            std::debug::print(&amp;b&quot;X is bigger than 0&quot;.to_string())
-        };
-    }
+    // `x &gt; 0` is a boolean expression.
+    if (x &gt; 0) {
+        std::debug::print(&amp;b&quot;X is bigger than 0&quot;.to_string())
+    };
+}
 </code></pre>
 <p>Let's see how we can use <code>if</code> and <code>else</code> to assign a value to a variable:</p>
-<pre><code class="language-move">    #[test]
-    fun test_if_else() {
-        let x = 5;
-        let y = if (x &gt; 0) {
-            1
-        } else {
-            0
-        };
+<pre><code class="language-move">#[test]
+fun test_if_else() {
+    let x = 5;
+    let y = if (x &gt; 0) {
+        1
+    } else {
+        0
+    };
 
-        assert!(y == 1, 0);
-    }
+    assert!(y == 1, 0);
+}
 </code></pre>
 <p>Here we assign the value of the <code>if</code> expression to the variable <code>y</code>. If <code>x</code> is greater than 0, <code>y</code>
 will be assigned the value 1, otherwise 0. The <code>else</code> block is necessary, because both branches must
@@ -2708,64 +2628,64 @@ if there are other expressions following it.</p>
 <pre><code class="language-move">while (&lt;bool_expression&gt;) { &lt;expressions&gt;; };
 </code></pre>
 <p>Here is an example of a <code>while</code> loop with a very simple condition:</p>
-<pre><code class="language-move">    // This function iterates over the `x` variable until it reaches 10, the
-    // return value is the number of iterations it took to reach 10.
-    //
-    // If `x` is 0, then the function will return 10.
-    // If `x` is 5, then the function will return 5.
-    fun while_loop(mut x: u8): u8 {
-        let mut y = 0;
+<pre><code class="language-move">// This function iterates over the `x` variable until it reaches 10, the
+// return value is the number of iterations it took to reach 10.
+//
+// If `x` is 0, then the function will return 10.
+// If `x` is 5, then the function will return 5.
+fun while_loop(mut x: u8): u8 {
+    let mut y = 0;
 
-        // This will loop until `x` is 10.
-        // And will never run if `x` is 10 or more.
-        while (x &lt; 10) {
-            y = y + 1;
-            x = x + 1;
-        };
+    // This will loop until `x` is 10.
+    // And will never run if `x` is 10 or more.
+    while (x &lt; 10) {
+        y = y + 1;
+        x = x + 1;
+    };
 
-        y
-    }
+    y
+}
 
-    #[test]
-    fun test_while() {
-        assert!(while_loop(0) == 10, 0); // 10 times
-        assert!(while_loop(5) == 5, 0);  // 5 times
-        assert!(while_loop(10) == 0, 0); // loop never executed
-    }
+#[test]
+fun test_while() {
+    assert!(while_loop(0) == 10, 0); // 10 times
+    assert!(while_loop(5) == 5, 0);  // 5 times
+    assert!(while_loop(10) == 0, 0); // loop never executed
+}
 </code></pre>
 <h2 id="infinite-loop"><a class="header" href="#infinite-loop">Infinite <code>loop</code></a></h2>
 <p>Now let's imagine a scenario where the boolean expression is always <code>true</code>. For example, if we
 literally passed <code>true</code> to the <code>while</code> condition. As you might expect, this would create an infinite
 loop, and this is almost what the <code>loop</code> statement works like.</p>
-<pre><code class="language-move">    #[test, expected_failure(out_of_gas, location=Self)]
-    fun test_infinite_while() {
-        let mut x = 0;
+<pre><code class="language-move">#[test, expected_failure(out_of_gas, location=Self)]
+fun test_infinite_while() {
+    let mut x = 0;
 
-        // This will loop forever.
-        while (true) {
-            x = x + 1;
-        };
+    // This will loop forever.
+    while (true) {
+        x = x + 1;
+    };
 
-        // This line will never be executed.
-        assert!(x == 5, 0);
-    }
+    // This line will never be executed.
+    assert!(x == 5, 0);
+}
 </code></pre>
 <p>An infinite <code>while</code>, or <code>while</code> without a condition, is a <code>loop</code>. The syntax for it is simple:</p>
 <pre><code class="language-move">loop { &lt;expressions&gt;; };
 </code></pre>
 <p>Let's rewrite the previous example using <code>loop</code> instead of <code>while</code>:</p>
-<pre><code class="language-move">    #[test, expected_failure(out_of_gas, location=Self)]
-    fun test_infinite_loop() {
-        let mut x = 0;
+<pre><code class="language-move">#[test, expected_failure(out_of_gas, location=Self)]
+fun test_infinite_loop() {
+    let mut x = 0;
 
-        // This will loop forever.
-        loop {
-            x = x + 1;
-        };
+    // This will loop forever.
+    loop {
+        x = x + 1;
+    };
 
-        // This line will never be executed.
-        assert!(x == 5, 0);
-    }
+    // This line will never be executed.
+    assert!(x == 5, 0);
+}
 </code></pre>
 <!-- TODO: that's a weak point lmao -->
 <p>Infinite loops on their own are not very useful in Move, since every operation in Move costs gas,
@@ -2782,22 +2702,22 @@ rest of the current iteration, respectively.</p>
 combination with a conditional statement to exit the loop when a certain condition is met. To
 illustrate this point, let's turn the infinite <code>loop</code> from the previous example into something that
 looks and behaves more like a <code>while</code> loop:</p>
-<pre><code class="language-move">    #[test]
-    fun test_break_loop() {
-        let mut x = 0;
+<pre><code class="language-move">#[test]
+fun test_break_loop() {
+    let mut x = 0;
 
-        // This will loop until `x` is 5.
-        loop {
-            x = x + 1;
+    // This will loop until `x` is 5.
+    loop {
+        x = x + 1;
 
-            // If `x` is 5, then exit the loop.
-            if (x == 5) {
-                break // Exit the loop.
-            }
-        };
+        // If `x` is 5, then exit the loop.
+        if (x == 5) {
+            break // Exit the loop.
+        }
+    };
 
-        assert!(x == 5, 0);
-    }
+    assert!(x == 5, 0);
+}
 </code></pre>
 <p>Almost identical to the <code>while</code> loop, right? The <code>break</code> statement is used to exit the loop when <code>x</code>
 is 5. If we remove the <code>break</code> statement, the loop will run forever, just like the previous example.</p>
@@ -2809,29 +2729,29 @@ iteration when a certain condition is met.</p>
 <pre><code class="language-move">continue
 </code></pre>
 <p>The example below skips odd numbers and prints only even numbers from 0 to 10:</p>
-<pre><code class="language-move">    #[test]
-    fun test_continue_loop() {
-        let mut x = 0;
+<pre><code class="language-move">#[test]
+fun test_continue_loop() {
+    let mut x = 0;
 
-        // This will loop until `x` is 10.
-        loop {
-            x = x + 1;
+    // This will loop until `x` is 10.
+    loop {
+        x = x + 1;
 
-            // If `x` is odd, then skip the rest of the iteration.
-            if (x % 2 == 1) {
-                continue // Skip the rest of the iteration.
-            };
-
-            std::debug::print(&amp;x);
-
-            // If `x` is 10, then exit the loop.
-            if (x == 10) {
-                break // Exit the loop.
-            }
+        // If `x` is odd, then skip the rest of the iteration.
+        if (x % 2 == 1) {
+            continue // Skip the rest of the iteration.
         };
 
-        assert!(x == 10, 0); // 10
-    }
+        std::debug::print(&amp;x);
+
+        // If `x` is 10, then exit the loop.
+        if (x == 10) {
+            break // Exit the loop.
+        }
+    };
+
+    assert!(x == 10, 0); // 10
+}
 </code></pre>
 <p><code>break</code> and <code>continue</code> statements can be used in both <code>while</code> and <code>loop</code> loops.</p>
 <h2 id="early-return"><a class="header" href="#early-return">Early Return</a></h2>
@@ -2841,26 +2761,26 @@ is met. The syntax for the <code>return</code> statement is:</p>
 <pre><code class="language-move">return &lt;expression&gt;
 </code></pre>
 <p>Here is an example of a function that returns a value when a certain condition is met:</p>
-<pre><code class="language-move">    /// This function returns `true` if `x` is greater than 0 and not 5,
-    /// otherwise it returns `false`.
-    fun is_positive(x: u8): bool {
-        if (x == 5) {
-            return false
-        };
+<pre><code class="language-move">/// This function returns `true` if `x` is greater than 0 and not 5,
+/// otherwise it returns `false`.
+fun is_positive(x: u8): bool {
+    if (x == 5) {
+        return false
+    };
 
-        if (x &gt; 0) {
-            return true
-        };
+    if (x &gt; 0) {
+        return true
+    };
 
-        false
-    }
+    false
+}
 
-    #[test]
-    fun test_return() {
-        assert!(is_positive(5) == false, 0);
-        assert!(is_positive(0) == false, 0);
-        assert!(is_positive(1) == true, 0);
-    }
+#[test]
+fun test_return() {
+    assert!(is_positive(5) == false, 0);
+    assert!(is_positive(0) == false, 0);
+    assert!(is_positive(1) == true, 0);
+}
 </code></pre>
 <p>Unlike in other languages, the <code>return</code> statement is not required for the last expression in a
 function. The last expression in a function block is automatically returned. However, the <code>return</code>
@@ -2887,38 +2807,14 @@ Links:
 give names to static values that are used throughout a module. For example, if there's a default
 price for a product, you might define a constant for it. Constants are stored in the module's
 bytecode, and each time they are used, the value is copied.</p>
-<pre><code class="language-move">module book::shop_price {
-    use sui::coin::Coin;
-    use sui::sui::SUI;
-
-    /// The price of an item in the shop.
-    const ITEM_PRICE: u64 = 100;
-    /// The owner of the shop, an address.
-    const SHOP_OWNER: address = @0xa11ce;
-
-    /// An item sold in the shop.
-    public struct Item { /* ... */ }
-
-    /// Purchase an item from the shop.
-    public fun purchase(coin: Coin&lt;SUI&gt;): Item {
-        assert!(coin.value() == ITEM_PRICE, 0);
-
-        transfer::public_transfer(coin, SHOP_OWNER);
-
-        Item { /* ... */ }
-    }
-}
+<pre><code class="language-move">
 </code></pre>
 <h2 id="naming-convention"><a class="header" href="#naming-convention">Naming Convention</a></h2>
 <p>Constants must start with a capital letter - this is enforced at the compiler level. For constants
 used as a value, there's a convention to use uppercase letters and underscores to separate words.
 It's a way to make constants stand out from other identifiers in the code. One exception is made for
 <a href="move-basics/./assert-and-abort.html#assert-and-abort">error constants</a>, which are written in ECamelCase.</p>
-<pre><code class="language-move">/// Price of the item used at the shop.
-const ITEM_PRICE: u64 = 100;
-
-/// Error constant.
-const EItemNotFound: u64 = 1;
+<pre><code class="language-move">
 </code></pre>
 <h2 id="constants-are-immutable"><a class="header" href="#constants-are-immutable">Constants are Immutable</a></h2>
 <p>Constants can't be changed and assigned new values. They are part of the package bytecode, and
@@ -2936,18 +2832,7 @@ inherently immutable.</p>
 <p>A common use case for an application is to define a set of constants that are used throughout the
 codebase. But due to constants being private to the module, they can't be accessed from other
 modules. One way to solve this is to define a &quot;config&quot; module that exports the constants.</p>
-<pre><code class="language-move">module book::config {
-    const ITEM_PRICE: u64 = 100;
-    const TAX_RATE: u64 = 10;
-    const SHIPPING_COST: u64 = 5;
-
-    /// Returns the price of an item.
-    public fun item_price(): u64 { ITEM_PRICE }
-    /// Returns the tax rate.
-    public fun tax_rate(): u64 { TAX_RATE }
-    /// Returns the shipping cost.
-    public fun shipping_cost(): u64 { SHIPPING_COST }
-}
+<pre><code class="language-move">
 </code></pre>
 <p>This way other modules can import and read the constants, and the update process is simplified. If
 the constants need to be changed, only the config module needs to be updated during the package
@@ -3046,19 +2931,19 @@ learn about best practices for error handling in Move.</li>
 code into reusable units. Functions can take arguments and return a value. They are declared with
 the <code>fun</code> keyword at the module level. Just like any other module member, by default they're private
 and can only be accessed from within the module.</p>
-<pre><code class="language-move">module book::math {
-    /// Function takes two arguments of type `u64` and returns their sum.
-    /// The `public` visibility modifier makes the function accessible from
-    /// outside the module.
-    public fun add(a: u64, b: u64): u64 {
-        a + b
-    }
+<pre><code class="language-move">module book::math;
 
-    #[test]
-    fun test_add() {
-        let sum = add(1, 2);
-        assert!(sum == 3, 0);
-    }
+/// Function takes two arguments of type `u64` and returns their sum.
+/// The `public` visibility modifier makes the function accessible from
+/// outside the module.
+public fun add(a: u64, b: u64): u64 {
+    a + b
+}
+
+#[test]
+fun test_add() {
+    let sum = add(1, 2);
+    assert!(sum == 3, 0);
 }
 </code></pre>
 <p>In this example, we define a function <code>add</code> that takes two arguments of type <code>u64</code> and returns their
@@ -3084,14 +2969,7 @@ body is the return value of the function.</p>
 consists of the module path and the function name separated by <code>::</code>. For example, if you have a
 function called <code>add</code> in the <code>math</code> module in the <code>book</code> package, the path to it will be
 <code>book::math::add</code>, or, if the module is imported, <code>math::add</code>.</p>
-<pre><code class="language-move">module book::use_math {
-    use book::math;
-
-    fun call_add() {
-        // function is called via the path
-        let sum = math::add(1, 2);
-    }
-}
+<pre><code class="language-move">
 </code></pre>
 <h2 id="multiple-return-values"><a class="header" href="#multiple-return-values">Multiple return values</a></h2>
 <p>Move functions can return multiple values, which is useful when you need to return more than one
@@ -3132,37 +3010,37 @@ called using the <code>.</code> operator. If the function uses a struct from ano
 be associated with the struct by default. In this case, the function can be called using the
 standard function call syntax.</p>
 <p>When a module is imported, the methods are automatically associated with the struct.</p>
-<pre><code class="language-move">module book::hero {
-    /// A struct representing a hero.
-    public struct Hero has drop {
-        health: u8,
-        mana: u8,
-    }
+<pre><code class="language-move">module book::hero;
 
-    /// Create a new Hero.
-    public fun new(): Hero { Hero { health: 100, mana: 100 } }
+/// A struct representing a hero.
+public struct Hero has drop {
+    health: u8,
+    mana: u8,
+}
 
-    /// A method which casts a spell, consuming mana.
-    public fun heal_spell(hero: &amp;mut Hero) {
-        hero.health = hero.health + 10;
-        hero.mana = hero.mana - 10;
-    }
+/// Create a new Hero.
+public fun new(): Hero { Hero { health: 100, mana: 100 } }
 
-    /// A method which returns the health of the hero.
-    public fun health(hero: &amp;Hero): u8 { hero.health }
+/// A method which casts a spell, consuming mana.
+public fun heal_spell(hero: &amp;mut Hero) {
+    hero.health = hero.health + 10;
+    hero.mana = hero.mana - 10;
+}
 
-    /// A method which returns the mana of the hero.
-    public fun mana(hero: &amp;Hero): u8 { hero.mana }
+/// A method which returns the health of the hero.
+public fun health(hero: &amp;Hero): u8 { hero.health }
 
-    #[test]
-    // Test the methods of the `Hero` struct.
-    fun test_methods() {
-        let mut hero = new();
-        hero.heal_spell();
+/// A method which returns the mana of the hero.
+public fun mana(hero: &amp;Hero): u8 { hero.mana }
 
-        assert!(hero.health() == 110, 1);
-        assert!(hero.mana() == 90, 2);
-    }
+#[test]
+// Test the methods of the `Hero` struct.
+fun test_methods() {
+    let mut hero = new();
+    hero.heal_spell();
+
+    assert!(hero.health() == 110, 1);
+    assert!(hero.mana() == 90, 2);
 }
 </code></pre>
 <h2 id="method-aliases"><a class="header" href="#method-aliases">Method Aliases</a></h2>
@@ -3183,45 +3061,7 @@ another module, an alias can still be created but cannot be made public.</p>
 and <code>Villain</code> have similar field names and methods. And to avoid name conflicts, we prefixed methods
 with <code>hero_</code> and <code>villain_</code> respectively. However, we can create aliases for these methods so that
 they can be called on the instances of the structs without the prefix.</p>
-<pre><code class="language-move">module book::hero_and_villain {
-    /// A struct representing a hero.
-    public struct Hero has drop {
-        health: u8,
-    }
-
-    /// A struct representing a villain.
-    public struct Villain has drop {
-        health: u8,
-    }
-
-    /// Create a new Hero.
-    public fun new_hero(): Hero { Hero { health: 100 } }
-
-    /// Create a new Villain.
-    public fun new_villain(): Villain { Villain { health: 100 } }
-
-    // Alias for the `hero_health` method. Will be imported automatically when
-    // the module is imported.
-    public use fun hero_health as Hero.health;
-
-    public fun hero_health(hero: &amp;Hero): u8 { hero.health }
-
-    // Alias for the `villain_health` method. Will be imported automatically
-    // when the module is imported.
-    public use fun villain_health as Villain.health;
-
-    public fun villain_health(villain: &amp;Villain): u8 { villain.health }
-
-    #[test]
-    // Test the methods of the `Hero` and `Villain` structs.
-    fun test_associated_methods() {
-        let hero = new_hero();
-        assert!(hero.health() == 100, 1);
-
-        let villain = new_villain();
-        assert!(villain.health() == 100, 3);
-    }
-}
+<pre><code class="language-move">
 </code></pre>
 <p>As you can see, in the test function, we called the <code>health</code> method on the instances of <code>Hero</code> and
 <code>Villain</code> without the prefix. The compiler will automatically associate the methods with the
@@ -3232,29 +3072,7 @@ module. Following the same approach, we can create an alias for the method defin
 module. Let's use the <code>bcs::to_bytes</code> method from the <a href="move-basics/./standard-library.html">Standard Library</a> and
 associate it with the <code>Hero</code> struct. It will allow serializing the <code>Hero</code> struct to a vector of
 bytes.</p>
-<pre><code class="language-move">// TODO: better example (external module...)
-module book::hero_to_bytes {
-    // Alias for the `bcs::to_bytes` method. Imported aliases should be defined
-    // in the top of the module.
-    // public use fun bcs::to_bytes as Hero.to_bytes;
-
-    /// A struct representing a hero.
-    public struct Hero has drop {
-        health: u8,
-        mana: u8,
-    }
-
-    /// Create a new Hero.
-    public fun new(): Hero { Hero { health: 100, mana: 100 } }
-
-    #[test]
-    // Test the methods of the `Hero` struct.
-    fun test_hero_serialize() {
-        // let mut hero = new();
-        // let serialized = hero.to_bytes();
-        // assert!(serialized.length() == 3, 1);
-    }
-}
+<pre><code class="language-move">
 </code></pre>
 <h2 id="further-reading-13"><a class="header" href="#further-reading-13">Further reading</a></h2>
 <ul>
@@ -3523,19 +3341,19 @@ will look at 4 different scenarios:</p>
 <a href="move-basics/./constants.html">constant</a> that represents the number of rides for a single card. We also add an
 <a href="move-basics/./assert-and-abort.html#error-constants">error constant</a> for the case when the card is empty.</p>
 <pre><code class="language-move">module book::metro_pass {
-    /// Error code for when the card is empty.
-    const ENoUses: u64 = 0;
+/// Error code for when the card is empty.
+const ENoUses: u64 = 0;
 
-    /// Number of uses for a metro pass card.
-    const USES: u8 = 3;
+/// Number of uses for a metro pass card.
+const USES: u8 = 3;
 
-    /// A metro pass card
-    public struct Card { uses: u8 }
+/// A metro pass card
+public struct Card { uses: u8 }
 
-    /// Purchase a metro pass card.
-    public fun purchase(/* pass a Coin */): Card {
-        Card { uses: USES }
-    }
+/// Purchase a metro pass card.
+public fun purchase(/* pass a Coin */): Card {
+    Card { uses: USES }
+}
 }
 </code></pre>
 <!-- In [the previous section](./ownership-and-scope.md) we explained the ownership and scope in Move. We showed how the value is *moved* to a new scope, and how it changes the owner. In this section, we will explain how to *borrow* a reference to a value to avoid moving it, and how Move's *borrow checker* ensures that the references are used correctly. -->
@@ -3546,10 +3364,10 @@ allow them to spend the rides. We just want to allow <em>reading</em> the value 
 ownership.</p>
 <p>To do so, in the function signature, we use the <code>&amp;</code> symbol to indicate that we are passing a
 reference to the value, not the value itself.</p>
-<pre><code class="language-move">    /// Show the metro pass card to the inspector.
-    public fun is_valid(card: &amp;Card): bool {
-        card.uses &gt; 0
-    }
+<pre><code class="language-move">/// Show the metro pass card to the inspector.
+public fun is_valid(card: &amp;Card): bool {
+    card.uses &gt; 0
+}
 </code></pre>
 <p>Now the function can't take the ownership of the card, and it can't spend the rides. But it can read
 its value. Worth noting, that a signature like this makes it impossible to call the function without
@@ -3559,11 +3377,11 @@ a Card at all. This is an important property which allows the
 <p>In some cases, we want to allow the function to change the value of the Card. For example, when we
 use the Card at the turnstile, we want to spend a ride. To implement it, we use the <code>&amp;mut</code> keyword
 in the function signature.</p>
-<pre><code class="language-move">    /// Use the metro pass card at the turnstile to enter the metro.
-    public fun enter_metro(card: &amp;mut Card) {
-        assert!(card.uses &gt; 0, ENoUses);
-        card.uses = card.uses - 1;
-    }
+<pre><code class="language-move">/// Use the metro pass card at the turnstile to enter the metro.
+public fun enter_metro(card: &amp;mut Card) {
+    assert!(card.uses &gt; 0, ENoUses);
+    card.uses = card.uses - 1;
+}
 </code></pre>
 <p>As you can see in the function body, the <code>&amp;mut</code> reference allows mutating the value, and the
 function can spend the rides.</p>
@@ -3571,29 +3389,29 @@ function can spend the rides.</p>
 <p>Lastly, let's give an illustration of what happens when we pass the value itself to the function. In
 this case, the function takes the ownership of the value, and the original scope can no longer use
 it. The owner of the Card can recycle it, and, hence, lose the ownership.</p>
-<pre><code class="language-move">    /// Recycle the metro pass card.
-    public fun recycle(card: Card) {
-        assert!(card.uses == 0, ENoUses);
-        let Card { uses: _ } = card;
-    }
+<pre><code class="language-move">/// Recycle the metro pass card.
+public fun recycle(card: Card) {
+    assert!(card.uses == 0, ENoUses);
+    let Card { uses: _ } = card;
+}
 </code></pre>
 <p>In the <code>recycle</code> function, the Card is <em>taken by value</em> and can be unpacked and destroyed. The
 original scope can't use it anymore.</p>
 <h2 id="full-example"><a class="header" href="#full-example">Full Example</a></h2>
 <p>To illustrate the full flow of the application, let's put all the pieces together in a test.</p>
-<pre><code class="language-move">    #[test]
-    fun test_card_2024() {
-        // declaring variable as mutable because we modify it
-        let mut card = purchase();
+<pre><code class="language-move">#[test]
+fun test_card_2024() {
+    // declaring variable as mutable because we modify it
+    let mut card = purchase();
 
-        card.enter_metro(); // modify the card but don't move it
-        assert!(card.is_valid(), 0); // read the card!
+    card.enter_metro(); // modify the card but don't move it
+    assert!(card.is_valid(), 0); // read the card!
 
-        card.enter_metro(); // modify the card but don't move it
-        card.enter_metro(); // modify the card but don't move it
+    card.enter_metro(); // modify the card but don't move it
+    card.enter_metro(); // modify the card but don't move it
 
-        card.recycle(); // move the card out of the scope
-    }
+    card.recycle(); // move the card out of the scope
+}
 </code></pre>
 <!-- ## Dereference and Copy -->
 <!-- TODO: defer and copy, *& -->
@@ -3609,19 +3427,19 @@ original scope can't use it anymore.</p>
 Here's the test from this page written with the Move 2024 syntax:
 
 ```move
-    #[test]
-    fun test_card_2024() {
-        // declaring variable as mutable because we modify it
-        let mut card = purchase();
+#[test]
+fun test_card_2024() {
+    // declaring variable as mutable because we modify it
+    let mut card = purchase();
 
-        card.enter_metro(); // modify the card but don't move it
-        assert!(card.is_valid(), 0); // read the card!
+    card.enter_metro(); // modify the card but don't move it
+    assert!(card.is_valid(), 0); // read the card!
 
-        card.enter_metro(); // modify the card but don't move it
-        card.enter_metro(); // modify the card but don't move it
+    card.enter_metro(); // modify the card but don't move it
+    card.enter_metro(); // modify the card but don't move it
 
-        card.recycle(); // move the card out of the scope
-    }
+    card.recycle(); // move the card out of the scope
+}
 ```
 -->
 <div style="break-before: page; page-break-before: always;"></div><h1 id="generics"><a class="header" href="#generics">Generics</a></h1>
@@ -3820,36 +3638,36 @@ name of the type <code>T</code>.</p>
 <h2 id="in-practice-1"><a class="header" href="#in-practice-1">In practice</a></h2>
 <p>The module is pretty straightforward, and operations allowed on the result are limited to getting a
 string representation and extracting the module and address of the type.</p>
-<pre><code class="language-move">module book::type_reflection {
-    use std::ascii::String;
-    use std::type_name::{Self, TypeName};
+<pre><code class="language-move">module book::type_reflection;
 
-    /// A function that returns the name of the type `T` and its module and address.
-    public fun do_i_know_you&lt;T&gt;(): (String, String, String) {
-        let type_name: TypeName = type_name::get&lt;T&gt;();
+use std::ascii::String;
+use std::type_name::{Self, TypeName};
 
-        // there's a way to borrow
-        let str: &amp;String = type_name.borrow_string();
+/// A function that returns the name of the type `T` and its module and address.
+public fun do_i_know_you&lt;T&gt;(): (String, String, String) {
+    let type_name: TypeName = type_name::get&lt;T&gt;();
 
-        let module_name: String = type_name.get_module();
-        let address_str: String = type_name.get_address();
+    // there's a way to borrow
+    let str: &amp;String = type_name.borrow_string();
 
-        // and a way to consume the value
-        let str = type_name.into_string();
+    let module_name: String = type_name.get_module();
+    let address_str: String = type_name.get_address();
 
-        (str, module_name, address_str)
-    }
+    // and a way to consume the value
+    let str = type_name.into_string();
 
-    #[test_only]
-    public struct MyType {}
+    (str, module_name, address_str)
+}
 
-    #[test]
-    fun test_type_reflection() {
-        let (type_name, module_name, _address_str) = do_i_know_you&lt;MyType&gt;();
+#[test_only]
+public struct MyType {}
 
-        //
-        assert!(module_name == b&quot;type_reflection&quot;.to_ascii_string(), 1);
-    }
+#[test]
+fun test_type_reflection() {
+    let (type_name, module_name, _address_str) = do_i_know_you&lt;MyType&gt;();
+
+    //
+    assert!(module_name == b&quot;type_reflection&quot;.to_ascii_string(), 1);
 }
 </code></pre>
 <h2 id="further-reading-17"><a class="header" href="#further-reading-17">Further reading</a></h2>
@@ -4795,47 +4613,34 @@ function will automatically be called when the module is published.</p>
 behavior is limited to the publish command and does not extend to
 <a href="programmability/./package-upgrades.html">package upgrades</a>.</p>
 </blockquote>
-<pre><code class="language-move">module book::shop {
-    /// The Capability which grants the Shop owner the right to manage
-    /// the shop.
-    public struct ShopOwnerCap has key, store { id: UID }
+<pre><code class="language-move">module book::shop;
 
-    /// The singular Shop itself, created in the `init` function.
-    public struct Shop has key {
-        id: UID,
-        /* ... */
-    }
+/// The Capability which grants the Shop owner the right to manage
+/// the shop.
+public struct ShopOwnerCap has key, store { id: UID }
 
-    // Called only once, upon module publication. It must be
-    // private to prevent external invocation.
-    fun init(ctx: &amp;mut TxContext) {
-        // Transfers the ShopOwnerCap to the sender (publisher).
-        transfer::transfer(ShopOwnerCap {
-            id: object::new(ctx)
-        }, ctx.sender());
+/// The singular Shop itself, created in the `init` function.
+public struct Shop has key {
+    id: UID,
+    /* ... */
+}
 
-        // Shares the Shop object.
-        transfer::share_object(Shop {
-            id: object::new(ctx)
-        });
-    }
+// Called only once, upon module publication. It must be
+// private to prevent external invocation.
+fun init(ctx: &amp;mut TxContext) {
+    // Transfers the ShopOwnerCap to the sender (publisher).
+    transfer::transfer(ShopOwnerCap {
+        id: object::new(ctx)
+    }, ctx.sender());
+
+    // Shares the Shop object.
+    transfer::share_object(Shop {
+        id: object::new(ctx)
+    });
 }
 </code></pre>
 <p>In the same package, another module can have its own <code>init</code> function, encapsulating distinct logic.</p>
-<pre><code class="language-move">// In the same package as the `shop` module
-module book::bank {
-
-    public struct Bank has key {
-        id: UID,
-        /* ... */
-    }
-
-    fun init(ctx: &amp;mut TxContext) {
-        transfer::share_object(Bank {
-            id: object::new(ctx)
-        });
-    }
-}
+<pre><code class="language-move">
 </code></pre>
 <h2 id="init-features"><a class="header" href="#init-features"><code>init</code> features</a></h2>
 <p>The function is called on publish, if it is present in the module and follows the rules:</p>
@@ -4884,63 +4689,50 @@ only be called with the correct capability.</p>
 <p>There's a convention to name capabilities with the <code>Cap</code> suffix, for example, <code>AdminCap</code> or
 <code>KioskOwnerCap</code>.</p>
 </blockquote>
-<pre><code class="language-move">module book::capability {
-    use std::string::String;
-    use sui::event;
+<pre><code class="language-move">module book::capability;
 
-    /// The capability granting the application admin the right to create new
-    /// accounts in the system.
-    public struct AdminCap has key, store { id: UID }
+use std::string::String;
+use sui::event;
 
-    /// The user account in the system.
-    public struct Account has key, store {
-        id: UID,
-        name: String
+/// The capability granting the application admin the right to create new
+/// accounts in the system.
+public struct AdminCap has key, store { id: UID }
+
+/// The user account in the system.
+public struct Account has key, store {
+    id: UID,
+    name: String
+}
+
+/// A simple `Ping` event with no data.
+public struct Ping has copy, drop { by: ID }
+
+/// Creates a new account in the system. Requires the `AdminCap` capability
+/// to be passed as the first argument.
+public fun new(_: &amp;AdminCap, name: String, ctx: &amp;mut TxContext): Account {
+    Account {
+        id: object::new(ctx),
+        name,
     }
+}
 
-    /// A simple `Ping` event with no data.
-    public struct Ping has copy, drop { by: ID }
+/// Account, and any other objects, can also be used as a Capability in the
+/// application. For example, to emit an event.
+public fun send_ping(acc: &amp;Account) {
+    event::emit(Ping {
+        by: acc.id.to_inner()
+    })
+}
 
-    /// Creates a new account in the system. Requires the `AdminCap` capability
-    /// to be passed as the first argument.
-    public fun new(_: &amp;AdminCap, name: String, ctx: &amp;mut TxContext): Account {
-        Account {
-            id: object::new(ctx),
-            name,
-        }
-    }
-
-    /// Account, and any other objects, can also be used as a Capability in the
-    /// application. For example, to emit an event.
-    public fun send_ping(acc: &amp;Account) {
-        event::emit(Ping {
-            by: acc.id.to_inner()
-        })
-    }
-
-    /// Updates the account name. Can only be called by the `Account` owner.
-    public fun update(account: &amp;mut Account, name: String) {
-        account.name = name;
-    }
+/// Updates the account name. Can only be called by the `Account` owner.
+public fun update(account: &amp;mut Account, name: String) {
+    account.name = name;
 }
 </code></pre>
 <h2 id="using-init-for-admin-capability"><a class="header" href="#using-init-for-admin-capability">Using <code>init</code> for Admin Capability</a></h2>
 <p>A very common practice is to create a single <code>AdminCap</code> object on package publish. This way, the
 application can have a setup phase where the admin account prepares the state of the application.</p>
-<pre><code class="language-move">module book::admin_cap {
-    /// The capability granting the admin privileges in the system.
-    /// Created only once in the `init` function.
-    public struct AdminCap has key { id: UID }
-
-    /// Create the AdminCap object on package publish and transfer it to the
-    /// package owner.
-    fun init(ctx: &amp;mut TxContext) {
-        transfer::transfer(
-            AdminCap { id: object::new(ctx) },
-            ctx.sender()
-        )
-    }
-}
+<pre><code class="language-move">
 </code></pre>
 <h2 id="address-check-vs-capability"><a class="header" href="#address-check-vs-capability">Address check vs Capability</a></h2>
 <p>Utilizing objects as capabilities is a relatively new concept in blockchain programming. And in
@@ -4949,28 +4741,10 @@ sender. This pattern is still viable on Sui, however, overall recommendation is 
 for better security, discoverability, and code organization.</p>
 <p>Let's look at how the <code>new</code> function that creates a user would look like if it was using the address
 check:</p>
-<pre><code class="language-move">/// Error code for unauthorized access.
-const ENotAuthorized: u64 = 0;
-
-/// The application admin address.
-const APPLICATION_ADMIN: address = @0xa11ce;
-
-/// Creates a new user in the system. Requires the sender to be the application
-/// admin.
-public fun new(ctx: &amp;mut TxContext): User {
-    assert!(ctx.sender() == APPLICATION_ADMIN, ENotAuthorized);
-    User { id: object::new(ctx) }
-}
+<pre><code class="language-move">
 </code></pre>
 <p>And now, let's see how the same function would look like with the capability:</p>
-<pre><code class="language-move">/// Grants the owner the right to create new users in the system.
-public struct AdminCap {}
-
-/// Creates a new user in the system. Requires the `AdminCap` capability to be
-/// passed as the first argument.
-public fun new(_: &amp;AdminCap, ctx: &amp;mut TxContext): User {
-    User { id: object::new(ctx) }
-}
+<pre><code class="language-move">
 </code></pre>
 <p>Using capabilities has several advantages over the address check:</p>
 <ul>
@@ -5065,49 +4839,27 @@ collection types offered by the <a href="programmability/./sui-framework.html">S
 <a href="programmability/./../move-basics/vector.html">vector section</a>, it is worth going over it again in a new context. This
 time we will cover the usage of the <code>vector</code> type in objects and how it can be used in an
 application.</p>
-<pre><code class="language-move">module book::collections_vector {
-    use std::string::String;
+<pre><code class="language-move">module book::collections_vector;
 
-    /// The Book that can be sold by a `BookStore`
-    public struct Book has key, store {
-        id: UID,
-        name: String
-    }
+use std::string::String;
 
-    /// The BookStore that sells `Book`s
-    public struct BookStore has key, store {
-        id: UID,
-        books: vector&lt;Book&gt;
-    }
+/// The Book that can be sold by a `BookStore`
+public struct Book has key, store {
+    id: UID,
+    name: String
+}
+
+/// The BookStore that sells `Book`s
+public struct BookStore has key, store {
+    id: UID,
+    books: vector&lt;Book&gt;
 }
 </code></pre>
 <h2 id="vecset"><a class="header" href="#vecset">VecSet</a></h2>
 <p><code>VecSet</code> is a collection type that stores a set of unique items. It is similar to a <code>vector</code>, but it
 does not allow duplicate items. This makes it useful for storing a collection of unique items, such
 as a list of unique IDs or addresses.</p>
-<pre><code class="language-move">module book::collections_vec_set {
-    use sui::vec_set::{Self, VecSet};
-
-    public struct App has drop {
-        /// `VecSet` used in the struct definition
-        subscribers: VecSet&lt;address&gt;
-    }
-
-    #[test]
-    fun vec_set_playground() {
-        let set = vec_set::empty&lt;u8&gt;(); // create an empty set
-        let mut set = vec_set::singleton(1); // create a set with a single item
-
-        set.insert(2); // add an item to the set
-        set.insert(3);
-
-        assert!(set.contains(&amp;1), 0); // check if an item is in the set
-        assert!(set.size() == 3, 1); // get the number of items in the set
-        assert!(!set.is_empty(), 2); // check if the set is empty
-
-        set.remove(&amp;2); // remove an item from the set
-    }
-}
+<pre><code class="language-move">
 </code></pre>
 <p>VecSet will fail on attempt to insert an item that already exists in the set.</p>
 <h2 id="vecmap"><a class="header" href="#vecmap">VecMap</a></h2>
@@ -5118,28 +4870,7 @@ and their associated data.</p>
 <p>Keys in a <code>VecMap</code> are unique, and each key can only be associated with a single value. If you try
 to insert a key-value pair with a key that already exists in the map, the old value will be replaced
 with the new value.</p>
-<pre><code class="language-move">module book::collections {
-    use std::string::String;
-    use sui::vec_map::{Self, VecMap};
-
-    public struct Metadata has drop {
-        name: String,
-        /// `VecMap` used in the struct definition
-        attributes: VecMap&lt;String, String&gt;
-    }
-
-    #[test]
-    fun vec_map_playground() {
-        let mut map = vec_map::empty(); // create an empty map
-
-        map.insert(2, b&quot;two&quot;.to_string()); // add a key-value pair to the map
-        map.insert(3, b&quot;three&quot;.to_string());
-
-        assert!(map.contains(&amp;2), 0); // check if a key is in the map
-
-        map.remove(&amp;2); // remove a key-value pair from the map
-    }
-}
+<pre><code class="language-move">
 </code></pre>
 <h2 id="limitations"><a class="header" href="#limitations">Limitations</a></h2>
 <p>Standard collection types are a great way to store typed data with guaranteed safety and
@@ -5154,15 +4885,7 @@ results.</p>
 <p>This behavior is caught by the linter and will emit a warning: <em>Comparing collections of type
 'sui::vec_set::VecSet' may yield unexpected result</em></p>
 </blockquote>
-<pre><code class="language-move">let mut set1 = vec_set::empty();
-set1.insert(1);
-set1.insert(2);
-
-let mut set2 = vec_set::empty();
-set2.insert(2);
-set2.insert(1);
-
-assert!(set1 == set2, 0);
+<pre><code class="language-move">
 </code></pre>
 <p>In the example above, the comparison will fail because the order of insertion is not guaranteed, and
 the two <code>VecSet</code> instances may have different orders of elements. And the comparison will fail even
@@ -5217,62 +4940,63 @@ and <code>Value</code> type parameters define the abilities that the key and val
 removed with <code>remove</code>, and read with <code>borrow</code> and <code>borrow_mut</code>. Additionally, the <code>exists_</code> method
 can be used to check if a field exists (for stricter checks with type, there is an
 <code>exists_with_type</code> method).</p>
-<pre><code class="language-move">module book::dynamic_collection {
-    // a very common alias for `dynamic_field` is `df` since the
-    // module name is quite long
-    use sui::dynamic_field as df;
-    use std::string::String;
+<pre><code class="language-move">module book::dynamic_fields;
 
-    /// The object that we will attach dynamic fields to.
-    public struct Character has key {
-        id: UID
-    }
+// a very common alias for `dynamic_field` is `df` since the
+// module name is quite long
+use sui::dynamic_field as df;
+use std::string::String;
 
-    // List of different accessories that can be attached to a character.
-    // They must have the `store` ability.
-    public struct Hat has key, store { id: UID, color: u32 }
-    public struct Mustache has key, store { id: UID }
+/// The object that we will attach dynamic fields to.
+public struct Character has key {
+    id: UID
+}
 
-    #[test]
-    fun test_character_and_accessories() {
-        let ctx = &amp;mut tx_context::dummy();
-        let mut character = Character { id: object::new(ctx) };
+// List of different accessories that can be attached to a character.
+// They must have the `store` ability.
+public struct Hat has key, store { id: UID, color: u32 }
+public struct Mustache has key, store { id: UID }
 
-        // Attach a hat to the character's UID
-        df::add(
-            &amp;mut character.id,
-            b&quot;hat_key&quot;,
-            Hat { id: object::new(ctx), color: 0xFF0000 }
-        );
+#[test]
+fun test_character_and_accessories() {
+    let ctx = &amp;mut tx_context::dummy();
+    let mut character = Character { id: object::new(ctx) };
 
-        // Similarly, attach a mustache to the character's UID
-        df::add(
-            &amp;mut character.id,
-            b&quot;mustache_key&quot;,
-            Mustache { id: object::new(ctx) }
-        );
+    // Attach a hat to the character's UID
+    df::add(
+        &amp;mut character.id,
+        b&quot;hat_key&quot;,
+        Hat { id: object::new(ctx), color: 0xFF0000 }
+    );
 
-        // Check that the hat and mustache are attached to the character
-        //
-        assert!(df::exists_(&amp;character.id, b&quot;hat_key&quot;), 0);
-        assert!(df::exists_(&amp;character.id, b&quot;mustache_key&quot;), 1);
+    // Similarly, attach a mustache to the character's UID
+    df::add(
+        &amp;mut character.id,
+        b&quot;mustache_key&quot;,
+        Mustache { id: object::new(ctx) }
+    );
 
-        // Modify the color of the hat
-        let hat: &amp;mut Hat = df::borrow_mut(&amp;mut character.id, b&quot;hat_key&quot;);
-        hat.color = 0x00FF00;
+    // Check that the hat and mustache are attached to the character
+    //
+    assert!(df::exists_(&amp;character.id, b&quot;hat_key&quot;), 0);
+    assert!(df::exists_(&amp;character.id, b&quot;mustache_key&quot;), 1);
 
-        // Remove the hat and mustache from the character
-        let hat: Hat = df::remove(&amp;mut character.id, b&quot;hat_key&quot;);
-        let mustache: Mustache = df::remove(&amp;mut character.id, b&quot;mustache_key&quot;);
+    // Modify the color of the hat
+    let hat: &amp;mut Hat = df::borrow_mut(&amp;mut character.id, b&quot;hat_key&quot;);
+    hat.color = 0x00FF00;
 
-        // Check that the hat and mustache are no longer attached to the character
-        assert!(!df::exists_(&amp;character.id, b&quot;hat_key&quot;), 0);
-        assert!(!df::exists_(&amp;character.id, b&quot;mustache_key&quot;), 1);
+    // Remove the hat and mustache from the character
+    let hat: Hat = df::remove(&amp;mut character.id, b&quot;hat_key&quot;);
+    let mustache: Mustache = df::remove(&amp;mut character.id, b&quot;mustache_key&quot;);
 
-        sui::test_utils::destroy(character);
-        sui::test_utils::destroy(mustache);
-        sui::test_utils::destroy(hat);
-    }
+    // Check that the hat and mustache are no longer attached to the character
+    assert!(!df::exists_(&amp;character.id, b&quot;hat_key&quot;), 0);
+    assert!(!df::exists_(&amp;character.id, b&quot;mustache_key&quot;), 1);
+
+    sui::test_utils::destroy(character);
+    sui::test_utils::destroy(mustache);
+    sui::test_utils::destroy(hat);
+}
 }
 </code></pre>
 <p>In the example above, we define a <code>Character</code> object and two different types of accessories that
@@ -5485,49 +5209,49 @@ wrapped</em> into a separate object.</p>
 ID. However, this property may not be outstanding if wrapped object indexing is implemented,
 making the dynamic object fields a redundant feature.</p>
 </blockquote>
-<pre><code class="language-move">module book::dynamic_object_field {
-    use std::string::String;
+<pre><code class="language-move">module book::dynamic_object_field;
 
-    // there are two common aliases for the long module name: `dof` and
-    // `ofield`. Both are commonly used and met in different projects.
-    use sui::dynamic_object_field as dof;
-    use sui::dynamic_field as df;
+use std::string::String;
 
-    /// The `Character` that we will use for the example
-    public struct Character has key { id: UID }
+// there are two common aliases for the long module name: `dof` and
+// `ofield`. Both are commonly used and met in different projects.
+use sui::dynamic_object_field as dof;
+use sui::dynamic_field as df;
 
-    /// Metadata that doesn't have the `key` ability
-    public struct Metadata has store, drop { name: String }
+/// The `Character` that we will use for the example
+public struct Character has key { id: UID }
 
-    /// Accessory that has the `key` and `store` abilities.
-    public struct Accessory has key, store { id: UID }
+/// Metadata that doesn't have the `key` ability
+public struct Metadata has store, drop { name: String }
 
-    #[test]
-    fun equip_accessory() {
-        let ctx = &amp;mut tx_context::dummy();
-        let mut character = Character { id: object::new(ctx) };
+/// Accessory that has the `key` and `store` abilities.
+public struct Accessory has key, store { id: UID }
 
-        // Create an accessory and attach it to the character
-        let hat = Accessory { id: object::new(ctx) };
+#[test]
+fun equip_accessory() {
+    let ctx = &amp;mut tx_context::dummy();
+    let mut character = Character { id: object::new(ctx) };
 
-        // Add the hat to the character. Just like with `dynamic_fields`
-        dof::add(&amp;mut character.id, b&quot;hat_key&quot;, hat);
+    // Create an accessory and attach it to the character
+    let hat = Accessory { id: object::new(ctx) };
 
-        // However for non-key structs we can only use `dynamic_field`
-        df::add(&amp;mut character.id, b&quot;metadata_key&quot;, Metadata {
-            name: b&quot;John&quot;.to_string()
-        });
+    // Add the hat to the character. Just like with `dynamic_fields`
+    dof::add(&amp;mut character.id, b&quot;hat_key&quot;, hat);
 
-        // Borrow the hat from the character
-        let hat_id = dof::id(&amp;character.id, b&quot;hat_key&quot;).extract(); // Option&lt;ID&gt;
-        let hat_ref: &amp;Accessory = dof::borrow(&amp;character.id, b&quot;hat_key&quot;);
-        let hat_mut: &amp;mut Accessory = dof::borrow_mut(&amp;mut character.id, b&quot;hat_key&quot;);
-        let hat: Accessory = dof::remove(&amp;mut character.id, b&quot;hat_key&quot;);
+    // However for non-key structs we can only use `dynamic_field`
+    df::add(&amp;mut character.id, b&quot;metadata_key&quot;, Metadata {
+        name: b&quot;John&quot;.to_string()
+    });
 
-        // Clean up, Metadata is an orphan now.
-        sui::test_utils::destroy(hat);
-        sui::test_utils::destroy(character);
-    }
+    // Borrow the hat from the character
+    let hat_id = dof::id(&amp;character.id, b&quot;hat_key&quot;).extract(); // Option&lt;ID&gt;
+    let hat_ref: &amp;Accessory = dof::borrow(&amp;character.id, b&quot;hat_key&quot;);
+    let hat_mut: &amp;mut Accessory = dof::borrow_mut(&amp;mut character.id, b&quot;hat_key&quot;);
+    let hat: Accessory = dof::remove(&amp;mut character.id, b&quot;hat_key&quot;);
+
+    // Clean up, Metadata is an orphan now.
+    sui::test_utils::destroy(hat);
+    sui::test_utils::destroy(character);
 }
 </code></pre>
 <h2 id="pricing-differences"><a class="header" href="#pricing-differences">Pricing Differences</a></h2>
@@ -5810,15 +5534,15 @@ created and it is guaranteed to be unique per module. Sui Adapter treats a type 
 <li>Named after the module with all uppercase letters.</li>
 </ol>
 <p>Here is an example of an OTW:</p>
-<pre><code class="language-move">module book::one_time {
-    /// The OTW for the `book::one_time` module.
-    /// Only `drop`, no fields, no generics, all uppercase.
-    public struct ONE_TIME has drop {}
+<pre><code class="language-move">module book::one_time;
 
-    /// Receive the instance of `ONE_TIME` as the first argument.
-    fun init(otw: ONE_TIME, ctx: &amp;mut TxContext) {
-        // do something with the OTW
-    }
+/// The OTW for the `book::one_time` module.
+/// Only `drop`, no fields, no generics, all uppercase.
+public struct ONE_TIME has drop {}
+
+/// Receive the instance of `ONE_TIME` as the first argument.
+fun init(otw: ONE_TIME, ctx: &amp;mut TxContext) {
+    // do something with the OTW
 }
 </code></pre>
 <p>The OTW cannot be constructed manually, and any code attempting to do so will result in
@@ -5970,22 +5694,24 @@ public struct Publisher has key, store {
 <a href="programmability/./one-time-witness.html">here</a>.</p>
 </blockquote>
 <p>Here's a simple example of claiming a <code>Publisher</code> object in a module:</p>
-<pre><code class="language-move">module book::publisher {
-    /// Some type defined in the module.
-    public struct Book {}
+<pre><code class="language-move">module book::publisher;
 
-    /// The OTW for the module.
-    public struct PUBLISHER has drop {}
+use sui::package::{Self, Publisher};
 
-    /// Uses the One Time Witness to claim the Publisher object.
-    fun init(otw: PUBLISHER, ctx: &amp;mut TxContext) {
-        // Claim the Publisher object.
-        let publisher = sui::package::claim(otw, ctx);
+/// Some type defined in the module.
+public struct Book {}
 
-        // Usually it is transferred to the sender.
-        // It can also be stored in another object.
-        transfer::public_transfer(publisher, ctx.sender())
-    }
+/// The OTW for the module.
+public struct PUBLISHER has drop {}
+
+/// Uses the One Time Witness to claim the Publisher object.
+fun init(otw: PUBLISHER, ctx: &amp;mut TxContext) {
+    // Claim the Publisher object.
+    let publisher: Publisher = sui::package::claim(otw, ctx);
+
+    // Usually it is transferred to the sender.
+    // It can also be stored in another object.
+    transfer::public_transfer(publisher, ctx.sender())
 }
 </code></pre>
 <h2 id="usage-1"><a class="header" href="#usage-1">Usage</a></h2>
@@ -6063,54 +5789,54 @@ from the need to define the same fields with the same names and types in every o
 <p>The Object Display is natively supported by the Sui Fullnode, and the client can fetch the display
 metadata for any object if the object type has a Display associated with it.</p>
 </blockquote>
-<pre><code class="language-move">module book::arena {
-    use std::string::String;
-    use sui::package;
-    use sui::display;
+<pre><code class="language-move">module book::arena;
 
-    /// The One Time Witness to claim the `Publisher` object.
-    public struct ARENA has drop {}
+use std::string::String;
+use sui::package;
+use sui::display;
 
-    /// Some object which will be displayed.
-    public struct Hero has key {
-        id: UID,
-        class: String,
-        level: u64,
-    }
+/// The One Time Witness to claim the `Publisher` object.
+public struct ARENA has drop {}
 
-    /// In the module initializer we create the `Publisher` object, and then
-    /// the Display for the `Hero` type.
-    fun init(otw: ARENA, ctx: &amp;mut TxContext) {
-        let publisher = package::claim(otw, ctx);
-        let mut display = display::new&lt;Hero&gt;(&amp;publisher, ctx);
+/// Some object which will be displayed.
+public struct Hero has key {
+    id: UID,
+    class: String,
+    level: u64,
+}
 
-        display.add(
-            b&quot;name&quot;.to_string(),
-            b&quot;{class} (lvl. {level})&quot;.to_string()
-        );
+/// In the module initializer we create the `Publisher` object, and then
+/// the Display for the `Hero` type.
+fun init(otw: ARENA, ctx: &amp;mut TxContext) {
+    let publisher = package::claim(otw, ctx);
+    let mut display = display::new&lt;Hero&gt;(&amp;publisher, ctx);
 
-        display.add(
-            b&quot;description&quot;.to_string(),
-            b&quot;One of the greatest heroes of all time. Join us!&quot;.to_string()
-        );
+    display.add(
+        b&quot;name&quot;.to_string(),
+        b&quot;{class} (lvl. {level})&quot;.to_string()
+    );
 
-        display.add(
-            b&quot;link&quot;.to_string(),
-            b&quot;https://example.com/hero/{id}&quot;.to_string()
-        );
+    display.add(
+        b&quot;description&quot;.to_string(),
+        b&quot;One of the greatest heroes of all time. Join us!&quot;.to_string()
+    );
 
-        display.add(
-            b&quot;image_url&quot;.to_string(),
-            b&quot;https://example.com/hero/{class}.jpg&quot;.to_string()
-        );
+    display.add(
+        b&quot;link&quot;.to_string(),
+        b&quot;https://example.com/hero/{id}&quot;.to_string()
+    );
 
-        // Update the display with the new data.
-        // Must be called to apply changes.
-        display.update_version();
+    display.add(
+        b&quot;image_url&quot;.to_string(),
+        b&quot;https://example.com/hero/{class}.jpg&quot;.to_string()
+    );
 
-        transfer::public_transfer(publisher, ctx.sender());
-        transfer::public_transfer(display, ctx.sender());
-    }
+    // Update the display with the new data.
+    // Must be called to apply changes.
+    display.update_version();
+
+    transfer::public_transfer(publisher, ctx.sender());
+    transfer::public_transfer(display, ctx.sender());
 }
 </code></pre>
 <h2 id="creator-privilege"><a class="header" href="#creator-privilege">Creator Privilege</a></h2>
@@ -6216,34 +5942,34 @@ module sui::event {
 <h2 id="emitting-events"><a class="header" href="#emitting-events">Emitting Events</a></h2>
 <p>Events are emitted using the <code>emit</code> function in the <code>sui::event</code> module. The function takes a single
 argument - the event to be emitted. The event data is passed by value,</p>
-<pre><code class="language-move">module book::events {
-    use sui::coin::Coin;
-    use sui::sui::SUI;
-    use sui::event;
+<pre><code class="language-move">module book::events;
 
-    /// The item that can be purchased.
-    public struct Item has key { id: UID }
+use sui::coin::Coin;
+use sui::sui::SUI;
+use sui::event;
 
-    /// Event emitted when an item is purchased. Contains the ID of the item and
-    /// the price for which it was purchased.
-    public struct ItemPurchased has copy, drop {
-        item: ID,
-        price: u64
-    }
+/// The item that can be purchased.
+public struct Item has key { id: UID }
 
-    /// A marketplace function which performs the purchase of an item.
-    public fun purchase(coin: Coin&lt;SUI&gt;, ctx: &amp;mut TxContext) {
-        let item = Item { id: object::new(ctx) };
+/// Event emitted when an item is purchased. Contains the ID of the item and
+/// the price for which it was purchased.
+public struct ItemPurchased has copy, drop {
+    item: ID,
+    price: u64
+}
 
-        // Create an instance of `ItemPurchased` and pass it to `event::emit`.
-        event::emit(ItemPurchased {
-            item: object::id(&amp;item),
-            price: coin.value()
-        });
+/// A marketplace function which performs the purchase of an item.
+public fun purchase(coin: Coin&lt;SUI&gt;, ctx: &amp;mut TxContext) {
+    let item = Item { id: object::new(ctx) };
 
-        // Omitting the rest of the implementation to keep the example simple.
-        abort 0
-    }
+    // Create an instance of `ItemPurchased` and pass it to `event::emit`.
+    event::emit(ItemPurchased {
+        item: object::id(&amp;item),
+        price: coin.value()
+    });
+
+    // Omitting the rest of the implementation to keep the example simple.
+    abort 0
 }
 </code></pre>
 <p>The Sui Verifier requires the type passed to the <code>emit</code> function to be <em>internal to the module</em>. So

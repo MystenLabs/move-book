@@ -203,15 +203,15 @@ created and it is guaranteed to be unique per module. Sui Adapter treats a type 
 <li>Named after the module with all uppercase letters.</li>
 </ol>
 <p>Here is an example of an OTW:</p>
-<pre><code class="language-move">module book::one_time {
-    /// The OTW for the `book::one_time` module.
-    /// Only `drop`, no fields, no generics, all uppercase.
-    public struct ONE_TIME has drop {}
+<pre><code class="language-move">module book::one_time;
 
-    /// Receive the instance of `ONE_TIME` as the first argument.
-    fun init(otw: ONE_TIME, ctx: &amp;mut TxContext) {
-        // do something with the OTW
-    }
+/// The OTW for the `book::one_time` module.
+/// Only `drop`, no fields, no generics, all uppercase.
+public struct ONE_TIME has drop {}
+
+/// Receive the instance of `ONE_TIME` as the first argument.
+fun init(otw: ONE_TIME, ctx: &amp;mut TxContext) {
+    // do something with the OTW
 }
 </code></pre>
 <p>The OTW cannot be constructed manually, and any code attempting to do so will result in

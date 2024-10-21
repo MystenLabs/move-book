@@ -208,34 +208,34 @@ module sui::event {
 <h2 id="emitting-events"><a class="header" href="#emitting-events">Emitting Events</a></h2>
 <p>Events are emitted using the <code>emit</code> function in the <code>sui::event</code> module. The function takes a single
 argument - the event to be emitted. The event data is passed by value,</p>
-<pre><code class="language-move">module book::events {
-    use sui::coin::Coin;
-    use sui::sui::SUI;
-    use sui::event;
+<pre><code class="language-move">module book::events;
 
-    /// The item that can be purchased.
-    public struct Item has key { id: UID }
+use sui::coin::Coin;
+use sui::sui::SUI;
+use sui::event;
 
-    /// Event emitted when an item is purchased. Contains the ID of the item and
-    /// the price for which it was purchased.
-    public struct ItemPurchased has copy, drop {
-        item: ID,
-        price: u64
-    }
+/// The item that can be purchased.
+public struct Item has key { id: UID }
 
-    /// A marketplace function which performs the purchase of an item.
-    public fun purchase(coin: Coin&lt;SUI&gt;, ctx: &amp;mut TxContext) {
-        let item = Item { id: object::new(ctx) };
+/// Event emitted when an item is purchased. Contains the ID of the item and
+/// the price for which it was purchased.
+public struct ItemPurchased has copy, drop {
+    item: ID,
+    price: u64
+}
 
-        // Create an instance of `ItemPurchased` and pass it to `event::emit`.
-        event::emit(ItemPurchased {
-            item: object::id(&amp;item),
-            price: coin.value()
-        });
+/// A marketplace function which performs the purchase of an item.
+public fun purchase(coin: Coin&lt;SUI&gt;, ctx: &amp;mut TxContext) {
+    let item = Item { id: object::new(ctx) };
 
-        // Omitting the rest of the implementation to keep the example simple.
-        abort 0
-    }
+    // Create an instance of `ItemPurchased` and pass it to `event::emit`.
+    event::emit(ItemPurchased {
+        item: object::id(&amp;item),
+        price: coin.value()
+    });
+
+    // Omitting the rest of the implementation to keep the example simple.
+    abort 0
 }
 </code></pre>
 <p>The Sui Verifier requires the type passed to the <code>emit</code> function to be <em>internal to the module</em>. So

@@ -224,27 +224,26 @@ Links:
 struct without the <code>drop</code> ability is not allowed to be ignored. This is a safety feature of the Move
 language, which ensures that all assets are properly handled. An attempt to ignore a struct without
 the <code>drop</code> ability will result in a compilation error.</p>
-<pre><code class="language-move">module book::drop_ability {
+<pre><code class="language-move">module book::drop_ability;
 
-    /// This struct has the `drop` ability.
-    public struct IgnoreMe has drop {
-        a: u8,
-        b: u8,
-    }
+/// This struct has the `drop` ability.
+public struct IgnoreMe has drop {
+    a: u8,
+    b: u8,
+}
 
-    /// This struct does not have the `drop` ability.
-    public struct NoDrop {}
+/// This struct does not have the `drop` ability.
+public struct NoDrop {}
 
-    #[test]
-    // Create an instance of the `IgnoreMe` struct and ignore it.
-    // Even though we constructed the instance, we don't need to unpack it.
-    fun test_ignore() {
-        let no_drop = NoDrop {};
-        let _ = IgnoreMe { a: 1, b: 2 }; // no need to unpack
+#[test]
+// Create an instance of the `IgnoreMe` struct and ignore it.
+// Even though we constructed the instance, we don't need to unpack it.
+fun test_ignore() {
+    let no_drop = NoDrop {};
+    let _ = IgnoreMe { a: 1, b: 2 }; // no need to unpack
 
-        // The value must be unpacked for the code to compile.
-        let NoDrop {} = no_drop; // OK
-    }
+    // The value must be unpacked for the code to compile.
+    let NoDrop {} = no_drop; // OK
 }
 </code></pre>
 <p>The <code>drop</code> ability is often used on custom collection types to eliminate the need for special

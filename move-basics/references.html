@@ -218,19 +218,19 @@ will look at 4 different scenarios:</p>
 <a href="./constants.html">constant</a> that represents the number of rides for a single card. We also add an
 <a href="./assert-and-abort.html#error-constants">error constant</a> for the case when the card is empty.</p>
 <pre><code class="language-move">module book::metro_pass {
-    /// Error code for when the card is empty.
-    const ENoUses: u64 = 0;
+/// Error code for when the card is empty.
+const ENoUses: u64 = 0;
 
-    /// Number of uses for a metro pass card.
-    const USES: u8 = 3;
+/// Number of uses for a metro pass card.
+const USES: u8 = 3;
 
-    /// A metro pass card
-    public struct Card { uses: u8 }
+/// A metro pass card
+public struct Card { uses: u8 }
 
-    /// Purchase a metro pass card.
-    public fun purchase(/* pass a Coin */): Card {
-        Card { uses: USES }
-    }
+/// Purchase a metro pass card.
+public fun purchase(/* pass a Coin */): Card {
+    Card { uses: USES }
+}
 }
 </code></pre>
 <!-- In [the previous section](./ownership-and-scope.md) we explained the ownership and scope in Move. We showed how the value is *moved* to a new scope, and how it changes the owner. In this section, we will explain how to *borrow* a reference to a value to avoid moving it, and how Move's *borrow checker* ensures that the references are used correctly. -->
@@ -241,10 +241,10 @@ allow them to spend the rides. We just want to allow <em>reading</em> the value 
 ownership.</p>
 <p>To do so, in the function signature, we use the <code>&amp;</code> symbol to indicate that we are passing a
 reference to the value, not the value itself.</p>
-<pre><code class="language-move">    /// Show the metro pass card to the inspector.
-    public fun is_valid(card: &amp;Card): bool {
-        card.uses &gt; 0
-    }
+<pre><code class="language-move">/// Show the metro pass card to the inspector.
+public fun is_valid(card: &amp;Card): bool {
+    card.uses &gt; 0
+}
 </code></pre>
 <p>Now the function can't take the ownership of the card, and it can't spend the rides. But it can read
 its value. Worth noting, that a signature like this makes it impossible to call the function without
@@ -254,11 +254,11 @@ a Card at all. This is an important property which allows the
 <p>In some cases, we want to allow the function to change the value of the Card. For example, when we
 use the Card at the turnstile, we want to spend a ride. To implement it, we use the <code>&amp;mut</code> keyword
 in the function signature.</p>
-<pre><code class="language-move">    /// Use the metro pass card at the turnstile to enter the metro.
-    public fun enter_metro(card: &amp;mut Card) {
-        assert!(card.uses &gt; 0, ENoUses);
-        card.uses = card.uses - 1;
-    }
+<pre><code class="language-move">/// Use the metro pass card at the turnstile to enter the metro.
+public fun enter_metro(card: &amp;mut Card) {
+    assert!(card.uses &gt; 0, ENoUses);
+    card.uses = card.uses - 1;
+}
 </code></pre>
 <p>As you can see in the function body, the <code>&amp;mut</code> reference allows mutating the value, and the
 function can spend the rides.</p>
@@ -266,29 +266,29 @@ function can spend the rides.</p>
 <p>Lastly, let's give an illustration of what happens when we pass the value itself to the function. In
 this case, the function takes the ownership of the value, and the original scope can no longer use
 it. The owner of the Card can recycle it, and, hence, lose the ownership.</p>
-<pre><code class="language-move">    /// Recycle the metro pass card.
-    public fun recycle(card: Card) {
-        assert!(card.uses == 0, ENoUses);
-        let Card { uses: _ } = card;
-    }
+<pre><code class="language-move">/// Recycle the metro pass card.
+public fun recycle(card: Card) {
+    assert!(card.uses == 0, ENoUses);
+    let Card { uses: _ } = card;
+}
 </code></pre>
 <p>In the <code>recycle</code> function, the Card is <em>taken by value</em> and can be unpacked and destroyed. The
 original scope can't use it anymore.</p>
 <h2 id="full-example"><a class="header" href="#full-example">Full Example</a></h2>
 <p>To illustrate the full flow of the application, let's put all the pieces together in a test.</p>
-<pre><code class="language-move">    #[test]
-    fun test_card_2024() {
-        // declaring variable as mutable because we modify it
-        let mut card = purchase();
+<pre><code class="language-move">#[test]
+fun test_card_2024() {
+    // declaring variable as mutable because we modify it
+    let mut card = purchase();
 
-        card.enter_metro(); // modify the card but don't move it
-        assert!(card.is_valid(), 0); // read the card!
+    card.enter_metro(); // modify the card but don't move it
+    assert!(card.is_valid(), 0); // read the card!
 
-        card.enter_metro(); // modify the card but don't move it
-        card.enter_metro(); // modify the card but don't move it
+    card.enter_metro(); // modify the card but don't move it
+    card.enter_metro(); // modify the card but don't move it
 
-        card.recycle(); // move the card out of the scope
-    }
+    card.recycle(); // move the card out of the scope
+}
 </code></pre>
 <!-- ## Dereference and Copy -->
 <!-- TODO: defer and copy, *& -->
@@ -304,19 +304,19 @@ original scope can't use it anymore.</p>
 Here's the test from this page written with the Move 2024 syntax:
 
 ```move
-    #[test]
-    fun test_card_2024() {
-        // declaring variable as mutable because we modify it
-        let mut card = purchase();
+#[test]
+fun test_card_2024() {
+    // declaring variable as mutable because we modify it
+    let mut card = purchase();
 
-        card.enter_metro(); // modify the card but don't move it
-        assert!(card.is_valid(), 0); // read the card!
+    card.enter_metro(); // modify the card but don't move it
+    assert!(card.is_valid(), 0); // read the card!
 
-        card.enter_metro(); // modify the card but don't move it
-        card.enter_metro(); // modify the card but don't move it
+    card.enter_metro(); // modify the card but don't move it
+    card.enter_metro(); // modify the card but don't move it
 
-        card.recycle(); // move the card out of the scope
-    }
+    card.recycle(); // move the card out of the scope
+}
 ```
 -->
 

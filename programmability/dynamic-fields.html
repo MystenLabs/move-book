@@ -221,62 +221,63 @@ and <code>Value</code> type parameters define the abilities that the key and val
 removed with <code>remove</code>, and read with <code>borrow</code> and <code>borrow_mut</code>. Additionally, the <code>exists_</code> method
 can be used to check if a field exists (for stricter checks with type, there is an
 <code>exists_with_type</code> method).</p>
-<pre><code class="language-move">module book::dynamic_collection {
-    // a very common alias for `dynamic_field` is `df` since the
-    // module name is quite long
-    use sui::dynamic_field as df;
-    use std::string::String;
+<pre><code class="language-move">module book::dynamic_fields;
 
-    /// The object that we will attach dynamic fields to.
-    public struct Character has key {
-        id: UID
-    }
+// a very common alias for `dynamic_field` is `df` since the
+// module name is quite long
+use sui::dynamic_field as df;
+use std::string::String;
 
-    // List of different accessories that can be attached to a character.
-    // They must have the `store` ability.
-    public struct Hat has key, store { id: UID, color: u32 }
-    public struct Mustache has key, store { id: UID }
+/// The object that we will attach dynamic fields to.
+public struct Character has key {
+    id: UID
+}
 
-    #[test]
-    fun test_character_and_accessories() {
-        let ctx = &amp;mut tx_context::dummy();
-        let mut character = Character { id: object::new(ctx) };
+// List of different accessories that can be attached to a character.
+// They must have the `store` ability.
+public struct Hat has key, store { id: UID, color: u32 }
+public struct Mustache has key, store { id: UID }
 
-        // Attach a hat to the character's UID
-        df::add(
-            &amp;mut character.id,
-            b&quot;hat_key&quot;,
-            Hat { id: object::new(ctx), color: 0xFF0000 }
-        );
+#[test]
+fun test_character_and_accessories() {
+    let ctx = &amp;mut tx_context::dummy();
+    let mut character = Character { id: object::new(ctx) };
 
-        // Similarly, attach a mustache to the character's UID
-        df::add(
-            &amp;mut character.id,
-            b&quot;mustache_key&quot;,
-            Mustache { id: object::new(ctx) }
-        );
+    // Attach a hat to the character's UID
+    df::add(
+        &amp;mut character.id,
+        b&quot;hat_key&quot;,
+        Hat { id: object::new(ctx), color: 0xFF0000 }
+    );
 
-        // Check that the hat and mustache are attached to the character
-        //
-        assert!(df::exists_(&amp;character.id, b&quot;hat_key&quot;), 0);
-        assert!(df::exists_(&amp;character.id, b&quot;mustache_key&quot;), 1);
+    // Similarly, attach a mustache to the character's UID
+    df::add(
+        &amp;mut character.id,
+        b&quot;mustache_key&quot;,
+        Mustache { id: object::new(ctx) }
+    );
 
-        // Modify the color of the hat
-        let hat: &amp;mut Hat = df::borrow_mut(&amp;mut character.id, b&quot;hat_key&quot;);
-        hat.color = 0x00FF00;
+    // Check that the hat and mustache are attached to the character
+    //
+    assert!(df::exists_(&amp;character.id, b&quot;hat_key&quot;), 0);
+    assert!(df::exists_(&amp;character.id, b&quot;mustache_key&quot;), 1);
 
-        // Remove the hat and mustache from the character
-        let hat: Hat = df::remove(&amp;mut character.id, b&quot;hat_key&quot;);
-        let mustache: Mustache = df::remove(&amp;mut character.id, b&quot;mustache_key&quot;);
+    // Modify the color of the hat
+    let hat: &amp;mut Hat = df::borrow_mut(&amp;mut character.id, b&quot;hat_key&quot;);
+    hat.color = 0x00FF00;
 
-        // Check that the hat and mustache are no longer attached to the character
-        assert!(!df::exists_(&amp;character.id, b&quot;hat_key&quot;), 0);
-        assert!(!df::exists_(&amp;character.id, b&quot;mustache_key&quot;), 1);
+    // Remove the hat and mustache from the character
+    let hat: Hat = df::remove(&amp;mut character.id, b&quot;hat_key&quot;);
+    let mustache: Mustache = df::remove(&amp;mut character.id, b&quot;mustache_key&quot;);
 
-        sui::test_utils::destroy(character);
-        sui::test_utils::destroy(mustache);
-        sui::test_utils::destroy(hat);
-    }
+    // Check that the hat and mustache are no longer attached to the character
+    assert!(!df::exists_(&amp;character.id, b&quot;hat_key&quot;), 0);
+    assert!(!df::exists_(&amp;character.id, b&quot;mustache_key&quot;), 1);
+
+    sui::test_utils::destroy(character);
+    sui::test_utils::destroy(mustache);
+    sui::test_utils::destroy(hat);
+}
 }
 </code></pre>
 <p>In the example above, we define a <code>Character</code> object and two different types of accessories that

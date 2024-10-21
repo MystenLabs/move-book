@@ -193,49 +193,27 @@ collection types offered by the <a href="./sui-framework.html">Sui Framework</a>
 <a href="./../move-basics/vector.html">vector section</a>, it is worth going over it again in a new context. This
 time we will cover the usage of the <code>vector</code> type in objects and how it can be used in an
 application.</p>
-<pre><code class="language-move">module book::collections_vector {
-    use std::string::String;
+<pre><code class="language-move">module book::collections_vector;
 
-    /// The Book that can be sold by a `BookStore`
-    public struct Book has key, store {
-        id: UID,
-        name: String
-    }
+use std::string::String;
 
-    /// The BookStore that sells `Book`s
-    public struct BookStore has key, store {
-        id: UID,
-        books: vector&lt;Book&gt;
-    }
+/// The Book that can be sold by a `BookStore`
+public struct Book has key, store {
+    id: UID,
+    name: String
+}
+
+/// The BookStore that sells `Book`s
+public struct BookStore has key, store {
+    id: UID,
+    books: vector&lt;Book&gt;
 }
 </code></pre>
 <h2 id="vecset"><a class="header" href="#vecset">VecSet</a></h2>
 <p><code>VecSet</code> is a collection type that stores a set of unique items. It is similar to a <code>vector</code>, but it
 does not allow duplicate items. This makes it useful for storing a collection of unique items, such
 as a list of unique IDs or addresses.</p>
-<pre><code class="language-move">module book::collections_vec_set {
-    use sui::vec_set::{Self, VecSet};
-
-    public struct App has drop {
-        /// `VecSet` used in the struct definition
-        subscribers: VecSet&lt;address&gt;
-    }
-
-    #[test]
-    fun vec_set_playground() {
-        let set = vec_set::empty&lt;u8&gt;(); // create an empty set
-        let mut set = vec_set::singleton(1); // create a set with a single item
-
-        set.insert(2); // add an item to the set
-        set.insert(3);
-
-        assert!(set.contains(&amp;1), 0); // check if an item is in the set
-        assert!(set.size() == 3, 1); // get the number of items in the set
-        assert!(!set.is_empty(), 2); // check if the set is empty
-
-        set.remove(&amp;2); // remove an item from the set
-    }
-}
+<pre><code class="language-move">
 </code></pre>
 <p>VecSet will fail on attempt to insert an item that already exists in the set.</p>
 <h2 id="vecmap"><a class="header" href="#vecmap">VecMap</a></h2>
@@ -246,28 +224,7 @@ and their associated data.</p>
 <p>Keys in a <code>VecMap</code> are unique, and each key can only be associated with a single value. If you try
 to insert a key-value pair with a key that already exists in the map, the old value will be replaced
 with the new value.</p>
-<pre><code class="language-move">module book::collections {
-    use std::string::String;
-    use sui::vec_map::{Self, VecMap};
-
-    public struct Metadata has drop {
-        name: String,
-        /// `VecMap` used in the struct definition
-        attributes: VecMap&lt;String, String&gt;
-    }
-
-    #[test]
-    fun vec_map_playground() {
-        let mut map = vec_map::empty(); // create an empty map
-
-        map.insert(2, b&quot;two&quot;.to_string()); // add a key-value pair to the map
-        map.insert(3, b&quot;three&quot;.to_string());
-
-        assert!(map.contains(&amp;2), 0); // check if a key is in the map
-
-        map.remove(&amp;2); // remove a key-value pair from the map
-    }
-}
+<pre><code class="language-move">
 </code></pre>
 <h2 id="limitations"><a class="header" href="#limitations">Limitations</a></h2>
 <p>Standard collection types are a great way to store typed data with guaranteed safety and
@@ -282,15 +239,7 @@ results.</p>
 <p>This behavior is caught by the linter and will emit a warning: <em>Comparing collections of type
 'sui::vec_set::VecSet' may yield unexpected result</em></p>
 </blockquote>
-<pre><code class="language-move">let mut set1 = vec_set::empty();
-set1.insert(1);
-set1.insert(2);
-
-let mut set2 = vec_set::empty();
-set2.insert(2);
-set2.insert(1);
-
-assert!(set1 == set2, 0);
+<pre><code class="language-move">
 </code></pre>
 <p>In the example above, the comparison will fail because the order of insertion is not guaranteed, and
 the two <code>VecSet</code> instances may have different orders of elements. And the comparison will fail even

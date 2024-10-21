@@ -201,42 +201,17 @@ yourself or other developers, to temporarily remove a part of your code, or to g
 documentation. There are three types of comments in Move: line comment, block comment, and doc
 comment.</p>
 <h2 id="line-comment"><a class="header" href="#line-comment">Line comment</a></h2>
-<pre><code class="language-Move">module book::comments_line {
-    fun some_function() {
-        // this is a comment line
-    }
-}
+<pre><code class="language-Move">{{#include ../../../packages/samples/sources/move-basics/comments.move:line}}
 </code></pre>
 <p>You can use double slash <code>//</code> to comment out the rest of the line. Everything after <code>//</code> will be
 ignored by the compiler.</p>
-<pre><code class="language-Move">module book::comments_line_2 {
-    // let's add a note to everything!
-    fun some_function_with_numbers() {
-        let a = 10;
-        // let b = 10 this line is commented and won't be executed
-        let b = 5; // here comment is placed after code
-        a + b; // result is 15, not 10!
-    }
-}
+<pre><code class="language-Move">{{#include ../../../packages/samples/sources/move-basics/comments.move:line_2}}
 </code></pre>
 <h2 id="block-comment"><a class="header" href="#block-comment">Block comment</a></h2>
 <p>Block comments are used to comment out a block of code. They start with <code>/*</code> and end with <code>*/</code>.
 Everything between <code>/*</code> and <code>*/</code> will be ignored by the compiler. You can use block comments to
 comment out a single line or multiple lines. You can even use them to comment out a part of a line.</p>
-<pre><code class="language-Move">module book::comments_block {
-    fun /* you can comment everywhere */ go_wild() {
-        /* here
-           there
-           everywhere */ let a = 10;
-        let b = /* even here */ 10; /* and again */
-        a + b;
-    }
-    /* you can use it to remove certain expressions or definitions
-    fun empty_commented_out() {
-
-    }
-    */
-}
+<pre><code class="language-Move">{{#include ../../../packages/samples/sources/move-basics/comments.move:block}}
 </code></pre>
 <p>This example is a bit extreme, but it shows how you can use block comments to comment out a part of
 a line.</p>
@@ -244,22 +219,7 @@ a line.</p>
 <p>Documentation comments are special comments that are used to generate documentation for your code.
 They are similar to block comments, but they start with three slashes <code>///</code> and are placed before
 the definition of the item they document.</p>
-<pre><code class="language-Move">/// Module has documentation!
-module book::comments_doc {
-
-    /// This is a 0x0 address constant!
-    const AN_ADDRESS: address = @0x0;
-
-    /// This is a struct!
-    public struct AStruct {
-        /// This is a field of a struct!
-        a_field: u8,
-    }
-
-    /// This function does something!
-    /// And it's documented!
-    fun do_something() {}
-}
+<pre><code class="language-Move">{{#include ../../../packages/samples/sources/move-basics/comments.move:doc}}
 </code></pre>
 <!-- TODO: docgen, which members are in the documentation -->
 

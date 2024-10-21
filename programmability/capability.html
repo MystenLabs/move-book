@@ -198,63 +198,50 @@ only be called with the correct capability.</p>
 <p>There's a convention to name capabilities with the <code>Cap</code> suffix, for example, <code>AdminCap</code> or
 <code>KioskOwnerCap</code>.</p>
 </blockquote>
-<pre><code class="language-move">module book::capability {
-    use std::string::String;
-    use sui::event;
+<pre><code class="language-move">module book::capability;
 
-    /// The capability granting the application admin the right to create new
-    /// accounts in the system.
-    public struct AdminCap has key, store { id: UID }
+use std::string::String;
+use sui::event;
 
-    /// The user account in the system.
-    public struct Account has key, store {
-        id: UID,
-        name: String
+/// The capability granting the application admin the right to create new
+/// accounts in the system.
+public struct AdminCap has key, store { id: UID }
+
+/// The user account in the system.
+public struct Account has key, store {
+    id: UID,
+    name: String
+}
+
+/// A simple `Ping` event with no data.
+public struct Ping has copy, drop { by: ID }
+
+/// Creates a new account in the system. Requires the `AdminCap` capability
+/// to be passed as the first argument.
+public fun new(_: &amp;AdminCap, name: String, ctx: &amp;mut TxContext): Account {
+    Account {
+        id: object::new(ctx),
+        name,
     }
+}
 
-    /// A simple `Ping` event with no data.
-    public struct Ping has copy, drop { by: ID }
+/// Account, and any other objects, can also be used as a Capability in the
+/// application. For example, to emit an event.
+public fun send_ping(acc: &amp;Account) {
+    event::emit(Ping {
+        by: acc.id.to_inner()
+    })
+}
 
-    /// Creates a new account in the system. Requires the `AdminCap` capability
-    /// to be passed as the first argument.
-    public fun new(_: &amp;AdminCap, name: String, ctx: &amp;mut TxContext): Account {
-        Account {
-            id: object::new(ctx),
-            name,
-        }
-    }
-
-    /// Account, and any other objects, can also be used as a Capability in the
-    /// application. For example, to emit an event.
-    public fun send_ping(acc: &amp;Account) {
-        event::emit(Ping {
-            by: acc.id.to_inner()
-        })
-    }
-
-    /// Updates the account name. Can only be called by the `Account` owner.
-    public fun update(account: &amp;mut Account, name: String) {
-        account.name = name;
-    }
+/// Updates the account name. Can only be called by the `Account` owner.
+public fun update(account: &amp;mut Account, name: String) {
+    account.name = name;
 }
 </code></pre>
 <h2 id="using-init-for-admin-capability"><a class="header" href="#using-init-for-admin-capability">Using <code>init</code> for Admin Capability</a></h2>
 <p>A very common practice is to create a single <code>AdminCap</code> object on package publish. This way, the
 application can have a setup phase where the admin account prepares the state of the application.</p>
-<pre><code class="language-move">module book::admin_cap {
-    /// The capability granting the admin privileges in the system.
-    /// Created only once in the `init` function.
-    public struct AdminCap has key { id: UID }
-
-    /// Create the AdminCap object on package publish and transfer it to the
-    /// package owner.
-    fun init(ctx: &amp;mut TxContext) {
-        transfer::transfer(
-            AdminCap { id: object::new(ctx) },
-            ctx.sender()
-        )
-    }
-}
+<pre><code class="language-move">
 </code></pre>
 <h2 id="address-check-vs-capability"><a class="header" href="#address-check-vs-capability">Address check vs Capability</a></h2>
 <p>Utilizing objects as capabilities is a relatively new concept in blockchain programming. And in
@@ -263,28 +250,10 @@ sender. This pattern is still viable on Sui, however, overall recommendation is 
 for better security, discoverability, and code organization.</p>
 <p>Let's look at how the <code>new</code> function that creates a user would look like if it was using the address
 check:</p>
-<pre><code class="language-move">/// Error code for unauthorized access.
-const ENotAuthorized: u64 = 0;
-
-/// The application admin address.
-const APPLICATION_ADMIN: address = @0xa11ce;
-
-/// Creates a new user in the system. Requires the sender to be the application
-/// admin.
-public fun new(ctx: &amp;mut TxContext): User {
-    assert!(ctx.sender() == APPLICATION_ADMIN, ENotAuthorized);
-    User { id: object::new(ctx) }
-}
+<pre><code class="language-move">
 </code></pre>
 <p>And now, let's see how the same function would look like with the capability:</p>
-<pre><code class="language-move">/// Grants the owner the right to create new users in the system.
-public struct AdminCap {}
-
-/// Creates a new user in the system. Requires the `AdminCap` capability to be
-/// passed as the first argument.
-public fun new(_: &amp;AdminCap, ctx: &amp;mut TxContext): User {
-    User { id: object::new(ctx) }
-}
+<pre><code class="language-move">
 </code></pre>
 <p>Using capabilities has several advantages over the address check:</p>
 <ul>

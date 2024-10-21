@@ -194,36 +194,36 @@ name of the type <code>T</code>.</p>
 <h2 id="in-practice"><a class="header" href="#in-practice">In practice</a></h2>
 <p>The module is pretty straightforward, and operations allowed on the result are limited to getting a
 string representation and extracting the module and address of the type.</p>
-<pre><code class="language-move">module book::type_reflection {
-    use std::ascii::String;
-    use std::type_name::{Self, TypeName};
+<pre><code class="language-move">module book::type_reflection;
 
-    /// A function that returns the name of the type `T` and its module and address.
-    public fun do_i_know_you&lt;T&gt;(): (String, String, String) {
-        let type_name: TypeName = type_name::get&lt;T&gt;();
+use std::ascii::String;
+use std::type_name::{Self, TypeName};
 
-        // there's a way to borrow
-        let str: &amp;String = type_name.borrow_string();
+/// A function that returns the name of the type `T` and its module and address.
+public fun do_i_know_you&lt;T&gt;(): (String, String, String) {
+    let type_name: TypeName = type_name::get&lt;T&gt;();
 
-        let module_name: String = type_name.get_module();
-        let address_str: String = type_name.get_address();
+    // there's a way to borrow
+    let str: &amp;String = type_name.borrow_string();
 
-        // and a way to consume the value
-        let str = type_name.into_string();
+    let module_name: String = type_name.get_module();
+    let address_str: String = type_name.get_address();
 
-        (str, module_name, address_str)
-    }
+    // and a way to consume the value
+    let str = type_name.into_string();
 
-    #[test_only]
-    public struct MyType {}
+    (str, module_name, address_str)
+}
 
-    #[test]
-    fun test_type_reflection() {
-        let (type_name, module_name, _address_str) = do_i_know_you&lt;MyType&gt;();
+#[test_only]
+public struct MyType {}
 
-        //
-        assert!(module_name == b&quot;type_reflection&quot;.to_ascii_string(), 1);
-    }
+#[test]
+fun test_type_reflection() {
+    let (type_name, module_name, _address_str) = do_i_know_you&lt;MyType&gt;();
+
+    //
+    assert!(module_name == b&quot;type_reflection&quot;.to_ascii_string(), 1);
 }
 </code></pre>
 <h2 id="further-reading"><a class="header" href="#further-reading">Further reading</a></h2>

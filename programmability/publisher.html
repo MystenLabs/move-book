@@ -206,22 +206,24 @@ public struct Publisher has key, store {
 <a href="./one-time-witness.html">here</a>.</p>
 </blockquote>
 <p>Here's a simple example of claiming a <code>Publisher</code> object in a module:</p>
-<pre><code class="language-move">module book::publisher {
-    /// Some type defined in the module.
-    public struct Book {}
+<pre><code class="language-move">module book::publisher;
 
-    /// The OTW for the module.
-    public struct PUBLISHER has drop {}
+use sui::package::{Self, Publisher};
 
-    /// Uses the One Time Witness to claim the Publisher object.
-    fun init(otw: PUBLISHER, ctx: &amp;mut TxContext) {
-        // Claim the Publisher object.
-        let publisher = sui::package::claim(otw, ctx);
+/// Some type defined in the module.
+public struct Book {}
 
-        // Usually it is transferred to the sender.
-        // It can also be stored in another object.
-        transfer::public_transfer(publisher, ctx.sender())
-    }
+/// The OTW for the module.
+public struct PUBLISHER has drop {}
+
+/// Uses the One Time Witness to claim the Publisher object.
+fun init(otw: PUBLISHER, ctx: &amp;mut TxContext) {
+    // Claim the Publisher object.
+    let publisher: Publisher = sui::package::claim(otw, ctx);
+
+    // Usually it is transferred to the sender.
+    // It can also be stored in another object.
+    transfer::public_transfer(publisher, ctx.sender())
 }
 </code></pre>
 <h2 id="usage"><a class="header" href="#usage">Usage</a></h2>

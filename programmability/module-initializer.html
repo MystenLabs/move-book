@@ -193,47 +193,34 @@ function will automatically be called when the module is published.</p>
 behavior is limited to the publish command and does not extend to
 <a href="./package-upgrades.html">package upgrades</a>.</p>
 </blockquote>
-<pre><code class="language-move">module book::shop {
-    /// The Capability which grants the Shop owner the right to manage
-    /// the shop.
-    public struct ShopOwnerCap has key, store { id: UID }
+<pre><code class="language-move">module book::shop;
 
-    /// The singular Shop itself, created in the `init` function.
-    public struct Shop has key {
-        id: UID,
-        /* ... */
-    }
+/// The Capability which grants the Shop owner the right to manage
+/// the shop.
+public struct ShopOwnerCap has key, store { id: UID }
 
-    // Called only once, upon module publication. It must be
-    // private to prevent external invocation.
-    fun init(ctx: &amp;mut TxContext) {
-        // Transfers the ShopOwnerCap to the sender (publisher).
-        transfer::transfer(ShopOwnerCap {
-            id: object::new(ctx)
-        }, ctx.sender());
+/// The singular Shop itself, created in the `init` function.
+public struct Shop has key {
+    id: UID,
+    /* ... */
+}
 
-        // Shares the Shop object.
-        transfer::share_object(Shop {
-            id: object::new(ctx)
-        });
-    }
+// Called only once, upon module publication. It must be
+// private to prevent external invocation.
+fun init(ctx: &amp;mut TxContext) {
+    // Transfers the ShopOwnerCap to the sender (publisher).
+    transfer::transfer(ShopOwnerCap {
+        id: object::new(ctx)
+    }, ctx.sender());
+
+    // Shares the Shop object.
+    transfer::share_object(Shop {
+        id: object::new(ctx)
+    });
 }
 </code></pre>
 <p>In the same package, another module can have its own <code>init</code> function, encapsulating distinct logic.</p>
-<pre><code class="language-move">// In the same package as the `shop` module
-module book::bank {
-
-    public struct Bank has key {
-        id: UID,
-        /* ... */
-    }
-
-    fun init(ctx: &amp;mut TxContext) {
-        transfer::share_object(Bank {
-            id: object::new(ctx)
-        });
-    }
-}
+<pre><code class="language-move">
 </code></pre>
 <h2 id="init-features"><a class="header" href="#init-features"><code>init</code> features</a></h2>
 <p>The function is called on publish, if it is present in the module and follows the rules:</p>

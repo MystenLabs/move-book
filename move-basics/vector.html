@@ -231,18 +231,18 @@ assert!(last_value == 40, 2);
 <p>A vector of non-droppable types cannot be discarded. If you define a vector of types without <code>drop</code>
 ability, the vector value cannot be ignored. However, if the vector is empty, compiler requires an
 explicit call to <code>destroy_empty</code> function.</p>
-<pre><code class="language-move">    /// A struct without `drop` ability.
-    public struct NoDrop {}
+<pre><code class="language-move">/// A struct without `drop` ability.
+public struct NoDrop {}
 
-    #[test]
-    fun test_destroy_empty() {
-        // Initialize a vector of `NoDrop` elements.
-        let v = vector&lt;NoDrop&gt;[];
+#[test]
+fun test_destroy_empty() {
+    // Initialize a vector of `NoDrop` elements.
+    let v = vector&lt;NoDrop&gt;[];
 
-        // While we know that `v` is empty, we still need to call
-        // the explicit `destroy_empty` function to discard the vector.
-        v.destroy_empty();
-    }
+    // While we know that `v` is empty, we still need to call
+    // the explicit `destroy_empty` function to discard the vector.
+    v.destroy_empty();
+}
 </code></pre>
 <h2 id="further-reading"><a class="header" href="#further-reading">Further reading</a></h2>
 <ul>

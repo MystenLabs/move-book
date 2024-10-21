@@ -210,24 +210,24 @@ takes a user input and stores it in a variable. Some fields are required, and so
 example, a user's middle name is optional. While we could use an empty string to represent the
 absence of a middle name, it would require extra checks to differentiate between an empty string and
 a missing middle name. Instead, we can use the <code>Option</code> type to represent the middle name.</p>
-<pre><code class="language-move">module book::user_registry {
-    use std::string::String;
+<pre><code class="language-move">module book::user_registry;
 
-    /// A struct representing a user record.
-    public struct User has drop {
-        first_name: String,
-        middle_name: Option&lt;String&gt;,
-        last_name: String,
-    }
+use std::string::String;
 
-    /// Create a new `User` struct with the given fields.
-    public fun register(
-        first_name: String,
-        middle_name: Option&lt;String&gt;,
-        last_name: String,
-    ): User {
-        User { first_name, middle_name, last_name }
-    }
+/// A struct representing a user record.
+public struct User has drop {
+    first_name: String,
+    middle_name: Option&lt;String&gt;,
+    last_name: String,
+}
+
+/// Create a new `User` struct with the given fields.
+public fun register(
+    first_name: String,
+    middle_name: Option&lt;String&gt;,
+    last_name: String,
+): User {
+    User { first_name, middle_name, last_name }
 }
 </code></pre>
 <p>In the example above, the <code>middle_name</code> field is of type <code>Option&lt;String&gt;</code>. This means that the

@@ -223,54 +223,54 @@ from the need to define the same fields with the same names and types in every o
 <p>The Object Display is natively supported by the Sui Fullnode, and the client can fetch the display
 metadata for any object if the object type has a Display associated with it.</p>
 </blockquote>
-<pre><code class="language-move">module book::arena {
-    use std::string::String;
-    use sui::package;
-    use sui::display;
+<pre><code class="language-move">module book::arena;
 
-    /// The One Time Witness to claim the `Publisher` object.
-    public struct ARENA has drop {}
+use std::string::String;
+use sui::package;
+use sui::display;
 
-    /// Some object which will be displayed.
-    public struct Hero has key {
-        id: UID,
-        class: String,
-        level: u64,
-    }
+/// The One Time Witness to claim the `Publisher` object.
+public struct ARENA has drop {}
 
-    /// In the module initializer we create the `Publisher` object, and then
-    /// the Display for the `Hero` type.
-    fun init(otw: ARENA, ctx: &amp;mut TxContext) {
-        let publisher = package::claim(otw, ctx);
-        let mut display = display::new&lt;Hero&gt;(&amp;publisher, ctx);
+/// Some object which will be displayed.
+public struct Hero has key {
+    id: UID,
+    class: String,
+    level: u64,
+}
 
-        display.add(
-            b&quot;name&quot;.to_string(),
-            b&quot;{class} (lvl. {level})&quot;.to_string()
-        );
+/// In the module initializer we create the `Publisher` object, and then
+/// the Display for the `Hero` type.
+fun init(otw: ARENA, ctx: &amp;mut TxContext) {
+    let publisher = package::claim(otw, ctx);
+    let mut display = display::new&lt;Hero&gt;(&amp;publisher, ctx);
 
-        display.add(
-            b&quot;description&quot;.to_string(),
-            b&quot;One of the greatest heroes of all time. Join us!&quot;.to_string()
-        );
+    display.add(
+        b&quot;name&quot;.to_string(),
+        b&quot;{class} (lvl. {level})&quot;.to_string()
+    );
 
-        display.add(
-            b&quot;link&quot;.to_string(),
-            b&quot;https://example.com/hero/{id}&quot;.to_string()
-        );
+    display.add(
+        b&quot;description&quot;.to_string(),
+        b&quot;One of the greatest heroes of all time. Join us!&quot;.to_string()
+    );
 
-        display.add(
-            b&quot;image_url&quot;.to_string(),
-            b&quot;https://example.com/hero/{class}.jpg&quot;.to_string()
-        );
+    display.add(
+        b&quot;link&quot;.to_string(),
+        b&quot;https://example.com/hero/{id}&quot;.to_string()
+    );
 
-        // Update the display with the new data.
-        // Must be called to apply changes.
-        display.update_version();
+    display.add(
+        b&quot;image_url&quot;.to_string(),
+        b&quot;https://example.com/hero/{class}.jpg&quot;.to_string()
+    );
 
-        transfer::public_transfer(publisher, ctx.sender());
-        transfer::public_transfer(display, ctx.sender());
-    }
+    // Update the display with the new data.
+    // Must be called to apply changes.
+    display.update_version();
+
+    transfer::public_transfer(publisher, ctx.sender());
+    transfer::public_transfer(display, ctx.sender());
 }
 </code></pre>
 <h2 id="creator-privilege"><a class="header" href="#creator-privilege">Creator Privilege</a></h2>

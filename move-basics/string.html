@@ -208,21 +208,21 @@ TODO:
 wrappers provided by the <code>string</code> and <code>ascii</code> modules are just that: wrappers. They do provide
 safety checks and methods to work with strings, but at the end of the day, they are just vectors of
 bytes.</p>
-<pre><code class="language-move">module book::custom_string {
-    /// Anyone can implement a custom string-like type by wrapping a vector.
-    public struct MyString {
-        bytes: vector&lt;u8&gt;,
-    }
+<pre><code class="language-move">module book::custom_string;
 
-    /// Implement a `from_bytes` function to convert a vector of bytes to a string.
-    public fun from_bytes(bytes: vector&lt;u8&gt;): MyString {
-        MyString { bytes }
-    }
+/// Anyone can implement a custom string-like type by wrapping a vector.
+public struct MyString {
+    bytes: vector&lt;u8&gt;,
+}
 
-    /// Implement a `bytes` function to convert a string to a vector of bytes.
-    public fun bytes(self: &amp;MyString): &amp;vector&lt;u8&gt; {
-        &amp;self.bytes
-    }
+/// Implement a `from_bytes` function to convert a vector of bytes to a string.
+public fun from_bytes(bytes: vector&lt;u8&gt;): MyString {
+    MyString { bytes }
+}
+
+/// Implement a `bytes` function to convert a string to a vector of bytes.
+public fun bytes(self: &amp;MyString): &amp;vector&lt;u8&gt; {
+    &amp;self.bytes
 }
 </code></pre>
 <h2 id="working-with-utf-8-strings"><a class="header" href="#working-with-utf-8-strings">Working with UTF-8 Strings</a></h2>
