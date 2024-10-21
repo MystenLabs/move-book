@@ -47,7 +47,7 @@ custom_bytes.append(bcs::to_bytes(&b"hello, world!".to_string()));
 custom_bytes.append(bcs::to_bytes(&true));
 
 // struct is just a sequence of fields, so the bytes should be the same!
-assert!(&struct_bytes == &custom_bytes, 0);
+assert!(&struct_bytes == &custom_bytes);
 // ANCHOR_END: encode_struct
 }
 
@@ -61,12 +61,12 @@ let mut bcs = bcs::new(x"010000000000000000");
 // Same bytes can be read differently, for example: Option<u64>
 let value: Option<u64> = bcs.peel_option_u64();
 
-assert!(value.is_some(), 0);
-assert!(value.borrow() == &0, 1);
+assert!(value.is_some());
+assert!(value.borrow() == &0);
 
 let remainder = bcs.into_remainder_bytes();
 
-assert!(remainder.length() == 0, 2);
+assert!(remainder.length() == 0);
 // ANCHOR_END: decode
 
 // ANCHOR: chain_decode
@@ -94,25 +94,25 @@ while (len > 0) {
     len = len - 1;
 };
 
-assert!(vec.length() == 1, 0);
+assert!(vec.length() == 1);
 // ANCHOR_END: decode_vector
 
 // ANCHOR: decode_option
 let mut bcs = bcs::new(x"00");
 let is_some = bcs.peel_bool();
 
-assert!(is_some == false, 0);
+assert!(is_some == false);
 
 let mut bcs = bcs::new(x"0101");
 let is_some = bcs.peel_bool();
 let value = bcs.peel_u8();
 
-assert!(is_some == true, 1);
-assert!(value == 1, 2);
+assert!(is_some == true);
+assert!(value == 1);
 // ANCHOR_END: decode_option
 
 // ANCHOR: decode_struct
-// some bytes... 
+// some bytes...
 let mut bcs = bcs::new(x"0101010F0000000000F00000000000");
 
 let (age, is_active, name) = (

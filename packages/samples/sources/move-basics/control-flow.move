@@ -26,7 +26,7 @@ fun test_if_else() {
         0
     };
 
-    assert!(y == 1, 0);
+    assert!(y == 1);
 }
 // ANCHOR_END: if_else
 // ANCHOR: while_loop
@@ -50,9 +50,9 @@ fun while_loop(mut x: u8): u8 {
 
 #[test]
 fun test_while() {
-    assert!(while_loop(0) == 10, 0); // 10 times
-    assert!(while_loop(5) == 5, 0);  // 5 times
-    assert!(while_loop(10) == 0, 0); // loop never executed
+    assert!(while_loop(0) == 10); // 10 times
+    assert!(while_loop(5) == 5);  // 5 times
+    assert!(while_loop(10) == 0); // loop never executed
 }
 // ANCHOR_END: while_loop
 // ANCHOR: infinite_while
@@ -66,7 +66,7 @@ fun test_infinite_while() {
     };
 
     // This line will never be executed.
-    assert!(x == 5, 0);
+    assert!(x == 5);
 }
 // ANCHOR_END: infinite_while
 #[allow(dead_code)]
@@ -81,7 +81,7 @@ fun test_infinite_loop() {
     };
 
     // This line will never be executed.
-    assert!(x == 5, 0);
+    assert!(x == 5);
 }
 // ANCHOR_END: infinite_loop
 // ANCHOR: break_loop
@@ -99,7 +99,7 @@ fun test_break_loop() {
         }
     };
 
-    assert!(x == 5, 0);
+    assert!(x == 5);
 }
 // ANCHOR_END: break_loop
 // ANCHOR: continue_loop
@@ -124,7 +124,7 @@ fun test_continue_loop() {
         }
     };
 
-    assert!(x == 10, 0); // 10
+    assert!(x == 10); // 10
 }
 // ANCHOR_END: continue_loop
 // ANCHOR: return_statement
@@ -144,8 +144,8 @@ fun is_positive(x: u8): bool {
 
 #[test]
 fun test_return() {
-    assert!(is_positive(5) == false, 0);
-    assert!(is_positive(0) == false, 0);
-    assert!(is_positive(1) == true, 0);
+    assert!(is_positive(5) == false);
+    assert!(is_positive(0) == false);
+    assert!(is_positive(1) == true);
 }
 // ANCHOR_END: return_statement

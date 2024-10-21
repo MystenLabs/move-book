@@ -36,11 +36,11 @@ let publisher = package::test_claim(USE_PUBLISHER {}, ctx);
 // ANCHOR: use_publisher
 // Checks if the type is from the same module, hence the `Publisher` has the
 // authority over it.
-assert!(publisher.from_module<Book>(), 0);
+assert!(publisher.from_module<Book>());
 
 // Checks if the type is from the same package, hence the `Publisher` has the
 // authority over it.
-assert!(publisher.from_package<Book>(), 0);
+assert!(publisher.from_package<Book>());
 // ANCHOR_END: use_publisher
 sui::test_utils::destroy(publisher);
 }

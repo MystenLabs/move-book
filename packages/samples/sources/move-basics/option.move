@@ -31,15 +31,15 @@ public fun register(
 let mut opt = option::some(b"Alice");
 
 // `option.is_some()` returns true if option contains a value.
-assert!(opt.is_some(), 1);
+assert!(opt.is_some());
 
 // internal value can be `borrow`ed and `borrow_mut`ed.
-assert!(opt.borrow() == &b"Alice", 0);
+assert!(opt.borrow() == &b"Alice");
 
 // `option.extract` takes the value out of the option, leaving the option empty.
 let inner = opt.extract();
 
 // `option.is_none()` returns true if option is None.
-assert!(opt.is_none(), 2);
+assert!(opt.is_none());
 // ANCHOR_END: usage
 }

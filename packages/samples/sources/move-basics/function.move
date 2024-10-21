@@ -15,7 +15,7 @@ public fun add(a: u64, b: u64): u64 {
 #[test]
 fun test_add() {
     let sum = add(1, 2);
-    assert!(sum == 3, 0);
+    assert!(sum == 3);
 }
 // ANCHOR_END: math
 
@@ -36,8 +36,8 @@ fun get_name_and_age(): (vector<u8>, u8) {
 // Tuple must be destructured to access its elements.
 // Name and age are declared as immutable variables.
 let (name, age) = get_name_and_age();
-assert!(name == b"John", 0);
-assert!(age == 25, 0);
+assert!(name == b"John");
+assert!(age == 25);
 // ANCHOR_END: tuple_return_imm
 
 // ANCHOR: tuple_return_mut

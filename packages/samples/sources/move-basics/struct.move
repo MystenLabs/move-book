@@ -41,13 +41,13 @@ let mut artist = Artist {
 let artist_name = artist.name;
 
 // Access a field of the `Artist` struct.
-assert!(artist.name == string::utf8(b"The Beatles"), 0);
+assert!(artist.name == b"The Beatles".to_string());
 
 // Mutate the `name` field of the `Artist` struct.
-artist.name = string::utf8(b"Led Zeppelin");
+artist.name = b"Led Zeppelin".to_string();
 
 // Check that the `name` field has been mutated.
-assert!(artist.name == string::utf8(b"Led Zeppelin"), 1);
+assert!(artist.name == b"Led Zeppelin".to_string());
 // ANCHOR_END: access
 
 // ANCHOR: unpack

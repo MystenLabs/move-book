@@ -16,7 +16,7 @@ public struct Item {}
 
 /// Purchase an item from the shop.
 public fun purchase(coin: Coin<SUI>): Item {
-    assert!(coin.value() == ITEM_PRICE, 0);
+    assert!(coin.value() == ITEM_PRICE);
 
     transfer::public_transfer(coin, SHOP_OWNER);
 

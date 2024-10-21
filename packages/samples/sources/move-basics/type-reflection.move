@@ -32,6 +32,6 @@ fun test_type_reflection() {
     let (type_name, module_name, _address_str) = do_i_know_you<MyType>();
 
     //
-    assert!(module_name == b"type_reflection".to_ascii_string(), 1);
+    assert!(module_name == b"type_reflection".to_ascii_string());
 }
 // ANCHOR_END: main

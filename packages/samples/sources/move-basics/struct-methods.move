@@ -31,7 +31,7 @@ fun test_methods() {
     let mut hero = new();
     hero.heal_spell();
 
-    assert!(hero.health() == 110, 1);
-    assert!(hero.mana() == 90, 2);
+    assert!(hero.health() == 110);
+    assert!(hero.mana() == 90);
 }
 // ANCHOR_END: hero
