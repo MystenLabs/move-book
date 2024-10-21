@@ -2142,7 +2142,7 @@ contexts.</p>
 <h2 id="restrictions-1"><a class="header" href="#restrictions-1">Restrictions</a></h2>
 <p>To clarify program behavior, you may only use <code>break</code> and <code>continue</code> with loop labels, while
 <code>return</code> will only work with block labels. To this end, the following programs produce errors:</p>
-<pre><code>fun bad_loop() {
+<pre><code class="language-move">fun bad_loop() {
     'name: loop {
         return 'name 5
             // ^^^^^ Invalid usage of 'return' with a loop block label
