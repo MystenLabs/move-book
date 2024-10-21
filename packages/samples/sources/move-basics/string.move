@@ -59,11 +59,11 @@ let hello = b"Hello".to_string();
 // this is a valid UTF-8 string
 let hello = b"Hello".try_to_string();
 
-assert!(hello.is_some(), 0); // abort if the value is not valid UTF-8
+assert!(hello.is_some()); // abort if the value is not valid UTF-8
 
 // this is not a valid UTF-8 string
 let invalid = b"\xFF".try_to_string();
 
-assert!(invalid.is_none(), 0); // abort if the value is valid UTF-8
+assert!(invalid.is_none()); // abort if the value is valid UTF-8
 // ANCHOR_END: safe_utf8
 }

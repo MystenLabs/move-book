@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 #[allow(unused_variable)]
-module book::expression {
+module book::expression;
 
 #[test]
 fun expression_examples() {
@@ -81,7 +81,4 @@ while (bool_expr) { expr; };
 // loop is an expression, but returns `()` as well.
 loop { expr; break };
 // ANCHOR_END: control_flow
-
-
-}
 }

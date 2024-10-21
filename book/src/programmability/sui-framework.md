@@ -47,9 +47,12 @@ still part of the same framework._
 
 <div class="modules-table">
 
-| Module                                                                                   | Description                                                                 | Chapter                                         |
-| ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ----------------------------------------------- |
-| [sui::bcs](https://docs.sui.io/references/framework/sui-framework/bcs)                   | Implements the BCS encoding and decoding functions                          | [Binary Canonical Serialization](./bcs.md)     |
+| Module                                                                       | Description                                                | Chapter                                    |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------ |
+| [sui::bcs](https://docs.sui.io/references/framework/sui-framework/bcs)       | Implements the BCS encoding and decoding functions         | [Binary Canonical Serialization](./bcs.md) |
+| [sui::borrow](https://docs.sui.io/references/framework/sui-framework/borrow) | Implements the borrowing mechanic for borrowing by _value_ | [Hot Potato](./hot-potato-pattern.md)      |
+| [sui::hex](https://docs.sui.io/references/framework/sui-framework/hex)       | Implements the hex encoding and decoding functions         | -                                          |
+| [sui::types](https://docs.sui.io/references/framework/sui-framework/types)   | Provides a way to check if the type is a One-Time-Witness  | [One Time Witness](./one-time-witness.md)  |
 
 ## Exported Addresses
 
@@ -100,11 +103,12 @@ Commerce:
 - sui::transfer_policy
 
 
-- sui::bcs
-- sui::hex
-- sui::math
-- sui::types
-- sui::borrow
+Utilities:
++ sui::bcs
++ sui::hex
+- sui::math (deprecated)
++ sui::types
++ sui::borrow
 
 
 - sui::authenticator

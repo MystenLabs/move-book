@@ -74,8 +74,8 @@ fun test_swap_type_params() {
     let Pair { first: pf1, second: ps1 } = pair1; // first1: u8, second1: bool
     let Pair { first: pf2, second: ps2 } = pair2; // first2: bool, second2: u8
 
-    assert!(pf1 == ps2, 0x0); // 10 == 10
-    assert!(ps1 == pf2, 0x0); // true == true
+    assert!(pf1 == ps2); // 10 == 10
+    assert!(ps1 == pf2); // true == true
 }
 // ANCHOR_END: test_pair_swap
 

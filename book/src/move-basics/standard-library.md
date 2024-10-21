@@ -32,6 +32,29 @@ and which module implements it.
 
 </div>
 
+## Integer Modules
+
+The Move Standard Library provides a set of functions associated with integer types. These functions
+are split into multiple modules, each associated with a specific integer type. The modules should
+not be imported directly, but their functions are available on every integer value.
+
+> All of the modules provide the same set of functions. Namely, `max`, `diff`,
+> `divide_and_round_up`, `sqrt` and `pow`.
+
+<!-- Custom CSS addition in the theme/custom.css  -->
+<div class="modules-table">
+
+| Module                                                                 | Description                   |
+| ---------------------------------------------------------------------- | ----------------------------- |
+| [std::u8](https://docs.sui.io/references/framework/move-stdlib/u8)     | Functions for the `u8` type   |
+| [std::16](https://docs.sui.io/references/framework/move-stdlib/u64)    | Functions for the `u16` type  |
+| [std::u32](https://docs.sui.io/references/framework/move-stdlib/u64)   | Functions for the `u32` type  |
+| [std::u64](https://docs.sui.io/references/framework/move-stdlib/u64)   | Functions for the `u64` type  |
+| [std::u128](https://docs.sui.io/references/framework/move-stdlib/u128) | Functions for the `u128` type |
+| [std::u256](https://docs.sui.io/references/framework/move-stdlib/u256) | Functions for the `u256` type |
+
+</div>
+
 ## Exported Addresses
 
 Standard Library exports one named address - `std = 0x1`.

@@ -36,9 +36,9 @@ public fun villain_health(villain: &Villain): u8 { villain.health }
 // Test the methods of the `Hero` and `Villain` structs.
 fun test_associated_methods() {
     let hero = new_hero();
-    assert!(hero.health() == 100, 1);
+    assert!(hero.health() == 100);
 
     let villain = new_villain();
-    assert!(villain.health() == 100, 3);
+    assert!(villain.health() == 100);
 }
 // ANCHOR_END: hero_and_villain

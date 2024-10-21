@@ -36,7 +36,7 @@ module book::coffee_machine {
     /// Put the cup back. This is a fast path operation.
     public fun put_back(cup: Cup) {
         let Cup { id, has_coffee: _ } = cup;
-        object::delete(id);
+        id.delete();
     }
 }
 // ANCHOR_END: main

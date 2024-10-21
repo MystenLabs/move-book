@@ -105,12 +105,13 @@ will cover in the next section.
 
 The pattern is used in various forms in the Sui Framework. Here are some examples:
 
-- `sui::borrow` - uses hot potato to ensure that the borrowed value is returned to the correct
-  container.
-- `sui::transfer_policy` - defines a `TransferRequest` - a hot potato which can only be consumed if
-  all conditions are met.
-- `sui::token` - in the Closed Loop Token system, an `ActionRequest` carries the information about
-  the performed action and collects approvals similarly to `TransferRequest`.
+- [sui::borrow](https://docs.sui.io/references/framework/sui-framework/borrow) - uses hot potato to
+  ensure that the borrowed value is returned to the correct container.
+- [sui::transfer_policy](https://docs.sui.io/references/framework/sui-framework/transfer_policy) -
+  defines a `TransferRequest` - a hot potato which can only be consumed if all conditions are met.
+- [sui::token](https://docs.sui.io/references/framework/sui-framework/token) - in the Closed Loop
+  Token system, an `ActionRequest` carries the information about the performed action and collects
+  approvals similarly to `TransferRequest`.
 
 ## Summary
 

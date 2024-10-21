@@ -4,8 +4,6 @@ Option is a type that represents an optional value which may or may not exist. T
 in Move is borrowed from Rust, and it is a very useful primitive in Move. `Option` is defined in the
 [Standard Library](./standard-library.md), and is defined as follows:
 
-File: move-stdlib/source/option.move
-
 ```move
 // File: move-stdlib/source/option.move
 /// Abstraction of a value that may or may not be present.
