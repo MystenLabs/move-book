@@ -12,21 +12,21 @@ functions are regular functions, but they must take no arguments and have no ret
 are excluded from the bytecode, and are never published.
 
 ```move
-module book::testing {
-    // Test attribute is placed before the `fun` keyword. Can be both above or
-    // right before the `fun` keyword: `#[test] fun my_test() { ... }`
-    // The name of the test would be `book::testing::simple_test`.
-    #[test]
-    fun simple_test() {
-        let sum = 2 + 2;
-        assert!(sum == 4, 1);
-    }
+module book::testing;
 
-    // The name of the test would be `book::testing::more_advanced_test`.
-    #[test] fun more_advanced_test() {
-        let sum = 2 + 2 + 2;
-        assert!(sum == 4, 1);
-    }
+// Test attribute is placed before the `fun` keyword. Can be both above or
+// right before the `fun` keyword: `#[test] fun my_test() { ... }`
+// The name of the test would be `book::testing::simple_test`.
+#[test]
+fun simple_test() {
+    let sum = 2 + 2;
+    assert!(sum == 4);
+}
+
+// The name of the test would be `book::testing::more_advanced_test`.
+#[test] fun more_advanced_test() {
+    let sum = 2 + 2 + 2;
+    assert!(sum == 4);
 }
 ```
 
@@ -60,21 +60,20 @@ fails. If the test fails with a different abort code, the test will fail. If the
 abort, the test will also fail.
 
 ```move
-module book::testing_failure {
+module book::testing_failure;
 
-    const EInvalidArgument: u64 = 1;
+const EInvalidArgument: u64 = 1;
 
-    #[test]
-    #[expected_failure(abort_code = 0)]
-    fun test_fail() {
-        abort 0 // aborts with 0
-    }
+#[test]
+#[expected_failure(abort_code = 0)]
+fun test_fail() {
+    abort 0 // aborts with 0
+}
 
-    // attributes can be grouped together
-    #[test, expected_failure(abort_code = EInvalidArgument)]
-    fun test_fail_1() {
-        abort 1 // aborts with 1
-    }
+// attributes can be grouped together
+#[test, expected_failure(abort_code = EInvalidArgument)]
+fun test_fail_1() {
+    abort 1 // aborts with 1
 }
 ```
 
@@ -89,29 +88,29 @@ important to remember that these functions should not be included in the final p
 where the `#[test_only]` attribute comes in handy.
 
 ```move
-module book::testing {
-    // Public function which uses the `secret` function.
-    public fun multiply_by_secret(x: u64): u64 {
-        x * secret()
-    }
+module book::testing;
 
-    /// Private function which is not available to the public.
-    fun secret(): u64 { 100 }
+// Public function which uses the `secret` function.
+public fun multiply_by_secret(x: u64): u64 {
+    x * secret()
+}
 
-    #[test_only]
-    /// This function is only available for testing purposes in tests and other
-    /// test-only functions. Mind the visibility - for `#[test_only]` it is
-    /// common to use `public` visibility.
-    public fun secret_for_testing(): u64 {
-        secret()
-    }
+/// Private function which is not available to the public.
+fun secret(): u64 { 100 }
 
-    #[test]
-    // In the test environment we have access to the `secret_for_testing` function.
-    fun test_multiply_by_secret() {
-        let expected = secret_for_testing() * 2;
-        assert!(multiply_by_secret(2) == expected, 1);
-    }
+#[test_only]
+/// This function is only available for testing purposes in tests and other
+/// test-only functions. Mind the visibility - for `#[test_only]` it is
+/// common to use `public` visibility.
+public fun secret_for_testing(): u64 {
+    secret()
+}
+
+#[test]
+// In the test environment we have access to the `secret_for_testing` function.
+fun test_multiply_by_secret() {
+    let expected = secret_for_testing() * 2;
+    assert!(multiply_by_secret(2) == expected);
 }
 ```
 

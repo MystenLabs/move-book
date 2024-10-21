@@ -7,7 +7,7 @@ the `fun` keyword at the module level. Just like any other module member, by def
 and can only be accessed from within the module.
 
 ```move
-{{#include ../../../packages/samples/sources/move-basics/function.move:math}}
+{{#include ../../../packages/samples/sources/move-basics/function_math.move:math}}
 ```
 
 In this example, we define a function `add` that takes two arguments of type `u64` and returns their
@@ -38,7 +38,7 @@ function called `add` in the `math` module in the `book` package, the path to it
 `book::math::add`, or, if the module is imported, `math::add`.
 
 ```move
-{{#include ../../../packages/samples/sources/move-basics/function.move:use_math}}
+{{#include ../../../packages/samples/sources/move-basics/function_use.move:use_math}}
 ```
 
 ## Multiple return values

@@ -41,7 +41,7 @@ with `hero_` and `villain_` respectively. However, we can create aliases for the
 they can be called on the instances of the structs without the prefix.
 
 ```move
-{{#include ../../../packages/samples/sources/move-basics/struct-methods.move:hero_and_villain}}
+{{#include ../../../packages/samples/sources/move-basics/struct-methods-2.move:hero_and_villain}}
 ```
 
 As you can see, in the test function, we called the `health` method on the instances of `Hero` and
@@ -57,7 +57,7 @@ associate it with the `Hero` struct. It will allow serializing the `Hero` struct
 bytes.
 
 ```move
-{{#include ../../../packages/samples/sources/move-basics/struct-methods.move:hero_to_bytes}}
+{{#include ../../../packages/samples/sources/move-basics/struct-methods-3.move:hero_to_bytes}}
 ```
 
 ## Further reading
