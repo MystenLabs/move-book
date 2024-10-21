@@ -19,14 +19,14 @@ to create a `Instance<T>` instance.
 > the [Drop](./../move-basics/drop-ability.md) ability for the type.
 
 ```move
-module book::witness {
-    /// A struct that requires a witness to be created.
-    public struct Instance<T> { t: T }
+module book::witness;
 
-    /// Create a new instance of `Instance<T>` with the provided T.
-    public fun new<T>(witness: T): Instance<T> {
-        Instance { t: witness }
-    }
+/// A struct that requires a witness to be created.
+public struct Instance<T> { t: T }
+
+/// Create a new instance of `Instance<T>` with the provided T.
+public fun new<T>(witness: T): Instance<T> {
+    Instance { t: witness }
 }
 ```
 
@@ -35,16 +35,16 @@ type `T`. This is a basic example of the witness pattern in Move. A module provi
 has a matching implementation, like the module `book::witness_source` below:
 
 ```move
-module book::witness_source {
-    use book::witness::{Self, Instance};
+module book::witness_source;
 
-    /// A struct used as a witness.
-    public struct W {}
+use book::witness::{Self, Instance};
 
-    /// Create a new instance of `Instance<W>`.
-    public fun new_instance(): Instance<W> {
-        witness::new(W {})
-    }
+/// A struct used as a witness.
+public struct W {}
+
+/// Create a new instance of `Instance<W>`.
+public fun new_instance(): Instance<W> {
+    witness::new(W {})
 }
 ```
 

@@ -26,7 +26,7 @@ A very common practice is to create a single `AdminCap` object on package publis
 application can have a setup phase where the admin account prepares the state of the application.
 
 ```move
-{{#include ../../../packages/samples/sources/programmability/capability.move:admin_cap}}
+{{#include ../../../packages/samples/sources/programmability/capability-2.move:admin_cap}}
 ```
 
 ## Address check vs Capability
@@ -40,13 +40,13 @@ Let's look at how the `new` function that creates a user would look like if it w
 check:
 
 ```move
-{{#include ../../../packages/samples/sources/programmability/capability.move:with_address}}
+{{#include ../../../packages/samples/sources/programmability/capability-3.move:with_address}}
 ```
 
 And now, let's see how the same function would look like with the capability:
 
 ```move
-{{#include ../../../packages/samples/sources/programmability/capability.move:with_capability}}
+{{#include ../../../packages/samples/sources/programmability/capability-4.move:with_capability}}
 ```
 
 Using capabilities has several advantages over the address check:

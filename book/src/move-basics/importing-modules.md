@@ -38,7 +38,7 @@ Another module defined in the same package can import the first module using the
 
 ```move
 // File: sources/module_two.move
-{{#include ../../../packages/samples/sources/move-basics/importing-modules.move:module_two}}
+{{#include ../../../packages/samples/sources/move-basics/importing-modules-two.move:module_two}}
 ```
 
 ## Importing Members
@@ -48,7 +48,7 @@ function or a single type from a module. The syntax is the same as for importing
 add the member name after the module path.
 
 ```move
-{{#include ../../../packages/samples/sources/move-basics/importing-modules.move:members}}
+{{#include ../../../packages/samples/sources/move-basics/importing-modules-members.move:members}}
 ```
 
 ## Grouping Imports
@@ -58,7 +58,7 @@ when you need to import multiple members from the same module. Move allows group
 same module and from the same package.
 
 ```move
-{{#include ../../../packages/samples/sources/move-basics/importing-modules.move:grouped}}
+{{#include ../../../packages/samples/sources/move-basics/importing-modules-grouped.move:grouped}}
 ```
 
 Single function imports are less common in Move, since the function names can overlap and cause
@@ -69,7 +69,7 @@ To import members and the module itself in the group import, you can use the `Se
 `Self` keyword refers to the module itself and can be used to import the module and its members.
 
 ```move
-{{#include ../../../packages/samples/sources/move-basics/importing-modules.move:self}}
+{{#include ../../../packages/samples/sources/move-basics/importing-modules-self.move:self}}
 ```
 
 ## Resolving Name Conflicts
@@ -81,7 +81,7 @@ in different packages. To resolve the conflict and avoid ambiguity, Move offers 
 rename the imported member.
 
 ```move
-{{#include ../../../packages/samples/sources/move-basics/importing-modules.move:conflict}}
+{{#include ../../../packages/samples/sources/move-basics/importing-modules-conflict-resolution.move:conflict}}
 ```
 
 ## Adding an External Dependency
@@ -116,5 +116,5 @@ To import a module from another package, you use the `use` keyword followed by t
 module path consists of the package address (or alias) and the module name separated by `::`.
 
 ```move
-{{#include ../../../packages/samples/sources/move-basics/importing-modules.move:external}}
+{{#include ../../../packages/samples/sources/move-basics/importing-modules-external.move:external}}
 ```

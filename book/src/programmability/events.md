@@ -11,16 +11,16 @@ on-chain. Events are emitted by the `sui::event` module located in the
 
 ```move
 // File: sui-framework/sources/event.move
-module sui::event {
-    /// Emit a custom Move event, sending the data offchain.
-    ///
-    /// Used for creating custom indexes and tracking onchain
-    /// activity in a way that suits a specific application the most.
-    ///
-    /// The type `T` is the main way to index the event, and can contain
-    /// phantom parameters, eg `emit(MyEvent<phantom T>)`.
-    public native fun emit<T: copy + drop>(event: T);
-}
+module sui::event;
+
+/// Emit a custom Move event, sending the data offchain.
+///
+/// Used for creating custom indexes and tracking onchain
+/// activity in a way that suits a specific application the most.
+///
+/// The type `T` is the main way to index the event, and can contain
+/// phantom parameters, eg `emit(MyEvent<phantom T>)`.
+public native fun emit<T: copy + drop>(event: T);
 ```
 
 ## Emitting Events

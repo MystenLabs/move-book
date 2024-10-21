@@ -23,7 +23,7 @@ does not allow duplicate items. This makes it useful for storing a collection of
 as a list of unique IDs or addresses.
 
 ```move
-{{#include ../../../packages/samples/sources/programmability/collections.move:vec_set}}
+{{#include ../../../packages/samples/sources/programmability/collections-2.move:vec_set}}
 ```
 
 VecSet will fail on attempt to insert an item that already exists in the set.
@@ -40,7 +40,7 @@ to insert a key-value pair with a key that already exists in the map, the old va
 with the new value.
 
 ```move
-{{#include ../../../packages/samples/sources/programmability/collections.move:vec_map}}
+{{#include ../../../packages/samples/sources/programmability/collections-3.move:vec_map}}
 ```
 
 ## Limitations
@@ -59,7 +59,7 @@ results.
 > 'sui::vec_set::VecSet' may yield unexpected result_
 
 ```move
-{{#include ../../../packages/samples/sources/programmability/collections.move:vec_set_comparison}}
+{{#include ../../../packages/samples/sources/programmability/collections-4.move:vec_set_comparison}}
 ```
 
 In the example above, the comparison will fail because the order of insertion is not guaranteed, and

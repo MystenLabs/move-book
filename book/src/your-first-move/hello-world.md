@@ -83,9 +83,7 @@ _hello_world.move_ and the Move CLI has already placed commented out code inside
 ```move
 /*
 /// Module: hello_world
-module hello_world::hello_world {
-
-}
+module hello_world::hello_world;
 */
 ```
 
@@ -116,21 +114,20 @@ The _hello_world_tests.move_ file contains a commented out test module template:
 ```move
 /*
 #[test_only]
-module hello_world::hello_world_tests {
-    // uncomment this line to import the module
-    // use hello_world::hello_world;
+module hello_world::hello_world_tests;
+// uncomment this line to import the module
+// use hello_world::hello_world;
 
-    const ENotImplemented: u64 = 0;
+const ENotImplemented: u64 = 0;
 
-    #[test]
-    fun test_hello_world() {
-        // pass
-    }
+#[test]
+fun test_hello_world() {
+    // pass
+}
 
-    #[test, expected_failure(abort_code = hello_world::hello_world_tests::ENotImplemented)]
-    fun test_hello_world_fail() {
-        abort ENotImplemented
-    }
+#[test, expected_failure(abort_code = hello_world::hello_world_tests::ENotImplemented)]
+fun test_hello_world_fail() {
+    abort ENotImplemented
 }
 */
 ```
@@ -154,14 +151,14 @@ with the following:
 ```move
 /// The module `hello_world` under named address `hello_world`.
 /// The named address is set in the `Move.toml`.
-module hello_world::hello_world {
-    // Imports the `String` type from the Standard Library
-    use std::string::String;
+module hello_world::hello_world;
 
-    /// Returns the "Hello, World!" as a `String`.
-    public fun hello_world(): String {
-        b"Hello, World!".to_string()
-    }
+// Imports the `String` type from the Standard Library
+use std::string::String;
+
+/// Returns the "Hello, World!" as a `String`.
+public fun hello_world(): String {
+    b"Hello, World!".to_string()
 }
 ```
 
@@ -203,13 +200,13 @@ Replace the contents of the `tests/hello_world_tests.move` with the following co
 
 ```move
 #[test_only]
-module hello_world::hello_world_tests {
-    use hello_world::hello_world;
+module hello_world::hello_world_tests;
 
-    #[test]
-    fun test_hello_world() {
-        assert!(hello_world::hello_world() == b"Hello, World!".to_string(), 0);
-    }
+use hello_world::hello_world;
+
+#[test]
+fun test_hello_world() {
+    assert!(hello_world::hello_world() == b"Hello, World!".to_string(), 0);
 }
 ```
 

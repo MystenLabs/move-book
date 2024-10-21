@@ -42,7 +42,6 @@ module book::metro_pass {
 {{#include ../../../packages/samples/sources/move-basics/references.move:header}}
 
 {{#include ../../../packages/samples/sources/move-basics/references.move:new}}
-}
 ```
 
 <!-- In [the previous section](./ownership-and-scope.md) we explained the ownership and scope in Move. We showed how the value is *moved* to a new scope, and how it changes the owner. In this section, we will explain how to *borrow* a reference to a value to avoid moving it, and how Move's *borrow checker* ensures that the references are used correctly. -->

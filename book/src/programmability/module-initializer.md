@@ -16,7 +16,7 @@ function will automatically be called when the module is published.
 In the same package, another module can have its own `init` function, encapsulating distinct logic.
 
 ```move
-{{#include ../../../packages/samples/sources/programmability/module-initializer.move:other}}
+{{#include ../../../packages/samples/sources/programmability/module-initializer-2.move:other}}
 ```
 
 ## `init` features
