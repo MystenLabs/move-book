@@ -54,4 +54,4 @@ All of the types defined in the standard library have the `copy` ability as well
 
 ## Further reading
 
-- [Type Abilities](/reference/type-abilities.html) in the Move Reference.
+- [Type Abilities](/reference/abilities.html) in the Move Reference.

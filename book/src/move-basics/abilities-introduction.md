@@ -54,8 +54,8 @@ A struct without abilities cannot be discarded, or copied, or stored in the stor
 struct a _Hot Potato_. It is a joke, but it is also a good way to remember that a struct without
 abilities is like a hot potato - it can only be passed around and requires special handling. Hot
 Potato is one of the most powerful patterns in Move, we go in detail about it in the
-[Hot Potato](./../programmability/hot-potato.md) chapter.
+[Hot Potato](./../programmability/hot-potato-pattern.md) chapter.
 
 ## Further reading
 
-- [Type Abilities](/reference/type-abilities.html) in the Move Reference.
+- [Type Abilities](/reference/abilities.html) in the Move Reference.

@@ -56,7 +56,7 @@ properly handled and not ignored.
 
 A struct with a single `drop` ability is called a _Witness_. We explain the concept of a _Witness_
 in the
-[Witness and Abstract Implementation](./../programmability/witness-and-abstract-implementation.md)
+[Witness and Abstract Implementation](./../programmability/witness-pattern.md)
 section.
 
 ## Types with the `drop` Ability
@@ -76,4 +76,4 @@ All of the types defined in the standard library have the `drop` ability as well
 
 ## Further reading
 
-- [Type Abilities](/reference/type-abilities.html) in the Move Reference.
+- [Type Abilities](/reference/abilities.html) in the Move Reference.
