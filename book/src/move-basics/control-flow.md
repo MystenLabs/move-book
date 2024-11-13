@@ -27,7 +27,7 @@ control flow statements (explained in detail below):
   code
 - [`loop` and `while` loops](#repeating-statements-with-loops) - repeating a block of code
 - [`break` and `continue` statements](#exiting-a-loop-early) - exiting a loop early
-- [`return`](#return) statement - exiting a function early
+- [`return`](#early-return) statement - exiting a function early
 
 ## Conditional Statements
 
