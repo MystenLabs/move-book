@@ -25,7 +25,7 @@ with underscores between words. Modules names must be unique in the package.
 Usually, a single file in the `sources/` folder contains a single module. The file name should match
 the module name - for example, a `donut_shop` module should be stored in the `donut_shop.move` file.
 You can read more about coding conventions in the
-[Coding Conventions](../special-topics/coding-conventions.md) section.
+[Coding Conventions](../guides/coding-conventions.md) section.
 
 > If you need to declare more than one module in a file, you must use [Module Block](#module-block).
 
