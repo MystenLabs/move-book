@@ -3,10 +3,10 @@
 Clever errors are a feature that allows for more informative error messages when an assertion fails
 or an abort is raised. They are a source feature and compile to a `u64` abort code value that
 contains the information needed to access the line number, constant name, and constant value given
-the clever error code and the module that the clever error constant was declared in. Because of
-this, post-processing is required to go from the `u64` abort code value to a human-readable error
-message. This post-processing is automatically performed by the Sui GraphQL server, as well as the
-Sui CLI. If you want to manually decode a clever abort code, you can use the process outlined in
+the clever error code and the module that the clever error constant was declared in. Because of this
+compilation, post-processing is required to go from the `u64` abort code value to a human-readable
+error message. The post-processing is automatically performed by the Sui GraphQL server, as well as
+the Sui CLI. If you want to manually decode a clever abort code, you can use the process outlined in
 [Inflating Clever Abort Codes](#inflating-clever-abort-codes) to do so.
 
 > Clever errors include source line information amongst other data. Because of this their value may
@@ -49,13 +49,13 @@ In this example, the `EIsThree` constant is a `vector<u8>`, which is not a `u64`
 In hex, if `double_except_three(3)` is called, it will abort with a `u64` abort code as follows:
 
 ```
-0x8000_7000_1000_0000
-  ^    ^    ^    ^
-  |    |    |    |
-  |    |    |    |
-  |    |    |    +-- Constant value index = 0 (b"The value is three")
-  |    |    +-- Constant name index = 1 (EIsThree)
-  |    +-- Line number = 7 (line of the assertion)
+0x8000_0007_0001_0000
+  ^       ^    ^    ^
+  |       |    |    |
+  |       |    |    |
+  |       |    |    +-- Constant value index = 0 (b"The value is three")
+  |       |    +-- Constant name index = 1 (EIsThree)
+  |       +-- Line number = 7 (line of the assertion)
   +-- Tag bit = 0b1000_0000_0000_0000
 ```
 
@@ -74,9 +74,9 @@ above is present in the `u64` abort code when coupled with the module where the 
 
 ## Assertions with no Abort Codes
 
-Assertions, and `abort` statements without an abort code will automatically derive an abort code
-from the source line number and will be encoded in the clever error format with the constant name
-and constant value information will be filled with sentinel values of `0xffff` each. E.g.,
+Assertions and `abort` statements without an abort code will automatically derive an abort code from
+the source line number and will be encoded in the clever error format with the constant name and
+constant value information will be filled with sentinel values of `0xffff` each. E.g.,
 
 ```move
 module 0x42::a_module;
@@ -104,13 +104,13 @@ Both of these will produce a `u64` abort code value that holds:
 In hex, if `assert_false(3)` is called, it will abort with a `u64` abort code as follows:
 
 ```
-0x8000_4000_ffff_ffff
-  ^    ^    ^    ^
-  |    |    |    |
-  |    |    |    |
-  |    |    |    +-- Constant value index = 0xffff (sentinel value)
-  |    |    +-- Constant name index = 0xffff (sentinel value)
-  |    +-- Line number = 4 (linke of the assertion)
+0x8000_0004_ffff_ffff
+  ^       ^    ^    ^
+  |       |    |    |
+  |       |    |    |
+  |       |    |    +-- Constant value index = 0xffff (sentinel value)
+  |       |    +-- Constant name index = 0xffff (sentinel value)
+  |       +-- Line number = 4 (linke of the assertion)
   +-- Tag bit = 0b1000_0000_0000_0000
 ```
 
@@ -123,47 +123,51 @@ quite useful when writing macros as it provides a way for users to use macros th
 conditions and still get useful error messages.
 
 ```move
-module 0x42::macro_exporter {
-    public macro fun assert_false() {
-        assert!(false);
-    }
+module 0x42::macro_exporter;
 
-    public macro fun abort_always() {
-        abort
-    }
-
-    public fun assert_false_fun() {
-        assert!(false); // Will always abort with the line number of this invocation
-    }
-
-    public fun abort_always_fun() {
-        abort // Will always abort with the line number of this invocation
-    }
+public macro fun assert_false() {
+    assert!(false);
 }
 
-module 0x42::user_module {
-    use 0x42::macro_exporter::{
-        assert_false,
-        abort_always,
-        assert_false_fun,
-        abort_always_fun
-    };
+public macro fun abort_always() {
+    abort
+}
 
-    fun invoke_assert_false() {
-        assert_false!(); // Will abort with the line number of this invocation
-    }
+public fun assert_false_fun() {
+    assert!(false); // Will always abort with the line number of this invocation
+}
 
-    fun invoke_abort_always() {
-        abort_always!(); // Will abort with the line number of this invocation
-    }
+public fun abort_always_fun() {
+    abort // Will always abort with the line number of this invocation
+}
+```
 
-    fun invoke_assert_false_fun() {
-        assert_false_fun(); // Will abort with the line number of the assertion in `assert_false_fun`
-    }
+Then in a module that uses these macros:
 
-    fun invoke_abort_always_fun() {
-        abort_always_fun(); // Will abort with the line number of the `abort` in `abort_always_fun`
-    }
+```move
+module 0x42::user_module;
+
+use 0x42::macro_exporter::{
+    assert_false,
+    abort_always,
+    assert_false_fun,
+    abort_always_fun
+};
+
+fun invoke_assert_false() {
+    assert_false!(); // Will abort with the line number of this invocation
+}
+
+fun invoke_abort_always() {
+    abort_always!(); // Will abort with the line number of this invocation
+}
+
+fun invoke_assert_false_fun() {
+    assert_false_fun(); // Will abort with the line number of the assertion in `assert_false_fun`
+}
+
+fun invoke_abort_always_fun() {
+    abort_always_fun(); // Will abort with the line number of the `abort` in `abort_always_fun`
 }
 ```
 
@@ -215,13 +219,13 @@ if is_clever_abort {
 
     // Print the constant name (if any)
     if identifier_index != 0xffff {
-        let constant_name = get_identifier_at_table_index(module, identifier_index);
+        let constant_name = module.get_identifier_at_table_index(identifier_index);
         print!(", '{}'", constant_name);
     }
 
     // Print the constant value (if any)
     if constant_index != 0xffff {
-        let constant_value = get_constant_at_table_index(module, constant_index).deserialize_on_constant_type().to_string();
+        let constant_value = module.get_constant_at_table_index(constant_index).deserialize_on_constant_type().to_string();
         print!(": {}", constant_value);
     }
 
