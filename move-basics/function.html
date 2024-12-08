@@ -189,7 +189,20 @@
 code into reusable units. Functions can take arguments and return a value. They are declared with
 the <code>fun</code> keyword at the module level. Just like any other module member, by default they're private
 and can only be accessed from within the module.</p>
-<pre><code class="language-move">{{#include ../../../packages/samples/sources/move-basics/function_math.move:math}}
+<pre><code class="language-move">module book::math;
+
+/// Function takes two arguments of type `u64` and returns their sum.
+/// The `public` visibility modifier makes the function accessible from
+/// outside the module.
+public fun add(a: u64, b: u64): u64 {
+    a + b
+}
+
+#[test]
+fun test_add() {
+    let sum = add(1, 2);
+    assert!(sum == 3);
+}
 </code></pre>
 <p>In this example, we define a function <code>add</code> that takes two arguments of type <code>u64</code> and returns their
 sum. The function is called from the <code>test_add</code> function, which is a test function located in the
