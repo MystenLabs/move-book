@@ -27,6 +27,12 @@ features. Whatever IDE you choose, you'll need to use the terminal to run the
 - [move-mode](https://github.com/amnn/move-mode) is a Move mode for Emacs by
   [Ashok Menon](https://github.com/amnn).
 
+## Neovim/Vim
+
+- [Neovim](https://neovim.io/) and [Vim](https://www.vim.org/) are free and open source text editors.
+- [move.vim](https://github.com/yanganto/move.vim) is a Move syntax for Neovim/Vim by
+  [Antonio Yang](https://github.com/yanganto).
+
 ## Github Codespaces
 
 The Web-based IDE from Github can be run right in the browser and provides almost a full-featured
