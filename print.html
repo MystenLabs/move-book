@@ -1544,7 +1544,7 @@ with underscores between words. Modules names must be unique in the package.</p>
 <p>Usually, a single file in the <code>sources/</code> folder contains a single module. The file name should match
 the module name - for example, a <code>donut_shop</code> module should be stored in the <code>donut_shop.move</code> file.
 You can read more about coding conventions in the
-<a href="move-basics/../special-topics/coding-conventions.html">Coding Conventions</a> section.</p>
+<a href="move-basics/../guides/coding-conventions.html">Coding Conventions</a> section.</p>
 <blockquote>
 <p>If you need to declare more than one module in a file, you must use <a href="move-basics/module.html#module-block">Module Block</a>.</p>
 </blockquote>
@@ -1891,8 +1891,8 @@ the following literals:</p>
 <pre><code class="language-move">let b = true;     // true is a literal
 let n = 1000;     // 1000 is a literal
 let h = 0x0A;     // 0x0A is a literal
-let v = b&quot;hello&quot;; // b'hello' is a byte vector literal
-let x = x&quot;0A&quot;;    // x'0A' is a byte vector literal
+let v = b&quot;hello&quot;; // b&quot;hello&quot; is a byte vector literal
+let x = x&quot;0A&quot;;    // x&quot;0A&quot; is a byte vector literal
 let c = vector[1, 2, 3]; // vector[] is a vector literal
 </code></pre>
 <h2 id="operators"><a class="header" href="#operators">Operators</a></h2>
@@ -2112,7 +2112,7 @@ Potato is one of the most powerful patterns in Move, we go in detail about it in
 <a href="move-basics/./../programmability/hot-potato-pattern.html">Hot Potato Pattern</a> chapter.</p>
 <h2 id="further-reading-8"><a class="header" href="#further-reading-8">Further reading</a></h2>
 <ul>
-<li><a href="move-basics//reference/type-abilities.html">Type Abilities</a> in the Move Reference.</li>
+<li><a href="move-basics//reference/abilities.html">Type Abilities</a> in the Move Reference.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="abilities-drop"><a class="header" href="#abilities-drop">Abilities: Drop</a></h1>
 <!-- TODO: reiterate, given that we introduce abilities one by one -->
@@ -2184,7 +2184,7 @@ feature of Move's type system is the ability to not have <code>drop</code>. This
 properly handled and not ignored.</p>
 <p>A struct with a single <code>drop</code> ability is called a <em>Witness</em>. We explain the concept of a <em>Witness</em>
 in the
-<a href="move-basics/./../programmability/witness-and-abstract-implementation.html">Witness and Abstract Implementation</a>
+<a href="move-basics/./../programmability/witness-pattern.html">Witness and Abstract Implementation</a>
 section.</p>
 <h2 id="types-with-the-drop-ability"><a class="header" href="#types-with-the-drop-ability">Types with the <code>drop</code> Ability</a></h2>
 <p>All native types in Move have the <code>drop</code> ability. This includes:</p>
@@ -2202,7 +2202,7 @@ section.</p>
 </ul>
 <h2 id="further-reading-9"><a class="header" href="#further-reading-9">Further reading</a></h2>
 <ul>
-<li><a href="move-basics//reference/type-abilities.html">Type Abilities</a> in the Move Reference.</li>
+<li><a href="move-basics//reference/abilities.html">Type Abilities</a> in the Move Reference.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="importing-modules"><a class="header" href="#importing-modules">Importing Modules</a></h1>
 <!--
@@ -2353,11 +2353,11 @@ and which module implements it.</p>
 <tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/ascii">std::ascii</a></td><td>Provides basic ASCII operations</td><td><a href="move-basics/./string.html">String</a></td></tr>
 <tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/option">std::option</a></td><td>Implements an <code>Option&lt;T&gt;</code></td><td><a href="move-basics/./option.html">Option</a></td></tr>
 <tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/vector">std::vector</a></td><td>Native operations on the vector type</td><td><a href="move-basics/./vector.html">Vector</a></td></tr>
-<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/bcs">std::bcs</a></td><td>Contains the <code>bcs::to_bytes()</code> function</td><td><a href="move-basics/../move-basics/bcs.html">BCS</a></td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/bcs">std::bcs</a></td><td>Contains the <code>bcs::to_bytes()</code> function</td><td><a href="move-basics/../programmability/bcs.html">BCS</a></td></tr>
 <tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/address">std::address</a></td><td>Contains a single <code>address::length</code> function</td><td><a href="move-basics/./address.html">Address</a></td></tr>
 <tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/type_name">std::type_name</a></td><td>Allows runtime <em>type reflection</em></td><td><a href="move-basics/./type-reflection.html">Type Reflection</a></td></tr>
 <tr><td>std::hash</td><td>Hashing functions: <code>sha2_256</code> and <code>sha3_256</code></td><td><a href="move-basics/../programmability/cryptography-and-hashing.html">Cryptography and Hashing</a></td></tr>
-<tr><td>std::debug</td><td>Contains debugging functions, which are available in only in <strong>test</strong> mode</td><td><a href="move-basics/./debugging.html">Debugging</a></td></tr>
+<tr><td>std::debug</td><td>Contains debugging functions, which are available in only in <strong>test</strong> mode</td><td><a href="move-basics/./guides/debugging.html">Debugging</a></td></tr>
 <tr><td>std::bit_vector</td><td>Provides operations on bit vectors</td><td>-</td></tr>
 <tr><td>std::fixed_point32</td><td>Provides the <code>FixedPoint32</code> type</td><td>-</td></tr>
 </tbody></table>
@@ -2374,8 +2374,8 @@ not be imported directly, but their functions are available on every integer val
 <div class="modules-table">
 <div class="table-wrapper"><table><thead><tr><th>Module</th><th>Description</th></tr></thead><tbody>
 <tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/u8">std::u8</a></td><td>Functions for the <code>u8</code> type</td></tr>
-<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/u64">std::16</a></td><td>Functions for the <code>u16</code> type</td></tr>
-<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/u64">std::u32</a></td><td>Functions for the <code>u32</code> type</td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/u16">std::u16</a></td><td>Functions for the <code>u16</code> type</td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/u32">std::u32</a></td><td>Functions for the <code>u32</code> type</td></tr>
 <tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/u64">std::u64</a></td><td>Functions for the <code>u64</code> type</td></tr>
 <tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/u128">std::u128</a></td><td>Functions for the <code>u128</code> type</td></tr>
 <tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/u256">std::u256</a></td><td>Functions for the <code>u256</code> type</td></tr>
@@ -2685,7 +2685,7 @@ control flow statements (explained in detail below):</p>
 code</li>
 <li><a href="move-basics/control-flow.html#repeating-statements-with-loops"><code>loop</code> and <code>while</code> loops</a> - repeating a block of code</li>
 <li><a href="move-basics/control-flow.html#exiting-a-loop-early"><code>break</code> and <code>continue</code> statements</a> - exiting a loop early</li>
-<li><a href="move-basics/control-flow.html#return"><code>return</code></a> statement - exiting a function early</li>
+<li><a href="move-basics/control-flow.html#early-return"><code>return</code></a> statement - exiting a function early</li>
 </ul>
 <h2 id="conditional-statements"><a class="header" href="#conditional-statements">Conditional Statements</a></h2>
 <p>The <code>if</code> expression is used to make decisions in a program. It evaluates a
@@ -3542,7 +3542,7 @@ for them.</p>
 </ul>
 <h2 id="further-reading-15"><a class="header" href="#further-reading-15">Further reading</a></h2>
 <ul>
-<li><a href="move-basics//reference/type-abilities.html">Type Abilities</a> in the Move Reference.</li>
+<li><a href="move-basics//reference/abilities.html">Type Abilities</a> in the Move Reference.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="references"><a class="header" href="#references">References</a></h1>
 <!--
@@ -4301,7 +4301,7 @@ custom types.</p>
 we present the <code>sui::transfer</code> module, which provides native storage functions for objects.</p>
 <h2 id="further-reading-22"><a class="header" href="#further-reading-22">Further reading</a></h2>
 <ul>
-<li><a href="storage//reference/type-abilities.html">Type Abilities</a> in the Move Reference.</li>
+<li><a href="storage//reference/abilities.html">Type Abilities</a> in the Move Reference.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="storage-functions"><a class="header" href="#storage-functions">Storage Functions</a></h1>
 <p>The module that defines main storage operations is <code>sui::transfer</code>. It is implicitly imported in all
@@ -4602,9 +4602,7 @@ public struct MegaConfig has key {
 <li><a href="storage/./../move-basics/type-reflection.html#typename">TypeName</a></li>
 </ul>
 <h2 id="further-reading-23"><a class="header" href="#further-reading-23">Further reading</a></h2>
-<ul>
-<li><a href="storage//reference/type-abilities.html">Type Abilities</a> in the Move Reference.</li>
-</ul>
+<p>z- <a href="storage//reference/abilities.html">Type Abilities</a> in the Move Reference.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="uid-and-id"><a class="header" href="#uid-and-id">UID and ID</a></h1>
 <p>The <code>UID</code> type is defined in the <code>sui::object</code> module and is a wrapper around an <code>ID</code> which, in
 turn, wraps the <code>address</code> type. The UIDs on Sui are guaranteed to be unique, and can't be reused
