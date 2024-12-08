@@ -1,6 +1,6 @@
 # Copy-pasta from MystenLabs/sui/.github/workflows/docs.yml
 
-name: Documentation
+name: Spelling & Grammar Check
 
 on:
   pull_request:
@@ -12,5 +12,3 @@ jobs:
     steps:
       - name: GitHub Spellcheck Action
         uses: rojopolis/spellcheck-github-actions@0.45.0
-        with:
-          - directory: [book, reference]
