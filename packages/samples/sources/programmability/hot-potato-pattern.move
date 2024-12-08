@@ -85,14 +85,14 @@ public fun purchase_phone(ctx: &mut TxContext): (Phone, Ticket) {
 public fun pay_in_bonus_points(ticket: Ticket, payment: Coin<BONUS>) {
     let Ticket { amount } = ticket;
     assert!(payment.value() == amount);
-    abort 0 // omitting the rest of the function
+    abort // omitting the rest of the function
 }
 
 /// The customer may pay for the `Phone` with `USD`.
 public fun pay_in_usd(ticket: Ticket, payment: Coin<USD>) {
     let Ticket { amount } = ticket;
     assert!(payment.value() == amount);
-    abort 0 // omitting the rest of the function
+    abort // omitting the rest of the function
 }
 // ANCHOR_END: phone_shop
 }

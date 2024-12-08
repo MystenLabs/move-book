@@ -18,6 +18,9 @@ if (!user_has_access) {
 if (user_has_access) {
    abort(1)
 };
+
+// abort may also come without a code
+abort
 // ANCHOR_END: abort
 }
 
@@ -68,4 +71,4 @@ public fun update_value(user: &mut User, value: u64) {
     user.value = value;
 }
 // ANCHOR_END: error_attribute
-}
+

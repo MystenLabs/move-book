@@ -29,6 +29,6 @@ public fun purchase(coin: Coin<SUI>, ctx: &mut TxContext) {
     });
 
     // Omitting the rest of the implementation to keep the example simple.
-    abort 0
+    abort
 }
 // ANCHOR_END: emit

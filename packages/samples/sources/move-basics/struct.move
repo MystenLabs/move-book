@@ -4,7 +4,7 @@
 #[allow(unused_variable, unused_field)]
 module book::struct_syntax;
 
-use std::string::{Self, String};
+use std::string::String;
 
 // ANCHOR: def
 /// A struct representing an artist.
