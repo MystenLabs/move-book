@@ -23,7 +23,7 @@ alice = "0xB0B"
 
 ## Sections
 
-### Package
+### Packge
 
 The `[package]` section is used to describe the package. None of the fields in this section are
 published on chain, but they are used in tooling and release management; they also specify the Move
