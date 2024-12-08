@@ -16,3 +16,4 @@ jobs:
       name: Spellcheck
       with:
         source_files: book/src/**/*.md reference/src/**/*.md
+        task_name: Spellcheck
