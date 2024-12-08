@@ -18,6 +18,7 @@
 - [Local Variables and Scopes](variables.md)
 - [Equality](equality.md)
 - [Abort and Assert](abort-and-assert.md)
+  - [Clever Errors](abort-and-assert/clever-errors.md)
 - [Control Flow](control-flow.md)
   - [Conditional Expressions](control-flow/conditionals.md)
   - [Loops](control-flow/loops.md)
