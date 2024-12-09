@@ -106,7 +106,7 @@ public fun receive<T: key>(po: &mut PostOffice, to_receive: Receiving<T>): T {
 ```
 
 In this example, we have defined a `PostOffice` object that can receive any objects transferred to
-it. We ommitted the creation of the `PostOffice` for brevity; additionally, an implementation like
+it. We omitted the creation of the `PostOffice` for brevity; additionally, an implementation like
 this would require some authorization to prevent unauthorized claims. We talk about authorization
 patterns in the [Advanced Programmability](./../programmability/) chapter.
 
