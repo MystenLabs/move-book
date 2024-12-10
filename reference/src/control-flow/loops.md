@@ -152,7 +152,7 @@ fun find_position(values: &vector<u64>, target_value: u64): Option<u64> {
         if (vector::borrow(values, i) == &target_value) {
             break option::some(i)
         } else if (i >= size) {
-            break option::none<u64>()
+            break option::none()
         };
         i = i + 1;
     }
