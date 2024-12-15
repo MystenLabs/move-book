@@ -27,6 +27,13 @@ features. Whatever IDE you choose, you'll need to use the terminal to run the
 - [move-mode](https://github.com/amnn/move-mode) is a Move mode for Emacs by
   [Ashok Menon](https://github.com/amnn).
 
+## Zed
+
+- [Zed](https://zed.dev/) is a next-generation code editor designed for high-performance collaboration
+  with humans and AI.
+- [Move](https://github.com/Tzal3x/move-zed-extension) is a language server extension for
+  Move maintained by [Tzal3x](https://github.com/Tzal3x).
+
 ## Github Codespaces
 
 The Web-based IDE from Github can be run right in the browser and provides almost a full-featured
