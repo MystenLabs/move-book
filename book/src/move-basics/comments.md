@@ -13,14 +13,14 @@ Notes:
  -->
 
 Comments are a way to add notes or document your code. They are ignored by the compiler and don't
-result in the Move bytecode. You can use comments to explain what your code does, to add notes to
-yourself or other developers, to temporarily remove a part of your code, or to generate
-documentation. There are three types of comments in Move: line comment, block comment, and doc
-comment.
+result in Move bytecode. You can use comments to explain what your code does, add notes to
+yourself or other developers, temporarily remove a part of your code, or generate
+documentation. There are three types of comments in Move: line comments, block comments, and doc
+comments.
 
 ## Line comment
 
-You can use double slash `//` to comment out the rest of the line. Everything after `//` will be
+You can use a double slash `//` to comment out the rest of the line. Everything after `//` will be
 ignored by the compiler.
 
 ```Move
@@ -37,13 +37,12 @@ comment out a single line or multiple lines. You can even use them to comment ou
 {{#include ../../../packages/samples/sources/move-basics/comments-block.move:main}}
 ```
 
-This example is a bit extreme, but it shows how you can use block comments to comment out a part of
-a line.
+This example is a bit extreme, but it shows all the ways that you can use block comments.
 
 ## Doc comment
 
 Documentation comments are special comments that are used to generate documentation for your code.
-They are similar to block comments, but they start with three slashes `///` and are placed before
+They are similar to block comments but start with three slashes `///` and are placed before
 the definition of the item they document.
 
 ```Move
