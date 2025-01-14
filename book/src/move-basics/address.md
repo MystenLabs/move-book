@@ -17,10 +17,9 @@ Links:
     - your first move
 
  -->
-
-To represent [addresses](./../concepts/address.md), Move uses a special type called `address`. It is
-a 32 byte value that can be used to represent any address on the blockchain. Addresses are used in
-two syntax forms: hexadecimal addresses prefixed with `0x` and named addresses.
+Move uses a special type called [address](./../concepts/address.md) to represent addresses. It is a 
+32-byte value that can represent any address on the blockchain. Addresses can be written in two forms: 
+hexadecimal addresses prefixed with 0x and named addresses.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/address.move:address_literal}}
