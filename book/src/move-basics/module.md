@@ -12,9 +12,9 @@ Notes:
 
  -->
 
-Module is the base unit of code organization in Move. Modules are used to group and isolate code,
-and all of the members of the module are private to the module by default. In this section you will
-learn how to define a module, how to declare its members and how to access them from other modules.
+A module is the base unit of code organization in Move. Modules are used to group and isolate code,
+and all members of the module are private to the module by default. In this section you will
+learn how to define a module, declare its members, and access it from other modules.
 
 ## Module declaration
 
@@ -27,7 +27,7 @@ the module name - for example, a `donut_shop` module should be stored in the `do
 You can read more about coding conventions in the
 [Coding Conventions](../guides/coding-conventions.md) section.
 
-> If you need to declare more than one module in a file, you must use [Module Block](#module-block).
+> If you need to declare more than one module in a file, you must use [Module Block](#module-block) syntax.
 
 ```Move
 {{#include ../../../packages/samples/sources/move-basics/module-label.move:module}}
@@ -43,7 +43,7 @@ Structs, functions, constants and imports all part of the module:
 
 ## Address / Named address
 
-Module address can be specified as both: an address _literal_ (does not require the `@` prefix) or a
+The module address can be specified as both: an address _literal_ (does not require the `@` prefix) or a
 named address specified in the [Package Manifest](../concepts/manifest.md). In the example below,
 both are identical because there's a `book = "0x0"` record in the `[addresses]` section of the
 `Move.toml`.
@@ -71,9 +71,10 @@ with a struct, a function and a constant:
 
 ## Module block
 
-Pre-2024 edition of Move required _module block_ - the contents of the module need to be surrounded
-by curly braces `{}`. The main reason to use block and not _label_ is if you need to define more
-than one module in a file.
+The pre-2024 edition of Move required the body of the module to be a _module block_ - the contents of the 
+module needed to be surrounded by curly braces `{}`. The main reason to use block syntax and not _label_ 
+syntax is if you need to define more than one module in a file. However, using module blocks is not 
+recommended practice.
 
 ```Move
 {{#include ../../../packages/samples/sources/move-basics/module.move:members}}
