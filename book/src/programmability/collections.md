@@ -76,6 +76,5 @@ if the two `VecSet` instances contain the same elements.
 
 ## Next Steps
 
-In the next section we will cover [Dynamic Fields](./dynamic-fields.md) - an important primitive
-that allows for [Dynamic Collections](./dynamic-collections.md) - a way to store large collections
-of data in a more flexible, yet more expensive way.
+In the next section we will cover the [Newtype Pattern](./newtype-pattern.md) - a design pattern
+often used with collection types to extend or restrict their behavior. 

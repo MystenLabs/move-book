@@ -45,3 +45,11 @@ extend the behavior of an existing type. However, it does have some limitations:
 - It can be verbose to implement, especially if you want to expose all the methods of the wrapped
   type.
 - The implementation can be quite sparse, as it often just forwards the calls to the wrapped type.
+
+## Next Steps
+
+Newtype is a very useful pattern which goes hand in hand with the collection types, which we have
+demonstrated in the previous section. In the next section we will cover
+[Dynamic Fields](./dynamic-fields.md) - an important primitive that allows for
+[Dynamic Collections](./dynamic-collections.md) - a way to store large collections of data in a more
+flexible, yet more expensive way.
