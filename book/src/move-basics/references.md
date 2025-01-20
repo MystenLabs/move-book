@@ -38,7 +38,7 @@ The initial layout of the metro pass application is simple. We define the `Card`
 [error constant](./assert-and-abort.md#error-constants) for the case when the card is empty.
 
 ```move
-module book::metro_pass {
+module book::metro_pass;
 {{#include ../../../packages/samples/sources/move-basics/references.move:header}}
 
 {{#include ../../../packages/samples/sources/move-basics/references.move:new}}
