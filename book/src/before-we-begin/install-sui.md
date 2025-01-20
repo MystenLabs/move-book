@@ -35,6 +35,8 @@ You can install and build Sui locally by using the Cargo package manager (requir
 cargo install --git https://github.com/MystenLabs/sui.git --bin sui --branch mainnet
 ```
 
+Change the branch target here to `testnet` or `devnet` if you are targeting one of those.
+
 Make sure that your system has the latest Rust versions with the command below.
 
 ```bash

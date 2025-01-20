@@ -58,7 +58,8 @@ fun add(a: u8, b: u8): u8 {
 
 #[test]
 fun some_other() {
-    let sum = add(1, 2); // add(1, 2) is an expression with type u8
+    let sum = add(1, 2); // not returned due to the semicolon.
+    // compiler automatically inserts an empty expression `()` as return value of the block
 }
 // ANCHOR_END: fun_call
 

@@ -2,20 +2,20 @@
 
 <!-- TODO: Shall we split this into two pages? Maybe give an overview and focus more on specifics? -->
 
-For simple values, Move has a number of built-in primitive types. They're the base that makes up all
+For simple values, Move has a number of built-in primitive types. They're the foundation for all
 other types. The primitive types are:
 
 - [Booleans](#booleans)
 - [Unsigned Integers](#integer-types)
-- [Address](./address.md) - covered in the next section
+- [Addresses](./address.md) - covered in the next section
 
-However, before we get to the types, let's first look at how to declare and assign variables in
+Before we get to the primitive types, let's first take a look at how to declare and assign variables in
 Move.
 
 ## Variables and assignment
 
 Variables are declared using the `let` keyword. They are immutable by default, but can be made
-mutable using the `let mut` keyword. The syntax for the `let mut` statement is:
+mutable by adding the `mut` keyword:
 
 ```
 let <variable_name>[: <type>]  = <expression>;
@@ -38,7 +38,7 @@ A mutable variable can be reassigned using the `=` operator.
 y = 43;
 ```
 
-Variables can also be shadowed by re-declaring.
+Variables can also be shadowed by re-declaring them.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/primitive-types.move:shadowing}}
@@ -47,19 +47,18 @@ Variables can also be shadowed by re-declaring.
 ## Booleans
 
 The `bool` type represents a boolean value - yes or no, true or false. It has two possible values:
-`true` and `false` which are keywords in Move. For booleans, there's no need to explicitly specify
-the type - the compiler can infer it from the value.
+`true` and `false`, which are keywords in Move. For booleans, the compiler can always infer the type from the value, so there is no need to explicitly specify it.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/primitive-types.move:boolean}}
 ```
 
-Booleans are often used to store flags and to control the flow of the program. Please, refer to the
+Booleans are often used to store flags and to control the flow of the program. Please refer to the
 [Control Flow](./control-flow.md) section for more information.
 
 ## Integer Types
 
-Move supports unsigned integers of various sizes: from 8-bit to 256-bit. The integer types are:
+Move supports unsigned integers of various sizes, from 8-bit to 256-bit. The integer types are:
 
 - `u8` - 8-bit
 - `u16` - 16-bit
@@ -72,10 +71,7 @@ Move supports unsigned integers of various sizes: from 8-bit to 256-bit. The int
 {{#include ../../../packages/samples/sources/move-basics/primitive-types.move:integers}}
 ```
 
-Unlike booleans, integer types need to be inferred. In most of the cases, the compiler will infer
-the type from the value, usually defaulting to `u64`. However, sometimes the compiler is unable to
-infer the type and will require an explicit type annotation. It can either be provided during
-assignment or by using a type suffix.
+Unlike booleans, integer types sometimes require explicit type annotations. The compiler usually infers the type from context, defaulting to `u64` when unspecified. In ambiguous cases, a type annotation is needed, which can be added during assignment or with a type suffix.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/primitive-types.move:integer_explicit_type}}
@@ -84,20 +80,20 @@ assignment or by using a type suffix.
 ### Operations
 
 Move supports the standard arithmetic operations for integers: addition, subtraction,
-multiplication, division, and remainder. The syntax for these operations is:
+multiplication, division, and modulus (remainder). The syntax for these operations is:
 
 | Syntax | Operation           | Aborts If                                |
 | ------ | ------------------- | ---------------------------------------- |
 | +      | addition            | Result is too large for the integer type |
 | -      | subtraction         | Result is less than zero                 |
 | \*     | multiplication      | Result is too large for the integer type |
-| %      | modular division    | The divisor is 0                         |
+| %      | modulus (remainder) | The divisor is 0                         |
 | /      | truncating division | The divisor is 0                         |
 
 > For more operations, including bitwise operations, please refer to the
 > [Move Reference](/reference/primitive-types/integers.html#bitwise).
 
-The type of the operands _must match_, otherwise, the compiler will raise an error. The result of
+The types of the operands _must match_, or the compiler will raise an error. The result of
 the operation will be of the same type as the operands. To perform operations on different types,
 the operands need to be cast to the same type.
 
@@ -106,13 +102,13 @@ the operands need to be cast to the same type.
 
 ### Casting with `as`
 
-Move supports explicit casting between integer types. The syntax for it is:
+Move supports explicit casting between integer types. The syntax is as follows:
 
 ```move
 <expression> as <type>
 ```
 
-Note, that it may require parentheses around the expression to prevent ambiguity.
+Note that parentheses around the expression may be required to prevent ambiguity:
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/primitive-types.move:cast_as}}
@@ -126,7 +122,7 @@ A more complex example, preventing overflow:
 
 ### Overflow
 
-Move does not support overflow / underflow, an operation that results in a value outside the range
+Move does not support overflow / underflow; an operation that results in a value outside the range
 of the type will raise a runtime error. This is a safety feature to prevent unexpected behavior.
 
 ```move
