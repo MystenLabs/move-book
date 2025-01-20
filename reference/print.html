@@ -2112,9 +2112,9 @@ position of a value in a vector, and would like to <code>break</code> if we find
     };
 
     if (found) {
-        Option::Some(i)
+        option::some(i)
     } else {
-        Option::None
+        option::none&lt;u64&gt;()
     }
 }
 </code></pre>
@@ -2188,9 +2188,9 @@ so, the overall <code>loop</code> expression evaluates to a value of that type. 
 
     loop {
         if (vector::borrow(values, i) == &amp;target_value) {
-            break Option::Some(i)
+            break option::some(i)
         } else if (i &gt;= size) {
-            break Option::None
+            break option::none()
         };
         i = i + 1;
     }
