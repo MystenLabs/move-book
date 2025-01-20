@@ -18,7 +18,7 @@ features. Whatever IDE you choose, you'll need to use the terminal to run the
 ## IntelliJ IDEA
 
 - [IntelliJ IDEA](https://www.jetbrains.com/idea/) is a commercial IDE from JetBrains.
-- [Move Language Plugin](https://plugins.jetbrains.com/plugin/14721-move-language) provides a Move
+- [Move Language Plugin](https://plugins.jetbrains.com/plugin/23301-sui-move-language) provides a Move
   on Sui language extension for IntelliJ IDEA by [MoveFuns](https://movefuns.org/).
 
 ## Emacs
