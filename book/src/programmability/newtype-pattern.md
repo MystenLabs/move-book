@@ -28,7 +28,7 @@ methods to the `Stack` type.
 {{#include ../../../packages/samples/sources/programmability/newtype-pattern.move:common}}
 ```
 
-## Benefits
+## Advantages
 
 The newtype pattern has several benefits:
 
@@ -36,7 +36,7 @@ The newtype pattern has several benefits:
 - Constrains function signatures to the newtype, thereby making the code more robust.
 - Often increases the readability of the code by providing a more descriptive type name.
 
-## Limitations
+## Disadvantages
 
 The newtype pattern is a very powerful pattern in two scenarios: when you want to limit the behavior
 of an existing type and provide a custom interface to the same data structure, and when you want to
