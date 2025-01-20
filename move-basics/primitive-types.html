@@ -185,18 +185,18 @@
                     <main>
                         <h1 id="primitive-types"><a class="header" href="#primitive-types">Primitive Types</a></h1>
 <!-- TODO: Shall we split this into two pages? Maybe give an overview and focus more on specifics? -->
-<p>For simple values, Move has a number of built-in primitive types. They're the base that makes up all
+<p>For simple values, Move has a number of built-in primitive types. They're the foundation for all
 other types. The primitive types are:</p>
 <ul>
 <li><a href="#booleans">Booleans</a></li>
 <li><a href="#integer-types">Unsigned Integers</a></li>
-<li><a href="./address.html">Address</a> - covered in the next section</li>
+<li><a href="./address.html">Addresses</a> - covered in the next section</li>
 </ul>
-<p>However, before we get to the types, let's first look at how to declare and assign variables in
+<p>Before we get to the primitive types, let's first take a look at how to declare and assign variables in
 Move.</p>
 <h2 id="variables-and-assignment"><a class="header" href="#variables-and-assignment">Variables and assignment</a></h2>
 <p>Variables are declared using the <code>let</code> keyword. They are immutable by default, but can be made
-mutable using the <code>let mut</code> keyword. The syntax for the <code>let mut</code> statement is:</p>
+mutable by adding the <code>mut</code> keyword:</p>
 <pre><code>let &lt;variable_name&gt;[: &lt;type&gt;]  = &lt;expression&gt;;
 let mut &lt;variable_name&gt;[: &lt;type&gt;] = &lt;expression&gt;;
 </code></pre>
@@ -212,21 +212,20 @@ let mut y: u8 = 42;
 <p>A mutable variable can be reassigned using the <code>=</code> operator.</p>
 <pre><code class="language-move">y = 43;
 </code></pre>
-<p>Variables can also be shadowed by re-declaring.</p>
+<p>Variables can also be shadowed by re-declaring them.</p>
 <pre><code class="language-move">let x: u8 = 42;
 let x: u16 = 42;
 </code></pre>
 <h2 id="booleans"><a class="header" href="#booleans">Booleans</a></h2>
 <p>The <code>bool</code> type represents a boolean value - yes or no, true or false. It has two possible values:
-<code>true</code> and <code>false</code> which are keywords in Move. For booleans, there's no need to explicitly specify
-the type - the compiler can infer it from the value.</p>
+<code>true</code> and <code>false</code>, which are keywords in Move. For booleans, the compiler can always infer the type from the value, so there is no need to explicitly specify it.</p>
 <pre><code class="language-move">let x = true;
 let y = false;
 </code></pre>
-<p>Booleans are often used to store flags and to control the flow of the program. Please, refer to the
+<p>Booleans are often used to store flags and to control the flow of the program. Please refer to the
 <a href="./control-flow.html">Control Flow</a> section for more information.</p>
 <h2 id="integer-types"><a class="header" href="#integer-types">Integer Types</a></h2>
-<p>Move supports unsigned integers of various sizes: from 8-bit to 256-bit. The integer types are:</p>
+<p>Move supports unsigned integers of various sizes, from 8-bit to 256-bit. The integer types are:</p>
 <ul>
 <li><code>u8</code> - 8-bit</li>
 <li><code>u16</code> - 16-bit</li>
@@ -240,22 +239,19 @@ let y: u16 = 42;
 // ...
 let z: u256 = 42;
 </code></pre>
-<p>Unlike booleans, integer types need to be inferred. In most of the cases, the compiler will infer
-the type from the value, usually defaulting to <code>u64</code>. However, sometimes the compiler is unable to
-infer the type and will require an explicit type annotation. It can either be provided during
-assignment or by using a type suffix.</p>
+<p>Unlike booleans, integer types sometimes require explicit type annotations. The compiler usually infers the type from context, defaulting to <code>u64</code> when unspecified. In ambiguous cases, a type annotation is needed, which can be added during assignment or with a type suffix.</p>
 <pre><code class="language-move">// Both are equivalent
 let x: u8 = 42;
 let x = 42u8;
 </code></pre>
 <h3 id="operations"><a class="header" href="#operations">Operations</a></h3>
 <p>Move supports the standard arithmetic operations for integers: addition, subtraction,
-multiplication, division, and remainder. The syntax for these operations is:</p>
+multiplication, division, and modulus (remainder). The syntax for these operations is:</p>
 <div class="table-wrapper"><table><thead><tr><th>Syntax</th><th>Operation</th><th>Aborts If</th></tr></thead><tbody>
 <tr><td>+</td><td>addition</td><td>Result is too large for the integer type</td></tr>
 <tr><td>-</td><td>subtraction</td><td>Result is less than zero</td></tr>
 <tr><td>*</td><td>multiplication</td><td>Result is too large for the integer type</td></tr>
-<tr><td>%</td><td>modular division</td><td>The divisor is 0</td></tr>
+<tr><td>%</td><td>modulus (remainder)</td><td>The divisor is 0</td></tr>
 <tr><td>/</td><td>truncating division</td><td>The divisor is 0</td></tr>
 </tbody></table>
 </div>
@@ -263,16 +259,16 @@ multiplication, division, and remainder. The syntax for these operations is:</p>
 <p>For more operations, including bitwise operations, please refer to the
 <a href="/reference/primitive-types/integers.html#bitwise">Move Reference</a>.</p>
 </blockquote>
-<p>The type of the operands <em>must match</em>, otherwise, the compiler will raise an error. The result of
+<p>The types of the operands <em>must match</em>, or the compiler will raise an error. The result of
 the operation will be of the same type as the operands. To perform operations on different types,
 the operands need to be cast to the same type.</p>
 <!-- TODO: add examples + parentheses for arithmetic operations -->
 <!-- TODO: add bitwise operators -->
 <h3 id="casting-with-as"><a class="header" href="#casting-with-as">Casting with <code>as</code></a></h3>
-<p>Move supports explicit casting between integer types. The syntax for it is:</p>
+<p>Move supports explicit casting between integer types. The syntax is as follows:</p>
 <pre><code class="language-move">&lt;expression&gt; as &lt;type&gt;
 </code></pre>
-<p>Note, that it may require parentheses around the expression to prevent ambiguity.</p>
+<p>Note that parentheses around the expression may be required to prevent ambiguity:</p>
 <pre><code class="language-move">let x: u8 = 42;
 let y: u16 = x as u16;
 let z = 2 * (x as u16); // ambiguous, requires parentheses
@@ -283,7 +279,7 @@ let y: u8 = 255;
 let z: u16 = (x as u16) + ((y as u16) * 2);
 </code></pre>
 <h3 id="overflow"><a class="header" href="#overflow">Overflow</a></h3>
-<p>Move does not support overflow / underflow, an operation that results in a value outside the range
+<p>Move does not support overflow / underflow; an operation that results in a value outside the range
 of the type will raise a runtime error. This is a safety feature to prevent unexpected behavior.</p>
 <pre><code class="language-move">let x = 255u8;
 let y = 1u8;

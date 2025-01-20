@@ -195,9 +195,9 @@ Notes:
     - only module can pack and unpack its types
 
  -->
-<p>Module is the base unit of code organization in Move. Modules are used to group and isolate code,
-and all of the members of the module are private to the module by default. In this section you will
-learn how to define a module, how to declare its members and how to access them from other modules.</p>
+<p>A module is the base unit of code organization in Move. Modules are used to group and isolate code,
+and all members of the module are private to the module by default. In this section you will
+learn how to define a module, declare its members, and access it from other modules.</p>
 <h2 id="module-declaration"><a class="header" href="#module-declaration">Module declaration</a></h2>
 <p>Modules are declared using the <code>module</code> keyword followed by the package address, module name,
 semicolon, and the module body. The module name should be in <code>snake_case</code> - all lowercase letters
@@ -207,7 +207,7 @@ the module name - for example, a <code>donut_shop</code> module should be stored
 You can read more about coding conventions in the
 <a href="../guides/coding-conventions.html">Coding Conventions</a> section.</p>
 <blockquote>
-<p>If you need to declare more than one module in a file, you must use <a href="#module-block">Module Block</a>.</p>
+<p>If you need to declare more than one module in a file, you must use <a href="#module-block">Module Block</a> syntax.</p>
 </blockquote>
 <pre><code class="language-Move">// Module label.
 module book::my_module;
@@ -223,7 +223,7 @@ module book::my_module;
 <li><a href="./struct-methods.html">Struct Methods</a></li>
 </ul>
 <h2 id="address--named-address"><a class="header" href="#address--named-address">Address / Named address</a></h2>
-<p>Module address can be specified as both: an address <em>literal</em> (does not require the <code>@</code> prefix) or a
+<p>The module address can be specified as both: an address <em>literal</em> (does not require the <code>@</code> prefix) or a
 named address specified in the <a href="../concepts/manifest.html">Package Manifest</a>. In the example below,
 both are identical because there's a <code>book = &quot;0x0&quot;</code> record in the <code>[addresses]</code> section of the
 <code>Move.toml</code>.</p>
@@ -256,9 +256,10 @@ public use fun function as Struct.struct_fun;
 fun function(_: &amp;Struct) { /* function body */ }
 </code></pre>
 <h2 id="module-block"><a class="header" href="#module-block">Module block</a></h2>
-<p>Pre-2024 edition of Move required <em>module block</em> - the contents of the module need to be surrounded
-by curly braces <code>{}</code>. The main reason to use block and not <em>label</em> is if you need to define more
-than one module in a file.</p>
+<p>The pre-2024 edition of Move required the body of the module to be a <em>module block</em> - the contents of the 
+module needed to be surrounded by curly braces <code>{}</code>. The main reason to use block syntax and not <em>label</em> 
+syntax is if you need to define more than one module in a file. However, using module blocks is not 
+recommended practice.</p>
 <pre><code class="language-Move">module book::my_block_module_with_members {
     // import
     use book::my_module;

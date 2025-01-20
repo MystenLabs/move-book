@@ -265,6 +265,7 @@ Windows.</p>
 <p>You can install and build Sui locally by using the Cargo package manager (requires Rust)</p>
 <pre><code class="language-bash">cargo install --git https://github.com/MystenLabs/sui.git --bin sui --branch mainnet
 </code></pre>
+<p>Change the branch target here to <code>testnet</code> or <code>devnet</code> if you are targeting one of those.</p>
 <p>Make sure that your system has the latest Rust versions with the command below.</p>
 <pre><code class="language-bash">rustup update stable
 </code></pre>
@@ -1534,9 +1535,9 @@ Notes:
     - only module can pack and unpack its types
 
  -->
-<p>Module is the base unit of code organization in Move. Modules are used to group and isolate code,
-and all of the members of the module are private to the module by default. In this section you will
-learn how to define a module, how to declare its members and how to access them from other modules.</p>
+<p>A module is the base unit of code organization in Move. Modules are used to group and isolate code,
+and all members of the module are private to the module by default. In this section you will
+learn how to define a module, declare its members, and access it from other modules.</p>
 <h2 id="module-declaration"><a class="header" href="#module-declaration">Module declaration</a></h2>
 <p>Modules are declared using the <code>module</code> keyword followed by the package address, module name,
 semicolon, and the module body. The module name should be in <code>snake_case</code> - all lowercase letters
@@ -1546,7 +1547,7 @@ the module name - for example, a <code>donut_shop</code> module should be stored
 You can read more about coding conventions in the
 <a href="move-basics/../guides/coding-conventions.html">Coding Conventions</a> section.</p>
 <blockquote>
-<p>If you need to declare more than one module in a file, you must use <a href="move-basics/module.html#module-block">Module Block</a>.</p>
+<p>If you need to declare more than one module in a file, you must use <a href="move-basics/module.html#module-block">Module Block</a> syntax.</p>
 </blockquote>
 <pre><code class="language-Move">// Module label.
 module book::my_module;
@@ -1562,7 +1563,7 @@ module book::my_module;
 <li><a href="move-basics/./struct-methods.html">Struct Methods</a></li>
 </ul>
 <h2 id="address--named-address"><a class="header" href="#address--named-address">Address / Named address</a></h2>
-<p>Module address can be specified as both: an address <em>literal</em> (does not require the <code>@</code> prefix) or a
+<p>The module address can be specified as both: an address <em>literal</em> (does not require the <code>@</code> prefix) or a
 named address specified in the <a href="move-basics/../concepts/manifest.html">Package Manifest</a>. In the example below,
 both are identical because there's a <code>book = &quot;0x0&quot;</code> record in the <code>[addresses]</code> section of the
 <code>Move.toml</code>.</p>
@@ -1595,9 +1596,10 @@ public use fun function as Struct.struct_fun;
 fun function(_: &amp;Struct) { /* function body */ }
 </code></pre>
 <h2 id="module-block"><a class="header" href="#module-block">Module block</a></h2>
-<p>Pre-2024 edition of Move required <em>module block</em> - the contents of the module need to be surrounded
-by curly braces <code>{}</code>. The main reason to use block and not <em>label</em> is if you need to define more
-than one module in a file.</p>
+<p>The pre-2024 edition of Move required the body of the module to be a <em>module block</em> - the contents of the 
+module needed to be surrounded by curly braces <code>{}</code>. The main reason to use block syntax and not <em>label</em> 
+syntax is if you need to define more than one module in a file. However, using module blocks is not 
+recommended practice.</p>
 <pre><code class="language-Move">module book::my_block_module_with_members {
     // import
     use book::my_module;
@@ -1638,12 +1640,12 @@ Notes:
     - give an example of how doc comments are translated
  -->
 <p>Comments are a way to add notes or document your code. They are ignored by the compiler and don't
-result in the Move bytecode. You can use comments to explain what your code does, to add notes to
-yourself or other developers, to temporarily remove a part of your code, or to generate
-documentation. There are three types of comments in Move: line comment, block comment, and doc
-comment.</p>
+result in Move bytecode. You can use comments to explain what your code does, add notes to
+yourself or other developers, temporarily remove a part of your code, or generate
+documentation. There are three types of comments in Move: line comments, block comments, and doc
+comments.</p>
 <h2 id="line-comment"><a class="header" href="#line-comment">Line comment</a></h2>
-<p>You can use double slash <code>//</code> to comment out the rest of the line. Everything after <code>//</code> will be
+<p>You can use a double slash <code>//</code> to comment out the rest of the line. Everything after <code>//</code> will be
 ignored by the compiler.</p>
 <pre><code class="language-Move">module book::comments_line;
 
@@ -1674,11 +1676,10 @@ fun empty_commented_out() {
 }
 */
 </code></pre>
-<p>This example is a bit extreme, but it shows how you can use block comments to comment out a part of
-a line.</p>
+<p>This example is a bit extreme, but it shows all the ways that you can use block comments.</p>
 <h2 id="doc-comment"><a class="header" href="#doc-comment">Doc comment</a></h2>
 <p>Documentation comments are special comments that are used to generate documentation for your code.
-They are similar to block comments, but they start with three slashes <code>///</code> and are placed before
+They are similar to block comments but start with three slashes <code>///</code> and are placed before
 the definition of the item they document.</p>
 <pre><code class="language-Move">/// Module has documentation!
 module book::comments_doc;
@@ -1699,18 +1700,18 @@ fun do_something() {}
 <!-- TODO: docgen, which members are in the documentation -->
 <div style="break-before: page; page-break-before: always;"></div><h1 id="primitive-types"><a class="header" href="#primitive-types">Primitive Types</a></h1>
 <!-- TODO: Shall we split this into two pages? Maybe give an overview and focus more on specifics? -->
-<p>For simple values, Move has a number of built-in primitive types. They're the base that makes up all
+<p>For simple values, Move has a number of built-in primitive types. They're the foundation for all
 other types. The primitive types are:</p>
 <ul>
 <li><a href="move-basics/primitive-types.html#booleans">Booleans</a></li>
 <li><a href="move-basics/primitive-types.html#integer-types">Unsigned Integers</a></li>
-<li><a href="move-basics/./address.html">Address</a> - covered in the next section</li>
+<li><a href="move-basics/./address.html">Addresses</a> - covered in the next section</li>
 </ul>
-<p>However, before we get to the types, let's first look at how to declare and assign variables in
+<p>Before we get to the primitive types, let's first take a look at how to declare and assign variables in
 Move.</p>
 <h2 id="variables-and-assignment"><a class="header" href="#variables-and-assignment">Variables and assignment</a></h2>
 <p>Variables are declared using the <code>let</code> keyword. They are immutable by default, but can be made
-mutable using the <code>let mut</code> keyword. The syntax for the <code>let mut</code> statement is:</p>
+mutable by adding the <code>mut</code> keyword:</p>
 <pre><code>let &lt;variable_name&gt;[: &lt;type&gt;]  = &lt;expression&gt;;
 let mut &lt;variable_name&gt;[: &lt;type&gt;] = &lt;expression&gt;;
 </code></pre>
@@ -1726,21 +1727,20 @@ let mut y: u8 = 42;
 <p>A mutable variable can be reassigned using the <code>=</code> operator.</p>
 <pre><code class="language-move">y = 43;
 </code></pre>
-<p>Variables can also be shadowed by re-declaring.</p>
+<p>Variables can also be shadowed by re-declaring them.</p>
 <pre><code class="language-move">let x: u8 = 42;
 let x: u16 = 42;
 </code></pre>
 <h2 id="booleans"><a class="header" href="#booleans">Booleans</a></h2>
 <p>The <code>bool</code> type represents a boolean value - yes or no, true or false. It has two possible values:
-<code>true</code> and <code>false</code> which are keywords in Move. For booleans, there's no need to explicitly specify
-the type - the compiler can infer it from the value.</p>
+<code>true</code> and <code>false</code>, which are keywords in Move. For booleans, the compiler can always infer the type from the value, so there is no need to explicitly specify it.</p>
 <pre><code class="language-move">let x = true;
 let y = false;
 </code></pre>
-<p>Booleans are often used to store flags and to control the flow of the program. Please, refer to the
+<p>Booleans are often used to store flags and to control the flow of the program. Please refer to the
 <a href="move-basics/./control-flow.html">Control Flow</a> section for more information.</p>
 <h2 id="integer-types"><a class="header" href="#integer-types">Integer Types</a></h2>
-<p>Move supports unsigned integers of various sizes: from 8-bit to 256-bit. The integer types are:</p>
+<p>Move supports unsigned integers of various sizes, from 8-bit to 256-bit. The integer types are:</p>
 <ul>
 <li><code>u8</code> - 8-bit</li>
 <li><code>u16</code> - 16-bit</li>
@@ -1754,22 +1754,19 @@ let y: u16 = 42;
 // ...
 let z: u256 = 42;
 </code></pre>
-<p>Unlike booleans, integer types need to be inferred. In most of the cases, the compiler will infer
-the type from the value, usually defaulting to <code>u64</code>. However, sometimes the compiler is unable to
-infer the type and will require an explicit type annotation. It can either be provided during
-assignment or by using a type suffix.</p>
+<p>Unlike booleans, integer types sometimes require explicit type annotations. The compiler usually infers the type from context, defaulting to <code>u64</code> when unspecified. In ambiguous cases, a type annotation is needed, which can be added during assignment or with a type suffix.</p>
 <pre><code class="language-move">// Both are equivalent
 let x: u8 = 42;
 let x = 42u8;
 </code></pre>
 <h3 id="operations"><a class="header" href="#operations">Operations</a></h3>
 <p>Move supports the standard arithmetic operations for integers: addition, subtraction,
-multiplication, division, and remainder. The syntax for these operations is:</p>
+multiplication, division, and modulus (remainder). The syntax for these operations is:</p>
 <div class="table-wrapper"><table><thead><tr><th>Syntax</th><th>Operation</th><th>Aborts If</th></tr></thead><tbody>
 <tr><td>+</td><td>addition</td><td>Result is too large for the integer type</td></tr>
 <tr><td>-</td><td>subtraction</td><td>Result is less than zero</td></tr>
 <tr><td>*</td><td>multiplication</td><td>Result is too large for the integer type</td></tr>
-<tr><td>%</td><td>modular division</td><td>The divisor is 0</td></tr>
+<tr><td>%</td><td>modulus (remainder)</td><td>The divisor is 0</td></tr>
 <tr><td>/</td><td>truncating division</td><td>The divisor is 0</td></tr>
 </tbody></table>
 </div>
@@ -1777,16 +1774,16 @@ multiplication, division, and remainder. The syntax for these operations is:</p>
 <p>For more operations, including bitwise operations, please refer to the
 <a href="move-basics//reference/primitive-types/integers.html#bitwise">Move Reference</a>.</p>
 </blockquote>
-<p>The type of the operands <em>must match</em>, otherwise, the compiler will raise an error. The result of
+<p>The types of the operands <em>must match</em>, or the compiler will raise an error. The result of
 the operation will be of the same type as the operands. To perform operations on different types,
 the operands need to be cast to the same type.</p>
 <!-- TODO: add examples + parentheses for arithmetic operations -->
 <!-- TODO: add bitwise operators -->
 <h3 id="casting-with-as"><a class="header" href="#casting-with-as">Casting with <code>as</code></a></h3>
-<p>Move supports explicit casting between integer types. The syntax for it is:</p>
+<p>Move supports explicit casting between integer types. The syntax is as follows:</p>
 <pre><code class="language-move">&lt;expression&gt; as &lt;type&gt;
 </code></pre>
-<p>Note, that it may require parentheses around the expression to prevent ambiguity.</p>
+<p>Note that parentheses around the expression may be required to prevent ambiguity:</p>
 <pre><code class="language-move">let x: u8 = 42;
 let y: u16 = x as u16;
 let z = 2 * (x as u16); // ambiguous, requires parentheses
@@ -1797,7 +1794,7 @@ let y: u8 = 255;
 let z: u16 = (x as u16) + ((y as u16) * 2);
 </code></pre>
 <h3 id="overflow"><a class="header" href="#overflow">Overflow</a></h3>
-<p>Move does not support overflow / underflow, an operation that results in a value outside the range
+<p>Move does not support overflow / underflow; an operation that results in a value outside the range
 of the type will raise a runtime error. This is a safety feature to prevent unexpected behavior.</p>
 <pre><code class="language-move">let x = 255u8;
 let y = 1u8;
@@ -1828,9 +1825,9 @@ Links:
     - your first move
 
  -->
-<p>To represent <a href="move-basics/./../concepts/address.html">addresses</a>, Move uses a special type called <code>address</code>. It is
-a 32 byte value that can be used to represent any address on the blockchain. Addresses are used in
-two syntax forms: hexadecimal addresses prefixed with <code>0x</code> and named addresses.</p>
+<p>Move uses a special type called <a href="move-basics/./../concepts/address.html">address</a> to represent addresses. It is a 
+32-byte value that can represent any address on the blockchain. Addresses can be written in two forms: 
+hexadecimal addresses prefixed with 0x and named addresses.</p>
 <pre><code class="language-move">// address literal
 let value: address = @0x1;
 
@@ -1869,24 +1866,24 @@ let addr_as_string: String = address::to_string(@0x1);
 <li><a href="move-basics//reference/primitive-types/address.html">Address</a> in the Move Reference.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="expression"><a class="header" href="#expression">Expression</a></h1>
-<p>In programming languages expression is a unit of code which returns a value, in Move, almost
-everything is an expression, - with the sole exception of <code>let</code> statement which is a declaration. In
+<p>In programming languages, an expression is a unit of code that returns a value. In Move, almost
+everything is an expression, with the sole exception of the <code>let</code> statement, which is a declaration. In
 this section, we cover the types of expressions and introduce the concept of scope.</p>
 <blockquote>
 <p>Expressions are sequenced with semicolons <code>;</code>. If there's &quot;no expression&quot; after the semicolon, the
-compiler will insert a unit <code>()</code> - an empty expression.</p>
+compiler will insert a <code>unit ()</code>, which represents an empty expression.</p>
 </blockquote>
 <h2 id="literals"><a class="header" href="#literals">Literals</a></h2>
 <p>In the <a href="move-basics/./primitive-types.html">Primitive Types</a> section, we introduced the basic types of Move. And
-to illustrate them, we used literals. A literal is a notation for representing a fixed value in the
-source code. Literals are used to initialize variables and to pass arguments to functions. Move has
-the following literals:</p>
+to illustrate them, we used literals. A literal is a notation for representing a fixed value in 
+source code. Literals can be used to initialize variables or directly pass fixed values as arguments to 
+functions. Move has the following literals:</p>
 <ul>
-<li><code>true</code> and <code>false</code> for boolean values</li>
-<li><code>0</code>, <code>1</code>, <code>123123</code> or other numeric for integer values</li>
-<li><code>0x0</code>, <code>0x1</code>, <code>0x123</code> or other hexadecimal for integer values</li>
-<li><code>b&quot;bytes_vector&quot;</code> for byte vector values</li>
-<li><code>x&quot;0A&quot;</code> HEX literal for byte values</li>
+<li>Boolean values: <code>true</code> and <code>false</code></li>
+<li>Integer values: <code>0</code>, <code>1</code>, <code>123123</code></li>
+<li>Hexadecimal values: Numbers prefixed with 0x to represent integers, such as <code>0x0</code>, <code>0x1</code>, <code>0x123</code></li>
+<li>Byte vector values: Prefixed with <code>b</code>, such as <code>b&quot;bytes_vector&quot;</code></li>
+<li>Byte values: Hexadecimal literals prefixed with <code>x</code>, such as <code>x&quot;0A&quot;</code></li>
 </ul>
 <pre><code class="language-move">let b = true;     // true is a literal
 let n = 1000;     // 1000 is a literal
@@ -1896,17 +1893,17 @@ let x = x&quot;0A&quot;;    // x&quot;0A&quot; is a byte vector literal
 let c = vector[1, 2, 3]; // vector[] is a vector literal
 </code></pre>
 <h2 id="operators"><a class="header" href="#operators">Operators</a></h2>
-<p>Arithmetic, logical, and bitwise operators are used to perform operations on values. The result of
-an operation is a value, so operators are also expressions.</p>
+<p>Arithmetic, logical, and bitwise operators are used to perform operations on values. Since these 
+operations produce values, they are considered expressions.</p>
 <pre><code class="language-move">let sum = 1 + 2;   // 1 + 2 is an expression
 let sum = (1 + 2); // the same expression with parentheses
 let is_true = true &amp;&amp; false; // true &amp;&amp; false is an expression
 let is_true = (true &amp;&amp; false); // the same expression with parentheses
 </code></pre>
 <h2 id="blocks"><a class="header" href="#blocks">Blocks</a></h2>
-<p>A block is a sequence of statements and expressions, and it returns the value of the last expression
-in the block. A block is written as a pair of curly braces <code>{}</code>. A block is an expression, so it can
-be used anywhere an expression is expected.</p>
+<p>A block is a sequence of statements and expressions enclosed in curly braces <code>{}</code>. It returns the value of 
+the last expression in the block (note that this final expression must not have an ending semicolon).
+A block is an expression, so it can be used anywhere an expression is expected. </p>
 <pre><code class="language-move">// block with an empty expression, however, the compiler will
 // insert an empty expression automatically: `let none = { () }`
 // let none = {};
@@ -1928,17 +1925,18 @@ let sum = {
 };
 </code></pre>
 <h2 id="function-calls"><a class="header" href="#function-calls">Function Calls</a></h2>
-<p>We go into detail about functions in the <a href="move-basics/./functions.html">Functions</a> section. However, we already
-used function calls in the previous sections, so it's worth mentioning them here. A function call is
+<p>We go into detail about functions in the <a href="move-basics/./functions.html">Functions</a> section. However, we have already
+used function calls in previous sections, so it's worth mentioning them here. A function call is
 an expression that calls a function and returns the value of the last expression in the function
-body.</p>
+body, provided the last expression does not have a terminating semi-colon.</p>
 <pre><code class="language-move">fun add(a: u8, b: u8): u8 {
     a + b
 }
 
 #[test]
 fun some_other() {
-    let sum = add(1, 2); // add(1, 2) is an expression with type u8
+    let sum = add(1, 2); // not returned due to the semicolon.
+    // compiler automatically inserts an empty expression `()` as return value of the block
 }
 </code></pre>
 <h2 id="control-flow-expressions"><a class="header" href="#control-flow-expressions">Control Flow Expressions</a></h2>

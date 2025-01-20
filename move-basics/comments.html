@@ -196,12 +196,12 @@ Notes:
     - give an example of how doc comments are translated
  -->
 <p>Comments are a way to add notes or document your code. They are ignored by the compiler and don't
-result in the Move bytecode. You can use comments to explain what your code does, to add notes to
-yourself or other developers, to temporarily remove a part of your code, or to generate
-documentation. There are three types of comments in Move: line comment, block comment, and doc
-comment.</p>
+result in Move bytecode. You can use comments to explain what your code does, add notes to
+yourself or other developers, temporarily remove a part of your code, or generate
+documentation. There are three types of comments in Move: line comments, block comments, and doc
+comments.</p>
 <h2 id="line-comment"><a class="header" href="#line-comment">Line comment</a></h2>
-<p>You can use double slash <code>//</code> to comment out the rest of the line. Everything after <code>//</code> will be
+<p>You can use a double slash <code>//</code> to comment out the rest of the line. Everything after <code>//</code> will be
 ignored by the compiler.</p>
 <pre><code class="language-Move">module book::comments_line;
 
@@ -232,11 +232,10 @@ fun empty_commented_out() {
 }
 */
 </code></pre>
-<p>This example is a bit extreme, but it shows how you can use block comments to comment out a part of
-a line.</p>
+<p>This example is a bit extreme, but it shows all the ways that you can use block comments.</p>
 <h2 id="doc-comment"><a class="header" href="#doc-comment">Doc comment</a></h2>
 <p>Documentation comments are special comments that are used to generate documentation for your code.
-They are similar to block comments, but they start with three slashes <code>///</code> and are placed before
+They are similar to block comments but start with three slashes <code>///</code> and are placed before
 the definition of the item they document.</p>
 <pre><code class="language-Move">/// Module has documentation!
 module book::comments_doc;
