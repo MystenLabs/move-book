@@ -1,8 +1,9 @@
 # Vector
 
 Vectors are a native way to store collections of elements in Move. They are similar to arrays in
-other programming languages, but with a few differences. In this section, we introduce the `vector`
-type and its operations.
+other programming languages, but with a few differences. Unlike fixed-size arrays, vectors in Move
+have dynamic size, meaning they can grow and shrink during runtime. In this section, we introduce
+the `vector` type and its operations.
 
 ## Vector syntax
 
@@ -37,8 +38,8 @@ commonly used operations:
 ## Destroying a Vector of non-droppable types
 
 A vector of non-droppable types cannot be discarded. If you define a vector of types without `drop`
-ability, the vector value cannot be ignored. However, if the vector is empty, compiler requires an
-explicit call to `destroy_empty` function.
+ability, the vector value cannot be ignored. If the vector is empty, the compiler requires an
+explicit call to the `destroy_empty` function.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/vector.move:no_drop}}
