@@ -12,16 +12,16 @@ struct Option<Element> has copy, drop, store {
 }
 ```
 
-> The 'std::option' module is implicitly imported in every module, and you don't need to add an
-> import.
+> The 'std::option' module is implicitly imported in every module, so you don't need to add an
+> explicit import.
 
-The `Option` is a generic type which takes a type parameter `Element`. It has a single field `vec`
-which is a `vector` of `Element`. Vector can have length 0 or 1, and this is used to represent the
-presence or absence of a value.
+The `Option` type is a generic type with a type parameter `Element`. It contains a single field, `vec`,
+which is a `vector` of `Element`. The vector can have a length of 0 or 1, representing the
+absence or presence of a value, respectively.
 
-Option type has two variants: `Some` and `None`. `Some` variant contains a value and `None` variant
+The Option type has two variants: `Some` and `None`. The `Some` variant contains a value, while the `None` variant
 represents the absence of a value. The `Option` type is used to represent the absence of a value in
-a type-safe way, and it is used to avoid the need for empty or `undefined` values.
+a type-safe way, avoiding the need for empty or `undefined` values.
 
 ## In Practice
 
@@ -35,15 +35,16 @@ a missing middle name. Instead, we can use the `Option` type to represent the mi
 {{#include ../../../packages/samples/sources/move-basics/option.move:registry}}
 ```
 
-In the example above, the `middle_name` field is of type `Option<String>`. This means that the
-`middle_name` field can either contain a `String` value or be empty. This makes it clear that the
-middle name is optional, and it avoids the need for extra checks to differentiate between an empty
-string and a missing middle name.
+In the example above, the `middle_name` field is of type `Option<String>`. This means that the middle_name
+field can either contain a String value, wrapped in Some, or be explicitly empty, represented by None. Using
+the Option type makes the optional nature of the field explicit, avoiding ambiguity and the need for extra
+checks to differentiate between an empty string and a missing middle name.
 
 ## Using Option
 
-To use the `Option` type, you need to import the `std::option` module and use the `Option` type. You
-can then create an `Option` value using the `some` or `none` methods.
+The Option type, along with the std::option module, is implicitly imported in Move. This means you can use
+the Option type directly without needing an explicit use statement. You can then create an `Option` value 
+using the `some` or `none` methods.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/option.move:usage}}
