@@ -20,10 +20,10 @@ Links:
     - constants (previous section)
  -->
 
-A transaction can either succeed or fail. Successful execution applies all the changes made to
+A transaction can either succeed or fail. Successful execution applies all changes made to
 objects and on-chain data, and the transaction is committed to the blockchain. Alternatively, if a
-transaction aborts, the changes are not applied. The `abort` keyword is used to abort a transaction
-and revert the changes made so far.
+transaction aborts, changes are not applied. The `abort` keyword is used to abort a transaction
+and revert any changes that were made.
 
 > It is important to note that there is no catch mechanism in Move. If a transaction aborts, the
 > changes made so far are reverted, and the transaction is considered failed.
@@ -31,7 +31,7 @@ and revert the changes made so far.
 ## Abort
 
 The `abort` keyword is used to abort the execution of a transaction. It is used in combination with
-an abort code, which will be returned to the caller of the transaction. The abort code is an
+an abort code, which is returned to the caller of the transaction. The abort code is an
 [integer](./primitive-types.md) of type `u64`.
 
 ```move
@@ -56,9 +56,9 @@ an `if` expression + `abort`. The `code` argument is optional, but has to be a `
 
 To make error codes more descriptive, it is a good practice to define
 [error constants](./constants.md). Error constants are defined as `const` declarations and are
-usually prefixed with `E` followed by a camel case name. Error constants are no different from other
-constants and don't have special handling, however, they are used to increase the readability of the
-code and make it easier to understand the abort scenarios.
+usually prefixed with `E` followed by a camel case name. Error constants are similar to other constants
+and do not have any special handling. However, they are commonly used to improve code readability and
+make abort scenarios easier to understand.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/assert-and-abort.move:error_const}}
