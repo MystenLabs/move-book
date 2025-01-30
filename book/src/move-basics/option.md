@@ -40,11 +40,13 @@ field can either contain a String value, wrapped in Some, or be explicitly empty
 the `Option` type makes the optional nature of the field clear, avoiding ambiguity and the need for extra
 checks to differentiate between an empty string and a missing middle name.
 
-## Using Option
+## Creating and using Option values
 
 The `Option` type, along with the `std::option` module, is implicitly imported in Move. This means you can use
-the `Option` type directly without needing a `use` statement. You can then create an `Option` value 
-using the `Some` or `None` methods.
+the `Option` type directly without needing a `use` statement.
+
+To create a value of the `Option` type, you can use the `option::some` or `option::none` methods.
+`Option` values also support several operations (borrowing will be discussed in TODO):
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/option.move:usage}}

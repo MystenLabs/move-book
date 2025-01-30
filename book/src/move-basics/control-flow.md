@@ -177,6 +177,6 @@ Here is an example of a function that returns a value when a certain condition i
 {{#include ../../../packages/samples/sources/move-basics/control-flow.move:return_statement}}
 ```
 
-Unlike in other languages, the `return` statement is not required for the last expression in a
+Unlike in many other languages, the `return` statement is not required for the last expression in a
 function. The last expression in a function block is automatically returned. However, the `return`
 statement is useful when we want to exit a function early if a certain condition is met.

@@ -6,8 +6,10 @@ the `vector` type and its operations.
 
 ## Vector syntax
 
-The `vector` type is defined using the `vector` keyword followed by the type of the elements in
-angle brackets. The type of the elements can be any valid Move type, including other vectors. Move
+The `vector` type is written using the `vector` keyword followed by the type of the elements in
+angle brackets. The type of the elements can be any valid Move type, including other vectors.
+
+Move
 has a vector literal syntax that allows you to create vectors using the `vector` keyword followed by
 square brackets containing the elements (or no elements for an empty vector).
 
@@ -43,6 +45,8 @@ explicit call to the `destroy_empty` function.
 ```move
 {{#include ../../../packages/samples/sources/move-basics/vector.move:no_drop}}
 ```
+
+The `destroy_empty` function will fail at runtime if you call it on a non-empty vector.
 
 ## Further reading
 
