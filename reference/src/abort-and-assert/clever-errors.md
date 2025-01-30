@@ -42,7 +42,7 @@ In this example, the `EIsThree` constant is a `vector<u8>`, which is not a `u64`
 `u64` abort code value that holds:
 
 1. A set tag-bit that indicates that the abort code is a clever abort code.
-2. The line number of where the abort occured in the source file (e.g., 7).
+2. The line number of where the abort occurred in the source file (e.g., 7).
 3. The index in the module's identifier table for the constant's name (e.g., `EIsThree`).
 4. The index of the constant's value in the module's constant table (e.g., `b"The value is three"`).
 
