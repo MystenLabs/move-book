@@ -110,7 +110,7 @@ In hex, if `assert_false(3)` is called, it will abort with a `u64` abort code as
   |       |    |    |
   |       |    |    +-- Constant value index = 0xffff (sentinel value)
   |       |    +-- Constant name index = 0xffff (sentinel value)
-  |       +-- Line number = 4 (linke of the assertion)
+  |       +-- Line number = 4 (link of the assertion)
   +-- Tag bit = 0b1000_0000_0000_0000
 ```
 
