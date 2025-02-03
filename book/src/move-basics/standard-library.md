@@ -19,16 +19,16 @@ and which module implements it.
 | Module                                                                           | Description                                                                | Chapter                                                                    |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | [std::string](https://docs.sui.io/references/framework/std/string)       | Provides basic string operations                                           | [String](./string.md)                                                      |
-| [std::ascii](https://docs.sui.io/references/framework/std/ascii)         | Provides basic ASCII operations                                            | -                                                      |
-| [std::option](https://docs.sui.io/references/framework/std/option)       | Implements `Option<T>`                                                  | [Option](./option.md)                                                      |
+| [std::ascii](https://docs.sui.io/references/framework/std/ascii)         | Provides basic ASCII operations                                            | [String](./string.md)                                                      |
+| [std::option](https://docs.sui.io/references/framework/std/option)       | Implements an `Option<T>`                                                  | [Option](./option.md)                                                      |
 | [std::vector](https://docs.sui.io/references/framework/std/vector)       | Native operations on the vector type                                       | [Vector](./vector.md)                                                      |
 | [std::bcs](https://docs.sui.io/references/framework/std/bcs)             | Contains the `bcs::to_bytes()` function                                    | [BCS](../programmability/bcs.md)                                               |
 | [std::address](https://docs.sui.io/references/framework/std/address)     | Contains a single `address::length` function                               | [Address](./address.md)                                                    |
 | [std::type_name](https://docs.sui.io/references/framework/std/type_name) | Allows runtime _type reflection_                                           | [Type Reflection](./type-reflection.md)                                    |
-| [std::hash](https://docs.sui.io/references/framework/std/hash)                                                                        | Hashing functions: `sha2_256` and `sha3_256`                               | - |
-| [std::debug](https://docs.sui.io/references/framework/std/debug)                                                                       | Contains debugging functions, which are available in only in **test** mode | -                                                |
-| [std::bit_vector](https://docs.sui.io/references/framework/std/bit_vector)                                                                  | Provides operations on bit vectors                                         | -                                                                      |
-| [std::fixed_point32](https://docs.sui.io/references/framework/std/fixed_point32)                                                               | Provides the `FixedPoint32` type                                           | -                                                    |
+| std::hash                                                                        | Hashing functions: `sha2_256` and `sha3_256`                               | [Cryptography and Hashing](../programmability/cryptography-and-hashing.md) |
+| std::debug                                                                       | Contains debugging functions, which are available in only in **test** mode | [Debugging](./guides/debugging.md)                                                |
+| std::bit_vector                                                                  | Provides operations on bit vectors                                         | -                                                                          |
+| std::fixed_point32                                                               | Provides the `FixedPoint32` type                                           | -                                                                          |
 
 </div>
 
@@ -46,12 +46,12 @@ not be imported directly, as their functions are available on every integer valu
 
 | Module                                                                 | Description                   |
 | ---------------------------------------------------------------------- | ----------------------------- |
-| [std::u8](https://docs.sui.io/references/framework/move-stdlib/u8)     | Functions for the `u8` type   |
-| [std::u16](https://docs.sui.io/references/framework/move-stdlib/u16)   | Functions for the `u16` type  |
-| [std::u32](https://docs.sui.io/references/framework/move-stdlib/u32)   | Functions for the `u32` type  |
-| [std::u64](https://docs.sui.io/references/framework/move-stdlib/u64)   | Functions for the `u64` type  |
-| [std::u128](https://docs.sui.io/references/framework/move-stdlib/u128) | Functions for the `u128` type |
-| [std::u256](https://docs.sui.io/references/framework/move-stdlib/u256) | Functions for the `u256` type |
+| [std::u8](https://docs.sui.io/references/framework/std/u8)     | Functions for the `u8` type   |
+| [std::u16](https://docs.sui.io/references/framework/std/u16)   | Functions for the `u16` type  |
+| [std::u32](https://docs.sui.io/references/framework/std/u32)   | Functions for the `u32` type  |
+| [std::u64](https://docs.sui.io/references/framework/std/u64)   | Functions for the `u64` type  |
+| [std::u128](https://docs.sui.io/references/framework/std/u128) | Functions for the `u128` type |
+| [std::u256](https://docs.sui.io/references/framework/std/u256) | Functions for the `u256` type |
 
 </div>
 
