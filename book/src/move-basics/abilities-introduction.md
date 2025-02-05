@@ -42,7 +42,7 @@ A quick overview of the abilities:
   [Ability: Drop](./drop-ability.md) chapter.
 - `key` - allows the struct to be used as a _key_ in a storage. Explained in the
   [Ability: Key](./../storage/key-ability.md) chapter.
-- `store` - allows the struct to be _stored_ in structs that have a _key_ ability. Explained in the
+- `store` - allows the struct to be _stored_ in structs that have the _key_ ability. Explained in the
   [Ability: Store](./../storage/store-ability.md) chapter.
 
 While it is important to briefly mention them here, we will go into more detail about each ability in the following

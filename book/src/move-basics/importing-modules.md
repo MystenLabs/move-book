@@ -58,8 +58,7 @@ add the member name after the module path.
 ## Grouping Imports
 
 Imports can be grouped into a single `use` statement using curly braces `{}`. This allows for cleaner
-and more organized code when importing multiple members from the same module or multiple members from
-the same package.
+and more organized code when importing multiple members from the same module or package.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/importing-modules-grouped.move:grouped}}

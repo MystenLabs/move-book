@@ -115,7 +115,7 @@ Let's rewrite the previous example using `loop` instead of `while`:
 
 <!-- TODO: that's a weak point lmao -->
 
-Infinite loops are rarely practical in Move, as every operation consumes gas, and an infinite loop will inevitably lead to gas exhaustion. If you find yourself using a loop, consider whether there might be a better approach, as many use cases can be handled more efficiently with other control flow structures. That said, `loop` can be useful when combined with `break` and `continue` statements to create controlled and flexible looping behavior.
+Infinite loops are rarely practical in Move, as every operation consumes gas, and an infinite loop will inevitably lead to gas exhaustion. If you find yourself using a loop, consider whether there might be a better approach, as many use cases can be handled more efficiently with other control flow structures. That said, `loop` may be useful when combined with `break` and `continue` statements to create controlled and flexible looping behavior.
 
 ## Exiting a Loop Early
 

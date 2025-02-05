@@ -37,13 +37,13 @@ a missing middle name. Instead, we can use the `Option` type to represent the mi
 
 In the example above, the `middle_name` field is of type `Option<String>`. This means that the middle_name
 field can either contain a String value, wrapped in Some, or be explicitly empty, represented by None. Using
-the Option type makes the optional nature of the field explicit, avoiding ambiguity and the need for extra
+the Option type makes the optional nature of the field clear, avoiding ambiguity and the need for extra
 checks to differentiate between an empty string and a missing middle name.
 
 ## Using Option
 
 The Option type, along with the std::option module, is implicitly imported in Move. This means you can use
-the Option type directly without needing an explicit use statement. You can then create an `Option` value 
+the Option type directly without needing a use statement. You can then create an `Option` value 
 using the `some` or `none` methods.
 
 ```move

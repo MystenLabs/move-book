@@ -57,7 +57,7 @@ not be imported directly, as their functions are available on every integer valu
 
 ## Exported Addresses
 
-The Standard Library exports a single named address - `std = 0x1`. Note the alias defined here, `std`.
+The Standard Library exports a single named address - `std = 0x1`. Note the alias `std` is defined here.
 
 ```toml
 [addresses]
@@ -66,7 +66,7 @@ std = "0x1"
 
 ## Implicit Imports
 
-Some modules are imported implicitly, and are available in the module without the explicit `use`
+Some modules are imported implicitly and are available in the module without the explicit `use`
 import. For the Standard Library, these modules and types include:
 
 - std::vector
