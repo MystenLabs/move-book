@@ -1,29 +1,29 @@
 # Testing
 
-A crucial part of any software development, and even more - blockchain development, is testing.
-Here, we will cover the basics of testing in Move and how to write and organize tests for your Move
-code.
+Testing is a crucial aspect of software development, especially in blockchain applications where
+security and correctness are paramount. In this section, we will cover the fundamentals of testing 
+in Move, including how to write and organize tests effectively.
 
 ## The `#[test]` attribute
 
 Tests in Move are functions marked with the `#[test]` attribute. This attribute tells the compiler
-that the function is a test function, and it should be run when the tests are executed. Test
+that the function is a test function and should be run when tests are executed. Test
 functions are regular functions, but they must take no arguments and have no return value. They
-are excluded from the bytecode, and are never published.
+are excluded from the bytecode and are never published.
 
 ```move
 module book::testing;
 
-// Test attribute is placed before the `fun` keyword. Can be both above or
-// right before the `fun` keyword: `#[test] fun my_test() { ... }`
-// The name of the test would be `book::testing::simple_test`.
+// The test attribute is placed before the `fun` keyword (can be both above or
+// right before the `fun` keyword, as in `#[test] fun my_test() { ... }`)
+// The name of the test in this case would be `book::testing::simple_test`.
 #[test]
 fun simple_test() {
     let sum = 2 + 2;
     assert!(sum == 4);
 }
 
-// The name of the test would be `book::testing::more_advanced_test`.
+// The name of this test would be `book::testing::more_advanced_test`.
 #[test] fun more_advanced_test() {
     let sum = 2 + 2 + 2;
     assert!(sum == 4);
@@ -33,8 +33,8 @@ fun simple_test() {
 ## Running Tests
 
 To run tests, you can use the `sui move test` command. This command will first build the package in
-the _test mode_ and then run all the tests found in the package. During test mode, modules from both
-`sources/` and `tests/` directories are processed, and the tests are executed.
+_test mode_ and then run all tests found in the package. In test mode, modules from both
+`sources/` and `tests/` directories are processed and their tests executed.
 
 ```bash
 $ sui move test
@@ -49,15 +49,15 @@ $ sui move test
 
 ## Test Fail Cases with `#[expected_failure]`
 
-Tests for fail cases can be marked with `#[expected_failure]`. This attribute placed on a `#[test]`
-function tells the compiler that the test is expected to fail. This is useful when you want to test
+Tests for fail cases can be marked with `#[expected_failure]`. This attribute, when added to a `#[test]`
+function, tells the compiler that the test is expected to fail. This is useful when you want to test
 that a function fails when a certain condition is met.
 
-> This attribute can only be placed on a `#[test]` function.
+> Note: This attribute can only be added to a `#[test]` function.
 
-The attribute can take an argument for abort code, which is the expected abort code when the test
-fails. If the test fails with a different abort code, the test will fail. If the execution did not
-abort, the test will also fail.
+The attribute can take an argument specifying the expected abort code that should be returned if the
+test fails. If the test fails with a different abort code, it will fail. Likewise, if execution does
+not result in an abort, the test will also fail.
 
 ```move
 module book::testing_failure;
@@ -82,8 +82,8 @@ other modules. This is the only case where constants can be used and "accessed" 
 
 ## Utilities with `#[test_only]`
 
-In some cases, it is helpful to give the test environment access to some of the internal functions
-or features. It simplifies the testing process and allows for more thorough testing. However, it is
+In some cases, it is helpful to give the test environment access to some internal functions
+or features. This simplifies the testing process and allows for more thorough testing. However, it is
 important to remember that these functions should not be included in the final package. This is
 where the `#[test_only]` attribute comes in handy.
 
@@ -115,7 +115,7 @@ fun test_multiply_by_secret() {
 ```
 
 Functions marked with the `#[test_only]` will be available to the test environment, and to the other
-modules if their visibility is set so.
+modules if their visibility is set to `public`.
 
 ## Further Reading
 
