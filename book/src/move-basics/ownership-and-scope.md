@@ -16,7 +16,7 @@ works.
 ## Ownership
 
 A variable defined in a function scope is owned by this scope. The runtime goes through the function
-scope and executes every expression and statement. Once the function scope end, the variables
+scope and executes every expression and statement. Once the function scope ends, the variables
 defined in it are dropped or deallocated.
 
 ```move
@@ -34,7 +34,7 @@ public fun other() {
 fun test_owner() {
     owner();
     other();
-    // a & b is not valid here
+    // a & b are not valid here
 }
 ```
 
@@ -100,9 +100,9 @@ module book::ownership;
 public fun owner() {
     let a = 1; // a is owned by the `owner` function's scope
     {
-        let b = 2; // b is owned by the block
+        let b = 2; // b is owned by the block it is declared in
         {
-            let c = 3; // c is owned by the block
+            let c = 3; // c is owned by the block it is declared in
         }; // c is dropped here
     }; // b is dropped here
     // a = b; // error: b is not valid here
@@ -110,7 +110,7 @@ public fun owner() {
 } // a is dropped here
 ```
 
-However, shall we use the return value of a block, the ownership of the variable is transferred to
+However, if we return a value from a block, the ownership of the variable is transferred to
 the caller of the block.
 
 ```move
@@ -119,7 +119,7 @@ module book::ownership;
 public fun owner(): u8 {
     let a = 1; // a is owned by the `owner` function's scope
     let b = {
-        let c = 2; // c is owned by the block
+        let c = 2; // c is owned by the block it is declared in
         c // c is returned
     }; // c is dropped here
     a + b // both a and b are valid here
@@ -128,10 +128,10 @@ public fun owner(): u8 {
 
 ## Copyable Types
 
-Some types in Move are _copyable_, which means that they can be copied without transferring the
+Some types in Move are _copyable_, which means that they can be copied without transferring 
 ownership. This is useful for types that are small and cheap to copy, such as integers and booleans.
-Move compiler will automatically copy these types when they are passed to a function or returned
-from a function, or when they're _moved_ to a scope and then accessed in their original scope.
+The Move compiler will automatically copy these types when they are passed to or returned
+from a function, or when they're _moved_ to another scope and then accessed in their original scope.
 
 ## Further reading
 
