@@ -3,7 +3,7 @@
 <!-- The Move standard library provides a set of modules  -->
 
 The Move Standard Library provides functionality for native types and operations. It is a standard
-collection of modules which do not interact with storage, but provide basic tools for working with
+collection of modules that do not interact with storage, but provide basic tools for working with
 and manipulating data. It is the only dependency of the
 [Sui Framework](../programmability/sui-framework.md), and is imported together with it.
 

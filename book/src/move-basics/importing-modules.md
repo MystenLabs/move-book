@@ -41,9 +41,9 @@ Another module defined in the same package can import the first module using the
 {{#include ../../../packages/samples/sources/move-basics/importing-modules-two.move:module_two}}
 ```
 
-> Reminder: Any item (structs, functions, constants, etc.) that you want to import from another module
+> Reminder: Any item (struct, function, constant, etc.) that you want to import from another module
 > must be marked with the `public` keyword to make it accessible outside its defining module. For example, 
-> the `Character` struct and the `new` function in module_one are marked public so they can be used in module_two.
+> the `Character` struct and the `new` function in `module_one` are marked public so they can be used in `module_two`.
 
 ## Importing Members
 

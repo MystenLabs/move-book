@@ -30,7 +30,7 @@ with a concrete type, and generic functions must be called with a concrete type.
 ```
 
 In the test function `test_generic`, we demonstrate three equivalent ways to create a new `Container`
-with a `u8` value. Since numeric types are inferred, we explicitly specify the type of the numeric
+with a `u8` value. Because numeric types are inferred, we explicitly specify the type of the numeric
 literal to ensure correctness.
 
 ## Multiple Type Parameters
@@ -73,7 +73,7 @@ features in Move.
 ```
 
 In the example above, `User` is a generic type with a single type parameter `T`, with shared fields
-`name`, `age`, and the generic `metadata` field which can store any type. No matter what 
+`name`, `age`, and the generic `metadata` field, which can store any type. No matter what 
 `metadata` is, all instances of `User` will contain the same fields and methods.
 
 ```move

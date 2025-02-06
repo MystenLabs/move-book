@@ -96,7 +96,7 @@ sure that the bytes you are passing are valid, you should use the `try_utf8` met
 returns an `Option<String>`, which contains no value if the bytes are not valid UTF-8, and a string
 otherwise.
 
-> Hint: Functions with names starting with try_* typically return an Option. If the operation succeeds, the 
+> Hint: Functions with names starting with `try_*` typically return an `Option`. If the operation succeeds, the 
 > result is wrapped in `Some`. If it fails, the function returns `None`. This naming convention, commonly 
 > used in Move, is inspired by Rust.
 
@@ -112,7 +112,7 @@ because UTF-8 is a variable-length encoding, and the length of a character can b
 of characters.
 
 
-However, methods like `sub_string` and `insert` validate character boundaries and will abort if the 
+However, methods like `sub_string` and `insert` validate character boundaries and abort if the 
 specified index falls within the middle of a character.
 
 

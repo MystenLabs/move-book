@@ -16,7 +16,7 @@ works.
 ## Ownership
 
 A variable defined in a function scope is owned by this scope. The runtime goes through the function
-scope and executes every expression and statement. Once the function scope ends, the variables
+scope and executes every expression and statement. After the function scope ends, the variables
 defined in it are dropped or deallocated.
 
 ```move
@@ -100,9 +100,9 @@ module book::ownership;
 public fun owner() {
     let a = 1; // a is owned by the `owner` function's scope
     {
-        let b = 2; // b is owned by the block it is declared in
+        let b = 2; // the block that declares b owns it
         {
-            let c = 3; // c is owned by the block it is declared in
+            let c = 3; // the block that declares c owns it
         }; // c is dropped here
     }; // b is dropped here
     // a = b; // error: b is not valid here
@@ -119,7 +119,7 @@ module book::ownership;
 public fun owner(): u8 {
     let a = 1; // a is owned by the `owner` function's scope
     let b = {
-        let c = 2; // c is owned by the block it is declared in
+        let c = 2; // the block that declares c owns it
         c // c is returned
     }; // c is dropped here
     a + b // both a and b are valid here

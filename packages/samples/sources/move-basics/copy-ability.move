@@ -11,7 +11,7 @@ public struct Copyable has copy {}
 #[test] fun test_copy() {
 
 // ANCHOR: copyable_test
-let a = Copyable {}; // allowed becausethe Copyable struct has the `copy` ability
+let a = Copyable {}; // allowed because the Copyable struct has the `copy` ability
 let b = a;   // `a` is copied to `b`
 let c = *&b; // explicit copy via dereference operator
 

@@ -1,9 +1,9 @@
 # Struct Methods
 
 Move Compiler supports _receiver syntax_, which allows defining methods which can be called on
-instances of a struct. The term "receiver" specifically refers to the instance that "receives" the
+instances of a struct. The term "receiver" specifically refers to the instance that receives the
 method call. This is like the method syntax in other programming languages. It is a
-convenient way to define functions which operate on the fields of a struct, providing direct access
+convenient way to define functions that operate on the fields of a struct, providing direct access
 to the struct's fields and creating cleaner, more intuitive code than passing the struct as a parameter.
 
 ## Method syntax
@@ -48,7 +48,7 @@ on struct instances without the prefix:
 ```
 
 In the test function, the `health` method is called directly on the `Hero` and `Villain` instances
-without the prefix, as the compiler automatically associate the methods with their respective
+without the prefix, as the compiler automatically associates the methods with their respective
 structs.
 
 > Note: In the test function, `hero.health()` is calling the aliased method, not directly accessing 

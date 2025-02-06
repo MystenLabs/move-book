@@ -35,7 +35,7 @@ body is the return value of the function.
 Just like other module members, functions can be imported and accessed using a path. The path consists
 of the module path and the function name, separated by ::. For example, if you have a function named
 `add` in the `math` module within the `book` package, its full path would be `book::math::add`. If the module
-has already been imported, you can access it directly as `math::add` as in the example below:
+has already been imported, you can access it directly as `math::add` as in the following example:
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/function_use.move:use_math}}

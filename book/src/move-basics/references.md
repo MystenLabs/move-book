@@ -24,12 +24,12 @@ However, there are use cases when we want to pass a value to a function but reta
 This is where references come into play.
 
 To illustrate this, let's consider a simple example - an application for a metro (subway) pass. We
-will look at 4 different scenarios:
+will look at 4 different scenarios where a card can be:
 
-1. A card can be purchased at a kiosk for a fixed price
-2. A card can be shown to an inspector to prove that the passenger has a valid pass
-3. A card can be used at the turnstile to enter the metro, and purchase a ride
-4. A card can be recycled once it's empty
+1. Purchased at a kiosk for a fixed price
+2. Shown to an inspector to prove that the passenger has a valid pass
+3. Used at the turnstile to enter the metro, and purchase a ride
+4. Recycled after it's empty
 
 ## Layout
 
@@ -62,7 +62,7 @@ _reference_ to the value, not the value itself.
 
 Because the function does not take ownership of the Card, it can _read_ its data but cannot _write_ 
 to it, meaning it cannot modify the number of rides. Additionally, the function signature ensures 
-that it cannot be called without a Card instance. This is an important property which allows the
+that it cannot be called without a Card instance. This is an important property that allows the
 [Capability Pattern](./../programmability/capability.md), which we will cover in the next chapters.
 
 ## Mutable Reference
@@ -91,9 +91,9 @@ scope. The owner of the Card can recycle it and thereby relinquish ownership to 
 In the `recycle` function, the Card is passed by value, transferring ownership to the function.
 This allows it to be unpacked and destroyed.
 
-> Note: In Move, _ is a wildcard pattern used in destructuring to ignore a field while still consuming the value.
+> Note: In Move, `_` is a wildcard pattern used in destructuring to ignore a field while still consuming the value.
 > Destructuring must match all fields in a struct type. If a struct has fields, you must list all of them 
-> explicitly or use _ to ignore unwanted fields.
+> explicitly or use `_` to ignore unwanted fields.
 
 ## Full Example
 

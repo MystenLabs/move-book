@@ -61,7 +61,7 @@ In this example, the value of the `if` expression is assigned to the variable `y
 
 <!-- TODO: add an error -->
 
-Conditional expressions are among the most important control flow statements in Move. They evaluate user-provided input or stored data to make decisions. One key use case is in the [`assert!` macro](./assert-and-abort.md), which checks if a condition is true and aborts execution if it is not. We’ll explore this in detail shortly!
+Conditional expressions are among the most important control flow statements in Move. They evaluate user-provided input or stored data to make decisions. One key use case is in the [`assert!` macro](./assert-and-abort.md), which checks if a condition is true and aborts execution if it is not. We’ll explore this in detail shortly.
 
 ## Repeating Statements with Loops
 
@@ -70,7 +70,7 @@ Loops are used to execute a block of code multiple times. Move has two built-in 
 the number of iterations is known in advance, and `loop` is used when the number of iterations is
 not known in advance or there are multiple exit points.
 
-Loops are useful for working with collections, such as vectors, or for repeating a block of code until a specific condition is met. However, care must be taken to avoid infinite loops, which can exhaust gas limits and cause the transaction to be aborted.
+Loops are useful for working with collections, such as vectors, or for repeating a block of code until a specific condition is met. However, take care to avoid infinite loops, which can exhaust gas limits and cause the transaction to abort.
 
 ## The `while` loop
 
@@ -115,7 +115,7 @@ Let's rewrite the previous example using `loop` instead of `while`:
 
 <!-- TODO: that's a weak point lmao -->
 
-Infinite loops are rarely practical in Move, as every operation consumes gas, and an infinite loop will inevitably lead to gas exhaustion. If you find yourself using a loop, consider whether there might be a better approach, as many use cases can be handled more efficiently with other control flow structures. That said, `loop` may be useful when combined with `break` and `continue` statements to create controlled and flexible looping behavior.
+Infinite loops are rarely practical in Move, as every operation consumes gas, and an infinite loop will inevitably lead to gas exhaustion. If you find yourself using a loop, consider whether there might be a better approach, as many use cases can be handled more efficiently with other control flow structures. That said, `loop` might be useful when combined with `break` and `continue` statements to create controlled and flexible looping behavior.
 
 ## Exiting a Loop Early
 
