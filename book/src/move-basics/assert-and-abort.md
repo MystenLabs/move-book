@@ -22,7 +22,7 @@ Links:
 
 A transaction can either succeed or fail. Successful execution applies all changes made to
 objects and on-chain data, and the transaction is committed to the blockchain. Alternatively, if a
-transaction aborts, changes are not applied. The `abort` keyword is used to abort a transaction
+transaction aborts, changes are not applied. Use the `abort` keyword to abort a transaction
 and revert any changes that were made.
 
 > It is important to note that there is no catch mechanism in Move. If a transaction aborts, the
