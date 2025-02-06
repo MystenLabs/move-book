@@ -2,11 +2,16 @@
 // SPDX-License-Identifier: Apache-2.0
 
 // ANCHOR: main
-module book::newtype_pattern;
+module book::wrapper_type_pattern;
 
-/// Very simple stack implementation using the newtype pattern. Does not allow
+/// Very simple stack implementation using the wrapper type pattern. Does not allow
 /// accessing the elements unless they are popped.
 public struct Stack<T>(vector<T>) has copy, store, drop;
+
+/// Create a new instance by wrapping the value.
+public fun new<T>(value: vector<T>): Stack<T> {
+    Stack(value)
+}
 
 /// Push an element to the stack.
 public fun push_back<T>(v: &mut Stack<T>, el: T) {
@@ -32,4 +37,10 @@ public fun inner<T>(v: &Stack<T>): &vector<T> { &v.0 }
 
 /// Allows mutable access to the contents of the `Stack`.
 public fun inner_mut<T>(v: &mut Stack<T>): &mut vector<T> { &mut v.0 }
+
+/// Unpacks the `Stack` into the underlying `vector`.
+public fun into_inner<T>(v: Stack<T>): vector<T> {
+    let Stack(inner) = v;
+    inner
+}
 // ANCHOR_END: common

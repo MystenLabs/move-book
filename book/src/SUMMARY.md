@@ -99,7 +99,7 @@
   - [Pattern: Capability](./programmability/capability.md)
   - [Epoch and Time](./programmability/epoch-and-time.md)
   - [Collections](./programmability/collections.md)
-  - [Pattern: Newtype](./programmability/newtype-pattern.md)
+  - [Pattern: Wrapper Type](./programmability/wrapper-type-pattern.md)
   - [Dynamic Fields](./programmability/dynamic-fields.md)
   - [Dynamic Object Fields](./programmability/dynamic-object-fields.md)
   - [Dynamic Collections](./programmability/dynamic-collections.md)
