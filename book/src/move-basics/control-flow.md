@@ -44,7 +44,7 @@ if (<bool_expression>) <expression> else <expression>;
 
 Just like any other expression, `if` requires a semicolon if there are other expressions following
 it. The `else` keyword is optional, except when the resulting value is assigned to a variable, as all 
-branches must return a value to ensure type safety. Let’s examine how an if expression works in Move
+branches must return a value to ensure type safety. Let’s examine how an `if` expression works in Move
 with the following example:
 
 ```move
