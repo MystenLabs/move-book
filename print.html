@@ -1962,7 +1962,7 @@ loop { expr; break };
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="custom-types-with-struct"><a class="header" href="#custom-types-with-struct">Custom Types with Struct</a></h1>
 <p>Move's type system shines when it comes to defining custom types. User defined types can be custom
-tailored to the specific needs of the application. Not just on the data level, but also in its
+tailored to the specific needs of the application, not only on the data level, but also in its
 behavior. In this section we introduce the struct definition and how to use it.</p>
 <h2 id="struct"><a class="header" href="#struct">Struct</a></h2>
 <p>To define a custom type, you can use the <code>struct</code> keyword followed by the name of the type. After
@@ -2005,9 +2005,9 @@ and writing the fields of a struct in other modules is only possible if the modu
 struct provides public functions to access the fields.</p>
 </blockquote>
 <h2 id="create-and-use-an-instance"><a class="header" href="#create-and-use-an-instance">Create and use an instance</a></h2>
-<p>We described how struct <em>definition</em> works. Now let's see how to initialize a struct and use it. A
+<p>We described the <em>definition</em> of a struct. Now let's see how to initialize a struct and use it. A
 struct can be initialized using the <code>struct_name { field1: value1, field2: value2, ... }</code> syntax.
-The fields can be initialized in any order, and all of the fields must be set.</p>
+The fields can be initialized in any order, and all of the required fields must be set.</p>
 <pre><code class="language-move">let mut artist = Artist {
     name: b&quot;The Beatles&quot;.to_string()
 };
@@ -2027,7 +2027,7 @@ artist.name = b&quot;Led Zeppelin&quot;.to_string();
 // Check that the `name` field has been mutated.
 assert!(artist.name == b&quot;Led Zeppelin&quot;.to_string());
 </code></pre>
-<p>Only module defining the struct can access its fields (both mutably and immutably). So the above
+<p>Only the module defining the struct can access its fields (both mutably and immutably). So the above
 code should be in the same module as the <code>Artist</code> struct.</p>
 <!-- ## Accessing Fields
 
@@ -2049,8 +2049,8 @@ assert!(artist.name == b"Led Zeppelin".to_string());
 ```
 -->
 <h2 id="unpacking-a-struct"><a class="header" href="#unpacking-a-struct">Unpacking a struct</a></h2>
-<p>Structs are non-discardable by default, meaning that the initiated struct value must be used: either
-stored or <em>unpacked</em>. Unpacking a struct means deconstructing it into its fields. This is done using
+<p>Structs are non-discardable by default, meaning that the initialized struct value must be used,
+either by storing it or unpacking it. Unpacking a struct means deconstructing it into its fields. This is done using
 the <code>let</code> keyword followed by the struct name and the field names.</p>
 <pre><code class="language-move">// Unpack the `Artist` struct and create a new variable `name`
 // with the value of the `name` field.
@@ -2083,7 +2083,7 @@ and define which behaviours are allowed for the instances of the struct.</p>
 <h2 id="abilities-syntax"><a class="header" href="#abilities-syntax">Abilities syntax</a></h2>
 <p>Abilities are set in the struct definition using the <code>has</code> keyword followed by a list of abilities.
 The abilities are separated by commas. Move supports 4 abilities: <code>copy</code>, <code>drop</code>, <code>key</code>, and
-<code>store</code>, each of them is used to define a specific behaviour for the struct instances.</p>
+<code>store</code>. Each ability defines a specific behaviour for the struct instances.</p>
 <pre><code class="language-move">/// This struct has the `copy` and `drop` abilities.
 struct VeryAble has copy, drop {
     // field: Type1,
@@ -2104,16 +2104,16 @@ chapter.</li>
 <a href="move-basics/./drop-ability.html">Ability: Drop</a> chapter.</li>
 <li><code>key</code> - allows the struct to be used as a <em>key</em> in a storage. Explained in the
 <a href="move-basics/./../storage/key-ability.html">Ability: Key</a> chapter.</li>
-<li><code>store</code> - allows the struct to be <em>stored</em> in structs with the <em>key</em> ability. Explained in the
+<li><code>store</code> - allows the struct to be <em>stored</em> in structs that have the <em>key</em> ability. Explained in the
 <a href="move-basics/./../storage/store-ability.html">Ability: Store</a> chapter.</li>
 </ul>
-<p>While it is important to mention them here, we will go in detail about each ability in the following
-chapters and give a proper context on how to use them.</p>
+<p>While it is important to briefly mention them here, we will go into more detail about each ability in the following
+chapters and give proper context on how to use them.</p>
 <h2 id="no-abilities"><a class="header" href="#no-abilities">No abilities</a></h2>
-<p>A struct without abilities cannot be discarded, or copied, or stored in the storage. We call such a
+<p>A struct without abilities cannot be discarded, copied, or stored in storage. We call such a
 struct a <em>Hot Potato</em>. It is a joke, but it is also a good way to remember that a struct without
-abilities is like a hot potato - it can only be passed around and requires special handling. Hot
-Potato is one of the most powerful patterns in Move, we go in detail about it in the
+abilities is like a hot potato - it can only be passed around and requires special handling. The Hot
+Potato is one of the most powerful patterns in Move, and we go into more detail about it in the
 <a href="move-basics/./../programmability/hot-potato-pattern.html">Hot Potato Pattern</a> chapter.</p>
 <h2 id="further-reading-8"><a class="header" href="#further-reading-8">Further reading</a></h2>
 <ul>
@@ -2254,6 +2254,11 @@ public fun create_and_ignore() {
     let _ = module_one::new();
 }
 </code></pre>
+<blockquote>
+<p>Reminder: Any item (struct, function, constant, etc.) that you want to import from another module
+must be marked with the <code>public</code> keyword to make it accessible outside its defining module. For example, 
+the <code>Character</code> struct and the <code>new</code> function in <code>module_one</code> are marked public so they can be used in <code>module_two</code>.</p>
+</blockquote>
 <h2 id="importing-members"><a class="header" href="#importing-members">Importing Members</a></h2>
 <p>You can also import specific members from a module. This is useful when you only need a single
 function or a single type from a module. The syntax is the same as for importing a module, but you
@@ -2269,9 +2274,8 @@ public fun create_character(): Character {
 }
 </code></pre>
 <h2 id="grouping-imports"><a class="header" href="#grouping-imports">Grouping Imports</a></h2>
-<p>Imports can be grouped into a single <code>use</code> statement using the curly braces <code>{}</code>. This is useful
-when you need to import multiple members from the same module. Move allows grouping imports from the
-same module and from the same package.</p>
+<p>Imports can be grouped into a single <code>use</code> statement using curly braces <code>{}</code>. This allows for cleaner
+and more organized code when importing multiple members from the same module or package.</p>
 <pre><code class="language-move">module book::grouped_imports;
 
 // imports the `new` function and the `Character` struct from
@@ -2316,8 +2320,8 @@ public fun create(): Char {
 </code></pre>
 <h2 id="adding-an-external-dependency"><a class="header" href="#adding-an-external-dependency">Adding an External Dependency</a></h2>
 <p>Every new package generated via the <code>sui</code> binary features a <code>Move.toml</code> file with a single
-dependency on the <em>Sui Framework</em> package. The Sui Framework depends on the <em>Standard Library</em>
-package. And both of these packages are available in default configuration. Package dependencies are
+dependency, the <em>Sui Framework</em> package. The Sui Framework, in turn, depends on the <em>Standard Library</em>
+package. Both of these packages are available in the default configuration. Package dependencies are
 defined in the <a href="move-basics/./../concepts/manifest.html">Package Manifest</a> as follows:</p>
 <pre><code class="language-toml">[dependencies]
 Sui = { git = &quot;https://github.com/MystenLabs/sui.git&quot;, subdir = &quot;crates/sui-framework/packages/sui-framework&quot;, rev = &quot;framework/testnet&quot; }
@@ -2330,12 +2334,12 @@ local path is a relative path to the package directory.</p>
 <p>If a dependency is added to the <code>Move.toml</code> file, the compiler will automatically fetch (and later
 refetch) the dependencies when building the package.</p>
 <h2 id="importing-a-module-from-another-package"><a class="header" href="#importing-a-module-from-another-package">Importing a Module from Another Package</a></h2>
-<p>Normally, packages define their addresses in the <code>[addresses]</code> section, so you can use the alias
-instead of the address. For example, instead of <code>0x2::coin</code> module, you would use <code>sui::coin</code>. The
-<code>sui</code> alias is defined in the Sui Framework package. Similarly, the <code>std</code> alias is defined in the
-Standard Library package and can be used to access the standard library modules.</p>
-<p>To import a module from another package, you use the <code>use</code> keyword followed by the module path. The
-module path consists of the package address (or alias) and the module name separated by <code>::</code>.</p>
+<p>Normally, packages define their addresses in the <code>[addresses]</code> section. You can use aliases
+instead of full addresses. For example, instead of using <code>0x2::coin</code> to reference the Sui <code>coin</code> module,
+you can use <code>sui::coin</code>. The <code>sui</code> alias is defined in the Sui Framework package's manifest. Similarly, the <code>std</code>
+alias is defined in the Standard Library package and can be used instead of <code>0x1</code> to access standard library modules.</p>
+<p>To import a module from another package, use the <code>use</code> keyword followed by the module path. The
+module path consists of the package address (or alias) and the module name, separated by <code>::</code>.</p>
 <pre><code class="language-move">module book::imports;
 
 use std::string; // std = 0x1, string is a module in the standard library
@@ -2344,8 +2348,8 @@ use sui::coin;   // sui = 0x2, coin is a module in the Sui Framework
 <div style="break-before: page; page-break-before: always;"></div><h1 id="standard-library"><a class="header" href="#standard-library">Standard Library</a></h1>
 <!-- The Move standard library provides a set of modules  -->
 <p>The Move Standard Library provides functionality for native types and operations. It is a standard
-collection of modules which do not interact with the storage, but provide basic tools for working
-and manipulating the data. It is the only dependency of the
+collection of modules that do not interact with storage, but provide basic tools for working with
+and manipulating data. It is the only dependency of the
 <a href="move-basics/../programmability/sui-framework.html">Sui Framework</a>, and is imported together with it.</p>
 <h2 id="most-common-modules"><a class="header" href="#most-common-modules">Most Common Modules</a></h2>
 <p>In this book we go into detail about most of the modules in the Standard Library, however, it is
@@ -2354,23 +2358,23 @@ and which module implements it.</p>
 <!-- Custom CSS addition in the theme/custom.css  -->
 <div class="modules-table">
 <div class="table-wrapper"><table><thead><tr><th>Module</th><th>Description</th><th>Chapter</th></tr></thead><tbody>
-<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/string">std::string</a></td><td>Provides basic string operations</td><td><a href="move-basics/./string.html">String</a></td></tr>
-<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/ascii">std::ascii</a></td><td>Provides basic ASCII operations</td><td><a href="move-basics/./string.html">String</a></td></tr>
-<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/option">std::option</a></td><td>Implements an <code>Option&lt;T&gt;</code></td><td><a href="move-basics/./option.html">Option</a></td></tr>
-<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/vector">std::vector</a></td><td>Native operations on the vector type</td><td><a href="move-basics/./vector.html">Vector</a></td></tr>
-<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/bcs">std::bcs</a></td><td>Contains the <code>bcs::to_bytes()</code> function</td><td><a href="move-basics/../programmability/bcs.html">BCS</a></td></tr>
-<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/address">std::address</a></td><td>Contains a single <code>address::length</code> function</td><td><a href="move-basics/./address.html">Address</a></td></tr>
-<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/type_name">std::type_name</a></td><td>Allows runtime <em>type reflection</em></td><td><a href="move-basics/./type-reflection.html">Type Reflection</a></td></tr>
-<tr><td>std::hash</td><td>Hashing functions: <code>sha2_256</code> and <code>sha3_256</code></td><td><a href="move-basics/../programmability/cryptography-and-hashing.html">Cryptography and Hashing</a></td></tr>
-<tr><td>std::debug</td><td>Contains debugging functions, which are available in only in <strong>test</strong> mode</td><td><a href="move-basics/./guides/debugging.html">Debugging</a></td></tr>
-<tr><td>std::bit_vector</td><td>Provides operations on bit vectors</td><td>-</td></tr>
-<tr><td>std::fixed_point32</td><td>Provides the <code>FixedPoint32</code> type</td><td>-</td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/std/string">std::string</a></td><td>Provides basic string operations</td><td><a href="move-basics/./string.html">String</a></td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/std/ascii">std::ascii</a></td><td>Provides basic ASCII operations</td><td>-</td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/std/option">std::option</a></td><td>Implements <code>Option&lt;T&gt;</code></td><td><a href="move-basics/./option.html">Option</a></td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/std/vector">std::vector</a></td><td>Native operations on the vector type</td><td><a href="move-basics/./vector.html">Vector</a></td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/std/bcs">std::bcs</a></td><td>Contains the <code>bcs::to_bytes()</code> function</td><td><a href="move-basics/../programmability/bcs.html">BCS</a></td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/std/address">std::address</a></td><td>Contains a single <code>address::length</code> function</td><td><a href="move-basics/./address.html">Address</a></td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/std/type_name">std::type_name</a></td><td>Allows runtime <em>type reflection</em></td><td><a href="move-basics/./type-reflection.html">Type Reflection</a></td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/std/hash">std::hash</a></td><td>Hashing functions: <code>sha2_256</code> and <code>sha3_256</code></td><td>-</td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/std/debug">std::debug</a></td><td>Contains debugging functions, which are available in only in <strong>test</strong> mode</td><td>-</td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/std/bit_vector">std::bit_vector</a></td><td>Provides operations on bit vectors</td><td>-</td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/std/fixed_point32">std::fixed_point32</a></td><td>Provides the <code>FixedPoint32</code> type</td><td>-</td></tr>
 </tbody></table>
 </div></div>
 <h2 id="integer-modules"><a class="header" href="#integer-modules">Integer Modules</a></h2>
 <p>The Move Standard Library provides a set of functions associated with integer types. These functions
 are split into multiple modules, each associated with a specific integer type. The modules should
-not be imported directly, but their functions are available on every integer value.</p>
+not be imported directly, as their functions are available on every integer value.</p>
 <blockquote>
 <p>All of the modules provide the same set of functions. Namely, <code>max</code>, <code>diff</code>,
 <code>divide_and_round_up</code>, <code>sqrt</code> and <code>pow</code>.</p>
@@ -2387,13 +2391,13 @@ not be imported directly, but their functions are available on every integer val
 </tbody></table>
 </div></div>
 <h2 id="exported-addresses"><a class="header" href="#exported-addresses">Exported Addresses</a></h2>
-<p>Standard Library exports one named address - <code>std = 0x1</code>.</p>
+<p>The Standard Library exports a single named address - <code>std = 0x1</code>. Note the alias <code>std</code> is defined here.</p>
 <pre><code class="language-toml">[addresses]
 std = &quot;0x1&quot;
 </code></pre>
 <h2 id="implicit-imports"><a class="header" href="#implicit-imports">Implicit Imports</a></h2>
-<p>Some of the modules are imported implicitly, and are available in the module without explicit <code>use</code>
-import. For Standard Library, these modules and types are:</p>
+<p>Some modules are imported implicitly and are available in the module without the explicit <code>use</code>
+import. For the Standard Library, these modules and types include:</p>
 <ul>
 <li>std::vector</li>
 <li>std::option</li>
@@ -2401,7 +2405,7 @@ import. For Standard Library, these modules and types are:</p>
 </ul>
 <h2 id="importing-std-without-sui-framework"><a class="header" href="#importing-std-without-sui-framework">Importing std without Sui Framework</a></h2>
 <p>The Move Standard Library can be imported to the package directly. However, <code>std</code> alone is not
-enough to build a meaningful application, as it does not provide any storage capabilities, and can't
+enough to build a meaningful application, as it does not provide any storage capabilities and can't
 interact with the on-chain state.</p>
 <pre><code class="language-toml">MoveStdlib = { git = &quot;https://github.com/MystenLabs/sui.git&quot;, subdir = &quot;crates/sui-framework/packages/move-stdlib&quot;, rev = &quot;framework/mainnet&quot; }
 </code></pre>
@@ -2410,8 +2414,8 @@ interact with the on-chain state.</p>
 <a href="https://github.com/MystenLabs/sui/tree/main/crates/sui-framework/packages/move-stdlib/sources">Sui repository</a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="vector"><a class="header" href="#vector">Vector</a></h1>
 <p>Vectors are a native way to store collections of elements in Move. They are similar to arrays in
-other programming languages, but with a few differences. In this section, we introduce the <code>vector</code>
-type and its operations.</p>
+other programming languages, but with a few differences. In this section, we introduce
+the <code>vector</code> type and its operations.</p>
 <h2 id="vector-syntax"><a class="header" href="#vector-syntax">Vector syntax</a></h2>
 <p>The <code>vector</code> type is defined using the <code>vector</code> keyword followed by the type of the elements in
 angle brackets. The type of the elements can be any valid Move type, including other vectors. Move
@@ -2453,9 +2457,9 @@ let last_value = v.pop_back();
 assert!(last_value == 40);
 </code></pre>
 <h2 id="destroying-a-vector-of-non-droppable-types"><a class="header" href="#destroying-a-vector-of-non-droppable-types">Destroying a Vector of non-droppable types</a></h2>
-<p>A vector of non-droppable types cannot be discarded. If you define a vector of types without <code>drop</code>
-ability, the vector value cannot be ignored. However, if the vector is empty, compiler requires an
-explicit call to <code>destroy_empty</code> function.</p>
+<p>A vector of non-droppable types cannot be discarded. If you define a vector of types without the <code>drop</code>
+ability, the vector value cannot be ignored. If the vector is empty, the compiler requires an
+explicit call to the <code>destroy_empty</code> function.</p>
 <pre><code class="language-move">/// A struct without `drop` ability.
 public struct NoDrop {}
 
@@ -2474,7 +2478,7 @@ fun test_destroy_empty() {
 <li><a href="move-basics//reference/primitive-types/vector.html">Vector</a> in the Move Reference.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="option"><a class="header" href="#option">Option</a></h1>
-<p>Option is a type that represents an optional value which may or may not exist. The concept of Option
+<p><code>Option</code> is a type that represents an optional value which may or may not exist. The concept of <code>Option</code>
 in Move is borrowed from Rust, and it is a very useful primitive in Move. <code>Option</code> is defined in the
 <a href="move-basics/./standard-library.html">Standard Library</a>, and is defined as follows:</p>
 <pre><code class="language-move">// File: move-stdlib/source/option.move
@@ -2484,17 +2488,17 @@ struct Option&lt;Element&gt; has copy, drop, store {
 }
 </code></pre>
 <blockquote>
-<p>The 'std::option' module is implicitly imported in every module, and you don't need to add an
-import.</p>
+<p>The 'std::option' module is implicitly imported in every module, so you don't need to add an
+explicit import.</p>
 </blockquote>
-<p>The <code>Option</code> is a generic type which takes a type parameter <code>Element</code>. It has a single field <code>vec</code>
-which is a <code>vector</code> of <code>Element</code>. Vector can have length 0 or 1, and this is used to represent the
-presence or absence of a value.</p>
-<p>Option type has two variants: <code>Some</code> and <code>None</code>. <code>Some</code> variant contains a value and <code>None</code> variant
+<p>The <code>Option</code> type is a generic type with an <code>Element</code> type parameter. It contains a single field, <code>vec</code>,
+which is a <code>vector</code> of <code>Element</code>. The vector can have a length of 0 or 1, representing the
+absence or presence of a value, respectively.</p>
+<p>The <code>Option</code> type has two variants: <code>Some</code> and <code>None</code>. The <code>Some</code> variant contains a value, while the <code>None</code> variant
 represents the absence of a value. The <code>Option</code> type is used to represent the absence of a value in
-a type-safe way, and it is used to avoid the need for empty or <code>undefined</code> values.</p>
+a type-safe way, avoiding the need for empty or <code>undefined</code> values.</p>
 <h2 id="in-practice"><a class="header" href="#in-practice">In Practice</a></h2>
-<p>To showcase why Option type is necessary, let's look at an example. Consider an application which
+<p>To showcase why the <code>Option</code> type is necessary, let's look at an example. Consider an application which
 takes a user input and stores it in a variable. Some fields are required, and some are optional. For
 example, a user's middle name is optional. While we could use an empty string to represent the
 absence of a middle name, it would require extra checks to differentiate between an empty string and
@@ -2519,13 +2523,14 @@ public fun register(
     User { first_name, middle_name, last_name }
 }
 </code></pre>
-<p>In the example above, the <code>middle_name</code> field is of type <code>Option&lt;String&gt;</code>. This means that the
-<code>middle_name</code> field can either contain a <code>String</code> value or be empty. This makes it clear that the
-middle name is optional, and it avoids the need for extra checks to differentiate between an empty
-string and a missing middle name.</p>
+<p>In the previous example, the <code>middle_name</code> field is of type <code>Option&lt;String&gt;</code>. This means that the <code>middle_name</code>
+field can either contain a String value, wrapped in Some, or be explicitly empty, represented by None. Using
+the <code>Option</code> type makes the optional nature of the field clear, avoiding ambiguity and the need for extra
+checks to differentiate between an empty string and a missing middle name.</p>
 <h2 id="using-option"><a class="header" href="#using-option">Using Option</a></h2>
-<p>To use the <code>Option</code> type, you need to import the <code>std::option</code> module and use the <code>Option</code> type. You
-can then create an <code>Option</code> value using the <code>some</code> or <code>none</code> methods.</p>
+<p>The <code>Option</code> type, along with the <code>std::option</code> module, is implicitly imported in Move. This means you can use
+the <code>Option</code> type directly without needing a <code>use</code> statement. You can then create an <code>Option</code> value 
+using the <code>Some</code> or <code>None</code> methods.</p>
 <pre><code class="language-move">// `option::some` creates an `Option` value with a value.
 let mut opt = option::some(b&quot;Alice&quot;);
 
@@ -2547,9 +2552,8 @@ implementations for strings in the <a href="move-basics/./standard-library.html"
 module defines a <code>String</code> type and methods for UTF-8 encoded strings, and the second module,
 <code>std::ascii</code>, provides an ASCII <code>String</code> type and its methods.</p>
 <blockquote>
-<p>Sui execution environment automatically converts bytevector into <code>String</code> in transaction inputs.
-So in many cases, a String does not need to be constructed in the
-<a href="move-basics/./../concepts/what-is-a-transaction.html">Transaction Block</a>.</p>
+<p>The Sui execution environment automatically converts bytevector into <code>String</code> in transaction inputs.
+As a result, in many cases, constructing a String directly within the <a href="move-basics/./../concepts/what-is-a-transaction.html">Transaction Block</a> is unnecessary.</p>
 </blockquote>
 <!--
 
@@ -2584,9 +2588,11 @@ public fun bytes(self: &amp;MyString): &amp;vector&lt;u8&gt; {
 }
 </code></pre>
 <h2 id="working-with-utf-8-strings"><a class="header" href="#working-with-utf-8-strings">Working with UTF-8 Strings</a></h2>
-<p>While there are two types of strings in the standard library, the <code>string</code> module should be
-considered the default. It has native implementations of many common operations, and hence is more
-efficient than the <code>ascii</code> module, which is fully implemented in Move.</p>
+<p>While there are two types of strings (<code>string</code> and <code>ascii</code>) in the standard library, the <code>string</code> module
+should be considered the default. It has native implementations of many common operations, leveraging 
+low-level, optimized runtime code for superior performance. In contrast, the <code>ascii</code> module is fully 
+implemented in Move, relying on higher-level abstractions and making it less suitable for 
+performance-critical tasks.</p>
 <h3 id="definition"><a class="header" href="#definition">Definition</a></h3>
 <p>The <code>String</code> type in the <code>std::string</code> module is defined as follows:</p>
 <pre><code class="language-move">// File: move-stdlib/sources/string.move
@@ -2640,9 +2646,9 @@ sure that the bytes you are passing are valid, you should use the <code>try_utf8
 returns an <code>Option&lt;String&gt;</code>, which contains no value if the bytes are not valid UTF-8, and a string
 otherwise.</p>
 <blockquote>
-<p>Hint: the name that starts with <code>try_*</code> indicates that the function returns an Option with the
-expected result or <code>none</code> if the operation fails. It is a common naming convention borrowed from
-Rust.</p>
+<p>Hint: Functions with names starting with <code>try_*</code> typically return an <code>Option</code>. If the operation succeeds, the 
+result is wrapped in <code>Some</code>. If it fails, the function returns <code>None</code>. This naming convention, commonly 
+used in Move, is inspired by Rust.</p>
 </blockquote>
 <pre><code class="language-move">// this is a valid UTF-8 string
 let hello = b&quot;Hello&quot;.try_to_string();
@@ -2659,8 +2665,8 @@ assert!(invalid.is_none()); // abort if the value is valid UTF-8
 because UTF-8 is a variable-length encoding, and the length of a character can be anywhere from 1 to
 4 bytes. Similarly, the <code>length()</code> method returns the number of bytes in the string, not the number
 of characters.</p>
-<p>However, methods like <code>sub_string</code> and <code>insert</code> check character boundaries and will abort when the
-index is in the middle of a character.</p>
+<p>However, methods like <code>sub_string</code> and <code>insert</code> validate character boundaries and abort if the 
+specified index falls within the middle of a character.</p>
 <h2 id="ascii-strings"><a class="header" href="#ascii-strings">ASCII Strings</a></h2>
 <p>This section is coming soon!</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="control-flow"><a class="header" href="#control-flow">Control Flow</a></h1>
@@ -2683,7 +2689,7 @@ Links:
 
  -->
 <p>Control flow statements are used to control the flow of execution in a program. They are used to
-make decisions, to repeat a block of code, and to exit a block of code early. Move has the following
+make decisions, repeat a block of code, or exit a block of code early. Move includes the following
 control flow statements (explained in detail below):</p>
 <ul>
 <li><a href="move-basics/control-flow.html#conditional-statements"><code>if</code> and <code>if-else</code></a> - making decisions on whether to execute a block of
@@ -2696,13 +2702,14 @@ code</li>
 <p>The <code>if</code> expression is used to make decisions in a program. It evaluates a
 <a href="move-basics/./expression.html#literals">boolean expression</a> and executes a block of code if the expression is
 true. Paired with <code>else</code>, it can execute a different block of code if the expression is false.</p>
-<p>The syntax for the <code>if</code> expression is:</p>
+<p>The syntax for an <code>if</code> expression is:</p>
 <pre><code class="language-move">if (&lt;bool_expression&gt;) &lt;expression&gt;;
 if (&lt;bool_expression&gt;) &lt;expression&gt; else &lt;expression&gt;;
 </code></pre>
-<p>Just like any other expression, <code>if</code> requires a semicolon, if there are other expressions following
-it. The <code>else</code> keyword is optional, except for the case when the resulting value is assigned to a
-variable. We will cover this below.</p>
+<p>Just like any other expression, <code>if</code> requires a semicolon if there are other expressions following
+it. The <code>else</code> keyword is optional, except when the resulting value is assigned to a variable, as all 
+branches must return a value to ensure type safety. Let’s examine how an <code>if</code> expression works in Move
+with the following example:</p>
 <pre><code class="language-move">#[test]
 fun test_if() {
     let x = 5;
@@ -2726,26 +2733,19 @@ fun test_if_else() {
     assert!(y == 1);
 }
 </code></pre>
-<p>Here we assign the value of the <code>if</code> expression to the variable <code>y</code>. If <code>x</code> is greater than 0, <code>y</code>
-will be assigned the value 1, otherwise 0. The <code>else</code> block is necessary, because both branches must
-return a value of the same type. If we omit the <code>else</code> block, the compiler will throw an error.</p>
+<p>In this example, the value of the <code>if</code> expression is assigned to the variable <code>y</code>. If <code>x</code> is greater than 0, <code>y</code> is assigned the value 1; otherwise, it is assigned 0. The <code>else</code> block is required because both branches of the <code>if</code> expression must return a value of the same type. Omitting the <code>else</code> block would result in a compiler error, as it ensures all possible branches are accounted for and type safety is maintained.</p>
 <!-- TODO: add an error -->
-<p>Conditional expressions are one of the most important control flow statements in Move. They can use
-either user provided input or some already stored data to make decisions. In particular, they are
-used in the <a href="move-basics/./assert-and-abort.html"><code>assert!</code> macro</a> to check if a condition is true, and if not, to
-abort execution. We will get to it very soon!</p>
+<p>Conditional expressions are among the most important control flow statements in Move. They evaluate user-provided input or stored data to make decisions. One key use case is in the <a href="move-basics/./assert-and-abort.html"><code>assert!</code> macro</a>, which checks if a condition is true and aborts execution if it is not. We’ll explore this in detail shortly.</p>
 <h2 id="repeating-statements-with-loops"><a class="header" href="#repeating-statements-with-loops">Repeating Statements with Loops</a></h2>
 <p>Loops are used to execute a block of code multiple times. Move has two built-in types of loops:
 <code>loop</code> and <code>while</code>. In many cases they can be used interchangeably, but usually <code>while</code> is used when
 the number of iterations is known in advance, and <code>loop</code> is used when the number of iterations is
 not known in advance or there are multiple exit points.</p>
-<p>Loops are helpful when dealing with collections, such as vectors, or when we want to repeat a block
-of code until a certain condition is met. However, it is important to be careful with loops, as they
-can lead to infinite loops, which can lead to gas exhaustion and the transaction being aborted.</p>
+<p>Loops are useful for working with collections, such as vectors, or for repeating a block of code until a specific condition is met. However, take care to avoid infinite loops, which can exhaust gas limits and cause the transaction to abort.</p>
 <h2 id="the-while-loop"><a class="header" href="#the-while-loop">The <code>while</code> loop</a></h2>
-<p>The <code>while</code> statement is used to execute a block of code as long as a boolean expression is true.
+<p>The <code>while</code> statement executes a block of code repeatedly as long as a boolean expression evaluates to true.
 Just like we've seen with <code>if</code>, the boolean expression is evaluated before each iteration of the
-loop. Just like conditional statements, the <code>while</code> loop is an expression and requires a semicolon
+loop. Additionally, like conditional statements, the <code>while</code> loop is an expression and requires a semicolon
 if there are other expressions following it.</p>
 <p>The syntax for the <code>while</code> loop is:</p>
 <pre><code class="language-move">while (&lt;bool_expression&gt;) { &lt;expressions&gt;; };
@@ -2778,8 +2778,8 @@ fun test_while() {
 </code></pre>
 <h2 id="infinite-loop"><a class="header" href="#infinite-loop">Infinite <code>loop</code></a></h2>
 <p>Now let's imagine a scenario where the boolean expression is always <code>true</code>. For example, if we
-literally passed <code>true</code> to the <code>while</code> condition. As you might expect, this would create an infinite
-loop, and this is almost what the <code>loop</code> statement works like.</p>
+literally passed <code>true</code> to the <code>while</code> condition. This is similar to how the <code>loop</code> statement functions, 
+except that <code>while</code> evaluates a condition.</p>
 <pre><code class="language-move">#[test, expected_failure(out_of_gas, location=Self)]
 fun test_infinite_while() {
     let mut x = 0;
@@ -2793,7 +2793,7 @@ fun test_infinite_while() {
     assert!(x == 5);
 }
 </code></pre>
-<p>An infinite <code>while</code>, or <code>while</code> without a condition, is a <code>loop</code>. The syntax for it is simple:</p>
+<p>An infinite <code>while</code> loop, or a <code>while</code> loop with an always <code>true</code> condition, is equivalent to a <code>loop</code>. The syntax for creating a <code>loop</code> is straightforward:</p>
 <pre><code class="language-move">loop { &lt;expressions&gt;; };
 </code></pre>
 <p>Let's rewrite the previous example using <code>loop</code> instead of <code>while</code>:</p>
@@ -2811,9 +2811,7 @@ fun test_infinite_loop() {
 }
 </code></pre>
 <!-- TODO: that's a weak point lmao -->
-<p>Infinite loops on their own are not very useful in Move, since every operation in Move costs gas,
-and an infinite loop will lead to gas exhaustion. However, they can be used in combination with
-<code>break</code> and <code>continue</code> statements to create more complex loops.</p>
+<p>Infinite loops are rarely practical in Move, as every operation consumes gas, and an infinite loop will inevitably lead to gas exhaustion. If you find yourself using a loop, consider whether there might be a better approach, as many use cases can be handled more efficiently with other control flow structures. That said, <code>loop</code> might be useful when combined with <code>break</code> and <code>continue</code> statements to create controlled and flexible looping behavior.</p>
 <h2 id="exiting-a-loop-early"><a class="header" href="#exiting-a-loop-early">Exiting a Loop Early</a></h2>
 <p>As we already mentioned, infinite loops are rather useless on their own. And that's where we
 introduce the <code>break</code> and <code>continue</code> statements. They are used to exit a loop early, and to skip the
@@ -2843,10 +2841,10 @@ fun test_break_loop() {
 }
 </code></pre>
 <p>Almost identical to the <code>while</code> loop, right? The <code>break</code> statement is used to exit the loop when <code>x</code>
-is 5. If we remove the <code>break</code> statement, the loop will run forever, just like the previous example.</p>
+is 5. If we remove the <code>break</code> statement, the loop will run forever, just like in the previous example.</p>
 <h2 id="skipping-an-iteration"><a class="header" href="#skipping-an-iteration">Skipping an Iteration</a></h2>
 <p>The <code>continue</code> statement is used to skip the rest of the current iteration and start the next one.
-Similarly to <code>break</code>, it is used in combination with a conditional statement to skip the rest of the
+Similarly to <code>break</code>, it is used in combination with a conditional statement to skip the rest of an
 iteration when a certain condition is met.</p>
 <p>Syntax for the <code>continue</code> statement is (without a semicolon):</p>
 <pre><code class="language-move">continue
@@ -2953,8 +2951,8 @@ public fun purchase(coin: Coin&lt;SUI&gt;): Item {
 </code></pre>
 <h2 id="naming-convention"><a class="header" href="#naming-convention">Naming Convention</a></h2>
 <p>Constants must start with a capital letter - this is enforced at the compiler level. For constants
-used as a value, there's a convention to use uppercase letters and underscores to separate words.
-It's a way to make constants stand out from other identifiers in the code. One exception is made for
+used as a value, the convention is to use all uppercase letters and underscores between words, which
+makes constants stand out from other identifiers in the code. An exception is made for
 <a href="move-basics/./assert-and-abort.html#assert-and-abort">error constants</a>, which are written in ECamelCase.</p>
 <pre><code class="language-move">/// Price of the item used at the shop.
 const ITEM_PRICE: u64 = 100;
@@ -2963,8 +2961,8 @@ const ITEM_PRICE: u64 = 100;
 const EItemNotFound: u64 = 1;
 </code></pre>
 <h2 id="constants-are-immutable"><a class="header" href="#constants-are-immutable">Constants are Immutable</a></h2>
-<p>Constants can't be changed and assigned new values. They are part of the package bytecode, and
-inherently immutable.</p>
+<p>Constants can't be changed and assigned new values. As part of the package bytecode, they
+are inherently immutable.</p>
 <pre><code class="language-move">module book::immutable_constants;
 
 const ITEM_PRICE: u64 = 100;
@@ -3018,17 +3016,17 @@ Notes:
 Links:
     - constants (previous section)
  -->
-<p>A transaction can either succeed or fail. Successful execution applies all the changes made to
+<p>A transaction can either succeed or fail. Successful execution applies all changes made to
 objects and on-chain data, and the transaction is committed to the blockchain. Alternatively, if a
-transaction aborts, the changes are not applied. The <code>abort</code> keyword is used to abort a transaction
-and revert the changes made so far.</p>
+transaction aborts, changes are not applied. Use the <code>abort</code> keyword to abort a transaction
+and revert any changes that were made.</p>
 <blockquote>
 <p>It is important to note that there is no catch mechanism in Move. If a transaction aborts, the
 changes made so far are reverted, and the transaction is considered failed.</p>
 </blockquote>
 <h2 id="abort"><a class="header" href="#abort">Abort</a></h2>
 <p>The <code>abort</code> keyword is used to abort the execution of a transaction. It is used in combination with
-an abort code, which will be returned to the caller of the transaction. The abort code is an
+an abort code, which is returned to the caller of the transaction. The abort code is an
 <a href="move-basics/./primitive-types.html">integer</a> of type <code>u64</code>.</p>
 <pre><code class="language-move">let user_has_access = true;
 
@@ -3060,9 +3058,9 @@ if (!user_has_access) {
 <h2 id="error-constants"><a class="header" href="#error-constants">Error constants</a></h2>
 <p>To make error codes more descriptive, it is a good practice to define
 <a href="move-basics/./constants.html">error constants</a>. Error constants are defined as <code>const</code> declarations and are
-usually prefixed with <code>E</code> followed by a camel case name. Error constants are no different from other
-constants and don't have special handling, however, they are used to increase the readability of the
-code and make it easier to understand the abort scenarios.</p>
+usually prefixed with <code>E</code> followed by a camel case name. Error constants are similar to other constants
+and do not have any special handling. However, they are commonly used to improve code readability and
+make abort scenarios easier to understand.</p>
 <pre><code class="language-move">/// Error code for when the user has no access.
 const ENoAccess: u64 = 0;
 /// Trying to access a field that does not exist.
@@ -3122,15 +3120,15 @@ fun test_add() {
     assert!(sum == 3);
 }
 </code></pre>
-<p>In this example, we define a function <code>add</code> that takes two arguments of type <code>u64</code> and returns their
-sum. The function is called from the <code>test_add</code> function, which is a test function located in the
-same module. In the test we compare the result of the <code>add</code> function with the expected value and
-abort the execution if the result is different.</p>
+<p>In this example, we define a function <code>add</code> that takes two arguments of type <code>u64</code> and returns their sum.
+The <code>test_add</code> function, located in the same module, is a test function that calls <code>add</code>. The test uses the
+<code>assert!</code> macro to compare the result of <code>add</code> with the expected value. If the condition inside <code>assert!</code> evaluates
+to false, the execution is aborted automatically.</p>
 <h2 id="function-declaration"><a class="header" href="#function-declaration">Function declaration</a></h2>
 <blockquote>
-<p>There's a convention to call functions in Move with the <code>snake_case</code> naming convention. This means
-that the function name should be all lowercase with words separated by underscores. For example,
-<code>do_something</code>, <code>add</code>, <code>get_balance</code>, <code>is_authorized</code>, and so on.</p>
+<p>In Move, functions are typically named using the <code>snake_case</code> convention. This means function names
+should be all lowercase, with words separated by underscores. Examples include <code>do_something</code>, <code>add</code>,
+<code>get_balance</code>, <code>is_authorized</code>, and so on.</p>
 </blockquote>
 <p>A function is declared with the <code>fun</code> keyword followed by the function name (a valid Move
 identifier), a list of arguments in parentheses, and a return type. The function body is a block of
@@ -3141,10 +3139,10 @@ body is the return value of the function.</p>
 }
 </code></pre>
 <h2 id="accessing-functions"><a class="header" href="#accessing-functions">Accessing functions</a></h2>
-<p>Just like any other module member, functions can be imported and accessed via a path. The path
-consists of the module path and the function name separated by <code>::</code>. For example, if you have a
-function called <code>add</code> in the <code>math</code> module in the <code>book</code> package, the path to it will be
-<code>book::math::add</code>, or, if the module is imported, <code>math::add</code>.</p>
+<p>Just like other module members, functions can be imported and accessed using a path. The path consists
+of the module path and the function name, separated by ::. For example, if you have a function named
+<code>add</code> in the <code>math</code> module within the <code>book</code> package, its full path would be <code>book::math::add</code>. If the module
+has already been imported, you can access it directly as <code>math::add</code> as in the following example:</p>
 <pre><code class="language-move">module book::use_math;
 
 use book::math;
@@ -3155,14 +3153,14 @@ fun call_add() {
 }
 </code></pre>
 <h2 id="multiple-return-values"><a class="header" href="#multiple-return-values">Multiple return values</a></h2>
-<p>Move functions can return multiple values, which is useful when you need to return more than one
-value from a function. The return type of the function is a tuple of types. The return value is a
-tuple of expressions.</p>
+<p>Move functions can return multiple values, which is particularly useful when you need to return more
+than one piece of data from a function. The return type is specified as a tuple of types, and the return
+value is provided as a tuple of expressions:</p>
 <pre><code class="language-move">fun get_name_and_age(): (vector&lt;u8&gt;, u8) {
     (b&quot;John&quot;, 25)
 }
 </code></pre>
-<p>Result of a function call with tuple return has to be unpacked into variables via <code>let (tuple)</code>
+<p>The result of a function call with a tuple return has to be unpacked into variables via the <code>let (tuple)</code>
 syntax:</p>
 <pre><code class="language-move">// Tuple must be destructured to access its elements.
 // Name and age are declared as immutable variables.
@@ -3185,14 +3183,17 @@ let (_, age) = get_name_and_age();
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="struct-methods"><a class="header" href="#struct-methods">Struct Methods</a></h1>
 <p>Move Compiler supports <em>receiver syntax</em>, which allows defining methods which can be called on
-instances of a struct. This is similar to the method syntax in other programming languages. It is a
-convenient way to define functions which operate on the fields of a struct.</p>
+instances of a struct. The term &quot;receiver&quot; specifically refers to the instance that receives the
+method call. This is like the method syntax in other programming languages. It is a
+convenient way to define functions that operate on the fields of a struct, providing direct access
+to the struct's fields and creating cleaner, more intuitive code than passing the struct as a parameter.</p>
 <h2 id="method-syntax"><a class="header" href="#method-syntax">Method syntax</a></h2>
 <p>If the first argument of a function is a struct internal to the module, then the function can be
-called using the <code>.</code> operator. If the function uses a struct from another module, then method won't
-be associated with the struct by default. In this case, the function can be called using the
-standard function call syntax.</p>
-<p>When a module is imported, the methods are automatically associated with the struct.</p>
+called using the <code>.</code> operator on instances of that struct. However, if the function uses a struct from
+a different module for the first argument, then the method won't be associated with the struct by default.
+In this case, the <code>.</code> operator syntax is not available, and the function must be called using standard function
+call syntax.</p>
+<p>When a module is imported, its methods are automatically associated with the struct.</p>
 <pre><code class="language-move">module book::hero;
 
 /// A struct representing a hero.
@@ -3227,9 +3228,9 @@ fun test_methods() {
 }
 </code></pre>
 <h2 id="method-aliases"><a class="header" href="#method-aliases">Method Aliases</a></h2>
-<p>For modules that define multiple structs and their methods, it is possible to define method aliases
-to avoid name conflicts, or to provide a better-named method for a struct.</p>
-<p>The syntax for aliases is:</p>
+<p>Method aliases help avoid name conflicts when modules define multiple structs and their methods. 
+They can also provide more descriptive method names for structs.</p>
+<p>Here's the syntax:</p>
 <pre><code class="language-move">// for local method association
 use fun function_path as Type.method_name;
 
@@ -3237,13 +3238,13 @@ use fun function_path as Type.method_name;
 public use fun function_path as Type.method_name;
 </code></pre>
 <blockquote>
-<p>Public aliases are only allowed for structs defined in the same module. If a struct is defined in
-another module, an alias can still be created but cannot be made public.</p>
+<p>Public aliases are only allowed for structs defined in the same module. For structs defined in
+other modules, aliases can still be created but cannot be made public.</p>
 </blockquote>
 <p>In the example below, we changed the <code>hero</code> module and added another type - <code>Villain</code>. Both <code>Hero</code>
-and <code>Villain</code> have similar field names and methods. And to avoid name conflicts, we prefixed methods
-with <code>hero_</code> and <code>villain_</code> respectively. However, we can create aliases for these methods so that
-they can be called on the instances of the structs without the prefix.</p>
+and <code>Villain</code> have similar field names and methods. To avoid name conflicts, we prefixed methods
+with <code>hero_</code> and <code>villain_</code> respectively. However, using aliases allows these methods to be called 
+on struct instances without the prefix:</p>
 <pre><code class="language-move">module book::hero_and_villain;
 
 /// A struct representing a hero.
@@ -3284,9 +3285,14 @@ fun test_associated_methods() {
     assert!(villain.health() == 100);
 }
 </code></pre>
-<p>As you can see, in the test function, we called the <code>health</code> method on the instances of <code>Hero</code> and
-<code>Villain</code> without the prefix. The compiler will automatically associate the methods with the
+<p>In the test function, the <code>health</code> method is called directly on the <code>Hero</code> and <code>Villain</code> instances
+without the prefix, as the compiler automatically associates the methods with their respective
 structs.</p>
+<blockquote>
+<p>Note: In the test function, <code>hero.health()</code> is calling the aliased method, not directly accessing 
+the private <code>health</code> field. While the <code>Hero</code> and <code>Villain</code> structs are public, their fields remain private 
+to the module. The method call <code>hero.health()</code> uses the public alias defined by <code>public use fun  hero_health as Hero.health</code>, which provides controlled access to the private field.</p>
+</blockquote>
 <h2 id="aliasing-an-external-modules-method"><a class="header" href="#aliasing-an-external-modules-method">Aliasing an external module's method</a></h2>
 <p>It is also possible to associate a function defined in another module with a struct from the current
 module. Following the same approach, we can create an alias for the method defined in another
@@ -3340,7 +3346,7 @@ fun call_internal() {
     internal();
 }
 </code></pre>
-<!-- Move compiler won't allow this code to compile: -->
+<p>The following code will not compile:</p>
 <!-- TODO: add failure flag to example -->
 <pre><code class="language-move">module book::try_calling_internal;
 
@@ -3400,7 +3406,7 @@ works.</p>
 -->
 <h2 id="ownership"><a class="header" href="#ownership">Ownership</a></h2>
 <p>A variable defined in a function scope is owned by this scope. The runtime goes through the function
-scope and executes every expression and statement. Once the function scope end, the variables
+scope and executes every expression and statement. After the function scope ends, the variables
 defined in it are dropped or deallocated.</p>
 <pre><code class="language-move">module book::ownership;
 
@@ -3416,7 +3422,7 @@ public fun other() {
 fun test_owner() {
     owner();
     other();
-    // a &amp; b is not valid here
+    // a &amp; b are not valid here
 }
 </code></pre>
 <p>In the example above, the variable <code>a</code> is owned by the <code>owner</code> function, and the variable <code>b</code> is
@@ -3469,63 +3475,71 @@ owned by this block, and when the block ends, the variables are dropped.</p>
 public fun owner() {
     let a = 1; // a is owned by the `owner` function's scope
     {
-        let b = 2; // b is owned by the block
+        let b = 2; // the block that declares b owns it
         {
-            let c = 3; // c is owned by the block
+            let c = 3; // the block that declares c owns it
         }; // c is dropped here
     }; // b is dropped here
     // a = b; // error: b is not valid here
     // a = c; // error: c is not valid here
 } // a is dropped here
 </code></pre>
-<p>However, shall we use the return value of a block, the ownership of the variable is transferred to
+<p>However, if we return a value from a block, the ownership of the variable is transferred to
 the caller of the block.</p>
 <pre><code class="language-move">module book::ownership;
 
 public fun owner(): u8 {
     let a = 1; // a is owned by the `owner` function's scope
     let b = {
-        let c = 2; // c is owned by the block
+        let c = 2; // the block that declares c owns it
         c // c is returned
     }; // c is dropped here
     a + b // both a and b are valid here
 }
 </code></pre>
 <h2 id="copyable-types"><a class="header" href="#copyable-types">Copyable Types</a></h2>
-<p>Some types in Move are <em>copyable</em>, which means that they can be copied without transferring the
+<p>Some types in Move are <em>copyable</em>, which means that they can be copied without transferring 
 ownership. This is useful for types that are small and cheap to copy, such as integers and booleans.
-Move compiler will automatically copy these types when they are passed to a function or returned
-from a function, or when they're <em>moved</em> to a scope and then accessed in their original scope.</p>
+The Move compiler will automatically copy these types when they are passed to or returned
+from a function, or when they're <em>moved</em> to another scope and then accessed in their original scope.</p>
 <h2 id="further-reading-14"><a class="header" href="#further-reading-14">Further reading</a></h2>
 <ul>
 <li><a href="move-basics//reference/variables.html">Local Variables and Scopes</a> in the Move Reference.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="abilities-copy"><a class="header" href="#abilities-copy">Abilities: Copy</a></h1>
 <p>In Move, the <em>copy</em> ability on a type indicates that the instance or the value of the type can be
-copied. While this behavior may feel very natural when working with numbers or other simple types,
-it is not the default for custom types in Move. This is because Move is designed to express digital
-assets and resources, and inability to copy is a key element of the resource model.</p>
-<p>However, Move type system allows you to define custom types with the <em>copy</em> ability.</p>
+copied, or duplicated. While this behavior is provided by default when working with numbers or other
+primitive types, it is not the default for custom types. Move is designed to express digital
+assets and resources, and controlling the ability to duplicate resources is a key principle of the
+resource model. However, the Move type system allows you to add the <em>copy</em> ability to custom types:</p>
 <pre><code class="language-move">public struct Copyable has copy {}
 </code></pre>
 <p>In the example above, we define a custom type <code>Copyable</code> with the <em>copy</em> ability. This means that
 instances of <code>Copyable</code> can be copied, both implicitly and explicitly.</p>
-<pre><code class="language-move">let a = Copyable {};
+<pre><code class="language-move">let a = Copyable {}; // allowed because the Copyable struct has the `copy` ability
 let b = a;   // `a` is copied to `b`
 let c = *&amp;b; // explicit copy via dereference operator
 
-let Copyable {} = a; // doesn't have `drop`
-let Copyable {} = b; // doesn't have `drop`
-let Copyable {} = c; // doesn't have `drop`
+// Copyable doesn't have the `drop` ability, so every instance (a, b, and c) must
+// be used or explicity destructured. The `drop` ability is explained below.
+let Copyable {} = a;
+let Copyable {} = b;
+let Copyable {} = c;
 </code></pre>
 <p>In the example above, <code>a</code> is copied to <code>b</code> implicitly, and then explicitly copied to <code>c</code> using the
 dereference operator. If <code>Copyable</code> did not have the <em>copy</em> ability, the code would not compile, and
 the Move compiler would raise an error.</p>
+<blockquote>
+<p>Note: In Move, destructuring with empty brackets is often used to consume unused variables,
+especially for types without the drop ability. This prevents compiler errors from values
+going out of scope without explicit use. Also, Move requires the type name in destructuring
+(e.g., <code>Copyable</code> in <code>let Copyable {} = a;</code>) because it enforces strict typing and ownership rules.</p>
+</blockquote>
 <h2 id="copying-and-drop"><a class="header" href="#copying-and-drop">Copying and Drop</a></h2>
-<p>The <code>copy</code> ability is closely related to <a href="move-basics/./drop-ability.html"><code>drop</code> ability</a>. If a type has the
-<em>copy</em> ability, very likely that it should have <code>drop</code> too. This is because the <em>drop</em> ability is
-required to clean up the resources when the instance is no longer needed. If a type has only <em>copy</em>,
-then managing its instances gets more complicated, as the values cannot be ignored.</p>
+<p>The <code>copy</code> ability is closely related to the <a href="move-basics/./drop-ability.html"><code>drop</code> ability</a>. If a type has the
+<em>copy</em> ability, it is very likely that it should have <code>drop</code> too. This is because the <em>drop</em> ability is
+required to clean up resources when the instance is no longer needed. If a type only has <em>copy</em>,
+managing its instances gets more complicated, as the instances must be explicitly used or consumed. </p>
 <pre><code class="language-move">public struct Value has copy, drop {}
 </code></pre>
 <p>All of the primitive types in Move behave as if they have the <em>copy</em> and <em>drop</em> abilities. This
@@ -3569,19 +3583,19 @@ Notes:
 passed to a function, it is <em>moved</em> to the function's scope. This means that the function becomes
 the owner of the value, and the original scope (owner) can no longer use it. This is an important
 concept in Move, as it ensures that the value is not used in multiple places at the same time.
-However, there are use cases when we want to pass a value to a function but retain the ownership.
+However, there are use cases when we want to pass a value to a function but retain ownership.
 This is where references come into play.</p>
 <p>To illustrate this, let's consider a simple example - an application for a metro (subway) pass. We
-will look at 4 different scenarios:</p>
+will look at 4 different scenarios where a card can be:</p>
 <ol>
-<li>Card can be purchased at the kiosk for a fixed price</li>
-<li>Card can be shown to inspectors to prove that the passenger has a valid pass</li>
-<li>Card can be used at the turnstile to enter the metro, and spend a ride</li>
-<li>Card can be recycled once it's empty</li>
+<li>Purchased at a kiosk for a fixed price</li>
+<li>Shown to an inspector to prove that the passenger has a valid pass</li>
+<li>Used at the turnstile to enter the metro, and purchase a ride</li>
+<li>Recycled after it's empty</li>
 </ol>
 <h2 id="layout"><a class="header" href="#layout">Layout</a></h2>
 <p>The initial layout of the metro pass application is simple. We define the <code>Card</code> type and the <code>USES</code>
-<a href="move-basics/./constants.html">constant</a> that represents the number of rides for a single card. We also add an
+<a href="move-basics/./constants.html">constant</a> that represents the number of rides on a single card. We also add an
 <a href="move-basics/./assert-and-abort.html#error-constants">error constant</a> for the case when the card is empty.</p>
 <pre><code class="language-move">module book::metro_pass;
 /// Error code for when the card is empty.
@@ -3599,26 +3613,26 @@ public fun purchase(/* pass a Coin */): Card {
 }
 </code></pre>
 <!-- In [the previous section](./ownership-and-scope.md) we explained the ownership and scope in Move. We showed how the value is *moved* to a new scope, and how it changes the owner. In this section, we will explain how to *borrow* a reference to a value to avoid moving it, and how Move's *borrow checker* ensures that the references are used correctly. -->
-<h2 id="reference"><a class="header" href="#reference">Reference</a></h2>
-<p>References are a way to <em>show</em> a value to a function without giving up the ownership. In our case,
-when we show the Card to the inspector, we don't want to give up the ownership of it, and we don't
-allow them to spend the rides. We just want to allow <em>reading</em> the value of the Card and prove its
-ownership.</p>
+<h2 id="references-1"><a class="header" href="#references-1">References</a></h2>
+<p>References are a way to <em>show</em> a value to a function without giving up ownership. In our case,
+when we show the Card to the inspector, we don't want to give up ownership of it, and we don't
+allow the inspector to use up any of our rides. We just want to allow the <em>reading</em> of the value
+of our Card and to prove its ownership.</p>
 <p>To do so, in the function signature, we use the <code>&amp;</code> symbol to indicate that we are passing a
-reference to the value, not the value itself.</p>
+<em>reference</em> to the value, not the value itself.</p>
 <pre><code class="language-move">/// Show the metro pass card to the inspector.
 public fun is_valid(card: &amp;Card): bool {
     card.uses &gt; 0
 }
 </code></pre>
-<p>Now the function can't take the ownership of the card, and it can't spend the rides. But it can read
-its value. Worth noting, that a signature like this makes it impossible to call the function without
-a Card at all. This is an important property which allows the
-<a href="move-basics/./../programmability/capability.html">Capability Pattern</a> which we will cover in the next chapters.</p>
+<p>Because the function does not take ownership of the Card, it can <em>read</em> its data but cannot <em>write</em> 
+to it, meaning it cannot modify the number of rides. Additionally, the function signature ensures 
+that it cannot be called without a Card instance. This is an important property that allows the
+<a href="move-basics/./../programmability/capability.html">Capability Pattern</a>, which we will cover in the next chapters.</p>
 <h2 id="mutable-reference"><a class="header" href="#mutable-reference">Mutable Reference</a></h2>
-<p>In some cases, we want to allow the function to change the value of the Card. For example, when we
-use the Card at the turnstile, we want to spend a ride. To implement it, we use the <code>&amp;mut</code> keyword
-in the function signature.</p>
+<p>In some cases, we want to allow the function to modify the Card. For example, when using the Card 
+at a turnstile, we need to deduct a ride. To achieve this, we use the <code>&amp;mut</code> keyword in the function 
+signature.</p>
 <pre><code class="language-move">/// Use the metro pass card at the turnstile to enter the metro.
 public fun enter_metro(card: &amp;mut Card) {
     assert!(card.uses &gt; 0, ENoUses);
@@ -3626,19 +3640,24 @@ public fun enter_metro(card: &amp;mut Card) {
 }
 </code></pre>
 <p>As you can see in the function body, the <code>&amp;mut</code> reference allows mutating the value, and the
-function can spend the rides.</p>
+function can spend rides.</p>
 <h2 id="passing-by-value-1"><a class="header" href="#passing-by-value-1">Passing by Value</a></h2>
-<p>Lastly, let's give an illustration of what happens when we pass the value itself to the function. In
-this case, the function takes the ownership of the value, and the original scope can no longer use
-it. The owner of the Card can recycle it, and, hence, lose the ownership.</p>
+<p>Lastly, let's illustrate what happens when we pass the value itself to the function. In
+this case, the function takes the ownership of the value, making it inaccessible in the original
+scope. The owner of the Card can recycle it and thereby relinquish ownership to the function.</p>
 <pre><code class="language-move">/// Recycle the metro pass card.
 public fun recycle(card: Card) {
     assert!(card.uses == 0, ENoUses);
     let Card { uses: _ } = card;
 }
 </code></pre>
-<p>In the <code>recycle</code> function, the Card is <em>taken by value</em> and can be unpacked and destroyed. The
-original scope can't use it anymore.</p>
+<p>In the <code>recycle</code> function, the Card is passed by value, transferring ownership to the function.
+This allows it to be unpacked and destroyed.</p>
+<blockquote>
+<p>Note: In Move, <code>_</code> is a wildcard pattern used in destructuring to ignore a field while still consuming the value.
+Destructuring must match all fields in a struct type. If a struct has fields, you must list all of them 
+explicitly or use <code>_</code> to ignore unwanted fields.</p>
+</blockquote>
 <h2 id="full-example"><a class="header" href="#full-example">Full Example</a></h2>
 <p>To illustrate the full flow of the application, let's put all the pieces together in a test.</p>
 <pre><code class="language-move">#[test]
@@ -3687,7 +3706,7 @@ fun test_card_2024() {
 <div style="break-before: page; page-break-before: always;"></div><h1 id="generics"><a class="header" href="#generics">Generics</a></h1>
 <p>Generics are a way to define a type or function that can work with any type. This is useful when you
 want to write a function which can be used with different types, or when you want to define a type
-that can hold any other type. Generics are the foundation of many advanced features in Move, such as
+that can hold any other type. Generics are the foundation of many advanced features in Move including
 collections, abstract implementations, and more.</p>
 <h2 id="in-the-standard-library"><a class="header" href="#in-the-standard-library">In the Standard Library</a></h2>
 <p>In this chapter we already mentioned the <a href="move-basics/./vector.html">vector</a> type, which is a generic type that
@@ -3708,7 +3727,7 @@ public fun new&lt;T&gt;(value: T): Container&lt;T&gt; {
 </code></pre>
 <p>In the example above, <code>Container</code> is a generic type with a single type parameter <code>T</code>, the <code>value</code>
 field of the container stores the <code>T</code>. The <code>new</code> function is a generic function with a single type
-parameter <code>T</code>, and it returns a <code>Container</code> with the given value. Generic types must be initialed
+parameter <code>T</code>, and it returns a <code>Container</code> with the given value. Generic types must be initialized
 with a concrete type, and generic functions must be called with a concrete type.</p>
 <pre><code class="language-move">#[test]
 fun test_container() {
@@ -3723,11 +3742,11 @@ fun test_container() {
     let Container { value: _ } = container;
 }
 </code></pre>
-<p>In the test function <code>test_generic</code> we demonstrate three equivalent ways to create a new <code>Container</code>
-with a <code>u8</code> value. Because numeric types need to be inferred, we specify the type of the number
-literal.</p>
+<p>In the test function <code>test_generic</code>, we demonstrate three equivalent ways to create a new <code>Container</code>
+with a <code>u8</code> value. Because numeric types are inferred, we explicitly specify the type of the numeric
+literal to ensure correctness.</p>
 <h2 id="multiple-type-parameters"><a class="header" href="#multiple-type-parameters">Multiple Type Parameters</a></h2>
-<p>You can define a type or function with multiple type parameters. The type parameters are then
+<p>You can define a type or function with multiple type parameters. The type parameters are 
 separated by commas.</p>
 <pre><code class="language-move">/// A pair of values of any type `T` and `U`.
 public struct Pair&lt;T, U&gt; {
@@ -3742,7 +3761,7 @@ public fun new_pair&lt;T, U&gt;(first: T, second: U): Pair&lt;T, U&gt; {
 </code></pre>
 <p>In the example above, <code>Pair</code> is a generic type with two type parameters <code>T</code> and <code>U</code>, and the
 <code>new_pair</code> function is a generic function with two type parameters <code>T</code> and <code>U</code>. The function returns
-a <code>Pair</code> with the given values. The order of the type parameters is important, and it should match
+a <code>Pair</code> with the given values. The order of the type parameters is important, and should match
 the order of the type parameters in the type signature.</p>
 <pre><code class="language-move">#[test]
 fun test_generic() {
@@ -3778,10 +3797,10 @@ fun test_swap_type_params() {
     assert!(ps1 == pf2); // true == true
 }
 </code></pre>
-<p>Types for variables <code>pair1</code> and <code>pair2</code> are different, and the comparison will not compile.</p>
+<p>The types for variables <code>pair1</code> and <code>pair2</code> are different, so the comparison will not compile.</p>
 <h2 id="why-generics"><a class="header" href="#why-generics">Why Generics?</a></h2>
 <p>In the examples above we focused on instantiating generic types and calling generic functions to
-create instances of these types. However, the real power of generics is the ability to define shared
+create instances of these types. However, the real power of generics lies in their ability to define shared
 behavior for the base, generic type, and then use it independently of the concrete types. This is
 especially useful when working with collections, abstract implementations, and other advanced
 features in Move.</p>
@@ -3794,8 +3813,8 @@ public struct User&lt;T&gt; {
 }
 </code></pre>
 <p>In the example above, <code>User</code> is a generic type with a single type parameter <code>T</code>, with shared fields
-<code>name</code> and <code>age</code>, and the generic <code>metadata</code> field which can store any type. No matter what the
-<code>metadata</code> is, all of the instances of <code>User</code> will have the same fields and methods.</p>
+<code>name</code>, <code>age</code>, and the generic <code>metadata</code> field, which can store any type. No matter what 
+<code>metadata</code> is, all instances of <code>User</code> will contain the same fields and methods.</p>
 <pre><code class="language-move">/// Updates the name of the user.
 public fun update_name&lt;T&gt;(user: &amp;mut User&lt;T&gt;, name: String) {
     user.name = name;
@@ -3834,11 +3853,11 @@ fun test_phantom_type() {
 </code></pre>
 <p>In the example above, we demonstrate how to create two different instances of <code>Coin</code> with different
 phantom type parameters <code>USD</code> and <code>EUR</code>. The type parameter <code>T</code> is not used in the fields or methods
-of the <code>Coin</code> type, but it is used to differentiate between different types of coins. It will make
-sure that the <code>USD</code> and <code>EUR</code> coins are not mixed up.</p>
+of the <code>Coin</code> type, but it is used to differentiate between different types of coins. This helps ensure
+that the <code>USD</code> and <code>EUR</code> coins are not mistakenly mixed up.</p>
 <h2 id="constraints-on-type-parameters"><a class="header" href="#constraints-on-type-parameters">Constraints on Type Parameters</a></h2>
 <p>Type parameters can be constrained to have certain abilities. This is useful when you need the inner
-type to allow certain behavior, such as <em>copy</em> or <em>drop</em>. The syntax for constraining a type
+type to allow certain behaviors, such as <em>copy</em> or <em>drop</em>. The syntax for constraining a type
 parameter is <code>T: &lt;ability&gt; + &lt;ability&gt;</code>.</p>
 <pre><code class="language-move">/// A generic type with a type parameter that has the `drop` ability.
 public struct Droppable&lt;T: drop&gt; {
@@ -3850,7 +3869,7 @@ public struct CopyableDroppable&lt;T: copy + drop&gt; {
     value: T, // T must have the `copy` and `drop` abilities
 }
 </code></pre>
-<p>Move Compiler will enforce that the type parameter <code>T</code> has the specified abilities. If the type
+<p>The Move Compiler will enforce that the type parameter <code>T</code> has the specified abilities. If the type
 parameter does not have the specified abilities, the code will not compile.</p>
 <!-- TODO: failure case -->
 <pre><code class="language-move">/// Type without any abilities.
@@ -3870,15 +3889,15 @@ fun test_constraints() {
 <li><a href="move-basics//reference/generics.html">Generics</a> in the Move Reference.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="type-reflection"><a class="header" href="#type-reflection">Type Reflection</a></h1>
-<p>In programming languages <em>reflection</em> is the ability of a program to examine and modify its own
-structure and behavior. In Move, there's a limited form of reflection that allows you to inspect the
+<p>In programming languages, <em>reflection</em> is the ability of a program to examine and modify its own
+structure and behavior. Move has a limited form of reflection that allows you to inspect the
 type of a value at runtime. This is useful when you need to store type information in a homogeneous
 collection, or when you need to check if a type belongs to a package.</p>
 <p>Type reflection is implemented in the <a href="move-basics/./standard-library.html">Standard Library</a> module
 <code>std::type_name</code>. Expressed very roughly, it gives a single function <code>get&lt;T&gt;()</code> which returns the
 name of the type <code>T</code>.</p>
 <h2 id="in-practice-1"><a class="header" href="#in-practice-1">In practice</a></h2>
-<p>The module is pretty straightforward, and operations allowed on the result are limited to getting a
+<p>The module is straightforward, and operations allowed on the result are limited to getting a
 string representation and extracting the module and address of the type.</p>
 <pre><code class="language-move">module book::type_reflection;
 
@@ -3916,26 +3935,26 @@ fun test_type_reflection() {
 <p>Type reflection is an important part of the language, and it is a crucial part of some of the more
 advanced patterns.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="testing"><a class="header" href="#testing">Testing</a></h1>
-<p>A crucial part of any software development, and even more - blockchain development, is testing.
-Here, we will cover the basics of testing in Move and how to write and organize tests for your Move
-code.</p>
+<p>Testing is a crucial aspect of software development, especially in blockchain applications where
+security and correctness are paramount. In this section, we will cover the fundamentals of testing 
+in Move, including how to write and organize tests effectively.</p>
 <h2 id="the-test-attribute"><a class="header" href="#the-test-attribute">The <code>#[test]</code> attribute</a></h2>
 <p>Tests in Move are functions marked with the <code>#[test]</code> attribute. This attribute tells the compiler
-that the function is a test function, and it should be run when the tests are executed. Test
+that the function is a test function and should be run when tests are executed. Test
 functions are regular functions, but they must take no arguments and have no return value. They
-are excluded from the bytecode, and are never published.</p>
+are excluded from the bytecode and are never published.</p>
 <pre><code class="language-move">module book::testing;
 
-// Test attribute is placed before the `fun` keyword. Can be both above or
-// right before the `fun` keyword: `#[test] fun my_test() { ... }`
-// The name of the test would be `book::testing::simple_test`.
+// The test attribute is placed before the `fun` keyword (can be both above or
+// right before the `fun` keyword, as in `#[test] fun my_test() { ... }`)
+// The name of the test in this case would be `book::testing::simple_test`.
 #[test]
 fun simple_test() {
     let sum = 2 + 2;
     assert!(sum == 4);
 }
 
-// The name of the test would be `book::testing::more_advanced_test`.
+// The name of this test would be `book::testing::more_advanced_test`.
 #[test] fun more_advanced_test() {
     let sum = 2 + 2 + 2;
     assert!(sum == 4);
@@ -3943,8 +3962,8 @@ fun simple_test() {
 </code></pre>
 <h2 id="running-tests-1"><a class="header" href="#running-tests-1">Running Tests</a></h2>
 <p>To run tests, you can use the <code>sui move test</code> command. This command will first build the package in
-the <em>test mode</em> and then run all the tests found in the package. During test mode, modules from both
-<code>sources/</code> and <code>tests/</code> directories are processed, and the tests are executed.</p>
+<em>test mode</em> and then run all tests found in the package. In test mode, modules from both
+<code>sources/</code> and <code>tests/</code> directories are processed and their tests executed.</p>
 <pre><code class="language-bash">$ sui move test
 &gt; INCLUDING DEPENDENCY Sui
 &gt; INCLUDING DEPENDENCY MoveStdlib
@@ -3954,15 +3973,15 @@ the <em>test mode</em> and then run all the tests found in the package. During t
 </code></pre>
 <!-- TODO: fill output -->
 <h2 id="test-fail-cases-with-expected_failure"><a class="header" href="#test-fail-cases-with-expected_failure">Test Fail Cases with <code>#[expected_failure]</code></a></h2>
-<p>Tests for fail cases can be marked with <code>#[expected_failure]</code>. This attribute placed on a <code>#[test]</code>
-function tells the compiler that the test is expected to fail. This is useful when you want to test
+<p>Tests for fail cases can be marked with <code>#[expected_failure]</code>. This attribute, when added to a <code>#[test]</code>
+function, tells the compiler that the test is expected to fail. This is useful when you want to test
 that a function fails when a certain condition is met.</p>
 <blockquote>
-<p>This attribute can only be placed on a <code>#[test]</code> function.</p>
+<p>Note: This attribute can only be added to a <code>#[test]</code> function.</p>
 </blockquote>
-<p>The attribute can take an argument for abort code, which is the expected abort code when the test
-fails. If the test fails with a different abort code, the test will fail. If the execution did not
-abort, the test will also fail.</p>
+<p>The attribute can take an argument specifying the expected abort code that should be returned if the
+test fails. If the test returns an abort code different from the one specified in the argument, it will fail. Likewise, if execution does
+not result in an abort, the test will also fail.</p>
 <pre><code class="language-move">module book::testing_failure;
 
 const EInvalidArgument: u64 = 1;
@@ -3982,8 +4001,8 @@ fun test_fail_1() {
 <p>The <code>abort_code</code> argument can use constants defined in the tests module as well as imported from
 other modules. This is the only case where constants can be used and &quot;accessed&quot; in other modules.</p>
 <h2 id="utilities-with-test_only"><a class="header" href="#utilities-with-test_only">Utilities with <code>#[test_only]</code></a></h2>
-<p>In some cases, it is helpful to give the test environment access to some of the internal functions
-or features. It simplifies the testing process and allows for more thorough testing. However, it is
+<p>In some cases, it is helpful to give the test environment access to some internal functions
+or features. This simplifies the testing process and allows for more thorough testing. However, it is
 important to remember that these functions should not be included in the final package. This is
 where the <code>#[test_only]</code> attribute comes in handy.</p>
 <pre><code class="language-move">module book::testing;
@@ -4012,7 +4031,7 @@ fun test_multiply_by_secret() {
 }
 </code></pre>
 <p>Functions marked with the <code>#[test_only]</code> will be available to the test environment, and to the other
-modules if their visibility is set so.</p>
+modules if their visibility is set to <code>public</code>.</p>
 <h2 id="further-reading-18"><a class="header" href="#further-reading-18">Further Reading</a></h2>
 <ul>
 <li><a href="https://move-book.com/reference/unit-testing.html">Unit Testing</a> in the Move Reference.</li>

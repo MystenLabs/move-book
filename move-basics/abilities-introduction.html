@@ -199,7 +199,7 @@ and define which behaviours are allowed for the instances of the struct.</p>
 <h2 id="abilities-syntax"><a class="header" href="#abilities-syntax">Abilities syntax</a></h2>
 <p>Abilities are set in the struct definition using the <code>has</code> keyword followed by a list of abilities.
 The abilities are separated by commas. Move supports 4 abilities: <code>copy</code>, <code>drop</code>, <code>key</code>, and
-<code>store</code>, each of them is used to define a specific behaviour for the struct instances.</p>
+<code>store</code>. Each ability defines a specific behaviour for the struct instances.</p>
 <pre><code class="language-move">/// This struct has the `copy` and `drop` abilities.
 struct VeryAble has copy, drop {
     // field: Type1,
@@ -220,16 +220,16 @@ chapter.</li>
 <a href="./drop-ability.html">Ability: Drop</a> chapter.</li>
 <li><code>key</code> - allows the struct to be used as a <em>key</em> in a storage. Explained in the
 <a href="./../storage/key-ability.html">Ability: Key</a> chapter.</li>
-<li><code>store</code> - allows the struct to be <em>stored</em> in structs with the <em>key</em> ability. Explained in the
+<li><code>store</code> - allows the struct to be <em>stored</em> in structs that have the <em>key</em> ability. Explained in the
 <a href="./../storage/store-ability.html">Ability: Store</a> chapter.</li>
 </ul>
-<p>While it is important to mention them here, we will go in detail about each ability in the following
-chapters and give a proper context on how to use them.</p>
+<p>While it is important to briefly mention them here, we will go into more detail about each ability in the following
+chapters and give proper context on how to use them.</p>
 <h2 id="no-abilities"><a class="header" href="#no-abilities">No abilities</a></h2>
-<p>A struct without abilities cannot be discarded, or copied, or stored in the storage. We call such a
+<p>A struct without abilities cannot be discarded, copied, or stored in storage. We call such a
 struct a <em>Hot Potato</em>. It is a joke, but it is also a good way to remember that a struct without
-abilities is like a hot potato - it can only be passed around and requires special handling. Hot
-Potato is one of the most powerful patterns in Move, we go in detail about it in the
+abilities is like a hot potato - it can only be passed around and requires special handling. The Hot
+Potato is one of the most powerful patterns in Move, and we go into more detail about it in the
 <a href="./../programmability/hot-potato-pattern.html">Hot Potato Pattern</a> chapter.</p>
 <h2 id="further-reading"><a class="header" href="#further-reading">Further reading</a></h2>
 <ul>

@@ -186,7 +186,7 @@
                         <h1 id="generics"><a class="header" href="#generics">Generics</a></h1>
 <p>Generics are a way to define a type or function that can work with any type. This is useful when you
 want to write a function which can be used with different types, or when you want to define a type
-that can hold any other type. Generics are the foundation of many advanced features in Move, such as
+that can hold any other type. Generics are the foundation of many advanced features in Move including
 collections, abstract implementations, and more.</p>
 <h2 id="in-the-standard-library"><a class="header" href="#in-the-standard-library">In the Standard Library</a></h2>
 <p>In this chapter we already mentioned the <a href="./vector.html">vector</a> type, which is a generic type that
@@ -207,7 +207,7 @@ public fun new&lt;T&gt;(value: T): Container&lt;T&gt; {
 </code></pre>
 <p>In the example above, <code>Container</code> is a generic type with a single type parameter <code>T</code>, the <code>value</code>
 field of the container stores the <code>T</code>. The <code>new</code> function is a generic function with a single type
-parameter <code>T</code>, and it returns a <code>Container</code> with the given value. Generic types must be initialed
+parameter <code>T</code>, and it returns a <code>Container</code> with the given value. Generic types must be initialized
 with a concrete type, and generic functions must be called with a concrete type.</p>
 <pre><code class="language-move">#[test]
 fun test_container() {
@@ -222,11 +222,11 @@ fun test_container() {
     let Container { value: _ } = container;
 }
 </code></pre>
-<p>In the test function <code>test_generic</code> we demonstrate three equivalent ways to create a new <code>Container</code>
-with a <code>u8</code> value. Because numeric types need to be inferred, we specify the type of the number
-literal.</p>
+<p>In the test function <code>test_generic</code>, we demonstrate three equivalent ways to create a new <code>Container</code>
+with a <code>u8</code> value. Because numeric types are inferred, we explicitly specify the type of the numeric
+literal to ensure correctness.</p>
 <h2 id="multiple-type-parameters"><a class="header" href="#multiple-type-parameters">Multiple Type Parameters</a></h2>
-<p>You can define a type or function with multiple type parameters. The type parameters are then
+<p>You can define a type or function with multiple type parameters. The type parameters are 
 separated by commas.</p>
 <pre><code class="language-move">/// A pair of values of any type `T` and `U`.
 public struct Pair&lt;T, U&gt; {
@@ -241,7 +241,7 @@ public fun new_pair&lt;T, U&gt;(first: T, second: U): Pair&lt;T, U&gt; {
 </code></pre>
 <p>In the example above, <code>Pair</code> is a generic type with two type parameters <code>T</code> and <code>U</code>, and the
 <code>new_pair</code> function is a generic function with two type parameters <code>T</code> and <code>U</code>. The function returns
-a <code>Pair</code> with the given values. The order of the type parameters is important, and it should match
+a <code>Pair</code> with the given values. The order of the type parameters is important, and should match
 the order of the type parameters in the type signature.</p>
 <pre><code class="language-move">#[test]
 fun test_generic() {
@@ -277,10 +277,10 @@ fun test_swap_type_params() {
     assert!(ps1 == pf2); // true == true
 }
 </code></pre>
-<p>Types for variables <code>pair1</code> and <code>pair2</code> are different, and the comparison will not compile.</p>
+<p>The types for variables <code>pair1</code> and <code>pair2</code> are different, so the comparison will not compile.</p>
 <h2 id="why-generics"><a class="header" href="#why-generics">Why Generics?</a></h2>
 <p>In the examples above we focused on instantiating generic types and calling generic functions to
-create instances of these types. However, the real power of generics is the ability to define shared
+create instances of these types. However, the real power of generics lies in their ability to define shared
 behavior for the base, generic type, and then use it independently of the concrete types. This is
 especially useful when working with collections, abstract implementations, and other advanced
 features in Move.</p>
@@ -293,8 +293,8 @@ public struct User&lt;T&gt; {
 }
 </code></pre>
 <p>In the example above, <code>User</code> is a generic type with a single type parameter <code>T</code>, with shared fields
-<code>name</code> and <code>age</code>, and the generic <code>metadata</code> field which can store any type. No matter what the
-<code>metadata</code> is, all of the instances of <code>User</code> will have the same fields and methods.</p>
+<code>name</code>, <code>age</code>, and the generic <code>metadata</code> field, which can store any type. No matter what 
+<code>metadata</code> is, all instances of <code>User</code> will contain the same fields and methods.</p>
 <pre><code class="language-move">/// Updates the name of the user.
 public fun update_name&lt;T&gt;(user: &amp;mut User&lt;T&gt;, name: String) {
     user.name = name;
@@ -333,11 +333,11 @@ fun test_phantom_type() {
 </code></pre>
 <p>In the example above, we demonstrate how to create two different instances of <code>Coin</code> with different
 phantom type parameters <code>USD</code> and <code>EUR</code>. The type parameter <code>T</code> is not used in the fields or methods
-of the <code>Coin</code> type, but it is used to differentiate between different types of coins. It will make
-sure that the <code>USD</code> and <code>EUR</code> coins are not mixed up.</p>
+of the <code>Coin</code> type, but it is used to differentiate between different types of coins. This helps ensure
+that the <code>USD</code> and <code>EUR</code> coins are not mistakenly mixed up.</p>
 <h2 id="constraints-on-type-parameters"><a class="header" href="#constraints-on-type-parameters">Constraints on Type Parameters</a></h2>
 <p>Type parameters can be constrained to have certain abilities. This is useful when you need the inner
-type to allow certain behavior, such as <em>copy</em> or <em>drop</em>. The syntax for constraining a type
+type to allow certain behaviors, such as <em>copy</em> or <em>drop</em>. The syntax for constraining a type
 parameter is <code>T: &lt;ability&gt; + &lt;ability&gt;</code>.</p>
 <pre><code class="language-move">/// A generic type with a type parameter that has the `drop` ability.
 public struct Droppable&lt;T: drop&gt; {
@@ -349,7 +349,7 @@ public struct CopyableDroppable&lt;T: copy + drop&gt; {
     value: T, // T must have the `copy` and `drop` abilities
 }
 </code></pre>
-<p>Move Compiler will enforce that the type parameter <code>T</code> has the specified abilities. If the type
+<p>The Move Compiler will enforce that the type parameter <code>T</code> has the specified abilities. If the type
 parameter does not have the specified abilities, the code will not compile.</p>
 <!-- TODO: failure case -->
 <pre><code class="language-move">/// Type without any abilities.

@@ -189,9 +189,8 @@ implementations for strings in the <a href="./standard-library.html">Standard Li
 module defines a <code>String</code> type and methods for UTF-8 encoded strings, and the second module,
 <code>std::ascii</code>, provides an ASCII <code>String</code> type and its methods.</p>
 <blockquote>
-<p>Sui execution environment automatically converts bytevector into <code>String</code> in transaction inputs.
-So in many cases, a String does not need to be constructed in the
-<a href="./../concepts/what-is-a-transaction.html">Transaction Block</a>.</p>
+<p>The Sui execution environment automatically converts bytevector into <code>String</code> in transaction inputs.
+As a result, in many cases, constructing a String directly within the <a href="./../concepts/what-is-a-transaction.html">Transaction Block</a> is unnecessary.</p>
 </blockquote>
 <!--
 
@@ -226,9 +225,11 @@ public fun bytes(self: &amp;MyString): &amp;vector&lt;u8&gt; {
 }
 </code></pre>
 <h2 id="working-with-utf-8-strings"><a class="header" href="#working-with-utf-8-strings">Working with UTF-8 Strings</a></h2>
-<p>While there are two types of strings in the standard library, the <code>string</code> module should be
-considered the default. It has native implementations of many common operations, and hence is more
-efficient than the <code>ascii</code> module, which is fully implemented in Move.</p>
+<p>While there are two types of strings (<code>string</code> and <code>ascii</code>) in the standard library, the <code>string</code> module
+should be considered the default. It has native implementations of many common operations, leveraging 
+low-level, optimized runtime code for superior performance. In contrast, the <code>ascii</code> module is fully 
+implemented in Move, relying on higher-level abstractions and making it less suitable for 
+performance-critical tasks.</p>
 <h3 id="definition"><a class="header" href="#definition">Definition</a></h3>
 <p>The <code>String</code> type in the <code>std::string</code> module is defined as follows:</p>
 <pre><code class="language-move">// File: move-stdlib/sources/string.move
@@ -282,9 +283,9 @@ sure that the bytes you are passing are valid, you should use the <code>try_utf8
 returns an <code>Option&lt;String&gt;</code>, which contains no value if the bytes are not valid UTF-8, and a string
 otherwise.</p>
 <blockquote>
-<p>Hint: the name that starts with <code>try_*</code> indicates that the function returns an Option with the
-expected result or <code>none</code> if the operation fails. It is a common naming convention borrowed from
-Rust.</p>
+<p>Hint: Functions with names starting with <code>try_*</code> typically return an <code>Option</code>. If the operation succeeds, the 
+result is wrapped in <code>Some</code>. If it fails, the function returns <code>None</code>. This naming convention, commonly 
+used in Move, is inspired by Rust.</p>
 </blockquote>
 <pre><code class="language-move">// this is a valid UTF-8 string
 let hello = b&quot;Hello&quot;.try_to_string();
@@ -301,8 +302,8 @@ assert!(invalid.is_none()); // abort if the value is valid UTF-8
 because UTF-8 is a variable-length encoding, and the length of a character can be anywhere from 1 to
 4 bytes. Similarly, the <code>length()</code> method returns the number of bytes in the string, not the number
 of characters.</p>
-<p>However, methods like <code>sub_string</code> and <code>insert</code> check character boundaries and will abort when the
-index is in the middle of a character.</p>
+<p>However, methods like <code>sub_string</code> and <code>insert</code> validate character boundaries and abort if the 
+specified index falls within the middle of a character.</p>
 <h2 id="ascii-strings"><a class="header" href="#ascii-strings">ASCII Strings</a></h2>
 <p>This section is coming soon!</p>
 

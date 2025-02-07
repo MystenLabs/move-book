@@ -228,6 +228,11 @@ public fun create_and_ignore() {
     let _ = module_one::new();
 }
 </code></pre>
+<blockquote>
+<p>Reminder: Any item (struct, function, constant, etc.) that you want to import from another module
+must be marked with the <code>public</code> keyword to make it accessible outside its defining module. For example, 
+the <code>Character</code> struct and the <code>new</code> function in <code>module_one</code> are marked public so they can be used in <code>module_two</code>.</p>
+</blockquote>
 <h2 id="importing-members"><a class="header" href="#importing-members">Importing Members</a></h2>
 <p>You can also import specific members from a module. This is useful when you only need a single
 function or a single type from a module. The syntax is the same as for importing a module, but you
@@ -243,9 +248,8 @@ public fun create_character(): Character {
 }
 </code></pre>
 <h2 id="grouping-imports"><a class="header" href="#grouping-imports">Grouping Imports</a></h2>
-<p>Imports can be grouped into a single <code>use</code> statement using the curly braces <code>{}</code>. This is useful
-when you need to import multiple members from the same module. Move allows grouping imports from the
-same module and from the same package.</p>
+<p>Imports can be grouped into a single <code>use</code> statement using curly braces <code>{}</code>. This allows for cleaner
+and more organized code when importing multiple members from the same module or package.</p>
 <pre><code class="language-move">module book::grouped_imports;
 
 // imports the `new` function and the `Character` struct from
@@ -290,8 +294,8 @@ public fun create(): Char {
 </code></pre>
 <h2 id="adding-an-external-dependency"><a class="header" href="#adding-an-external-dependency">Adding an External Dependency</a></h2>
 <p>Every new package generated via the <code>sui</code> binary features a <code>Move.toml</code> file with a single
-dependency on the <em>Sui Framework</em> package. The Sui Framework depends on the <em>Standard Library</em>
-package. And both of these packages are available in default configuration. Package dependencies are
+dependency, the <em>Sui Framework</em> package. The Sui Framework, in turn, depends on the <em>Standard Library</em>
+package. Both of these packages are available in the default configuration. Package dependencies are
 defined in the <a href="./../concepts/manifest.html">Package Manifest</a> as follows:</p>
 <pre><code class="language-toml">[dependencies]
 Sui = { git = &quot;https://github.com/MystenLabs/sui.git&quot;, subdir = &quot;crates/sui-framework/packages/sui-framework&quot;, rev = &quot;framework/testnet&quot; }
@@ -304,12 +308,12 @@ local path is a relative path to the package directory.</p>
 <p>If a dependency is added to the <code>Move.toml</code> file, the compiler will automatically fetch (and later
 refetch) the dependencies when building the package.</p>
 <h2 id="importing-a-module-from-another-package"><a class="header" href="#importing-a-module-from-another-package">Importing a Module from Another Package</a></h2>
-<p>Normally, packages define their addresses in the <code>[addresses]</code> section, so you can use the alias
-instead of the address. For example, instead of <code>0x2::coin</code> module, you would use <code>sui::coin</code>. The
-<code>sui</code> alias is defined in the Sui Framework package. Similarly, the <code>std</code> alias is defined in the
-Standard Library package and can be used to access the standard library modules.</p>
-<p>To import a module from another package, you use the <code>use</code> keyword followed by the module path. The
-module path consists of the package address (or alias) and the module name separated by <code>::</code>.</p>
+<p>Normally, packages define their addresses in the <code>[addresses]</code> section. You can use aliases
+instead of full addresses. For example, instead of using <code>0x2::coin</code> to reference the Sui <code>coin</code> module,
+you can use <code>sui::coin</code>. The <code>sui</code> alias is defined in the Sui Framework package's manifest. Similarly, the <code>std</code>
+alias is defined in the Standard Library package and can be used instead of <code>0x1</code> to access standard library modules.</p>
+<p>To import a module from another package, use the <code>use</code> keyword followed by the module path. The
+module path consists of the package address (or alias) and the module name, separated by <code>::</code>.</p>
 <pre><code class="language-move">module book::imports;
 
 use std::string; // std = 0x1, string is a module in the standard library

@@ -202,17 +202,17 @@ Notes:
 Links:
     - constants (previous section)
  -->
-<p>A transaction can either succeed or fail. Successful execution applies all the changes made to
+<p>A transaction can either succeed or fail. Successful execution applies all changes made to
 objects and on-chain data, and the transaction is committed to the blockchain. Alternatively, if a
-transaction aborts, the changes are not applied. The <code>abort</code> keyword is used to abort a transaction
-and revert the changes made so far.</p>
+transaction aborts, changes are not applied. Use the <code>abort</code> keyword to abort a transaction
+and revert any changes that were made.</p>
 <blockquote>
 <p>It is important to note that there is no catch mechanism in Move. If a transaction aborts, the
 changes made so far are reverted, and the transaction is considered failed.</p>
 </blockquote>
 <h2 id="abort"><a class="header" href="#abort">Abort</a></h2>
 <p>The <code>abort</code> keyword is used to abort the execution of a transaction. It is used in combination with
-an abort code, which will be returned to the caller of the transaction. The abort code is an
+an abort code, which is returned to the caller of the transaction. The abort code is an
 <a href="./primitive-types.html">integer</a> of type <code>u64</code>.</p>
 <pre><code class="language-move">let user_has_access = true;
 
@@ -244,9 +244,9 @@ if (!user_has_access) {
 <h2 id="error-constants"><a class="header" href="#error-constants">Error constants</a></h2>
 <p>To make error codes more descriptive, it is a good practice to define
 <a href="./constants.html">error constants</a>. Error constants are defined as <code>const</code> declarations and are
-usually prefixed with <code>E</code> followed by a camel case name. Error constants are no different from other
-constants and don't have special handling, however, they are used to increase the readability of the
-code and make it easier to understand the abort scenarios.</p>
+usually prefixed with <code>E</code> followed by a camel case name. Error constants are similar to other constants
+and do not have any special handling. However, they are commonly used to improve code readability and
+make abort scenarios easier to understand.</p>
 <pre><code class="language-move">/// Error code for when the user has no access.
 const ENoAccess: u64 = 0;
 /// Trying to access a field that does not exist.

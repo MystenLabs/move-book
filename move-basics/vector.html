@@ -185,8 +185,8 @@
                     <main>
                         <h1 id="vector"><a class="header" href="#vector">Vector</a></h1>
 <p>Vectors are a native way to store collections of elements in Move. They are similar to arrays in
-other programming languages, but with a few differences. In this section, we introduce the <code>vector</code>
-type and its operations.</p>
+other programming languages, but with a few differences. In this section, we introduce
+the <code>vector</code> type and its operations.</p>
 <h2 id="vector-syntax"><a class="header" href="#vector-syntax">Vector syntax</a></h2>
 <p>The <code>vector</code> type is defined using the <code>vector</code> keyword followed by the type of the elements in
 angle brackets. The type of the elements can be any valid Move type, including other vectors. Move
@@ -228,9 +228,9 @@ let last_value = v.pop_back();
 assert!(last_value == 40);
 </code></pre>
 <h2 id="destroying-a-vector-of-non-droppable-types"><a class="header" href="#destroying-a-vector-of-non-droppable-types">Destroying a Vector of non-droppable types</a></h2>
-<p>A vector of non-droppable types cannot be discarded. If you define a vector of types without <code>drop</code>
-ability, the vector value cannot be ignored. However, if the vector is empty, compiler requires an
-explicit call to <code>destroy_empty</code> function.</p>
+<p>A vector of non-droppable types cannot be discarded. If you define a vector of types without the <code>drop</code>
+ability, the vector value cannot be ignored. If the vector is empty, the compiler requires an
+explicit call to the <code>destroy_empty</code> function.</p>
 <pre><code class="language-move">/// A struct without `drop` ability.
 public struct NoDrop {}
 

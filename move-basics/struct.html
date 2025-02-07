@@ -185,7 +185,7 @@
                     <main>
                         <h1 id="custom-types-with-struct"><a class="header" href="#custom-types-with-struct">Custom Types with Struct</a></h1>
 <p>Move's type system shines when it comes to defining custom types. User defined types can be custom
-tailored to the specific needs of the application. Not just on the data level, but also in its
+tailored to the specific needs of the application, not only on the data level, but also in its
 behavior. In this section we introduce the struct definition and how to use it.</p>
 <h2 id="struct"><a class="header" href="#struct">Struct</a></h2>
 <p>To define a custom type, you can use the <code>struct</code> keyword followed by the name of the type. After
@@ -228,9 +228,9 @@ and writing the fields of a struct in other modules is only possible if the modu
 struct provides public functions to access the fields.</p>
 </blockquote>
 <h2 id="create-and-use-an-instance"><a class="header" href="#create-and-use-an-instance">Create and use an instance</a></h2>
-<p>We described how struct <em>definition</em> works. Now let's see how to initialize a struct and use it. A
+<p>We described the <em>definition</em> of a struct. Now let's see how to initialize a struct and use it. A
 struct can be initialized using the <code>struct_name { field1: value1, field2: value2, ... }</code> syntax.
-The fields can be initialized in any order, and all of the fields must be set.</p>
+The fields can be initialized in any order, and all of the required fields must be set.</p>
 <pre><code class="language-move">let mut artist = Artist {
     name: b&quot;The Beatles&quot;.to_string()
 };
@@ -250,7 +250,7 @@ artist.name = b&quot;Led Zeppelin&quot;.to_string();
 // Check that the `name` field has been mutated.
 assert!(artist.name == b&quot;Led Zeppelin&quot;.to_string());
 </code></pre>
-<p>Only module defining the struct can access its fields (both mutably and immutably). So the above
+<p>Only the module defining the struct can access its fields (both mutably and immutably). So the above
 code should be in the same module as the <code>Artist</code> struct.</p>
 <!-- ## Accessing Fields
 
@@ -272,8 +272,8 @@ assert!(artist.name == b"Led Zeppelin".to_string());
 ```
 -->
 <h2 id="unpacking-a-struct"><a class="header" href="#unpacking-a-struct">Unpacking a struct</a></h2>
-<p>Structs are non-discardable by default, meaning that the initiated struct value must be used: either
-stored or <em>unpacked</em>. Unpacking a struct means deconstructing it into its fields. This is done using
+<p>Structs are non-discardable by default, meaning that the initialized struct value must be used,
+either by storing it or unpacking it. Unpacking a struct means deconstructing it into its fields. This is done using
 the <code>let</code> keyword followed by the struct name and the field names.</p>
 <pre><code class="language-move">// Unpack the `Artist` struct and create a new variable `name`
 // with the value of the `name` field.

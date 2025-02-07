@@ -186,8 +186,8 @@
                         <h1 id="standard-library"><a class="header" href="#standard-library">Standard Library</a></h1>
 <!-- The Move standard library provides a set of modules  -->
 <p>The Move Standard Library provides functionality for native types and operations. It is a standard
-collection of modules which do not interact with the storage, but provide basic tools for working
-and manipulating the data. It is the only dependency of the
+collection of modules that do not interact with storage, but provide basic tools for working with
+and manipulating data. It is the only dependency of the
 <a href="../programmability/sui-framework.html">Sui Framework</a>, and is imported together with it.</p>
 <h2 id="most-common-modules"><a class="header" href="#most-common-modules">Most Common Modules</a></h2>
 <p>In this book we go into detail about most of the modules in the Standard Library, however, it is
@@ -196,23 +196,23 @@ and which module implements it.</p>
 <!-- Custom CSS addition in the theme/custom.css  -->
 <div class="modules-table">
 <div class="table-wrapper"><table><thead><tr><th>Module</th><th>Description</th><th>Chapter</th></tr></thead><tbody>
-<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/string">std::string</a></td><td>Provides basic string operations</td><td><a href="./string.html">String</a></td></tr>
-<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/ascii">std::ascii</a></td><td>Provides basic ASCII operations</td><td><a href="./string.html">String</a></td></tr>
-<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/option">std::option</a></td><td>Implements an <code>Option&lt;T&gt;</code></td><td><a href="./option.html">Option</a></td></tr>
-<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/vector">std::vector</a></td><td>Native operations on the vector type</td><td><a href="./vector.html">Vector</a></td></tr>
-<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/bcs">std::bcs</a></td><td>Contains the <code>bcs::to_bytes()</code> function</td><td><a href="../programmability/bcs.html">BCS</a></td></tr>
-<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/address">std::address</a></td><td>Contains a single <code>address::length</code> function</td><td><a href="./address.html">Address</a></td></tr>
-<tr><td><a href="https://docs.sui.io/references/framework/move-stdlib/type_name">std::type_name</a></td><td>Allows runtime <em>type reflection</em></td><td><a href="./type-reflection.html">Type Reflection</a></td></tr>
-<tr><td>std::hash</td><td>Hashing functions: <code>sha2_256</code> and <code>sha3_256</code></td><td><a href="../programmability/cryptography-and-hashing.html">Cryptography and Hashing</a></td></tr>
-<tr><td>std::debug</td><td>Contains debugging functions, which are available in only in <strong>test</strong> mode</td><td><a href="./guides/debugging.html">Debugging</a></td></tr>
-<tr><td>std::bit_vector</td><td>Provides operations on bit vectors</td><td>-</td></tr>
-<tr><td>std::fixed_point32</td><td>Provides the <code>FixedPoint32</code> type</td><td>-</td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/std/string">std::string</a></td><td>Provides basic string operations</td><td><a href="./string.html">String</a></td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/std/ascii">std::ascii</a></td><td>Provides basic ASCII operations</td><td>-</td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/std/option">std::option</a></td><td>Implements <code>Option&lt;T&gt;</code></td><td><a href="./option.html">Option</a></td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/std/vector">std::vector</a></td><td>Native operations on the vector type</td><td><a href="./vector.html">Vector</a></td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/std/bcs">std::bcs</a></td><td>Contains the <code>bcs::to_bytes()</code> function</td><td><a href="../programmability/bcs.html">BCS</a></td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/std/address">std::address</a></td><td>Contains a single <code>address::length</code> function</td><td><a href="./address.html">Address</a></td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/std/type_name">std::type_name</a></td><td>Allows runtime <em>type reflection</em></td><td><a href="./type-reflection.html">Type Reflection</a></td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/std/hash">std::hash</a></td><td>Hashing functions: <code>sha2_256</code> and <code>sha3_256</code></td><td>-</td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/std/debug">std::debug</a></td><td>Contains debugging functions, which are available in only in <strong>test</strong> mode</td><td>-</td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/std/bit_vector">std::bit_vector</a></td><td>Provides operations on bit vectors</td><td>-</td></tr>
+<tr><td><a href="https://docs.sui.io/references/framework/std/fixed_point32">std::fixed_point32</a></td><td>Provides the <code>FixedPoint32</code> type</td><td>-</td></tr>
 </tbody></table>
 </div></div>
 <h2 id="integer-modules"><a class="header" href="#integer-modules">Integer Modules</a></h2>
 <p>The Move Standard Library provides a set of functions associated with integer types. These functions
 are split into multiple modules, each associated with a specific integer type. The modules should
-not be imported directly, but their functions are available on every integer value.</p>
+not be imported directly, as their functions are available on every integer value.</p>
 <blockquote>
 <p>All of the modules provide the same set of functions. Namely, <code>max</code>, <code>diff</code>,
 <code>divide_and_round_up</code>, <code>sqrt</code> and <code>pow</code>.</p>
@@ -229,13 +229,13 @@ not be imported directly, but their functions are available on every integer val
 </tbody></table>
 </div></div>
 <h2 id="exported-addresses"><a class="header" href="#exported-addresses">Exported Addresses</a></h2>
-<p>Standard Library exports one named address - <code>std = 0x1</code>.</p>
+<p>The Standard Library exports a single named address - <code>std = 0x1</code>. Note the alias <code>std</code> is defined here.</p>
 <pre><code class="language-toml">[addresses]
 std = &quot;0x1&quot;
 </code></pre>
 <h2 id="implicit-imports"><a class="header" href="#implicit-imports">Implicit Imports</a></h2>
-<p>Some of the modules are imported implicitly, and are available in the module without explicit <code>use</code>
-import. For Standard Library, these modules and types are:</p>
+<p>Some modules are imported implicitly and are available in the module without the explicit <code>use</code>
+import. For the Standard Library, these modules and types include:</p>
 <ul>
 <li>std::vector</li>
 <li>std::option</li>
@@ -243,7 +243,7 @@ import. For Standard Library, these modules and types are:</p>
 </ul>
 <h2 id="importing-std-without-sui-framework"><a class="header" href="#importing-std-without-sui-framework">Importing std without Sui Framework</a></h2>
 <p>The Move Standard Library can be imported to the package directly. However, <code>std</code> alone is not
-enough to build a meaningful application, as it does not provide any storage capabilities, and can't
+enough to build a meaningful application, as it does not provide any storage capabilities and can't
 interact with the on-chain state.</p>
 <pre><code class="language-toml">MoveStdlib = { git = &quot;https://github.com/MystenLabs/sui.git&quot;, subdir = &quot;crates/sui-framework/packages/move-stdlib&quot;, rev = &quot;framework/mainnet&quot; }
 </code></pre>

@@ -228,8 +228,8 @@ public fun purchase(coin: Coin&lt;SUI&gt;): Item {
 </code></pre>
 <h2 id="naming-convention"><a class="header" href="#naming-convention">Naming Convention</a></h2>
 <p>Constants must start with a capital letter - this is enforced at the compiler level. For constants
-used as a value, there's a convention to use uppercase letters and underscores to separate words.
-It's a way to make constants stand out from other identifiers in the code. One exception is made for
+used as a value, the convention is to use all uppercase letters and underscores between words, which
+makes constants stand out from other identifiers in the code. An exception is made for
 <a href="./assert-and-abort.html#assert-and-abort">error constants</a>, which are written in ECamelCase.</p>
 <pre><code class="language-move">/// Price of the item used at the shop.
 const ITEM_PRICE: u64 = 100;
@@ -238,8 +238,8 @@ const ITEM_PRICE: u64 = 100;
 const EItemNotFound: u64 = 1;
 </code></pre>
 <h2 id="constants-are-immutable"><a class="header" href="#constants-are-immutable">Constants are Immutable</a></h2>
-<p>Constants can't be changed and assigned new values. They are part of the package bytecode, and
-inherently immutable.</p>
+<p>Constants can't be changed and assigned new values. As part of the package bytecode, they
+are inherently immutable.</p>
 <pre><code class="language-move">module book::immutable_constants;
 
 const ITEM_PRICE: u64 = 100;

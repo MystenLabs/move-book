@@ -204,15 +204,15 @@ fun test_add() {
     assert!(sum == 3);
 }
 </code></pre>
-<p>In this example, we define a function <code>add</code> that takes two arguments of type <code>u64</code> and returns their
-sum. The function is called from the <code>test_add</code> function, which is a test function located in the
-same module. In the test we compare the result of the <code>add</code> function with the expected value and
-abort the execution if the result is different.</p>
+<p>In this example, we define a function <code>add</code> that takes two arguments of type <code>u64</code> and returns their sum.
+The <code>test_add</code> function, located in the same module, is a test function that calls <code>add</code>. The test uses the
+<code>assert!</code> macro to compare the result of <code>add</code> with the expected value. If the condition inside <code>assert!</code> evaluates
+to false, the execution is aborted automatically.</p>
 <h2 id="function-declaration"><a class="header" href="#function-declaration">Function declaration</a></h2>
 <blockquote>
-<p>There's a convention to call functions in Move with the <code>snake_case</code> naming convention. This means
-that the function name should be all lowercase with words separated by underscores. For example,
-<code>do_something</code>, <code>add</code>, <code>get_balance</code>, <code>is_authorized</code>, and so on.</p>
+<p>In Move, functions are typically named using the <code>snake_case</code> convention. This means function names
+should be all lowercase, with words separated by underscores. Examples include <code>do_something</code>, <code>add</code>,
+<code>get_balance</code>, <code>is_authorized</code>, and so on.</p>
 </blockquote>
 <p>A function is declared with the <code>fun</code> keyword followed by the function name (a valid Move
 identifier), a list of arguments in parentheses, and a return type. The function body is a block of
@@ -223,10 +223,10 @@ body is the return value of the function.</p>
 }
 </code></pre>
 <h2 id="accessing-functions"><a class="header" href="#accessing-functions">Accessing functions</a></h2>
-<p>Just like any other module member, functions can be imported and accessed via a path. The path
-consists of the module path and the function name separated by <code>::</code>. For example, if you have a
-function called <code>add</code> in the <code>math</code> module in the <code>book</code> package, the path to it will be
-<code>book::math::add</code>, or, if the module is imported, <code>math::add</code>.</p>
+<p>Just like other module members, functions can be imported and accessed using a path. The path consists
+of the module path and the function name, separated by ::. For example, if you have a function named
+<code>add</code> in the <code>math</code> module within the <code>book</code> package, its full path would be <code>book::math::add</code>. If the module
+has already been imported, you can access it directly as <code>math::add</code> as in the following example:</p>
 <pre><code class="language-move">module book::use_math;
 
 use book::math;
@@ -237,14 +237,14 @@ fun call_add() {
 }
 </code></pre>
 <h2 id="multiple-return-values"><a class="header" href="#multiple-return-values">Multiple return values</a></h2>
-<p>Move functions can return multiple values, which is useful when you need to return more than one
-value from a function. The return type of the function is a tuple of types. The return value is a
-tuple of expressions.</p>
+<p>Move functions can return multiple values, which is particularly useful when you need to return more
+than one piece of data from a function. The return type is specified as a tuple of types, and the return
+value is provided as a tuple of expressions:</p>
 <pre><code class="language-move">fun get_name_and_age(): (vector&lt;u8&gt;, u8) {
     (b&quot;John&quot;, 25)
 }
 </code></pre>
-<p>Result of a function call with tuple return has to be unpacked into variables via <code>let (tuple)</code>
+<p>The result of a function call with a tuple return has to be unpacked into variables via the <code>let (tuple)</code>
 syntax:</p>
 <pre><code class="language-move">// Tuple must be destructured to access its elements.
 // Name and age are declared as immutable variables.

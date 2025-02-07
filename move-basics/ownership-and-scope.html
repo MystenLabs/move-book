@@ -197,7 +197,7 @@ works.</p>
 -->
 <h2 id="ownership"><a class="header" href="#ownership">Ownership</a></h2>
 <p>A variable defined in a function scope is owned by this scope. The runtime goes through the function
-scope and executes every expression and statement. Once the function scope end, the variables
+scope and executes every expression and statement. After the function scope ends, the variables
 defined in it are dropped or deallocated.</p>
 <pre><code class="language-move">module book::ownership;
 
@@ -213,7 +213,7 @@ public fun other() {
 fun test_owner() {
     owner();
     other();
-    // a &amp; b is not valid here
+    // a &amp; b are not valid here
 }
 </code></pre>
 <p>In the example above, the variable <code>a</code> is owned by the <code>owner</code> function, and the variable <code>b</code> is
@@ -266,33 +266,33 @@ owned by this block, and when the block ends, the variables are dropped.</p>
 public fun owner() {
     let a = 1; // a is owned by the `owner` function's scope
     {
-        let b = 2; // b is owned by the block
+        let b = 2; // the block that declares b owns it
         {
-            let c = 3; // c is owned by the block
+            let c = 3; // the block that declares c owns it
         }; // c is dropped here
     }; // b is dropped here
     // a = b; // error: b is not valid here
     // a = c; // error: c is not valid here
 } // a is dropped here
 </code></pre>
-<p>However, shall we use the return value of a block, the ownership of the variable is transferred to
+<p>However, if we return a value from a block, the ownership of the variable is transferred to
 the caller of the block.</p>
 <pre><code class="language-move">module book::ownership;
 
 public fun owner(): u8 {
     let a = 1; // a is owned by the `owner` function's scope
     let b = {
-        let c = 2; // c is owned by the block
+        let c = 2; // the block that declares c owns it
         c // c is returned
     }; // c is dropped here
     a + b // both a and b are valid here
 }
 </code></pre>
 <h2 id="copyable-types"><a class="header" href="#copyable-types">Copyable Types</a></h2>
-<p>Some types in Move are <em>copyable</em>, which means that they can be copied without transferring the
+<p>Some types in Move are <em>copyable</em>, which means that they can be copied without transferring 
 ownership. This is useful for types that are small and cheap to copy, such as integers and booleans.
-Move compiler will automatically copy these types when they are passed to a function or returned
-from a function, or when they're <em>moved</em> to a scope and then accessed in their original scope.</p>
+The Move compiler will automatically copy these types when they are passed to or returned
+from a function, or when they're <em>moved</em> to another scope and then accessed in their original scope.</p>
 <h2 id="further-reading"><a class="header" href="#further-reading">Further reading</a></h2>
 <ul>
 <li><a href="/reference/variables.html">Local Variables and Scopes</a> in the Move Reference.</li>
