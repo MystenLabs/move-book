@@ -18,7 +18,7 @@ and define which behaviours are allowed for the instances of the struct.
 
 Abilities are set in the struct definition using the `has` keyword followed by a list of abilities.
 The abilities are separated by commas. Move supports 4 abilities: `copy`, `drop`, `key`, and
-`store`, each of them is used to define a specific behaviour for the struct instances.
+`store`. Each ability defines a specific behaviour for the struct instances.
 
 ```move
 /// This struct has the `copy` and `drop` abilities.
@@ -42,18 +42,18 @@ A quick overview of the abilities:
   [Ability: Drop](./drop-ability.md) chapter.
 - `key` - allows the struct to be used as a _key_ in a storage. Explained in the
   [Ability: Key](./../storage/key-ability.md) chapter.
-- `store` - allows the struct to be _stored_ in structs with the _key_ ability. Explained in the
+- `store` - allows the struct to be _stored_ in structs that have the _key_ ability. Explained in the
   [Ability: Store](./../storage/store-ability.md) chapter.
 
-While it is important to mention them here, we will go in detail about each ability in the following
-chapters and give a proper context on how to use them.
+While it is important to briefly mention them here, we will go into more detail about each ability in the following
+chapters and give proper context on how to use them.
 
 ## No abilities
 
-A struct without abilities cannot be discarded, or copied, or stored in the storage. We call such a
+A struct without abilities cannot be discarded, copied, or stored in storage. We call such a
 struct a _Hot Potato_. It is a joke, but it is also a good way to remember that a struct without
-abilities is like a hot potato - it can only be passed around and requires special handling. Hot
-Potato is one of the most powerful patterns in Move, we go in detail about it in the
+abilities is like a hot potato - it can only be passed around and requires special handling. The Hot
+Potato is one of the most powerful patterns in Move, and we go into more detail about it in the
 [Hot Potato Pattern](./../programmability/hot-potato-pattern.md) chapter.
 
 ## Further reading

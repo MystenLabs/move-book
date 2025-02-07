@@ -30,8 +30,8 @@ bytecode, and each time they are used, the value is copied.
 ## Naming Convention
 
 Constants must start with a capital letter - this is enforced at the compiler level. For constants
-used as a value, there's a convention to use uppercase letters and underscores to separate words.
-It's a way to make constants stand out from other identifiers in the code. One exception is made for
+used as a value, the convention is to use all uppercase letters and underscores between words, which
+makes constants stand out from other identifiers in the code. An exception is made for
 [error constants](./assert-and-abort.md#assert-and-abort), which are written in ECamelCase.
 
 ```move
@@ -40,8 +40,8 @@ It's a way to make constants stand out from other identifiers in the code. One e
 
 ## Constants are Immutable
 
-Constants can't be changed and assigned new values. They are part of the package bytecode, and
-inherently immutable.
+Constants can't be changed and assigned new values. As part of the package bytecode, they
+are inherently immutable.
 
 ```move
 module book::immutable_constants;

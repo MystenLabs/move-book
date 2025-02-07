@@ -3,8 +3,8 @@
 <!-- The Move standard library provides a set of modules  -->
 
 The Move Standard Library provides functionality for native types and operations. It is a standard
-collection of modules which do not interact with the storage, but provide basic tools for working
-and manipulating the data. It is the only dependency of the
+collection of modules that do not interact with storage, but provide basic tools for working with
+and manipulating data. It is the only dependency of the
 [Sui Framework](../programmability/sui-framework.md), and is imported together with it.
 
 ## Most Common Modules
@@ -18,17 +18,17 @@ and which module implements it.
 
 | Module                                                                           | Description                                                                | Chapter                                                                    |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| [std::string](https://docs.sui.io/references/framework/move-stdlib/string)       | Provides basic string operations                                           | [String](./string.md)                                                      |
-| [std::ascii](https://docs.sui.io/references/framework/move-stdlib/ascii)         | Provides basic ASCII operations                                            | [String](./string.md)                                                      |
-| [std::option](https://docs.sui.io/references/framework/move-stdlib/option)       | Implements an `Option<T>`                                                  | [Option](./option.md)                                                      |
-| [std::vector](https://docs.sui.io/references/framework/move-stdlib/vector)       | Native operations on the vector type                                       | [Vector](./vector.md)                                                      |
-| [std::bcs](https://docs.sui.io/references/framework/move-stdlib/bcs)             | Contains the `bcs::to_bytes()` function                                    | [BCS](../programmability/bcs.md)                                               |
-| [std::address](https://docs.sui.io/references/framework/move-stdlib/address)     | Contains a single `address::length` function                               | [Address](./address.md)                                                    |
-| [std::type_name](https://docs.sui.io/references/framework/move-stdlib/type_name) | Allows runtime _type reflection_                                           | [Type Reflection](./type-reflection.md)                                    |
-| std::hash                                                                        | Hashing functions: `sha2_256` and `sha3_256`                               | [Cryptography and Hashing](../programmability/cryptography-and-hashing.md) |
-| std::debug                                                                       | Contains debugging functions, which are available in only in **test** mode | [Debugging](./guides/debugging.md)                                                |
-| std::bit_vector                                                                  | Provides operations on bit vectors                                         | -                                                                          |
-| std::fixed_point32                                                               | Provides the `FixedPoint32` type                                           | -                                                                          |
+| [std::string](https://docs.sui.io/references/framework/std/string)       | Provides basic string operations                                           | [String](./string.md)                                                      |
+| [std::ascii](https://docs.sui.io/references/framework/std/ascii)         | Provides basic ASCII operations                                            | -                                                      |
+| [std::option](https://docs.sui.io/references/framework/std/option)       | Implements `Option<T>`                                                  | [Option](./option.md)                                                      |
+| [std::vector](https://docs.sui.io/references/framework/std/vector)       | Native operations on the vector type                                       | [Vector](./vector.md)                                                      |
+| [std::bcs](https://docs.sui.io/references/framework/std/bcs)             | Contains the `bcs::to_bytes()` function                                    | [BCS](../programmability/bcs.md)                                               |
+| [std::address](https://docs.sui.io/references/framework/std/address)     | Contains a single `address::length` function                               | [Address](./address.md)                                                    |
+| [std::type_name](https://docs.sui.io/references/framework/std/type_name) | Allows runtime _type reflection_                                           | [Type Reflection](./type-reflection.md)                                    |
+| [std::hash](https://docs.sui.io/references/framework/std/hash)                                                                        | Hashing functions: `sha2_256` and `sha3_256`                               | - |
+| [std::debug](https://docs.sui.io/references/framework/std/debug)                                                                       | Contains debugging functions, which are available in only in **test** mode | -                                                |
+| [std::bit_vector](https://docs.sui.io/references/framework/std/bit_vector)                                                                  | Provides operations on bit vectors                                         | -                                                                      |
+| [std::fixed_point32](https://docs.sui.io/references/framework/std/fixed_point32)                                                               | Provides the `FixedPoint32` type                                           | -                                                    |
 
 </div>
 
@@ -36,7 +36,7 @@ and which module implements it.
 
 The Move Standard Library provides a set of functions associated with integer types. These functions
 are split into multiple modules, each associated with a specific integer type. The modules should
-not be imported directly, but their functions are available on every integer value.
+not be imported directly, as their functions are available on every integer value.
 
 > All of the modules provide the same set of functions. Namely, `max`, `diff`,
 > `divide_and_round_up`, `sqrt` and `pow`.
@@ -57,7 +57,7 @@ not be imported directly, but their functions are available on every integer val
 
 ## Exported Addresses
 
-Standard Library exports one named address - `std = 0x1`.
+The Standard Library exports a single named address - `std = 0x1`. Note the alias `std` is defined here.
 
 ```toml
 [addresses]
@@ -66,8 +66,8 @@ std = "0x1"
 
 ## Implicit Imports
 
-Some of the modules are imported implicitly, and are available in the module without explicit `use`
-import. For Standard Library, these modules and types are:
+Some modules are imported implicitly and are available in the module without the explicit `use`
+import. For the Standard Library, these modules and types include:
 
 - std::vector
 - std::option
@@ -76,7 +76,7 @@ import. For Standard Library, these modules and types are:
 ## Importing std without Sui Framework
 
 The Move Standard Library can be imported to the package directly. However, `std` alone is not
-enough to build a meaningful application, as it does not provide any storage capabilities, and can't
+enough to build a meaningful application, as it does not provide any storage capabilities and can't
 interact with the on-chain state.
 
 ```toml

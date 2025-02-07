@@ -23,7 +23,7 @@ fun call_internal() {
 }
 ```
 
-<!-- Move compiler won't allow this code to compile: -->
+The following code will not compile:
 
 <!-- TODO: add failure flag to example -->
 

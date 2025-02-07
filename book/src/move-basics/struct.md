@@ -1,7 +1,7 @@
 # Custom Types with Struct
 
 Move's type system shines when it comes to defining custom types. User defined types can be custom
-tailored to the specific needs of the application. Not just on the data level, but also in its
+tailored to the specific needs of the application, not only on the data level, but also in its
 behavior. In this section we introduce the struct definition and how to use it.
 
 ## Struct
@@ -32,9 +32,9 @@ are defined in. Their fields are also private and can't be accessed from outside
 
 ## Create and use an instance
 
-We described how struct _definition_ works. Now let's see how to initialize a struct and use it. A
+We described the _definition_ of a struct. Now let's see how to initialize a struct and use it. A
 struct can be initialized using the `struct_name { field1: value1, field2: value2, ... }` syntax.
-The fields can be initialized in any order, and all of the fields must be set.
+The fields can be initialized in any order, and all of the required fields must be set.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/struct.move:pack}}
@@ -49,7 +49,7 @@ To access the fields of a struct, you can use the `.` operator followed by the f
 {{#include ../../../packages/samples/sources/move-basics/struct.move:access}}
 ```
 
-Only module defining the struct can access its fields (both mutably and immutably). So the above
+Only the module defining the struct can access its fields (both mutably and immutably). So the above
 code should be in the same module as the `Artist` struct.
 
 <!-- ## Accessing Fields
@@ -64,8 +64,8 @@ Struct fields are private and can be accessed only by the module defining the st
 
 ## Unpacking a struct
 
-Structs are non-discardable by default, meaning that the initiated struct value must be used: either
-stored or _unpacked_. Unpacking a struct means deconstructing it into its fields. This is done using
+Structs are non-discardable by default, meaning that the initialized struct value must be used,
+either by storing it or unpacking it. Unpacking a struct means deconstructing it into its fields. This is done using
 the `let` keyword followed by the struct name and the field names.
 
 ```move

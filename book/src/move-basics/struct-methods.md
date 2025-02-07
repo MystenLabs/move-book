@@ -1,17 +1,20 @@
 # Struct Methods
 
 Move Compiler supports _receiver syntax_, which allows defining methods which can be called on
-instances of a struct. This is similar to the method syntax in other programming languages. It is a
-convenient way to define functions which operate on the fields of a struct.
+instances of a struct. The term "receiver" specifically refers to the instance that receives the
+method call. This is like the method syntax in other programming languages. It is a
+convenient way to define functions that operate on the fields of a struct, providing direct access
+to the struct's fields and creating cleaner, more intuitive code than passing the struct as a parameter.
 
 ## Method syntax
 
 If the first argument of a function is a struct internal to the module, then the function can be
-called using the `.` operator. If the function uses a struct from another module, then method won't
-be associated with the struct by default. In this case, the function can be called using the
-standard function call syntax.
+called using the `.` operator on instances of that struct. However, if the function uses a struct from
+a different module for the first argument, then the method won't be associated with the struct by default.
+In this case, the `.` operator syntax is not available, and the function must be called using standard function
+call syntax.
 
-When a module is imported, the methods are automatically associated with the struct.
+When a module is imported, its methods are automatically associated with the struct.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/struct-methods.move:hero}}
@@ -19,10 +22,10 @@ When a module is imported, the methods are automatically associated with the str
 
 ## Method Aliases
 
-For modules that define multiple structs and their methods, it is possible to define method aliases
-to avoid name conflicts, or to provide a better-named method for a struct.
+Method aliases help avoid name conflicts when modules define multiple structs and their methods. 
+They can also provide more descriptive method names for structs.
 
-The syntax for aliases is:
+Here's the syntax:
 
 ```move
 // for local method association
@@ -32,21 +35,26 @@ use fun function_path as Type.method_name;
 public use fun function_path as Type.method_name;
 ```
 
-> Public aliases are only allowed for structs defined in the same module. If a struct is defined in
-> another module, an alias can still be created but cannot be made public.
+> Public aliases are only allowed for structs defined in the same module. For structs defined in
+> other modules, aliases can still be created but cannot be made public.
 
 In the example below, we changed the `hero` module and added another type - `Villain`. Both `Hero`
-and `Villain` have similar field names and methods. And to avoid name conflicts, we prefixed methods
-with `hero_` and `villain_` respectively. However, we can create aliases for these methods so that
-they can be called on the instances of the structs without the prefix.
+and `Villain` have similar field names and methods. To avoid name conflicts, we prefixed methods
+with `hero_` and `villain_` respectively. However, using aliases allows these methods to be called 
+on struct instances without the prefix:
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/struct-methods-2.move:hero_and_villain}}
 ```
 
-As you can see, in the test function, we called the `health` method on the instances of `Hero` and
-`Villain` without the prefix. The compiler will automatically associate the methods with the
+In the test function, the `health` method is called directly on the `Hero` and `Villain` instances
+without the prefix, as the compiler automatically associates the methods with their respective
 structs.
+
+> Note: In the test function, `hero.health()` is calling the aliased method, not directly accessing 
+> the private `health` field. While the `Hero` and `Villain` structs are public, their fields remain private 
+> to the module. The method call `hero.health()` uses the public alias defined by `public use fun 
+> hero_health as Hero.health`, which provides controlled access to the private field.
 
 ## Aliasing an external module's method
 

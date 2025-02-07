@@ -41,6 +41,10 @@ Another module defined in the same package can import the first module using the
 {{#include ../../../packages/samples/sources/move-basics/importing-modules-two.move:module_two}}
 ```
 
+> Reminder: Any item (struct, function, constant, etc.) that you want to import from another module
+> must be marked with the `public` keyword to make it accessible outside its defining module. For example, 
+> the `Character` struct and the `new` function in `module_one` are marked public so they can be used in `module_two`.
+
 ## Importing Members
 
 You can also import specific members from a module. This is useful when you only need a single
@@ -53,9 +57,8 @@ add the member name after the module path.
 
 ## Grouping Imports
 
-Imports can be grouped into a single `use` statement using the curly braces `{}`. This is useful
-when you need to import multiple members from the same module. Move allows grouping imports from the
-same module and from the same package.
+Imports can be grouped into a single `use` statement using curly braces `{}`. This allows for cleaner
+and more organized code when importing multiple members from the same module or package.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/importing-modules-grouped.move:grouped}}
@@ -87,8 +90,8 @@ rename the imported member.
 ## Adding an External Dependency
 
 Every new package generated via the `sui` binary features a `Move.toml` file with a single
-dependency on the _Sui Framework_ package. The Sui Framework depends on the _Standard Library_
-package. And both of these packages are available in default configuration. Package dependencies are
+dependency, the _Sui Framework_ package. The Sui Framework, in turn, depends on the _Standard Library_
+package. Both of these packages are available in the default configuration. Package dependencies are
 defined in the [Package Manifest](./../concepts/manifest.md) as follows:
 
 ```toml
@@ -107,13 +110,13 @@ refetch) the dependencies when building the package.
 
 ## Importing a Module from Another Package
 
-Normally, packages define their addresses in the `[addresses]` section, so you can use the alias
-instead of the address. For example, instead of `0x2::coin` module, you would use `sui::coin`. The
-`sui` alias is defined in the Sui Framework package. Similarly, the `std` alias is defined in the
-Standard Library package and can be used to access the standard library modules.
+Normally, packages define their addresses in the `[addresses]` section. You can use aliases
+instead of full addresses. For example, instead of using `0x2::coin` to reference the Sui `coin` module,
+you can use `sui::coin`. The `sui` alias is defined in the Sui Framework package's manifest. Similarly, the `std`
+alias is defined in the Standard Library package and can be used instead of `0x1` to access standard library modules.
 
-To import a module from another package, you use the `use` keyword followed by the module path. The
-module path consists of the package address (or alias) and the module name separated by `::`.
+To import a module from another package, use the `use` keyword followed by the module path. The
+module path consists of the package address (or alias) and the module name, separated by `::`.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/importing-modules-external.move:external}}
