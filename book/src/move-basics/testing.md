@@ -56,7 +56,7 @@ that a function fails when a certain condition is met.
 > Note: This attribute can only be added to a `#[test]` function.
 
 The attribute can take an argument specifying the expected abort code that should be returned if the
-test fails. If the test fails with a different abort code, it will fail. Likewise, if execution does
+test fails. If the test returns an abort code different from the one specified in the argument, it will fail. Likewise, if execution does
 not result in an abort, the test will also fail.
 
 ```move
