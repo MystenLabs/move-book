@@ -76,5 +76,5 @@ if the two `VecSet` instances contain the same elements.
 
 ## Next Steps
 
-In the next section we will cover the [Newtype Pattern](./newtype-pattern.md) - a design pattern
+In the next section we will cover the [Wrapper Type Pattern](./wrapper-type-pattern.md) - a design pattern
 often used with collection types to extend or restrict their behavior. 
