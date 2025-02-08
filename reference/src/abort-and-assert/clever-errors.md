@@ -95,7 +95,7 @@ fun abort_no_code() {
 Both of these will produce a `u64` abort code value that holds:
 
 1. A set tag-bit that indicates that the abort code is a clever abort code.
-2. The line number of where the abort occured in the source file (e.g., 6).
+2. The line number of where the abort occurred in the source file (e.g., 6).
 3. A sentinel value of `0xffff` for the index into the module's identifier table for the constant's
    name.
 4. A sentinel value of `0xffff` for the index of the constant's value in the module's constant
