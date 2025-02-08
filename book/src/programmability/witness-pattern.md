@@ -60,9 +60,8 @@ to do so.
 ```move
 // File: sui-framework/sources/balance.move
 /// A Supply of T. Used for minting and burning.
-public struct Supply<phantom T> has key, store {
-    id: UID,
-    value: u64
+public struct Supply<phantom T> has store {
+    value: u64,
 }
 
 /// Create a new supply for type T with the provided witness.
@@ -87,8 +86,8 @@ the supply.
 ```move
 // File: sui-framework/sources/balance.move
 /// Storable balance.
-struct Balance<phantom T> has store {
-    value: u64
+public struct Balance<phantom T> has store {
+    value: u64,
 }
 
 /// Increase supply by `value` and create a new `Balance<T>` with this value.
