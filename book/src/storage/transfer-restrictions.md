@@ -31,7 +31,7 @@ To illustrate the usage of these functions, consider the following example: modu
 ObjectK with `key` and ObjectKS with `key + store` abilities, and module B tries to implement a
 `transfer` function for these objects.
 
-> In this example we use `transfer::transfer`, but the behaviour is identical for `share_object` and
+> In this example we use `transfer::transfer`, but the behavior is identical for `share_object` and
 > `freeze_object` functions.
 
 ```move
@@ -72,10 +72,10 @@ module book::transfer_b {
 
 To expand on the example above:
 
-- [ ] `transfer_k` fails because ObjectK is not internal to module `transfer_b`
-- [ ] `transfer_ks` fails because ObjectKS is not internal to module `transfer_b`
-- [ ] `public_transfer_k` fails because ObjectK does not have the `store` ability
-- [x] `public_transfer_ks` works because ObjectKS has the `store` ability and the transfer is public
+- ❌ `transfer_k` fails because ObjectK is not internal to module `transfer_b`
+- ❌ `transfer_ks` fails because ObjectKS is not internal to module `transfer_b`
+- ❌ `public_transfer_k` fails because ObjectK does not have the `store` ability
+- ✅ `public_transfer_ks` works because ObjectKS has the `store` ability and the transfer is public
 
 ## Implications of `store`
 
