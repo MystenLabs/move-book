@@ -52,4 +52,4 @@ All of the types defined in the standard library have the `store` ability as wel
 
 ## Further reading
 
-z- [Type Abilities](/reference/abilities.html) in the Move Reference.
+- [Type Abilities](/reference/abilities.html) in the Move Reference.
