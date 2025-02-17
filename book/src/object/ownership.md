@@ -42,8 +42,8 @@ materials, and other use cases where the state permanence is desirable.
 ## Object Owner
 
 The last ownership model in Sui is the _object owner_. In this model, an object is owned by another
-object. This feature allows creating complex relationships between objects, store large
-heterogenious collections, and implementing extensible and modular systems. Practically speaking,
+object. This feature allows creating complex relationships between objects, storing large
+heterogeneous collections, and implementing extensible and modular systems. Practically speaking,
 since the transactions are initiated by accounts, the transaction still accesses the parent object,
 but it can then access the child objects through the parent object.
 

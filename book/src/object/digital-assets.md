@@ -4,7 +4,7 @@ Smart-contract programming languages have historically focused on defining and m
 assets. For example, the ERC-20 standard in Ethereum pioneered a set of standards to interact with
 digital currency tokens, establishing a blueprint for creating and managing digital currencies on
 the blockchain. Subsequently, the introduction of the ERC-721 standard marked a significant
-evolution, popularising the concept of non-fungible tokens (NFTs), which represent unique,
+evolution, popularizing the concept of non-fungible tokens (NFTs), which represent unique,
 indivisible assets. These standards laid the groundwork for the complex digital assets we see today.
 
 <!-- ## Move and Digital Assets -->
