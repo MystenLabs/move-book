@@ -53,7 +53,7 @@ can be used to check if a field exists (for stricter checks with type, there is 
 In the example above, we define a `Character` object and two different types of accessories that
 could never be put together in a vector. However, dynamic fields allow us to store them together in
 a single object. Both objects are attached to the `Character` via a `vector<u8>` (bytestring
-literal), and can be accessed using their respective keys.
+literal), and can be accessed using their respective names.
 
 As you can see, when we attached the accessories to the Character, we passed them _by value_. In
 other words, both values were moved to a new scope, and their ownership was transferred to the
