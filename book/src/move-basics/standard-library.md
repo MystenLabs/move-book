@@ -46,12 +46,12 @@ not be imported directly, as their functions are available on every integer valu
 
 | Module                                                                 | Description                   |
 | ---------------------------------------------------------------------- | ----------------------------- |
-| [std::u8](https://docs.sui.io/references/framework/std/u8)     | Functions for the `u8` type   |
-| [std::u16](https://docs.sui.io/references/framework/std/u16)   | Functions for the `u16` type  |
-| [std::u32](https://docs.sui.io/references/framework/std/u32)   | Functions for the `u32` type  |
-| [std::u64](https://docs.sui.io/references/framework/std/u64)   | Functions for the `u64` type  |
-| [std::u128](https://docs.sui.io/references/framework/std/u128) | Functions for the `u128` type |
-| [std::u256](https://docs.sui.io/references/framework/std/u256) | Functions for the `u256` type |
+| [std::u8](https://docs.sui.io/references/framework/move-stdlib/u8)     | Functions for the `u8` type   |
+| [std::u16](https://docs.sui.io/references/framework/move-stdlib/u16)   | Functions for the `u16` type  |
+| [std::u32](https://docs.sui.io/references/framework/move-stdlib/u32)   | Functions for the `u32` type  |
+| [std::u64](https://docs.sui.io/references/framework/move-stdlib/u64)   | Functions for the `u64` type  |
+| [std::u128](https://docs.sui.io/references/framework/move-stdlib/u128) | Functions for the `u128` type |
+| [std::u256](https://docs.sui.io/references/framework/move-stdlib/u256) | Functions for the `u256` type |
 
 </div>
 
