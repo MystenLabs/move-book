@@ -129,7 +129,7 @@ foreign object to perform operations in it while not exposing the capabilities t
 
 Mutable access to `UID` is a security risk. Exposing `UID` of your type as a mutable reference can
 lead to unwanted modifications or removal of the object's dynamic fields. Additionally, it affects
-the [Transfer to Object](./../storage/transfer-to-object.md) and
+the Transfer to Object<!--[](./../storage/transfer-to-object.md)--> and
 [Dynamic Object Fields](./dynamic-object-fields.md). Make sure to understand the implications before
 exposing the `UID` as a mutable reference.
 
