@@ -32,7 +32,7 @@ Another important feature of Sui Display is the ability to define templates and 
 those templates. Not only it allows for a more flexible display, but it also frees the developer
 from the need to define the same fields with the same names and types in every object.
 
-> The Object Display is natively supported by the Sui Fullnode, and the client can fetch the display
+> The Object Display is natively supported by the Sui Full Node, and the client can fetch the display
 > metadata for any object if the object type has a Display associated with it.
 
 ```move
@@ -116,7 +116,7 @@ The Display for the type `LittlePony` above could be defined as follows:
 ## Multiple Display Objects
 
 There's no restriction to how many `Display<T>` objects can be created for a specific `T`. However,
-the most recently updated `Display<T>` will be used by the fullnode.
+the most recently updated `Display<T>` will be used by the full node.
 
 ## Further Reading
 
