@@ -13,7 +13,7 @@ on-chain. Events are emitted by the `sui::event` module located in the
 // File: sui-framework/sources/event.move
 module sui::event;
 
-/// Emit a custom Move event, sending the data offchain.
+/// Emit a custom Move event, sending the data off-chain.
 ///
 /// Used for creating custom indexes and tracking onchain
 /// activity in a way that suits a specific application the most.
