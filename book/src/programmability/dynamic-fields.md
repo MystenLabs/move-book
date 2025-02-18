@@ -120,7 +120,7 @@ As you can see, custom types do work as field names but as long as they can be _
 module, in other words - if they are _internal_ to the module and defined in it. This limitation on
 struct packing can open up new ways in the design of the application.
 
-This approach is used in the [Object Capability](./object-capability.md) pattern, where an application can authorize a
+This approach is used in the Object Capability<!--[]](./object-capability.md)--> pattern, where an application can authorize a
 foreign object to perform operations in it while not exposing the capabilities to other modules.
 
 ## Exposing UID
