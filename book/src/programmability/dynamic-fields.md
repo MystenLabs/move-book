@@ -48,7 +48,6 @@ can be used to check if a field exists (for stricter checks with type, there is 
 
 ```move
 {{#include ../../../packages/samples/sources/programmability/dynamic-fields.move:usage}}
-}
 ```
 
 In the example above, we define a `Character` object and two different types of accessories that
