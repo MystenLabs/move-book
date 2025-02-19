@@ -15,7 +15,7 @@ module sui::event;
 
 /// Emit a custom Move event, sending the data off-chain.
 ///
-/// Used for creating custom indexes and tracking onchain
+/// Used for creating custom indexes and tracking on-chain
 /// activity in a way that suits a specific application the most.
 ///
 /// The type `T` is the main way to index the event, and can contain
