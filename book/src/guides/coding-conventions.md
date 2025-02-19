@@ -9,7 +9,7 @@
 
 ```move
 module book::conventions { /* ... */ }
-module book::common_pracices { /* ... */ }
+module book::common_practices { /* ... */ }
 ```
 
 ### Constant
