@@ -50,12 +50,12 @@ There are not many other reasons for the code to fail at this stage. But if you 
 issues, try looking up the structure of the package in
 [this location](https://github.com/MystenLabs/move-book/tree/main/packages/todo_list).
 
+
 ## Set up an account
-
-To publish and interact with the package, we need to set up an account. For the sake of simplicity
-and demonstration purposes, we will use _sui devnet_ environment.
-
 > If you already have an account set up, you can skip this step.
+
+To publish and interact with the package, we need to set up an account. While developing, the best 
+option for doing so is to run your own [Local Network](https://docs.sui.io/guides/developer/getting-started/local-network). For now you just need to run `RUST_LOG="off,sui_node=info" sui start --with-faucet --force-regenesis`. The Sui Local Network will run on port 9000 of your machine, so make sure that the port isn’t being used by any other application.
 
 If you are doing it for the first time, you will need to create a new account. To do this, run the
 `sui client` command, then the CLI will prompt you with multiple questions. The answers are marked
@@ -66,7 +66,9 @@ $ sui client
 Config file ["/path/to/home/.sui/sui_config/client.yaml"] doesn't exist, do you want to connect to a Sui Full node server [y/N]?
 > y
 Sui Full node server URL (Defaults to Sui Testnet if not specified) :
->
+> http://127.0.0.1:9000
+Environment alias for [http://127.0.0.1:9000] : 
+> localnet
 Select key scheme to generate keypair (0 for ed25519, 1 for secp256k1, 2: for secp256r1):
 > 0
 ```
