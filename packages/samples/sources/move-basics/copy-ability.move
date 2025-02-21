@@ -16,7 +16,7 @@ let b = a;   // `a` is copied to `b`
 let c = *&b; // explicit copy via dereference operator
 
 // Copyable doesn't have the `drop` ability, so every instance (a, b, and c) must
-// be used or explicity destructured. The `drop` ability is explained below.
+// be used or explicitly destructured. The `drop` ability is explained below.
 let Copyable {} = a;
 let Copyable {} = b;
 let Copyable {} = c;
