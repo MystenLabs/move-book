@@ -5897,9 +5897,8 @@ associated behaviors from the type with an option to extend them, if the module 
 to do so.</p>
 <pre><code class="language-move">// File: sui-framework/sources/balance.move
 /// A Supply of T. Used for minting and burning.
-public struct Supply&lt;phantom T&gt; has key, store {
-    id: UID,
-    value: u64
+public struct Supply&lt;phantom T&gt; has store {
+    value: u64,
 }
 
 /// Create a new supply for type T with the provided witness.
@@ -5920,8 +5919,8 @@ must have the <a href="programmability/./../move-basics/drop-ability.html">drop<
 the supply.</p>
 <pre><code class="language-move">// File: sui-framework/sources/balance.move
 /// Storable balance.
-struct Balance&lt;phantom T&gt; has store {
-    value: u64
+public struct Balance&lt;phantom T&gt; has store {
+    value: u64,
 }
 
 /// Increase supply by `value` and create a new `Balance&lt;T&gt;` with this value.
