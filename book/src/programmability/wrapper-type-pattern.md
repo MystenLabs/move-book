@@ -50,7 +50,7 @@ extend the behavior of an existing type. However, it does have some limitations:
 
 ## Next Steps
 
-The newtype pattern is very useful, particularly when used in conjunction with collection types, as
+The wrapper type pattern is very useful, particularly when used in conjunction with collection types, as
 demonstrated in the previous section. In the next section, we will cover
 [Dynamic Fields](./dynamic-fields.md) — an important primitive that enables
 [Dynamic Collections](./dynamic-collections.md), a way to store large collections of data in a more
