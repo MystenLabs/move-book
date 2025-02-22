@@ -12,13 +12,13 @@ compile. This is default behavior of a struct without _abilities_.
 ## What are Abilities?
 
 Abilities are a way to allow certain behaviors for a type. They are a part of the struct declaration
-and define which behaviours are allowed for the instances of the struct.
+and define which behaviors are allowed for the instances of the struct.
 
 ## Abilities syntax
 
 Abilities are set in the struct definition using the `has` keyword followed by a list of abilities.
 The abilities are separated by commas. Move supports 4 abilities: `copy`, `drop`, `key`, and
-`store`. Each ability defines a specific behaviour for the struct instances.
+`store`. Each ability defines a specific behavior for the struct instances.
 
 ```move
 /// This struct has the `copy` and `drop` abilities.

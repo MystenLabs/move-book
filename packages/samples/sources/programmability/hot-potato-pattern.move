@@ -40,7 +40,7 @@ public struct Promise {
     container_id: ID,
 }
 
-/// A module that allows borrowing the value from the container.
+/// A function that allows borrowing the value from the container.
 public fun borrow_val<T: key + store>(container: &mut Container<T>): (T, Promise) {
     assert!(container.value.is_some());
     let value = container.value.extract();

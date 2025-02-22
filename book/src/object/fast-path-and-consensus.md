@@ -33,7 +33,7 @@ need to sequence them.
 ## Consensus Path
 
 Transactions that do access shared state - on Sui it is represented with shared objects - require
-sequencing to ensure that the state is updated and consistented across all nodes. This is known as
+sequencing to ensure that the state is updated and consistent across all nodes. This is known as
 the execution through _consensus_, where transactions accessing shared objects are subject to the
 agreement process to maintain network consistency.
 

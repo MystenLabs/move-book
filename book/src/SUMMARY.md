@@ -92,7 +92,7 @@
   - [Ability: Store](./storage/store-ability.md)
   - [UID and ID](./storage/uid-and-id.md)
   - [Restricted and Public Transfer](./storage/transfer-restrictions.md)
-  - [Transfer to Object?]() <!-- (./storage/transfer-to-object.md) -->
+  - [Transfer to Object]() <!-- (./storage/transfer-to-object.md) -->
 - [Advanced Programmability](./programmability/README.md)
   - [Transaction Context](./programmability/transaction-context.md)
   - [Module Initializer](./programmability/module-initializer.md)

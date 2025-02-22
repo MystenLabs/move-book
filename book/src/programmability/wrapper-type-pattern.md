@@ -8,7 +8,7 @@ elements after they’ve been inserted. The wrapper type pattern is an effective
 ## Definition
 
 The wrapper type pattern is a design pattern in which you create a new type that wraps an existing
-type. The new type is distinct from the original but can be converted to and from it.
+type. The wrapper type is distinct from the original but can be converted to and from it.
 
 Often, it is implemented as a positional struct with a single field.
 
