@@ -5,7 +5,7 @@ module book::generics;
 
 // ANCHOR: container
 /// Container for any type `T`.
-public struct Container<T> has drop {
+public struct Container<T> has drop, store {
     value: T,
 }
 
