@@ -23,7 +23,11 @@ modules at runtime.
 Addresses come in two flavors, named or numerical. The syntax for a named address follows the same
 rules for any named identifier in Move. The syntax of a numerical address is not restricted to
 hex-encoded values, and any valid [`u256` numerical value](./integers.md) can be used as an address
-value, e.g., `42`, `0xCAFE`, and `10_000` are all valid numerical address literals.
+value, e.g., `42`, `0xCAFE`, and `10_000` are all valid numerical address literals.(Since wallet 
+addresses are generally in hexadecimal format, we usually use hexadecimal. It is important to note
+that if the address is represented as a regular u256 number, it needs to be converted to hexadecimal 
+to become the commonly used address. For example, the address corresponding to 42 is 0x2a. This is 
+something beginners need to pay attention to.)
 
 To distinguish when an address is being used in an expression context or not, the syntax when using
 an address differs depending on the context where it's used:
