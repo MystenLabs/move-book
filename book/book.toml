@@ -16,7 +16,7 @@ additional-css = ["theme/css/custom.css"]
 additional-js = ["theme/switcher.js"]
 git-repository-url = "https://github.com/MystenLabs/move-book"
 git-repository-icon = "fa-github"
-edit-url-template = "https://github.com/MystenLabs/move-book/edit/second-edition/{path}"
+edit-url-template = "https://github.com/MystenLabs/move-book/edit/main/book/{path}"
 
 # Contains the redirects from the old book
 [output.html.redirect]

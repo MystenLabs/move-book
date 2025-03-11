@@ -7,7 +7,7 @@ function will automatically be called when the module is published.
 
 > All of the modules' `init` functions are called during the publishing process. Currently, this
 > behavior is limited to the publish command and does not extend to
-> [package upgrades](./package-upgrades.md).
+> package upgrades. <!-- [package upgrades](./package-upgrades.md) -->
 
 ```move
 {{#include ../../../packages/samples/sources/programmability/module-initializer.move:main}}
@@ -33,7 +33,7 @@ fun init(otw: OTW, ctx: &mut TxContext) { /* ... */ }
 ```
 
 TxContext can also be passed as immutable reference: `&TxContext`. However, practically speaking, it
-should always be `&mut TxContext` since the `init` function can't access the onchain state and to
+should always be `&mut TxContext` since the `init` function can't access the on-chain state and to
 create new objects it requires the mutable reference to the context.
 
 ```move

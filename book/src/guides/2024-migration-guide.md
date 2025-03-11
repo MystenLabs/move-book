@@ -28,7 +28,7 @@ $ sui move migrate
 ```
 
 The migration tool will update the code to use the `let mut` syntax, the new `public` modifier for
-strucs, and the `public(package)` function visibility instead of `friend` declarations.
+structs, and the `public(package)` function visibility instead of `friend` declarations.
 
 ## Mutable bindings with `let mut`
 

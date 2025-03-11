@@ -31,51 +31,52 @@ To illustrate the usage of these functions, consider the following example: modu
 ObjectK with `key` and ObjectKS with `key + store` abilities, and module B tries to implement a
 `transfer` function for these objects.
 
-> In this example we use `transfer::transfer`, but the behaviour is identical for `share_object` and
+> In this example we use `transfer::transfer`, but the behavior is identical for `share_object` and
 > `freeze_object` functions.
 
 ```move
 /// Defines `ObjectK` and `ObjectKS` with `key` and `key + store`
 /// abilities respectively
-module book::transfer_a {
-    public struct ObjectK has key { id: UID }
-    public struct ObjectKS has key, store { id: UID }
-}
+module book::transfer_a;
 
+public struct ObjectK has key { id: UID }
+public struct ObjectKS has key, store { id: UID }
+```
+```move
 /// Imports the `ObjectK` and `ObjectKS` types from `transfer_a` and attempts
 /// to implement different `transfer` functions for them
-module book::transfer_b {
-    // types are not internal to this module
-    use book::transfer_a::{ObjectK, ObjectKS};
+module book::transfer_b;
+    
+// types are not internal to this module
+use book::transfer_a::{ObjectK, ObjectKS};
 
-    // Fails! ObjectK is not `store`, and ObjectK is not internal to this module
-    public fun transfer_k(k: ObjectK, to: address) {
-        sui::transfer::transfer(k, to);
-    }
+// Fails! ObjectK is not `store`, and ObjectK is not internal to this module
+public fun transfer_k(k: ObjectK, to: address) {
+    sui::transfer::transfer(k, to);
+}
 
-    // Fails! ObjectKS has `store` but the function is not public
-    public fun transfer_ks(ks: ObjectKS, to: address) {
-        sui::transfer::transfer(ks, to);
-    }
+// Fails! ObjectKS has `store` but the function is not public
+public fun transfer_ks(ks: ObjectKS, to: address) {
+    sui::transfer::transfer(ks, to);
+}
 
-    // Fails! ObjectK is not `store`, `public_transfer` requires `store`
-    public fun public_transfer_k(k: ObjectK) {
-        sui::transfer::public_transfer(k);
-    }
+// Fails! ObjectK is not `store`, `public_transfer` requires `store`
+public fun public_transfer_k(k: ObjectK) {
+    sui::transfer::public_transfer(k);
+}
 
-    // Works! ObjectKS has `store` and the function is public
-    public fun public_transfer_ks(y: ObjectKS, to: address) {
-        sui::transfer::public_transfer(y, to);
-    }
+// Works! ObjectKS has `store` and the function is public
+public fun public_transfer_ks(y: ObjectKS, to: address) {
+    sui::transfer::public_transfer(y, to);
 }
 ```
 
 To expand on the example above:
 
-- [ ] `transfer_k` fails because ObjectK is not internal to module `transfer_b`
-- [ ] `transfer_ks` fails because ObjectKS is not internal to module `transfer_b`
-- [ ] `public_transfer_k` fails because ObjectK does not have the `store` ability
-- [x] `public_transfer_ks` works because ObjectKS has the `store` ability and the transfer is public
+- ❌ `transfer_k` fails because ObjectK is not internal to module `transfer_b`
+- ❌ `transfer_ks` fails because ObjectKS is not internal to module `transfer_b`
+- ❌ `public_transfer_k` fails because ObjectK does not have the `store` ability
+- ✅ `public_transfer_ks` works because ObjectKS has the `store` ability and the transfer is public
 
 ## Implications of `store`
 
