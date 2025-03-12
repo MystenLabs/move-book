@@ -32,7 +32,7 @@ choco install sui
 You can install and build Sui locally by using the Cargo package manager (requires Rust)
 
 ```bash
-cargo install --git https://github.com/MystenLabs/sui.git --bin sui --branch mainnet
+cargo install --git https://github.com/MystenLabs/sui.git sui --branch mainnet
 ```
 
 Change the branch target here to `testnet` or `devnet` if you are targeting one of those.
