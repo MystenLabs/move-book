@@ -49,4 +49,9 @@ the definition of the item they document.
 {{#include ../../../packages/samples/sources/move-basics/comments-doc.move:main}}
 ```
 
+## Whitespace
+
+Unlike some languages, whitespace (spaces, tabs, and newlines) have no impact
+on the meaning of the program.
+
 <!-- TODO: docgen, which members are in the documentation -->

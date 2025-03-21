@@ -1,6 +1,6 @@
 # Struct Methods
 
-Move Compiler supports _receiver syntax_, which allows defining methods which can be called on
+Move Compiler supports _receiver syntax_ `e.f()`, which allows defining methods which can be called on
 instances of a struct. The term "receiver" specifically refers to the instance that receives the
 method call. This is like the method syntax in other programming languages. It is a
 convenient way to define functions that operate on the fields of a struct, providing direct access

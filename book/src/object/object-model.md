@@ -17,10 +17,14 @@ Objects in Sui have the following properties:
 
 <!-- Note: consider "shared across many entities" -->
 
-- **Owner:** Every object is associated with an owner, who has control over the object. Ownership on
-  Sui can be exclusive to an account, shared across the network, or frozen, allowing read-only
-  access without modification or transfer capabilities. We will discuss ownership in more detail in
-  the following sections.
+- **Owner:** Every object is associated with an owner, who has control over changes to the object.
+  Ownership on Sui can be exclusive to an account, shared across the network, or frozen, allowing
+  read-only access without modification or transfer capabilities. We will discuss ownership in more
+  detail in the following sections.
+
+  Note that ownership does not control the confidentiality of an object &mdash; it is always
+  possible to read the contents of an on-chain object from outside of Move. You should never store
+  unencrypted secrets inside of objects.
 
 - **Data:** Objects encapsulate their data, simplifying management and manipulation. The data
   structure and operations are defined by the object's type.

@@ -129,3 +129,6 @@ module path consists of the package address (or alias) and the module name, sepa
 ```move
 {{#include ../../../packages/samples/sources/move-basics/importing-modules-external.move:external}}
 ```
+
+> Note: module address names come from the `[addresses]` section of the manifest file (`Move.toml`), not the
+> names used in the `[dependencies]` section.

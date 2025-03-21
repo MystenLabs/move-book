@@ -30,8 +30,12 @@ public fun register(
 // `option::some` creates an `Option` value with a value.
 let mut opt = option::some(b"Alice");
 
+// `option::none` creates an `Option` without a value.
+let empty = option::none();
+
 // `option.is_some()` returns true if option contains a value.
 assert!(opt.is_some());
+assert!(empty.is_none());
 
 // internal value can be `borrow`ed and `borrow_mut`ed.
 assert!(opt.borrow() == &b"Alice");

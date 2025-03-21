@@ -19,6 +19,11 @@ The `Option` type is a generic type with an `Element` type parameter. It contain
 which is a `vector` of `Element`. The vector can have a length of 0 or 1, representing the
 absence or presence of a value, respectively.
 
+> Note: you may be surprised that `Option` is a `struct` containing a `vector` instead of an [enum][enum-reference].
+> This is for historical reasons: `Option` was added to Move before it had support for enums.
+
+[enum-reference]: /reference/enums.html
+
 The `Option` type has two variants: `Some` and `None`. The `Some` variant contains a value, while the `None` variant
 represents the absence of a value. The `Option` type is used to represent the absence of a value in
 a type-safe way, avoiding the need for empty or `undefined` values.
@@ -46,8 +51,15 @@ The `Option` type, along with the `std::option` module, is implicitly imported i
 the `Option` type directly without needing a `use` statement.
 
 To create a value of the `Option` type, you can use the `option::some` or `option::none` methods.
-`Option` values also support several operations (borrowing will be discussed in TODO):
+`Option` values also support several operations (borrowing will be discussed in
+the [references](references.md#references-1) chapter):
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/option.move:usage}}
 ```
+
+## References
+
+ - [`std::option`][option-stdlib] in the standard library
+
+[option-stdlib]: https://docs.sui.io/references/framework/std/option

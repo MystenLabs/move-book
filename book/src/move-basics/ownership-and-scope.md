@@ -120,8 +120,8 @@ public fun owner(): u8 {
     let a = 1; // a is owned by the `owner` function's scope
     let b = {
         let c = 2; // the block that declares c owns it
-        c // c is returned
-    }; // c is dropped here
+        c // c is returned from the block and transferred to b
+    };
     a + b // both a and b are valid here
 }
 ```

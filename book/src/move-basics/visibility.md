@@ -38,6 +38,10 @@ fun try_calling_internal() {
 }
 ```
 
+Note that just because a struct field is not visible from Move does not mean that its value is kept
+confidential &mdash; it is always possible to read the contents of an on-chain object from outside
+of Move. You should never store unencrypted secrets inside of objects.
+
 ## Public Visibility
 
 A struct or a function can be made _public_ by adding the `public` keyword before the `fun` or
@@ -62,6 +66,8 @@ fun try_calling_public() {
     public_visibility::public();
 }
 ```
+
+Unlike some languages, struct fields cannot be made public.
 
 ## Package Visibility
 

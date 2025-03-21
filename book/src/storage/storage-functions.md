@@ -8,7 +8,7 @@ statement.
 ## Overview
 
 The `transfer` module provides functions to perform all three storage operations matching
-[ownership types](./../object/ownership.md) which we explained before:
+[ownership types](./../object/ownership.md) which we explained:
 
 > On this page we will only talk about so-called _restricted_ storage operations, later we will
 > cover _public_ ones, after the `store` ability is introduced.

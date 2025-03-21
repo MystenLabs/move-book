@@ -63,16 +63,16 @@ section.
 
 All native types in Move have the `drop` ability. This includes:
 
-- [bool](./../move-basics/primitive-types.md#booleans)
+- [`bool`](./../move-basics/primitive-types.md#booleans)
 - [unsigned integers](./../move-basics/primitive-types.md#integer-types)
-- [vector](./../move-basics/vector.md)
-- [address](./../move-basics/address.md)
+- [`vector<T>`](./../move-basics/vector.md) when `T` has `drop`
+- [`address`](./../move-basics/address.md)
 
 All of the types defined in the standard library have the `drop` ability as well. This includes:
 
-- [Option](./../move-basics/option.md)
-- [String](./../move-basics/string.md)
-- [TypeName](./../move-basics/type-reflection.md#typename)
+- [`Option<T>`](./../move-basics/option.md) when `T` has `drop`
+- [`String`](./../move-basics/string.md)
+- [`TypeName`](./../move-basics/type-reflection.md#typename)
 
 ## Further reading
 
