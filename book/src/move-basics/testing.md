@@ -1,7 +1,7 @@
 # Testing
 
 Testing is a crucial aspect of software development, especially in blockchain applications where
-security and correctness are paramount. In this section, we will cover the fundamentals of testing 
+security and correctness are paramount. In this section, we will cover the fundamentals of testing
 in Move, including how to write and organize tests effectively.
 
 ## The `#[test]` attribute
@@ -38,6 +38,10 @@ _test mode_ and then run all tests found in the package. In test mode, modules f
 
 ```bash
 $ sui move test
+> UPDATING GIT DEPENDENCY https://github.com/MystenLabs/sui.git
+> INCLUDING DEPENDENCY Bridge
+> INCLUDING DEPENDENCY DeepBook
+> INCLUDING DEPENDENCY SuiSystem
 > INCLUDING DEPENDENCY Sui
 > INCLUDING DEPENDENCY MoveStdlib
 > BUILDING book

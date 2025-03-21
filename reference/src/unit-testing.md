@@ -331,6 +331,9 @@ You can then run these tests with the `move test` command:
 
 ```bash
 $ sui move test
+INCLUDING DEPENDENCY Bridge
+INCLUDING DEPENDENCY DeepBook
+INCLUDING DEPENDENCY SuiSystem
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
 BUILDING test_example
@@ -351,6 +354,9 @@ whose fully qualified name contains `<str>`. For example if we wanted to only ru
 
 ```bash
 $ sui move test non_zero
+INCLUDING DEPENDENCY Bridge
+INCLUDING DEPENDENCY DeepBook
+INCLUDING DEPENDENCY SuiSystem
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
 BUILDING test_example
@@ -365,6 +371,9 @@ This bounds the amount of gas that can be consumed for any one test to `<bound>`
 
 ```bash
 $ sui move test -i 0
+INCLUDING DEPENDENCY Bridge
+INCLUDING DEPENDENCY DeepBook
+INCLUDING DEPENDENCY SuiSystem
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
 BUILDING test_example
@@ -418,6 +427,9 @@ output format. For example, if we wanted to see the statistics for the tests in 
 
 ```bash
 $ sui move test -s
+INCLUDING DEPENDENCY Bridge
+INCLUDING DEPENDENCY DeepBook
+INCLUDING DEPENDENCY SuiSystem
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
 BUILDING test_example

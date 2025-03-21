@@ -11,7 +11,7 @@ version = "0.0.0"
 edition = "2024"
 
 [dependencies]
-Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/testnet" }
+Example = { git = "https://github.com/example/example.git", subdir = "path/to/package", rev = "framework/testnet" }
 
 [addresses]
 std =  "0x1"
@@ -44,7 +44,7 @@ local directory.
 
 ```toml
 # git repository
-Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/testnet" }
+Example = { git = "https://github.com/example/example.git", subdir = "path/to/package", rev = "framework/testnet" }
 
 # local directory
 MyPackage = { local = "../my-package" }
@@ -54,17 +54,21 @@ Packages also import addresses from other packages. For example, the Sui depende
 and `sui` addresses to the project. These addresses can be used in the code as aliases for the
 addresses.
 
+Starting with version 1.45 of the Sui CLI, the Sui system packages (`std`,
+`sui`, `system`, `bridge`, and `deepbook`) are automatically added as
+dependencies if none of them are explicitly listed.
+
 ### Resolving version conflicts with override
 
 Sometimes dependencies have conflicting versions of the same package. For example, if you have two
-dependencies that use different versions of the Sui package, you can override the dependency in the
+dependencies that use different versions of the Example package, you can override the dependency in the
 `[dependencies]` section. To do so, add the `override` field to the dependency. The version of the
 dependency specified in the `[dependencies]` section will be used instead of the one specified in
 the dependency itself.
 
 ```toml
 [dependencies]
-Sui = { override = true, git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/testnet" }
+Example = { override = true, git = "https://github.com/example/example.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/testnet" }
 ```
 
 ### Dev-dependencies
@@ -96,15 +100,15 @@ for the `[package]` section, but it can be useful for the dependencies.
 ```toml
 # Inline style
 [dependencies]
-Sui = { override = true, git = "", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/testnet" }
+Example = { override = true, git = "https://github.com/example/example.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/testnet" }
 MyPackage = { local = "../my-package" }
 ```
 
 ```toml
 # Multiline style
-[dependencies.Sui]
+[dependencies.Example]
 override = true
-git = "https://github.com/MystenLabs/sui.git"
+git = "https://github.com/example/example.git"
 subdir = "crates/sui-framework/packages/sui-framework"
 rev = "framework/testnet"
 

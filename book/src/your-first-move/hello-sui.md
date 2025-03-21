@@ -35,6 +35,9 @@ following:
 ```bash
 $ sui move build
 UPDATING GIT DEPENDENCY https://github.com/MystenLabs/sui.git
+INCLUDING DEPENDENCY Bridge
+INCLUDING DEPENDENCY DeepBook
+INCLUDING DEPENDENCY SuiSystem
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
 BUILDING todo_list
@@ -54,7 +57,7 @@ issues, try looking up the structure of the package in
 ## Set up an account
 > If you already have an account set up, you can skip this step.
 
-To publish and interact with the package, we need to set up an account. While developing, the best 
+To publish and interact with the package, we need to set up an account. While developing, the best
 option for doing so is to run your own [Local Network](https://docs.sui.io/guides/developer/getting-started/local-network). For now you just need to run `RUST_LOG="off,sui_node=info" sui start --with-faucet --force-regenesis`. The Sui Local Network will run on port 9000 of your machine, so make sure that the port isn’t being used by any other application.
 
 If you are doing it for the first time, you will need to create a new account. To do this, run the
@@ -67,7 +70,7 @@ Config file ["/path/to/home/.sui/sui_config/client.yaml"] doesn't exist, do you 
 > y
 Sui Full node server URL (Defaults to Sui Testnet if not specified) :
 > http://127.0.0.1:9000
-Environment alias for [http://127.0.0.1:9000] : 
+Environment alias for [http://127.0.0.1:9000] :
 > localnet
 Select key scheme to generate keypair (0 for ed25519, 1 for secp256k1, 2: for secp256r1):
 > 0
@@ -155,6 +158,9 @@ The output of the publish command is rather lengthy, so we will show and explain
 ```bash
 $ sui client publish --gas-budget 100000000
 UPDATING GIT DEPENDENCY https://github.com/MystenLabs/sui.git
+INCLUDING DEPENDENCY Bridge
+INCLUDING DEPENDENCY DeepBook
+INCLUDING DEPENDENCY SuiSystem
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
 BUILDING todo_list
