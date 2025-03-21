@@ -42,7 +42,7 @@ Another module defined in the same package can import the first module using the
 ```
 
 > Reminder: Any item (struct, function, constant, etc.) that you want to import from another module
-> must be marked with the `public` keyword to make it accessible outside its defining module. For example, 
+> must be marked with the `public` keyword to make it accessible outside its defining module. For example,
 > the `Character` struct and the `new` function in `module_one` are marked public so they can be used in `module_two`.
 
 ## Importing Members
@@ -64,7 +64,7 @@ and more organized code when importing multiple members from the same module or 
 {{#include ../../../packages/samples/sources/move-basics/importing-modules-grouped.move:grouped}}
 ```
 
-Single function imports are less common in Move, since the function names can overlap and cause
+Importing function names is less common in Move, since the function names can overlap and cause
 confusion. A recommended practice is to import the entire module and use the module path to access
 the function. Types have unique names and should be imported individually.
 
@@ -89,24 +89,32 @@ rename the imported member.
 
 ## Adding an External Dependency
 
-Every new package generated via the `sui` binary features a `Move.toml` file with a single
-dependency, the _Sui Framework_ package. The Sui Framework, in turn, depends on the _Standard Library_
-package. Both of these packages are available in the default configuration. Package dependencies are
-defined in the [Package Manifest](./../concepts/manifest.md) as follows:
+Move packages can depend on other packages; the dependencies are listed in the [Package
+Manifest](./../concepts/manifest.md) file called `Move.toml`.
+
+Package dependencies are defined in the [Package Manifest](./../concepts/manifest.md) as follows:
 
 ```toml
 [dependencies]
-Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/testnet" }
+Example = { git = "https://github.com/Example/example.git", subdir = "path/to/package", rev = "v1.2.3" }
 Local = { local = "../my_other_package" }
 ```
 
-The `dependencies` section contains a list of package dependencies. The key is the name of the
-package, and the value is either a git import table or a local path. The git import contains the URL
-of the package, the subdirectory where the package is located, and the revision of the package. The
-local path is a relative path to the package directory.
+The `dependencies` section contains an entry for each package dependency. The key of the entry
+is the name of the package (`Example` or `Local` in the example), and the value is either a git import
+table or a local path. The git import contains the URL of the package, the subdirectory where the
+package is located, and the revision of the package. The local path is a relative path to the
+qa package directory.
+
+If you add a dependency, all of its dependencies also become available to your package.
 
 If a dependency is added to the `Move.toml` file, the compiler will automatically fetch (and later
 refetch) the dependencies when building the package.
+
+> Starting with version 1.45 of the sui CLI, the system packages are
+> automatically included as dependencies for all packages if they are not present in `Move.toml`.
+> Therefore, `MoveStdlib`, `Sui`, `System`, `Bridge`, and `Deepbook` are all available without
+> an explicit import.
 
 ## Importing a Module from Another Package
 
@@ -121,3 +129,6 @@ module path consists of the package address (or alias) and the module name, sepa
 ```move
 {{#include ../../../packages/samples/sources/move-basics/importing-modules-external.move:external}}
 ```
+
+> Note: Module address names come from the `[addresses]` section of the manifest file (`Move.toml`), not the
+> names used in the `[dependencies]` section.

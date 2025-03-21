@@ -23,19 +23,22 @@ enclosed in angle brackets (`<` and `>`). The generic parameters are separated b
 In the example above, `Container` is a generic type with a single type parameter `T`, the `value`
 field of the container stores the `T`. The `new` function is a generic function with a single type
 parameter `T`, and it returns a `Container` with the given value. Generic types must be initialized
-with a concrete type, and generic functions must be called with a concrete type.
+with a concrete type, and generic functions must be called with a concrete type, although in some cases
+the Move compiler can infer the correct type.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/generics.move:test_container}}
 ```
 
-In the test function `test_generic`, we demonstrate three equivalent ways to create a new `Container`
-with a `u8` value. Because numeric types are inferred, we explicitly specify the type of the numeric
-literal to ensure correctness.
+In the test function `test_generic`, we demonstrate three equivalent ways to
+create a new `Container` with a `u8` value. Because numeric constants have
+ambiguous types, we must specify the type of the number literal somewhere (in
+the type of the container, the parameter to `new`, or the number literal
+itself); once we specify one of these the compiler can infer the others.
 
 ## Multiple Type Parameters
 
-You can define a type or function with multiple type parameters. The type parameters are 
+You can define a type or function with multiple type parameters. The type parameters are
 separated by commas.
 
 ```move
@@ -58,7 +61,7 @@ to compare two types, we'd see that the type signatures are different, and canno
 {{#include ../../../packages/samples/sources/move-basics/generics.move:test_pair_swap}}
 ```
 
-The types for variables `pair1` and `pair2` are different, so the comparison will not compile.
+Since the types for `pair1` and `pair2` are different, the comparison `pair1 == pair2` will not compile.
 
 ## Why Generics?
 
@@ -73,7 +76,7 @@ features in Move.
 ```
 
 In the example above, `User` is a generic type with a single type parameter `T`, with shared fields
-`name`, `age`, and the generic `metadata` field, which can store any type. No matter what 
+`name`, `age`, and the generic `metadata` field, which can store any type. No matter what
 `metadata` is, all instances of `User` will contain the same fields and methods.
 
 ```move

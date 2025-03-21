@@ -1,0 +1,5 @@
+- Perhaps worth moving the "Struct Methods" section into the Structs
+  documentation; it is used a lot in the standard library docs.
+- `break` for nested loops?
+- ownership: should mention that values can be owned by structs, etc..
+- "what is an object": is object ownership the same as value ownership?

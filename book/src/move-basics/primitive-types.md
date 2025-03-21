@@ -71,7 +71,12 @@ Move supports unsigned integers of various sizes, from 8-bit to 256-bit. The int
 {{#include ../../../packages/samples/sources/move-basics/primitive-types.move:integers}}
 ```
 
-Unlike booleans, integer types sometimes require explicit type annotations. The compiler usually infers the type from context, defaulting to `u64` when unspecified. In ambiguous cases, a type annotation is needed, which can be added during assignment or with a type suffix.
+While boolean literals like `true` and `false` are clearly booleans, an integer
+literal like `42` could be any of the integer types. In most of the cases, the
+compiler will infer the type from the value, usually defaulting to `u64`.
+However, sometimes the compiler is unable to infer the type and will require an
+explicit type annotation. It can either be provided during assignment or by
+using a type suffix.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/primitive-types.move:integer_explicit_type}}

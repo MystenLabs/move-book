@@ -8,7 +8,7 @@ statement.
 ## Overview
 
 The `transfer` module provides functions to perform all three storage operations matching
-[ownership types](./../object/ownership.md) which we explained before:
+[ownership types](./../object/ownership.md) which we explained:
 
 > On this page we will only talk about so-called _restricted_ storage operations, later we will
 > cover _public_ ones, after the `store` ability is introduced.
@@ -19,7 +19,7 @@ The `transfer` module provides functions to perform all three storage operations
    change.
 
 The `transfer` module is a go-to for most of the storage operations, except a special case with
-[Dynamic Fields](./../programmability/dynamic-fields.md) awaits us in the next chapter.
+[Dynamic Fields](./../programmability/dynamic-fields.md) that awaits us in the next chapter.
 
 ## Ownership and References: A Quick Recap
 
@@ -33,7 +33,7 @@ Here is a quick recap of the most important points:
   scope and can't be accessed in the caller scope anymore.
 - To maintain the ownership of the value, you can pass it _by reference_. Either by _immutable
   reference_ `&T` or _mutable reference_ `&mut T`. Then the value is _borrowed_ and can be accessed
-  in the caller scope, however the owner stays the same.
+  in the callee scope, however the owner stays the same.
 
 ```move
 /// Moved by value
@@ -138,9 +138,9 @@ A quick recap:
 
 ## Freeze
 
-The `transfer::freeze_object` function is public function used to put an object into an _immutable_
-state. Once an object is _frozen_, it can never be changed, and it can be accessed by anyone by
-immutable reference.
+The `transfer::freeze_object` function is a public function that is used to put
+an object into an _immutable_ state. Once an object is _frozen_, it can never
+be changed, and it can be accessed by anyone by immutable reference.
 
 The function signature is as follows, only accepts a type with the
 [`key` ability](./key-ability.md). Just like all other storage functions, it takes the object _by

@@ -60,15 +60,18 @@ _reference_ to the value, not the value itself.
 {{#include ../../../packages/samples/sources/move-basics/references.move:immutable}}
 ```
 
-Because the function does not take ownership of the Card, it can _read_ its data but cannot _write_ 
-to it, meaning it cannot modify the number of rides. Additionally, the function signature ensures 
+Because the function does not take ownership of the Card, it can _read_ its data but cannot _write_
+to it, meaning it cannot modify the number of rides. Additionally, the function signature ensures
 that it cannot be called without a Card instance. This is an important property that allows the
 [Capability Pattern](./../programmability/capability.md), which we will cover in the next chapters.
 
+Creating a reference to a value is often referred to as "borrowing" the value. For example, the
+method to get a reference to the value wrapped by an `Option` is called `borrow`.
+
 ## Mutable Reference
 
-In some cases, we want to allow the function to modify the Card. For example, when using the Card 
-at a turnstile, we need to deduct a ride. To achieve this, we use the `&mut` keyword in the function 
+In some cases, we want to allow the function to modify the Card. For example, when using the Card
+at a turnstile, we need to deduct a ride. To achieve this, we use the `&mut` keyword in the function
 signature.
 
 ```move
@@ -92,7 +95,7 @@ In the `recycle` function, the Card is passed by value, transferring ownership t
 This allows it to be unpacked and destroyed.
 
 > Note: In Move, `_` is a wildcard pattern used in destructuring to ignore a field while still consuming the value.
-> Destructuring must match all fields in a struct type. If a struct has fields, you must list all of them 
+> Destructuring must match all fields in a struct type. If a struct has fields, you must list all of them
 > explicitly or use `_` to ignore unwanted fields.
 
 ## Full Example

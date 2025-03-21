@@ -1,6 +1,6 @@
 # Struct Methods
 
-Move Compiler supports _receiver syntax_, which allows defining methods which can be called on
+Move Compiler supports _receiver syntax_ `e.f()`, which allows defining methods which can be called on
 instances of a struct. The term "receiver" specifically refers to the instance that receives the
 method call. This is like the method syntax in other programming languages. It is a
 convenient way to define functions that operate on the fields of a struct, providing direct access
@@ -8,11 +8,12 @@ to the struct's fields and creating cleaner, more intuitive code than passing th
 
 ## Method syntax
 
-If the first argument of a function is a struct internal to the module, then the function can be
-called using the `.` operator on instances of that struct. However, if the function uses a struct from
-a different module for the first argument, then the method won't be associated with the struct by default.
-In this case, the `.` operator syntax is not available, and the function must be called using standard function
-call syntax.
+If the first argument of a function is a struct internal to the module that
+defines the function, then the function can be called using the `.` operator.
+However, if the type of the first argument is defined in another module, then
+method won't be associated with the struct by default. In this case, the `.`
+operator syntax is not available, and the function must be called using
+standard function call syntax.
 
 When a module is imported, its methods are automatically associated with the struct.
 
@@ -22,7 +23,7 @@ When a module is imported, its methods are automatically associated with the str
 
 ## Method Aliases
 
-Method aliases help avoid name conflicts when modules define multiple structs and their methods. 
+Method aliases help avoid name conflicts when modules define multiple structs and their methods.
 They can also provide more descriptive method names for structs.
 
 Here's the syntax:
@@ -40,7 +41,7 @@ public use fun function_path as Type.method_name;
 
 In the example below, we changed the `hero` module and added another type - `Villain`. Both `Hero`
 and `Villain` have similar field names and methods. To avoid name conflicts, we prefixed methods
-with `hero_` and `villain_` respectively. However, using aliases allows these methods to be called 
+with `hero_` and `villain_` respectively. However, using aliases allows these methods to be called
 on struct instances without the prefix:
 
 ```move
@@ -51,9 +52,9 @@ In the test function, the `health` method is called directly on the `Hero` and `
 without the prefix, as the compiler automatically associates the methods with their respective
 structs.
 
-> Note: In the test function, `hero.health()` is calling the aliased method, not directly accessing 
-> the private `health` field. While the `Hero` and `Villain` structs are public, their fields remain private 
-> to the module. The method call `hero.health()` uses the public alias defined by `public use fun 
+> Note: In the test function, `hero.health()` is calling the aliased method, not directly accessing
+> the private `health` field. While the `Hero` and `Villain` structs are public, their fields remain private
+> to the module. The method call `hero.health()` uses the public alias defined by `public use fun
 > hero_health as Hero.health`, which provides controlled access to the private field.
 
 ## Aliasing an external module's method

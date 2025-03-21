@@ -57,3 +57,4 @@ Here are some examples of reserved addresses:
 ## Further reading
 
 - [Address type](../move-basics/address.md) in Move
+- [sui::address module](https://docs.sui.io/references/framework/sui/address)

@@ -1,4 +1,4 @@
-# Function
+# Functions
 
 Functions are the building blocks of Move programs. They are called from
 [user transactions](../concepts/user-interaction.md) and from other functions and group executable
@@ -23,7 +23,7 @@ to false, the execution is aborted automatically.
 
 A function is declared with the `fun` keyword followed by the function name (a valid Move
 identifier), a list of arguments in parentheses, and a return type. The function body is a block of
-code that contains a sequence of statements and expressions. The last expression in the function
+code that contains a sequence of statements and expressions. The last expression the function
 body is the return value of the function.
 
 ```move
