@@ -19,7 +19,7 @@ The `Option` type is a generic type with an `Element` type parameter. It contain
 which is a `vector` of `Element`. The vector can have a length of 0 or 1, representing the
 absence or presence of a value, respectively.
 
-> Note: you may be surprised that `Option` is a `struct` containing a `vector` instead of an [enum][enum-reference].
+> Note: You might be surprised that `Option` is a `struct` containing a `vector` instead of an [enum][enum-reference].
 > This is for historical reasons: `Option` was added to Move before it had support for enums.
 
 [enum-reference]: /reference/enums.html
