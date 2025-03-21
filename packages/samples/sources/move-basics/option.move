@@ -30,8 +30,9 @@ public fun register(
 // `option::some` creates an `Option` value with a value.
 let mut opt = option::some(b"Alice");
 
-// `option::none` creates an `Option` without a value.
-let empty = option::none();
+// `option::none` creates an `Option` without a value. We need to specify the
+// type since it can't be inferred from context.
+let empty : Option<u64> = option::none();
 
 // `option.is_some()` returns true if option contains a value.
 assert!(opt.is_some());
