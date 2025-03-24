@@ -178,6 +178,9 @@ It should output the following message on your console.
 
 ```plaintext
 UPDATING GIT DEPENDENCY https://github.com/MystenLabs/sui.git
+INCLUDING DEPENDENCY Bridge
+INCLUDING DEPENDENCY DeepBook
+INCLUDING DEPENDENCY SuiSystem
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
 BUILDING hello_world
@@ -221,6 +224,9 @@ $ sui move test
 The output should be similar to the following:
 
 ```plaintext
+INCLUDING DEPENDENCY Bridge
+INCLUDING DEPENDENCY DeepBook
+INCLUDING DEPENDENCY SuiSystem
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
 BUILDING hello_world
