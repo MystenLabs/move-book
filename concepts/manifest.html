@@ -193,7 +193,7 @@ version = &quot;0.0.0&quot;
 edition = &quot;2024&quot;
 
 [dependencies]
-Sui = { git = &quot;https://github.com/MystenLabs/sui.git&quot;, subdir = &quot;crates/sui-framework/packages/sui-framework&quot;, rev = &quot;framework/testnet&quot; }
+Example = { git = &quot;https://github.com/example/example.git&quot;, subdir = &quot;path/to/package&quot;, rev = &quot;framework/testnet&quot; }
 
 [addresses]
 std =  &quot;0x1&quot;
@@ -219,7 +219,7 @@ specified as a key-value pair, where the key is the name of the dependency, and 
 dependency specification. The dependency specification can be a git repository URL or a path to the
 local directory.</p>
 <pre><code class="language-toml"># git repository
-Sui = { git = &quot;https://github.com/MystenLabs/sui.git&quot;, subdir = &quot;crates/sui-framework/packages/sui-framework&quot;, rev = &quot;framework/testnet&quot; }
+Example = { git = &quot;https://github.com/example/example.git&quot;, subdir = &quot;path/to/package&quot;, rev = &quot;framework/testnet&quot; }
 
 # local directory
 MyPackage = { local = &quot;../my-package&quot; }
@@ -227,14 +227,17 @@ MyPackage = { local = &quot;../my-package&quot; }
 <p>Packages also import addresses from other packages. For example, the Sui dependency adds the <code>std</code>
 and <code>sui</code> addresses to the project. These addresses can be used in the code as aliases for the
 addresses.</p>
+<p>Starting with version 1.45 of the Sui CLI, the Sui system packages (<code>std</code>,
+<code>sui</code>, <code>system</code>, <code>bridge</code>, and <code>deepbook</code>) are automatically added as
+dependencies if none of them are explicitly listed.</p>
 <h3 id="resolving-version-conflicts-with-override"><a class="header" href="#resolving-version-conflicts-with-override">Resolving version conflicts with override</a></h3>
 <p>Sometimes dependencies have conflicting versions of the same package. For example, if you have two
-dependencies that use different versions of the Sui package, you can override the dependency in the
+dependencies that use different versions of the Example package, you can override the dependency in the
 <code>[dependencies]</code> section. To do so, add the <code>override</code> field to the dependency. The version of the
 dependency specified in the <code>[dependencies]</code> section will be used instead of the one specified in
 the dependency itself.</p>
 <pre><code class="language-toml">[dependencies]
-Sui = { override = true, git = &quot;https://github.com/MystenLabs/sui.git&quot;, subdir = &quot;crates/sui-framework/packages/sui-framework&quot;, rev = &quot;framework/testnet&quot; }
+Example = { override = true, git = &quot;https://github.com/example/example.git&quot;, subdir = &quot;crates/sui-framework/packages/sui-framework&quot;, rev = &quot;framework/testnet&quot; }
 </code></pre>
 <h3 id="dev-dependencies"><a class="header" href="#dev-dependencies">Dev-dependencies</a></h3>
 <p>It is possible to add <code>[dev-dependencies]</code> section to the manifest. It is used to override
@@ -256,13 +259,13 @@ the inline style, but it is also possible to use the multiline style. You wouldn
 for the <code>[package]</code> section, but it can be useful for the dependencies.</p>
 <pre><code class="language-toml"># Inline style
 [dependencies]
-Sui = { override = true, git = &quot;&quot;, subdir = &quot;crates/sui-framework/packages/sui-framework&quot;, rev = &quot;framework/testnet&quot; }
+Example = { override = true, git = &quot;https://github.com/example/example.git&quot;, subdir = &quot;crates/sui-framework/packages/sui-framework&quot;, rev = &quot;framework/testnet&quot; }
 MyPackage = { local = &quot;../my-package&quot; }
 </code></pre>
 <pre><code class="language-toml"># Multiline style
-[dependencies.Sui]
+[dependencies.Example]
 override = true
-git = &quot;https://github.com/MystenLabs/sui.git&quot;
+git = &quot;https://github.com/example/example.git&quot;
 subdir = &quot;crates/sui-framework/packages/sui-framework&quot;
 rev = &quot;framework/testnet&quot;
 

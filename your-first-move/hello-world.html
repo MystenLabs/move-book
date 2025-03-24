@@ -323,6 +323,9 @@ $ sui move build --path hello_world
 </code></pre>
 <p>It should output the following message on your console.</p>
 <pre><code class="language-plaintext">UPDATING GIT DEPENDENCY https://github.com/MystenLabs/sui.git
+INCLUDING DEPENDENCY Bridge
+INCLUDING DEPENDENCY DeepBook
+INCLUDING DEPENDENCY SuiSystem
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
 BUILDING hello_world
@@ -355,7 +358,10 @@ the test mode and run tests. Move CLI has the <code>test</code> command for this
 <pre><code class="language-bash">$ sui move test
 </code></pre>
 <p>The output should be similar to the following:</p>
-<pre><code class="language-plaintext">INCLUDING DEPENDENCY Sui
+<pre><code class="language-plaintext">INCLUDING DEPENDENCY Bridge
+INCLUDING DEPENDENCY DeepBook
+INCLUDING DEPENDENCY SuiSystem
+INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
 BUILDING hello_world
 Running Move unit tests

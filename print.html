@@ -461,6 +461,9 @@ $ sui move build --path hello_world
 </code></pre>
 <p>It should output the following message on your console.</p>
 <pre><code class="language-plaintext">UPDATING GIT DEPENDENCY https://github.com/MystenLabs/sui.git
+INCLUDING DEPENDENCY Bridge
+INCLUDING DEPENDENCY DeepBook
+INCLUDING DEPENDENCY SuiSystem
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
 BUILDING hello_world
@@ -493,7 +496,10 @@ the test mode and run tests. Move CLI has the <code>test</code> command for this
 <pre><code class="language-bash">$ sui move test
 </code></pre>
 <p>The output should be similar to the following:</p>
-<pre><code class="language-plaintext">INCLUDING DEPENDENCY Sui
+<pre><code class="language-plaintext">INCLUDING DEPENDENCY Bridge
+INCLUDING DEPENDENCY DeepBook
+INCLUDING DEPENDENCY SuiSystem
+INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
 BUILDING hello_world
 Running Move unit tests
@@ -581,6 +587,9 @@ public fun length(list: &amp;TodoList): u64 {
 following:</p>
 <pre><code class="language-bash">$ sui move build
 UPDATING GIT DEPENDENCY https://github.com/MystenLabs/sui.git
+INCLUDING DEPENDENCY Bridge
+INCLUDING DEPENDENCY DeepBook
+INCLUDING DEPENDENCY SuiSystem
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
 BUILDING todo_list
@@ -598,7 +607,7 @@ issues, try looking up the structure of the package in
 <blockquote>
 <p>If you already have an account set up, you can skip this step.</p>
 </blockquote>
-<p>To publish and interact with the package, we need to set up an account. While developing, the best 
+<p>To publish and interact with the package, we need to set up an account. While developing, the best
 option for doing so is to run your own <a href="https://docs.sui.io/guides/developer/getting-started/local-network">Local Network</a>. For now you just need to run <code>RUST_LOG=&quot;off,sui_node=info&quot; sui start --with-faucet --force-regenesis</code>. The Sui Local Network will run on port 9000 of your machine, so make sure that the port isn’t being used by any other application.</p>
 <p>If you are doing it for the first time, you will need to create a new account. To do this, run the
 <code>sui client</code> command, then the CLI will prompt you with multiple questions. The answers are marked
@@ -608,7 +617,7 @@ Config file [&quot;/path/to/home/.sui/sui_config/client.yaml&quot;] doesn't exis
 &gt; y
 Sui Full node server URL (Defaults to Sui Testnet if not specified) :
 &gt; http://127.0.0.1:9000
-Environment alias for [http://127.0.0.1:9000] : 
+Environment alias for [http://127.0.0.1:9000] :
 &gt; localnet
 Select key scheme to generate keypair (0 for ed25519, 1 for secp256k1, 2: for secp256r1):
 &gt; 0
@@ -673,6 +682,9 @@ $ sui client publish --gas-budget 100000000 todo_list
 <p>The output of the publish command is rather lengthy, so we will show and explain it in parts.</p>
 <pre><code class="language-bash">$ sui client publish --gas-budget 100000000
 UPDATING GIT DEPENDENCY https://github.com/MystenLabs/sui.git
+INCLUDING DEPENDENCY Bridge
+INCLUDING DEPENDENCY DeepBook
+INCLUDING DEPENDENCY SuiSystem
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
 BUILDING todo_list
@@ -1267,7 +1279,7 @@ version = &quot;0.0.0&quot;
 edition = &quot;2024&quot;
 
 [dependencies]
-Sui = { git = &quot;https://github.com/MystenLabs/sui.git&quot;, subdir = &quot;crates/sui-framework/packages/sui-framework&quot;, rev = &quot;framework/testnet&quot; }
+Example = { git = &quot;https://github.com/example/example.git&quot;, subdir = &quot;path/to/package&quot;, rev = &quot;framework/testnet&quot; }
 
 [addresses]
 std =  &quot;0x1&quot;
@@ -1293,7 +1305,7 @@ specified as a key-value pair, where the key is the name of the dependency, and 
 dependency specification. The dependency specification can be a git repository URL or a path to the
 local directory.</p>
 <pre><code class="language-toml"># git repository
-Sui = { git = &quot;https://github.com/MystenLabs/sui.git&quot;, subdir = &quot;crates/sui-framework/packages/sui-framework&quot;, rev = &quot;framework/testnet&quot; }
+Example = { git = &quot;https://github.com/example/example.git&quot;, subdir = &quot;path/to/package&quot;, rev = &quot;framework/testnet&quot; }
 
 # local directory
 MyPackage = { local = &quot;../my-package&quot; }
@@ -1301,14 +1313,17 @@ MyPackage = { local = &quot;../my-package&quot; }
 <p>Packages also import addresses from other packages. For example, the Sui dependency adds the <code>std</code>
 and <code>sui</code> addresses to the project. These addresses can be used in the code as aliases for the
 addresses.</p>
+<p>Starting with version 1.45 of the Sui CLI, the Sui system packages (<code>std</code>,
+<code>sui</code>, <code>system</code>, <code>bridge</code>, and <code>deepbook</code>) are automatically added as
+dependencies if none of them are explicitly listed.</p>
 <h3 id="resolving-version-conflicts-with-override"><a class="header" href="#resolving-version-conflicts-with-override">Resolving version conflicts with override</a></h3>
 <p>Sometimes dependencies have conflicting versions of the same package. For example, if you have two
-dependencies that use different versions of the Sui package, you can override the dependency in the
+dependencies that use different versions of the Example package, you can override the dependency in the
 <code>[dependencies]</code> section. To do so, add the <code>override</code> field to the dependency. The version of the
 dependency specified in the <code>[dependencies]</code> section will be used instead of the one specified in
 the dependency itself.</p>
 <pre><code class="language-toml">[dependencies]
-Sui = { override = true, git = &quot;https://github.com/MystenLabs/sui.git&quot;, subdir = &quot;crates/sui-framework/packages/sui-framework&quot;, rev = &quot;framework/testnet&quot; }
+Example = { override = true, git = &quot;https://github.com/example/example.git&quot;, subdir = &quot;crates/sui-framework/packages/sui-framework&quot;, rev = &quot;framework/testnet&quot; }
 </code></pre>
 <h3 id="dev-dependencies"><a class="header" href="#dev-dependencies">Dev-dependencies</a></h3>
 <p>It is possible to add <code>[dev-dependencies]</code> section to the manifest. It is used to override
@@ -1330,13 +1345,13 @@ the inline style, but it is also possible to use the multiline style. You wouldn
 for the <code>[package]</code> section, but it can be useful for the dependencies.</p>
 <pre><code class="language-toml"># Inline style
 [dependencies]
-Sui = { override = true, git = &quot;&quot;, subdir = &quot;crates/sui-framework/packages/sui-framework&quot;, rev = &quot;framework/testnet&quot; }
+Example = { override = true, git = &quot;https://github.com/example/example.git&quot;, subdir = &quot;crates/sui-framework/packages/sui-framework&quot;, rev = &quot;framework/testnet&quot; }
 MyPackage = { local = &quot;../my-package&quot; }
 </code></pre>
 <pre><code class="language-toml"># Multiline style
-[dependencies.Sui]
+[dependencies.Example]
 override = true
-git = &quot;https://github.com/MystenLabs/sui.git&quot;
+git = &quot;https://github.com/example/example.git&quot;
 subdir = &quot;crates/sui-framework/packages/sui-framework&quot;
 rev = &quot;framework/testnet&quot;
 
@@ -3986,7 +4001,7 @@ fun test_type_reflection() {
 advanced patterns.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="testing"><a class="header" href="#testing">Testing</a></h1>
 <p>Testing is a crucial aspect of software development, especially in blockchain applications where
-security and correctness are paramount. In this section, we will cover the fundamentals of testing 
+security and correctness are paramount. In this section, we will cover the fundamentals of testing
 in Move, including how to write and organize tests effectively.</p>
 <h2 id="the-test-attribute"><a class="header" href="#the-test-attribute">The <code>#[test]</code> attribute</a></h2>
 <p>Tests in Move are functions marked with the <code>#[test]</code> attribute. This attribute tells the compiler
@@ -4015,6 +4030,10 @@ fun simple_test() {
 <em>test mode</em> and then run all tests found in the package. In test mode, modules from both
 <code>sources/</code> and <code>tests/</code> directories are processed and their tests executed.</p>
 <pre><code class="language-bash">$ sui move test
+&gt; UPDATING GIT DEPENDENCY https://github.com/MystenLabs/sui.git
+&gt; INCLUDING DEPENDENCY Bridge
+&gt; INCLUDING DEPENDENCY DeepBook
+&gt; INCLUDING DEPENDENCY SuiSystem
 &gt; INCLUDING DEPENDENCY Sui
 &gt; INCLUDING DEPENDENCY MoveStdlib
 &gt; BUILDING book

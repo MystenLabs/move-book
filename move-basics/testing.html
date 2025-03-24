@@ -185,7 +185,7 @@
                     <main>
                         <h1 id="testing"><a class="header" href="#testing">Testing</a></h1>
 <p>Testing is a crucial aspect of software development, especially in blockchain applications where
-security and correctness are paramount. In this section, we will cover the fundamentals of testing 
+security and correctness are paramount. In this section, we will cover the fundamentals of testing
 in Move, including how to write and organize tests effectively.</p>
 <h2 id="the-test-attribute"><a class="header" href="#the-test-attribute">The <code>#[test]</code> attribute</a></h2>
 <p>Tests in Move are functions marked with the <code>#[test]</code> attribute. This attribute tells the compiler
@@ -214,6 +214,10 @@ fun simple_test() {
 <em>test mode</em> and then run all tests found in the package. In test mode, modules from both
 <code>sources/</code> and <code>tests/</code> directories are processed and their tests executed.</p>
 <pre><code class="language-bash">$ sui move test
+&gt; UPDATING GIT DEPENDENCY https://github.com/MystenLabs/sui.git
+&gt; INCLUDING DEPENDENCY Bridge
+&gt; INCLUDING DEPENDENCY DeepBook
+&gt; INCLUDING DEPENDENCY SuiSystem
 &gt; INCLUDING DEPENDENCY Sui
 &gt; INCLUDING DEPENDENCY MoveStdlib
 &gt; BUILDING book

@@ -248,6 +248,9 @@ public fun length(list: &amp;TodoList): u64 {
 following:</p>
 <pre><code class="language-bash">$ sui move build
 UPDATING GIT DEPENDENCY https://github.com/MystenLabs/sui.git
+INCLUDING DEPENDENCY Bridge
+INCLUDING DEPENDENCY DeepBook
+INCLUDING DEPENDENCY SuiSystem
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
 BUILDING todo_list
@@ -265,7 +268,7 @@ issues, try looking up the structure of the package in
 <blockquote>
 <p>If you already have an account set up, you can skip this step.</p>
 </blockquote>
-<p>To publish and interact with the package, we need to set up an account. While developing, the best 
+<p>To publish and interact with the package, we need to set up an account. While developing, the best
 option for doing so is to run your own <a href="https://docs.sui.io/guides/developer/getting-started/local-network">Local Network</a>. For now you just need to run <code>RUST_LOG=&quot;off,sui_node=info&quot; sui start --with-faucet --force-regenesis</code>. The Sui Local Network will run on port 9000 of your machine, so make sure that the port isn’t being used by any other application.</p>
 <p>If you are doing it for the first time, you will need to create a new account. To do this, run the
 <code>sui client</code> command, then the CLI will prompt you with multiple questions. The answers are marked
@@ -275,7 +278,7 @@ Config file [&quot;/path/to/home/.sui/sui_config/client.yaml&quot;] doesn't exis
 &gt; y
 Sui Full node server URL (Defaults to Sui Testnet if not specified) :
 &gt; http://127.0.0.1:9000
-Environment alias for [http://127.0.0.1:9000] : 
+Environment alias for [http://127.0.0.1:9000] :
 &gt; localnet
 Select key scheme to generate keypair (0 for ed25519, 1 for secp256k1, 2: for secp256r1):
 &gt; 0
@@ -340,6 +343,9 @@ $ sui client publish --gas-budget 100000000 todo_list
 <p>The output of the publish command is rather lengthy, so we will show and explain it in parts.</p>
 <pre><code class="language-bash">$ sui client publish --gas-budget 100000000
 UPDATING GIT DEPENDENCY https://github.com/MystenLabs/sui.git
+INCLUDING DEPENDENCY Bridge
+INCLUDING DEPENDENCY DeepBook
+INCLUDING DEPENDENCY SuiSystem
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
 BUILDING todo_list

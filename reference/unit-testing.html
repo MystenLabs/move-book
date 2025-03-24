@@ -465,6 +465,9 @@ module test_example::my_module {
 <h3 id="running-tests"><a class="header" href="#running-tests">Running Tests</a></h3>
 <p>You can then run these tests with the <code>move test</code> command:</p>
 <pre><code class="language-bash">$ sui move test
+INCLUDING DEPENDENCY Bridge
+INCLUDING DEPENDENCY DeepBook
+INCLUDING DEPENDENCY SuiSystem
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
 BUILDING test_example
@@ -480,6 +483,9 @@ Test result: OK. Total tests: 3; passed: 3; failed: 0
 whose fully qualified name contains <code>&lt;str&gt;</code>. For example if we wanted to only run tests with
 <code>&quot;non_zero&quot;</code> in their name:</p>
 <pre><code class="language-bash">$ sui move test non_zero
+INCLUDING DEPENDENCY Bridge
+INCLUDING DEPENDENCY DeepBook
+INCLUDING DEPENDENCY SuiSystem
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
 BUILDING test_example
@@ -490,6 +496,9 @@ Test result: OK. Total tests: 1; passed: 1; failed: 0
 <h4 id="-i-bound-or---gas_used-bound"><a class="header" href="#-i-bound-or---gas_used-bound"><code>-i &lt;bound&gt;</code> or <code>--gas_used &lt;bound&gt;</code></a></h4>
 <p>This bounds the amount of gas that can be consumed for any one test to <code>&lt;bound&gt;</code>:</p>
 <pre><code class="language-bash">$ sui move test -i 0
+INCLUDING DEPENDENCY Bridge
+INCLUDING DEPENDENCY DeepBook
+INCLUDING DEPENDENCY SuiSystem
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
 BUILDING test_example
@@ -539,6 +548,9 @@ Test result: FAILED. Total tests: 3; passed: 0; failed: 3
 for each test. You can additionally add <code>csv</code> (<code>sui move test -s csv</code>) to get the gas usage in a csv
 output format. For example, if we wanted to see the statistics for the tests in the example above:</p>
 <pre><code class="language-bash">$ sui move test -s
+INCLUDING DEPENDENCY Bridge
+INCLUDING DEPENDENCY DeepBook
+INCLUDING DEPENDENCY SuiSystem
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
 BUILDING test_example
