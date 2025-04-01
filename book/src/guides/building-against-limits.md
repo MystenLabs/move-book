@@ -37,11 +37,6 @@ attempts to create more than 2048 objects, it will be rejected by the network. T
 [dynamic fields](./../programmability/dynamic-fields.md), as both the key and the value are objects.
 So the maximum number of dynamic fields that can be created in a single transaction is 1024.
 
-## Maximum Number of Dynamic Fields created
-
-The maximum number of dynamic fields that can be created in a single object is 1024. If an object
-attempts to create more than 1024 dynamic fields, it will be rejected by the network.
-
 ## Maximum Number of Events
 
 The maximum number of events that can be emitted in a single transaction is 1024. If a transaction
