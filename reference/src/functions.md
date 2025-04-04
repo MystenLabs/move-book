@@ -172,7 +172,7 @@ fun example() {
 }
 ```
 
-See the chapter on [macros](./macros.md) for more information.
+See the chapter on [macros](./functions/macros.md) for more information.
 
 ### Name
 
