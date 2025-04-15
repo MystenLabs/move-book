@@ -24,18 +24,18 @@ package.
 For example:
 
 ```move
-module 0x42::test {
-    public struct Example has copy, drop { i: u64 }
+module 0::test;
 
-    use std::debug;
+public struct Example has copy, drop { i: u64 }
 
-    const ONE: u64 = 1;
+use std::debug;
 
-    public fun print(x: u64) {
-        let sum = x + ONE;
-        let example = Example { i: sum };
-        debug::print(&sum)
-    }
+const ONE: u64 = 1;
+
+public fun print(x: u64) {
+    let sum = x + ONE;
+    let example = Example { i: sum };
+    debug::print(&sum)
 }
 ```
 
@@ -49,15 +49,15 @@ Modules should normally be declared using [named addresses](./primitive-types/ad
 opposed to using the numerical value directly). For example:
 
 ```move
-module test_addr::test {
-    public struct Example has copy, drop { a: address }
+module test_addr::test;
 
-    friend test_addr::another_test;
+public struct Example has copy, drop { a: address }
 
-    public fun print() {
-        let example = Example { a: @test_addr };
-        debug::print(&example)
-    }
+friend test_addr::another_test;
+
+public fun print() {
+    let example = Example { a: @test_addr };
+    debug::print(&example)
 }
 ```
 

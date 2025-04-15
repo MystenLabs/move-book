@@ -16,12 +16,12 @@ const <name>: <type> = <expression>;
 For example
 
 ```move
-module a::example {
-    const MY_ADDRESS: address = @a;
+module a::example;
 
-    public fun permissioned(addr: address) {
-        assert!(addr == MY_ADDRESS, 0);
-    }
+const MY_ADDRESS: address = @a;
+
+public fun permissioned(addr: address) {
+    assert!(addr == MY_ADDRESS, 0);
 }
 ```
 

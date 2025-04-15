@@ -28,13 +28,14 @@ if the object has `store`.
 For example if we had two objects `A` and `B` defined in the module `my_module`:
 
 ```move
-module a::my_module {
-    public struct A has key {
-        id: sui::object::UID,
-    }
-    public struct B has key, store {
-        id: sui::object::UID,
-    }
+module a::my_module;
+
+public struct A has key {
+    id: sui::object::UID,
+}
+
+public struct B has key, store {
+    id: sui::object::UID,
 }
 ```
 

@@ -44,25 +44,25 @@ Sometimes, tuples with two elements are called "pairs" and tuples with three ele
 ### Examples
 
 ```move
-module 0x42::example {
-    // all 3 of these functions are equivalent
+module 0::example;
 
-    // when no return type is provided, it is assumed to be `()`
-    fun returns_unit_1() { }
+// all 3 of these functions are equivalent
 
-    // there is an implicit () value in empty expression blocks
-    fun returns_unit_2(): () { }
+// when no return type is provided, it is assumed to be `()`
+fun returns_unit_1() { }
 
-    // explicit version of `returns_unit_1` and `returns_unit_2`
-    fun returns_unit_3(): () { () }
+// there is an implicit () value in empty expression blocks
+fun returns_unit_2(): () { }
+
+// explicit version of `returns_unit_1` and `returns_unit_2`
+fun returns_unit_3(): () { () }
 
 
-    fun returns_3_values(): (u64, bool, address) {
-        (0, false, @0x42)
-    }
-    fun returns_4_values(x: &u64): (&u64, u8, u128, vector<u8>) {
-        (x, 0, 1, b"foobar")
-    }
+fun returns_3_values(): (u64, bool, address) {
+    (0, false, @0x42)
+}
+fun returns_4_values(x: &u64): (&u64, u8, u128, vector<u8>) {
+    (x, 0, 1, b"foobar")
 }
 ```
 
@@ -77,31 +77,31 @@ For tuples of any size, they can be destructured in either a `let` binding or in
 For example:
 
 ```move
-module 0x42::example {
-    // all 3 of these functions are equivalent
-    fun returns_unit() {}
-    fun returns_2_values(): (bool, bool) { (true, false) }
-    fun returns_4_values(x: &u64): (&u64, u8, u128, vector<u8>) { (x, 0, 1, b"foobar") }
+module 0x42::example;
 
-    fun examples(cond: bool) {
-        let () = ();
-        let (mut x, mut y): (u8, u64) = (0, 1);
-        let (mut a, mut b, mut c, mut d) = (@0x0, 0, false, b"");
+// all 3 of these functions are equivalent
+fun returns_unit() {}
+fun returns_2_values(): (bool, bool) { (true, false) }
+fun returns_4_values(x: &u64): (&u64, u8, u128, vector<u8>) { (x, 0, 1, b"foobar") }
 
-        () = ();
-        (x, y) = if (cond) (1, 2) else (3, 4);
-        (a, b, c, d) = (@0x1, 1, true, b"1");
-    }
+fun examples(cond: bool) {
+    let () = ();
+    let (mut x, mut y): (u8, u64) = (0, 1);
+    let (mut a, mut b, mut c, mut d) = (@0x0, 0, false, b"");
 
-    fun examples_with_function_calls() {
-        let () = returns_unit();
-        let (mut x, mut y): (bool, bool) = returns_2_values();
-        let (mut a, mut b, mut c, mut d) = returns_4_values(&0);
+    () = ();
+    (x, y) = if (cond) (1, 2) else (3, 4);
+    (a, b, c, d) = (@0x1, 1, true, b"1");
+}
 
-        () = returns_unit();
-        (x, y) = returns_2_values();
-        (a, b, c, d) = returns_4_values(&1);
-    }
+fun examples_with_function_calls() {
+    let () = returns_unit();
+    let (mut x, mut y): (bool, bool) = returns_2_values();
+    let (mut a, mut b, mut c, mut d) = returns_4_values(&0);
+
+    () = returns_unit();
+    (x, y) = returns_2_values();
+    (a, b, c, d) = returns_4_values(&1);
 }
 ```
 

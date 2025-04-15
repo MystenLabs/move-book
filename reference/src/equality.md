@@ -21,19 +21,19 @@ b"hello" != x"00"; // `true`
 
 Equality and non-equality also work over _all_ user defined types!
 
-```move=
-module 0x42::example {
-    public struct S has copy, drop { f: u64, s: vector<u8> }
+```move
+module 0::example;
 
-    fun always_true(): bool {
-        let s = S { f: 0, s: b"" };
-        s == s
-    }
+public struct S has copy, drop { f: u64, s: vector<u8> }
 
-    fun always_false(): bool {
-        let s = S { f: 0, s: b"" };
-        s != s
-    }
+fun always_true(): bool {
+    let s = S { f: 0, s: b"" };
+    s == s
+}
+
+fun always_false(): bool {
+    let s = S { f: 0, s: b"" };
+    s != s
 }
 ```
 
@@ -111,26 +111,26 @@ values can only be explicitly destroyed within their declaring module. If these 
 with either equality `==` or non-equality `!=`, the value would be destroyed which would break
 [`drop` ability](./abilities.md) safety guarantees!
 
-```move=
-module 0x42::example {
-    public struct Coin has store { value: u64 }
-    fun invalid(c1: Coin, c2: Coin) {
-        c1 == c2 // ERROR!
-//      ^^    ^^ These assets would be destroyed!
-    }
+```move
+module 0::example;
+
+public struct Coin has store { value: u64 }
+fun invalid(c1: Coin, c2: Coin) {
+    c1 == c2 // ERROR!
+//  ^^    ^^ These assets would be destroyed!
 }
 ```
 
 But, a programmer can _always_ borrow the value first instead of directly comparing the value, and
 reference types have the [`drop` ability](./abilities.md). For example
 
-```move=
-module 0x42::example {
-    public struct Coin has store { value: u64 }
-    fun swap_if_equal(c1: Coin, c2: Coin): (Coin, Coin) {
-        let are_equal = &c1 == c2; // valid, note `c2` is automatically borrowed
-        if (are_equal) (c2, c1) else (c1, c2)
-    }
+```move
+module 0::example;
+
+public struct Coin has store { value: u64 }
+fun swap_if_equal(c1: Coin, c2: Coin): (Coin, Coin) {
+    let are_equal = &c1 == c2; // valid, note `c2` is automatically borrowed
+    if (are_equal) (c2, c1) else (c1, c2)
 }
 ```
 
@@ -139,7 +139,7 @@ module 0x42::example {
 While a programmer _can_ compare any value whose type has [`drop`](./abilities.md), a programmer
 should often compare by reference to avoid expensive copies.
 
-```move=
+```move
 let v1: vector<u8> = function_that_returns_vector();
 let v2: vector<u8> = function_that_returns_vector();
 assert!(copy v1 == copy v2, 42);
@@ -156,7 +156,7 @@ use_two_foos(s1, s2);
 This code is perfectly acceptable (assuming `Foo` has [`drop`](./abilities.md)), just not efficient.
 The highlighted copies can be removed and replaced with borrows
 
-```move=
+```move
 let v1: vector<u8> = function_that_returns_vector();
 let v2: vector<u8> = function_that_returns_vector();
 assert!(&v1 == &v2, 42);

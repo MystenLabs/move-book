@@ -114,7 +114,8 @@ let x: T = e; // "Variable x of type T is initialized to expression e"
 Some examples of explicit type annotations:
 
 ```move
-module 0x42::example {
+module 0::example;
+
 
     public struct S { f: u64, g: u64 }
 
@@ -234,21 +235,21 @@ let P (local1, local2) = P ( 1, 2 );
 Here is a more complicated example:
 
 ```move
-module 0x42::example {
-    public struct X(u64)
-    public struct Y { x1: X, x2: X }
+module 0::example;
 
-    fun new_x(): X {
-        X(1)
-    }
+public struct X(u64)
+public struct Y { x1: X, x2: X }
 
-    fun example() {
-        let Y { x1: X(f), x2 } = Y { x1: new_x(), x2: new_x() };
-        assert!(f + x2.f == 2, 42);
+fun new_x(): X {
+    X(1)
+}
 
-        let Y { x1: X(f1), x2: X(f2) } = Y { x1: new_x(), x2: new_x() };
-        assert!(f1 + f2 == 2, 42);
-    }
+fun example() {
+    let Y { x1: X(f), x2 } = Y { x1: new_x(), x2: new_x() };
+    assert!(f + x2.f == 2, 42);
+
+    let Y { x1: X(f1), x2: X(f2) } = Y { x1: new_x(), x2: new_x() };
+    assert!(f1 + f2 == 2, 42);
 }
 ```
 
@@ -323,25 +324,25 @@ let T { f1: local1, f2: local2 } = &mut t;
 This behavior can also work with nested structs.
 
 ```move
-module 0x42::example {
-    public struct X(u64)
-    public struct Y { x1: X, x2: X }
+module 0::example;
 
-    fun new_x(): X {
-        X(1)
-    }
+public struct X(u64)
+public struct Y { x1: X, x2: X }
 
-    fun example() {
-        let mut y = Y { x1: new_x(), x2: new_x() };
+fun new_x(): X {
+    X(1)
+}
 
-        let Y { x1: X(f), x2 } = &y;
-        assert!(*f + x2.f == 2, 42);
+fun example() {
+    let mut y = Y { x1: new_x(), x2: new_x() };
 
-        let Y { x1: X(f1), x2: X(f2) } = &mut y;
-        *f1 = *f1 + 1;
-        *f2 = *f2 + 1;
-        assert!(*f1 + *f2 == 4, 42);
-    }
+    let Y { x1: X(f), x2 } = &y;
+    assert!(*f + x2.f == 2, 42);
+
+    let Y { x1: X(f1), x2: X(f2) } = &mut y;
+    *f1 = *f1 + 1;
+    *f2 = *f2 + 1;
+    assert!(*f1 + *f2 == 4, 42);
 }
 ```
 
@@ -446,22 +447,22 @@ if (cond) x = 1 else x = 2;
 The assignment uses the similar pattern syntax scheme as `let` bindings, but with absence of `mut`:
 
 ```move
-module 0x42::example {
-    public struct X { f: u64 }
+module 0::example;
 
-    fun new_x(): X {
-        X { f: 1 }
-    }
+public struct X { f: u64 }
 
-    // Note: this example will complain about unused variables and assignments.
-    fun example() {
-       let (mut x, mut y, mut f, mut g) = (0, 0, 0, 0);
+fun new_x(): X {
+    X { f: 1 }
+}
 
-       (X { f }, X { f: x }) = (new_x(), new_x());
-       assert!(f + x == 2, 42);
+// Note: this example will complain about unused variables and assignments.
+fun example() {
+    let (mut x, mut y, mut f, mut g) = (0, 0, 0, 0);
 
-       (x, y, f, _, g) = (0, 0, 0, 0, 0);
-    }
+    (X { f }, X { f: x }) = (new_x(), new_x());
+    assert!(f + x == 2, 42);
+
+    (x, y, f, _, g) = (0, 0, 0, 0, 0);
 }
 ```
 
@@ -673,17 +674,17 @@ accessible. This is important to keep in mind with values of types without the
 function.
 
 ```move
-module 0x42::example {
-    public struct Coin has store { value: u64 }
+module 0::example;
 
-    fun unused_coin(): Coin {
-        let x = Coin { value: 0 }; // ERROR!
-//          ^ This local still contains a value without the `drop` ability
-        x.value = 1;
-        let x = Coin { value: 10 };
-        x
-//      ^ Invalid return
-    }
+public struct Coin has store { value: u64 }
+
+fun unused_coin(): Coin {
+    let x = Coin { value: 0 }; // ERROR!
+//      ^ This local still contains a value without the `drop` ability
+    x.value = 1;
+    let x = Coin { value: 10 };
+    x
+//  ^ Invalid return
 }
 ```
 

@@ -157,7 +157,7 @@ compilation, allow you to pass parts of the function body to the macro as argume
 consider the following simple loop macro, where the loop body is supplied as a lambda:
 
 ```move
-macro fun ntimes($n: u64, $body: |u64| -> ()) {
+macro fun n_times($n: u64, $body: |u64| -> ()) {
     let n = $n;
     let mut i = 0;
     while (i < n) {
@@ -168,7 +168,7 @@ macro fun ntimes($n: u64, $body: |u64| -> ()) {
 
 fun example() {
     let mut sum = 0;
-    ntimes!(10, |x| sum = sum + x );
+    n_times!(10, |x| sum = sum + x );
 }
 ```
 
@@ -215,12 +215,12 @@ fun useless() { }
 This is very common for functions that create new or empty data structures
 
 ```move
-module a::example {
-  public struct Counter { count: u64 }
+module a::example;
 
-  fun new_counter(): Counter {
-      Counter { count: 0 }
-  }
+public struct Counter { count: u64 }
+
+fun new_counter(): Counter {
+    Counter { count: 0 }
 }
 ```
 
@@ -399,6 +399,7 @@ example, the function iterates through a vector to find the index of a given val
 ```move
 use std::vector;
 use std::option::{Self, Option};
+
 fun index_of<T>(v: &vector<T>, target: &T): Option<u64> {
     let i = 0;
     let n = vector::length(v);

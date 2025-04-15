@@ -152,18 +152,18 @@ fun example(s: &mut String) {
 Inside of a `module` all `use` declarations are usable regardless of the order of declaration.
 
 ```move
-module a::example {
-    use std::vector;
+module a::example;
 
-    fun new_vec(): vector<Option<u8>> {
-        let mut v = vector[];
-        vector::push_back(&mut v, 0);
-        vector::push_back(&mut v, 10);
-        v
-    }
+use std::vector;
 
-    use std::option::{Option, some, none};
+fun new_vec(): vector<Option<u8>> {
+    let mut v = vector[];
+    vector::push_back(&mut v, 0);
+    vector::push_back(&mut v, 10);
+    v
 }
+
+use std::option::{Option, some, none};
 ```
 
 The aliases declared by `use` in the module usable within that module.
@@ -176,16 +176,16 @@ Additionally, the aliases introduced cannot conflict with other module members. 
 You can add `use` declarations to the beginning of any expression block
 
 ```move
-module a::example {
-    fun new_vec(): vector<Option<u8>> {
-        use std::vector::push_back;
-        use std::option::{Option, some, none};
+module a::example;
 
-        let mut v = vector[];
-        push_back(&mut v, some(0));
-        push_back(&mut v, none());
-        v
-    }
+fun new_vec(): vector<Option<u8>> {
+    use std::vector::push_back;
+    use std::option::{Option, some, none};
+
+    let mut v = vector[];
+    push_back(&mut v, some(0));
+    push_back(&mut v, none());
+    v
 }
 ```
 
@@ -193,38 +193,38 @@ As with `let`, the aliases introduced by `use` in an expression block are remove
 block.
 
 ```move
-module a::example {
-    fun new_vec(): vector<Option<u8>> {
-        let result = {
-            use std::vector::push_back;
-            use std::option::{Option, some, none};
+module a::example;
 
-            let mut v = vector[];
-            push_back(&mut v, some(0));
-            push_back(&mut v, none());
-            v
-        };
-        result
-    }
+fun new_vec(): vector<Option<u8>> {
+    let result = {
+        use std::vector::push_back;
+        use std::option::{Option, some, none};
+
+        let mut v = vector[];
+        push_back(&mut v, some(0));
+        push_back(&mut v, none());
+        v
+    };
+    result
 }
 ```
 
 Attempting to use the alias after the block ends will result in an error
 
 ```move
-    fun new_vec(): vector<Option<u8>> {
-        let mut result = {
-            use std::vector::push_back;
-            use std::option::{Option, some, none};
+fun new_vec(): vector<Option<u8>> {
+    let mut result = {
+        use std::vector::push_back;
+        use std::option::{Option, some, none};
 
-            let mut v = vector[];
-            push_back(&mut v, some(0));
-            v
-        };
-        push_back(&mut result, std::option::none());
-        // ^^^^^^ ERROR! unbound function 'push_back'
-        result
-    }
+        let mut v = vector[];
+        push_back(&mut v, some(0));
+        v
+    };
+    push_back(&mut result, std::option::none());
+    // ^^^^^^ ERROR! unbound function 'push_back'
+    result
+}
 ```
 
 Any `use` must be the first item in the block. If the `use` comes after any expression or `let`, it
@@ -269,16 +269,15 @@ Inside a given scope, all aliases introduced by `use` declarations must be uniqu
 For a module, this means aliases introduced by `use` cannot overlap
 
 ```move
-module a::example {
-    use std::option::{none as foo, some as foo}; // ERROR!
-    //                                     ^^^ duplicate 'foo'
+module a::example;
 
-    use std::option::none as bar;
+use std::option::{none as foo, some as foo}; // ERROR!
+//                                     ^^^ duplicate 'foo'
 
-    use std::option::some as bar; // ERROR!
-    //                       ^^^ duplicate 'bar'
+use std::option::none as bar;
 
-}
+use std::option::some as bar; // ERROR!
+//                       ^^^ duplicate 'bar'
 ```
 
 And, they cannot overlap with any of the module's other members
@@ -287,12 +286,12 @@ And, they cannot overlap with any of the module's other members
 module a::data {
     public struct S {}
 }
+
 module example {
     use a::data::S;
 
     public struct S { value: u64 } // ERROR!
     //            ^ conflicts with alias 'S' above
-}
 }
 ```
 
@@ -305,43 +304,42 @@ Inside of an expression block, they cannot overlap with each other, but they can
 outer scope. As with shadowing of locals, the shadowing ends at the end of the expression block;
 
 ```move
-module a::example {
+module a::example;
 
-    public struct WrappedVector { vec: vector<u64> }
+public struct WrappedVector { vec: vector<u64> }
 
-    public fun empty(): WrappedVector {
-        WrappedVector { vec: std::vector::empty() }
-    }
+public fun empty(): WrappedVector {
+    WrappedVector { vec: std::vector::empty() }
+}
 
-    public fun push_back(v: &mut WrappedVector, value: u64) {
-        std::vector::push_back(&mut v.vec, value);
-    }
+public fun push_back(v: &mut WrappedVector, value: u64) {
+    std::vector::push_back(&mut v.vec, value);
+}
 
-    fun example1(): WrappedVector {
+fun example1(): WrappedVector {
+    use std::vector::push_back;
+    // 'push_back' now refers to std::vector::push_back
+    let mut vec = vector[];
+    push_back(&mut vec, 0);
+    push_back(&mut vec, 1);
+    push_back(&mut vec, 10);
+    WrappedVector { vec }
+}
+
+fun example2(): WrappedVector {
+    let vec = {
         use std::vector::push_back;
         // 'push_back' now refers to std::vector::push_back
-        let mut vec = vector[];
-        push_back(&mut vec, 0);
-        push_back(&mut vec, 1);
-        push_back(&mut vec, 10);
-        WrappedVector { vec }
-    }
 
-    fun example2(): WrappedVector {
-        let vec = {
-            use std::vector::push_back;
-            // 'push_back' now refers to std::vector::push_back
-
-            let mut v = vector[];
-            push_back(&mut v, 0);
-            push_back(&mut v, 1);
-            v
-        };
-        // 'push_back' now refers to Self::push_back
-        let mut res = WrappedVector { vec };
-        push_back(&mut res, 10);
-        res
-    }
+        let mut v = vector[];
+        push_back(&mut v, 0);
+        push_back(&mut v, 1);
+        v
+    };
+    // 'push_back' now refers to Self::push_back
+    let mut res = WrappedVector { vec };
+    push_back(&mut res, 10);
+    res
 }
 ```
 
@@ -350,12 +348,12 @@ module a::example {
 An unused `use` will result in a warning
 
 ```move
-module a::example {
-    use std::option::{some, none}; // Warning!
-    //                      ^^^^ unused alias 'none'
+module a::example;
 
-    public fun example(): std::option::Option<u8> {
-        some(0)
-    }
+use std::option::{some, none}; // Warning!
+//                      ^^^^ unused alias 'none'
+
+public fun example(): std::option::Option<u8> {
+    some(0)
 }
 ```

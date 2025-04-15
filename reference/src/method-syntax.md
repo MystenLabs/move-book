@@ -47,11 +47,11 @@ In a type’s defining module, the compiler will automatically create a method a
 declaration for its types when the type is the first argument in the function. For example,
 
 ```move
-module a::m {
-    public struct X() has copy, drop, store;
-    public fun foo(x: &X) { ... }
-    public fun bar(flag: bool, x: &X) { ... }
-}
+module a::m;
+
+public struct X() has copy, drop, store;
+public fun foo(x: &X) { ... }
+public fun bar(flag: bool, x: &X) { ... }
 ```
 
 The function `foo` can be called as a method on a value of type `X`. However, not the first argument
@@ -81,37 +81,37 @@ This creates an alias for the `<function>`, which the `<type>` can receive as `<
 For example
 
 ```move
-module a::cup {
-    public struct Cup<T>(T) has copy, drop, store;
+module a::cup;
 
-    public fun cup_borrow<T>(c: &Cup<T>): &T {
-        &c.0
-    }
+public struct Cup<T>(T) has copy, drop, store;
 
-    public fun cup_value<T>(c: Cup<T>): T {
-        let Cup(t) = c;
-        t
-    }
+public fun cup_borrow<T>(c: &Cup<T>): &T {
+    &c.0
+}
 
-    public fun cup_swap<T: drop>(c: &mut Cup<T>, t: T) {
-        c.0 = t;
-    }
+public fun cup_value<T>(c: Cup<T>): T {
+    let Cup(t) = c;
+    t
+}
+
+public fun cup_swap<T: drop>(c: &mut Cup<T>, t: T) {
+    c.0 = t;
 }
 ```
 
 We can now create `use fun` aliases to these functions
 
 ```move
-module b::example {
-    use fun a::cup::cup_borrow as Cup.borrow;
-    use fun a::cup::cup_value as Cup.value;
-    use fun a::cup::cup_swap as Cup.set;
+module b::example;
 
-    fun example(c: &mut Cup<u64>) {
-        let _ = c.borrow(); // resolves to a::cup::cup_borrow
-        let v = c.value(); // resolves to a::cup::cup_value
-        c.set(v * 2); // resolves to a::cup::cup_swap
-    }
+use fun a::cup::cup_borrow as Cup.borrow;
+use fun a::cup::cup_value as Cup.value;
+use fun a::cup::cup_swap as Cup.set;
+
+fun example(c: &mut Cup<u64>) {
+    let _ = c.borrow(); // resolves to a::cup::cup_borrow
+    let v = c.value(); // resolves to a::cup::cup_value
+    c.set(v * 2); // resolves to a::cup::cup_swap
 }
 ```
 
@@ -119,11 +119,11 @@ Note that the `<function>` in the `use fun` does not have to be a fully resolved
 can be used instead, so the declarations in the above example could equivalently be written as
 
 ```move
-    use a::cup::{Self, cup_swap};
+use a::cup::{Self, cup_swap};
 
-    use fun cup::cup_borrow as Cup.borrow;
-    use fun cup::cup_value as Cup.value;
-    use fun cup_swap as Cup.set;
+use fun cup::cup_borrow as Cup.borrow;
+use fun cup::cup_value as Cup.value;
+use fun cup_swap as Cup.set;
 ```
 
 While these examples are cute for renaming the functions in the current module, the feature is
@@ -131,13 +131,11 @@ perhaps more useful for declaring methods on types from other modules. For examp
 add a new utility to `Cup`, we could do so with a `use fun` alias and still use method syntax
 
 ```move
-module b::example {
+module b::example;
 
-    fun double(c: &Cup<u64>): Cup<u64> {
-        let v = c.value();
-        Cup::new(v * 2)
-    }
-
+fun double(c: &Cup<u64>): Cup<u64> {
+    let v = c.value();
+    Cup::new(v * 2)
 }
 ```
 
@@ -145,10 +143,10 @@ Normally, we would be stuck having to call it as `double(&c)` because `b::exampl
 `Cup`, but instead we can use a `use fun` alias
 
 ```move
-    fun double_double(c: Cup<u64>): (Cup<u64>, Cup<u64>) {
-        use fun b::example::double as Cup.dub;
-        (c.dub(), c.dub()) // resolves to b::example::double in both calls
-    }
+fun double_double(c: Cup<u64>): (Cup<u64>, Cup<u64>) {
+    use fun b::example::double as Cup.dub;
+    (c.dub(), c.dub()) // resolves to b::example::double in both calls
+}
 ```
 
 While `use fun` can be made in any scope, the target `<function>` of the `use fun` must have a first
@@ -206,13 +204,13 @@ function in the defining module that has a first argument of the receiver type (
 that module). Both of these views are equivalent.
 
 ```move
-module a::cup {
-    public struct Cup<T>(T) has copy, drop, store;
+module a::cup;
 
-    public use fun cup_borrow as Cup.borrow;
-    public fun cup_borrow<T>(c: &Cup<T>): &T {
-        &c.0
-    }
+public struct Cup<T>(T) has copy, drop, store;
+
+public use fun cup_borrow as Cup.borrow;
+public fun cup_borrow<T>(c: &Cup<T>): &T {
+    &c.0
 }
 ```
 
@@ -221,12 +219,11 @@ In this example, a public method alias is created for `a::cup::Cup.borrow` and
 that they can be used outside of `a::cup`, without an additional `use` or `use fun`.
 
 ```move
-module b::example {
+module b::example;
 
-    fun example<T: drop>(c: a::cup::Cup<u64>) {
-        c.borrow(); // resolves to a::cup::cup_borrow
-        c.cup_borrow(); // resolves to a::cup::cup_borrow
-    }
+fun example<T: drop>(c: a::cup::Cup<u64>) {
+    c.borrow(); // resolves to a::cup::cup_borrow
+    c.cup_borrow(); // resolves to a::cup::cup_borrow
 }
 ```
 
@@ -235,23 +232,21 @@ a cleaner name for use with method syntax. This is especially helpful if you hav
 multiple types, and similarly named functions for each type.
 
 ```move
-module a::shapes {
+module a::shapes;
 
-    public struct Rectangle { base: u64, height: u64 }
-    public struct Box { base: u64, height: u64, depth: u64 }
+public struct Rectangle { base: u64, height: u64 }
+public struct Box { base: u64, height: u64, depth: u64 }
 
-    // Rectangle and Box can have methods with the same name
+// Rectangle and Box can have methods with the same name
 
-    public use fun rectangle_base as Rectangle.base;
-    public fun rectangle_base(rectangle: &Rectangle): u64 {
-        rectangle.base
-    }
+public use fun rectangle_base as Rectangle.base;
+public fun rectangle_base(rectangle: &Rectangle): u64 {
+    rectangle.base
+}
 
-    public use fun box_base as Box.base;
-    public fun box_base(box: &Box): u64 {
-        box.base
-    }
-
+public use fun box_base as Box.base;
+public fun box_base(box: &Box): u64 {
+    box.base
 }
 ```
 
@@ -351,16 +346,16 @@ When resolving a method, the compiler will automatically borrow the receiver if 
 a reference. For example
 
 ```move
-module a::m {
-    public struct X() has copy, drop;
-    public fun by_val(_: X) {}
-    public fun by_ref(_: &X) {}
-    public fun by_mut(_: &mut X) {}
+module a::m;
 
-    fun example(mut x: X) {
-        x.by_ref(); // resolves to a::m::by_ref(&x)
-        x.by_mut(); // resolves to a::m::by_mut(&mut x)
-    }
+public struct X() has copy, drop;
+public fun by_val(_: X) {}
+public fun by_ref(_: &X) {}
+public fun by_mut(_: &mut X) {}
+
+fun example(mut x: X) {
+    x.by_ref(); // resolves to a::m::by_ref(&x)
+    x.by_mut(); // resolves to a::m::by_mut(&mut x)
 }
 ```
 
@@ -368,18 +363,18 @@ In these examples, `x` was automatically borrowed to `&x` and `&mut x` respectiv
 work through field access
 
 ```move
-module a::m {
-    public struct X() has copy, drop;
-    public fun by_val(_: X) {}
-    public fun by_ref(_: &X) {}
-    public fun by_mut(_: &mut X) {}
+module a::m;
 
-    public struct Y has drop { x: X }
+public struct X() has copy, drop;
+public fun by_val(_: X) {}
+public fun by_ref(_: &X) {}
+public fun by_mut(_: &mut X) {}
 
-    fun example(mut y: Y) {
-        y.x.by_ref(); // resolves to a::m::by_ref(&y.x)
-        y.x.by_mut(); // resolves to a::m::by_mut(&mut y.x)
-    }
+public struct Y has drop { x: X }
+
+fun example(mut y: Y) {
+    y.x.by_ref(); // resolves to a::m::by_ref(&y.x)
+    y.x.by_mut(); // resolves to a::m::by_mut(&mut y.x)
 }
 ```
 
@@ -391,19 +386,19 @@ Keep in mind that without a reference, normal rules for variable and field acces
 Meaning a value might be moved or copied if it is not borrowed.
 
 ```move
-module a::m {
-    public struct X() has copy, drop;
-    public fun by_val(_: X) {}
-    public fun by_ref(_: &X) {}
-    public fun by_mut(_: &mut X) {}
+module a::m;
 
-    public struct Y has drop { x: X }
-    public fun drop_y(y: Y) { y }
+public struct X() has copy, drop;
+public fun by_val(_: X) {}
+public fun by_ref(_: &X) {}
+public fun by_mut(_: &mut X) {}
 
-    fun example(y: Y) {
-        y.x.by_val(); // copies `y.x` since `by_val` is by-value and `X` has `copy`
-        y.drop_y(); // moves `y` since `drop_y` is by-value and `Y` does _not_ have `copy`
-    }
+public struct Y has drop { x: X }
+public fun drop_y(y: Y) { y }
+
+fun example(y: Y) {
+    y.x.by_val(); // copies `y.x` since `by_val` is by-value and `X` has `copy`
+    y.drop_y(); // moves `y` since `drop_y` is by-value and `Y` does _not_ have `copy`
 }
 ```
 
