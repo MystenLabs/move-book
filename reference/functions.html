@@ -304,7 +304,7 @@ compilation process to provide functionality beyond standard functions, such as 
 higher-order <em>lambda</em>-style functions as arguments. These lambda arguments, also expanded during
 compilation, allow you to pass parts of the function body to the macro as arguments. For instance,
 consider the following simple loop macro, where the loop body is supplied as a lambda:</p>
-<pre><code class="language-move">macro fun ntimes($n: u64, $body: |u64| -&gt; ()) {
+<pre><code class="language-move">macro fun n_times($n: u64, $body: |u64| -&gt; ()) {
     let n = $n;
     let mut i = 0;
     while (i &lt; n) {
@@ -315,7 +315,7 @@ consider the following simple loop macro, where the loop body is supplied as a l
 
 fun example() {
     let mut sum = 0;
-    ntimes!(10, |x| sum = sum + x );
+    n_times!(10, |x| sum = sum + x );
 }
 </code></pre>
 <p>See the chapter on <a href="./functions/macros.html">macros</a> for more information.</p>
@@ -341,12 +341,12 @@ fun example&lt;T1: copy, T2&gt;(x: T1, y: T2): (T1, T1, T2) { (copy x, x, y) }
 <pre><code class="language-move">fun useless() { }
 </code></pre>
 <p>This is very common for functions that create new or empty data structures</p>
-<pre><code class="language-move">module a::example {
-  public struct Counter { count: u64 }
+<pre><code class="language-move">module a::example;
 
-  fun new_counter(): Counter {
-      Counter { count: 0 }
-  }
+public struct Counter { count: u64 }
+
+fun new_counter(): Counter {
+    Counter { count: 0 }
 }
 </code></pre>
 <h3 id="return-type"><a class="header" href="#return-type">Return type</a></h3>
@@ -470,6 +470,7 @@ two <code>u64</code> values, but returns early with <code>0</code> if the second
 example, the function iterates through a vector to find the index of a given value:</p>
 <pre><code class="language-move">use std::vector;
 use std::option::{Self, Option};
+
 fun index_of&lt;T&gt;(v: &amp;vector&lt;T&gt;, target: &amp;T): Option&lt;u64&gt; {
     let i = 0;
     let n = vector::length(v);

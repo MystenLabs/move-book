@@ -216,11 +216,11 @@ statically replace the method with a normal <a href="./functions.html">function<
 <h3 id="functions-in-the-defining-module"><a class="header" href="#functions-in-the-defining-module">Functions in the Defining Module</a></h3>
 <p>In a type’s defining module, the compiler will automatically create a method alias for any function
 declaration for its types when the type is the first argument in the function. For example,</p>
-<pre><code class="language-move">module a::m {
-    public struct X() has copy, drop, store;
-    public fun foo(x: &amp;X) { ... }
-    public fun bar(flag: bool, x: &amp;X) { ... }
-}
+<pre><code class="language-move">module a::m;
+
+public struct X() has copy, drop, store;
+public fun foo(x: &amp;X) { ... }
+public fun bar(flag: bool, x: &amp;X) { ... }
 </code></pre>
 <p>The function <code>foo</code> can be called as a method on a value of type <code>X</code>. However, not the first argument
 (and one is not created for <code>bool</code> since <code>bool</code> is not defined in that module). For example,</p>
@@ -238,62 +238,60 @@ associated to a type.</p>
 </code></pre>
 <p>This creates an alias for the <code>&lt;function&gt;</code>, which the <code>&lt;type&gt;</code> can receive as <code>&lt;method alias&gt;</code>.</p>
 <p>For example</p>
-<pre><code class="language-move">module a::cup {
-    public struct Cup&lt;T&gt;(T) has copy, drop, store;
+<pre><code class="language-move">module a::cup;
 
-    public fun cup_borrow&lt;T&gt;(c: &amp;Cup&lt;T&gt;): &amp;T {
-        &amp;c.0
-    }
+public struct Cup&lt;T&gt;(T) has copy, drop, store;
 
-    public fun cup_value&lt;T&gt;(c: Cup&lt;T&gt;): T {
-        let Cup(t) = c;
-        t
-    }
+public fun cup_borrow&lt;T&gt;(c: &amp;Cup&lt;T&gt;): &amp;T {
+    &amp;c.0
+}
 
-    public fun cup_swap&lt;T: drop&gt;(c: &amp;mut Cup&lt;T&gt;, t: T) {
-        c.0 = t;
-    }
+public fun cup_value&lt;T&gt;(c: Cup&lt;T&gt;): T {
+    let Cup(t) = c;
+    t
+}
+
+public fun cup_swap&lt;T: drop&gt;(c: &amp;mut Cup&lt;T&gt;, t: T) {
+    c.0 = t;
 }
 </code></pre>
 <p>We can now create <code>use fun</code> aliases to these functions</p>
-<pre><code class="language-move">module b::example {
-    use fun a::cup::cup_borrow as Cup.borrow;
-    use fun a::cup::cup_value as Cup.value;
-    use fun a::cup::cup_swap as Cup.set;
+<pre><code class="language-move">module b::example;
 
-    fun example(c: &amp;mut Cup&lt;u64&gt;) {
-        let _ = c.borrow(); // resolves to a::cup::cup_borrow
-        let v = c.value(); // resolves to a::cup::cup_value
-        c.set(v * 2); // resolves to a::cup::cup_swap
-    }
+use fun a::cup::cup_borrow as Cup.borrow;
+use fun a::cup::cup_value as Cup.value;
+use fun a::cup::cup_swap as Cup.set;
+
+fun example(c: &amp;mut Cup&lt;u64&gt;) {
+    let _ = c.borrow(); // resolves to a::cup::cup_borrow
+    let v = c.value(); // resolves to a::cup::cup_value
+    c.set(v * 2); // resolves to a::cup::cup_swap
 }
 </code></pre>
 <p>Note that the <code>&lt;function&gt;</code> in the <code>use fun</code> does not have to be a fully resolved path, and an alias
 can be used instead, so the declarations in the above example could equivalently be written as</p>
-<pre><code class="language-move">    use a::cup::{Self, cup_swap};
+<pre><code class="language-move">use a::cup::{Self, cup_swap};
 
-    use fun cup::cup_borrow as Cup.borrow;
-    use fun cup::cup_value as Cup.value;
-    use fun cup_swap as Cup.set;
+use fun cup::cup_borrow as Cup.borrow;
+use fun cup::cup_value as Cup.value;
+use fun cup_swap as Cup.set;
 </code></pre>
 <p>While these examples are cute for renaming the functions in the current module, the feature is
 perhaps more useful for declaring methods on types from other modules. For example, if we wanted to
 add a new utility to <code>Cup</code>, we could do so with a <code>use fun</code> alias and still use method syntax</p>
-<pre><code class="language-move">module b::example {
+<pre><code class="language-move">module b::example;
 
-    fun double(c: &amp;Cup&lt;u64&gt;): Cup&lt;u64&gt; {
-        let v = c.value();
-        Cup::new(v * 2)
-    }
-
+fun double(c: &amp;Cup&lt;u64&gt;): Cup&lt;u64&gt; {
+    let v = c.value();
+    Cup::new(v * 2)
 }
 </code></pre>
 <p>Normally, we would be stuck having to call it as <code>double(&amp;c)</code> because <code>b::example</code> did not define
 <code>Cup</code>, but instead we can use a <code>use fun</code> alias</p>
-<pre><code class="language-move">    fun double_double(c: Cup&lt;u64&gt;): (Cup&lt;u64&gt;, Cup&lt;u64&gt;) {
-        use fun b::example::double as Cup.dub;
-        (c.dub(), c.dub()) // resolves to b::example::double in both calls
-    }
+<pre><code class="language-move">fun double_double(c: Cup&lt;u64&gt;): (Cup&lt;u64&gt;, Cup&lt;u64&gt;) {
+    use fun b::example::double as Cup.dub;
+    (c.dub(), c.dub()) // resolves to b::example::double in both calls
+}
 </code></pre>
 <p>While <code>use fun</code> can be made in any scope, the target <code>&lt;function&gt;</code> of the <code>use fun</code> must have a first
 argument that is the same as the <code>&lt;type&gt;</code>.</p>
@@ -338,46 +336,43 @@ module that defines the receivers type, much like the method aliases that are
 conversely, one can think that an implicit <code>public use fun</code> is created automatically for every
 function in the defining module that has a first argument of the receiver type (if it is defined in
 that module). Both of these views are equivalent.</p>
-<pre><code class="language-move">module a::cup {
-    public struct Cup&lt;T&gt;(T) has copy, drop, store;
+<pre><code class="language-move">module a::cup;
 
-    public use fun cup_borrow as Cup.borrow;
-    public fun cup_borrow&lt;T&gt;(c: &amp;Cup&lt;T&gt;): &amp;T {
-        &amp;c.0
-    }
+public struct Cup&lt;T&gt;(T) has copy, drop, store;
+
+public use fun cup_borrow as Cup.borrow;
+public fun cup_borrow&lt;T&gt;(c: &amp;Cup&lt;T&gt;): &amp;T {
+    &amp;c.0
 }
 </code></pre>
 <p>In this example, a public method alias is created for <code>a::cup::Cup.borrow</code> and
 <code>a::cup::Cup.cup_borrow</code>. Both resolve to <code>a::cup::cup_borrow</code>. And both are &quot;public&quot; in the sense
 that they can be used outside of <code>a::cup</code>, without an additional <code>use</code> or <code>use fun</code>.</p>
-<pre><code class="language-move">module b::example {
+<pre><code class="language-move">module b::example;
 
-    fun example&lt;T: drop&gt;(c: a::cup::Cup&lt;u64&gt;) {
-        c.borrow(); // resolves to a::cup::cup_borrow
-        c.cup_borrow(); // resolves to a::cup::cup_borrow
-    }
+fun example&lt;T: drop&gt;(c: a::cup::Cup&lt;u64&gt;) {
+    c.borrow(); // resolves to a::cup::cup_borrow
+    c.cup_borrow(); // resolves to a::cup::cup_borrow
 }
 </code></pre>
 <p>The <code>public use fun</code> declarations thus serve as a way of renaming a function if you want to give it
 a cleaner name for use with method syntax. This is especially helpful if you have a module with
 multiple types, and similarly named functions for each type.</p>
-<pre><code class="language-move">module a::shapes {
+<pre><code class="language-move">module a::shapes;
 
-    public struct Rectangle { base: u64, height: u64 }
-    public struct Box { base: u64, height: u64, depth: u64 }
+public struct Rectangle { base: u64, height: u64 }
+public struct Box { base: u64, height: u64, depth: u64 }
 
-    // Rectangle and Box can have methods with the same name
+// Rectangle and Box can have methods with the same name
 
-    public use fun rectangle_base as Rectangle.base;
-    public fun rectangle_base(rectangle: &amp;Rectangle): u64 {
-        rectangle.base
-    }
+public use fun rectangle_base as Rectangle.base;
+public fun rectangle_base(rectangle: &amp;Rectangle): u64 {
+    rectangle.base
+}
 
-    public use fun box_base as Box.base;
-    public fun box_base(box: &amp;Box): u64 {
-        box.base
-    }
-
+public use fun box_base as Box.base;
+public fun box_base(box: &amp;Box): u64 {
+    box.base
 }
 </code></pre>
 <p>Another use for <code>public use fun</code> is adding methods to types from other modules. This can be helpful
@@ -460,32 +455,32 @@ module b::other {
 <h2 id="automatic-borrowing"><a class="header" href="#automatic-borrowing">Automatic Borrowing</a></h2>
 <p>When resolving a method, the compiler will automatically borrow the receiver if the function expects
 a reference. For example</p>
-<pre><code class="language-move">module a::m {
-    public struct X() has copy, drop;
-    public fun by_val(_: X) {}
-    public fun by_ref(_: &amp;X) {}
-    public fun by_mut(_: &amp;mut X) {}
+<pre><code class="language-move">module a::m;
 
-    fun example(mut x: X) {
-        x.by_ref(); // resolves to a::m::by_ref(&amp;x)
-        x.by_mut(); // resolves to a::m::by_mut(&amp;mut x)
-    }
+public struct X() has copy, drop;
+public fun by_val(_: X) {}
+public fun by_ref(_: &amp;X) {}
+public fun by_mut(_: &amp;mut X) {}
+
+fun example(mut x: X) {
+    x.by_ref(); // resolves to a::m::by_ref(&amp;x)
+    x.by_mut(); // resolves to a::m::by_mut(&amp;mut x)
 }
 </code></pre>
 <p>In these examples, <code>x</code> was automatically borrowed to <code>&amp;x</code> and <code>&amp;mut x</code> respectively. This will also
 work through field access</p>
-<pre><code class="language-move">module a::m {
-    public struct X() has copy, drop;
-    public fun by_val(_: X) {}
-    public fun by_ref(_: &amp;X) {}
-    public fun by_mut(_: &amp;mut X) {}
+<pre><code class="language-move">module a::m;
 
-    public struct Y has drop { x: X }
+public struct X() has copy, drop;
+public fun by_val(_: X) {}
+public fun by_ref(_: &amp;X) {}
+public fun by_mut(_: &amp;mut X) {}
 
-    fun example(mut y: Y) {
-        y.x.by_ref(); // resolves to a::m::by_ref(&amp;y.x)
-        y.x.by_mut(); // resolves to a::m::by_mut(&amp;mut y.x)
-    }
+public struct Y has drop { x: X }
+
+fun example(mut y: Y) {
+    y.x.by_ref(); // resolves to a::m::by_ref(&amp;y.x)
+    y.x.by_mut(); // resolves to a::m::by_mut(&amp;mut y.x)
 }
 </code></pre>
 <p>Note that in both examples, the local variable had to be labeled as <a href="./variables.html"><code>mut</code></a> to allow
@@ -493,19 +488,19 @@ for the <code>&amp;mut</code> borrow. Without this, there would be an error sayi
 example) is not mutable.</p>
 <p>Keep in mind that without a reference, normal rules for variable and field access come into play.
 Meaning a value might be moved or copied if it is not borrowed.</p>
-<pre><code class="language-move">module a::m {
-    public struct X() has copy, drop;
-    public fun by_val(_: X) {}
-    public fun by_ref(_: &amp;X) {}
-    public fun by_mut(_: &amp;mut X) {}
+<pre><code class="language-move">module a::m;
 
-    public struct Y has drop { x: X }
-    public fun drop_y(y: Y) { y }
+public struct X() has copy, drop;
+public fun by_val(_: X) {}
+public fun by_ref(_: &amp;X) {}
+public fun by_mut(_: &amp;mut X) {}
 
-    fun example(y: Y) {
-        y.x.by_val(); // copies `y.x` since `by_val` is by-value and `X` has `copy`
-        y.drop_y(); // moves `y` since `drop_y` is by-value and `Y` does _not_ have `copy`
-    }
+public struct Y has drop { x: X }
+public fun drop_y(y: Y) { y }
+
+fun example(y: Y) {
+    y.x.by_val(); // copies `y.x` since `by_val` is by-value and `X` has `copy`
+    y.drop_y(); // moves `y` since `drop_y` is by-value and `Y` does _not_ have `copy`
 }
 </code></pre>
 <h2 id="chaining"><a class="header" href="#chaining">Chaining</a></h2>

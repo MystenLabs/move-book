@@ -270,27 +270,26 @@ them down explicitly. Here's what the examples above would look like if we omit 
 </code></pre>
 <p>Note: when the compiler is unable to infer the types, you'll need annotate them manually. A common
 scenario is to call a function with type parameters appearing only at return positions.</p>
-<pre><code class="language-move">module a::m {
+<pre><code class="language-move">module a::m;
 
-    fun foo() {
-        let v = vector[]; // ERROR!
-        //            ^ The compiler cannot figure out the element type, since it is never used
+fun foo() {
+    let v = vector[]; // ERROR!
+    //            ^ The compiler cannot figure out the element type, since it is never used
 
-        let v = vector&lt;u64&gt;[];
-        //            ^~~~~ Must annotate manually in this case.
-    }
+    let v = vector&lt;u64&gt;[];
+    //            ^~~~~ Must annotate manually in this case.
 }
 </code></pre>
 <p>Note that these cases are a bit contrived since the <code>vector[]</code> is never used, ad as such, Move's
 type inference cannot infer the type.</p>
 <p>However, the compiler will be able to infer the type if that value is used later in that function:</p>
-<pre><code class="language-move">module a::m {
-    fun foo() {
-        let v = vector[];
-        //            ^ &lt;u64&gt; is inferred
-        vector::push_back(&amp;mut v, 42);
-        //               ^ &lt;u64&gt; is inferred
-    }
+<pre><code class="language-move">module a::m;
+
+fun foo() {
+    let v = vector[];
+    //            ^ &lt;u64&gt; is inferred
+    vector::push_back(&amp;mut v, 42);
+    //               ^ &lt;u64&gt; is inferred
 }
 </code></pre>
 <h3 id="_-type"><a class="header" href="#_-type"><code>_</code> Type</a></h3>
@@ -339,30 +338,30 @@ following struct definition is valid:</p>
 }
 </code></pre>
 <p>This can be convenient when modeling certain concepts. Here is an example:</p>
-<pre><code class="language-move">module a::m {
-    // Currency Specifiers
-    public struct A {}
-    public struct B {}
+<pre><code class="language-move">module a::m;
 
-    // A generic coin type that can be instantiated using a currency
-    // specifier type.
-    //   e.g. Coin&lt;A&gt;, Coin&lt;B&gt; etc.
-    public struct Coin&lt;Currency&gt; has store {
-        value: u64
-    }
+// Currency Specifiers
+public struct A {}
+public struct B {}
 
-    // Write code generically about all currencies
-    public fun mint_generic&lt;Currency&gt;(value: u64): Coin&lt;Currency&gt; {
-        Coin { value }
-    }
+// A generic coin type that can be instantiated using a currency
+// specifier type.
+//   e.g. Coin&lt;A&gt;, Coin&lt;B&gt; etc.
+public struct Coin&lt;Currency&gt; has store {
+    value: u64
+}
 
-    // Write code concretely about one currency
-    public fun mint_a(value: u64): Coin&lt;A&gt; {
-        mint_generic(value)
-    }
-    public fun mint_b(value: u64): Coin&lt;B&gt; {
-        mint_generic(value)
-    }
+// Write code generically about all currencies
+public fun mint_generic&lt;Currency&gt;(value: u64): Coin&lt;Currency&gt; {
+    Coin { value }
+}
+
+// Write code concretely about one currency
+public fun mint_a(value: u64): Coin&lt;A&gt; {
+    mint_generic(value)
+}
+public fun mint_b(value: u64): Coin&lt;B&gt; {
+    mint_generic(value)
 }
 </code></pre>
 <p>In this example, <code>Coin&lt;Currency&gt;</code> is generic on the <code>Currency</code> type parameter, which specifies the
@@ -531,63 +530,63 @@ means adding unnecessary complexity to the compiler, vm and other language compo
 such recursions are forbidden.</p>
 <p>This restriction might be relaxed in the future, but for now, the following examples should give you
 an idea of what is allowed and what is not.</p>
-<pre><code class="language-move">module a::m {
-    public struct A&lt;T&gt; {}
+<pre><code class="language-move">module a::m;
 
-    // Finitely many types -- allowed.
-    // foo&lt;T&gt; -&gt; foo&lt;T&gt; -&gt; foo&lt;T&gt; -&gt; ... is valid
-    fun foo&lt;T&gt;() {
-        foo&lt;T&gt;();
-    }
+public struct A&lt;T&gt; {}
 
-    // Finitely many types -- allowed.
-    // foo&lt;T&gt; -&gt; foo&lt;A&lt;u64&gt;&gt; -&gt; foo&lt;A&lt;u64&gt;&gt; -&gt; ... is valid
-    fun foo&lt;T&gt;() {
-        foo&lt;A&lt;u64&gt;&gt;();
-    }
+// Finitely many types -- allowed.
+// foo&lt;T&gt; -&gt; foo&lt;T&gt; -&gt; foo&lt;T&gt; -&gt; ... is valid
+fun foo&lt;T&gt;() {
+    foo&lt;T&gt;();
+}
+
+// Finitely many types -- allowed.
+// foo&lt;T&gt; -&gt; foo&lt;A&lt;u64&gt;&gt; -&gt; foo&lt;A&lt;u64&gt;&gt; -&gt; ... is valid
+fun foo&lt;T&gt;() {
+    foo&lt;A&lt;u64&gt;&gt;();
 }
 </code></pre>
 <p>Not allowed:</p>
-<pre><code class="language-move">module a::m {
-    public struct A&lt;T&gt; {}
+<pre><code class="language-move">module a::m;
 
-    // Infinitely many types -- NOT allowed.
-    // error!
-    // foo&lt;T&gt; -&gt; foo&lt;A&lt;T&gt;&gt; -&gt; foo&lt;A&lt;A&lt;T&gt;&gt;&gt; -&gt; ...
-    fun foo&lt;T&gt;() {
-        foo&lt;Foo&lt;T&gt;&gt;();
-    }
+public struct A&lt;T&gt; {}
+
+// Infinitely many types -- NOT allowed.
+// error!
+// foo&lt;T&gt; -&gt; foo&lt;A&lt;T&gt;&gt; -&gt; foo&lt;A&lt;A&lt;T&gt;&gt;&gt; -&gt; ...
+fun foo&lt;T&gt;() {
+    foo&lt;Foo&lt;T&gt;&gt;();
 }
 </code></pre>
 <p>And similarly, not allowed:</p>
-<pre><code class="language-move">module a::n {
-    public struct A&lt;T&gt; {}
+<pre><code class="language-move">module a::n;
 
-    // Infinitely many types -- NOT allowed.
-    // error!
-    // foo&lt;T1, T2&gt; -&gt; bar&lt;T2, T1&gt; -&gt; foo&lt;T2, A&lt;T1&gt;&gt;
-    //   -&gt; bar&lt;A&lt;T1&gt;, T2&gt; -&gt; foo&lt;A&lt;T1&gt;, A&lt;T2&gt;&gt;
-    //   -&gt; bar&lt;A&lt;T2&gt;, A&lt;T1&gt;&gt; -&gt; foo&lt;A&lt;T2&gt;, A&lt;A&lt;T1&gt;&gt;&gt;
-    //   -&gt; ...
-    fun foo&lt;T1, T2&gt;() {
-        bar&lt;T2, T1&gt;();
-    }
+public struct A&lt;T&gt; {}
 
-    fun bar&lt;T1, T2&gt; {
-        foo&lt;T1, A&lt;T2&gt;&gt;();
-    }
+// Infinitely many types -- NOT allowed.
+// error!
+// foo&lt;T1, T2&gt; -&gt; bar&lt;T2, T1&gt; -&gt; foo&lt;T2, A&lt;T1&gt;&gt;
+//   -&gt; bar&lt;A&lt;T1&gt;, T2&gt; -&gt; foo&lt;A&lt;T1&gt;, A&lt;T2&gt;&gt;
+//   -&gt; bar&lt;A&lt;T2&gt;, A&lt;T1&gt;&gt; -&gt; foo&lt;A&lt;T2&gt;, A&lt;A&lt;T1&gt;&gt;&gt;
+//   -&gt; ...
+fun foo&lt;T1, T2&gt;() {
+    bar&lt;T2, T1&gt;();
+}
+
+fun bar&lt;T1, T2&gt; {
+    foo&lt;T1, A&lt;T2&gt;&gt;();
 }
 </code></pre>
 <p>Note, the check for type level recursions is based on a conservative analysis on the call sites and
 does NOT take control flow or runtime values into account.</p>
-<pre><code class="language-move">module a::m {
-    public struct A&lt;T&gt; {}
+<pre><code class="language-move">module a::m;
 
-    // Infinitely many types -- NOT allowed.
-    // error!
-    fun foo&lt;T&gt;(n: u64) {
-        if (n &gt; 0) foo&lt;A&lt;T&gt;&gt;(n - 1);
-    }
+public struct A&lt;T&gt; {}
+
+// Infinitely many types -- NOT allowed.
+// error!
+fun foo&lt;T&gt;(n: u64) {
+    if (n &gt; 0) foo&lt;A&lt;T&gt;&gt;(n - 1);
 }
 </code></pre>
 <p>The function in the example above will technically terminate for any given input and therefore only

@@ -194,24 +194,22 @@ bespoke per-type and available implicitly for any programmer using your type.</p
 <p>To start, consider a <code>Matrix</code> type that uses a vector of vectors to represent its values. You can
 write a small library using <code>index</code> syntax annotations on the <code>borrow</code> and <code>borrow_mut</code> functions as
 follows:</p>
-<pre><code class="language-move">module matrix {
+<pre><code class="language-move">module matrix;
 
-    public struct Matrix&lt;T&gt; { v: vector&lt;vector&lt;T&gt;&gt; }
+public struct Matrix&lt;T&gt; { v: vector&lt;vector&lt;T&gt;&gt; }
 
-    #[syntax(index)]
-    public fun borrow&lt;T&gt;(s: &amp;Matrix&lt;T&gt;, i: u64, j: u64): &amp;T {
-        vector::borrow(vector::borrow(&amp;s.v, i), j)
-    }
+#[syntax(index)]
+public fun borrow&lt;T&gt;(s: &amp;Matrix&lt;T&gt;, i: u64, j: u64): &amp;T {
+    vector::borrow(vector::borrow(&amp;s.v, i), j)
+}
 
-    #[syntax(index)]
-    public fun borrow_mut&lt;T&gt;(s: &amp;mut Matrix&lt;T&gt;, i: u64, j: u64): &amp;mut T {
-        vector::borrow_mut(vector::borrow_mut(&amp;mut s.v, i), j)
-    }
+#[syntax(index)]
+public fun borrow_mut&lt;T&gt;(s: &amp;mut Matrix&lt;T&gt;, i: u64, j: u64): &amp;mut T {
+    vector::borrow_mut(vector::borrow_mut(&amp;mut s.v, i), j)
+}
 
-    public fun make_matrix&lt;T&gt;(v: vector&lt;vector&lt;T&gt;&gt;):  Matrix&lt;T&gt; {
-        Matrix { v }
-    }
-
+public fun make_matrix&lt;T&gt;(v: vector&lt;vector&lt;T&gt;&gt;):  Matrix&lt;T&gt; {
+    Matrix { v }
 }
 </code></pre>
 <p>Now anyone using this <code>Matrix</code> type has access to index syntax for it:</p>

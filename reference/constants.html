@@ -192,12 +192,12 @@ module. And each time the constant is used, a new copy of that value is made.</p
 <pre><code class="language-text">const &lt;name&gt;: &lt;type&gt; = &lt;expression&gt;;
 </code></pre>
 <p>For example</p>
-<pre><code class="language-move">module a::example {
-    const MY_ADDRESS: address = @a;
+<pre><code class="language-move">module a::example;
 
-    public fun permissioned(addr: address) {
-        assert!(addr == MY_ADDRESS, 0);
-    }
+const MY_ADDRESS: address = @a;
+
+public fun permissioned(addr: address) {
+    assert!(addr == MY_ADDRESS, 0);
 }
 </code></pre>
 <h2 id="naming"><a class="header" href="#naming">Naming</a></h2>

@@ -220,25 +220,25 @@ disambiguation and do not carry any other special meaning.</p>
 <p>Sometimes, tuples with two elements are called &quot;pairs&quot; and tuples with three elements are called
 &quot;triples.&quot;</p>
 <h3 id="examples"><a class="header" href="#examples">Examples</a></h3>
-<pre><code class="language-move">module 0x42::example {
-    // all 3 of these functions are equivalent
+<pre><code class="language-move">module 0::example;
 
-    // when no return type is provided, it is assumed to be `()`
-    fun returns_unit_1() { }
+// all 3 of these functions are equivalent
 
-    // there is an implicit () value in empty expression blocks
-    fun returns_unit_2(): () { }
+// when no return type is provided, it is assumed to be `()`
+fun returns_unit_1() { }
 
-    // explicit version of `returns_unit_1` and `returns_unit_2`
-    fun returns_unit_3(): () { () }
+// there is an implicit () value in empty expression blocks
+fun returns_unit_2(): () { }
+
+// explicit version of `returns_unit_1` and `returns_unit_2`
+fun returns_unit_3(): () { () }
 
 
-    fun returns_3_values(): (u64, bool, address) {
-        (0, false, @0x42)
-    }
-    fun returns_4_values(x: &amp;u64): (&amp;u64, u8, u128, vector&lt;u8&gt;) {
-        (x, 0, 1, b&quot;foobar&quot;)
-    }
+fun returns_3_values(): (u64, bool, address) {
+    (0, false, @0x42)
+}
+fun returns_4_values(x: &amp;u64): (&amp;u64, u8, u128, vector&lt;u8&gt;) {
+    (x, 0, 1, b&quot;foobar&quot;)
 }
 </code></pre>
 <h2 id="operations"><a class="header" href="#operations">Operations</a></h2>
@@ -246,31 +246,31 @@ disambiguation and do not carry any other special meaning.</p>
 <h3 id="destructuring"><a class="header" href="#destructuring">Destructuring</a></h3>
 <p>For tuples of any size, they can be destructured in either a <code>let</code> binding or in an assignment.</p>
 <p>For example:</p>
-<pre><code class="language-move">module 0x42::example {
-    // all 3 of these functions are equivalent
-    fun returns_unit() {}
-    fun returns_2_values(): (bool, bool) { (true, false) }
-    fun returns_4_values(x: &amp;u64): (&amp;u64, u8, u128, vector&lt;u8&gt;) { (x, 0, 1, b&quot;foobar&quot;) }
+<pre><code class="language-move">module 0x42::example;
 
-    fun examples(cond: bool) {
-        let () = ();
-        let (mut x, mut y): (u8, u64) = (0, 1);
-        let (mut a, mut b, mut c, mut d) = (@0x0, 0, false, b&quot;&quot;);
+// all 3 of these functions are equivalent
+fun returns_unit() {}
+fun returns_2_values(): (bool, bool) { (true, false) }
+fun returns_4_values(x: &amp;u64): (&amp;u64, u8, u128, vector&lt;u8&gt;) { (x, 0, 1, b&quot;foobar&quot;) }
 
-        () = ();
-        (x, y) = if (cond) (1, 2) else (3, 4);
-        (a, b, c, d) = (@0x1, 1, true, b&quot;1&quot;);
-    }
+fun examples(cond: bool) {
+    let () = ();
+    let (mut x, mut y): (u8, u64) = (0, 1);
+    let (mut a, mut b, mut c, mut d) = (@0x0, 0, false, b&quot;&quot;);
 
-    fun examples_with_function_calls() {
-        let () = returns_unit();
-        let (mut x, mut y): (bool, bool) = returns_2_values();
-        let (mut a, mut b, mut c, mut d) = returns_4_values(&amp;0);
+    () = ();
+    (x, y) = if (cond) (1, 2) else (3, 4);
+    (a, b, c, d) = (@0x1, 1, true, b&quot;1&quot;);
+}
 
-        () = returns_unit();
-        (x, y) = returns_2_values();
-        (a, b, c, d) = returns_4_values(&amp;1);
-    }
+fun examples_with_function_calls() {
+    let () = returns_unit();
+    let (mut x, mut y): (bool, bool) = returns_2_values();
+    let (mut a, mut b, mut c, mut d) = returns_4_values(&amp;0);
+
+    () = returns_unit();
+    (x, y) = returns_2_values();
+    (a, b, c, d) = returns_4_values(&amp;1);
 }
 </code></pre>
 <p>For more details, see <a href="../variables.html">Move Variables</a>.</p>

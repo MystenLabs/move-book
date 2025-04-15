@@ -200,18 +200,18 @@ functions can be invoked according to the rules of that particular Move instance
 <p>where <code>&lt;address&gt;</code> is a valid <a href="./primitive-types/address.html">address</a> specifying the module's
 package.</p>
 <p>For example:</p>
-<pre><code class="language-move">module 0x42::test {
-    public struct Example has copy, drop { i: u64 }
+<pre><code class="language-move">module 0::test;
 
-    use std::debug;
+public struct Example has copy, drop { i: u64 }
 
-    const ONE: u64 = 1;
+use std::debug;
 
-    public fun print(x: u64) {
-        let sum = x + ONE;
-        let example = Example { i: sum };
-        debug::print(&amp;sum)
-    }
+const ONE: u64 = 1;
+
+public fun print(x: u64) {
+    let sum = x + ONE;
+    let example = Example { i: sum };
+    debug::print(&amp;sum)
 }
 </code></pre>
 <h2 id="names"><a class="header" href="#names">Names</a></h2>
@@ -220,15 +220,15 @@ numerical <a href="./primitive-types/address.html">address</a> value assigned fo
 <a href="./packages.html">package settings</a>.</p>
 <p>Modules should normally be declared using <a href="./primitive-types/address.html">named addresses</a> (as
 opposed to using the numerical value directly). For example:</p>
-<pre><code class="language-move">module test_addr::test {
-    public struct Example has copy, drop { a: address }
+<pre><code class="language-move">module test_addr::test;
 
-    friend test_addr::another_test;
+public struct Example has copy, drop { a: address }
 
-    public fun print() {
-        let example = Example { a: @test_addr };
-        debug::print(&amp;example)
-    }
+friend test_addr::another_test;
+
+public fun print() {
+    let example = Example { a: @test_addr };
+    debug::print(&amp;example)
 }
 </code></pre>
 <p>These named addresses commonly match the name of the <a href="./packages.html">package</a>.</p>

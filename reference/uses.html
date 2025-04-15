@@ -290,26 +290,42 @@ fun example(s: &amp;mut String) {
 </code></pre>
 <h2 id="inside-a-module"><a class="header" href="#inside-a-module">Inside a <code>module</code></a></h2>
 <p>Inside of a <code>module</code> all <code>use</code> declarations are usable regardless of the order of declaration.</p>
-<pre><code class="language-move">module a::example {
-    use std::vector;
+<pre><code class="language-move">module a::example;
 
-    fun new_vec(): vector&lt;Option&lt;u8&gt;&gt; {
-        let mut v = vector[];
-        vector::push_back(&amp;mut v, 0);
-        vector::push_back(&amp;mut v, 10);
-        v
-    }
+use std::vector;
 
-    use std::option::{Option, some, none};
+fun new_vec(): vector&lt;Option&lt;u8&gt;&gt; {
+    let mut v = vector[];
+    vector::push_back(&amp;mut v, 0);
+    vector::push_back(&amp;mut v, 10);
+    v
 }
+
+use std::option::{Option, some, none};
 </code></pre>
 <p>The aliases declared by <code>use</code> in the module usable within that module.</p>
 <p>Additionally, the aliases introduced cannot conflict with other module members. See
 <a href="#uniqueness">Uniqueness</a> for more details</p>
 <h2 id="inside-an-expression"><a class="header" href="#inside-an-expression">Inside an expression</a></h2>
 <p>You can add <code>use</code> declarations to the beginning of any expression block</p>
-<pre><code class="language-move">module a::example {
-    fun new_vec(): vector&lt;Option&lt;u8&gt;&gt; {
+<pre><code class="language-move">module a::example;
+
+fun new_vec(): vector&lt;Option&lt;u8&gt;&gt; {
+    use std::vector::push_back;
+    use std::option::{Option, some, none};
+
+    let mut v = vector[];
+    push_back(&amp;mut v, some(0));
+    push_back(&amp;mut v, none());
+    v
+}
+</code></pre>
+<p>As with <code>let</code>, the aliases introduced by <code>use</code> in an expression block are removed at the end of that
+block.</p>
+<pre><code class="language-move">module a::example;
+
+fun new_vec(): vector&lt;Option&lt;u8&gt;&gt; {
+    let result = {
         use std::vector::push_back;
         use std::option::{Option, some, none};
 
@@ -317,40 +333,24 @@ fun example(s: &amp;mut String) {
         push_back(&amp;mut v, some(0));
         push_back(&amp;mut v, none());
         v
-    }
-}
-</code></pre>
-<p>As with <code>let</code>, the aliases introduced by <code>use</code> in an expression block are removed at the end of that
-block.</p>
-<pre><code class="language-move">module a::example {
-    fun new_vec(): vector&lt;Option&lt;u8&gt;&gt; {
-        let result = {
-            use std::vector::push_back;
-            use std::option::{Option, some, none};
-
-            let mut v = vector[];
-            push_back(&amp;mut v, some(0));
-            push_back(&amp;mut v, none());
-            v
-        };
-        result
-    }
+    };
+    result
 }
 </code></pre>
 <p>Attempting to use the alias after the block ends will result in an error</p>
-<pre><code class="language-move">    fun new_vec(): vector&lt;Option&lt;u8&gt;&gt; {
-        let mut result = {
-            use std::vector::push_back;
-            use std::option::{Option, some, none};
+<pre><code class="language-move">fun new_vec(): vector&lt;Option&lt;u8&gt;&gt; {
+    let mut result = {
+        use std::vector::push_back;
+        use std::option::{Option, some, none};
 
-            let mut v = vector[];
-            push_back(&amp;mut v, some(0));
-            v
-        };
-        push_back(&amp;mut result, std::option::none());
-        // ^^^^^^ ERROR! unbound function 'push_back'
-        result
-    }
+        let mut v = vector[];
+        push_back(&amp;mut v, some(0));
+        v
+    };
+    push_back(&amp;mut result, std::option::none());
+    // ^^^^^^ ERROR! unbound function 'push_back'
+    result
+}
 </code></pre>
 <p>Any <code>use</code> must be the first item in the block. If the <code>use</code> comes after any expression or <code>let</code>, it
 will result in a parsing error</p>
@@ -382,27 +382,26 @@ module a::example {
 <h2 id="uniqueness"><a class="header" href="#uniqueness">Uniqueness</a></h2>
 <p>Inside a given scope, all aliases introduced by <code>use</code> declarations must be unique.</p>
 <p>For a module, this means aliases introduced by <code>use</code> cannot overlap</p>
-<pre><code class="language-move">module a::example {
-    use std::option::{none as foo, some as foo}; // ERROR!
-    //                                     ^^^ duplicate 'foo'
+<pre><code class="language-move">module a::example;
 
-    use std::option::none as bar;
+use std::option::{none as foo, some as foo}; // ERROR!
+//                                     ^^^ duplicate 'foo'
 
-    use std::option::some as bar; // ERROR!
-    //                       ^^^ duplicate 'bar'
+use std::option::none as bar;
 
-}
+use std::option::some as bar; // ERROR!
+//                       ^^^ duplicate 'bar'
 </code></pre>
 <p>And, they cannot overlap with any of the module's other members</p>
 <pre><code class="language-move">module a::data {
     public struct S {}
 }
+
 module example {
     use a::data::S;
 
     public struct S { value: u64 } // ERROR!
     //            ^ conflicts with alias 'S' above
-}
 }
 </code></pre>
 <p>Inside of an expression block, they cannot overlap with each other, but they can
@@ -410,54 +409,53 @@ module example {
 <h2 id="shadowing"><a class="header" href="#shadowing">Shadowing</a></h2>
 <p><code>use</code> aliases inside of an expression block can shadow names (module members or aliases) from the
 outer scope. As with shadowing of locals, the shadowing ends at the end of the expression block;</p>
-<pre><code class="language-move">module a::example {
+<pre><code class="language-move">module a::example;
 
-    public struct WrappedVector { vec: vector&lt;u64&gt; }
+public struct WrappedVector { vec: vector&lt;u64&gt; }
 
-    public fun empty(): WrappedVector {
-        WrappedVector { vec: std::vector::empty() }
-    }
+public fun empty(): WrappedVector {
+    WrappedVector { vec: std::vector::empty() }
+}
 
-    public fun push_back(v: &amp;mut WrappedVector, value: u64) {
-        std::vector::push_back(&amp;mut v.vec, value);
-    }
+public fun push_back(v: &amp;mut WrappedVector, value: u64) {
+    std::vector::push_back(&amp;mut v.vec, value);
+}
 
-    fun example1(): WrappedVector {
+fun example1(): WrappedVector {
+    use std::vector::push_back;
+    // 'push_back' now refers to std::vector::push_back
+    let mut vec = vector[];
+    push_back(&amp;mut vec, 0);
+    push_back(&amp;mut vec, 1);
+    push_back(&amp;mut vec, 10);
+    WrappedVector { vec }
+}
+
+fun example2(): WrappedVector {
+    let vec = {
         use std::vector::push_back;
         // 'push_back' now refers to std::vector::push_back
-        let mut vec = vector[];
-        push_back(&amp;mut vec, 0);
-        push_back(&amp;mut vec, 1);
-        push_back(&amp;mut vec, 10);
-        WrappedVector { vec }
-    }
 
-    fun example2(): WrappedVector {
-        let vec = {
-            use std::vector::push_back;
-            // 'push_back' now refers to std::vector::push_back
-
-            let mut v = vector[];
-            push_back(&amp;mut v, 0);
-            push_back(&amp;mut v, 1);
-            v
-        };
-        // 'push_back' now refers to Self::push_back
-        let mut res = WrappedVector { vec };
-        push_back(&amp;mut res, 10);
-        res
-    }
+        let mut v = vector[];
+        push_back(&amp;mut v, 0);
+        push_back(&amp;mut v, 1);
+        v
+    };
+    // 'push_back' now refers to Self::push_back
+    let mut res = WrappedVector { vec };
+    push_back(&amp;mut res, 10);
+    res
 }
 </code></pre>
 <h2 id="unused-use-or-alias"><a class="header" href="#unused-use-or-alias">Unused Use or Alias</a></h2>
 <p>An unused <code>use</code> will result in a warning</p>
-<pre><code class="language-move">module a::example {
-    use std::option::{some, none}; // Warning!
-    //                      ^^^^ unused alias 'none'
+<pre><code class="language-move">module a::example;
 
-    public fun example(): std::option::Option&lt;u8&gt; {
-        some(0)
-    }
+use std::option::{some, none}; // Warning!
+//                      ^^^^ unused alias 'none'
+
+public fun example(): std::option::Option&lt;u8&gt; {
+    some(0)
 }
 </code></pre>
 

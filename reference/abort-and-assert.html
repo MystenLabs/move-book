@@ -188,8 +188,10 @@
 the current function and one for the entire transaction.</p>
 <p>More information on <a href="./functions.html#return-expression"><code>return</code> can be found in the linked section</a></p>
 <h2 id="abort"><a class="header" href="#abort"><code>abort</code></a></h2>
-<p><code>abort</code> is an expression that takes one argument: an <strong>abort code</strong> of type <code>u64</code>. For example:</p>
-<pre><code class="language-move">abort 42
+<p><code>abort</code> is an expression that takes either takes no arguments, or just one - an <strong>abort code</strong> of
+type <code>u64</code>. For example:</p>
+<pre><code class="language-move">abort
+abort 42
 </code></pre>
 <p>The <code>abort</code> expression halts execution the current function and reverts all changes made to state by
 the current transaction (note though that this guarantee must be upheld by the adapter of the
@@ -212,8 +214,8 @@ module ref::abort_and_assert {
 <pre><code class="language-move">use std::vector;
 
 fun pop_twice&lt;T&gt;(v: &amp;mut vector&lt;T&gt;): (T, T) {
-    if (vector::length(v) &lt; 2) abort 42;
-    (vector::pop_back(v), vector::pop_back(v))
+    if (v.length() &lt; 2) abort 42;
+    (v.pop_back(), v.pop_back())
 }
 </code></pre>
 <p>This is even more useful deep inside a control-flow construct. For example, this function checks
@@ -221,9 +223,9 @@ that all numbers in the vector are less than the specified <code>bound</code>. A
 <pre><code class="language-move">use std::vector;
 fun check_vec(v: &amp;vector&lt;u64&gt;, bound: u64) {
     let i = 0;
-    let n = vector::length(v);
+    let n = v.length();
     while (i &lt; n) {
-        let cur = *vector::borrow(v, i);
+        let cur = v[i];
         if (cur &gt; bound) abort 42;
         i = i + 1;
     }
@@ -243,17 +245,17 @@ does not exist at the bytecode level. It is replaced inside the compiler with</p
 rewritten using <code>assert</code></p>
 <pre><code class="language-move">use std::vector;
 fun pop_twice&lt;T&gt;(v: &amp;mut vector&lt;T&gt;): (T, T) {
-    assert!(vector::length(v) &gt;= 2, 42); // Now uses 'assert'
-    (vector::pop_back(v), vector::pop_back(v))
+    assert!(v.length() &gt;= 2, 42); // Now uses 'assert'
+    (v.pop_back(), v.pop_back())
 }
 </code></pre>
 <p>and</p>
 <pre><code class="language-move">use std::vector;
 fun check_vec(v: &amp;vector&lt;u64&gt;, bound: u64) {
     let i = 0;
-    let n = vector::length(v);
+    let n = v.length();
     while (i &lt; n) {
-        let cur = *vector::borrow(v, i);
+        let cur = v[i];
         assert!(cur &lt;= bound, 42); // Now uses 'assert'
         i = i + 1;
     }
@@ -294,34 +296,33 @@ module 0x3::invoker {
 would produce an error that indicated the module <code>0x2::example</code> and the code <code>42</code>.</p>
 <p>This can be useful for having multiple aborts being grouped together inside a module.</p>
 <p>In this example, the module has two separate error codes used in multiple functions</p>
-<pre><code class="language-move">module 0x42::example {
+<pre><code class="language-move">module 0::example;
 
-    use std::vector;
+use std::vector;
 
-    const EEmptyVector: u64 = 0;
-    const EIndexOutOfBounds: u64 = 1;
+const EEmptyVector: u64 = 0;
+const EIndexOutOfBounds: u64 = 1;
 
-    // move i to j, move j to k, move k to i
-    public fun rotate_three&lt;T&gt;(v: &amp;mut vector&lt;T&gt;, i: u64, j: u64, k: u64) {
-        let n = vector::length(v);
-        assert!(n &gt; 0, EEmptyVector);
-        assert!(i &lt; n, EIndexOutOfBounds);
-        assert!(j &lt; n, EIndexOutOfBounds);
-        assert!(k &lt; n, EIndexOutOfBounds);
+// move i to j, move j to k, move k to i
+public fun rotate_three&lt;T&gt;(v: &amp;mut vector&lt;T&gt;, i: u64, j: u64, k: u64) {
+    let n = v.length();
+    assert!(n &gt; 0, EEmptyVector);
+    assert!(i &lt; n, EIndexOutOfBounds);
+    assert!(j &lt; n, EIndexOutOfBounds);
+    assert!(k &lt; n, EIndexOutOfBounds);
 
-        vector::swap(v, i, k);
-        vector::swap(v, j, k);
-    }
+    v.swap(i, k);
+    v.swap(j, k);
+}
 
-    public fun remove_twice&lt;T&gt;(v: &amp;mut vector&lt;T&gt;, i: u64, j: u64): (T, T) {
-        let n = vector::length(v);
-        assert!(n &gt; 0, EEmptyVector);
-        assert!(i &lt; n, EIndexOutOfBounds);
-        assert!(j &lt; n, EIndexOutOfBounds);
-        assert!(i &gt; j, EIndexOutOfBounds);
+public fun remove_twice&lt;T&gt;(v: &amp;mut vector&lt;T&gt;, i: u64, j: u64): (T, T) {
+    let n = v.length();
+    assert!(n &gt; 0, EEmptyVector);
+    assert!(i &lt; n, EIndexOutOfBounds);
+    assert!(j &lt; n, EIndexOutOfBounds);
+    assert!(i &gt; j, EIndexOutOfBounds);
 
-        (vector::remove&lt;T&gt;(v, i), vector::remove&lt;T&gt;(v, j))
-    }
+    (v.remove(i), v.remove(j))
 }
 </code></pre>
 <h2 id="the-type-of-abort"><a class="header" href="#the-type-of-abort">The type of <code>abort</code></a></h2>

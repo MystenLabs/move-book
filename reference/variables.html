@@ -261,7 +261,8 @@ syntax for adding a type annotation is:</p>
 <pre><code class="language-move">let x: T = e; // &quot;Variable x of type T is initialized to expression e&quot;
 </code></pre>
 <p>Some examples of explicit type annotations:</p>
-<pre><code class="language-move">module 0x42::example {
+<pre><code class="language-move">module 0::example;
+
 
     public struct S { f: u64, g: u64 }
 
@@ -342,21 +343,21 @@ of the fields from a struct. The syntax looks like this:</p>
 // local2: u64
 </code></pre>
 <p>Here is a more complicated example:</p>
-<pre><code class="language-move">module 0x42::example {
-    public struct X(u64)
-    public struct Y { x1: X, x2: X }
+<pre><code class="language-move">module 0::example;
 
-    fun new_x(): X {
-        X(1)
-    }
+public struct X(u64)
+public struct Y { x1: X, x2: X }
 
-    fun example() {
-        let Y { x1: X(f), x2 } = Y { x1: new_x(), x2: new_x() };
-        assert!(f + x2.f == 2, 42);
+fun new_x(): X {
+    X(1)
+}
 
-        let Y { x1: X(f1), x2: X(f2) } = Y { x1: new_x(), x2: new_x() };
-        assert!(f1 + f2 == 2, 42);
-    }
+fun example() {
+    let Y { x1: X(f), x2 } = Y { x1: new_x(), x2: new_x() };
+    assert!(f + x2.f == 2, 42);
+
+    let Y { x1: X(f1), x2: X(f2) } = Y { x1: new_x(), x2: new_x() };
+    assert!(f1 + f2 == 2, 42);
 }
 </code></pre>
 <p>Fields of structs can serve double duty, identifying the field to bind <em>and</em> the name of the
@@ -400,25 +401,25 @@ let T { f1: local1, f2: local2 } = &amp;mut t;
 // local2: &amp;mut u64
 </code></pre>
 <p>This behavior can also work with nested structs.</p>
-<pre><code class="language-move">module 0x42::example {
-    public struct X(u64)
-    public struct Y { x1: X, x2: X }
+<pre><code class="language-move">module 0::example;
 
-    fun new_x(): X {
-        X(1)
-    }
+public struct X(u64)
+public struct Y { x1: X, x2: X }
 
-    fun example() {
-        let mut y = Y { x1: new_x(), x2: new_x() };
+fun new_x(): X {
+    X(1)
+}
 
-        let Y { x1: X(f), x2 } = &amp;y;
-        assert!(*f + x2.f == 2, 42);
+fun example() {
+    let mut y = Y { x1: new_x(), x2: new_x() };
 
-        let Y { x1: X(f1), x2: X(f2) } = &amp;mut y;
-        *f1 = *f1 + 1;
-        *f2 = *f2 + 1;
-        assert!(*f1 + *f2 == 4, 42);
-    }
+    let Y { x1: X(f), x2 } = &amp;y;
+    assert!(*f + x2.f == 2, 42);
+
+    let Y { x1: X(f1), x2: X(f2) } = &amp;mut y;
+    *f1 = *f1 + 1;
+    *f2 = *f2 + 1;
+    assert!(*f1 + *f2 == 4, 42);
 }
 </code></pre>
 <h3 id="ignoring-values"><a class="header" href="#ignoring-values">Ignoring Values</a></h3>
@@ -496,22 +497,22 @@ expression block with braces (<code>{</code>...<code>}</code>).</p>
 if (cond) x = 1 else x = 2;
 </code></pre>
 <p>The assignment uses the similar pattern syntax scheme as <code>let</code> bindings, but with absence of <code>mut</code>:</p>
-<pre><code class="language-move">module 0x42::example {
-    public struct X { f: u64 }
+<pre><code class="language-move">module 0::example;
 
-    fun new_x(): X {
-        X { f: 1 }
-    }
+public struct X { f: u64 }
 
-    // Note: this example will complain about unused variables and assignments.
-    fun example() {
-       let (mut x, mut y, mut f, mut g) = (0, 0, 0, 0);
+fun new_x(): X {
+    X { f: 1 }
+}
 
-       (X { f }, X { f: x }) = (new_x(), new_x());
-       assert!(f + x == 2, 42);
+// Note: this example will complain about unused variables and assignments.
+fun example() {
+    let (mut x, mut y, mut f, mut g) = (0, 0, 0, 0);
 
-       (x, y, f, _, g) = (0, 0, 0, 0, 0);
-    }
+    (X { f }, X { f: x }) = (new_x(), new_x());
+    assert!(f + x == 2, 42);
+
+    (x, y, f, _, g) = (0, 0, 0, 0, 0);
 }
 </code></pre>
 <p>Note that a local variable can only have one type, so the type of the local cannot change between
@@ -652,17 +653,17 @@ assert!(x == b&quot;hello&quot;, 42);
 accessible. This is important to keep in mind with values of types without the
 <a href="./abilities.html"><code>drop</code> ability</a>, as ownership of the value must be transferred by the end of the
 function.</p>
-<pre><code class="language-move">module 0x42::example {
-    public struct Coin has store { value: u64 }
+<pre><code class="language-move">module 0::example;
 
-    fun unused_coin(): Coin {
-        let x = Coin { value: 0 }; // ERROR!
-//          ^ This local still contains a value without the `drop` ability
-        x.value = 1;
-        let x = Coin { value: 10 };
-        x
-//      ^ Invalid return
-    }
+public struct Coin has store { value: u64 }
+
+fun unused_coin(): Coin {
+    let x = Coin { value: 0 }; // ERROR!
+//      ^ This local still contains a value without the `drop` ability
+    x.value = 1;
+    let x = Coin { value: 10 };
+    x
+//  ^ Invalid return
 }
 </code></pre>
 <p>When a local is shadowed inside a scope, the shadowing only remains for that scope. The shadowing is

@@ -198,18 +198,18 @@
 b&quot;hello&quot; != x&quot;00&quot;; // `true`
 </code></pre>
 <p>Equality and non-equality also work over <em>all</em> user defined types!</p>
-<pre><code class="language-move=">module 0x42::example {
-    public struct S has copy, drop { f: u64, s: vector&lt;u8&gt; }
+<pre><code class="language-move">module 0::example;
 
-    fun always_true(): bool {
-        let s = S { f: 0, s: b&quot;&quot; };
-        s == s
-    }
+public struct S has copy, drop { f: u64, s: vector&lt;u8&gt; }
 
-    fun always_false(): bool {
-        let s = S { f: 0, s: b&quot;&quot; };
-        s != s
-    }
+fun always_true(): bool {
+    let s = S { f: 0, s: b&quot;&quot; };
+    s == s
+}
+
+fun always_false(): bool {
+    let s = S { f: 0, s: b&quot;&quot; };
+    s != s
 }
 </code></pre>
 <p>If the operands have different types, there is a type checking error</p>
@@ -266,28 +266,28 @@ the type must have <a href="./abilities.html"><code>drop</code></a>. Recall that
 values can only be explicitly destroyed within their declaring module. If these were used directly
 with either equality <code>==</code> or non-equality <code>!=</code>, the value would be destroyed which would break
 <a href="./abilities.html"><code>drop</code> ability</a> safety guarantees!</p>
-<pre><code class="language-move=">module 0x42::example {
-    public struct Coin has store { value: u64 }
-    fun invalid(c1: Coin, c2: Coin) {
-        c1 == c2 // ERROR!
-//      ^^    ^^ These assets would be destroyed!
-    }
+<pre><code class="language-move">module 0::example;
+
+public struct Coin has store { value: u64 }
+fun invalid(c1: Coin, c2: Coin) {
+    c1 == c2 // ERROR!
+//  ^^    ^^ These assets would be destroyed!
 }
 </code></pre>
 <p>But, a programmer can <em>always</em> borrow the value first instead of directly comparing the value, and
 reference types have the <a href="./abilities.html"><code>drop</code> ability</a>. For example</p>
-<pre><code class="language-move=">module 0x42::example {
-    public struct Coin has store { value: u64 }
-    fun swap_if_equal(c1: Coin, c2: Coin): (Coin, Coin) {
-        let are_equal = &amp;c1 == c2; // valid, note `c2` is automatically borrowed
-        if (are_equal) (c2, c1) else (c1, c2)
-    }
+<pre><code class="language-move">module 0::example;
+
+public struct Coin has store { value: u64 }
+fun swap_if_equal(c1: Coin, c2: Coin): (Coin, Coin) {
+    let are_equal = &amp;c1 == c2; // valid, note `c2` is automatically borrowed
+    if (are_equal) (c2, c1) else (c1, c2)
 }
 </code></pre>
 <h2 id="avoid-extra-copies"><a class="header" href="#avoid-extra-copies">Avoid Extra Copies</a></h2>
 <p>While a programmer <em>can</em> compare any value whose type has <a href="./abilities.html"><code>drop</code></a>, a programmer
 should often compare by reference to avoid expensive copies.</p>
-<pre><code class="language-move=">let v1: vector&lt;u8&gt; = function_that_returns_vector();
+<pre><code class="language-move">let v1: vector&lt;u8&gt; = function_that_returns_vector();
 let v2: vector&lt;u8&gt; = function_that_returns_vector();
 assert!(copy v1 == copy v2, 42);
 //      ^^^^       ^^^^
@@ -301,7 +301,7 @@ use_two_foos(s1, s2);
 </code></pre>
 <p>This code is perfectly acceptable (assuming <code>Foo</code> has <a href="./abilities.html"><code>drop</code></a>), just not efficient.
 The highlighted copies can be removed and replaced with borrows</p>
-<pre><code class="language-move=">let v1: vector&lt;u8&gt; = function_that_returns_vector();
+<pre><code class="language-move">let v1: vector&lt;u8&gt; = function_that_returns_vector();
 let v2: vector&lt;u8&gt; = function_that_returns_vector();
 assert!(&amp;v1 == &amp;v2, 42);
 //      ^      ^

@@ -195,16 +195,16 @@ relax this behavior by giving the struct <a href="./abilities.html">abilities</a
 or dropped and also to be stored in storage or to define storage schemas.</p>
 <h2 id="defining-structs"><a class="header" href="#defining-structs">Defining Structs</a></h2>
 <p>Structs must be defined inside a module, and the struct's fields can either be named or positional:</p>
-<pre><code class="language-move">module a::m {
-    public struct Foo { x: u64, y: bool }
-    public struct Bar {}
-    public struct Baz { foo: Foo, }
-    //                          ^ note: it is fine to have a trailing comma
+<pre><code class="language-move">module a::m;
 
-    public struct PosFoo(u64, bool)
-    public struct PosBar()
-    public struct PosBaz(Foo)
-}
+public struct Foo { x: u64, y: bool }
+public struct Bar {}
+public struct Baz { foo: Foo, }
+//                          ^ note: it is fine to have a trailing comma
+
+public struct PosFoo(u64, bool)
+public struct PosBar()
+public struct PosBaz(Foo)
 </code></pre>
 <p>Structs cannot be recursive, so the following definitions are invalid:</p>
 <pre><code class="language-move">public struct Foo { x: Foo }
@@ -235,22 +235,22 @@ used to define a storable <a href="./abilities/object.html">object</a>), structs
 <p>The ability declaration can occur either before or after the struct's fields. However, only one or
 the other can be used, and not both. If declared after the struct's fields, the ability declaration
 must be terminated with a semicolon:</p>
-<pre><code class="language-move">module a::m {
-    public struct PreNamedAbilities has copy, drop { x: u64, y: bool }
-    public struct PostNamedAbilities { x: u64, y: bool } has copy, drop;
-    public struct PostNamedAbilitiesInvalid { x: u64, y: bool } has copy, drop
-    //                                                                        ^ ERROR! missing semicolon
+<pre><code class="language-move">module a::m;
 
-    public struct NamedInvalidAbilities has copy { x: u64, y: bool } has drop;
-    //                                                               ^ ERROR! duplicate ability declaration
+public struct PreNamedAbilities has copy, drop { x: u64, y: bool }
+public struct PostNamedAbilities { x: u64, y: bool } has copy, drop;
+public struct PostNamedAbilitiesInvalid { x: u64, y: bool } has copy, drop
+//                                                                        ^ ERROR! missing semicolon
 
-    public struct PrePositionalAbilities has copy, drop (u64, bool)
-    public struct PostPositionalAbilities (u64, bool) has copy, drop;
-    public struct PostPositionalAbilitiesInvalid (u64, bool) has copy, drop
-    //                                                                     ^ ERROR! missing semicolon
-    public struct InvalidAbilities has copy (u64, bool) has drop;
-    //                                                  ^ ERROR! duplicate ability declaration
-}
+public struct NamedInvalidAbilities has copy { x: u64, y: bool } has drop;
+//                                                               ^ ERROR! duplicate ability declaration
+
+public struct PrePositionalAbilities has copy, drop (u64, bool)
+public struct PostPositionalAbilities (u64, bool) has copy, drop;
+public struct PostPositionalAbilitiesInvalid (u64, bool) has copy, drop
+//                                                                     ^ ERROR! missing semicolon
+public struct InvalidAbilities has copy (u64, bool) has drop;
+//                                                  ^ ERROR! duplicate ability declaration
 </code></pre>
 <p>For more details, see the section on
 <a href="./abilities.html#annotating-structs-and-enums">annotating a struct's abilities</a>.</p>
@@ -272,20 +272,20 @@ value for each field.</p>
 be provided. For a struct with positional fields, the order of the fields must match the order of
 the fields in the struct definition, and it must be created using <code>()</code> instead of <code>{}</code> to enclose
 the parameters.</p>
-<pre><code class="language-move">module a::m {
-    public struct Foo has drop { x: u64, y: bool }
-    public struct Baz has drop { foo: Foo }
-    public struct Positional(u64, bool) has drop;
+<pre><code class="language-move">module a::m;
 
-    fun example() {
-        let foo = Foo { x: 0, y: false };
-        let baz = Baz { foo: foo };
-        // Note: positional struct values are created using parentheses and
-        // based on position instead of name.
-        let pos = Positional(0, false);
-        let pos_invalid = Positional(false, 0);
-        //                           ^ ERROR! Fields are out of order and the types don't match.
-    }
+public struct Foo has drop { x: u64, y: bool }
+public struct Baz has drop { foo: Foo }
+public struct Positional(u64, bool) has drop;
+
+fun example() {
+    let foo = Foo { x: 0, y: false };
+    let baz = Baz { foo: foo };
+    // Note: positional struct values are created using parentheses and
+    // based on position instead of name.
+    let pos = Positional(0, false);
+    let pos_invalid = Positional(false, 0);
+    //                           ^ ERROR! Fields are out of order and the types don't match.
 }
 </code></pre>
 <p>For structs with named fields, you can use the following shorthand if you have a local variable with
@@ -298,76 +298,76 @@ let baz = Baz { foo };
 <h3 id="destroying-structs-via-pattern-matching"><a class="header" href="#destroying-structs-via-pattern-matching">Destroying Structs via Pattern Matching</a></h3>
 <p>Struct values can be destroyed by binding or assigning them in patterns using similar syntax to
 constructing them.</p>
-<pre><code class="language-move">module a::m {
-    public struct Foo { x: u64, y: bool }
-    public struct Bar(Foo)
-    public struct Baz {}
-    public struct Qux()
+<pre><code class="language-move">module a::m;
 
-    fun example_destroy_foo() {
-        let foo = Foo { x: 3, y: false };
-        let Foo { x, y: foo_y } = foo;
-        //        ^ shorthand for `x: x`
+public struct Foo { x: u64, y: bool }
+public struct Bar(Foo)
+public struct Baz {}
+public struct Qux()
 
-        // two new bindings
-        //   x: u64 = 3
-        //   foo_y: bool = false
-    }
+fun example_destroy_foo() {
+    let foo = Foo { x: 3, y: false };
+    let Foo { x, y: foo_y } = foo;
+    //        ^ shorthand for `x: x`
 
-    fun example_destroy_foo_wildcard() {
-        let foo = Foo { x: 3, y: false };
-        let Foo { x, y: _ } = foo;
+    // two new bindings
+    //   x: u64 = 3
+    //   foo_y: bool = false
+}
 
-        // only one new binding since y was bound to a wildcard
-        //   x: u64 = 3
-    }
+fun example_destroy_foo_wildcard() {
+    let foo = Foo { x: 3, y: false };
+    let Foo { x, y: _ } = foo;
 
-    fun example_destroy_foo_assignment() {
-        let x: u64;
-        let y: bool;
-        Foo { x, y } = Foo { x: 3, y: false };
+    // only one new binding since y was bound to a wildcard
+    //   x: u64 = 3
+}
 
-        // mutating existing variables x and y
-        //   x = 3, y = false
-    }
+fun example_destroy_foo_assignment() {
+    let x: u64;
+    let y: bool;
+    Foo { x, y } = Foo { x: 3, y: false };
 
-    fun example_foo_ref() {
-        let foo = Foo { x: 3, y: false };
-        let Foo { x, y } = &amp;foo;
+    // mutating existing variables x and y
+    //   x = 3, y = false
+}
 
-        // two new bindings
-        //   x: &amp;u64
-        //   y: &amp;bool
-    }
+fun example_foo_ref() {
+    let foo = Foo { x: 3, y: false };
+    let Foo { x, y } = &amp;foo;
 
-    fun example_foo_ref_mut() {
-        let foo = Foo { x: 3, y: false };
-        let Foo { x, y } = &amp;mut foo;
+    // two new bindings
+    //   x: &amp;u64
+    //   y: &amp;bool
+}
 
-        // two new bindings
-        //   x: &amp;mut u64
-        //   y: &amp;mut bool
-    }
+fun example_foo_ref_mut() {
+    let foo = Foo { x: 3, y: false };
+    let Foo { x, y } = &amp;mut foo;
 
-    fun example_destroy_bar() {
-        let bar = Bar(Foo { x: 3, y: false });
-        let Bar(Foo { x, y }) = bar;
-        //            ^ nested pattern
+    // two new bindings
+    //   x: &amp;mut u64
+    //   y: &amp;mut bool
+}
 
-        // two new bindings
-        //   x: u64 = 3
-        //   y: bool = false
-    }
+fun example_destroy_bar() {
+    let bar = Bar(Foo { x: 3, y: false });
+    let Bar(Foo { x, y }) = bar;
+    //            ^ nested pattern
 
-    fun example_destroy_baz() {
-        let baz = Baz {};
-        let Baz {} = baz;
-    }
+    // two new bindings
+    //   x: u64 = 3
+    //   y: bool = false
+}
 
-    fun example_destroy_qux() {
-        let qux = Qux();
-        let Qux() = qux;
-    }
+fun example_destroy_baz() {
+    let baz = Baz {};
+    let Baz {} = baz;
+}
+
+fun example_destroy_qux() {
+    let qux = Qux();
+    let Qux() = qux;
 }
 </code></pre>
 <h3 id="accessing-struct-fields"><a class="header" href="#accessing-struct-fields">Accessing Struct Fields</a></h3>
@@ -506,37 +506,37 @@ module a::n {
 ephemeral. This means they cannot be copied or dropped. This property can be very useful when
 modeling real world assets like money, as you do not want money to be duplicated or get lost in
 circulation.</p>
-<pre><code class="language-move">module a::m {
-    public struct Foo { x: u64 }
+<pre><code class="language-move">module a::m;
 
-    public fun copying() {
-        let foo = Foo { x: 100 };
-        let foo_copy = copy foo; // ERROR! 'copy'-ing requires the 'copy' ability
-        let foo_ref = &amp;foo;
-        let another_copy = *foo_ref // ERROR! dereference requires the 'copy' ability
-    }
+public struct Foo { x: u64 }
 
-    public fun destroying_1() {
-        let foo = Foo { x: 100 };
+public fun copying() {
+    let foo = Foo { x: 100 };
+    let foo_copy = copy foo; // ERROR! 'copy'-ing requires the 'copy' ability
+    let foo_ref = &amp;foo;
+    let another_copy = *foo_ref // ERROR! dereference requires the 'copy' ability
+}
 
-        // error! when the function returns, foo still contains a value.
-        // This destruction requires the 'drop' ability
-    }
+public fun destroying_1() {
+    let foo = Foo { x: 100 };
 
-    public fun destroying_2(f: &amp;mut Foo) {
-        *f = Foo { x: 100 } // error!
-                            // destroying the old value via a write requires the 'drop' ability
-    }
+    // error! when the function returns, foo still contains a value.
+    // This destruction requires the 'drop' ability
+}
+
+public fun destroying_2(f: &amp;mut Foo) {
+    *f = Foo { x: 100 } // error!
+                        // destroying the old value via a write requires the 'drop' ability
 }
 </code></pre>
 <p>To fix the example <code>fun destroying_1</code>, you would need to manually &quot;unpack&quot; the value:</p>
-<pre><code class="language-move">module a::m {
-    public struct Foo { x: u64 }
+<pre><code class="language-move">module a::m;
 
-    public fun destroying_1_fixed() {
-        let foo = Foo { x: 100 };
-        let Foo { x: _ } = foo;
-    }
+public struct Foo { x: u64 }
+
+public fun destroying_1_fixed() {
+    let foo = Foo { x: 100 };
+    let Foo { x: _ } = foo;
 }
 </code></pre>
 <p>Recall that you are only able to deconstruct a struct within the module in which it is defined. This
@@ -544,20 +544,20 @@ can be leveraged to enforce certain invariants in a system, for example, conserv
 <p>If on the other hand, your struct does not represent something valuable, you can add the abilities
 <code>copy</code> and <code>drop</code> to get a struct value that might feel more familiar from other programming
 languages:</p>
-<pre><code class="language-move">module a::m {
-    public struct Foo has copy, drop { x: u64 }
+<pre><code class="language-move">module a::m;
 
-    public fun run() {
-        let foo = Foo { x: 100 };
-        let foo_copy = foo;
-        //             ^ this code copies foo,
-        //             whereas `let x = move foo` would move foo
+public struct Foo has copy, drop { x: u64 }
 
-        let x = foo.x;            // x = 100
-        let x_copy = foo_copy.x;  // x = 100
+public fun run() {
+    let foo = Foo { x: 100 };
+    let foo_copy = foo;
+    //             ^ this code copies foo,
+    //             whereas `let x = move foo` would move foo
 
-        // both foo and foo_copy are implicitly discarded when the function returns
-    }
+    let x = foo.x;            // x = 100
+    let x_copy = foo_copy.x;  // x = 100
+
+    // both foo and foo_copy are implicitly discarded when the function returns
 }
 </code></pre>
 <h2 id="storage"><a class="header" href="#storage">Storage</a></h2>

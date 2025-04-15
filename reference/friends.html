@@ -213,11 +213,10 @@ alias is introduced via the <code>use</code> statement.</p>
 <p>A module may have multiple friend declarations, and the union of all the friend modules forms the
 friend list. In the example below, both <code>0x42::B</code> and <code>0x42::C</code> are considered as friends of
 <code>0x42::A</code>.</p>
-<pre><code class="language-move">module 0x42::a {
+<pre><code class="language-move">module 0x42::a;
 
-    friend 0x42::b;
-    friend 0x42::c;
-}
+friend 0x42::b;
+friend 0x42::c;
 </code></pre>
 <p>Unlike <code>use</code> statements, <code>friend</code> can only be declared in the module scope and not in the expression
 block scope. <code>friend</code> declarations may be located anywhere a top-level construct (e.g., <code>use</code>,
