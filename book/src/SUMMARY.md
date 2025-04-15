@@ -68,6 +68,7 @@
   - [Option](./move-basics/option.md)
   - [String](./move-basics/string.md)
   - [Control Flow](./move-basics/control-flow.md)
+  - [Enums and Match]() <!-- ./move-basics/) -->
   - [Constants](./move-basics/constants.md)
   - [Aborting Execution](./move-basics/assert-and-abort.md)
   - [Functions](./move-basics/function.md)
@@ -78,6 +79,7 @@
   - [References](./move-basics/references.md)
   - [Generics](./move-basics/generics.md)
   - [Type Reflection](./move-basics/type-reflection.md)
+  - [Macros: Introduction]() <!-- (./move-basics/macros.md) -->
   - [Testing](./move-basics/testing.md)
 - [Object Model](./object/README.md) -pattern
   - [Language for Digital Assets](./object/digital-assets.md)

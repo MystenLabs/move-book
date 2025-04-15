@@ -30,17 +30,18 @@ that a single address is 32 bytes), it needs to be joined dynamically either in 
 in a Move function. Standard functions like `vector::append()` can join two vectors of ~16KB
 resulting in a ~32KB of data as a single value.
 
-## Maximum Number of Objects created
+## Maximum Number of Objects (and dynamic fields) created
 
 The maximum number of objects that can be created in a single transaction is 2048. If a transaction
 attempts to create more than 2048 objects, it will be rejected by the network. This also affects
 [dynamic fields](./../programmability/dynamic-fields.md), as both the key and the value are objects.
-So the maximum number of dynamic fields that can be created in a single transaction is 1024.
+So the maximum number of [dynamic fields](./../programmability/dynamic-fields.md) that can be
+created in a single transaction is 1000. The limitation applies to dynamic object fields as well.
 
-## Maximum Number of Dynamic Fields created
+## Maximum Number of Dynamic Fields accessed
 
-The maximum number of dynamic fields that can be created in a single object is 1024. If an object
-attempts to create more than 1024 dynamic fields, it will be rejected by the network.
+The maximum number of dynamic fields that can be accessed in a single transaction is 1000. If a
+transaction attempts to access more than 1000 dynamic fields, it will be rejected by the network.
 
 ## Maximum Number of Events
 

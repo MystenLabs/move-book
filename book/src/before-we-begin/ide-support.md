@@ -11,15 +11,17 @@ features. Whatever IDE you choose, you'll need to use the terminal to run the
 
 - [VSCode](https://code.visualstudio.com/) is a free and open source IDE from Microsoft.
 - [Move (Extension)](https://marketplace.visualstudio.com/items?itemName=mysten.move) is a language
-  server extension for Move maintained by [MystenLabs](https://mystenlabs.com).
+  server extension for Move maintained by [Mysten Labs](https://mystenlabs.com).
+- [Move Formatter](https://marketplace.visualstudio.com/items?itemName=mysten.prettier-move) - code
+  formatter for Move, developed and maintaned by [Mysten Labs](https://mystenlabs.com).
 - [Move Syntax](https://marketplace.visualstudio.com/items?itemName=damirka.move-syntax) a simple
   syntax highlighting extension for Move by [Damir Shamanaev](https://github.com/damirka/).
 
 ## IntelliJ IDEA
 
 - [IntelliJ IDEA](https://www.jetbrains.com/idea/) is a commercial IDE from JetBrains.
-- [Move Language Plugin](https://plugins.jetbrains.com/plugin/23301-sui-move-language) provides a Move
-  on Sui language extension for IntelliJ IDEA by [MoveFuns](https://movefuns.org/).
+- [Move Language Plugin](https://plugins.jetbrains.com/plugin/23301-sui-move-language) provides a
+  Move on Sui language extension for IntelliJ IDEA by [MoveFuns](https://movefuns.org/).
 
 ## Emacs
 
@@ -29,10 +31,10 @@ features. Whatever IDE you choose, you'll need to use the terminal to run the
 
 ## Zed
 
-- [Zed](https://zed.dev/) is a next-generation code editor designed for high-performance collaboration
-  with humans and AI.
-- [Move](https://github.com/Tzal3x/move-zed-extension) is a language server extension for
-  Move maintained by [Tzal3x](https://github.com/Tzal3x).
+- [Zed](https://zed.dev/) is a next-generation code editor designed for high-performance
+  collaboration with humans and AI.
+- [Move](https://github.com/Tzal3x/move-zed-extension) is a language server extension for Move
+  maintained by [Tzal3x](https://github.com/Tzal3x).
 
 ## Github Codespaces
 
@@ -42,3 +44,12 @@ VSCode experience.
 - [Github Codespaces](https://github.com/features/codespaces)
 - [Move Syntax](https://marketplace.visualstudio.com/items?itemName=damirka.move-syntax) is also
   available in the extensions marketplace.
+- [Move Formatter](https://marketplace.visualstudio.com/items?itemName=mysten.prettier-move) is also
+  available in the extensions marketplace.
+
+## Other (CLI)
+
+Some of the tools listed above have CLI-supported versions.
+
+- [prettier-plugin-move](https://www.npmjs.com/package/@mysten/prettier-plugin-move) contains the
+  TypeScript package for the Prettier@v3 plugin as well as the binary to run it in a terminal
