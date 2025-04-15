@@ -169,8 +169,8 @@ public fun rotate_three<T>(v: &mut vector<T>, i: u64, j: u64, k: u64) {
     assert!(j < n, EIndexOutOfBounds);
     assert!(k < n, EIndexOutOfBounds);
 
-    vector::swap(v, i, k);
-    vector::swap(v, j, k);
+    v.swap(i, k);
+    v.swap(j, k);
 }
 
 public fun remove_twice<T>(v: &mut vector<T>, i: u64, j: u64): (T, T) {
@@ -180,7 +180,7 @@ public fun remove_twice<T>(v: &mut vector<T>, i: u64, j: u64): (T, T) {
     assert!(j < n, EIndexOutOfBounds);
     assert!(i > j, EIndexOutOfBounds);
 
-    (vector::remove<T>(v, i), vector::remove<T>(v, j))
+    (v.remove(i), v.remove(j))
 }
 ```
 
