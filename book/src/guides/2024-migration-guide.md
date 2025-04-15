@@ -15,7 +15,9 @@ in the `move` file using the `edition` keyword. Currently, the only available ed
 `2024.beta`.
 
 ```ini
-edition = "2024.beta";
+edition = "2024"
+# alternatively, for new features:
+edition = "2024.beta"
 ```
 
 ## Migration Tool

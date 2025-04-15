@@ -41,9 +41,10 @@ Another module defined in the same package can import the first module using the
 {{#include ../../../packages/samples/sources/move-basics/importing-modules-two.move:module_two}}
 ```
 
-> Reminder: Any item (struct, function, constant, etc.) that you want to import from another module
-> must be marked with the `public` keyword to make it accessible outside its defining module. For example,
-> the `Character` struct and the `new` function in `module_one` are marked public so they can be used in `module_two`.
+> Note: Any item (struct, function, constant, etc.) that you want to import from another module must
+> be marked with the `public` (or `public(package)` - see [visibility modifiers](./visibility.md))
+> keyword to make it accessible outside its defining module. For example, the `Character` struct and
+> the `new` function in `module_one` are marked public so they can be used in `module_two`.
 
 ## Importing Members
 
@@ -57,8 +58,8 @@ add the member name after the module path.
 
 ## Grouping Imports
 
-Imports can be grouped into a single `use` statement using curly braces `{}`. This allows for cleaner
-and more organized code when importing multiple members from the same module or package.
+Imports can be grouped into a single `use` statement using curly braces `{}`. This allows for
+cleaner and more organized code when importing multiple members from the same module or package.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/importing-modules-grouped.move:grouped}}
@@ -89,8 +90,8 @@ rename the imported member.
 
 ## Adding an External Dependency
 
-Move packages can depend on other packages; the dependencies are listed in the [Package
-Manifest](./../concepts/manifest.md) file called `Move.toml`.
+Move packages can depend on other packages; the dependencies are listed in the
+[Package Manifest](./../concepts/manifest.md) file called `Move.toml`.
 
 Package dependencies are defined in the [Package Manifest](./../concepts/manifest.md) as follows:
 
@@ -100,28 +101,28 @@ Example = { git = "https://github.com/Example/example.git", subdir = "path/to/pa
 Local = { local = "../my_other_package" }
 ```
 
-The `dependencies` section contains an entry for each package dependency. The key of the entry
-is the name of the package (`Example` or `Local` in the example), and the value is either a git import
+The `dependencies` section contains an entry for each package dependency. The key of the entry is
+the name of the package (`Example` or `Local` in the example), and the value is either a git import
 table or a local path. The git import contains the URL of the package, the subdirectory where the
-package is located, and the revision of the package. The local path is a relative path to the
-qa package directory.
+package is located, and the revision of the package. The local path is a relative path to the qa
+package directory.
 
 If you add a dependency, all of its dependencies also become available to your package.
 
 If a dependency is added to the `Move.toml` file, the compiler will automatically fetch (and later
 refetch) the dependencies when building the package.
 
-> Starting with version 1.45 of the sui CLI, the system packages are
-> automatically included as dependencies for all packages if they are not present in `Move.toml`.
-> Therefore, `MoveStdlib`, `Sui`, `System`, `Bridge`, and `Deepbook` are all available without
-> an explicit import.
+> Starting with version 1.45 of the sui CLI, the system packages are automatically included as
+> dependencies for all packages if they are not present in `Move.toml`. Therefore, `MoveStdlib`,
+> `Sui`, `System`, `Bridge`, and `Deepbook` are all available without an explicit import.
 
 ## Importing a Module from Another Package
 
-Normally, packages define their addresses in the `[addresses]` section. You can use aliases
-instead of full addresses. For example, instead of using `0x2::coin` to reference the Sui `coin` module,
-you can use `sui::coin`. The `sui` alias is defined in the Sui Framework package's manifest. Similarly, the `std`
-alias is defined in the Standard Library package and can be used instead of `0x1` to access standard library modules.
+Normally, packages define their addresses in the `[addresses]` section. You can use aliases instead
+of full addresses. For example, instead of using `0x2::coin` to reference the Sui `coin` module, you
+can use `sui::coin`. The `sui` alias is defined in the Sui Framework package's manifest. Similarly,
+the `std` alias is defined in the Standard Library package and can be used instead of `0x1` to
+access standard library modules.
 
 To import a module from another package, use the `use` keyword followed by the module path. The
 module path consists of the package address (or alias) and the module name, separated by `::`.
@@ -130,5 +131,5 @@ module path consists of the package address (or alias) and the module name, sepa
 {{#include ../../../packages/samples/sources/move-basics/importing-modules-external.move:external}}
 ```
 
-> Note: Module address names come from the `[addresses]` section of the manifest file (`Move.toml`), not the
-> names used in the `[dependencies]` section.
+> Note: Module address names come from the `[addresses]` section of the manifest file (`Move.toml`),
+> not the names used in the `[dependencies]` section.
