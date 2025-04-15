@@ -35,11 +35,10 @@ friend list. In the example below, both `0x42::B` and `0x42::C` are considered a
 `0x42::A`.
 
 ```move
-module 0x42::a {
+module 0x42::a;
 
-    friend 0x42::b;
-    friend 0x42::c;
-}
+friend 0x42::b;
+friend 0x42::c;
 ```
 
 Unlike `use` statements, `friend` can only be declared in the module scope and not in the expression

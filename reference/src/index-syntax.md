@@ -15,24 +15,22 @@ write a small library using `index` syntax annotations on the `borrow` and `borr
 follows:
 
 ```move
-module matrix {
+module matrix;
 
-    public struct Matrix<T> { v: vector<vector<T>> }
+public struct Matrix<T> { v: vector<vector<T>> }
 
-    #[syntax(index)]
-    public fun borrow<T>(s: &Matrix<T>, i: u64, j: u64): &T {
-        vector::borrow(vector::borrow(&s.v, i), j)
-    }
+#[syntax(index)]
+public fun borrow<T>(s: &Matrix<T>, i: u64, j: u64): &T {
+    vector::borrow(vector::borrow(&s.v, i), j)
+}
 
-    #[syntax(index)]
-    public fun borrow_mut<T>(s: &mut Matrix<T>, i: u64, j: u64): &mut T {
-        vector::borrow_mut(vector::borrow_mut(&mut s.v, i), j)
-    }
+#[syntax(index)]
+public fun borrow_mut<T>(s: &mut Matrix<T>, i: u64, j: u64): &mut T {
+    vector::borrow_mut(vector::borrow_mut(&mut s.v, i), j)
+}
 
-    public fun make_matrix<T>(v: vector<vector<T>>):  Matrix<T> {
-        Matrix { v }
-    }
-
+public fun make_matrix<T>(v: vector<vector<T>>):  Matrix<T> {
+    Matrix { v }
 }
 ```
 

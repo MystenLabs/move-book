@@ -30,17 +30,17 @@ Enums must be defined in a module, an enum must contain at least one variant, an
 enum can either have no fields, positional fields, or named fields. Here are some examples of each:
 
 ```move
-module a::m {
-    public enum Foo has drop {
-        VariantWithNoFields,
-        //                 ^ note: it is fine to have a trailing comma after variant declarations
-    }
-    public enum Bar has copy, drop {
-        VariantWithPositionalFields(u64, bool),
-    }
-    public enum Baz has drop {
-        VariantWithNamedFields { x: u64, y: bool, z: Bar },
-    }
+module a::m;
+
+public enum Foo has drop {
+    VariantWithNoFields,
+    //                 ^ note: it is fine to have a trailing comma after variant declarations
+}
+public enum Bar has copy, drop {
+    VariantWithPositionalFields(u64, bool),
+}
+public enum Baz has drop {
+    VariantWithNamedFields { x: u64, y: bool, z: Bar },
 }
 ```
 
@@ -50,34 +50,34 @@ allowed because they would be recursive in at least one variant.
 Incorrect:
 
 ```move
-module a::m {
-    public enum Foo {
-        Recursive(Foo),
-        //        ^ error: recursive enum variant
-    }
-    public enum List {
-        Nil,
-        Cons { head: u64, tail: List },
-        //                      ^ error: recursive enum variant
-    }
-    public enum BTree<T> {
-        Leaf(T),
-        Node { left: BTree<T>, right: BTree<T> },
-        //           ^ error: recursive enum variant
-    }
+module a::m;
 
-    // Mutually recursive enums are also not allowed
-    public enum MutuallyRecursiveA {
-        Base,
-        Other(MutuallyRecursiveB),
-        //    ^^^^^^^^^^^^^^^^^^ error: recursive enum variant
-    }
+public enum Foo {
+    Recursive(Foo),
+    //        ^ error: recursive enum variant
+}
+public enum List {
+    Nil,
+    Cons { head: u64, tail: List },
+    //                      ^ error: recursive enum variant
+}
+public enum BTree<T> {
+    Leaf(T),
+    Node { left: BTree<T>, right: BTree<T> },
+    //           ^ error: recursive enum variant
+}
 
-    public enum MutuallyRecursiveB {
-        Base,
-        Other(MutuallyRecursiveA),
-        //    ^^^^^^^^^^^^^^^^^^ error: recursive enum variant
-    }
+// Mutually recursive enums are also not allowed
+public enum MutuallyRecursiveA {
+    Base,
+    Other(MutuallyRecursiveB),
+    //    ^^^^^^^^^^^^^^^^^^ error: recursive enum variant
+}
+
+public enum MutuallyRecursiveB {
+    Base,
+    Other(MutuallyRecursiveA),
+    //    ^^^^^^^^^^^^^^^^^^ error: recursive enum variant
 }
 ```
 
@@ -95,10 +95,10 @@ in a non-linear or non-ephemeral way -- i.e., copied, dropped, or stored in an
 annotating them with `has <ability>`:
 
 ```move
-module a::m {
-    public enum Foo has copy, drop {
-        VariantWithNoFields,
-    }
+module a::m;
+
+public enum Foo has copy, drop {
+    VariantWithNoFields,
 }
 ```
 
@@ -107,15 +107,15 @@ the other can be used, and not both. If declared after the variants, the ability
 terminated with a semicolon:
 
 ```move
-module a::m {
-    public enum PreNamedAbilities has copy, drop { Variant }
-    public enum PostNamedAbilities { Variant } has copy, drop;
-    public enum PostNamedAbilitiesInvalid { Variant } has copy, drop
-    //                                                              ^ ERROR! missing semicolon
+module a::m;
 
-    public enum NamedInvalidAbilities has copy { Variant } has drop;
-    //                                                     ^ ERROR! duplicate ability declaration
-}
+public enum PreNamedAbilities has copy, drop { Variant }
+public enum PostNamedAbilities { Variant } has copy, drop;
+public enum PostNamedAbilitiesInvalid { Variant } has copy, drop
+//                                                              ^ ERROR! missing semicolon
+
+public enum NamedInvalidAbilities has copy { Variant } has drop;
+//                                                     ^ ERROR! duplicate ability declaration
 ```
 
 For more details, see the section on
@@ -150,26 +150,26 @@ created using `()` instead of `{}`. If the variant has no fields, the variant na
 no `()` or `{}` needs to be used.
 
 ```move
-module a::m {
-    public enum Action has drop {
-        Stop,
-        Pause { duration: u32 },
-        MoveTo { x: u64, y: u64 },
-        Jump(u64),
-    }
-    public enum Other has drop {
-        Stop(u64),
-    }
+module a::m;
 
-    fun example() {
-        // Note: The `Stop` variant of `Action` doesn't have fields so no parentheses or curlies are needed.
-        let stop = Action::Stop;
-        let pause = Action::Pause { duration: 10 };
-        let move_to = Action::MoveTo { x: 10, y: 20 };
-        let jump = Action::Jump(10);
-        // Note: The `Stop` variant of `Other` does have positional fields so we need to supply them.
-        let other_stop = Other::Stop(10);
-    }
+public enum Action has drop {
+    Stop,
+    Pause { duration: u32 },
+    MoveTo { x: u64, y: u64 },
+    Jump(u64),
+}
+public enum Other has drop {
+    Stop(u64),
+}
+
+fun example() {
+    // Note: The `Stop` variant of `Action` doesn't have fields so no parentheses or curlies are needed.
+    let stop = Action::Stop;
+    let pause = Action::Pause { duration: 10 };
+    let move_to = Action::MoveTo { x: 10, y: 20 };
+    let jump = Action::Jump(10);
+    // Note: The `Stop` variant of `Other` does have positional fields so we need to supply them.
+    let other_stop = Other::Stop(10);
 }
 ```
 
@@ -209,41 +209,40 @@ _before_ the expression is executed. Guards are specified by the `if` keyword fo
 expression that must evaluate to a boolean value before the `=>`.
 
 ```move
-module a::m {
-    public enum Action has drop {
-        Stop,
-        Pause { duration: u32 },
-        MoveTo { x: u64, y: u64 },
-        Jump(u64),
-    }
+module a::m;
 
-    public struct GameState {
-        // Fields containing a game state
-        character_x: u64,
-        character_y: u64,
-        character_height: u64,
-        // ...
-    }
-
-    fun perform_action(stat: &mut GameState, action: Action) {
-        match (action) {
-            // Handle the `Stop` variant
-            Action::Stop => state.stop(),
-            // Handle the `Pause` variant
-            // If the duration is 0, do nothing
-            Action::Pause { duration: 0 } => (),
-            Action::Pause { duration } => state.pause(duration),
-            // Handle the `MoveTo` variant
-            Action::MoveTo { x, y } => state.move_to(x, y),
-            // Handle the `Jump` variant
-            // if the game disallows jumps then do nothing
-            Action::Jump(_) if (state.jumps_not_allowed()) => (),
-            // otherwise, jump to the specified height
-            Action::Jump(height) => state.jump(height),
-        }
-    }
+public enum Action has drop {
+    Stop,
+    Pause { duration: u32 },
+    MoveTo { x: u64, y: u64 },
+    Jump(u64),
 }
 
+public struct GameState {
+    // Fields containing a game state
+    character_x: u64,
+    character_y: u64,
+    character_height: u64,
+    // ...
+}
+
+fun perform_action(stat: &mut GameState, action: Action) {
+    match (action) {
+        // Handle the `Stop` variant
+        Action::Stop => state.stop(),
+        // Handle the `Pause` variant
+        // If the duration is 0, do nothing
+        Action::Pause { duration: 0 } => (),
+        Action::Pause { duration } => state.pause(duration),
+        // Handle the `MoveTo` variant
+        Action::MoveTo { x, y } => state.move_to(x, y),
+        // Handle the `Jump` variant
+        // if the game disallows jumps then do nothing
+        Action::Jump(_) if (state.jumps_not_allowed()) => (),
+        // otherwise, jump to the specified height
+        Action::Jump(height) => state.jump(height),
+    }
+}
 ```
 
 To see how to pattern match on an enum to update values within it mutably, let's take the following
@@ -252,27 +251,26 @@ functions, one that only increments the value of the first variant, and another 
 the value of the second variant:
 
 ```move
-module a::m {
-    public enum SimpleEnum {
-        Variant1(u64),
-        Variant2(u64),
-    }
+module a::m;
 
-    public fun incr_enum_variant1(simple_enum: &mut SimpleEnum) {
-        match (simple_enum) {
-            SimpleEnum::Variant1(mut value) => *value += 1,
-            _ => (),
-        }
-    }
+public enum SimpleEnum {
+    Variant1(u64),
+    Variant2(u64),
+}
 
-    public fun incr_enum_variant2(simple_enum: &mut SimpleEnum) {
-        match (simple_enum) {
-            SimpleEnum::Variant2(mut value) => *value += 1,
-            _ => (),
-        }
+public fun incr_enum_variant1(simple_enum: &mut SimpleEnum) {
+    match (simple_enum) {
+        SimpleEnum::Variant1(mut value) => *value += 1,
+        _ => (),
     }
 }
 
+public fun incr_enum_variant2(simple_enum: &mut SimpleEnum) {
+    match (simple_enum) {
+        SimpleEnum::Variant2(mut value) => *value += 1,
+        _ => (),
+    }
+}
 ```
 
 Now, if we have a value of `SimpleEnum` we can use the functions to increment the value of this
@@ -295,14 +293,14 @@ match statement.
 As an example, consider the following code:
 
 ```move
-module a::m {
-    public enum X { Variant { x: u64 } }
+module a::m;
 
-    public fun bad(x: X) {
-        match (x) {
-            _ => (),
-           // ^ ERROR! value of type `X` is not consumed or destructured in this match arm
-        }
+public enum X { Variant { x: u64 } }
+
+public fun bad(x: X) {
+    match (x) {
+        _ => (),
+    // ^ ERROR! value of type `X` is not consumed or destructured in this match arm
     }
 }
 ```
@@ -311,14 +309,14 @@ To properly handle this, you will need to destructure `X` and all its variants i
 arm(s):
 
 ```move
-module a::m {
-    public enum X { Variant { x: u64 } }
+module a::m;
 
-    public fun good(x: X) {
-        match (x) {
-            // OK! Compiles since the value is destructured
-            X::Variant { x: _ } => (),
-        }
+public enum X { Variant { x: u64 } }
+
+public fun good(x: X) {
+    match (x) {
+        // OK! Compiles since the value is destructured
+        X::Variant { x: _ } => (),
     }
 }
 ```
@@ -329,15 +327,15 @@ As long as the enum has the `drop` ability, you can overwrite the value of an en
 of the same type just as you might with other values in Move.
 
 ```move
-module a::m {
-    public enum X has drop {
-        A(u64),
-        B(u64),
-    }
+module a::m;
 
-    public fun overwrite_enum(x: &mut X) {
-        *x = X::A(10);
-    }
+public enum X has drop {
+    A(u64),
+    B(u64),
+}
+
+public fun overwrite_enum(x: &mut X) {
+    *x = X::A(10);
 }
 ```
 

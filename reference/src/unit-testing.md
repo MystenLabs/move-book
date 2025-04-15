@@ -285,43 +285,42 @@ Next add the following module under the `sources` directory:
 
 ```move
 // filename: sources/my_module.move
-module test_example::my_module {
+module test_example::my_module;
 
-    public struct Wrapper(u64)
+public struct Wrapper(u64)
 
-    const ECoinIsZero: u64 = 0;
+const ECoinIsZero: u64 = 0;
 
-    public fun make_sure_non_zero_coin(coin: Wrapper): Wrapper {
-        assert!(coin.0 > 0, ECoinIsZero);
-        coin
-    }
+public fun make_sure_non_zero_coin(coin: Wrapper): Wrapper {
+    assert!(coin.0 > 0, ECoinIsZero);
+    coin
+}
 
-    #[test]
-    fun make_sure_non_zero_coin_passes() {
-        let coin = Wrapper(1);
-        let Wrapper(_) = make_sure_non_zero_coin(coin);
-    }
+#[test]
+fun make_sure_non_zero_coin_passes() {
+    let coin = Wrapper(1);
+    let Wrapper(_) = make_sure_non_zero_coin(coin);
+}
 
-    #[test]
-    // Or #[expected_failure] if we don't care about the abort code
-    #[expected_failure(abort_code = ECoinIsZero)]
-    fun make_sure_zero_coin_fails() {
-        let coin = Wrapper(0);
-        let Wrapper(_) = make_sure_non_zero_coin(coin);
-    }
+#[test]
+// Or #[expected_failure] if we don't care about the abort code
+#[expected_failure(abort_code = ECoinIsZero)]
+fun make_sure_zero_coin_fails() {
+    let coin = Wrapper(0);
+    let Wrapper(_) = make_sure_non_zero_coin(coin);
+}
 
-    #[test_only] // test only helper function
-    fun make_coin_zero(coin: &mut Wrapper) {
-        coin.0 = 0;
-    }
+#[test_only] // test only helper function
+fun make_coin_zero(coin: &mut Wrapper) {
+    coin.0 = 0;
+}
 
-    #[test]
-    #[expected_failure(abort_code = ECoinIsZero)]
-    fun make_sure_zero_coin_fails2() {
-        let mut coin = Wrapper(10);
-        coin.make_coin_zero();
-        let Wrapper(_) = make_sure_non_zero_coin(coin);
-    }
+#[test]
+#[expected_failure(abort_code = ECoinIsZero)]
+fun make_sure_zero_coin_fails2() {
+    let mut coin = Wrapper(10);
+    coin.make_coin_zero();
+    let Wrapper(_) = make_sure_non_zero_coin(coin);
 }
 ```
 

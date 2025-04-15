@@ -7,9 +7,11 @@ More information on [`return` can be found in the linked section](./functions.md
 
 ## `abort`
 
-`abort` is an expression that takes one argument: an **abort code** of type `u64`. For example:
+`abort` is an expression that takes either takes no arguments, or just one - an **abort code** of
+type `u64`. For example:
 
 ```move
+abort
 abort 42
 ```
 
@@ -36,8 +38,8 @@ vector does not have two items
 use std::vector;
 
 fun pop_twice<T>(v: &mut vector<T>): (T, T) {
-    if (vector::length(v) < 2) abort 42;
-    (vector::pop_back(v), vector::pop_back(v))
+    if (v.length() < 2) abort 42;
+    (v.pop_back(), v.pop_back())
 }
 ```
 
@@ -48,9 +50,9 @@ that all numbers in the vector are less than the specified `bound`. And aborts o
 use std::vector;
 fun check_vec(v: &vector<u64>, bound: u64) {
     let i = 0;
-    let n = vector::length(v);
+    let n = v.length();
     while (i < n) {
-        let cur = *vector::borrow(v, i);
+        let cur = v[i];
         if (cur > bound) abort 42;
         i = i + 1;
     }
@@ -80,8 +82,8 @@ rewritten using `assert`
 ```move
 use std::vector;
 fun pop_twice<T>(v: &mut vector<T>): (T, T) {
-    assert!(vector::length(v) >= 2, 42); // Now uses 'assert'
-    (vector::pop_back(v), vector::pop_back(v))
+    assert!(v.length() >= 2, 42); // Now uses 'assert'
+    (v.pop_back(), v.pop_back())
 }
 ```
 
@@ -91,9 +93,9 @@ and
 use std::vector;
 fun check_vec(v: &vector<u64>, bound: u64) {
     let i = 0;
-    let n = vector::length(v);
+    let n = v.length();
     while (i < n) {
-        let cur = *vector::borrow(v, i);
+        let cur = v[i];
         assert!(cur <= bound, 42); // Now uses 'assert'
         i = i + 1;
     }
@@ -152,34 +154,33 @@ This can be useful for having multiple aborts being grouped together inside a mo
 In this example, the module has two separate error codes used in multiple functions
 
 ```move
-module 0x42::example {
+module 0::example;
 
-    use std::vector;
+use std::vector;
 
-    const EEmptyVector: u64 = 0;
-    const EIndexOutOfBounds: u64 = 1;
+const EEmptyVector: u64 = 0;
+const EIndexOutOfBounds: u64 = 1;
 
-    // move i to j, move j to k, move k to i
-    public fun rotate_three<T>(v: &mut vector<T>, i: u64, j: u64, k: u64) {
-        let n = vector::length(v);
-        assert!(n > 0, EEmptyVector);
-        assert!(i < n, EIndexOutOfBounds);
-        assert!(j < n, EIndexOutOfBounds);
-        assert!(k < n, EIndexOutOfBounds);
+// move i to j, move j to k, move k to i
+public fun rotate_three<T>(v: &mut vector<T>, i: u64, j: u64, k: u64) {
+    let n = v.length();
+    assert!(n > 0, EEmptyVector);
+    assert!(i < n, EIndexOutOfBounds);
+    assert!(j < n, EIndexOutOfBounds);
+    assert!(k < n, EIndexOutOfBounds);
 
-        vector::swap(v, i, k);
-        vector::swap(v, j, k);
-    }
+    v.swap(i, k);
+    v.swap(j, k);
+}
 
-    public fun remove_twice<T>(v: &mut vector<T>, i: u64, j: u64): (T, T) {
-        let n = vector::length(v);
-        assert!(n > 0, EEmptyVector);
-        assert!(i < n, EIndexOutOfBounds);
-        assert!(j < n, EIndexOutOfBounds);
-        assert!(i > j, EIndexOutOfBounds);
+public fun remove_twice<T>(v: &mut vector<T>, i: u64, j: u64): (T, T) {
+    let n = v.length();
+    assert!(n > 0, EEmptyVector);
+    assert!(i < n, EIndexOutOfBounds);
+    assert!(j < n, EIndexOutOfBounds);
+    assert!(i > j, EIndexOutOfBounds);
 
-        (vector::remove<T>(v, i), vector::remove<T>(v, j))
-    }
+    (v.remove(i), v.remove(j))
 }
 ```
 

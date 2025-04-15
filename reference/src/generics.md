@@ -124,15 +124,14 @@ Note: when the compiler is unable to infer the types, you'll need annotate them 
 scenario is to call a function with type parameters appearing only at return positions.
 
 ```move
-module a::m {
+module a::m;
 
-    fun foo() {
-        let v = vector[]; // ERROR!
-        //            ^ The compiler cannot figure out the element type, since it is never used
+fun foo() {
+    let v = vector[]; // ERROR!
+    //            ^ The compiler cannot figure out the element type, since it is never used
 
-        let v = vector<u64>[];
-        //            ^~~~~ Must annotate manually in this case.
-    }
+    let v = vector<u64>[];
+    //            ^~~~~ Must annotate manually in this case.
 }
 ```
 
@@ -142,13 +141,13 @@ type inference cannot infer the type.
 However, the compiler will be able to infer the type if that value is used later in that function:
 
 ```move
-module a::m {
-    fun foo() {
-        let v = vector[];
-        //            ^ <u64> is inferred
-        vector::push_back(&mut v, 42);
-        //               ^ <u64> is inferred
-    }
+module a::m;
+
+fun foo() {
+    let v = vector[];
+    //            ^ <u64> is inferred
+    vector::push_back(&mut v, 42);
+    //               ^ <u64> is inferred
 }
 ```
 
@@ -222,30 +221,30 @@ public struct Foo<T> {
 This can be convenient when modeling certain concepts. Here is an example:
 
 ```move
-module a::m {
-    // Currency Specifiers
-    public struct A {}
-    public struct B {}
+module a::m;
 
-    // A generic coin type that can be instantiated using a currency
-    // specifier type.
-    //   e.g. Coin<A>, Coin<B> etc.
-    public struct Coin<Currency> has store {
-        value: u64
-    }
+// Currency Specifiers
+public struct A {}
+public struct B {}
 
-    // Write code generically about all currencies
-    public fun mint_generic<Currency>(value: u64): Coin<Currency> {
-        Coin { value }
-    }
+// A generic coin type that can be instantiated using a currency
+// specifier type.
+//   e.g. Coin<A>, Coin<B> etc.
+public struct Coin<Currency> has store {
+    value: u64
+}
 
-    // Write code concretely about one currency
-    public fun mint_a(value: u64): Coin<A> {
-        mint_generic(value)
-    }
-    public fun mint_b(value: u64): Coin<B> {
-        mint_generic(value)
-    }
+// Write code generically about all currencies
+public fun mint_generic<Currency>(value: u64): Coin<Currency> {
+    Coin { value }
+}
+
+// Write code concretely about one currency
+public fun mint_a(value: u64): Coin<A> {
+    mint_generic(value)
+}
+public fun mint_b(value: u64): Coin<B> {
+    mint_generic(value)
 }
 ```
 
@@ -472,57 +471,57 @@ This restriction might be relaxed in the future, but for now, the following exam
 an idea of what is allowed and what is not.
 
 ```move
-module a::m {
-    public struct A<T> {}
+module a::m;
 
-    // Finitely many types -- allowed.
-    // foo<T> -> foo<T> -> foo<T> -> ... is valid
-    fun foo<T>() {
-        foo<T>();
-    }
+public struct A<T> {}
 
-    // Finitely many types -- allowed.
-    // foo<T> -> foo<A<u64>> -> foo<A<u64>> -> ... is valid
-    fun foo<T>() {
-        foo<A<u64>>();
-    }
+// Finitely many types -- allowed.
+// foo<T> -> foo<T> -> foo<T> -> ... is valid
+fun foo<T>() {
+    foo<T>();
+}
+
+// Finitely many types -- allowed.
+// foo<T> -> foo<A<u64>> -> foo<A<u64>> -> ... is valid
+fun foo<T>() {
+    foo<A<u64>>();
 }
 ```
 
 Not allowed:
 
 ```move
-module a::m {
-    public struct A<T> {}
+module a::m;
 
-    // Infinitely many types -- NOT allowed.
-    // error!
-    // foo<T> -> foo<A<T>> -> foo<A<A<T>>> -> ...
-    fun foo<T>() {
-        foo<Foo<T>>();
-    }
+public struct A<T> {}
+
+// Infinitely many types -- NOT allowed.
+// error!
+// foo<T> -> foo<A<T>> -> foo<A<A<T>>> -> ...
+fun foo<T>() {
+    foo<Foo<T>>();
 }
 ```
 
 And similarly, not allowed:
 
 ```move
-module a::n {
-    public struct A<T> {}
+module a::n;
 
-    // Infinitely many types -- NOT allowed.
-    // error!
-    // foo<T1, T2> -> bar<T2, T1> -> foo<T2, A<T1>>
-    //   -> bar<A<T1>, T2> -> foo<A<T1>, A<T2>>
-    //   -> bar<A<T2>, A<T1>> -> foo<A<T2>, A<A<T1>>>
-    //   -> ...
-    fun foo<T1, T2>() {
-        bar<T2, T1>();
-    }
+public struct A<T> {}
 
-    fun bar<T1, T2> {
-        foo<T1, A<T2>>();
-    }
+// Infinitely many types -- NOT allowed.
+// error!
+// foo<T1, T2> -> bar<T2, T1> -> foo<T2, A<T1>>
+//   -> bar<A<T1>, T2> -> foo<A<T1>, A<T2>>
+//   -> bar<A<T2>, A<T1>> -> foo<A<T2>, A<A<T1>>>
+//   -> ...
+fun foo<T1, T2>() {
+    bar<T2, T1>();
+}
+
+fun bar<T1, T2> {
+    foo<T1, A<T2>>();
 }
 ```
 
@@ -530,14 +529,14 @@ Note, the check for type level recursions is based on a conservative analysis on
 does NOT take control flow or runtime values into account.
 
 ```move
-module a::m {
-    public struct A<T> {}
+module a::m;
 
-    // Infinitely many types -- NOT allowed.
-    // error!
-    fun foo<T>(n: u64) {
-        if (n > 0) foo<A<T>>(n - 1);
-    }
+public struct A<T> {}
+
+// Infinitely many types -- NOT allowed.
+// error!
+fun foo<T>(n: u64) {
+    if (n > 0) foo<A<T>>(n - 1);
 }
 ```
 
