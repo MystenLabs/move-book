@@ -31,7 +31,7 @@ Transactions consist of:
 
 ## Inputs
 
-Transaction inputs are the arguments for the transaction and are split between 3 types:
+Transaction inputs are the arguments for the transaction and are split between 4 types:
 
 - Pure arguments: These are mostly [primitive types](../move-basics/primitive-types.html) with some
   extra additions. A pure argument can be:
@@ -45,13 +45,16 @@ Transaction inputs are the arguments for the transaction and are split between 3
   - [`std::option::Option<T>`](../move-basics/option.html), where `T` is a pure type.
   - [`std::object::ID`](../storage/uid-and-id.html), typically points to an object. See also
     [What is an Object](../object/object-model.html).
-- Object arguments: These are objects or references of objects that the transaction will access. An
-  object argument needs to be either a shared object, a frozen object, or an object that the
-  transaction sender owns, in order for the transaction to be successfull. For more see
+- Owned Object arguments: owned or frozen objects or references of these objects that the
+  transaction will access. For the transaction to be valid, the object must either be owned by the
+  sender or [frozen](../storage/storage-functions.md#freeze). For more see
   [Object Model](../object/index.html).
+- Shared Object arguments: Similar to Owned Object Argument, allows referencing
+  [shared objects](../storage/storage-functions.md#share), most commonly - mutably or immutably.
+  Shared objects can also be taken by value if they are deleted in the transaction.
 - Receiving object argument: a special argument that is used to receive an object transferred to
   another object. We cover this in more detail in the
-  [Transfer to Object](../storage/transfer-to-object.html) section.
+  [Receiving as Object](../storage/transfer-to-object.html) section.
 
 ## Commands
 
