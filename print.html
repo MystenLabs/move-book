@@ -3447,8 +3447,8 @@ fun try_calling_public() {
 </code></pre>
 <p>Unlike some languages, struct fields cannot be made public.</p>
 <h2 id="package-visibility"><a class="header" href="#package-visibility">Package Visibility</a></h2>
-<p>Move 2024 introduces the <em>package visibility</em> modifier. A function with <em>package visibility</em> can be
-called from any module within the same package. It can't be called from other packages.</p>
+<p>A function with <em>package</em> visibility can be called from any module within the same package, but not
+from modules in other packages. In other words, it is <em>internal</em> to the package.</p>
 <pre><code class="language-move">module book::package_visibility;
 
 public(package) fun package_only() { /* ... */ }
@@ -3463,6 +3463,22 @@ fun try_calling_package() {
     package_visibility::package_only();
 }
 </code></pre>
+<h2 id="native-functions"><a class="header" href="#native-functions">Native Functions</a></h2>
+<p>Some functions in the <a href="move-basics/./../programmability/sui-framework.html">framework</a> and
+<a href="move-basics/./standard-library.html">standard library</a> are marked with the <code>native</code> modifier. These functions are
+natively provided by the Move VM and do not have a body in Move source code. To learn more about the
+native modifier, refer to the
+<a href="move-basics//reference/functions.html?highlight=native#native-functions">Move Reference</a>.</p>
+<pre><code class="language-move">module std::type_name;
+
+public native fun get&lt;T&gt;(): TypeName;
+</code></pre>
+<p>This is an example from <code>std::type_name</code>, learn more about this module in the
+<a href="move-basics/./type-reflection.html">reflection chapter</a>.</p>
+<h2 id="further-reading-14"><a class="header" href="#further-reading-14">Further Reading</a></h2>
+<ul>
+<li><a href="move-basics//reference/functions.html#visibility">Visibility</a> in the Move Reference.</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ownership-and-scope"><a class="header" href="#ownership-and-scope">Ownership and Scope</a></h1>
 <p>Every variable in Move has a scope and an owner. The scope is the range of code where the variable
 is valid, and the owner is the scope that this variable belongs to. Once the owner scope ends, the
@@ -3573,7 +3589,7 @@ public fun owner(): u8 {
 ownership. This is useful for types that are small and cheap to copy, such as integers and booleans.
 The Move compiler will automatically copy these types when they are passed to or returned
 from a function, or when they're <em>moved</em> to another scope and then accessed in their original scope.</p>
-<h2 id="further-reading-14"><a class="header" href="#further-reading-14">Further reading</a></h2>
+<h2 id="further-reading-15"><a class="header" href="#further-reading-15">Further reading</a></h2>
 <ul>
 <li><a href="move-basics//reference/variables.html">Local Variables and Scopes</a> in the Move Reference.</li>
 </ul>
@@ -3630,7 +3646,7 @@ for them.</p>
 <li><a href="move-basics/./../move-basics/string.html">String</a></li>
 <li><a href="move-basics/./../move-basics/type-reflection.html#typename">TypeName</a></li>
 </ul>
-<h2 id="further-reading-15"><a class="header" href="#further-reading-15">Further reading</a></h2>
+<h2 id="further-reading-16"><a class="header" href="#further-reading-16">Further reading</a></h2>
 <ul>
 <li><a href="move-basics//reference/abilities.html">Type Abilities</a> in the Move Reference.</li>
 </ul>
@@ -3960,7 +3976,7 @@ fun test_constraints() {
     // let copyable_droppable = CopyableDroppable&lt;NoAbilities&gt; { value: 10 };
 }
 </code></pre>
-<h2 id="further-reading-16"><a class="header" href="#further-reading-16">Further Reading</a></h2>
+<h2 id="further-reading-17"><a class="header" href="#further-reading-17">Further Reading</a></h2>
 <ul>
 <li><a href="move-basics//reference/generics.html">Generics</a> in the Move Reference.</li>
 </ul>
@@ -4007,7 +4023,7 @@ fun test_type_reflection() {
     assert!(module_name == b&quot;type_reflection&quot;.to_ascii_string());
 }
 </code></pre>
-<h2 id="further-reading-17"><a class="header" href="#further-reading-17">Further reading</a></h2>
+<h2 id="further-reading-18"><a class="header" href="#further-reading-18">Further reading</a></h2>
 <p>Type reflection is an important part of the language, and it is a crucial part of some of the more
 advanced patterns.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="testing"><a class="header" href="#testing">Testing</a></h1>
@@ -4112,7 +4128,7 @@ fun test_multiply_by_secret() {
 </code></pre>
 <p>Functions marked with the <code>#[test_only]</code> will be available to the test environment, and to the other
 modules if their visibility is set to <code>public</code>.</p>
-<h2 id="further-reading-18"><a class="header" href="#further-reading-18">Further Reading</a></h2>
+<h2 id="further-reading-19"><a class="header" href="#further-reading-19">Further Reading</a></h2>
 <ul>
 <li><a href="https://move-book.com/reference/unit-testing.html">Unit Testing</a> in the Move Reference.</li>
 </ul>
@@ -4173,7 +4189,7 @@ which Move enforces in its design.</li>
 <li>Move's asset model mirrors real-world asset management, ensuring secure and accountable asset
 ownership and transfer.</li>
 </ul>
-<h2 id="further-reading-19"><a class="header" href="#further-reading-19">Further reading</a></h2>
+<h2 id="further-reading-20"><a class="header" href="#further-reading-20">Further reading</a></h2>
 <ul>
 <li><a href="https://developers.diem.com/papers/diem-move-a-language-with-programmable-resources/2019-06-18.pdf">Move: A Language With Programmable Resources (pdf)</a>
 by Sam Blackshear, Evan Cheng, David L. Dill, Victor Gao, Ben Maurer, Todd Nowacki, Alistair Pott,
@@ -4200,7 +4216,7 @@ and restrictive transfer operations.</li>
 <li>Sui introduced the Object Model, which provides a native concept of ownership, simplifying asset
 management and enabling heterogeneous collections.</li>
 </ul>
-<h2 id="further-reading-20"><a class="header" href="#further-reading-20">Further reading</a></h2>
+<h2 id="further-reading-21"><a class="header" href="#further-reading-21">Further reading</a></h2>
 <ul>
 <li><a href="https://blog.sui.io/why-we-created-sui-move/">Why We Created Sui Move</a> by Sam Blackshear</li>
 </ul>
@@ -4255,7 +4271,7 @@ object's data changes.</p>
 <li>Objects have a type, unique ID, owner, data, version, and digest.</li>
 <li>The Object Model simplifies asset management and enables a wide range of use cases.</li>
 </ul>
-<h2 id="further-reading-21"><a class="header" href="#further-reading-21">Further reading</a></h2>
+<h2 id="further-reading-22"><a class="header" href="#further-reading-22">Further reading</a></h2>
 <ul>
 <li><a href="https://docs.sui.io/concepts/object-model">Object Model</a> in Sui Documentation.</li>
 </ul>
@@ -4411,7 +4427,7 @@ custom types.</p>
 <h2 id="next-steps-2"><a class="header" href="#next-steps-2">Next Steps</a></h2>
 <p>Key ability defines the object in Move, and objects are intended to be <em>stored</em>. In the next section
 we present the <code>sui::transfer</code> module, which provides native storage functions for objects.</p>
-<h2 id="further-reading-22"><a class="header" href="#further-reading-22">Further reading</a></h2>
+<h2 id="further-reading-23"><a class="header" href="#further-reading-23">Further reading</a></h2>
 <ul>
 <li><a href="storage//reference/abilities.html">Type Abilities</a> in the Move Reference.</li>
 </ul>
@@ -4713,7 +4729,7 @@ public struct MegaConfig has key {
 <li><a href="storage/./../move-basics/string.html">String</a></li>
 <li><a href="storage/./../move-basics/type-reflection.html#typename">TypeName</a></li>
 </ul>
-<h2 id="further-reading-23"><a class="header" href="#further-reading-23">Further reading</a></h2>
+<h2 id="further-reading-24"><a class="header" href="#further-reading-24">Further reading</a></h2>
 <ul>
 <li><a href="storage//reference/abilities.html">Type Abilities</a> in the Move Reference.</li>
 </ul>
@@ -6426,7 +6442,7 @@ public struct LittlePony has key, store {
 <h2 id="multiple-display-objects"><a class="header" href="#multiple-display-objects">Multiple Display Objects</a></h2>
 <p>There's no restriction to how many <code>Display&lt;T&gt;</code> objects can be created for a specific <code>T</code>. However,
 the most recently updated <code>Display&lt;T&gt;</code> will be used by the full node.</p>
-<h2 id="further-reading-24"><a class="header" href="#further-reading-24">Further Reading</a></h2>
+<h2 id="further-reading-25"><a class="header" href="#further-reading-25">Further Reading</a></h2>
 <ul>
 <li><a href="https://docs.sui.io/standards/display">Sui Object Display</a> is Sui Documentation</li>
 <li><a href="programmability/./publisher.html">Publisher</a> - the representation of the creator</li>

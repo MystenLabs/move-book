@@ -236,8 +236,8 @@ fun try_calling_public() {
 </code></pre>
 <p>Unlike some languages, struct fields cannot be made public.</p>
 <h2 id="package-visibility"><a class="header" href="#package-visibility">Package Visibility</a></h2>
-<p>Move 2024 introduces the <em>package visibility</em> modifier. A function with <em>package visibility</em> can be
-called from any module within the same package. It can't be called from other packages.</p>
+<p>A function with <em>package</em> visibility can be called from any module within the same package, but not
+from modules in other packages. In other words, it is <em>internal</em> to the package.</p>
 <pre><code class="language-move">module book::package_visibility;
 
 public(package) fun package_only() { /* ... */ }
@@ -252,6 +252,22 @@ fun try_calling_package() {
     package_visibility::package_only();
 }
 </code></pre>
+<h2 id="native-functions"><a class="header" href="#native-functions">Native Functions</a></h2>
+<p>Some functions in the <a href="./../programmability/sui-framework.html">framework</a> and
+<a href="./standard-library.html">standard library</a> are marked with the <code>native</code> modifier. These functions are
+natively provided by the Move VM and do not have a body in Move source code. To learn more about the
+native modifier, refer to the
+<a href="/reference/functions.html?highlight=native#native-functions">Move Reference</a>.</p>
+<pre><code class="language-move">module std::type_name;
+
+public native fun get&lt;T&gt;(): TypeName;
+</code></pre>
+<p>This is an example from <code>std::type_name</code>, learn more about this module in the
+<a href="./type-reflection.html">reflection chapter</a>.</p>
+<h2 id="further-reading"><a class="header" href="#further-reading">Further Reading</a></h2>
+<ul>
+<li><a href="/reference/functions.html#visibility">Visibility</a> in the Move Reference.</li>
+</ul>
 
                     </main>
 
