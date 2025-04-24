@@ -71,8 +71,8 @@ Unlike some languages, struct fields cannot be made public.
 
 ## Package Visibility
 
-Move 2024 introduces the _package visibility_ modifier. A function with _package visibility_ can be
-called from any module within the same package. It can't be called from other packages.
+A function with _package_ visibility can be called from any module within the same package, but not
+from modules in other packages. In other words, it is _internal_ to the package.
 
 ```move
 module book::package_visibility;
@@ -92,3 +92,24 @@ fun try_calling_package() {
     package_visibility::package_only();
 }
 ```
+
+## Native Functions
+
+Some functions in the [framework](./../programmability/sui-framework.md) and
+[standard library](./standard-library.md) are marked with the native modifier. These functions are
+implemented directly by the Move VM and do not have a body in Move source code. To learn more about
+the native modifier, refer to the
+[Move Reference](/reference/functions.html?highlight=native#native-functions).
+
+```move
+module std::type_name;
+
+public native fun get<T>(): TypeName;
+```
+
+An example from `std::type_name`, learn more about this module in the
+[reflection chapter](./type-reflection.md).
+
+## Further Reading
+
+- [Visibility](/reference/functions.html#visibility) in the Move Reference.
