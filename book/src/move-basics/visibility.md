@@ -96,7 +96,7 @@ fun try_calling_package() {
 ## Native Functions
 
 Some functions in the [framework](./../programmability/sui-framework.md) and
-[standard library](./standard-library.md) are marked with the native modifier. These functions are
+[standard library](./standard-library.md) are marked with the `native` modifier. These functions are
 implemented directly by the Move VM and do not have a body in Move source code. To learn more about
 the native modifier, refer to the
 [Move Reference](/reference/functions.html?highlight=native#native-functions).
