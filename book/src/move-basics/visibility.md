@@ -107,7 +107,7 @@ module std::type_name;
 public native fun get<T>(): TypeName;
 ```
 
-An example from `std::type_name`, learn more about this module in the
+This is an example from `std::type_name`, learn more about this module in the
 [reflection chapter](./type-reflection.md).
 
 ## Further Reading
