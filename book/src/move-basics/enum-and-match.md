@@ -14,7 +14,7 @@ and the total number of variants can be relatively large - up to 100.
 ```move
 module book::segment;
 
-use string::String;
+use std::string::String;
 
 /// `Segment` enum definition.
 public enum Segment has drop, copy {
@@ -24,7 +24,7 @@ public enum Segment has drop, copy {
     String(String),
     /// Variant with named fields
     Special {
-        content: String,
+        content: vector<u8>,
         encoding: u8, // Encoding tag
     }
 }
@@ -35,7 +35,7 @@ abilities, and 3 variants:
 
 - `Empty`, which has no fields.
 - `String`, which contains a single positional field of type `String`.
-- `Special`, which uses named fields: `content` of type `String` and `encoding` of type `u8`.
+- `Special`, which uses named fields: `content` of type `vector<u8>` and `encoding` of type `u8`.
 
 ## Instantiating
 
@@ -53,10 +53,10 @@ public fun new_empty(): Segment { Segment::Empty }
 public fun new_string(str: String): Segment { Segment::String(str) }
 
 /// Constructs a `Special` segment with the `content` and `encoding` values.
-public fun new_special(content: String, tag: u8): Segment {
+public fun new_special(content: vector<u8>, encoding: u8): Segment {
     Segment::Special {
-        content: String,
-        encoding: tag
+        content,
+        encoding,
     }
 }
 ```
@@ -78,8 +78,9 @@ fun test_segments() {
     let _ = Segments(vector[
         Segment::Empty,
         Segment::String(b"hello".to_string()),
-        Segment::String(b" move".to_string()),
-        Segment::Special { content: b"21".to_string, encoding: 1 },
+        Segment::Special { content: b" ", encoding: 0 },
+        Segment::String(b"move".to_string()),
+        Segment::Special { content: b"21", encoding: 1 },
     ]);
 }
 ```
@@ -108,7 +109,7 @@ check the variant. Starting with `is_empty`.
 ```move
 /// Whether this it's an `Empty` segment.
 public fun is_empty(s: &Segment): bool {
-    /// Match is an expression, hence we can use it for return value
+    // Match is an expression, hence its value will be the return value of the function
     match (s) {
         Segment::Empty => true,
         Segment::String(_str) => false,
@@ -204,11 +205,11 @@ public fun to_string(s: &Segment): String {
         // Return the inner string.
         Segment::String(str) => str,
         // Return the decoded contents based on the encoding.
-        Segment::Special { content: String, encoding: u8 } => {
+        Segment::Special { content, encoding } => {
             // perform a match on the encoding, we only support 0 - ut8, 1 - hex
             match (encoding) {
                 // Plain encoding, return content
-                0 => content,
+                0 => content.to_string(),
                 // HEX encoding, decode and return
                 1 => sui::hex::decode(content).to_string(),
                 // We have to provide a wildcard pattern, because values of `u8` are 0-255
@@ -241,10 +242,10 @@ fun test_full_enum_cycle() {
     // create a vector of different Segment variants
     let segments = vector[
         segment::new_empty(),
-        segment::new_string(b"hello").to_string(),
-        segment::special(b" ".to_string(), 0), // plaintext
-        segment::new_string(b"move").to_string(),
-        segment::special(b"21".to_string(), 1), // hex
+        segment::new_string(b"hello".to_string()),
+        segment::new_special(b" ", 0), // plaintext
+        segment::new_string(b"move".to_string()),
+        segment::new_special(b"21", 1), // hex
     ];
 
     // aggregate all segments into the final string using `vector::fold!` macro
