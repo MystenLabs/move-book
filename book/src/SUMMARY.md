@@ -68,7 +68,7 @@
   - [Option](./move-basics/option.md)
   - [String](./move-basics/string.md)
   - [Control Flow](./move-basics/control-flow.md)
-  - [Enums and Match]() <!-- ./move-basics/) -->
+  - [Enums and Match](./move-basics/enum-and-match.md)
   - [Constants](./move-basics/constants.md)
   - [Aborting Execution](./move-basics/assert-and-abort.md)
   - [Functions](./move-basics/function.md)
