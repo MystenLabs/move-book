@@ -13,9 +13,9 @@ fun test_full_enum_cycle() {
     let segments = vector[
         segment::new_empty(),
         segment::new_string(b"hello".to_string()),
-        segment::new_special(b" ".to_string(), 0), // plaintext
+        segment::new_special(b" ", 0), // plaintext
         segment::new_string(b"move".to_string()),
-        segment::new_special(b"21".to_string(), 1), // hex
+        segment::new_special(b"21", 1), // hex
     ];
 
     // aggregate all segments into the final string using `vector::fold!` macro
