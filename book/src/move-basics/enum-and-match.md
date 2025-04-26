@@ -123,17 +123,16 @@ for a specific variant of the `Segment` enum. If `s` matches `Segment::Empty`, t
 `true`; otherwise, it returns `false`.
 
 For variants with fields, we need to bind the inner structure to local variables (even if we don’t
-use them, marking unused values with `_` to compiler warnings).
+use them, marking unused values with `_` to avoid compiler warnings).
 
 ### Trick #1 - _any_ condition
 
 The Move compiler infers the type of the value used in a `match` expression and ensures that the
 _match arms_ are exhaustive – that is, all possible variants or values must be covered.
 
-However, in some cases—such as matching on a primitive value or a collection like a vector (we’ll
-cover that soon!) – it's not feasible to list every possible case. For these situations, match
-supports a wildcard pattern (`_`), which acts as a default arm. This arm is executed when no other
-patterns match.
+However, in some cases, such as matching on a primitive value or a collection like a vector, it's
+not feasible to list every possible case. For these situations, match supports a wildcard pattern
+(`_`), which acts as a default arm. This arm is executed when no other patterns match.
 
 We can demonstrate this by simplifying our `is_empty` function and replacing the non-`Empty`
 variants with a wildcard:
@@ -192,9 +191,9 @@ This pattern safely exposes internal data in a controlled way, avoiding abort.
 ### Trick #3 - Matching on primitive values
 
 The `match` expression in Move can be used with values of any type – enums, structs, or primitives.
-To demonstrate this, let’s implement a `to_string` function that creates a new
-`String from a `Segment`. In the case of the `Special`variant, we will match on the`encoding` field
-to determine how to decode the content.
+To demonstrate this, let’s implement a `to_string` function that creates a new `String` from a
+`Segment`. In the case of the `Special` variant, we will match on the `encoding` field to determine
+how to decode the content.
 
 ```move
 /// Return a `String` representation of a segment.
@@ -262,24 +261,23 @@ fun test_full_enum_cycle() {
 }
 ```
 
-Hooray! This test demonstrates the full enum workflow: instantiating different variants, using
-public accessors, and performing logic with pattern matching. That should be enough to get you
-started!
+This test demonstrates the full enum workflow: instantiating different variants, using public
+accessors, and performing logic with pattern matching. That should be enough to get you started!
 
 To learn more about enums and pattern matching, refer to the resources listed in the
 [further reading](#further-reading) section.
 
 ## Summary
 
-- Enums are user-defined types that can represent multiple variants under a single type
-- Each variant can contain different types of data (primitives, structs, or other enums)
-- Enums are internal to their defining module and require pattern matching for access
+- Enums are user-defined types that can represent multiple variants under a single type.
+- Each variant can contain different types of data (primitives, structs, or other enums).
+- Enums are internal to their defining module and require pattern matching for access.
 - Pattern matching is done using the `match` expression, which:
-  - Works with enums, structs, and primitive values
-  - Must handle all possible cases (be exhaustive)
-  - Supports the `_` wildcard pattern for remaining cases
-  - Can return values and be used in expressions
-- Common patterns for enums include `is_variant` checks and `try_into` helper functions
+  - Works with enums, structs, and primitive values;
+  - Must handle all possible cases (be exhaustive);
+  - Supports the `_` wildcard pattern for remaining cases;
+  - Can return values and be used in expressions;
+- Common patterns for enums include `is_variant` checks and `try_into` helper functions.
 
 ## Further reading
 
