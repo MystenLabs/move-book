@@ -65,7 +65,7 @@ public fun is_empty(s: &Segment): bool {
 /// Whether it's a `Special` segment.
 public fun is_special(s: &Segment): bool {
     match (s) {
-        // hint: the `..` ignores inner fields
+        // Hint: the `..` ignores inner fields
         Segment::Special { .. } => true,
         _ => false,
     }
