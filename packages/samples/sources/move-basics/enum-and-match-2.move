@@ -1,7 +1,7 @@
 // Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-// note, that the module has changed!
+// note that the module has changed!
 module book::segment_tests;
 
 use book::segment;
