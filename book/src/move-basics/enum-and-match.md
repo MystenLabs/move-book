@@ -58,7 +58,7 @@ because we need to make sure that the value we are trying to access is the right
 offers _pattern matching_ syntax.
 
 > This chapter doesn't intend to cover all the features of pattern matching in Move. Refer to the
-> [Pattern Matching](/reference/pattern-matching.html) section in the Move Reference.
+> [Pattern Matching](/reference/control-flow/pattern-matching.html) section in the Move Reference.
 
 Pattern matching allows conditioning the logic based on the _pattern_ of the value. It is performed
 using the `match` expression, followed by the matched value in parenthesis and the block of _match
@@ -162,4 +162,4 @@ To learn more about enums and pattern matching, refer to the resources listed in
 ## Further reading
 
 - [Enums](/reference/enums.html) in the Move Reference
-- [Pattern Matching](/reference/pattern-matching.html) in the Move Reference
+- [Pattern Matching](/reference/control-flow/pattern-matching.html) in the Move Reference
