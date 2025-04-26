@@ -1,8 +1,8 @@
 # Enums and Match
 
-An enum is a user-defined data structure that, unlike a struct, can represent multiple variants.
-Each variant can contain primitive types, structs, or other enums. However, recursive enum
-definitions — similar to recursive struct definitions — are not allowed.
+An enum is a user-defined data structure that, unlike a [struct](./struct.md), can represent
+multiple variants. Each variant can contain primitive types, structs, or other enums. However,
+recursive enum definitions — similar to recursive struct definitions — are not allowed.
 
 ## Definition
 
@@ -17,6 +17,7 @@ module book::segment;
 use std::string::String;
 
 /// `Segment` enum definition.
+/// Represents options for segments of a string.
 public enum Segment has drop, copy {
     /// Empty variant, no value
     Empty,
@@ -42,8 +43,8 @@ abilities, and 3 variants:
 Enums are _internal_ to the module in which they are defined. This means an enum can only be
 constructed, read, and unpacked within the same module.
 
-Similar to structs, enums are instantiated by specifying the type, the variant, and the values for
-any fields defined in that variant.
+[Similar to structs](./struct.md#create-and-use-an-instance), enums are instantiated by specifying
+the type, the variant, and the values for any fields defined in that variant.
 
 ```move
 /// Constructs an `Empty` segment.
@@ -61,8 +62,8 @@ public fun new_special(content: vector<u8>, encoding: u8): Segment {
 }
 ```
 
-Depending on the use case, you may want to provide public constructors, or build them internally in
-the module.
+Depending on the use case, you may want to provide public constructors, or instantiate enums
+internally as a part of application logic.
 
 ## Using in type definitions
 
@@ -207,11 +208,11 @@ public fun to_string(s: &Segment): String {
         Segment::Special { content, encoding } => {
             // perform a match on the encoding, we only support 0 - utf8, 1 - hex
             match (encoding) {
-                // Plain encoding, return content
+                // Plain encoding, return content.
                 0 => content.to_string(),
-                // HEX encoding, decode and return
+                // HEX encoding, decode and return.
                 1 => sui::hex::decode(content).to_string(),
-                // We have to provide a wildcard pattern, because values of `u8` are 0-255
+                // We have to provide a wildcard pattern, because values of `u8` are 0-255.
                 _ => abort
             }
         }
@@ -230,7 +231,7 @@ Now we can finalize the test we started before using the features we have added.
 scenario where we build enums into a vector.
 
 ```move
-// note, that the module has changed!
+// Note, that the module has changed!
 module book::segment_tests;
 
 use book::segment;
@@ -238,7 +239,7 @@ use std::unit_test::assert_eq;
 
 #[test]
 fun test_full_enum_cycle() {
-    // create a vector of different Segment variants
+    // Create a vector of different Segment variants.
     let segments = vector[
         segment::new_empty(),
         segment::new_string(b"hello".to_string()),
@@ -247,7 +248,7 @@ fun test_full_enum_cycle() {
         segment::new_special(b"21", 1), // hex
     ];
 
-    // aggregate all segments into the final string using `vector::fold!` macro
+    // Aggregate all segments into the final string using `vector::fold!` macro.
     let result = segments.fold!(b"".to_string(), |mut acc, segment| {
         // do not append empty, only `Special` and `String`
         if (!segment.is_empty()) {
@@ -256,7 +257,7 @@ fun test_full_enum_cycle() {
         acc
     });
 
-    // check that the result
+    // Check that the result is a what's expected.
     assert_eq!(result, b"hello move!".to_string());
 }
 ```
