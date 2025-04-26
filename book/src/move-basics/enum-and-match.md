@@ -96,7 +96,7 @@ checking the variant. We simply cannot read the inner fields of an enum using th
 because we need to make sure that the value we are trying to access is the right one. For that Move
 offers _pattern matching_ syntax.
 
-> In this chapter we do not aim to cover all the features of pattern matching in Move, please, refer
+> This chapter doesn't intend to cover all the features of pattern matching in Move. Refer
 > to [Pattern Matching](/reference/pattern-matching.html) section in the Move Reference.
 
 Pattern matching allows conditioning the logic based on the _pattern_ of the value. It is performed
