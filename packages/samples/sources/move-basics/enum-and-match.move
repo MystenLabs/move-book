@@ -96,7 +96,7 @@ public fun to_string(s: &Segment): String {
         Segment::String(str) => str,
         // Return the decoded contents based on the encoding.
         Segment::Special { content, encoding } => {
-            // perform a match on the encoding, we only support 0 - ut8, 1 - hex
+            // Perform a match on the encoding, we only support 0 - ut8, 1 - hex
             match (encoding) {
                 // Plain encoding, return content
                 0 => content.to_string(),
