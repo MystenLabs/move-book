@@ -119,7 +119,7 @@ public fun is_empty(s: &Segment): bool {
 ```
 
 The `match` keyword begins the expression, and `s` is the value being tested. Each match arm checks
-for a specific variant of the `Segment` enum. If s matches `Segment::Empty`, the function returns
+for a specific variant of the `Segment` enum. If `s` matches `Segment::Empty`, the function returns
 `true`; otherwise, it returns `false`.
 
 For variants with fields, we need to bind the inner structure to local variables (even if we don’t
