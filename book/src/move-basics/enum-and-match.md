@@ -96,12 +96,12 @@ checking the variant. We simply cannot read the inner fields of an enum using th
 because we need to make sure that the value we are trying to access is the right one. For that Move
 offers _pattern matching_ syntax.
 
-> This chapter doesn't intend to cover all the features of pattern matching in Move. Refer
-> to [Pattern Matching](/reference/pattern-matching.html) section in the Move Reference.
+> This chapter doesn't intend to cover all the features of pattern matching in Move. Refer to the
+> [Pattern Matching](/reference/pattern-matching.html) section in the Move Reference.
 
 Pattern matching allows conditioning the logic based on the _pattern_ of the value. It is performed
-using the `match` expression, followed by the matched value in parenthesis and the block of
-so-called _match arms_, defining the patten and expression to be performed if the pattern is right.
+using the `match` expression, followed by the matched value in parenthesis and the block of _match
+arms_, defining the patten and expression to be performed if the pattern is right.
 
 Let's extend our example by adding a set of `is_variant`-like functions, so external packages can
 check the variant. Starting with `is_empty`.
