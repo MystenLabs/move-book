@@ -65,7 +65,7 @@ public fun is_empty(s: &Segment): bool {
 /// Whether it's a `Special` segment.
 public fun is_special(s: &Segment): bool {
     match (s) {
-        // hint: the `..` ignores inner fields
+        // Hint: the `..` ignores inner fields
         Segment::Special { .. } => true,
         _ => false,
     }
@@ -96,7 +96,7 @@ public fun to_string(s: &Segment): String {
         Segment::String(str) => str,
         // Return the decoded contents based on the encoding.
         Segment::Special { content, encoding } => {
-            // perform a match on the encoding, we only support 0 - ut8, 1 - hex
+            // Perform a match on the encoding, we only support 0 - ut8, 1 - hex
             match (encoding) {
                 // Plain encoding, return content
                 0 => content.to_string(),

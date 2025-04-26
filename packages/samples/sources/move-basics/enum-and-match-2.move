@@ -27,6 +27,6 @@ fun test_full_enum_cycle() {
         acc
     });
 
-    // check that the result
+    // check that the result is what's expected
     assert_eq!(result, b"hello move!".to_string());
 }
