@@ -21,7 +21,7 @@ The `transfer` module provides functions to perform all three storage operations
 The `transfer` module is a go-to for most of the storage operations, except a special case with
 [Dynamic Fields](./../programmability/dynamic-fields.md) that awaits us in the next chapter.
 
-## Ownership and References: A Quick Recap
+## Ownership and References: a Quick Recap
 
 In the [Ownership and Scope](./../move-basics/ownership-and-scope.md) and
 [References](./../move-basics/references.md) chapters, we covered the basics of ownership and
@@ -138,9 +138,9 @@ A quick recap:
 
 ## Freeze
 
-The `transfer::freeze_object` function is a public function that is used to put
-an object into an _immutable_ state. Once an object is _frozen_, it can never
-be changed, and it can be accessed by anyone by immutable reference.
+The `transfer::freeze_object` function is a public function that is used to put an object into an
+_immutable_ state. Once an object is _frozen_, it can never be changed, and it can be accessed by
+anyone by immutable reference.
 
 The function signature is as follows, only accepts a type with the
 [`key` ability](./key-ability.md). Just like all other storage functions, it takes the object _by

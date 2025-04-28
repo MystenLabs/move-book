@@ -2,8 +2,8 @@
 
 Generics are a way to define a type or function that can work with any type. This is useful when you
 want to write a function which can be used with different types, or when you want to define a type
-that can hold any other type. Generics are the foundation of many advanced features in Move including
-collections, abstract implementations, and more.
+that can hold any other type. Generics are the foundation of many advanced features in Move
+including collections, abstract implementations, and more.
 
 ## In the Standard Library
 
@@ -23,23 +23,22 @@ enclosed in angle brackets (`<` and `>`). The generic parameters are separated b
 In the example above, `Container` is a generic type with a single type parameter `T`, the `value`
 field of the container stores the `T`. The `new` function is a generic function with a single type
 parameter `T`, and it returns a `Container` with the given value. Generic types must be initialized
-with a concrete type, and generic functions must be called with a concrete type, although in some cases
-the Move compiler can infer the correct type.
+with a concrete type, and generic functions must be called with a concrete type, although in some
+cases the Move compiler can infer the correct type.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/generics.move:test_container}}
 ```
 
-In the test function `test_generic`, we demonstrate three equivalent ways to
-create a new `Container` with a `u8` value. Because numeric constants have
-ambiguous types, we must specify the type of the number literal somewhere (in
-the type of the container, the parameter to `new`, or the number literal
-itself); once we specify one of these the compiler can infer the others.
+In the test function `test_generic`, we demonstrate three equivalent ways to create a new
+`Container` with a `u8` value. Because numeric constants have ambiguous types, we must specify the
+type of the number literal somewhere (in the type of the container, the parameter to `new`, or the
+number literal itself); once we specify one of these the compiler can infer the others.
 
 ## Multiple Type Parameters
 
-You can define a type or function with multiple type parameters. The type parameters are
-separated by commas.
+You can define a type or function with multiple type parameters. The type parameters are separated
+by commas.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/generics.move:pair}}
@@ -47,8 +46,8 @@ separated by commas.
 
 In the example above, `Pair` is a generic type with two type parameters `T` and `U`, and the
 `new_pair` function is a generic function with two type parameters `T` and `U`. The function returns
-a `Pair` with the given values. The order of the type parameters is important, and should match
-the order of the type parameters in the type signature.
+a `Pair` with the given values. The order of the type parameters is important, and should match the
+order of the type parameters in the type signature.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/generics.move:test_pair}}
@@ -61,23 +60,24 @@ to compare two types, we'd see that the type signatures are different, and canno
 {{#include ../../../packages/samples/sources/move-basics/generics.move:test_pair_swap}}
 ```
 
-Since the types for `pair1` and `pair2` are different, the comparison `pair1 == pair2` will not compile.
+Since the types for `pair1` and `pair2` are different, the comparison `pair1 == pair2` will not
+compile.
 
 ## Why Generics?
 
 In the examples above we focused on instantiating generic types and calling generic functions to
-create instances of these types. However, the real power of generics lies in their ability to define shared
-behavior for the base, generic type, and then use it independently of the concrete types. This is
-especially useful when working with collections, abstract implementations, and other advanced
-features in Move.
+create instances of these types. However, the real power of generics lies in their ability to define
+shared behavior for the base, generic type, and then use it independently of the concrete types.
+This is especially useful when working with collections, abstract implementations, and other
+advanced features in Move.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/generics.move:user}}
 ```
 
 In the example above, `User` is a generic type with a single type parameter `T`, with shared fields
-`name`, `age`, and the generic `metadata` field, which can store any type. No matter what
-`metadata` is, all instances of `User` will contain the same fields and methods.
+`name`, `age`, and the generic `metadata` field, which can store any type. No matter what `metadata`
+is, all instances of `User` will contain the same fields and methods.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/generics.move:update_user}}
@@ -104,8 +104,8 @@ parameter `T`.
 
 In the example above, we demonstrate how to create two different instances of `Coin` with different
 phantom type parameters `USD` and `EUR`. The type parameter `T` is not used in the fields or methods
-of the `Coin` type, but it is used to differentiate between different types of coins. This helps ensure
-that the `USD` and `EUR` coins are not mistakenly mixed up.
+of the `Coin` type, but it is used to differentiate between different types of coins. This helps
+ensure that the `USD` and `EUR` coins are not mistakenly mixed up.
 
 ## Constraints on Type Parameters
 

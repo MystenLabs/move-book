@@ -20,9 +20,9 @@ combination of `key` and `store`, not just `store` as in the case of dynamic fie
 
 They're less explicit in their framework definition, as the concept itself is more abstract:
 
-File: sui-framework/sources/dynamic_object_fields.move
-
 ```move
+module sui::dynamic_object_field;
+
 /// Internal object used for storing the field and the name associated with the
 /// value. The separate type is necessary to prevent key collision with direct
 /// usage of dynamic_field

@@ -1,18 +1,18 @@
 # Expression
 
 In programming languages, an expression is a unit of code that returns a value. In Move, almost
-everything is an expression, with the sole exception of the `let` statement, which is a declaration. In
-this section, we cover the types of expressions and introduce the concept of scope.
+everything is an expression, with the sole exception of the `let` statement, which is a declaration.
+In this section, we cover the types of expressions and introduce the concept of scope.
 
 > Expressions are sequenced with semicolons `;`. If there's "no expression" after the semicolon, the
 > compiler will insert a `unit ()`, which represents an empty expression.
 
 ## Literals
 
-In the [Primitive Types](./primitive-types.md) section, we introduced the basic types of Move. And
-to illustrate them, we used literals. A literal is a notation for representing a fixed value in 
-source code. Literals can be used to initialize variables or directly pass fixed values as arguments to 
-functions. Move has the following literals:
+In the [Primitive types](./primitive-types.md) section, we introduced the basic types of Move. And
+to illustrate them, we used literals. A literal is a notation for representing a fixed value in
+source code. Literals can be used to initialize variables or directly pass fixed values as arguments
+to functions. Move has the following literals:
 
 - Boolean values: `true` and `false`
 - Integer values: `0`, `1`, `123123`
@@ -26,7 +26,7 @@ functions. Move has the following literals:
 
 ## Operators
 
-Arithmetic, logical, and bitwise operators are used to perform operations on values. Since these 
+Arithmetic, logical, and bitwise operators are used to perform operations on values. Since these
 operations produce values, they are considered expressions.
 
 ```move
@@ -35,9 +35,9 @@ operations produce values, they are considered expressions.
 
 ## Blocks
 
-A block is a sequence of statements and expressions enclosed in curly braces `{}`. It returns the value of 
-the last expression in the block (note that this final expression must not have an ending semicolon).
-A block is an expression, so it can be used anywhere an expression is expected. 
+A block is a sequence of statements and expressions enclosed in curly braces `{}`. It returns the
+value of the last expression in the block (note that this final expression must not have an ending
+semicolon). A block is an expression, so it can be used anywhere an expression is expected.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/expression.move:block}}
@@ -45,10 +45,10 @@ A block is an expression, so it can be used anywhere an expression is expected.
 
 ## Function Calls
 
-We go into detail about functions in the [Functions](./functions.md) section. However, we have already
-used function calls in previous sections, so it's worth mentioning them here. A function call is
-an expression that calls a function and returns the value of the last expression in the function
-body, provided the last expression does not have a terminating semi-colon.
+We go into detail about functions in the [Functions](./functions.md) section. However, we have
+already used function calls in previous sections, so it's worth mentioning them here. A function
+call is an expression that calls a function and returns the value of the last expression in the
+function body, provided the last expression does not have a terminating semi-colon.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/expression.move:fun_call}}

@@ -75,7 +75,7 @@ lender.repay(pay_back, potato);
 transfer::public_transfer(proceeds, ctx.sender());
 ```
 
-### Variable-path execution
+### Variable-path Execution
 
 The hot potato pattern can be used to introduce variation in the execution path. For example, if
 there is a module which allows purchasing a `Phone` for some "Bonus Points" or for USD, the hot
@@ -105,13 +105,16 @@ will cover in the next section.
 
 The pattern is used in various forms in the Sui Framework. Here are some examples:
 
-- [sui::borrow](https://docs.sui.io/references/framework/sui-framework/borrow) - uses hot potato to
-  ensure that the borrowed value is returned to the correct container.
-- [sui::transfer_policy](https://docs.sui.io/references/framework/sui-framework/transfer_policy) -
-  defines a `TransferRequest` - a hot potato which can only be consumed if all conditions are met.
-- [sui::token](https://docs.sui.io/references/framework/sui-framework/token) - in the Closed Loop
-  Token system, an `ActionRequest` carries the information about the performed action and collects
-  approvals similarly to `TransferRequest`.
+- [sui::borrow][borrow-framework] - uses hot potato to ensure that the borrowed value is returned to
+  the correct container.
+- [sui::transfer_policy][transfer-policy-framework] - defines a `TransferRequest` - a hot potato
+  which can only be consumed if all conditions are met.
+- [sui::token][token-framework] - in the Closed Loop Token system, an `ActionRequest` carries the
+  information about the performed action and collects approvals similarly to `TransferRequest`.
+
+[borrow-framework]: https://docs.sui.io/references/framework/sui-framework/borrow
+[transfer-policy-framework]: https://docs.sui.io/references/framework/sui-framework/transfer_policy
+[token-framework]: https://docs.sui.io/references/framework/sui-framework/token
 
 ## Summary
 

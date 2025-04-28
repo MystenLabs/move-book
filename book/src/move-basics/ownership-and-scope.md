@@ -110,8 +110,8 @@ public fun owner() {
 } // a is dropped here
 ```
 
-However, if we return a value from a block, the ownership of the variable is transferred to
-the caller of the block.
+However, if we return a value from a block, the ownership of the variable is transferred to the
+caller of the block.
 
 ```move
 module book::ownership;
@@ -130,9 +130,9 @@ public fun owner(): u8 {
 
 Some types in Move are _copyable_, which means that they can be copied without transferring
 ownership. This is useful for types that are small and cheap to copy, such as integers and booleans.
-The Move compiler will automatically copy these types when they are passed to or returned
-from a function, or when they're _moved_ to another scope and then accessed in their original scope.
+The Move compiler will automatically copy these types when they are passed to or returned from a
+function, or when they're _moved_ to another scope and then accessed in their original scope.
 
-## Further reading
+## Further Reading
 
 - [Local Variables and Scopes](/reference/variables.html) in the Move Reference.

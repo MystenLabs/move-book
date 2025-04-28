@@ -47,7 +47,7 @@ assets.
 - Move's asset model mirrors real-world asset management, ensuring secure and accountable asset
   ownership and transfer.
 
-## Further reading
+## Further Reading
 
 - [Move: A Language With Programmable Resources (pdf)](https://developers.diem.com/papers/diem-move-a-language-with-programmable-resources/2019-06-18.pdf)
   by Sam Blackshear, Evan Cheng, David L. Dill, Victor Gao, Ben Maurer, Todd Nowacki, Alistair Pott,

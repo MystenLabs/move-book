@@ -42,11 +42,12 @@ module book::transfer_a;
 public struct ObjectK has key { id: UID }
 public struct ObjectKS has key, store { id: UID }
 ```
+
 ```move
 /// Imports the `ObjectK` and `ObjectKS` types from `transfer_a` and attempts
 /// to implement different `transfer` functions for them
 module book::transfer_b;
-    
+
 // types are not internal to this module
 use book::transfer_a::{ObjectK, ObjectKS};
 

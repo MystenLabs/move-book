@@ -5,8 +5,9 @@ implementations for strings in the [Standard Library](./standard-library.md). Th
 module defines a `String` type and methods for UTF-8 encoded strings, and the second module,
 `std::ascii`, provides an ASCII `String` type and its methods.
 
-> The Sui execution environment automatically converts bytevector into `String` in transaction inputs.
-> As a result, in many cases, constructing a String directly within the [Transaction Block](./../concepts/what-is-a-transaction.md) is unnecessary.
+> The Sui execution environment automatically converts bytevector into `String` in transaction
+> inputs. As a result, in many cases, constructing a String directly within the
+> [Transaction Block](./../concepts/what-is-a-transaction.md) is unnecessary.
 
 <!--
 
@@ -32,23 +33,26 @@ bytes.
 
 ## Working with UTF-8 Strings
 
-While there are two types of strings (`string` and `ascii`) in the standard library, the `string` module
-should be considered the default. It has native implementations of many common operations, leveraging 
-low-level, optimized runtime code for superior performance. In contrast, the `ascii` module is fully 
-implemented in Move, relying on higher-level abstractions and making it less suitable for 
-performance-critical tasks.
+While there are two types of strings (`string` and `ascii`) in the standard library, the `string`
+module should be considered the default. It has native implementations of many common operations,
+leveraging low-level, optimized runtime code for superior performance. In contrast, the `ascii`
+module is fully implemented in Move, relying on higher-level abstractions and making it less
+suitable for performance-critical tasks.
 
 ### Definition
 
 The `String` type in the `std::string` module is defined as follows:
 
 ```move
-// File: move-stdlib/sources/string.move
+module std::string;
+
 /// A `String` holds a sequence of bytes which is guaranteed to be in utf8 format.
 public struct String has copy, drop, store {
     bytes: vector<u8>,
 }
 ```
+
+_See [full documentation for std::string][string-stdlib] module._
 
 ### Creating a String
 
@@ -96,9 +100,9 @@ sure that the bytes you are passing are valid, you should use the `try_utf8` met
 returns an `Option<String>`, which contains no value if the bytes are not valid UTF-8, and a string
 otherwise.
 
-> Hint: Functions with names starting with `try_*` typically return an `Option`. If the operation succeeds, the 
-> result is wrapped in `Some`. If it fails, the function returns `None`. This naming convention, commonly 
-> used in Move, is inspired by Rust.
+> Hint: Functions with names starting with `try_*` typically return an `Option`. If the operation
+> succeeds, the result is wrapped in `Some`. If it fails, the function returns `None`. This naming
+> convention, commonly used in Move, is inspired by Rust.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/string.move:safe_utf8}}
@@ -111,11 +115,18 @@ because UTF-8 is a variable-length encoding, and the length of a character can b
 4 bytes. Similarly, the `length()` method returns the number of bytes in the string, not the number
 of characters.
 
-
-However, methods like `sub_string` and `insert` validate character boundaries and abort if the 
+However, methods like `sub_string` and `insert` validate character boundaries and abort if the
 specified index falls within the middle of a character.
-
 
 ## ASCII Strings
 
 This section is coming soon!
+
+## Further Reading
+
+- [std::string][string-stdlib] module documentation.
+- [std::ascii][ascii-stdlib] module documentation.
+
+[enum-reference]: /reference/enums.html
+[string-stdlib]: https://docs.sui.io/references/framework/std/string
+[ascii-stdlib]: https://docs.sui.io/references/framework/std/ascii

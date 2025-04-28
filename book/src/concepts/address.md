@@ -54,7 +54,7 @@ Here are some examples of reserved addresses:
 
 > You can find all reserved addresses in the [Appendix B](../appendix/reserved-addresses.md).
 
-## Further reading
+## Further Reading
 
 - [Address type](../move-basics/address.md) in Move
 - [sui::address module](https://docs.sui.io/references/framework/sui/address)

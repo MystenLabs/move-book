@@ -37,7 +37,7 @@ the type, the variant, and the values for any fields defined in that variant.
 Depending on the use case, you may want to provide public constructors, or instantiate enums
 internally as a part of application logic.
 
-## Using in type definitions
+## Using in Type Definitions
 
 The biggest benefit of using enums is the ability to represent varying data structures under a
 single type. To demonstrate this, let’s define a struct that contains a vector of `Segment` values:
@@ -78,7 +78,7 @@ for a specific variant of the `Segment` enum. If `s` matches `Segment::Empty`, t
 For variants with fields, we need to bind the inner structure to local variables (even if we don’t
 use them, marking unused values with `_` to avoid compiler warnings).
 
-### Trick #1 - _any_ condition
+### Trick #1 - _any_ Condition
 
 The Move compiler infers the type of the value used in a `match` expression and ensures that the
 _match arms_ are exhaustive – that is, all possible variants or values must be covered.
@@ -101,7 +101,7 @@ Similarly, we can use the same approach to define `is_special` and `is_string`:
 {{#include ../../../packages/samples/sources/move-basics/enum-and-match.move:accessors}}
 ```
 
-### Trick #2 - `try_into` helpers
+### Trick #2 - `try_into` Helpers
 
 With the addition of `is_variant` functions, we enabled external modules to check which variant an
 enum instance represents. However, this is often not enough – external code still cannot access the
@@ -116,7 +116,7 @@ value and return an `Option` containing the inner contents if the `match` succee
 
 This pattern safely exposes internal data in a controlled way, avoiding abort.
 
-### Trick #3 - Matching on primitive values
+### Trick #3 - Matching on Primitive Values
 
 The `match` expression in Move can be used with values of any type – enums, structs, or primitives.
 To demonstrate this, let’s implement a `to_string` function that creates a new `String` from a
@@ -132,7 +132,7 @@ This function demonstrates two key things:
 - Nested `match` expressions can be used for deeper logic branching.
 - Wildcards are essential for covering all possible values in primitive types like `u8`.
 
-## The final test
+## The Final Test
 
 Now we can finalize the test we started before using the features we have added. Let's create a
 scenario where we build enums into a vector.
@@ -159,7 +159,7 @@ To learn more about enums and pattern matching, refer to the resources listed in
   - Can return values and be used in expressions;
 - Common patterns for enums include `is_variant` checks and `try_into` helper functions.
 
-## Further reading
+## Further Reading
 
 - [Enums](/reference/enums.html) in the Move Reference
 - [Pattern Matching](/reference/control-flow/pattern-matching.html) in the Move Reference

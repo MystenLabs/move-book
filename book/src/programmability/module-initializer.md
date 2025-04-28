@@ -6,8 +6,8 @@ publication. In Sui, this is achieved by defining an `init` function within the 
 function will automatically be called when the module is published.
 
 > All of the modules' `init` functions are called during the publishing process. Currently, this
-> behavior is limited to the publish command and does not extend to
-> package upgrades. <!-- [package upgrades](./package-upgrades.md) -->
+> behavior is limited to the publish command and does not extend to package upgrades.
+> <!-- [package upgrades](./package-upgrades.md) -->
 
 ```move
 {{#include ../../../packages/samples/sources/programmability/module-initializer.move:main}}
@@ -19,7 +19,7 @@ In the same package, another module can have its own `init` function, encapsulat
 {{#include ../../../packages/samples/sources/programmability/module-initializer-2.move:other}}
 ```
 
-## `init` features
+## `init` Features
 
 The function is called on publish, if it is present in the module and follows the rules:
 
@@ -41,7 +41,7 @@ fun init(ctx: &TxContext) { /* ... */}
 fun init(otw: OTW, ctx: &TxContext) { /* ... */ }
 ```
 
-## Trust and security
+## Trust and Security
 
 While `init` function can be used to create sensitive objects once, it is important to know that the
 same object (eg. `StoreOwnerCap` from the first example) can still be created in another function.
@@ -53,7 +53,7 @@ There are ways to guarantee that the object was created only once, such as the
 [One Time Witness](./one-time-witness.md). And there are ways to limit or disable the upgrade of the
 module, which we will cover in the [Package Upgrades](./package-upgrades.md) chapter.
 
-## Next steps
+## Next Steps
 
 As follows from the definition, the `init` function is guaranteed to be called only once when the
 module is published. So it is a good place to put the code that initializes module's objects and

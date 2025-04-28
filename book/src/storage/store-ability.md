@@ -50,6 +50,6 @@ All of the types defined in the standard library have the `store` ability as wel
 - [String](./../move-basics/string.md)
 - [TypeName](./../move-basics/type-reflection.md#typename)
 
-## Further reading
+## Further Reading
 
 - [Type Abilities](/reference/abilities.html) in the Move Reference.

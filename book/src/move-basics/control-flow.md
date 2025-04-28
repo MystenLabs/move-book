@@ -43,9 +43,9 @@ if (<bool_expression>) <expression> else <expression>;
 ```
 
 Just like any other expression, `if` requires a semicolon if there are other expressions following
-it. The `else` keyword is optional, except when the resulting value is assigned to a variable, as all 
-branches must return a value to ensure type safety. Let’s examine how an `if` expression works in Move
-with the following example:
+it. The `else` keyword is optional, except when the resulting value is assigned to a variable, as
+all branches must return a value to ensure type safety. Let’s examine how an `if` expression works
+in Move with the following example:
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/control-flow.move:if_condition}}
@@ -57,11 +57,18 @@ Let's see how we can use `if` and `else` to assign a value to a variable:
 {{#include ../../../packages/samples/sources/move-basics/control-flow.move:if_else}}
 ```
 
-In this example, the value of the `if` expression is assigned to the variable `y`. If `x` is greater than 0, `y` is assigned the value 1; otherwise, it is assigned 0. The `else` block is required because both branches of the `if` expression must return a value of the same type. Omitting the `else` block would result in a compiler error, as it ensures all possible branches are accounted for and type safety is maintained.
+In this example, the value of the `if` expression is assigned to the variable `y`. If `x` is greater
+than 0, `y` is assigned the value 1; otherwise, it is assigned 0. The `else` block is required
+because both branches of the `if` expression must return a value of the same type. Omitting the
+`else` block would result in a compiler error, as it ensures all possible branches are accounted for
+and type safety is maintained.
 
 <!-- TODO: add an error -->
 
-Conditional expressions are among the most important control flow statements in Move. They evaluate user-provided input or stored data to make decisions. One key use case is in the [`assert!` macro](./assert-and-abort.md), which checks if a condition is true and aborts execution if it is not. We’ll explore this in detail shortly.
+Conditional expressions are among the most important control flow statements in Move. They evaluate
+user-provided input or stored data to make decisions. One key use case is in the
+[`assert!` macro](./assert-and-abort.md), which checks if a condition is true and aborts execution
+if it is not. We’ll explore this in detail shortly.
 
 ## Repeating Statements with Loops
 
@@ -70,14 +77,16 @@ Loops are used to execute a block of code multiple times. Move has two built-in 
 the number of iterations is known in advance, and `loop` is used when the number of iterations is
 not known in advance or there are multiple exit points.
 
-Loops are useful for working with collections, such as vectors, or for repeating a block of code until a specific condition is met. However, take care to avoid infinite loops, which can exhaust gas limits and cause the transaction to abort.
+Loops are useful for working with collections, such as vectors, or for repeating a block of code
+until a specific condition is met. However, take care to avoid infinite loops, which can exhaust gas
+limits and cause the transaction to abort.
 
-## The `while` loop
+## The `while` Loop
 
-The `while` statement executes a block of code repeatedly as long as a boolean expression evaluates to true.
-Just like we've seen with `if`, the boolean expression is evaluated before each iteration of the
-loop. Additionally, like conditional statements, the `while` loop is an expression and requires a semicolon
-if there are other expressions following it.
+The `while` statement executes a block of code repeatedly as long as a boolean expression evaluates
+to true. Just like we've seen with `if`, the boolean expression is evaluated before each iteration
+of the loop. Additionally, like conditional statements, the `while` loop is an expression and
+requires a semicolon if there are other expressions following it.
 
 The syntax for the `while` loop is:
 
@@ -94,14 +103,15 @@ Here is an example of a `while` loop with a very simple condition:
 ## Infinite `loop`
 
 Now let's imagine a scenario where the boolean expression is always `true`. For example, if we
-literally passed `true` to the `while` condition. This is similar to how the `loop` statement functions, 
-except that `while` evaluates a condition.
+literally passed `true` to the `while` condition. This is similar to how the `loop` statement
+functions, except that `while` evaluates a condition.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/control-flow.move:infinite_while}}
 ```
 
-An infinite `while` loop, or a `while` loop with an always `true` condition, is equivalent to a `loop`. The syntax for creating a `loop` is straightforward:
+An infinite `while` loop, or a `while` loop with an always `true` condition, is equivalent to a
+`loop`. The syntax for creating a `loop` is straightforward:
 
 ```move
 loop { <expressions>; };
@@ -113,9 +123,11 @@ Let's rewrite the previous example using `loop` instead of `while`:
 {{#include ../../../packages/samples/sources/move-basics/control-flow.move:infinite_loop}}
 ```
 
-<!-- TODO: that's a weak point lmao -->
-
-Infinite loops are rarely practical in Move, as every operation consumes gas, and an infinite loop will inevitably lead to gas exhaustion. If you find yourself using a loop, consider whether there might be a better approach, as many use cases can be handled more efficiently with other control flow structures. That said, `loop` might be useful when combined with `break` and `continue` statements to create controlled and flexible looping behavior.
+Infinite loops are rarely practical in Move, as every operation consumes gas, and an infinite loop
+will inevitably lead to gas exhaustion. If you find yourself using a loop, consider whether there
+might be a better approach, as many use cases can be handled more efficiently with other control
+flow structures. That said, `loop` might be useful when combined with `break` and `continue`
+statements to create controlled and flexible looping behavior.
 
 ## Exiting a Loop Early
 
@@ -139,7 +151,8 @@ looks and behaves more like a `while` loop:
 ```
 
 Almost identical to the `while` loop, right? The `break` statement is used to exit the loop when `x`
-is 5. If we remove the `break` statement, the loop will run forever, just like in the previous example.
+is 5. If we remove the `break` statement, the loop will run forever, just like in the previous
+example.
 
 ## Skipping an Iteration
 
@@ -180,3 +193,7 @@ Here is an example of a function that returns a value when a certain condition i
 Unlike in many other languages, the `return` statement is not required for the last expression in a
 function. The last expression in a function block is automatically returned. However, the `return`
 statement is useful when we want to exit a function early if a certain condition is met.
+
+## Further Reading
+
+- [Control Flow](/reference/control-flow.html) chapter in the Move Reference.

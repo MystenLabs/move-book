@@ -106,8 +106,8 @@ with the `#[test]` attribute. Tests can be grouped in a separate module (then it
 _module_name_tests.move_), or inside the module they're testing.
 
 Modules, imports, constants and functions can be annotated with `#[test_only]`. This attribute is
-used to exclude modules, functions or imports from the build process. This is useful when you want to
-add helpers for your tests without including them in the code that will be published on chain.
+used to exclude modules, functions or imports from the build process. This is useful when you want
+to add helpers for your tests without including them in the code that will be published on chain.
 
 The _hello_world_tests.move_ file contains a commented out test module template:
 

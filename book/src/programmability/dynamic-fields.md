@@ -19,9 +19,9 @@ Dynamic Fields are defined in the `sui::dynamic_field` module of the
 [Sui Framework](./sui-framework.md). They are attached to object's `UID` via a _name_, and can be
 accessed using that name. There can be only one field with a given name attached to an object.
 
-File: sui-framework/sources/dynamic_field.move
-
 ```move
+module sui::dynamic_field;
+
 /// Internal object used for storing the field and value
 public struct Field<Name: copy + drop + store, Value: store> has key {
     /// Determined by the hash of the object ID, the field name
@@ -120,8 +120,9 @@ As you can see, custom types do work as field names but as long as they can be _
 module, in other words - if they are _internal_ to the module and defined in it. This limitation on
 struct packing can open up new ways in the design of the application.
 
-This approach is used in the Object Capability<!--[]](./object-capability.md)--> pattern, where an application can authorize a
-foreign object to perform operations in it while not exposing the capabilities to other modules.
+This approach is used in the Object Capability<!--[]](./object-capability.md)--> pattern, where an
+application can authorize a foreign object to perform operations in it while not exposing the
+capabilities to other modules.
 
 ## Exposing UID
 

@@ -13,8 +13,9 @@ Notes to self:
 
 ## Definition
 
-The OTW is a special type of Witness that can be used only once. It cannot be manually
-created and it is guaranteed to be unique per module. Sui Adapter treats a type as an OTW if it follows these rules:
+The OTW is a special type of Witness that can be used only once. It cannot be manually created and
+it is guaranteed to be unique per module. Sui Adapter treats a type as an OTW if it follows these
+rules:
 
 1. Has only `drop` ability.
 2. Has no fields.
@@ -27,16 +28,15 @@ Here is an example of an OTW:
 {{#include ../../../packages/samples/sources/programmability/one-time-witness.move:definition}}
 ```
 
-The OTW cannot be constructed manually, and any code attempting to do so will result in
-a compilation error. The OTW can be received as the first argument in the
+The OTW cannot be constructed manually, and any code attempting to do so will result in a
+compilation error. The OTW can be received as the first argument in the
 [module initializer](./module-initializer.md). And because the `init` function is called only once
 per module, the OTW is guaranteed to be instantiated only once.
 
 ## Enforcing the OTW
 
-To check if a type is an OTW, `sui::types` module of the
-[Sui Framework](./sui-framework.md) offers a special function `is_one_time_witness` that can be used
-to check if the type is an OTW.
+To check if a type is an OTW, `sui::types` module of the [Sui Framework](./sui-framework.md) offers
+a special function `is_one_time_witness` that can be used to check if the type is an OTW.
 
 ```move
 {{#include ../../../packages/samples/sources/programmability/one-time-witness.move:usage}}
@@ -140,14 +140,14 @@ TODO: add a story behind TreasuryCap and Coin
 
 ## Summary
 
-The OTW pattern is a great way to ensure that a type is used only once. Most of the
-developers should understand how to define and receive the OTW, while the OTW checks and enforcement
-is mostly needed in libraries and frameworks. For example, the `sui::coin` module requires an OTW
-in the `coin::create_currency` method, therefore enforcing that the `coin::TreasuryCap`
-is created only once.
+The OTW pattern is a great way to ensure that a type is used only once. Most of the developers
+should understand how to define and receive the OTW, while the OTW checks and enforcement is mostly
+needed in libraries and frameworks. For example, the `sui::coin` module requires an OTW in the
+`coin::create_currency` method, therefore enforcing that the `coin::TreasuryCap` is created only
+once.
 
-OTW is a powerful tool that lays the foundation for the [Publisher](./publisher.md)
-object, which we will cover in the next section.
+OTW is a powerful tool that lays the foundation for the [Publisher](./publisher.md) object, which we
+will cover in the next section.
 
 <!--
 

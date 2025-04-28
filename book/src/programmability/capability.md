@@ -8,10 +8,10 @@ owner to perform administrative operations, which regular users cannot.
 
 ## Capability is an Object
 
-In the [Sui Object Model](./../object/), capabilities are represented as objects.
-An owner of an object can pass this object to a function to prove that they have the right to
-perform a specific action. Due to strict typing, the function taking a capability as an argument can
-only be called with the correct capability.
+In the [Sui Object Model](./../object/), capabilities are represented as objects. An owner of an
+object can pass this object to a function to prove that they have the right to perform a specific
+action. Due to strict typing, the function taking a capability as an argument can only be called
+with the correct capability.
 
 > There's a convention to name capabilities with the `Cap` suffix, for example, `AdminCap` or
 > `KioskOwnerCap`.
@@ -29,7 +29,7 @@ application can have a setup phase where the admin account prepares the state of
 {{#include ../../../packages/samples/sources/programmability/capability-2.move:admin_cap}}
 ```
 
-## Address check vs Capability
+## Address Check vs Capability
 
 Utilizing objects as capabilities is a relatively new concept in blockchain programming. And in
 other smart-contract languages, authorization is often performed by checking the address of the

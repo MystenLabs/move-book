@@ -14,7 +14,7 @@ compile. This is default behavior of a struct without _abilities_.
 Abilities are a way to allow certain behaviors for a type. They are a part of the struct declaration
 and define which behaviors are allowed for the instances of the struct.
 
-## Abilities syntax
+## Abilities Syntax
 
 Abilities are set in the struct definition using the `has` keyword followed by a list of abilities.
 The abilities are separated by commas. Move supports 4 abilities: `copy`, `drop`, `key`, and
@@ -33,8 +33,8 @@ struct VeryAble has copy, drop {
 
 A quick overview of the abilities:
 
-> All of the built-in types except [references](references.md) have `copy`, `drop` and `store` abilities.
-> References have `copy` and `drop`.
+> All of the built-in types except [references](references.md) have `copy`, `drop` and `store`
+> abilities. References have `copy` and `drop`.
 
 - `copy` - allows the struct to be _copied_. Explained in the [Ability: Copy](./copy-ability.md)
   chapter.
@@ -42,20 +42,20 @@ A quick overview of the abilities:
   [Ability: Drop](./drop-ability.md) chapter.
 - `key` - allows the struct to be used as a _key_ in a storage. Explained in the
   [Ability: Key](./../storage/key-ability.md) chapter.
-- `store` - allows the struct to be _stored_ in structs that have the _key_ ability. Explained in the
-  [Ability: Store](./../storage/store-ability.md) chapter.
+- `store` - allows the struct to be _stored_ in structs that have the _key_ ability. Explained in
+  the [Ability: Store](./../storage/store-ability.md) chapter.
 
-While it is important to briefly mention them here, we will go into more detail about each ability in the following
-chapters and give proper context on how to use them.
+While it is important to briefly mention them here, we will go into more detail about each ability
+in the following chapters and give proper context on how to use them.
 
-## No abilities
+## No Abilities
 
-A struct without abilities cannot be discarded, copied, or stored in storage. We call such a
-struct a _Hot Potato_. It is a joke, but it is also a good way to remember that a struct without
-abilities is like a hot potato - it can only be passed around and requires special handling. The Hot
-Potato is one of the most powerful patterns in Move, and we go into more detail about it in the
+A struct without abilities cannot be discarded, copied, or stored in storage. We call such a struct
+a _Hot Potato_. It is a joke, but it is also a good way to remember that a struct without abilities
+is like a hot potato - it can only be passed around and requires special handling. The Hot Potato is
+one of the most powerful patterns in Move, and we go into more detail about it in the
 [Hot Potato Pattern](./../programmability/hot-potato-pattern.md) chapter.
 
-## Further reading
+## Further Reading
 
 - [Type Abilities](/reference/abilities.html) in the Move Reference.

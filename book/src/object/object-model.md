@@ -44,6 +44,6 @@ Objects in Sui have the following properties:
 - Objects have a type, unique ID, owner, data, version, and digest.
 - The Object Model simplifies asset management and enables a wide range of use cases.
 
-## Further reading
+## Further Reading
 
 - [Object Model](https://docs.sui.io/concepts/object-model) in Sui Documentation.

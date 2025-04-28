@@ -40,8 +40,8 @@ makes constants stand out from other identifiers in the code. An exception is ma
 
 ## Constants are Immutable
 
-Constants can't be changed and assigned new values. As part of the package bytecode, they
-are inherently immutable.
+Constants can't be changed and assigned new values. As part of the package bytecode, they are
+inherently immutable.
 
 ```move
 module book::immutable_constants;

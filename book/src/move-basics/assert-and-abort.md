@@ -20,10 +20,10 @@ Links:
     - constants (previous section)
  -->
 
-A transaction can either succeed or fail. Successful execution applies all changes made to
-objects and on-chain data, and the transaction is committed to the blockchain. Alternatively, if a
-transaction aborts, changes are not applied. Use the `abort` keyword to abort a transaction
-and revert any changes that were made.
+A transaction can either succeed or fail. Successful execution applies all changes made to objects
+and on-chain data, and the transaction is committed to the blockchain. Alternatively, if a
+transaction aborts, changes are not applied. Use the `abort` keyword to abort a transaction and
+revert any changes that were made.
 
 > It is important to note that there is no catch mechanism in Move. If a transaction aborts, the
 > changes made so far are reverted, and the transaction is considered failed.
@@ -56,9 +56,9 @@ an `if` expression + `abort`. The `code` argument is optional, but has to be a `
 
 To make error codes more descriptive, it is a good practice to define
 [error constants](./constants.md). Error constants are defined as `const` declarations and are
-usually prefixed with `E` followed by a camel case name. Error constants are similar to other constants
-and do not have any special handling. However, they are commonly used to improve code readability and
-make abort scenarios easier to understand.
+usually prefixed with `E` followed by a camel case name. Error constants are similar to other
+constants and do not have any special handling. However, they are commonly used to improve code
+readability and make abort scenarios easier to understand.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/assert-and-abort.move:error_const}}
@@ -74,7 +74,7 @@ message.
 {{#include ../../../packages/samples/sources/move-basics/assert-and-abort.move:error_attribute}}
 ```
 
-## Further reading
+## Further Reading
 
 - [Abort and Assert](/reference/abort-and-assert.html) in the Move Reference.
 - We suggest reading the [Better Error Handling](./../guides/better-error-handling.md) guide to

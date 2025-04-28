@@ -32,8 +32,9 @@ Another important feature of Sui Display is the ability to define templates and 
 those templates. Not only it allows for a more flexible display, but it also frees the developer
 from the need to define the same fields with the same names and types in every object.
 
-> The Object Display is natively supported by the [Sui Full Node](https://docs.sui.io/guides/operator/sui-full-node), and the client can fetch the display
-> metadata for any object if the object type has a Display associated with it.
+> The Object Display is natively supported by the
+> [Sui Full Node](https://docs.sui.io/guides/operator/sui-full-node), and the client can fetch the
+> display metadata for any object if the object type has a Display associated with it.
 
 ```move
 {{#include ../../../packages/samples/sources/programmability/display.move:hero}}

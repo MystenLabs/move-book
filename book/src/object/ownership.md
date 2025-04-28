@@ -4,9 +4,9 @@ Sui introduces four distinct ownership types for objects: single owner, shared s
 shared state, and object-owner. Each model offers unique characteristics and suits different use
 cases, enhancing flexibility and control in object management.
 
-Note that ownership does not control the confidentiality of an object &mdash; it is always
-possible to read the contents of an on-chain object from outside of Move. You should never store
-unencrypted secrets inside of objects.
+Note that ownership does not control the confidentiality of an object &mdash; it is always possible
+to read the contents of an on-chain object from outside of Move. You should never store unencrypted
+secrets inside of objects.
 
 See the [Storage Functions](../storage/storage-functions.md) chapter for details on how to change
 the owner or ownership type of an object.
