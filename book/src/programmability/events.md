@@ -10,7 +10,6 @@ on-chain. Events are emitted by the `sui::event` module located in the
 > requires the type to be internal to the module.
 
 ```move
-// File: sui-framework/sources/event.move
 module sui::event;
 
 /// Emit a custom Move event, sending the data off-chain.

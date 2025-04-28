@@ -35,7 +35,8 @@ To encode data, use the `bcs::to_bytes` function, which converts data references
 This function supports encoding any types, including structs.
 
 ```move
-// File: move-stdlib/sources/bcs.move
+module std::bcs;
+
 public native fun to_bytes<T>(t: &T): vector<u8>;
 ```
 

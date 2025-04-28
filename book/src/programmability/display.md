@@ -78,10 +78,10 @@ type it describes. The `fields` of the `Display` object are a `VecMap` of key-va
 key is the field name and the value is the field value. The `version` field is used to version the
 display metadata, and is updated on the `update_display` call.
 
-File: sui-framework/sources/display.move
-
 ```move
-struct Display<phantom T: key> has key, store {
+module sui::display;
+
+public struct Display<phantom T: key> has key, store {
     id: UID,
     /// Contains fields for display. Currently supported
     /// fields are: name, link, image and description.

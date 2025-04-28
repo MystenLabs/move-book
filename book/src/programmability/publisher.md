@@ -14,7 +14,8 @@ and is used to prove the authority of the publisher over a type. To claim a Publ
 publisher must present a [One Time Witness](./one-time-witness.md) to the `package::claim` function.
 
 ```move
-// File: sui-framework/sources/package.move
+module sui::package;
+
 public struct Publisher has key, store {
     id: UID,
     package: String,

@@ -16,7 +16,8 @@ The `sui::transfer` module provides the following public functions. They are alm
 ones we already covered, but can be called from any module.
 
 ```move
-// File: sui-framework/sources/transfer.move
+module sui::transfer;
+
 /// Public version of the `transfer` function.
 public fun public_transfer<T: key + store>(object: T, to: address) {}
 

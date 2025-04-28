@@ -5,7 +5,8 @@ turn, wraps the `address` type. The UIDs on Sui are guaranteed to be unique, and
 after the object was deleted.
 
 ```move
-// File: sui-framework/sources/object.move
+module sui::object;
+
 /// UID is a unique identifier of an object
 public struct UID has store {
     id: ID
