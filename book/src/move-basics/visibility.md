@@ -57,7 +57,7 @@ public fun public() { /* ... */ }
 A public function can be imported and called from other modules. The following code will compile:
 
 ```move
-module book::try_calling_public {
+module book::try_calling_public;
 
 use book::public_visibility;
 
