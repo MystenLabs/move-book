@@ -42,7 +42,7 @@ public(package) fun create_book_package(ctx: &mut TxContext): Book {
     create_book_internal(ctx)
 }
 
-// entry functions can be removed and changed as long they're not public
+// entry functions can be removed and changed as long as they're not public
 entry fun create_book_entry(ctx: &mut TxContext): Book {
     create_book_internal(ctx)
 }
