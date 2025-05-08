@@ -83,7 +83,7 @@ limits and cause the transaction to abort.
 
 ## The `while` Loop
 
-The `while` statement executes a block of code repeatedly as long as a boolean expression evaluates
+The `while` statement executes a block of code repeatedly as long as the associated boolean expression evaluates
 to true. Just like we've seen with `if`, the boolean expression is evaluated before each iteration
 of the loop. Additionally, like conditional statements, the `while` loop is an expression and
 requires a semicolon if there are other expressions following it.
