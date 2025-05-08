@@ -53,7 +53,7 @@ There are not many other reasons for the code to fail at this stage. But if you 
 issues, try looking up the structure of the package in
 [this location](https://github.com/MystenLabs/move-book/tree/main/packages/todo_list).
 
-## Set up an Account
+## Set Up an Account
 
 > If you already have an account set up, you can skip this step.
 
