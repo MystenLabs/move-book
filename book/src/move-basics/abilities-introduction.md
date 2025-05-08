@@ -33,7 +33,7 @@ struct VeryAble has copy, drop {
 
 A quick overview of the abilities:
 
-> All of the built-in types except [references](references.md) have `copy`, `drop` and `store`
+> All of the built-in types except [references](references.md) have `copy`, `drop`, and `store`
 > abilities. References have `copy` and `drop`.
 
 - `copy` - allows the struct to be _copied_. Explained in the [Ability: Copy](./copy-ability.md)
