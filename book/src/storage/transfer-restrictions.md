@@ -16,7 +16,8 @@ The `sui::transfer` module provides the following public functions. They are alm
 ones we already covered, but can be called from any module.
 
 ```move
-// File: sui-framework/sources/transfer.move
+module sui::transfer;
+
 /// Public version of the `transfer` function.
 public fun public_transfer<T: key + store>(object: T, to: address) {}
 
@@ -42,11 +43,12 @@ module book::transfer_a;
 public struct ObjectK has key { id: UID }
 public struct ObjectKS has key, store { id: UID }
 ```
+
 ```move
 /// Imports the `ObjectK` and `ObjectKS` types from `transfer_a` and attempts
 /// to implement different `transfer` functions for them
 module book::transfer_b;
-    
+
 // types are not internal to this module
 use book::transfer_a::{ObjectK, ObjectKS};
 

@@ -1,4 +1,4 @@
-# Building against Limits
+# Building Against Limits
 
 To guarantee the safety and security of the network, Sui has certain limits and restrictions. These
 limits are in place to prevent abuse and to ensure that the network remains stable and efficient.
@@ -30,7 +30,7 @@ that a single address is 32 bytes), it needs to be joined dynamically either in 
 in a Move function. Standard functions like `vector::append()` can join two vectors of ~16KB
 resulting in a ~32KB of data as a single value.
 
-## Maximum Number of Objects (and dynamic fields) created
+## Maximum Number of Objects (and Dynamic Fields) Created
 
 The maximum number of objects that can be created in a single transaction is 2048. If a transaction
 attempts to create more than 2048 objects, it will be rejected by the network. This also affects
@@ -38,7 +38,7 @@ attempts to create more than 2048 objects, it will be rejected by the network. T
 So the maximum number of [dynamic fields](./../programmability/dynamic-fields.md) that can be
 created in a single transaction is 1000. The limitation applies to dynamic object fields as well.
 
-## Maximum Number of Dynamic Fields accessed
+## Maximum Number of Dynamic Fields Accessed
 
 The maximum number of dynamic fields that can be accessed in a single transaction is 1000. If a
 transaction attempts to access more than 1000 dynamic fields, it will be rejected by the network.

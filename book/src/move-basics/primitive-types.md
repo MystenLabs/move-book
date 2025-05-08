@@ -9,10 +9,10 @@ other types. The primitive types are:
 - [Unsigned Integers](#integer-types)
 - [Addresses](./address.md) - covered in the next section
 
-Before we get to the primitive types, let's first take a look at how to declare and assign variables in
-Move.
+Before we get to the primitive types, let's first take a look at how to declare and assign variables
+in Move.
 
-## Variables and assignment
+## Variables and Assignment
 
 Variables are declared using the `let` keyword. They are immutable by default, but can be made
 mutable by adding the `mut` keyword:
@@ -47,7 +47,8 @@ Variables can also be shadowed by re-declaring them.
 ## Booleans
 
 The `bool` type represents a boolean value - yes or no, true or false. It has two possible values:
-`true` and `false`, which are keywords in Move. For booleans, the compiler can always infer the type from the value, so there is no need to explicitly specify it.
+`true` and `false`, which are keywords in Move. For booleans, the compiler can always infer the type
+from the value, so there is no need to explicitly specify it.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/primitive-types.move:boolean}}
@@ -71,12 +72,11 @@ Move supports unsigned integers of various sizes, from 8-bit to 256-bit. The int
 {{#include ../../../packages/samples/sources/move-basics/primitive-types.move:integers}}
 ```
 
-While boolean literals like `true` and `false` are clearly booleans, an integer
-literal like `42` could be any of the integer types. In most of the cases, the
-compiler will infer the type from the value, usually defaulting to `u64`.
-However, sometimes the compiler is unable to infer the type and will require an
-explicit type annotation. It can either be provided during assignment or by
-using a type suffix.
+While boolean literals like `true` and `false` are clearly booleans, an integer literal like `42`
+could be any of the integer types. In most of the cases, the compiler will infer the type from the
+value, usually defaulting to `u64`. However, sometimes the compiler is unable to infer the type and
+will require an explicit type annotation. It can either be provided during assignment or by using a
+type suffix.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/primitive-types.move:integer_explicit_type}}
@@ -98,9 +98,9 @@ multiplication, division, and modulus (remainder). The syntax for these operatio
 > For more operations, including bitwise operations, please refer to the
 > [Move Reference](/reference/primitive-types/integers.html#bitwise).
 
-The types of the operands _must match_, or the compiler will raise an error. The result of
-the operation will be of the same type as the operands. To perform operations on different types,
-the operands need to be cast to the same type.
+The types of the operands _must match_, or the compiler will raise an error. The result of the
+operation will be of the same type as the operands. To perform operations on different types, the
+operands need to be cast to the same type.
 
 <!-- TODO: add examples + parentheses for arithmetic operations -->
 <!-- TODO: add bitwise operators -->
@@ -138,7 +138,7 @@ let y = 1u8;
 let z = x + y;
 ```
 
-## Further reading
+## Further Reading
 
 - [Bool](/reference/primitive-types/bool.html) in the Move Reference.
 - [Integer](/reference/primitive-types/integers.html) in the Move Reference.

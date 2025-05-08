@@ -14,7 +14,8 @@ and is used to prove the authority of the publisher over a type. To claim a Publ
 publisher must present a [One Time Witness](./one-time-witness.md) to the `package::claim` function.
 
 ```move
-// File: sui-framework/sources/package.move
+module sui::package;
+
 public struct Publisher has key, store {
     id: UID,
     package: String,
@@ -51,10 +52,10 @@ system configurations, it can also be used to manage the application's state.
 ```
 
 However, Publisher misses some native properties of [Capabilities](./capability.md), such as type
-safety and expressiveness. The signature for the `admin_action` is not very explicit, can be
-called by anyone else. And due to `Publisher` object being standard, there now is a risk of
-unauthorized access if the `from_module` check is not performed. So it's important to be cautious
-when using the `Publisher` object as an admin role.
+safety and expressiveness. The signature for the `admin_action` is not very explicit, can be called
+by anyone else. And due to `Publisher` object being standard, there now is a risk of unauthorized
+access if the `from_module` check is not performed. So it's important to be cautious when using the
+`Publisher` object as an admin role.
 
 ## Role on Sui
 

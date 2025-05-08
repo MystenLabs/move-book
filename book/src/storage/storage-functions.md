@@ -21,7 +21,7 @@ The `transfer` module provides functions to perform all three storage operations
 The `transfer` module is a go-to for most of the storage operations, except a special case with
 [Dynamic Fields](./../programmability/dynamic-fields.md) that awaits us in the next chapter.
 
-## Ownership and References: A Quick Recap
+## Ownership and References: a Quick Recap
 
 In the [Ownership and Scope](./../move-basics/ownership-and-scope.md) and
 [References](./../move-basics/references.md) chapters, we covered the basics of ownership and
@@ -61,7 +61,8 @@ passed into the function _by value_, therefore it is _moved_ to the function sco
 the recipient address:
 
 ```move
-// File: sui-framework/sources/transfer.move
+module sui::transfer;
+
 public fun transfer<T: key>(obj: T, recipient: address);
 ```
 
@@ -69,28 +70,27 @@ In the next example, you can see how it can be used in a module that defines and
 the transaction sender.
 
 ```move
-module book::transfer_to_sender {
+module book::transfer_to_sender;
 
-    /// A struct with `key` is an object. The first field is `id: UID`!
-    public struct AdminCap has key { id: UID }
+/// A struct with `key` is an object. The first field is `id: UID`!
+public struct AdminCap has key { id: UID }
 
-    /// `init` function is a special function that is called when the module
-    /// is published. It is a good place to create application objects.
-    fun init(ctx: &mut TxContext) {
-        // Create a new `AdminCap` object, in this scope.
-        let admin_cap = AdminCap { id: object::new(ctx) };
+/// `init` function is a special function that is called when the module
+/// is published. It is a good place to create application objects.
+fun init(ctx: &mut TxContext) {
+    // Create a new `AdminCap` object, in this scope.
+    let admin_cap = AdminCap { id: object::new(ctx) };
 
-        // Transfer the object to the transaction sender.
-        transfer::transfer(admin_cap, ctx.sender());
+    // Transfer the object to the transaction sender.
+    transfer::transfer(admin_cap, ctx.sender());
 
-        // admin_cap is gone! Can't be accessed anymore.
-    }
+    // admin_cap is gone! Can't be accessed anymore.
+}
 
-    /// Transfers the `AdminCap` object to the `recipient`. Thus, the recipient
-    /// becomes the owner of the object, and only they can access it.
-    public fun transfer_admin_cap(cap: AdminCap, recipient: address) {
-        transfer::transfer(cap, recipient);
-    }
+/// Transfers the `AdminCap` object to the `recipient`. Thus, the recipient
+/// becomes the owner of the object, and only they can access it.
+public fun transfer_admin_cap(cap: AdminCap, recipient: address) {
+    transfer::transfer(cap, recipient);
 }
 ```
 
@@ -138,16 +138,17 @@ A quick recap:
 
 ## Freeze
 
-The `transfer::freeze_object` function is a public function that is used to put
-an object into an _immutable_ state. Once an object is _frozen_, it can never
-be changed, and it can be accessed by anyone by immutable reference.
+The `transfer::freeze_object` function is a public function that is used to put an object into an
+_immutable_ state. Once an object is _frozen_, it can never be changed, and it can be accessed by
+anyone by immutable reference.
 
 The function signature is as follows, only accepts a type with the
 [`key` ability](./key-ability.md). Just like all other storage functions, it takes the object _by
 value_:
 
 ```move
-// File: sui-framework/sources/transfer.move
+module sui::transfer;
+
 public fun freeze_object<T: key>(obj: T);
 ```
 
@@ -240,7 +241,8 @@ immutable too). The function signature is as follows, only accepts a type with t
 [`key` ability](./key-ability.md):
 
 ```move
-// File: sui-framework/sources/transfer.move
+module sui::transfer;
+
 public fun share_object<T: key>(obj: T);
 ```
 

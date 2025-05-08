@@ -1,9 +1,9 @@
 # The Key Ability
 
 In the [Basic Syntax](./../move-basics) chapter we already covered two out of four abilities -
-[Drop](./../move-basics/drop-ability.md) and [Copy](./../move-basics/copy-ability.md). They affect the behavior of the value in a
-scope and are not directly related to storage. It is time to cover the `key` ability, which allows
-the struct to be stored.
+[Drop](./../move-basics/drop-ability.md) and [Copy](./../move-basics/copy-ability.md). They affect
+the behavior of the value in a scope and are not directly related to storage. It is time to cover
+the `key` ability, which allows the struct to be stored.
 
 Historically, the `key` ability was created to mark the type as a _key in the storage_. A type with
 the `key` ability could be stored at top-level in the storage, and could be _directly owned_ by an
@@ -57,6 +57,6 @@ custom types.
 Key ability defines the object in Move, and objects are intended to be _stored_. In the next section
 we present the `sui::transfer` module, which provides native storage functions for objects.
 
-## Further reading
+## Further Reading
 
 - [Type Abilities](/reference/abilities.html) in the Move Reference.

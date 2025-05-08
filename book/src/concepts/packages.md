@@ -16,8 +16,8 @@
 
 -->
 
-Move is a language for writing smart contracts - programs that are stored and run on the blockchain. A
-single program is organized into a package. A package is published on the blockchain and is
+Move is a language for writing smart contracts - programs that are stored and run on the blockchain.
+A single program is organized into a package. A package is published on the blockchain and is
 identified by an [address](./address.md). A published package can be interacted with by sending
 [transactions](./what-is-a-transaction.md) calling its functions. It can also act as a dependency
 for other packages.

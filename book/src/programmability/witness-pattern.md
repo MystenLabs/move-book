@@ -48,8 +48,8 @@ public fun new_instance(): Instance<W> {
 }
 ```
 
-The instance of the struct `W` is passed into the `new_instance` function to create an `Instance<W>`, thereby
-proving that the module `book::witness_source` owns the type `W`.
+The instance of the struct `W` is passed into the `new_instance` function to create an
+`Instance<W>`, thereby proving that the module `book::witness_source` owns the type `W`.
 
 ## Instantiating a Generic Type
 
@@ -58,7 +58,8 @@ associated behaviors from the type with an option to extend them, if the module 
 to do so.
 
 ```move
-// File: sui-framework/sources/balance.move
+module sui::balance;
+
 /// A Supply of T. Used for minting and burning.
 public struct Supply<phantom T> has store {
     value: u64,
@@ -75,16 +76,19 @@ public fun supply_value<T>(supply: &Supply<T>): u64 {
 }
 ```
 
-In the example above, which is borrowed from the `balance` module of the
+In the example above, which is borrowed from the [`balance` module][balance-framework] of the
 [Sui Framework](./sui-framework.md), the `Supply` a generic struct that can be constructed only by
 supplying a witness of the type `T`. The witness is taken by value and _discarded_ - hence the `T`
 must have the [drop](./../move-basics/drop-ability.md) ability.
+
+[balance-framework]: https://docs.sui.io/references/framework/sui/balance
 
 The instantiated `Supply<T>` can then be used to mint new `Balance<T>`'s, where `T` is the type of
 the supply.
 
 ```move
-// File: sui-framework/sources/balance.move
+module sui::balance;
+
 /// Storable balance.
 public struct Balance<phantom T> has store {
     value: u64,

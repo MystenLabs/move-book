@@ -17,9 +17,10 @@ Links:
     - your first move
 
  -->
+
 Move uses a special type called [address](./../concepts/address.md) to represent addresses. It is a
-32-byte value that can represent any address on the blockchain. Addresses can be written in two forms:
-hexadecimal addresses prefixed with 0x and named addresses.
+32-byte value that can represent any address on the blockchain. Addresses can be written in two
+forms: hexadecimal addresses prefixed with 0x and named addresses.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/address.move:address_literal}}
@@ -54,7 +55,7 @@ Example: Convert an address into a string.
 {{#include ../../../packages/samples/sources/move-basics/address.move:to_string}}
 ```
 
-## Further reading
+## Further Reading
 
 - [Address](/reference/primitive-types/address.html) in the Move Reference.
-- [sui::address module](https://docs.sui.io/references/framework/sui/address)
+- [sui::address](https://docs.sui.io/references/framework/sui/address) module documentation.

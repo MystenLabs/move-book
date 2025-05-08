@@ -5,7 +5,8 @@ turn, wraps the `address` type. The UIDs on Sui are guaranteed to be unique, and
 after the object was deleted.
 
 ```move
-// File: sui-framework/sources/object.move
+module sui::object;
+
 /// UID is a unique identifier of an object
 public struct UID has store {
     id: ID
@@ -19,7 +20,7 @@ public struct ID has store, drop {
 
 <!-- User doesn't know anything about TxContext yet... -->
 
-## Fresh UID generation:
+## Fresh UID Generation:
 
 - UID is derived from the `tx_hash` and an `index` which is incremented for each new UID.
 - The `derive_id` function is implemented in the `sui::tx_context` module, and that is why TxContext
@@ -36,11 +37,12 @@ let uid = object::new(ctx);
 ```
 
 On Sui, `UID` acts as a representation of an object, and allows defining behaviors and features of
-an object. One of the key features - [Dynamic Fields](../programmability/dynamic-fields.html) - is possible because of the `UID` type
-being explicit. Additionally, it allows the [Transfer to Object (TTO)](https://docs.sui.io/concepts/transfers/transfer-to-object), which we will explain later
-in this chapter.
+an object. One of the key features - [Dynamic Fields](../programmability/dynamic-fields.html) - is
+possible because of the `UID` type being explicit. Additionally, it allows the
+[Transfer to Object (TTO)](https://docs.sui.io/concepts/transfers/transfer-to-object), which we will
+explain later in this chapter.
 
-## UID lifecycle
+## UID Lifecycle
 
 The `UID` type is created with the `object::new(ctx)` function, and it is destroyed with the
 `object::delete(uid)` function. The `object::delete` consumes the UID _by value_, and it is

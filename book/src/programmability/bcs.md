@@ -26,14 +26,17 @@ defined in the struct. The fields are serialized using the same rules as the top
 
 ## Using BCS
 
-The [Sui Framework](./sui-framework.md) includes the sui::bcs module for encoding and decoding data. Encoding functions are native to the VM, and decoding functions are implemented in Move.
+The [Sui Framework](./sui-framework.md) includes the sui::bcs module for encoding and decoding data.
+Encoding functions are native to the VM, and decoding functions are implemented in Move.
 
 ## Encoding
 
-To encode data, use the `bcs::to_bytes` function, which converts data references into byte vectors. This function supports encoding any types, including structs.
+To encode data, use the `bcs::to_bytes` function, which converts data references into byte vectors.
+This function supports encoding any types, including structs.
 
 ```move
-// File: move-stdlib/sources/bcs.move
+module std::bcs;
+
 public native fun to_bytes<T>(t: &T): vector<u8>;
 ```
 
@@ -54,7 +57,8 @@ Structs encode similarly to simple types. Here is how to encode a struct using B
 
 ## Decoding
 
-Because BCS does not self-describe and Move is statically typed, decoding requires prior knowledge of the data type. The `sui::bcs` module provides various functions to assist with this process.
+Because BCS does not self-describe and Move is statically typed, decoding requires prior knowledge
+of the data type. The `sui::bcs` module provides various functions to assist with this process.
 
 ### Wrapper API
 
@@ -129,4 +133,6 @@ to decode each field manually.
 
 ## Summary
 
-Binary Canonical Serialization is an efficient binary format for structured data, ensuring consistent serialization across platforms. The Sui Framework provides comprehensive tools for working with BCS, allowing extensive functionality through built-in functions.
+Binary Canonical Serialization is an efficient binary format for structured data, ensuring
+consistent serialization across platforms. The Sui Framework provides comprehensive tools for
+working with BCS, allowing extensive functionality through built-in functions.

@@ -19,8 +19,8 @@ application.
 ## VecSet
 
 `VecSet` is a collection type that stores a set of unique items. It is similar to a `vector`, but it
-does not allow duplicate items. This makes it useful for storing a collection of unique items, such
-as a list of unique IDs or addresses.
+does not allow duplicate items. This property makes it useful for storing a collection of unique
+items, such as a list of IDs or addresses.
 
 ```move
 {{#include ../../../packages/samples/sources/programmability/collections-2.move:vec_set}}
@@ -76,5 +76,5 @@ if the two `VecSet` instances contain the same elements.
 
 ## Next Steps
 
-In the next section we will cover the [Wrapper Type Pattern](./wrapper-type-pattern.md) - a design pattern
-often used with collection types to extend or restrict their behavior. 
+In the next section we will cover the [Wrapper Type Pattern](./wrapper-type-pattern.md) - a design
+pattern often used with collection types to extend or restrict their behavior.

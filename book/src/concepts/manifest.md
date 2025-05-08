@@ -54,17 +54,17 @@ Packages also import addresses from other packages. For example, the Sui depende
 and `sui` addresses to the project. These addresses can be used in the code as aliases for the
 addresses.
 
-Starting with version 1.45 of the Sui CLI, the Sui system packages (`std`,
-`sui`, `system`, `bridge`, and `deepbook`) are automatically added as
-dependencies if none of them are explicitly listed.
+Starting with version 1.45 of the Sui CLI, the Sui system packages (`std`, `sui`, `system`,
+`bridge`, and `deepbook`) are automatically added as dependencies if none of them are explicitly
+listed.
 
-### Resolving version conflicts with override
+### Resolving Version Conflicts with Override
 
 Sometimes dependencies have conflicting versions of the same package. For example, if you have two
-dependencies that use different versions of the Example package, you can override the dependency in the
-`[dependencies]` section. To do so, add the `override` field to the dependency. The version of the
-dependency specified in the `[dependencies]` section will be used instead of the one specified in
-the dependency itself.
+dependencies that use different versions of the Example package, you can override the dependency in
+the `[dependencies]` section. To do so, add the `override` field to the dependency. The version of
+the dependency specified in the `[dependencies]` section will be used instead of the one specified
+in the dependency itself.
 
 ```toml
 [dependencies]
@@ -91,7 +91,7 @@ modes. Important to note that it is impossible to introduce new aliases in this 
 override the existing ones. So in the example above, if you add `alice = "0xB0B"` to this section,
 the `alice` address will be `0xB0B` in the test and dev modes, and `0xA11CE` in the regular build.
 
-## TOML styles
+## TOML Styles
 
 The TOML format supports two styles for tables: inline and multiline. The examples above are using
 the inline style, but it is also possible to use the multiline style. You wouldn't want to use it

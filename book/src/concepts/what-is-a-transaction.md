@@ -32,20 +32,22 @@ Transactions consist of:
 ## Inputs
 
 Transaction inputs are the arguments for the transaction and are split between 2 types:
+
 - Pure arguments: These are mostly [primitive types](../move-basics/primitive-types.html) with some
-extra additions. A pure argument can be:
-    - [`bool`](../move-basics/primitive-types.html#booleans).
-    - [unsigned integer](../move-basics/primitive-types.html#integer-types) (`u8`, `u16`, `u32`, `u64`, `u128`, `u256`).
-    - [`address`](../move-basics/address.html).
-    - [`std::string::String`](../move-basics/string.html), UTF8 strings.
-    - [`std::ascii::String`](../move-basics/string.html#ascii-strings), ASCII strings.
-    - [`vector<T>`](../move-basics/vector.html), where `T` is a pure type.
-    - [`std::option::Option<T>`](../move-basics/option.html), where `T` is a pure type.
-    - [`std::object::ID`](../storage/uid-and-id.html), typically points to an object. See also [What is an Object](../object/object-model.html).
+  extra additions. A pure argument can be: -
+  [`bool`](../move-basics/primitive-types.html#booleans). -
+  [unsigned integer](../move-basics/primitive-types.html#integer-types) (`u8`, `u16`, `u32`, `u64`,
+  `u128`, `u256`). - [`address`](../move-basics/address.html). -
+  [`std::string::String`](../move-basics/string.html), UTF8 strings. -
+  [`std::ascii::String`](../move-basics/string.html#ascii-strings), ASCII strings. -
+  [`vector<T>`](../move-basics/vector.html), where `T` is a pure type. -
+  [`std::option::Option<T>`](../move-basics/option.html), where `T` is a pure type. -
+  [`std::object::ID`](../storage/uid-and-id.html), typically points to an object. See also
+  [What is an Object](../object/object-model.html).
 - Object arguments: These are objects or references of objects that the transaction will access. An
-object argument needs to be either a shared object, a frozen object, or an object that the
-transaction sender owns, in order for the transaction to be successful.
-For more see [Object Model](../object/index.html).
+  object argument needs to be either a shared object, a frozen object, or an object that the
+  transaction sender owns for the transaction to be successful. For more see
+  [Object Model](../object/index.html).
 
 ## Commands
 

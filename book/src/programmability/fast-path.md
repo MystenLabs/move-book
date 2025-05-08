@@ -23,13 +23,13 @@ Consensus is only required for mutating the shared state. If the object is immut
 as a "constant" and can be accessed in parallel. Frozen objects can be used to share unchangeable
 data between multiple parties without requiring consensus.
 
-## In practice
+## In Practice
 
 ```move
 {{#include ../../../packages/samples/sources/programmability/fast-path.move:main}}
 ```
 
-## Special case: Clock
+## Special Case: Clock
 
 The `Clock` object with the reserved address `0x6` is a special case of a shared object which cannot
 be passed by a mutable reference in a regular transaction. An attempt to do so will not succeed, and

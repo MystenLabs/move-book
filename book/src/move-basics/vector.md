@@ -1,17 +1,16 @@
 # Vector
 
 Vectors are a native way to store collections of elements in Move. They are similar to arrays in
-other programming languages, but with a few differences. In this section, we introduce
-the `vector` type and its operations.
+other programming languages, but with a few differences. In this section, we introduce the `vector`
+type and its operations.
 
 ## Vector syntax
 
 The `vector` type is written using the `vector` keyword followed by the type of the elements in
 angle brackets. The type of the elements can be any valid Move type, including other vectors.
 
-Move
-has a vector literal syntax that allows you to create vectors using the `vector` keyword followed by
-square brackets containing the elements (or no elements for an empty vector).
+Move has a vector literal syntax that allows you to create vectors using the `vector` keyword
+followed by square brackets containing the elements (or no elements for an empty vector).
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/vector.move:literal}}
@@ -38,8 +37,8 @@ commonly used operations:
 
 ## Destroying a Vector of non-droppable types
 
-A vector of non-droppable types cannot be discarded. If you define a vector of types without the `drop`
-ability, the vector value cannot be ignored. If the vector is empty, the compiler requires an
+A vector of non-droppable types cannot be discarded. If you define a vector of types without the
+`drop` ability, the vector value cannot be ignored. If the vector is empty, the compiler requires an
 explicit call to the `destroy_empty` function.
 
 ```move
@@ -48,6 +47,7 @@ explicit call to the `destroy_empty` function.
 
 The `destroy_empty` function will fail at runtime if you call it on a non-empty vector.
 
-## Further reading
+## Further Reading
 
 - [Vector](/reference/primitive-types/vector.html) in the Move Reference.
+- [std::vector](https://docs.sui.io/references/framework/std/vector) module documentation.

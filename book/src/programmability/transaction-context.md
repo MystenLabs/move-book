@@ -5,14 +5,17 @@ available to the program during execution. For example, every transaction has a 
 the transaction context contains a variable that holds the sender address.
 
 The transaction context is available to the program through the `TxContext` struct. The struct is
-defined in the `sui::tx_context` module and contains the following fields:
+defined in the [`sui::tx_context`][tx-context-framework] module and contains the following fields:
+
+[tx-context-framework]: https://docs.sui.io/references/framework/sui/tx_context
 
 ```move
-// File: sui-framework/sources/tx_context.move
+module sui::tx_context;
+
 /// Information about the transaction currently being executed.
 /// This cannot be constructed by a transaction--it is a privileged object created by
 /// the VM and passed in to the entrypoint of the transaction as `&mut TxContext`.
-struct TxContext has drop {
+public struct TxContext has drop {
     /// The address of the user that signed the current transaction
     sender: address,
     /// Hash of the current transaction
@@ -54,11 +57,10 @@ parameter. Sui uses the `ids_created` field for that. Every time a new UID is cr
 Internally, it is represented as the `derive_id` function:
 
 ```move
-// File: sui-framework/sources/tx_context.move
 native fun derive_id(tx_hash: vector<u8>, ids_created: u64): address;
 ```
 
-## Generating unique addresses
+## Generating Unique Addresses
 
 The underlying `derive_id` function can also be utilized in your program to generate unique
 addresses. The function itself is not exposed, but a wrapper function `fresh_object_address` is
@@ -66,7 +68,8 @@ available in the `sui::tx_context` module. It may be useful if you need to gener
 identifier in your program.
 
 ```move
-// File: sui-framework/sources/tx_context.move
+module sui::tx_context;
+
 /// Create an `address` that has not been used. As it is an object address, it will never
 /// occur as the address for a user.
 /// In other words, the generated address is a globally unique object ID.

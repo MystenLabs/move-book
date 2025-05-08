@@ -65,8 +65,8 @@ Struct fields are private and can be accessed only by the module defining the st
 ## Unpacking a struct
 
 Structs are non-discardable by default, meaning that the initialized struct value must be used,
-either by storing it or unpacking it. Unpacking a struct means deconstructing it into its fields. This is done using
-the `let` keyword followed by the struct name and the field names.
+either by storing it or unpacking it. Unpacking a struct means deconstructing it into its fields.
+This is done using the `let` keyword followed by the struct name and the field names.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/struct.move:unpack}}
@@ -81,6 +81,6 @@ unused.
 {{#include ../../../packages/samples/sources/move-basics/struct.move:unpack_ignore}}
 ```
 
-## Further reading
+## Further Reading
 
 - [Structs](/reference/structs.html) in the Move Reference.

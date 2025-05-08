@@ -22,6 +22,6 @@ Sui.
 - Sui introduced the Object Model, which provides a native concept of ownership, simplifying asset
   management and enabling heterogeneous collections.
 
-## Further reading
+## Further Reading
 
 - [Why We Created Sui Move](https://blog.sui.io/why-we-created-sui-move/) by Sam Blackshear

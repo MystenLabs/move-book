@@ -9,47 +9,47 @@ functions - they can be called from other packages.
 
 ```move
 // module can not be removed from the package
-module book::upgradable {
-    // dependencies can be changed (if they are not used in public signatures)
-    use std::string::String;
-    use sui::event; // can be removed
+module book::upgradable;
 
-    // public structs can not be removed and can't be changed
-    public struct Book has key {
-        id: UID,
-        title: String,
-    }
+// dependencies can be changed (if they are not used in public signatures)
+use std::string::String;
+use sui::event; // can be removed
 
-    // public structs can not be removed and can't be changed
-    public struct BookCreated has copy, drop {
+// public structs can not be removed and can't be changed
+public struct Book has key {
+    id: UID,
+    title: String,
+}
+
+// public structs can not be removed and can't be changed
+public struct BookCreated has copy, drop {
+    /* ... */
+}
+
+// public functions can not be removed and their signature can never change
+// but the implementation can be changed
+public fun create_book(ctx: &mut TxContext): Book {
+    create_book_internal(ctx)
+
+    // can be removed and changed
+    event::emit(BookCreated {
         /* ... */
-    }
+    })
+}
 
-    // public functions can not be removed and their signature can never change
-    // but the implementation can be changed
-    public fun create_book(ctx: &mut TxContext): Book {
-        create_book_internal(ctx)
+// package-visibility functions can be removed and changed
+public(package) fun create_book_package(ctx: &mut TxContext): Book {
+    create_book_internal(ctx)
+}
 
-        // can be removed and changed
-        event::emit(BookCreated {
-            /* ... */
-        })
-    }
+// entry functions can be removed and changed as long as they're not public
+entry fun create_book_entry(ctx: &mut TxContext): Book {
+    create_book_internal(ctx)
+}
 
-    // package-visibility functions can be removed and changed
-    public(package) fun create_book_package(ctx: &mut TxContext): Book {
-        create_book_internal(ctx)
-    }
-
-    // entry functions can be removed and changed as long they're not public
-    entry fun create_book_entry(ctx: &mut TxContext): Book {
-        create_book_internal(ctx)
-    }
-
-    // private functions can be removed and changed
-    fun create_book_internal(ctx: &mut TxContext): Book {
-        abort 0
-    }
+// private functions can be removed and changed
+fun create_book_internal(ctx: &mut TxContext): Book {
+    abort 0
 }
 ```
 
@@ -70,23 +70,22 @@ be used to update the version of the shared state, so that the new version of co
 the old version aborts with a version mismatch.
 
 ```move
-module book::versioned_state {
+module book::versioned_state;
 
-    const EVersionMismatch: u64 = 0;
+const EVersionMismatch: u64 = 0;
 
-    const VERSION: u8 = 1;
+const VERSION: u8 = 1;
 
-    /// The shared state (can be owned too)
-    public struct SharedState has key {
-        id: UID,
-        version: u8,
-        /* ... */
-    }
+/// The shared state (can be owned too)
+public struct SharedState has key {
+    id: UID,
+    version: u8,
+    /* ... */
+}
 
-    public fun mutate(state: &mut SharedState) {
-        assert!(state.version == VERSION, EVersionMismatch);
-        // ...
-    }
+public fun mutate(state: &mut SharedState) {
+    assert!(state.version == VERSION, EVersionMismatch);
+    // ...
 }
 ```
 
@@ -100,24 +99,24 @@ and adding an actual configuration object as a dynamic field. Using this _anchor
 configuration can be changed with package upgrades while keeping the same base object signature.
 
 ```move
-module book::versioned_config {
-    use sui::vec_map::VecMap;
-    use std::string::String;
+module book::versioned_config;
 
-    /// The base object
-    public struct Config has key {
-        id: UID,
-        version: u16
-    }
+use sui::vec_map::VecMap;
+use std::string::String;
 
-    /// The actual configuration
-    public struct ConfigV1 has store {
-        data: Bag,
-        metadata: VecMap<String, String>
-    }
-
-    // ...
+/// The base object
+public struct Config has key {
+    id: UID,
+    version: u16
 }
+
+/// The actual configuration
+public struct ConfigV1 has store {
+    data: Bag,
+    metadata: VecMap<String, String>
+}
+
+// ...
 ```
 
 ## Modular architecture

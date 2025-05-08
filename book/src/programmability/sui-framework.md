@@ -12,8 +12,8 @@ still part of the same framework._
 <!-- Custom CSS addition in the theme/custom.css  -->
 <div class="modules-table">
 
-| Module                                                                                                   | Description                                                                | Chapter                                                                |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| Module                                                                                         | Description                                                                | Chapter                                                                |
+| ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | [sui::address](https://docs.sui.io/references/framework/sui/address)                           | Adds conversion methods to the [address type](./../move-basics/address.md) | [Address](./../move-basics/address.md)                                 |
 | [sui::transfer](https://docs.sui.io/references/framework/sui/transfer)                         | Implements the storage operations for Objects                              | [It starts with an Object](./../object)                                |
 | [sui::tx_context](https://docs.sui.io/references/framework/sui/tx_context)                     | Contains the `TxContext` struct and methods to read it                     | [Transaction Context](./transaction-context.md)                        |
@@ -31,8 +31,8 @@ still part of the same framework._
 
 <div class="modules-table">
 
-| Module                                                                                   | Description                                                       | Chapter                                         |
-| ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------- |
+| Module                                                                         | Description                                                       | Chapter                                         |
+| ------------------------------------------------------------------------------ | ----------------------------------------------------------------- | ----------------------------------------------- |
 | [sui::vec_set](https://docs.sui.io/references/framework/sui/vec_set)           | Implements a set type                                             | [Collections](./collections.md)                 |
 | [sui::vec_map](https://docs.sui.io/references/framework/sui/vec_map)           | Implements a map with vector keys                                 | [Collections](./collections.md)                 |
 | [sui::table](https://docs.sui.io/references/framework/sui/table)               | Implements the `Table` type and methods to interact with it       | [Dynamic Collections](./dynamic-collections.md) |
@@ -47,8 +47,8 @@ still part of the same framework._
 
 <div class="modules-table">
 
-| Module                                                                       | Description                                                | Chapter                                    |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------ |
+| Module                                                             | Description                                                | Chapter                                    |
+| ------------------------------------------------------------------ | ---------------------------------------------------------- | ------------------------------------------ |
 | [sui::bcs](https://docs.sui.io/references/framework/sui/bcs)       | Implements the BCS encoding and decoding functions         | [Binary Canonical Serialization](./bcs.md) |
 | [sui::borrow](https://docs.sui.io/references/framework/sui/borrow) | Implements the borrowing mechanic for borrowing by _value_ | [Hot Potato](./hot-potato-pattern.md)      |
 | [sui::hex](https://docs.sui.io/references/framework/sui/hex)       | Implements the hex encoding and decoding functions         | -                                          |

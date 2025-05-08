@@ -45,7 +45,8 @@ that can store any data. Bag will never allow orphaned fields, as it tracks the 
 can't be destroyed if it's not empty.
 
 ```move
-// File: sui-framework/sources/bag.move
+module sui::bag;
+
 public struct Bag has key, store {
     /// the ID of this bag
     id: UID,
@@ -53,6 +54,8 @@ public struct Bag has key, store {
     size: u64,
 }
 ```
+
+_See [full documentation for sui::bag][bag-framework] module._
 
 Due to Bag storing any types, the extra methods it offers is:
 
@@ -81,7 +84,8 @@ Table is a typed dynamic collection that has a fixed type for keys and values. I
 `sui::table` module.
 
 ```move
-// File: sui-framework/sources/table.move
+module sui::table;
+
 public struct Table<phantom K: copy + drop + store, phantom V: store> has key, store {
     /// the ID of this table
     id: UID,
@@ -89,6 +93,8 @@ public struct Table<phantom K: copy + drop + store, phantom V: store> has key, s
     size: u64,
 }
 ```
+
+_See [full documentation for sui::table][table-framework] module._
 
 Used as a struct field:
 
@@ -109,15 +115,27 @@ Defined in the `sui::object_table` module. Identical to [Table](#table), but use
 
 ## Summary
 
-- [Bag](#bag) - a simple collection that can store any type of data
-- [ObjectBag](#objectbag) - a collection that can store only objects
-- [Table](#table) - a typed dynamic collection that has a fixed type for keys and values
-- [ObjectTable](#objecttable) - same as Table, but can only store objects
+- [Bag](#bag) - a simple collection that can store any type of data.
+- [ObjectBag](#objectbag) - a collection that can store only objects.
+- [Table](#table) - a typed dynamic collection that has a fixed type for keys and values.
+- [ObjectTable](#objecttable) - same as Table, but can only store objects.
 <!-- [Linked Table](#linkedtable) -->
 
 ## LinkedTable
 
 This section is coming soon!
+
+## Further Reading
+
+- [sui::table][table-framework] module documentation.
+- [sui::object_table][object-table-framework] module documentation.
+- [sui::bag][bag-framework] module documentation.
+- [sui::object_bag][object-bag-framework] module documentation.
+
+[table-framework]: https://docs.sui.io/references/framework/sui/table
+[object-table-framework]: https://docs.sui.io/references/framework/sui/object_table
+[bag-framework]: https://docs.sui.io/references/framework/sui/bag
+[object-bag-framework]: https://docs.sui.io/references/framework/sui/object_bag
 
 <!-- TODO! -->
 

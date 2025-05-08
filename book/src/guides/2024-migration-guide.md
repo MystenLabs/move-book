@@ -32,7 +32,7 @@ $ sui move migrate
 The migration tool will update the code to use the `let mut` syntax, the new `public` modifier for
 structs, and the `public(package)` function visibility instead of `friend` declarations.
 
-## Mutable bindings with `let mut`
+## Mutable Bindings with `let mut`
 
 Move 2024 introduces `let mut` syntax to declare mutable variables. The `let mut` syntax is used to
 declare a mutable variable that can be changed after it is declared.

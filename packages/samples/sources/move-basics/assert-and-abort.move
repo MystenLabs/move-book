@@ -3,20 +3,15 @@
 
 module book::assert_abort;
 
-#[test, expected_failure(abort_code = 1, location=Self)]
+#[test, expected_failure(abort_code = 0, location=Self)]
 fun test_abort() {
 
 // ANCHOR: abort
 let user_has_access = true;
 
 // abort with a predefined constant if `user_has_access` is false
-if (!user_has_access) {
-    abort 0
-};
-
-// there's an alternative syntax using parenthesis`
 if (user_has_access) {
-   abort(1)
+    abort 0
 };
 // ANCHOR_END: abort
 }
