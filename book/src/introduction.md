@@ -1,6 +1,6 @@
 # Introduction
 
-Welcome to The Move Book, a book about Move language.
+Welcome to The Move Book, a book about the Move language.
 
 > If you're looking for The Move Reference, it is available here: [The Move Reference](/reference).
 > The reference focuses on the language itself, while this book is structured as a learning path,
