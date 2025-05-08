@@ -68,6 +68,8 @@ available in the `sui::tx_context` module. It may be useful if you need to gener
 identifier in your program.
 
 ```move
+module sui::tx_context;
+
 /// Create an `address` that has not been used. As it is an object address, it will never
 /// occur as the address for a user.
 /// In other words, the generated address is a globally unique object ID.
