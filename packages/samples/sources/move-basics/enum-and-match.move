@@ -53,7 +53,7 @@ fun test_segments() {
 // ANCHOR_END: struct
 
 // ANCHOR: is_empty
-/// Whether this it's an `Empty` segment.
+/// Whether this is an `Empty` segment.
 public fun is_empty(s: &Segment): bool {
     // Match is an expression, hence we can use it for return value.
     match (s) {
@@ -74,7 +74,7 @@ public fun is_empty_(s: &Segment): bool {
 // ANCHOR_END: is_empty_2
 
 // ANCHOR: accessors
-/// Whether it's a `Special` segment.
+/// Whether this is a `Special` segment.
 public fun is_special(s: &Segment): bool {
     match (s) {
         // Hint: the `..` ignores inner fields
@@ -83,7 +83,7 @@ public fun is_special(s: &Segment): bool {
     }
 }
 
-/// Whether it's a `String` segment.
+/// Whether this is a `String` segment.
 public fun is_string(s: &Segment): bool {
     match (s) {
         Segment::String(_) => true,

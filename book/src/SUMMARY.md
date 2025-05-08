@@ -108,7 +108,7 @@
   - [Pattern: Witness](./programmability/witness-pattern.md)
   - [One Time Witness](./programmability/one-time-witness.md)
   - [Publisher Authority](./programmability/publisher.md)
-  - [Display](./programmability/display.md) <!-- End Block: from Witness to Display -->
+  - [Object Display](./programmability/display.md) <!-- End Block: from Witness to Display -->
   - [Events](./programmability/events.md)
   - [Balance & Coin]() <!-- ./programmability/balance-and-coin.md) -->
   - [Sui Framework](./programmability/sui-framework.md)

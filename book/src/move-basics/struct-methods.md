@@ -57,7 +57,7 @@ structs.
 > `public use fun hero_health as Hero.health`, which provides controlled access to the private
 > field.
 
-## Aliasing an external module's method
+<!-- ## Aliasing an external module's method
 
 It is also possible to associate a function defined in another module with a struct from the current
 module. Following the same approach, we can create an alias for the method defined in another
@@ -67,7 +67,7 @@ bytes.
 
 ```move
 {{#include ../../../packages/samples/sources/move-basics/struct-methods-3.move:hero_to_bytes}}
-```
+``` -->
 
 ## Further Reading
 

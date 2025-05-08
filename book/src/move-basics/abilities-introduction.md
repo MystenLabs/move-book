@@ -22,7 +22,7 @@ The abilities are separated by commas. Move supports 4 abilities: `copy`, `drop`
 
 ```move
 /// This struct has the `copy` and `drop` abilities.
-struct VeryAble has copy, drop {
+public struct VeryAble has copy, drop {
     // field: Type1,
     // field2: Type2,
     // ...
