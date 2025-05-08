@@ -42,7 +42,7 @@ Structs, functions, constants and imports all part of the module:
 - [Imports](./importing-modules.md)
 - [Struct Methods](./struct-methods.md)
 
-## Address / Named Address
+## Address and Named Address
 
 The module address can be specified as both: an address _literal_ (does not require the `@` prefix)
 or a named address specified in the [Package Manifest](../concepts/manifest.md). In the example
