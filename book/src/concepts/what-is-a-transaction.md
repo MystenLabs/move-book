@@ -46,7 +46,7 @@ Transaction inputs are the arguments for the transaction and are split between 2
   [What is an Object](../object/object-model.html).
 - Object arguments: These are objects or references of objects that the transaction will access. An
   object argument needs to be either a shared object, a frozen object, or an object that the
-  transaction sender owns, in order for the transaction to be successful. For more see
+  transaction sender owns for the transaction to be successful. For more see
   [Object Model](../object/index.html).
 
 ## Commands
