@@ -131,9 +131,9 @@
 - [Code Quality Checklist](./guides/code-quality-checklist.md)
 - [Open-sourcing Libraries]()
 - [Creating an NFT Collection]()
-- [Tests with Objects]()<!-- (./guides/testing.md) -->
+<!-- - [Tests with Objects]()() -->
 <!-- - [Debugging]()(./guides/debugging.md) -->
-- [Coding Conventions](./guides/coding-conventions.md)
+<!-- - [Coding Conventions](./guides/coding-conventions.md) -->
 
 # Appendix
 

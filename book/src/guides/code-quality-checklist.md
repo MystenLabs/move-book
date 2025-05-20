@@ -150,10 +150,10 @@ public struct DynamicFieldKey() has copy, drop, store;
 
 ```move
 // bad! entry is not required for a function to be callable in a transaction
-public entry do_something() { /* ... */ }
+public entry fun do_something() { /* ... */ }
 
 // good! public functions are more permissive, can return value
-public do_something_2(): T { /* ... */ }
+public fun do_something_2(): T { /* ... */ }
 ```
 
 ### Write Composable Functions for PTBs
@@ -332,6 +332,7 @@ let value = opt.destroy_or!(abort ECannotBeEmpty);
 let mut i = 0;
 while (i < 32) {
     do_action();
+    i = i + 1;
 };
 
 // good! any uint has this macro!
@@ -346,6 +347,7 @@ let mut i = 0;
 let mut elements = vector[];
 while (i < 32) {
     elements.push_back(i);
+    i = i + 1;
 };
 
 // easy to read!
@@ -359,6 +361,7 @@ vector::tabulate!(32, |i| i);
 let mut i = 0;
 while (i < vec.length()) {
     call_function(&vec[i]);
+    i = i + 1;
 };
 
 // good!

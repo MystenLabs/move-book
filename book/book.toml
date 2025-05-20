@@ -18,8 +18,11 @@ git-repository-url = "https://github.com/MystenLabs/move-book"
 git-repository-icon = "fa-github"
 edit-url-template = "https://github.com/MystenLabs/move-book/edit/main/book/{path}"
 
-# Contains the redirects from the old book
 [output.html.redirect]
+# New redirects
+"guides/coding-conventions.html" = "guides/code-quality-checklist.html"
+
+# Contains the redirects from the old book
 "introduction/foreword" = "foreword"
 "introduction/getting-started" = "before-we-begin"
 
