@@ -1,8 +1,9 @@
 # Code Quality Checklist
 
-Rapid development of the language and its ecosystem leaves a lot of legacy practices behind. This
-guide is checklist for any developer to check their code for compliance with modern practices of
-writing Move code. Please, review carefully and make sure your code uses as much of it as possible.
+The rapid evolution of the Move language and its ecosystem has rendered many older practices
+outdated. This guide serves as a checklist for developers to review their code and ensure it aligns
+with current best practices in Move development. Please read carefully and apply as many
+recommendations as possible to your code.
 
 ## Imports, Module and Constants
 
