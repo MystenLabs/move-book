@@ -21,7 +21,7 @@ package manifest.
 
 ```ini
 [package]
-name = "rss"
+name = "my_package"
 edition = "2024.beta" # or (just) "2024"
 ```
 
