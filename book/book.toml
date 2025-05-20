@@ -20,11 +20,11 @@ edit-url-template = "https://github.com/MystenLabs/move-book/edit/main/book/{pat
 
 [output.html.redirect]
 # New redirects
-"guides/coding-conventions.html" = "guides/code-quality-checklist.html"
+"guides/coding-conventions.html" = "/guides/code-quality-checklist.html"
 
 # Contains the redirects from the old book
-"introduction/foreword" = "foreword"
-"introduction/getting-started" = "before-we-begin"
+"introduction/foreword.html" = "/foreword"
+"introduction/getting-started.html" = "/before-we-begin"
 
 # syntax basics redirects
 "syntax-basics/index.html" = "/basic-syntax/index.html"
