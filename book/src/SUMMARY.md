@@ -126,8 +126,9 @@
 
 - [2024 Migration Guide](./guides/2024-migration-guide.md)
 - [Upgradability Practices](./guides/upgradeability-practices.md)
-- [Building against Limits](./guides/building-against-limits.md)
-- [Better error handling](./guides/better-error-handling.md)
+- [Building Against Limits](./guides/building-against-limits.md)
+- [Better Error Handling](./guides/better-error-handling.md)
+- [Code Quality Checklist](./guides/code-quality-checklist.md)
 - [Open-sourcing Libraries]()
 - [Creating an NFT Collection]()
 - [Tests with Objects]()<!-- (./guides/testing.md) -->
