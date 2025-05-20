@@ -202,6 +202,21 @@ let balance = payment.balance_mut().split(amount);
 let coin = balance.into_coin(ctx);
 ```
 
+### Do Not Import `std::string::utf8`
+
+```move
+// bad! unfortunately, very common!
+use std::string::utf8;
+
+let str = utf8(b"hello, world!");
+
+// good!
+let str = b"hello, world!".to_string();
+
+// also, for ASCII string
+let ascii = b"hello, world!".to_ascii_string();
+```
+
 ### UID has `delete`
 
 ```move
@@ -222,17 +237,19 @@ tx_context::sender(ctx);
 ctx.sender()
 ```
 
-### Vector Has a Literal
+### Vector Has a Literal. And Associated Functions
 
 ```move
 // bad!
 let mut my_vec = vector::empty();
 vector::push_back(&mut my_vec, 10);
 let first_el = vector::borrow(&my_vec);
+assert!(vector::length(&my_vec) == 1);
 
 // good!
 let mut my_vec = vector[10];
 let first_el = my_vec[0];
+assert!(my_vec.length() == 1);
 ```
 
 ### Collections Support Index Syntax
