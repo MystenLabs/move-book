@@ -78,7 +78,7 @@ use my_package::my_module::OtherMember;
 use my_package::my_module::{Self, OtherMember};
 ```
 
-### Error Constants are in `EPascalCase
+### Error Constants are in `EPascalCase`
 
 ```move
 // bad! all-caps are used for regular constants
@@ -134,7 +134,7 @@ public struct RegisterUser has copy, drop { user: address }
 public struct UserRegistered has copy, drop { user: address }
 ```
 
-O### Use Positional Structs for Dynamic Field Keys + `Key` Suffix
+### Use Positional Structs for Dynamic Field Keys + `Key` Suffix
 
 ```move
 // not as bad, but goes against canonical style
