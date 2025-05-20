@@ -7761,7 +7761,7 @@ use my_package::my_module::OtherMember;
 // good!
 use my_package::my_module::{Self, OtherMember};
 </code></pre>
-<h3 id="error-constants-are-in-epascalcase"><a class="header" href="#error-constants-are-in-epascalcase">Error Constants are in `EPascalCase</a></h3>
+<h3 id="error-constants-are-in-epascalcase"><a class="header" href="#error-constants-are-in-epascalcase">Error Constants are in <code>EPascalCase</code></a></h3>
 <pre><code class="language-move">// bad! all-caps are used for regular constants
 const NOT_AUTHORIZED: u64 = 0;
 
@@ -7801,7 +7801,7 @@ public struct RegisterUser has copy, drop { user: address }
 // good! clear, it's an event
 public struct UserRegistered has copy, drop { user: address }
 </code></pre>
-<p>O### Use Positional Structs for Dynamic Field Keys + <code>Key</code> Suffix</p>
+<h3 id="use-positional-structs-for-dynamic-field-keys--key-suffix"><a class="header" href="#use-positional-structs-for-dynamic-field-keys--key-suffix">Use Positional Structs for Dynamic Field Keys + <code>Key</code> Suffix</a></h3>
 <pre><code class="language-move">// not as bad, but goes against canonical style
 public struct DynamicField has copy, drop, store {}
 
