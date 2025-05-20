@@ -14,7 +14,7 @@ or [as a CI check](https://github.com/marketplace/actions/move-formatter), or
 
 ## Package Manifest
 
-## Use Right Edition
+### Use Right Edition
 
 All of the features in this guide require Move 2024 Edition, and it has to be specified in the
 package manifest.
@@ -25,7 +25,7 @@ name = "rss"
 edition = "2024.beta" # or (just) "2024"
 ```
 
-## Implicit Framework Dependency
+### Implicit Framework Dependency
 
 Starting with Sui 1.45 you no longer need to specify framework dependency in the `Move.toml`:
 
@@ -124,6 +124,16 @@ public struct PromisePotato {}
 public struct Promise {}
 ```
 
+### Events Should Be Named in Past Tense
+
+```move
+// bad! not clear what this struct does
+public struct RegisterUser has copy, drop { user: address }
+
+// good! clear, it's an event
+public struct UserRegistered has copy, drop { user: address }
+```
+
 ### Use Positional Structs for Dynamic Field Keys
 
 ```move
@@ -157,6 +167,9 @@ public fun mint_and_transfer(ctx: &mut TxContext) {
 
 // good! composable!
 public fun mint(ctx: &mut TxContext): NFT { /* ... */ }
+
+// good! intentionally not composable
+entry fun mint_and_keep(ctx: &mut TxContext) { /* ... */ }
 ```
 
 ### Objects Go First (Except for Clock)
@@ -181,6 +194,16 @@ public fun call_app(
     clock: &Clock,
     ctx: &mut TxContext,
 ) { /* ... */ }
+```
+
+### Capabilities Go Second
+
+```move
+// bad! breaks method associativity
+public fun authorize_action(cap: &AdminCap, app: &mut App) { /* ... */ }
+
+// good! keeps Cap visible in the signature and maintains `.calls()`
+public fun authorize_action(app: &mut App, cap: &AdminCap) { /* ... */ }
 ```
 
 ## Function Body: Struct Methods
@@ -488,7 +511,7 @@ assert!(is_success);
 
 ```move
 // bad! old-style code
-assert!(result == b"expected_value, 0);
+assert!(result == b"expected_value", 0);
 
 // good! will print both values if fails
 use std::unit_test::assert_eq;
