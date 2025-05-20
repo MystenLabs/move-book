@@ -194,14 +194,14 @@ recommendations as possible to your code.</p>
 or <a href="https://github.com/marketplace/actions/move-formatter">as a CI check</a>, or
 <a href="https://marketplace.visualstudio.com/items?itemName=mysten.prettier-move">as a plugin for VSCode (Cursor)</a>.</p>
 <h2 id="package-manifest"><a class="header" href="#package-manifest">Package Manifest</a></h2>
-<h2 id="use-right-edition"><a class="header" href="#use-right-edition">Use Right Edition</a></h2>
+<h3 id="use-right-edition"><a class="header" href="#use-right-edition">Use Right Edition</a></h3>
 <p>All of the features in this guide require Move 2024 Edition, and it has to be specified in the
 package manifest.</p>
 <pre><code class="language-ini">[package]
 name = &quot;rss&quot;
 edition = &quot;2024.beta&quot; # or (just) &quot;2024&quot;
 </code></pre>
-<h2 id="implicit-framework-dependency"><a class="header" href="#implicit-framework-dependency">Implicit Framework Dependency</a></h2>
+<h3 id="implicit-framework-dependency"><a class="header" href="#implicit-framework-dependency">Implicit Framework Dependency</a></h3>
 <p>Starting with Sui 1.45 you no longer need to specify framework dependency in the <code>Move.toml</code>:</p>
 <pre><code class="language-ini"># old, pre 1.45
 [dependencies]
@@ -273,11 +273,18 @@ public struct PromisePotato {}
 // good!
 public struct Promise {}
 </code></pre>
-<h3 id="use-positional-structs-for-dynamic-field-keys"><a class="header" href="#use-positional-structs-for-dynamic-field-keys">Use Positional Structs for Dynamic Field Keys</a></h3>
-<pre><code class="language-move">// not as bad, but goes against canonical style
-public struct DynamicFieldKey has copy, drop, store {}
+<h3 id="events-should-be-named-in-past-tense"><a class="header" href="#events-should-be-named-in-past-tense">Events Should Be Named in Past Tense</a></h3>
+<pre><code class="language-move">// bad! not clear what this struct does
+public struct RegisterUser has copy, drop { user: address }
 
-// good! canonical style
+// good! clear, it's an event
+public struct UserRegistered has copy, drop { user: address }
+</code></pre>
+<p>O### Use Positional Structs for Dynamic Field Keys + <code>Key</code> Suffix</p>
+<pre><code class="language-move">// not as bad, but goes against canonical style
+public struct DynamicField has copy, drop, store {}
+
+// good! canonical style, Key suffix
 public struct DynamicFieldKey() has copy, drop, store;
 </code></pre>
 <h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
@@ -297,6 +304,9 @@ public fun mint_and_transfer(ctx: &amp;mut TxContext) {
 
 // good! composable!
 public fun mint(ctx: &amp;mut TxContext): NFT { /* ... */ }
+
+// good! intentionally not composable
+entry fun mint_and_keep(ctx: &amp;mut TxContext) { /* ... */ }
 </code></pre>
 <h3 id="objects-go-first-except-for-clock"><a class="header" href="#objects-go-first-except-for-clock">Objects Go First (Except for Clock)</a></h3>
 <pre><code class="language-move">// bad! hard to read!
@@ -318,6 +328,13 @@ public fun call_app(
     clock: &amp;Clock,
     ctx: &amp;mut TxContext,
 ) { /* ... */ }
+</code></pre>
+<h3 id="capabilities-go-second"><a class="header" href="#capabilities-go-second">Capabilities Go Second</a></h3>
+<pre><code class="language-move">// bad! breaks method associativity
+public fun authorize_action(cap: &amp;AdminCap, app: &amp;mut App) { /* ... */ }
+
+// good! keeps Cap visible in the signature and maintains `.calls()`
+public fun authorize_action(app: &amp;mut App, cap: &amp;AdminCap) { /* ... */ }
 </code></pre>
 <h2 id="function-body-struct-methods"><a class="header" href="#function-body-struct-methods">Function Body: Struct Methods</a></h2>
 <h3 id="common-coin-operations"><a class="header" href="#common-coin-operations">Common Coin Operations</a></h3>
@@ -558,12 +575,43 @@ assert!(is_success);
 </code></pre>
 <h3 id="use-assert_eq-whenever-possible"><a class="header" href="#use-assert_eq-whenever-possible">Use <code>assert_eq!</code> Whenever Possible</a></h3>
 <pre><code class="language-move">// bad! old-style code
-assert!(result == b&quot;expected_value, 0);
+assert!(result == b&quot;expected_value&quot;, 0);
 
 // good! will print both values if fails
 use std::unit_test::assert_eq;
 
 assert_eq!(result, expected_value);
+</code></pre>
+<h3 id="use-black-hole-destroy-function"><a class="header" href="#use-black-hole-destroy-function">Use &quot;Black Hole&quot; <code>destroy</code> Function</a></h3>
+<pre><code class="language-move">// bad!
+nft.destroy_for_testing();
+app.destroy_for_testing();
+
+// good! - no need to define special functions for cleanup
+use sui::test_utils::destroy;
+
+destroy(nft);
+destroy(app);
+</code></pre>
+<h2 id="comments"><a class="header" href="#comments">Comments</a></h2>
+<h3 id="doc-comments-start-with-"><a class="header" href="#doc-comments-start-with-">Doc Comments Start With <code>///</code></a></h3>
+<pre><code class="language-move">// bad! tooling does't support JavaDoc-style comments
+/**
+ * Cool method
+ * @param ...
+ */
+public fun do_something() { /* ... */ }
+
+// good! will be rendered as a doc comment in docgen and IDE's
+/// Cool method!
+public fun do_something() { /* ... */ }
+</code></pre>
+<h3 id="complex-logic-leave-a-comment-"><a class="header" href="#complex-logic-leave-a-comment-">Complex Logic? Leave a Comment <code>//</code></a></h3>
+<p>Being friendly and helping reviewers understand the code!</p>
+<pre><code class="language-move">// good!
+// Note: can underflow if a value is smaller than 10.
+// TODO: add an `assert!` here
+let value = external_call(value, ctx);
 </code></pre>
 
                     </main>
