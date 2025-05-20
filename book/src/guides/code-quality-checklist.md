@@ -5,6 +5,39 @@ outdated. This guide serves as a checklist for developers to review their code a
 with current best practices in Move development. Please read carefully and apply as many
 recommendations as possible to your code.
 
+## Code Organization
+
+Some of the issues mentioned in this guide can be fixed by using
+[Move Formatter](https://www.npmjs.com/package/@mysten/prettier-plugin-move) either as a CLI tool,
+or [as a CI check](https://github.com/marketplace/actions/move-formatter), or
+[as a plugin for VSCode (Cursor)](https://marketplace.visualstudio.com/items?itemName=mysten.prettier-move).
+
+## Package Manifest
+
+## Use Right Edition
+
+All of the features in this guide require Move 2024 Edition, and it has to be specified in the
+package manifest.
+
+```ini
+[package]
+name = "rss"
+edition = "2024.beta" # or (just) "2024"
+```
+
+## Implicit Framework Dependency
+
+Starting with Sui 1.45 you no longer need to specify framework dependency in the `Move.toml`:
+
+```ini
+# old, pre 1.45
+[dependencies]
+Sui = { ... }
+
+# modern day, Sui, Bridge, MoveStdlib and SuiSystem are imported implicitly!
+[dependencies]
+```
+
 ## Imports, Module and Constants
 
 ### Using Module Label
@@ -24,10 +57,14 @@ public struct A {}
 ### No Single `Self` in `use` Statements
 
 ```move
-use my_package::other::{Self, OtherMember}; // correct, member + self import
-use my_package::my_module::{Self}; // redundant!
+// correct, member + self import
+use my_package::other::{Self, OtherMember};
 
-use my_package::my_module; // good!
+// bad! `{Self}` is redundant
+use my_package::my_module::{Self};
+
+// good!
+use my_package::my_module;
 ```
 
 ### Group `use` Statements with `Self`
@@ -63,7 +100,7 @@ const MY_CONSTANT: vector<u8> = b"my const";
 
 ## Structs
 
-### Capabilities are suffixed with `Cap`
+### Capabilities are Suffixed with `Cap`
 
 ```move
 // bad! if it's a capability, add a `Cap` suffix
@@ -77,7 +114,7 @@ public struct AdminCap has key, store {
 }
 ```
 
-### No `Potato` in names
+### No `Potato` in Names
 
 ```move
 // bad! it has no abilities, we already know it's a Hot-Potato type
@@ -99,7 +136,7 @@ public struct DynamicFieldKey() has copy, drop, store;
 
 ## Functions
 
-### No `public entry`, only `public` or `entry`
+### No `public entry`, Only `public` or `entry`
 
 ```move
 // bad! entry is not required for a function to be callable in a transaction
@@ -122,7 +159,7 @@ public fun mint_and_transfer(ctx: &mut TxContext) {
 public fun mint(ctx: &mut TxContext): NFT { /* ... */ }
 ```
 
-### Objects Go First (except for Clock)
+### Objects Go First (Except for Clock)
 
 ```move
 // bad! hard to read!
@@ -210,20 +247,6 @@ x.get_mut(&10);
 // good!
 &x[&10];
 &mut x[&10];
-```
-
-## Pack and Unpack
-
-### Ignored Values In Unpack Can Be Ignored Altogether
-
-```move
-// bad! very sparse!
-let MyStruct { id, field_1: _, field_2: _, field_3: _ } = value;
-id.delete();
-
-// good! 2024 syntax
-let MyStruct { id, .. } = value;
-id.delete();
 ```
 
 ## Option -> Macros
@@ -350,6 +373,20 @@ while (i < source.length()) {
 
 // good!
 let filtered = source.filter!(|e| e > 10);
+```
+
+## Other
+
+### Ignored Values In Unpack Can Be Ignored Altogether
+
+```move
+// bad! very sparse!
+let MyStruct { id, field_1: _, field_2: _, field_3: _ } = value;
+id.delete();
+
+// good! 2024 syntax
+let MyStruct { id, .. } = value;
+id.delete();
 ```
 
 ## Testing
