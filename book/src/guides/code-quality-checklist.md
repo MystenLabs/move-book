@@ -134,13 +134,13 @@ public struct RegisterUser has copy, drop { user: address }
 public struct UserRegistered has copy, drop { user: address }
 ```
 
-### Use Positional Structs for Dynamic Field Keys
+O### Use Positional Structs for Dynamic Field Keys + `Key` Suffix
 
 ```move
 // not as bad, but goes against canonical style
-public struct DynamicFieldKey has copy, drop, store {}
+public struct DynamicField has copy, drop, store {}
 
-// good! canonical style
+// good! canonical style, Key suffix
 public struct DynamicFieldKey() has copy, drop, store;
 ```
 
@@ -517,4 +517,46 @@ assert!(result == b"expected_value", 0);
 use std::unit_test::assert_eq;
 
 assert_eq!(result, expected_value);
+```
+
+### Use "Black Hole" `destroy` Function
+
+```move
+// bad!
+nft.destroy_for_testing();
+app.destroy_for_testing();
+
+// good! - no need to define special functions for cleanup
+use sui::test_utils::destroy;
+
+destroy(nft);
+destroy(app);
+```
+
+## Comments
+
+### Doc Comments Start With `///`
+
+```move
+// bad! tooling does't support JavaDoc-style comments
+/**
+ * Cool method
+ * @param ...
+ */
+public fun do_something() { /* ... */ }
+
+// good! will be rendered as a doc comment in docgen and IDE's
+/// Cool method!
+public fun do_something() { /* ... */ }
+```
+
+### Complex Logic? Leave a Comment `//`
+
+Being friendly and helping reviewers understand the code!
+
+```move
+// good!
+// Note: can underflow if a value is smaller than 10.
+// TODO: add an `assert!` here
+let value = external_call(value, ctx);
 ```
