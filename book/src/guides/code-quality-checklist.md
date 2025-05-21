@@ -38,6 +38,21 @@ Sui = { ... }
 [dependencies]
 ```
 
+### Prefix Named Addresses
+
+If your package has a generic name (e.g., `token`) – especially if your project includes multiple
+packages – make sure to add a prefix to the named address:
+
+```ini
+# bad! not indicative of anything, and can conflict
+[addresses]
+math = "0x0"
+
+# good! clearly states project, unlikely to conflict
+[addresses]
+my_protocol_math = "0x0"
+```
+
 ## Imports, Module and Constants
 
 ### Using Module Label
@@ -204,6 +219,19 @@ public fun authorize_action(cap: &AdminCap, app: &mut App) { /* ... */ }
 
 // good! keeps Cap visible in the signature and maintains `.calls()`
 public fun authorize_action(app: &mut App, cap: &AdminCap) { /* ... */ }
+```
+
+### Getters Named After Field + `_mut`
+
+```move
+// bad! unnecessary `get_`
+public fun get_name(u: &User): String { /* ... */ }
+
+// good! clear that it accesses field `name`
+public fun name(u: &User): String { /* ... */ }
+
+// good! for mutable references use `_mut`
+public fun details_mut(u: &mut User): &mut Details { /* ... */ }
 ```
 
 ## Function Body: Struct Methods
