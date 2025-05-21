@@ -8088,7 +8088,7 @@ test.end();
 
 // good! there's a dummy context for simple cases
 let ctx = &amp;mut tx_context::dummy();
-app::mint(test.ctx()).destroy();
+app::mint(ctx).destroy();
 </code></pre>
 <h3 id="do-not-use-abort-codes-in-assert-in-tests"><a class="header" href="#do-not-use-abort-codes-in-assert-in-tests">Do Not Use Abort Codes in <code>assert!</code> in Tests</a></h3>
 <pre><code class="language-move">// bad! may match application error codes by accident
