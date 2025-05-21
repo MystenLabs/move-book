@@ -210,6 +210,17 @@ Sui = { ... }
 # modern day, Sui, Bridge, MoveStdlib and SuiSystem are imported implicitly!
 [dependencies]
 </code></pre>
+<h3 id="prefix-named-addresses"><a class="header" href="#prefix-named-addresses">Prefix Named Addresses</a></h3>
+<p>If your package has a generic name (e.g., <code>token</code>) – especially if your project includes multiple
+packages – make sure to add a prefix to the named address:</p>
+<pre><code class="language-ini"># bad! not indicative of anything, and can conflict
+[addresses]
+math = &quot;0x0&quot;
+
+# good! clearly states project, unlikely to conflict
+[addresses]
+my_protocol_math = &quot;0x0&quot;
+</code></pre>
 <h2 id="imports-module-and-constants"><a class="header" href="#imports-module-and-constants">Imports, Module and Constants</a></h2>
 <h3 id="using-module-label"><a class="header" href="#using-module-label">Using Module Label</a></h3>
 <pre><code class="language-move">// bad: increases indentation, legacy style
@@ -335,6 +346,16 @@ public fun authorize_action(cap: &amp;AdminCap, app: &amp;mut App) { /* ... */ }
 
 // good! keeps Cap visible in the signature and maintains `.calls()`
 public fun authorize_action(app: &amp;mut App, cap: &amp;AdminCap) { /* ... */ }
+</code></pre>
+<h3 id="getters-named-after-field--_mut"><a class="header" href="#getters-named-after-field--_mut">Getters Named After Field + <code>_mut</code></a></h3>
+<pre><code class="language-move">// bad! unnecessary `get_`
+public fun get_name(u: &amp;User): String { /* ... */ }
+
+// good! clear that it accesses field `name`
+public fun name(u: &amp;User): String { /* ... */ }
+
+// good! for mutable references use `_mut`
+public fun details_mut(u: &amp;mut User): &amp;mut Details { /* ... */ }
 </code></pre>
 <h2 id="function-body-struct-methods"><a class="header" href="#function-body-struct-methods">Function Body: Struct Methods</a></h2>
 <h3 id="common-coin-operations"><a class="header" href="#common-coin-operations">Common Coin Operations</a></h3>
