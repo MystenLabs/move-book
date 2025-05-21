@@ -497,7 +497,7 @@ test.end();
 
 // good! there's a dummy context for simple cases
 let ctx = &mut tx_context::dummy();
-app::mint(test.ctx()).destroy();
+app::mint(ctx).destroy();
 ```
 
 ### Do Not Use Abort Codes in `assert!` in Tests
