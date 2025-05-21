@@ -40,8 +40,8 @@ Sui = { ... }
 
 ### Prefix Named Addresses
 
-If your package has a generic name (eg _token_), and especially if you have multiple packages in
-your project, make sure to add a prefix to the named address:
+If your package has a generic name (e.g., `token`) – especially if your project includes multiple
+packages – make sure to add a prefix to the named address:
 
 ```ini
 # bad! not indicative of anything, and can conflict
