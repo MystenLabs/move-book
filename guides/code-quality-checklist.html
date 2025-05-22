@@ -503,9 +503,8 @@ while (i &lt; source.length()) {
 };
 
 // good!
-let aggregate = source.fold!(0, |mut acc, v| {
-    acc + v;
-    acc
+let aggregate = source.fold!(0, |acc, v| {
+    acc + v
 });
 </code></pre>
 <h3 id="filter-elements-of-the-vector"><a class="header" href="#filter-elements-of-the-vector">Filter Elements of the Vector</a></h3>
