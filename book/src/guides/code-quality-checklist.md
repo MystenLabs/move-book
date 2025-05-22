@@ -421,9 +421,8 @@ while (i < source.length()) {
 };
 
 // good!
-let aggregate = source.fold!(0, |mut acc, v| {
-    acc + v;
-    acc
+let aggregate = source.fold!(0, |acc, v| {
+    acc + v
 });
 ```
 
