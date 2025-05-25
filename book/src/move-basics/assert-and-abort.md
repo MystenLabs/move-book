@@ -38,7 +38,7 @@ an abort code, which is returned to the caller of the transaction. The abort cod
 {{#include ../../../packages/samples/sources/move-basics/assert-and-abort.move:abort}}
 ```
 
-The code above will, of course, abort with abort code `1`.
+The code above will, of course, abort with abort code `0`.
 
 ## assert!
 
