@@ -1,12 +1,3 @@
-[book]
-title = "The Move Book"
-description = "First book about the Move programming language and the Move VM. Move documentation, Move tutorials and language reference."
-authors = ["Damir Shamanaev"]
-language = "en"
-multilingual = false
-src = "src"
-repository = "MystenLabs/move-book"
-
 [build]
 build-dir = "build"
 extra-watch-dirs = ["../packages"] # rebuild on Move Source changes

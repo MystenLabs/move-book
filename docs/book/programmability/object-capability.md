@@ -1,3 +1,0 @@
-# Object Capability
-
-<!-- TBD -->

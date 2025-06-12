@@ -1,0 +1,130 @@
+# Refer to https://docusaurus.io/docs/sidebar/items
+# For possible values of type
+
+referenceSidebar:
+  - label: The Move Reference
+    type: doc
+    id: index
+  - type: category
+    label: Getting Started
+    items:
+      - label: 1. Modules
+        type: doc
+        id: modules
+  - type: category
+    label: Basic Concepts
+    items:
+      - type: category
+        label: 2. Primitive Types
+        link:
+          type: doc
+          id: primitive-types
+        items:
+          - label: 2.1 Integers
+            type: doc
+            id: primitive-types/integers
+          - label: 2.2 Bool
+            type: doc
+            id: primitive-types/bool
+          - label: 2.3 Address
+            type: doc
+            id: primitive-types/address
+          - label: 2.4 Vector
+            type: doc
+            id: primitive-types/vector
+          - label: 2.5 References
+            type: doc
+            id: primitive-types/references
+          - label: 2.6 Tuples and Unit
+            type: doc
+            id: primitive-types/tuples
+      - label: 3. Local Variables and Scopes
+        type: doc
+        id: variables
+      - label: 4. Equality
+        type: doc
+        id: equality
+      - type: category
+        label: 5. Abort and Assert
+        link:
+          type: doc
+          id: abort-and-assert
+        items:
+          - label: 5.1 Clever Errors
+            type: doc
+            id: abort-and-assert/clever-errors
+      - type: category
+        label: 6. Control Flow
+        link:
+          type: doc
+          id: control-flow
+        items:
+          - label: 6.1 Conditional Expressions
+            type: doc
+            id: control-flow/conditionals
+          - label: 6.2 Loops
+            type: doc
+            id: control-flow/loops
+          - label: 6.3 Labeled Control Flow
+            type: doc
+            id: control-flow/labeled-control-flow
+          - label: 6.4 Pattern Matching
+            type: doc
+            id: control-flow/pattern-matching
+      - type: category
+        label: 7. Functions
+        link:
+          type: doc
+          id: functions
+        items:
+          - label: 7.1 Macros
+            type: doc
+            id: functions/macros
+      - label: 8. Structs
+        type: doc
+        id: structs
+      - label: 9. Enums
+        type: doc
+        id: enums
+      - label: 10. Constants
+        type: doc
+        id: constants
+      - label: 11. Generics
+        type: doc
+        id: generics
+      - label: 12. Abilities
+        type: doc
+        id: abilities
+      - label: 13. Uses and Aliases
+        type: doc
+        id: uses
+  - type: category
+    label: Advanced Concepts
+    items:
+      - label: 14. Method Syntax
+        type: doc
+        id: method-syntax
+      - label: 15. Index Syntax
+        type: doc
+        id: index-syntax
+  - type: category
+    label: Tooling
+    items:
+      - label: 16. Packages
+        type: doc
+        id: packages
+      - label: 17. Unit Testing
+        type: doc
+        id: unit-testing
+  - type: category
+    label: Reference
+    items:
+      - label: 18. Coding Conventions
+        type: doc
+        id: coding-conventions
+  - type: category
+    label: Deprecated
+    items:
+      - label: 19. Friends
+        type: doc
+        id: friends
