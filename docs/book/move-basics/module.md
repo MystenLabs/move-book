@@ -30,8 +30,8 @@ You can read more about coding conventions in the
 > If you need to declare more than one module in a file, you must use [Module Block](#module-block)
 > syntax.
 
-```Move
-{{#include ../../../packages/samples/sources/move-basics/module-label.move:module}}
+```move file=packages/samples/sources/move-basics/module-label.move anchor=module
+
 ```
 
 Structs, functions, constants and imports all part of the module:
@@ -49,8 +49,8 @@ or a named address specified in the [Package Manifest](../concepts/manifest.md).
 below, both are identical because there's a `book = "0x0"` record in the `[addresses]` section of
 the `Move.toml`.
 
-```Move
-{{#include ../../../packages/samples/sources/move-basics/module.move:address_literal}}
+```move file=packages/samples/sources/move-basics/module.move anchor=address_literal
+
 ```
 
 Addresses section in the Move.toml:
@@ -66,8 +66,8 @@ book = "0x0"
 Module members are declared inside the module body. To illustrate that, let's define a simple module
 with a struct, a function and a constant:
 
-```Move
-{{#include ../../../packages/samples/sources/move-basics/module-members.move:members}}
+```move file=packages/samples/sources/move-basics/module-members.move anchor=members
+
 ```
 
 ## Module Block
@@ -77,8 +77,8 @@ of the module needed to be surrounded by curly braces `{}`. The main reason to u
 not _label_ syntax is if you need to define more than one module in a file. However, using module
 blocks is not recommended practice.
 
-```Move
-{{#include ../../../packages/samples/sources/move-basics/module.move:members}}
+```move file=packages/samples/sources/move-basics/module.move anchor=members
+
 ```
 
 ## Further Reading

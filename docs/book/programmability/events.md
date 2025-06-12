@@ -27,8 +27,8 @@ public native fun emit<T: copy + drop>(event: T);
 Events are emitted using the `emit` function in the `sui::event` module. The function takes a single
 argument - the event to be emitted. The event data is passed by value,
 
-```move
-{{#include ../../../packages/samples/sources/programmability/events.move:emit}}
+```move file=packages/samples/sources/programmability/events.move anchor=emit
+
 ```
 
 The Sui Verifier requires the type passed to the `emit` function to be _internal to the module_. So

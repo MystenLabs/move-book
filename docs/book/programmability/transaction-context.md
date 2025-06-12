@@ -43,8 +43,8 @@ With only exception of the `ids_created`, all of the fields in the `TxContext` h
 getters are defined in the `sui::tx_context` module and are available to the program. The getters
 don't require `&mut` because they don't modify the context.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/transaction-context.move:reading}}
+```move file=packages/samples/sources/programmability/transaction-context.move anchor=reading
+
 ```
 
 ## Mutability

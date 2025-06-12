@@ -34,8 +34,8 @@ The `abort` keyword is used to abort the execution of a transaction. It is used 
 an abort code, which is returned to the caller of the transaction. The abort code is an
 [integer](./primitive-types.md) of type `u64`.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/assert-and-abort.move:abort}}
+```move file=packages/samples/sources/move-basics/assert-and-abort.move anchor=abort
+
 ```
 
 The code above will, of course, abort with abort code `1`.
@@ -48,8 +48,8 @@ to abort a transaction if a condition is not met. The macro shortens the code ot
 an `if` expression + `abort`. The `code` argument is optional, but has to be a `u64` value or an
 `#[error]` (see below for more information).
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/assert-and-abort.move:assert}}
+```move file=packages/samples/sources/move-basics/assert-and-abort.move anchor=assert
+
 ```
 
 ## Error constants
@@ -60,8 +60,8 @@ usually prefixed with `E` followed by a camel case name. Error constants are sim
 constants and do not have any special handling. However, they are commonly used to improve code
 readability and make abort scenarios easier to understand.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/assert-and-abort.move:error_const}}
+```move file=packages/samples/sources/move-basics/assert-and-abort.move anchor=error_const
+
 ```
 
 ## Error messages
@@ -70,8 +70,8 @@ Move 2024 introduces a special type of error constant, marked with the `#[error]
 attribute allows the error constant to be of type `vector<u8>` and can be used to store an error
 message.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/assert-and-abort.move:error_attribute}}
+```move file=packages/samples/sources/move-basics/assert-and-abort.move anchor=error_attribute
+
 ```
 
 ## Further Reading

@@ -11,8 +11,8 @@ definitions. Each variant has a tag name and may optionally include either posit
 named fields. Enum must have at least one variant. The structure of each variant is not flexible,
 and the total number of variants can be relatively large - up to 100.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/enum-and-match.move:definition}}
+```move file=packages/samples/sources/move-basics/enum-and-match.move anchor=definition
+
 ```
 
 In the code sample above we defined a public `Segment` enum, which has the `drop` and `copy`
@@ -30,8 +30,8 @@ constructed, read, and unpacked within the same module.
 [Similar to structs](./struct.md#create-and-use-an-instance), enums are instantiated by specifying
 the type, the variant, and the values for any fields defined in that variant.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/enum-and-match.move:constructors}}
+```move file=packages/samples/sources/move-basics/enum-and-match.move anchor=constructors
+
 ```
 
 Depending on the use case, you may want to provide public constructors, or instantiate enums
@@ -42,8 +42,8 @@ internally as a part of application logic.
 The biggest benefit of using enums is the ability to represent varying data structures under a
 single type. To demonstrate this, let’s define a struct that contains a vector of `Segment` values:
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/enum-and-match.move:struct}}
+```move file=packages/samples/sources/move-basics/enum-and-match.move anchor=struct
+
 ```
 
 All variants of the Segment enum share the same type – `Segment` – which allows us to create a
@@ -67,8 +67,8 @@ arms_, defining the patten and expression to be performed if the pattern is righ
 Let's extend our example by adding a set of `is_variant`-like functions, so external packages can
 check the variant. Starting with `is_empty`.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/enum-and-match.move:is_empty}}
+```move file=packages/samples/sources/move-basics/enum-and-match.move anchor=is_empty
+
 ```
 
 The `match` keyword begins the expression, and `s` is the value being tested. Each match arm checks
@@ -91,14 +91,13 @@ We can demonstrate this by simplifying our `is_empty` function and replacing the
 variants with a wildcard:
 
 ```move
-public fun is_empty(s: &Segment): bool {
-{{#include ../../../packages/samples/sources/move-basics/enum-and-match.move:is_empty_2}}
+public fun is_empty(s: &Segment): bool { file=packages/samples/sources/move-basics/enum-and anchor=matcmove:is_empty_2}}
 ```
 
 Similarly, we can use the same approach to define `is_special` and `is_string`:
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/enum-and-match.move:accessors}}
+```move file=packages/samples/sources/move-basics/enum-and-match.move anchor=accessors
+
 ```
 
 ### Trick #2 - `try_into` Helpers
@@ -110,8 +109,8 @@ inner value of a variant due to enums being internal to their module.
 A common pattern for addressing this is to define `try_into` functions. These functions match on the
 value and return an `Option` containing the inner contents if the `match` succeeds.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/enum-and-match.move:try_into_inner_string}}
+```move file=packages/samples/sources/move-basics/enum-and-match.move anchor=try_into_inner_string
+
 ```
 
 This pattern safely exposes internal data in a controlled way, avoiding abort.
@@ -123,8 +122,8 @@ To demonstrate this, let’s implement a `to_string` function that creates a new
 `Segment`. In the case of the `Special` variant, we will match on the `encoding` field to determine
 how to decode the content.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/enum-and-match.move:to_string}}
+```move file=packages/samples/sources/move-basics/enum-and-match.move anchor=to_string
+
 ```
 
 This function demonstrates two key things:
@@ -137,8 +136,8 @@ This function demonstrates two key things:
 Now we can finalize the test we started before using the features we have added. Let's create a
 scenario where we build enums into a vector.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/enum-and-match-2.move:enum_test}}
+```move file=packages/samples/sources/move-basics/enum-and-match-2.move anchor=enum_test
+
 ```
 
 This test demonstrates the full enum workflow: instantiating different variants, using public

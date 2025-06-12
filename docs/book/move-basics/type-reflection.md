@@ -14,8 +14,8 @@ which returns the name of the type `T`.
 The module is straightforward, and operations allowed on the result are limited to getting a string
 representation and extracting the module and address of the type.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/type-reflection.move:main}}
+```move file=packages/samples/sources/move-basics/type-reflection.move anchor=main
+
 ```
 
 ## Further Reading

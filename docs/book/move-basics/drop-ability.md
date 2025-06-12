@@ -44,8 +44,7 @@ struct without the `drop` ability is not allowed to be ignored. This is a safety
 language, which ensures that all assets are properly handled. An attempt to ignore a struct without
 the `drop` ability will result in a compilation error.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/drop-ability.move:main}}
+```move file=packages/samples/sources/move-basics/drop-ability.move anchor=main
 ```
 
 The `drop` ability is often used on custom collection types to eliminate the need for special

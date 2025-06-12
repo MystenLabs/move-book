@@ -25,14 +25,8 @@
   --ifm-line-height-base: 1.45em;
 
   --ifm-toc-border-color: var(--ifm-background-color);
-  --ifm-menu-link-padding-vertical: 0.3em;
 
   --ifm-navbar-padding-horizontal: 1em;
-  /* ) / var(--ifm-pre-line-height)
-    var(--ifm-font-family-monospace) */
-  /* --ifm-menu-link-padding-horizontal: 0; */
-  /* var(--ifm-font-size-base) / var(--ifm-line-height-base)
-    var(--ifm-font-family-base) */
 
 
   /* Custom */
@@ -41,7 +35,16 @@
   --ifm-font-family-monospace: 'Spot Mono', Arial, sans-serif;
   --ifm-code-font-size: 14px;
   --ifm-pre-line-height: 18px;
+
+  /* Menu */
+
+  --ifm-menu-color-background-active: none;
+  --ifm-menu-color-active: blue;
+  --ifm-menu-link-padding-vertical: 0.3em;
   --ifm-menu-link-font-size: 14px;
+  --ifm-menu-color: black;
+  --ifm-menu-font-weight-base: 400;
+  --ifm-menu-color-background-hover: rgba(0, 0, 0, 0.05);
 }
 
 .markdown h1 { font-size: 2em; }
@@ -59,9 +62,13 @@ html {
 
 .menu__link {
   /* font-weight: var(--ifm-font-weight-base); */
-  font-weight: normal;
+  font-weight: var(--ifm-menu-font-weight-base);
   font-size: var(--ifm-menu-link-font-size);
   color: var(--ifm-font-color-base);
+}
+
+.menu__link--active {
+  color: var(--ifm-menu-color-active);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */

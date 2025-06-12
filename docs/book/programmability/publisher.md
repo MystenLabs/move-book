@@ -28,8 +28,8 @@ public struct Publisher has key, store {
 
 Here's a simple example of claiming a `Publisher` object in a module:
 
-```move
-{{#include ../../../packages/samples/sources/programmability/publisher.move:publisher}}
+```move file=packages/samples/sources/programmability/publisher.move anchor=publisher
+
 ```
 
 ## Usage
@@ -37,8 +37,8 @@ Here's a simple example of claiming a `Publisher` object in a module:
 The Publisher object has two functions associated with it which are used to prove the publisher's
 authority over a type:
 
-```move
-{{#include ../../../packages/samples/sources/programmability/publisher.move:use_publisher}}
+```move file=packages/samples/sources/programmability/publisher.move anchor=use_publisher
+
 ```
 
 ## Publisher as Admin Role
@@ -47,8 +47,8 @@ For small applications or simple use cases, the Publisher object can be used as 
 [capability](./capability.md). While in the broader context, the Publisher object has control over
 system configurations, it can also be used to manage the application's state.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/publisher.move:publisher_as_admin}}
+```move file=packages/samples/sources/programmability/publisher.move anchor=publisher_as_admin
+
 ```
 
 However, Publisher misses some native properties of [Capabilities](./capability.md), such as type

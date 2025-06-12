@@ -24,8 +24,8 @@ rules:
 
 Here is an example of an OTW:
 
-```move
-{{#include ../../../packages/samples/sources/programmability/one-time-witness.move:definition}}
+```move file=packages/samples/sources/programmability/one-time-witness.move anchor=definition
+
 ```
 
 The OTW cannot be constructed manually, and any code attempting to do so will result in a
@@ -38,8 +38,8 @@ per module, the OTW is guaranteed to be instantiated only once.
 To check if a type is an OTW, `sui::types` module of the [Sui Framework](./sui-framework.md) offers
 a special function `is_one_time_witness` that can be used to check if the type is an OTW.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/one-time-witness.move:usage}}
+```move file=packages/samples/sources/programmability/one-time-witness.move anchor=usage
+
 ```
 
 <!-- ## Background

@@ -16,8 +16,7 @@ can hold any other type. Another example of a generic type in the standard libra
 To define a generic type or function, a type signature needs to have a list of generic parameters
 enclosed in angle brackets (`<` and `>`). The generic parameters are separated by commas.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/generics.move:container}}
+```move file=packages/samples/sources/move-basics/generics.move anchor=container
 ```
 
 In the example above, `Container` is a generic type with a single type parameter `T`, the `value`
@@ -26,8 +25,7 @@ parameter `T`, and it returns a `Container` with the given value. Generic types 
 with a concrete type, and generic functions must be called with a concrete type, although in some
 cases the Move compiler can infer the correct type.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/generics.move:test_container}}
+```move file=packages/samples/sources/move-basics/generics.move anchor=test_container
 ```
 
 In the test function `test_generic`, we demonstrate three equivalent ways to create a new
@@ -40,8 +38,7 @@ number literal itself); once we specify one of these the compiler can infer the 
 You can define a type or function with multiple type parameters. The type parameters are separated
 by commas.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/generics.move:pair}}
+```move file=packages/samples/sources/move-basics/generics.move anchor=pair
 ```
 
 In the example above, `Pair` is a generic type with two type parameters `T` and `U`, and the
@@ -49,15 +46,13 @@ In the example above, `Pair` is a generic type with two type parameters `T` and 
 a `Pair` with the given values. The order of the type parameters is important, and should match the
 order of the type parameters in the type signature.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/generics.move:test_pair}}
+```move file=packages/samples/sources/move-basics/generics.move anchor=test_pair
 ```
 
 If we added another instance where we swapped type parameters in the `new_pair` function, and tried
 to compare two types, we'd see that the type signatures are different, and cannot be compared.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/generics.move:test_pair_swap}}
+```move file=packages/samples/sources/move-basics/generics.move anchor=test_pair_swap
 ```
 
 Since the types for `pair1` and `pair2` are different, the comparison `pair1 == pair2` will not
@@ -71,16 +66,14 @@ shared behavior for the base, generic type, and then use it independently of the
 This is especially useful when working with collections, abstract implementations, and other
 advanced features in Move.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/generics.move:user}}
+```move file=packages/samples/sources/move-basics/generics.move anchor=user
 ```
 
 In the example above, `User` is a generic type with a single type parameter `T`, with shared fields
 `name`, `age`, and the generic `metadata` field, which can store any type. No matter what `metadata`
 is, all instances of `User` will contain the same fields and methods.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/generics.move:update_user}}
+```move file=packages/samples/sources/move-basics/generics.move anchor=update_user
 ```
 
 ## Phantom Type Parameters
@@ -90,16 +83,14 @@ fields or methods of the type. This is called a _phantom type parameter_. Phanto
 are useful when you want to define a type that can hold any other type, but you want to enforce some
 constraints on the type parameter.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/generics.move:phantom}}
+```move file=packages/samples/sources/move-basics/generics.move anchor=phantom
 ```
 
 The `Coin` type here does not contain any fields or methods that use the type parameter `T`. It is
 used to differentiate between different types of coins, and to enforce some constraints on the type
 parameter `T`.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/generics.move:test_phantom}}
+```move file=packages/samples/sources/move-basics/generics.move anchor=test_phantom
 ```
 
 In the example above, we demonstrate how to create two different instances of `Coin` with different
@@ -113,8 +104,7 @@ Type parameters can be constrained to have certain abilities. This is useful whe
 type to allow certain behaviors, such as _copy_ or _drop_. The syntax for constraining a type
 parameter is `T: <ability> + <ability>`.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/generics.move:constraints}}
+```move file=packages/samples/sources/move-basics/generics.move anchor=constraints
 ```
 
 The Move Compiler will enforce that the type parameter `T` has the specified abilities. If the type
@@ -122,8 +112,7 @@ parameter does not have the specified abilities, the code will not compile.
 
 <!-- TODO: failure case -->
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/generics.move:test_constraints}}
+```move file=packages/samples/sources/move-basics/generics.move anchor=test_constraints
 ```
 
 ## Further Reading

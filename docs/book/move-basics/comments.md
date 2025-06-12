@@ -22,8 +22,8 @@ three types of comments in Move: line comments, block comments, and doc comments
 You can use a double slash `//` to comment out the rest of the line. Everything after `//` will be
 ignored by the compiler.
 
-```Move
-{{#include ../../../packages/samples/sources/move-basics/comments-line.move:main}}
+```move file=packages/samples/sources/move-basics/comments-line.move anchor=main
+
 ```
 
 ## Block Comment
@@ -32,8 +32,8 @@ Block comments are used to comment out a block of code. They start with `/*` and
 Everything between `/*` and `*/` will be ignored by the compiler. You can use block comments to
 comment out a single line or multiple lines. You can even use them to comment out a part of a line.
 
-```Move
-{{#include ../../../packages/samples/sources/move-basics/comments-block.move:main}}
+```move file=packages/samples/sources/move-basics/comments-block.move anchor=main
+
 ```
 
 This example is a bit extreme, but it shows all the ways that you can use block comments.
@@ -44,8 +44,8 @@ Documentation comments are special comments that are used to generate documentat
 They are similar to block comments but start with three slashes `///` and are placed before the
 definition of the item they document.
 
-```Move
-{{#include ../../../packages/samples/sources/move-basics/comments-doc.move:main}}
+```move file=packages/samples/sources/move-basics/comments-doc.move anchor=main
+
 ```
 
 ## Whitespace

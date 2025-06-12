@@ -23,8 +23,8 @@ give names to static values that are used throughout a module. For example, if t
 price for a product, you might define a constant for it. Constants are stored in the module's
 bytecode, and each time they are used, the value is copied.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/constants-shop-price.move:shop_price}}
+```move file=packages/samples/sources/move-basics/constants-shop-price.move anchor=shop_price
+
 ```
 
 ## Naming Convention
@@ -34,8 +34,8 @@ used as a value, the convention is to use all uppercase letters and underscores 
 makes constants stand out from other identifiers in the code. An exception is made for
 [error constants](./assert-and-abort.md#assert-and-abort), which are written in ECamelCase.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/constants-naming.move:naming}}
+```move file=packages/samples/sources/move-basics/constants-naming.move anchor=naming
+
 ```
 
 ## Constants are Immutable
@@ -60,8 +60,8 @@ A common use case for an application is to define a set of constants that are us
 codebase. But due to constants being private to the module, they can't be accessed from other
 modules. One way to solve this is to define a "config" module that exports the constants.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/constants-config.move:config}}
+```move file=packages/samples/sources/move-basics/constants-config.move anchor=config
+
 ```
 
 This way other modules can import and read the constants, and the update process is simplified. If

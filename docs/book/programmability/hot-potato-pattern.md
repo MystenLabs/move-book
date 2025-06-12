@@ -19,15 +19,15 @@ calls, and none of the modules can keep it.
 
 A hot potato can be any struct with no abilities. For example, the following struct is a hot potato:
 
-```move
-{{#include ../../../packages/samples/sources/programmability/hot-potato-pattern.move:definition}}
+```move file=packages/samples/sources/programmability/hot-potato-pattern.move anchor=definition
+
 ```
 
 Because the `Request` has no abilities and cannot be stored or ignored, the module must provide a
 function to unpack it. For example:
 
-```move
-{{#include ../../../packages/samples/sources/programmability/hot-potato-pattern.move:new_request}}
+```move file=packages/samples/sources/programmability/hot-potato-pattern.move anchor=new_request
+
 ```
 
 ## Example Usage
@@ -37,8 +37,8 @@ taken from the container, is returned back to it. The `Promise` struct contains 
 borrowed object, and the ID of the container, ensuring that the borrowed value was not swapped for
 another and is returned to the correct container.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/hot-potato-pattern.move:container_borrow}}
+```move file=packages/samples/sources/programmability/hot-potato-pattern.move anchor=container_borrow
+
 ```
 
 ## Applications
@@ -82,8 +82,8 @@ there is a module which allows purchasing a `Phone` for some "Bonus Points" or f
 potato can be used to decouple the purchase from the payment. The approach is very similar to how
 some shops work - you take the item from the shelf, and then you go to the cashier to pay for it.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/hot-potato-pattern.move:phone_shop}}
+```move file=packages/samples/sources/programmability/hot-potato-pattern.move anchor=phone_shop
+
 ```
 
 This decoupling technique allows separating the purchase logic from the payment logic, making the

@@ -13,8 +13,8 @@ struct which, when present, would be used in the UI. This approach was not flexi
 required developers to define the same fields in every object, and sometimes the fields did not make
 sense for the object.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/display.move:background}}
+```move file=packages/samples/sources/programmability/display.move anchor=background
+
 ```
 
 If any of the fields contained static data, it would be duplicated in every object. And, since Move
@@ -36,8 +36,8 @@ from the need to define the same fields with the same names and types in every o
 > [Sui Full Node](https://docs.sui.io/guides/operator/sui-full-node), and the client can fetch the
 > display metadata for any object if the object type has a Display associated with it.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/display.move:hero}}
+```move file=packages/samples/sources/programmability/display.move anchor=hero
+
 ```
 
 ## Creator Privilege
@@ -100,8 +100,8 @@ Currently, Display supports simple string interpolation and can use struct field
 templates. The syntax is trivial - `{path}` is replaced with the value of the field at the path. The
 path is a dot-separated list of field names, starting from the root object in case of nested fields.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/display.move:nested}}
+```move file=packages/samples/sources/programmability/display.move anchor=nested
+
 ```
 
 The Display for the type `LittlePony` above could be defined as follows:

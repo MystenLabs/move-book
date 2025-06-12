@@ -12,8 +12,8 @@ type. The wrapper type is distinct from the original but can be converted to and
 
 Often, it is implemented as a positional struct with a single field.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/wrapper-type-pattern.move:main}}
+```move file=packages/samples/sources/programmability/wrapper-type-pattern.move anchor=main
+
 ```
 
 ## Common Practices
@@ -23,8 +23,8 @@ accessors for the wrapped type. This approach allows users to access the underly
 when needed. For example, in the following code, we provide the `inner()`, `inner_mut()`, and
 `into_inner()` methods for the Stack type.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/wrapper-type-pattern.move:common}}
+```move file=packages/samples/sources/programmability/wrapper-type-pattern.move anchor=common
+
 ```
 
 ## Advantages

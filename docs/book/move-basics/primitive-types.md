@@ -28,8 +28,8 @@ Where:
 - `<type>` - the type of the variable, optional
 - `<expression>` - the value to be assigned to the variable
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/primitive-types.move:variables_and_assignment}}
+```move file=packages/samples/sources/move-basics/primitive-types.move anchor=variables_and_assignment
+
 ```
 
 A mutable variable can be reassigned using the `=` operator.
@@ -40,8 +40,8 @@ y = 43;
 
 Variables can also be shadowed by re-declaring them.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/primitive-types.move:shadowing}}
+```move file=packages/samples/sources/move-basics/primitive-types.move anchor=shadowing
+
 ```
 
 ## Booleans
@@ -50,8 +50,8 @@ The `bool` type represents a boolean value - yes or no, true or false. It has tw
 `true` and `false`, which are keywords in Move. For booleans, the compiler can always infer the type
 from the value, so there is no need to explicitly specify it.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/primitive-types.move:boolean}}
+```move file=packages/samples/sources/move-basics/primitive-types.move anchor=boolean
+
 ```
 
 Booleans are often used to store flags and to control the flow of the program. Please refer to the
@@ -68,8 +68,8 @@ Move supports unsigned integers of various sizes, from 8-bit to 256-bit. The int
 - `u128` - 128-bit
 - `u256` - 256-bit
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/primitive-types.move:integers}}
+```move file=packages/samples/sources/move-basics/primitive-types.move anchor=integers
+
 ```
 
 While boolean literals like `true` and `false` are clearly booleans, an integer literal like `42`
@@ -78,8 +78,8 @@ value, usually defaulting to `u64`. However, sometimes the compiler is unable to
 will require an explicit type annotation. It can either be provided during assignment or by using a
 type suffix.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/primitive-types.move:integer_explicit_type}}
+```move file=packages/samples/sources/move-basics/primitive-types.move anchor=integer_explicit_type
+
 ```
 
 ### Operations
@@ -115,14 +115,14 @@ Move supports explicit casting between integer types. The syntax is as follows:
 
 Note that parentheses around the expression may be required to prevent ambiguity:
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/primitive-types.move:cast_as}}
+```move file=packages/samples/sources/move-basics/primitive-types.move anchor=cast_as
+
 ```
 
 A more complex example, preventing overflow:
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/primitive-types.move:overflow}}
+```move file=packages/samples/sources/move-basics/primitive-types.move anchor=overflow
+
 ```
 
 ### Overflow

@@ -13,14 +13,14 @@ used as measurement in the staking mechanism.
 
 Epoch can be read from the [transaction context](./transaction-context.md):
 
-```move
-{{#include ../../../packages/samples/sources/programmability/epoch-and-time.move:epoch}}
+```move file=packages/samples/sources/programmability/epoch-and-time.move anchor=epoch
+
 ```
 
 It is also possible to get the unix timestamp of the epoch start:
 
-```move
-{{#include ../../../packages/samples/sources/programmability/epoch-and-time.move:epoch_start}}
+```move file=packages/samples/sources/programmability/epoch-and-time.move anchor=epoch_start
+
 ```
 
 Normally, epochs are used in staking and system operations, however, in custom scenarios they can be
@@ -62,8 +62,8 @@ public struct Clock has key {
 There is only one public function available in the `Clock` module - `timestamp_ms`. It returns the
 current time in milliseconds since the Unix Epoch.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/epoch-and-time.move:clock}}
+```move file=packages/samples/sources/programmability/epoch-and-time.move anchor=clock
+
 ```
 
 <!-- TODO:

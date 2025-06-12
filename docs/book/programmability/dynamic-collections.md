@@ -63,14 +63,14 @@ Due to Bag storing any types, the extra methods it offers is:
 
 Used as a struct field:
 
-```move
-{{#include ../../../packages/samples/sources/programmability/dynamic-collections.move:bag_struct}}
+```move file=packages/samples/sources/programmability/dynamic-collections.move anchor=bag_struct
+
 ```
 
 Using the Bag:
 
-```move
-{{#include ../../../packages/samples/sources/programmability/dynamic-collections.move:bag_usage}}
+```move file=packages/samples/sources/programmability/dynamic-collections.move anchor=bag_usage
+
 ```
 
 ## ObjectBag
@@ -98,14 +98,14 @@ _See [full documentation for sui::table][table-framework] module._
 
 Used as a struct field:
 
-```move
-{{#include ../../../packages/samples/sources/programmability/dynamic-collections.move:table_struct}}
+```move file=packages/samples/sources/programmability/dynamic-collections.move anchor=table_struct
+
 ```
 
 Using the Table:
 
-```move
-{{#include ../../../packages/samples/sources/programmability/dynamic-collections.move:table_usage}}
+```move file=packages/samples/sources/programmability/dynamic-collections.move anchor=table_usage
+
 ```
 
 ## ObjectTable

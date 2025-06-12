@@ -22,8 +22,8 @@ Move uses a special type called [address](./../concepts/address.md) to represent
 32-byte value that can represent any address on the blockchain. Addresses can be written in two
 forms: hexadecimal addresses prefixed with 0x and named addresses.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/address.move:address_literal}}
+```move file=packages/samples/sources/move-basics/address.move anchor=address_literal
+
 ```
 
 An address literal starts with the `@` symbol followed by a hexadecimal number or an identifier. The
@@ -39,20 +39,20 @@ and from a `vector<u8>` type.
 
 Example: Convert an address to a `u256` type and back.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/address.move:to_u256}}
+```move file=packages/samples/sources/move-basics/address.move anchor=to_u256
+
 ```
 
 Example: Convert an address to a `vector<u8>` type and back.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/address.move:to_bytes}}
+```move file=packages/samples/sources/move-basics/address.move anchor=to_bytes
+
 ```
 
 Example: Convert an address into a string.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/address.move:to_string}}
+```move file=packages/samples/sources/move-basics/address.move anchor=to_string
+
 ```
 
 ## Further Reading

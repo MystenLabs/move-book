@@ -16,8 +16,8 @@ function call syntax.
 
 When a module is imported, its methods are automatically associated with the struct.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/struct-methods.move:hero}}
+```move file=packages/samples/sources/move-basics/struct-methods.move anchor=hero
+
 ```
 
 ## Method Aliases
@@ -43,8 +43,8 @@ and `Villain` have similar field names and methods. To avoid name conflicts, we 
 with `hero_` and `villain_` respectively. However, using aliases allows these methods to be called
 on struct instances without the prefix:
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/struct-methods-2.move:hero_and_villain}}
+```move file=packages/samples/sources/move-basics/struct-methods-2.move anchor=hero_and_villain
+
 ```
 
 In the test function, the `health` method is called directly on the `Hero` and `Villain` instances
@@ -65,8 +65,7 @@ module. Let's use the `bcs::to_bytes` method from the [Standard Library](./stand
 associate it with the `Hero` struct. It will allow serializing the `Hero` struct to a vector of
 bytes.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/struct-methods-3.move:hero_to_bytes}}
+```move file=packages/samples/sources/move-basics/struct-methods-3.move anchor=hero_to_bytes
 ``` -->
 
 ## Further Reading

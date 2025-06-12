@@ -43,16 +43,16 @@ public native fun to_bytes<T>(t: &T): vector<u8>;
 The following example shows how to encode a struct using BCS. The `to_bytes` function can take any
 value and encode it as a vector of bytes.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/bcs.move:encode}}
+```move file=packages/samples/sources/programmability/bcs.move anchor=encode
+
 ```
 
 ### Encoding a Struct
 
 Structs encode similarly to simple types. Here is how to encode a struct using BCS:
 
-```move
-{{#include ../../../packages/samples/sources/programmability/bcs.move:encode_struct}}
+```move file=packages/samples/sources/programmability/bcs.move anchor=encode_struct
+
 ```
 
 ## Decoding
@@ -67,15 +67,15 @@ caller to _peel off_ the data by calling different decoding functions, prefixed 
 data is split off the bytes, and the remainder bytes are kept in the wrapper until the
 `into_remainder_bytes` function is called.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/bcs.move:decode}}
+```move file=packages/samples/sources/programmability/bcs.move anchor=decode
+
 ```
 
 There is a common practice to use multiple variables in a single `let` statement during decoding. It
 makes code a little bit more readable and helps to avoid unnecessary copying of the data.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/bcs.move:chain_decode}}
+```move file=packages/samples/sources/programmability/bcs.move anchor=chain_decode
+
 ```
 
 ### Decoding Vectors
@@ -84,8 +84,8 @@ While most of the primitive types have a dedicated decoding function, vectors ne
 which depends on the type of the elements. For vectors, first you need to decode the length of the
 vector, and then decode each element in a loop.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/bcs.move:decode_vector}}
+```move file=packages/samples/sources/programmability/bcs.move anchor=decode_vector
+
 ```
 
 For most common scenarios, `bcs` module provides a basic set of functions for decoding vectors:
@@ -107,8 +107,8 @@ For most common scenarios, `bcs` module provides a basic set of functions for de
 [Option](./../move-basics/option.md) is represented as a vector of either 0 or 1 element. To read an
 option, you would treat it like a vector and check its length (first byte - either 1 or 0).
 
-```move
-{{#include ../../../packages/samples/sources/programmability/bcs.move:decode_option}}
+```move file=packages/samples/sources/programmability/bcs.move anchor=decode_option
+
 ```
 
 > If you need to decode an option of a custom type, use the method in the code snippet above.
@@ -127,8 +127,8 @@ Structs are decoded field by field, and there is no standard function to automat
 into a Move struct, and it would have been a violation of the Move's type system. Instead, you need
 to decode each field manually.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/bcs.move:decode_struct}}
+```move file=packages/samples/sources/programmability/bcs.move anchor=decode_struct
+
 ```
 
 ## Summary

@@ -10,14 +10,14 @@ function will automatically be called when the module is published.
 >
 > <!-- [package upgrades](./package-upgrades.md) -->
 
-```move
-{{#include ../../../packages/samples/sources/programmability/module-initializer.move:main}}
+```move file=packages/samples/sources/programmability/module-initializer.move anchor=main
+
 ```
 
 In the same package, another module can have its own `init` function, encapsulating distinct logic.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/module-initializer-2.move:other}}
+```move file=packages/samples/sources/programmability/module-initializer-2.move anchor=other
+
 ```
 
 ## `init` Features

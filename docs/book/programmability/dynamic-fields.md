@@ -46,8 +46,8 @@ removed with `remove`, and read with `borrow` and `borrow_mut`. Additionally, th
 can be used to check if a field exists (for stricter checks with type, there is an
 `exists_with_type` method).
 
-```move
-{{#include ../../../packages/samples/sources/programmability/dynamic-fields.move:usage}}
+```move file=packages/samples/sources/programmability/dynamic-fields.move anchor=usage
+
 ```
 
 In the example above, we define a `Character` object and two different types of accessories that
@@ -70,8 +70,8 @@ Dynamic fields allow objects to carry data of any type, including those defined 
 This is possible due to their generic nature and relatively weak constraints on the type parameters.
 Let's illustrate this by attaching a few different values to a `Character` object.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/dynamic-fields.move:foreign_types}}
+```move file=packages/samples/sources/programmability/dynamic-fields.move anchor=foreign_types
+
 ```
 
 In this example we showed how different types can be used for both _name_ and the _value_ of a
@@ -89,8 +89,8 @@ and cannot prevent dynamic fields from becoming orphaned. Once the parent UID is
 dynamic fields are not automatically deleted, and they become orphaned. This means that the dynamic
 fields are still stored in the blockchain, but they will never become accessible again.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/dynamic-fields.move:orphan_fields}}
+```move file=packages/samples/sources/programmability/dynamic-fields.move anchor=orphan_fields
+
 ```
 
 Orphaned objects are not a subject to storage rebate, and the storage fees will remain unclaimed.
@@ -104,16 +104,16 @@ abilities. But dynamic fields get even more interesting when we use custom types
 This allows for a more structured way of storing data, and also allows for protecting the field
 names from being accessed by other modules.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/dynamic-fields.move:custom_type}}
+```move file=packages/samples/sources/programmability/dynamic-fields.move anchor=custom_type
+
 ```
 
 Two field names that we defined above are `AccessoryKey` and `MetadataKey`. The `AccessoryKey` has a
 `String` field in it, hence it can be used multiple times with different `name` values. The
 `MetadataKey` is an empty key, and can be attached only once.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/dynamic-fields.move:custom_type_usage}}
+```move file=packages/samples/sources/programmability/dynamic-fields.move anchor=custom_type_usage
+
 ```
 
 As you can see, custom types do work as field names but as long as they can be _constructed_ by the
@@ -141,8 +141,8 @@ Because dynamic fields are attached to `UID`s, their usage in other modules depe
 modules access it directly. However, if there's a public accessor method that returns a reference to
 `UID`, dynamic fields can be read in other modules.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/dynamic-fields.move:exposed_uid}}
+```move file=packages/samples/sources/programmability/dynamic-fields.move anchor=exposed_uid
+
 ```
 
 In the example above, we show how to expose the `UID` of a `Character` object. This solution may
@@ -153,8 +153,8 @@ If you need to expose the `UID` only within the package, use a restrictive visib
 `public(package)`, or even better - use more specific accessor methods that would allow only reading
 specific fields.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/dynamic-fields.move:exposed_uid_measures}}
+```move file=packages/samples/sources/programmability/dynamic-fields.move anchor=exposed_uid_measures
+
 ```
 
 ## Dynamic Fields vs Fields

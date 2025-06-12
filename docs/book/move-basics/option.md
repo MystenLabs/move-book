@@ -39,8 +39,8 @@ represent the absence of a middle name, it would require extra checks to differe
 empty string and a missing middle name. Instead, we can use the `Option` type to represent the
 middle name.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/option.move:registry}}
+```move file=packages/samples/sources/move-basics/option.move anchor=registry
+
 ```
 
 In the previous example, the `middle_name` field is of type `Option<String>`. This means that the
@@ -58,8 +58,8 @@ To create a value of the `Option` type, you can use the `option::some` or `optio
 `Option` values also support several operations (borrowing will be discussed in the
 [references](references.md#references-1) chapter):
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/option.move:usage}}
+```move file=packages/samples/sources/move-basics/option.move anchor=usage
+
 ```
 
 ## Further Reading

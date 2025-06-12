@@ -16,8 +16,8 @@ with the correct capability.
 > There's a convention to name capabilities with the `Cap` suffix, for example, `AdminCap` or
 > `KioskOwnerCap`.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/capability.move:main}}
+```move file=packages/samples/sources/programmability/capability.move anchor=main
+
 ```
 
 ## Using `init` for Admin Capability
@@ -25,8 +25,8 @@ with the correct capability.
 A very common practice is to create a single `AdminCap` object on package publish. This way, the
 application can have a setup phase where the admin account prepares the state of the application.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/capability-2.move:admin_cap}}
+```move file=packages/samples/sources/programmability/capability-2.move anchor=admin_cap
+
 ```
 
 ## Address Check vs Capability
@@ -39,14 +39,14 @@ for better security, discoverability, and code organization.
 Let's look at how the `new` function that creates a user would look like if it was using the address
 check:
 
-```move
-{{#include ../../../packages/samples/sources/programmability/capability-3.move:with_address}}
+```move file=packages/samples/sources/programmability/capability-3.move anchor=with_address
+
 ```
 
 And now, let's see how the same function would look like with the capability:
 
-```move
-{{#include ../../../packages/samples/sources/programmability/capability-4.move:with_capability}}
+```move file=packages/samples/sources/programmability/capability-4.move anchor=with_capability
+
 ```
 
 Using capabilities has several advantages over the address check:

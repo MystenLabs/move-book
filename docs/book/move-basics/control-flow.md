@@ -47,14 +47,14 @@ it. The `else` keyword is optional, except when the resulting value is assigned 
 all branches must return a value to ensure type safety. Let’s examine how an `if` expression works
 in Move with the following example:
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/control-flow.move:if_condition}}
+```move file=packages/samples/sources/move-basics/control-flow.move anchor=if_condition
+
 ```
 
 Let's see how we can use `if` and `else` to assign a value to a variable:
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/control-flow.move:if_else}}
+```move file=packages/samples/sources/move-basics/control-flow.move anchor=if_else
+
 ```
 
 In this example, the value of the `if` expression is assigned to the variable `y`. If `x` is greater
@@ -83,10 +83,10 @@ limits and cause the transaction to abort.
 
 ## The `while` Loop
 
-The `while` statement executes a block of code repeatedly as long as the associated boolean expression evaluates
-to true. Just like we've seen with `if`, the boolean expression is evaluated before each iteration
-of the loop. Additionally, like conditional statements, the `while` loop is an expression and
-requires a semicolon if there are other expressions following it.
+The `while` statement executes a block of code repeatedly as long as the associated boolean
+expression evaluates to true. Just like we've seen with `if`, the boolean expression is evaluated
+before each iteration of the loop. Additionally, like conditional statements, the `while` loop is an
+expression and requires a semicolon if there are other expressions following it.
 
 The syntax for the `while` loop is:
 
@@ -96,8 +96,8 @@ while (<bool_expression>) { <expressions>; };
 
 Here is an example of a `while` loop with a very simple condition:
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/control-flow.move:while_loop}}
+```move file=packages/samples/sources/move-basics/control-flow.move anchor=while_loop
+
 ```
 
 ## Infinite `loop`
@@ -106,8 +106,8 @@ Now let's imagine a scenario where the boolean expression is always `true`. For 
 literally passed `true` to the `while` condition. This is similar to how the `loop` statement
 functions, except that `while` evaluates a condition.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/control-flow.move:infinite_while}}
+```move file=packages/samples/sources/move-basics/control-flow.move anchor=infinite_while
+
 ```
 
 An infinite `while` loop, or a `while` loop with an always `true` condition, is equivalent to a
@@ -119,8 +119,8 @@ loop { <expressions>; };
 
 Let's rewrite the previous example using `loop` instead of `while`:
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/control-flow.move:infinite_loop}}
+```move file=packages/samples/sources/move-basics/control-flow.move anchor=infinite_loop
+
 ```
 
 Infinite loops are rarely practical in Move, as every operation consumes gas, and an infinite loop
@@ -146,8 +146,8 @@ combination with a conditional statement to exit the loop when a certain conditi
 illustrate this point, let's turn the infinite `loop` from the previous example into something that
 looks and behaves more like a `while` loop:
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/control-flow.move:break_loop}}
+```move file=packages/samples/sources/move-basics/control-flow.move anchor=break_loop
+
 ```
 
 Almost identical to the `while` loop, right? The `break` statement is used to exit the loop when `x`
@@ -168,8 +168,8 @@ continue
 
 The example below skips odd numbers and prints only even numbers from 0 to 10:
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/control-flow.move:continue_loop}}
+```move file=packages/samples/sources/move-basics/control-flow.move anchor=continue_loop
+
 ```
 
 `break` and `continue` statements can be used in both `while` and `loop` loops.
@@ -186,8 +186,8 @@ return <expression>
 
 Here is an example of a function that returns a value when a certain condition is met:
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/control-flow.move:return_statement}}
+```move file=packages/samples/sources/move-basics/control-flow.move anchor=return_statement
+
 ```
 
 Unlike in many other languages, the `return` statement is not required for the last expression in a

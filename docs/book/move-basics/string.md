@@ -27,8 +27,8 @@ wrappers provided by the `string` and `ascii` modules are just that: wrappers. T
 safety checks and methods to work with strings, but at the end of the day, they are just vectors of
 bytes.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/string.move:custom}}
+```move file=packages/samples/sources/move-basics/string.move anchor=custom
+
 ```
 
 ## Working with UTF-8 Strings
@@ -60,8 +60,8 @@ To create a new UTF-8 `String` instance, you can use the `string::utf8` method. 
 [Standard Library](./standard-library.md) provides an alias `.to_string()` on the `vector<u8>` for
 convenience.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/string.move:utf8}}
+```move file=packages/samples/sources/move-basics/string.move anchor=utf8
+
 ```
 
 ### Common Operations
@@ -104,8 +104,8 @@ otherwise.
 > succeeds, the result is wrapped in `Some`. If it fails, the function returns `None`. This naming
 > convention, commonly used in Move, is inspired by Rust.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/string.move:safe_utf8}}
+```move file=packages/samples/sources/move-basics/string.move anchor=safe_utf8
+
 ```
 
 ### UTF-8 Limitations

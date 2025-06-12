@@ -1,11 +1,22 @@
 import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
+import path from 'path';
 import type * as Preset from '@docusaurus/preset-classic';
+import remarkCodeImport from 'remark-code-import';
+import mdbookAnchorCode from './src/plugins/mdbook-anchor-code';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+const remarkCodeImportOptions = {
+  rootDir: path.resolve(__dirname),
+  // allowImportingFromOutside: true,
+  // preserveTrailingNewline: true,
+  // removeRedundantIndentations: true,
+  // async: true,
+};
+
 const config: Config = {
-  title: 'Move Book',
+  title: 'The Move Book',
   tagline:
     'First book about the Move programming language and the Move VM. Move documentation, Move tutorials and language reference',
   favicon: 'favicon.svg',
@@ -14,6 +25,8 @@ const config: Config = {
   future: {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
   },
+
+  // TODO: Add forwarding from old pages to new pages.
 
   url: 'https://move-book.com',
   baseUrl: '/',
@@ -44,22 +57,22 @@ const config: Config = {
         sidebarPath: './sidebars.ts',
         sidebarCollapsible: false,
         breadcrumbs: false,
+        // remarkPlugins: [[remarkCodeImport, remarkCodeImportOptions], mdbookAnchorCode],
+        remarkPlugins: [mdbookAnchorCode],
       },
     ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'reference',
-        path: './../reference',
-        routeBasePath: '/reference',
-        sidebarPath: './sidebar-reference.ts',
-        sidebarCollapsible: false,
-        breadcrumbs: false,
-      },
-    ],
-    [
-
-    ]
+    // [
+    //   '@docusaurus/plugin-content-docs',
+    //   {
+    //     id: 'reference',
+    //     path: './../reference',
+    //     routeBasePath: '/reference',
+    //     sidebarPath: './sidebar-reference.ts',
+    //     sidebarCollapsible: false,
+    //     breadcrumbs: false,
+    //     remarkPlugins: [remarkCodeImport],
+    //   },
+    // ],
   ],
   themes: [['@docusaurus/theme-classic', { customCss: './src/css/custom.css' }]],
 
@@ -135,16 +148,6 @@ const config: Config = {
           position: 'right',
           html: '<i class="fab fa-github"></i>', // 👈 icon here
         },
-        // {
-        //   href: 'https://github.com/your/repo',
-        //   position: 'right',
-        //   html: '<i class="fas fa-moon"></i>', // 👈 icon here
-        // },
-        // {
-        //   href: 'https://github.com/MystenLabs/move-book',
-        //   label: 'GitHub',
-        //   position: 'right',
-        // },
       ],
     },
     // footer: {
@@ -193,6 +196,7 @@ const config: Config = {
     //   copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
     // },
     prism: {
+      additionalLanguages: ['ini', 'toml'],
       theme: prismThemes.oneLight,
       darkTheme: prismThemes.oneDark,
     },

@@ -29,16 +29,14 @@ your own code.
 Modules defined in the same package can import each other. The `use` keyword is followed by the
 module path, which consists of the package address (or alias) and the module name separated by `::`.
 
-```move
-// File: sources/module_one.move
-{{#include ../../../packages/samples/sources/move-basics/importing-modules.move:module_one}}
+```move title="File: sources/module_one.move" file=packages/samples/sources/move-basics/importing-modules.move anchor=module_one
+
 ```
 
 Another module defined in the same package can import the first module using the `use` keyword.
 
-```move
-// File: sources/module_two.move
-{{#include ../../../packages/samples/sources/move-basics/importing-modules-two.move:module_two}}
+```move title="File: sources/module_two.move" file=packages/samples/sources/move-basics/importing-modules-two.move anchor=module_two
+
 ```
 
 > Note: Any item (struct, function, constant, etc.) that you want to import from another module must
@@ -52,8 +50,8 @@ You can also import specific members from a module. This is useful when you only
 function or a single type from a module. The syntax is the same as for importing a module, but you
 add the member name after the module path.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/importing-modules-members.move:members}}
+```move file=packages/samples/sources/move-basics/importing-modules-members.move anchor=members
+
 ```
 
 ## Grouping Imports
@@ -61,8 +59,8 @@ add the member name after the module path.
 Imports can be grouped into a single `use` statement using curly braces `{}`. This allows for
 cleaner and more organized code when importing multiple members from the same module or package.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/importing-modules-grouped.move:grouped}}
+```move file=packages/samples/sources/move-basics/importing-modules-grouped.move anchor=grouped
+
 ```
 
 Importing function names is less common in Move, since the function names can overlap and cause
@@ -72,8 +70,8 @@ the function. Types have unique names and should be imported individually.
 To import members and the module itself in the group import, you can use the `Self` keyword. The
 `Self` keyword refers to the module itself and can be used to import the module and its members.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/importing-modules-self.move:self}}
+```move file=packages/samples/sources/move-basics/importing-modules-self.move anchor=self
+
 ```
 
 ## Resolving Name Conflicts
@@ -84,8 +82,8 @@ use the module path to access the function. It is also possible to have modules 
 in different packages. To resolve the conflict and avoid ambiguity, Move offers the `as` keyword to
 rename the imported member.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/importing-modules-conflict-resolution.move:conflict}}
+```move file=packages/samples/sources/move-basics/importing-modules-conflict-resolution.move anchor=conflict
+
 ```
 
 ## Adding an External Dependency
@@ -95,7 +93,7 @@ Move packages can depend on other packages; the dependencies are listed in the
 
 Package dependencies are defined in the [Package Manifest](./../concepts/manifest.md) as follows:
 
-```toml
+```ini title="Move.toml"
 [dependencies]
 Example = { git = "https://github.com/Example/example.git", subdir = "path/to/package", rev = "v1.2.3" }
 Local = { local = "../my_other_package" }
@@ -127,8 +125,8 @@ access standard library modules.
 To import a module from another package, use the `use` keyword followed by the module path. The
 module path consists of the package address (or alias) and the module name, separated by `::`.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/importing-modules-external.move:external}}
+```move file=packages/samples/sources/move-basics/importing-modules-external.move anchor=external
+
 ```
 
 > Note: Module address names come from the `[addresses]` section of the manifest file (`Move.toml`),

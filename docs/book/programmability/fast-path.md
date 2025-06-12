@@ -25,8 +25,8 @@ data between multiple parties without requiring consensus.
 
 ## In Practice
 
-```move
-{{#include ../../../packages/samples/sources/programmability/fast-path.move:main}}
+```move file=packages/samples/sources/programmability/fast-path.move anchor=main
+
 ```
 
 ## Special Case: Clock

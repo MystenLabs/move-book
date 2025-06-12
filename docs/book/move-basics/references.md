@@ -37,11 +37,10 @@ The initial layout of the metro pass application is simple. We define the `Card`
 [constant](./constants.md) that represents the number of rides on a single card. We also add an
 [error constant](./assert-and-abort.md#error-constants) for the case when the card is empty.
 
-```move
+```move file=packages/samples/sources/move-basics/references.move anchor=header_new
 module book::metro_pass;
-{{#include ../../../packages/samples/sources/move-basics/references.move:header}}
 
-{{#include ../../../packages/samples/sources/move-basics/references.move:new}}
+
 ```
 
 <!-- In [the previous section](./ownership-and-scope.md) we explained the ownership and scope in Move. We showed how the value is *moved* to a new scope, and how it changes the owner. In this section, we will explain how to *borrow* a reference to a value to avoid moving it, and how Move's *borrow checker* ensures that the references are used correctly. -->
@@ -56,8 +55,8 @@ and to prove its ownership.
 To do so, in the function signature, we use the `&` symbol to indicate that we are passing a
 _reference_ to the value, not the value itself.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/references.move:immutable}}
+```move file=packages/samples/sources/move-basics/references.move anchor=immutable
+
 ```
 
 Because the function does not take ownership of the Card, it can _read_ its data but cannot _write_
@@ -74,8 +73,8 @@ In some cases, we want to allow the function to modify the Card. For example, wh
 a turnstile, we need to deduct a ride. To achieve this, we use the `&mut` keyword in the function
 signature.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/references.move:mutable}}
+```move file=packages/samples/sources/move-basics/references.move anchor=mutable
+
 ```
 
 As you can see in the function body, the `&mut` reference allows mutating the value, and the
@@ -87,8 +86,8 @@ Lastly, let's illustrate what happens when we pass the value itself to the funct
 the function takes the ownership of the value, making it inaccessible in the original scope. The
 owner of the Card can recycle it and thereby relinquish ownership to the function.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/references.move:move}}
+```move file=packages/samples/sources/move-basics/references.move anchor=move
+
 ```
 
 In the `recycle` function, the Card is passed by value, transferring ownership to the function. This
@@ -102,8 +101,8 @@ allows it to be unpacked and destroyed.
 
 To illustrate the full flow of the application, let's put all the pieces together in a test.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/references.move:move_2024}}
+```move file=packages/samples/sources/move-basics/references.move anchor=move_2024
+
 ```
 
 ## Further Reading
@@ -128,7 +127,6 @@ To illustrate the full flow of the application, let's put all the pieces togethe
 
 Here's the test from this page written with the Move 2024 syntax:
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/references.move:move_2024}}
+```move file=packages/samples/sources/move-basics/references.move anchor=move_2024
 ```
 -->

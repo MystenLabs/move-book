@@ -6,8 +6,8 @@ code into reusable units. Functions can take arguments and return a value. They 
 the `fun` keyword at the module level. Just like any other module member, by default they're private
 and can only be accessed from within the module.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/function.move:math}}
+```move file=packages/samples/sources/move-basics/function.move anchor=math
+
 ```
 
 In this example, we define a function `add` that takes two arguments of type `u64` and returns their
@@ -26,8 +26,8 @@ identifier), a list of arguments in parentheses, and a return type. The function
 code that contains a sequence of statements and expressions. The last expression the function body
 is the return value of the function.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/function.move:return_nothing}}
+```move file=packages/samples/sources/move-basics/function.move anchor=return_nothing
+
 ```
 
 ## Accessing functions
@@ -38,8 +38,8 @@ function named `add` in the `math` module within the `book` package, its full pa
 `book::math::add`. If the module has already been imported, you can access it directly as
 `math::add` as in the following example:
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/function_use.move:use_math}}
+```move file=packages/samples/sources/move-basics/function_use.move anchor=use_math
+
 ```
 
 ## Multiple return values
@@ -48,28 +48,28 @@ Move functions can return multiple values, which is particularly useful when you
 than one piece of data from a function. The return type is specified as a tuple of types, and the
 return value is provided as a tuple of expressions:
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/function.move:tuple_return}}
+```move file=packages/samples/sources/move-basics/function.move anchor=tuple_return
+
 ```
 
 The result of a function call with a tuple return has to be unpacked into variables via the
 `let (tuple)` syntax:
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/function.move:tuple_return_imm}}
+```move file=packages/samples/sources/move-basics/function.move anchor=tuple_return_imm
+
 ```
 
 If any of the declared values need to be declared as mutable, the `mut` keyword is placed before the
 variable name:
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/function.move:tuple_return_mut}}
+```move file=packages/samples/sources/move-basics/function.move anchor=tuple_return_mut
+
 ```
 
 If some of the arguments are not used, they can be ignored with the `_` symbol:
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/function.move:tuple_return_ignore}}
+```move file=packages/samples/sources/move-basics/function.move anchor=tuple_return_ignore
+
 ```
 
 ## Further Reading

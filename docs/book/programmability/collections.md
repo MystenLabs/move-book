@@ -12,8 +12,8 @@ While we have previously covered the `vector` type in the
 time we will cover the usage of the `vector` type in objects and how it can be used in an
 application.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/collections.move:vector}}
+```move file=packages/samples/sources/programmability/collections.move anchor=vector
+
 ```
 
 ## VecSet
@@ -22,8 +22,8 @@ application.
 does not allow duplicate items. This property makes it useful for storing a collection of unique
 items, such as a list of IDs or addresses.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/collections-2.move:vec_set}}
+```move file=packages/samples/sources/programmability/collections-2.move anchor=vec_set
+
 ```
 
 VecSet will fail on attempt to insert an item that already exists in the set.
@@ -39,8 +39,8 @@ Keys in a `VecMap` are unique, and each key can only be associated with a single
 to insert a key-value pair with a key that already exists in the map, the old value will be replaced
 with the new value.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/collections-3.move:vec_map}}
+```move file=packages/samples/sources/programmability/collections-3.move anchor=vec_map
+
 ```
 
 ## Limitations
@@ -58,8 +58,8 @@ results.
 > This behavior is caught by the linter and will emit a warning: _Comparing collections of type
 > 'sui::vec_set::VecSet' may yield unexpected result_
 
-```move
-{{#include ../../../packages/samples/sources/programmability/collections-4.move:vec_set_comparison}}
+```move file=packages/samples/sources/programmability/collections-4.move anchor=vec_set_comparison
+
 ```
 
 In the example above, the comparison will fail because the order of insertion is not guaranteed, and

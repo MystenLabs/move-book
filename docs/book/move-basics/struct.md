@@ -13,8 +13,8 @@ any type, including other structs.
 
 > Move does not support recursive structs, meaning a struct cannot contain itself as a field.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/struct.move:def}}
+```move file=packages/samples/sources/move-basics/struct.move anchor=def
+
 ```
 
 In the example above, we define a `Record` struct with five fields. The `title` field is of type
@@ -36,8 +36,8 @@ We described the _definition_ of a struct. Now let's see how to initialize a str
 struct can be initialized using the `struct_name { field1: value1, field2: value2, ... }` syntax.
 The fields can be initialized in any order, and all of the required fields must be set.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/struct.move:pack}}
+```move file=packages/samples/sources/move-basics/struct.move anchor=pack
+
 ```
 
 In the example above, we create an instance of the `Artist` struct and set the `name` field to a
@@ -45,8 +45,8 @@ string "The Beatles".
 
 To access the fields of a struct, you can use the `.` operator followed by the field name.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/struct.move:access}}
+```move file=packages/samples/sources/move-basics/struct.move anchor=access
+
 ```
 
 Only the module defining the struct can access its fields (both mutably and immutably). So the above
@@ -57,8 +57,7 @@ code should be in the same module as the `Artist` struct.
 Struct fields are private and can be accessed only by the module defining the struct. To access the fields of a struct, you can use the `.` operator followed by the field name.
 
 ```move
-# anchor: access
-{{#include ../../../packages/samples/sources/move-basics/struct.move:access}}
+# anchor: access file=packages/samples/sources/move-basics/struct.move anchor=access
 ```
 -->
 
@@ -68,8 +67,8 @@ Structs are non-discardable by default, meaning that the initialized struct valu
 either by storing it or unpacking it. Unpacking a struct means deconstructing it into its fields.
 This is done using the `let` keyword followed by the struct name and the field names.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/struct.move:unpack}}
+```move file=packages/samples/sources/move-basics/struct.move anchor=unpack
+
 ```
 
 In the example above we unpack the `Artist` struct and create a new variable `name` with the value
@@ -77,8 +76,8 @@ of the `name` field. Because the variable is not used, the compiler will raise a
 suppress the warning, you can use the underscore `_` to indicate that the variable is intentionally
 unused.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/struct.move:unpack_ignore}}
+```move file=packages/samples/sources/move-basics/struct.move anchor=unpack_ignore
+
 ```
 
 ## Further Reading

@@ -20,8 +20,8 @@ to functions. Move has the following literals:
 - Byte vector values: Prefixed with `b`, such as `b"bytes_vector"`
 - Byte values: Hexadecimal literals prefixed with `x`, such as `x"0A"`
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/expression.move:literals}}
+```move file=packages/samples/sources/move-basics/expression.move anchor=literals
+
 ```
 
 ## Operators
@@ -29,8 +29,8 @@ to functions. Move has the following literals:
 Arithmetic, logical, and bitwise operators are used to perform operations on values. Since these
 operations produce values, they are considered expressions.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/expression.move:operators}}
+```move file=packages/samples/sources/move-basics/expression.move anchor=operators
+
 ```
 
 ## Blocks
@@ -39,8 +39,8 @@ A block is a sequence of statements and expressions enclosed in curly braces `{}
 value of the last expression in the block (note that this final expression must not have an ending
 semicolon). A block is an expression, so it can be used anywhere an expression is expected.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/expression.move:block}}
+```move file=packages/samples/sources/move-basics/expression.move anchor=block
+
 ```
 
 ## Function Calls
@@ -50,8 +50,8 @@ already used function calls in previous sections, so it's worth mentioning them 
 call is an expression that calls a function and returns the value of the last expression in the
 function body, provided the last expression does not have a terminating semi-colon.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/expression.move:fun_call}}
+```move file=packages/samples/sources/move-basics/expression.move anchor=fun_call
+
 ```
 
 ## Control Flow Expressions
@@ -60,6 +60,6 @@ Control flow expressions are used to control the flow of the program. They are a
 they return a value. We cover control flow expressions in the [Control Flow](./control-flow.md)
 section. Here's a very brief overview:
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/expression.move:control_flow}}
+```move file=packages/samples/sources/move-basics/expression.move anchor=control_flow
+
 ```

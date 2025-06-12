@@ -74,8 +74,8 @@ wrapped_ into a separate object.
 > ID. However, this property may not be outstanding if wrapped object indexing is implemented,
 > making the dynamic object fields a redundant feature.
 
-```move
-{{#include ../../../packages/samples/sources/programmability/dynamic-object-fields.move:usage}}
+```move file=packages/samples/sources/programmability/dynamic-object-fields.move anchor=usage
+
 ```
 
 ## Pricing Differences

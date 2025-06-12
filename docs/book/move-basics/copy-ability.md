@@ -6,15 +6,15 @@ primitive types, it is not the default for custom types. Move is designed to exp
 and resources, and controlling the ability to duplicate resources is a key principle of the resource
 model. However, the Move type system allows you to add the _copy_ ability to custom types:
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/copy-ability.move:copyable}}
+```move file=packages/samples/sources/move-basics/copy-ability.move anchor=copyable
+
 ```
 
 In the example above, we define a custom type `Copyable` with the _copy_ ability. This means that
 instances of `Copyable` can be copied, both implicitly and explicitly.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/copy-ability.move:copyable_test}}
+```move file=packages/samples/sources/move-basics/copy-ability.move anchor=copyable_test
+
 ```
 
 In the example above, `a` is copied to `b` implicitly, and then explicitly copied to `c` using the
@@ -33,8 +33,8 @@ _copy_ ability, it is very likely that it should have `drop` too. This is becaus
 is required to clean up resources when the instance is no longer needed. If a type only has _copy_,
 managing its instances gets more complicated, as the instances must be explicitly used or consumed.
 
-```move
-{{#include ../../../packages/samples/sources/move-basics/copy-ability.move:copy_drop}}
+```move file=packages/samples/sources/move-basics/copy-ability.move anchor=copy_drop
+
 ```
 
 All of the primitive types in Move behave as if they have the _copy_ and _drop_ abilities. This
