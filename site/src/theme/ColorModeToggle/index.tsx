@@ -1,12 +1,12 @@
 // Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-import React, {type ReactNode} from 'react';
+import React, { type ReactNode } from 'react';
 import clsx from 'clsx';
 import useIsBrowser from '@docusaurus/useIsBrowser';
-import {translate} from '@docusaurus/Translate';
-import type {Props} from '@theme/ColorModeToggle';
-import type {ColorMode} from '@docusaurus/theme-common';
+import { translate } from '@docusaurus/Translate';
+import type { Props } from '@theme/ColorModeToggle';
+import type { ColorMode } from '@docusaurus/theme-common';
 
 import styles from './styles.module.css';
 
@@ -123,14 +123,14 @@ function ColorModeToggle({
         title={getColorModeLabel(value)}
         aria-label={getColorModeAriaLabel(value)}
 
-        // For accessibility decisions
-        // See https://github.com/facebook/docusaurus/issues/7667#issuecomment-2724401796
+      // For accessibility decisions
+      // See https://github.com/facebook/docusaurus/issues/7667#issuecomment-2724401796
 
-        // aria-live disabled on purpose - This is annoying because:
-        // - without this attribute, VoiceOver doesn't announce on button enter
-        // - with this attribute, VoiceOver announces twice on ctrl+opt+space
-        // - with this attribute, NVDA announces many times
-        // aria-live="polite"
+      // aria-live disabled on purpose - This is annoying because:
+      // - without this attribute, VoiceOver doesn't announce on button enter
+      // - with this attribute, VoiceOver announces twice on ctrl+opt+space
+      // - with this attribute, NVDA announces many times
+      // aria-live="polite"
       >
         <CurrentColorModeIcon />
       </button>

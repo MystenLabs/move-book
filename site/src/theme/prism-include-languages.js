@@ -1,7 +1,7 @@
 // Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-import siteConfig from "@generated/docusaurus.config";
+import siteConfig from '@generated/docusaurus.config';
 export default function prismIncludeLanguages(PrismObject) {
   const {
     themeConfig: { prism },
@@ -18,6 +18,6 @@ export default function prismIncludeLanguages(PrismObject) {
     // eslint-disable-next-line global-require, import/no-dynamic-require
     require(`prismjs/components/prism-${lang}`);
   });
-  require("./prism-move");
+  require('./prism-move');
   delete globalThis.Prism;
 }

@@ -63,7 +63,27 @@ const config: Config = {
       },
     ],
   ],
-  themes: [['@docusaurus/theme-classic', { customCss: './src/css/custom.css' }]],
+  themes: [
+    ['@docusaurus/theme-classic', { customCss: './src/css/custom.css' }],
+    [
+      // require.resolve("@easyops-cn/docusaurus-search-local"),
+      '@easyops-cn/docusaurus-search-local',
+      /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+      ({
+        // ... Your options.
+        // `hashed` is recommended as long-term-cache of index file is possible.
+        hashed: true,
+        docsRouteBasePath: '/',
+        docsDir: ['./../book', './../reference'],
+
+        // For Docs using Chinese, it is recomended to set:
+        language: ["en"],
+
+        // If you're using `noIndex: true`, set `forceIgnoreNoIndex` to enable local index:
+        // forceIgnoreNoIndex: true,
+      }),
+    ],
+  ],
 
   stylesheets: [
     {
@@ -77,6 +97,9 @@ const config: Config = {
   ],
 
   themeConfig: {
+    // searchParameters: {
+    //   // Add analytics tags to the search results
+    // },
     colorMode: {
       disableSwitch: false,
     },
@@ -88,6 +111,10 @@ const config: Config = {
           label: 'Move Reference',
           position: 'left',
           activeBasePath: '/reference',
+        },
+        {
+          type: 'search',
+          position: 'right',
         },
         {
           href: 'https://github.com/your/repo',
