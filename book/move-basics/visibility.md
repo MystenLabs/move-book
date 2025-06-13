@@ -95,11 +95,11 @@ fun try_calling_package() {
 
 ## Native Functions
 
-Some functions in the [framework](./../programmability/sui-framework.md) and
-[standard library](./standard-library.md) are marked with the `native` modifier. These functions are
+Some functions in the [framework](./../programmability/sui-framework) and
+[standard library](./standard-library) are marked with the `native` modifier. These functions are
 natively provided by the Move VM and do not have a body in Move source code. To learn more about the
 native modifier, refer to the
-[Move Reference](/reference/functions.html?highlight=native#native-functions).
+[Move Reference](./../../reference/functions?highlight=native#native-functions).
 
 ```move
 module std::type_name;
@@ -108,8 +108,8 @@ public native fun get<T>(): TypeName;
 ```
 
 This is an example from `std::type_name`, learn more about this module in the
-[reflection chapter](./type-reflection.md).
+[reflection chapter](./type-reflection).
 
 ## Further Reading
 
-- [Visibility](/reference/functions.html#visibility) in the Move Reference.
+- [Visibility](./../../reference/functions#visibility) in the Move Reference.

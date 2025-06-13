@@ -28,7 +28,7 @@ the Move compiler would raise an error.
 
 ## Copying and Drop
 
-The `copy` ability is closely related to the [`drop` ability](./drop-ability.md). If a type has the
+The `copy` ability is closely related to the [`drop` ability](./drop-ability). If a type has the
 _copy_ ability, it is very likely that it should have `drop` too. This is because the _drop_ ability
 is required to clean up resources when the instance is no longer needed. If a type only has _copy_,
 managing its instances gets more complicated, as the instances must be explicitly used or consumed.
@@ -45,17 +45,17 @@ for them.
 
 All native types in Move have the `copy` ability. This includes:
 
-- [bool](./../move-basics/primitive-types.md#booleans)
-- [unsigned integers](./../move-basics/primitive-types.md#integer-types)
-- [vector](./../move-basics/vector.md)
-- [address](./../move-basics/address.md)
+- [bool](./../move-basics/primitive-types#booleans)
+- [unsigned integers](./../move-basics/primitive-types#integer-types)
+- [vector](./../move-basics/vector)
+- [address](./../move-basics/address)
 
 All of the types defined in the standard library have the `copy` ability as well. This includes:
 
-- [Option](./../move-basics/option.md)
-- [String](./../move-basics/string.md)
-- [TypeName](./../move-basics/type-reflection.md#typename)
+- [Option](./../move-basics/option)
+- [String](./../move-basics/string)
+- [TypeName](./../move-basics/type-reflection)
 
 ## Further Reading
 
-- [Type Abilities](/reference/abilities.html) in the Move Reference.
+- [Type Abilities](./../../reference/abilities) in the Move Reference.

@@ -7,9 +7,9 @@ including collections, abstract implementations, and more.
 
 ## In the Standard Library
 
-In this chapter we already mentioned the [vector](./vector.md) type, which is a generic type that
-can hold any other type. Another example of a generic type in the standard library is the
-[Option](./option.md) type, which is used to represent a value that may or may not be present.
+In this chapter we already mentioned the [vector](./vector) type, which is a generic type that can
+hold any other type. Another example of a generic type in the standard library is the
+[Option](./option) type, which is used to represent a value that may or may not be present.
 
 ## Generic Syntax
 
@@ -17,6 +17,7 @@ To define a generic type or function, a type signature needs to have a list of g
 enclosed in angle brackets (`<` and `>`). The generic parameters are separated by commas.
 
 ```move file=packages/samples/sources/move-basics/generics.move anchor=container
+
 ```
 
 In the example above, `Container` is a generic type with a single type parameter `T`, the `value`
@@ -26,6 +27,7 @@ with a concrete type, and generic functions must be called with a concrete type,
 cases the Move compiler can infer the correct type.
 
 ```move file=packages/samples/sources/move-basics/generics.move anchor=test_container
+
 ```
 
 In the test function `test_generic`, we demonstrate three equivalent ways to create a new
@@ -39,6 +41,7 @@ You can define a type or function with multiple type parameters. The type parame
 by commas.
 
 ```move file=packages/samples/sources/move-basics/generics.move anchor=pair
+
 ```
 
 In the example above, `Pair` is a generic type with two type parameters `T` and `U`, and the
@@ -47,12 +50,14 @@ a `Pair` with the given values. The order of the type parameters is important, a
 order of the type parameters in the type signature.
 
 ```move file=packages/samples/sources/move-basics/generics.move anchor=test_pair
+
 ```
 
 If we added another instance where we swapped type parameters in the `new_pair` function, and tried
 to compare two types, we'd see that the type signatures are different, and cannot be compared.
 
 ```move file=packages/samples/sources/move-basics/generics.move anchor=test_pair_swap
+
 ```
 
 Since the types for `pair1` and `pair2` are different, the comparison `pair1 == pair2` will not
@@ -67,6 +72,7 @@ This is especially useful when working with collections, abstract implementation
 advanced features in Move.
 
 ```move file=packages/samples/sources/move-basics/generics.move anchor=user
+
 ```
 
 In the example above, `User` is a generic type with a single type parameter `T`, with shared fields
@@ -74,6 +80,7 @@ In the example above, `User` is a generic type with a single type parameter `T`,
 is, all instances of `User` will contain the same fields and methods.
 
 ```move file=packages/samples/sources/move-basics/generics.move anchor=update_user
+
 ```
 
 ## Phantom Type Parameters
@@ -84,6 +91,7 @@ are useful when you want to define a type that can hold any other type, but you 
 constraints on the type parameter.
 
 ```move file=packages/samples/sources/move-basics/generics.move anchor=phantom
+
 ```
 
 The `Coin` type here does not contain any fields or methods that use the type parameter `T`. It is
@@ -91,6 +99,7 @@ used to differentiate between different types of coins, and to enforce some cons
 parameter `T`.
 
 ```move file=packages/samples/sources/move-basics/generics.move anchor=test_phantom
+
 ```
 
 In the example above, we demonstrate how to create two different instances of `Coin` with different
@@ -105,6 +114,7 @@ type to allow certain behaviors, such as _copy_ or _drop_. The syntax for constr
 parameter is `T: <ability> + <ability>`.
 
 ```move file=packages/samples/sources/move-basics/generics.move anchor=constraints
+
 ```
 
 The Move Compiler will enforce that the type parameter `T` has the specified abilities. If the type
@@ -113,8 +123,9 @@ parameter does not have the specified abilities, the code will not compile.
 <!-- TODO: failure case -->
 
 ```move file=packages/samples/sources/move-basics/generics.move anchor=test_constraints
+
 ```
 
 ## Further Reading
 
-- [Generics](/reference/generics.html) in the Move Reference.
+- [Generics](./../../reference/generics) in the Move Reference.

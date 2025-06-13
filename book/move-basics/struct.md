@@ -24,7 +24,7 @@ type `Option<u16>` to represent that the edition is optional.
 
 Structs are private by default, meaning they cannot be imported and used outside of the module they
 are defined in. Their fields are also private and can't be accessed from outside the module. See
-[visibility](./visibility.md) for more information on different visibility modifiers.
+[visibility](./visibility) for more information on different visibility modifiers.
 
 > Fields of a struct are private and can only be accessed by the module defining the struct. Reading
 > and writing the fields of a struct in other modules is only possible if the module defining the
@@ -82,4 +82,4 @@ unused.
 
 ## Further Reading
 
-- [Structs](/reference/structs.html) in the Move Reference.
+- [Structs](./../../reference/structs) in the Move Reference.

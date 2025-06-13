@@ -76,6 +76,6 @@ message.
 
 ## Further Reading
 
-- [Abort and Assert](/reference/abort-and-assert.html) in the Move Reference.
+- [Abort and Assert](./../../reference/abort-and-assert) in the Move Reference.
 - We suggest reading the [Better Error Handling](./../guides/better-error-handling.md) guide to
   learn about best practices for error handling in Move.

@@ -1,10 +1,10 @@
 # Pattern: Hot Potato
 
 A case in the abilities system - a struct without any abilities - is called _hot potato_. It cannot
-be stored (not as [an object](./../storage/key-ability.md) nor as
-[a field in another struct](./../storage/store-ability.md)), it cannot be
-[copied](./../move-basics/copy-ability.md) or [discarded](./../move-basics/drop-ability.md). Hence,
-once constructed, it must be gracefully [unpacked by its module](./../move-basics/struct.md), or the
+be stored (not as [an object](./../storage/key-ability) nor as
+[a field in another struct](./../storage/store-ability)), it cannot be
+[copied](./../move-basics/copy-ability) or [discarded](./../move-basics/drop-ability). Hence, once
+constructed, it must be gracefully [unpacked by its module](./../move-basics/struct), or the
 transaction will abort due to unused value without drop.
 
 > If you're familiar with languages that support _callbacks_, you can think of a hot potato as an
@@ -50,7 +50,7 @@ Below we list some of the common use cases for the hot potato pattern.
 As shown in the [example above](#example-usage), the hot potato is very effective for borrowing with
 a guarantee that the borrowed value is returned to the correct container. While the example focuses
 on a value stored inside an `Option`, the same pattern can be applied to any other storage type, say
-a [dynamic field](./dynamic-fields.md).
+a [dynamic field](./dynamic-fields).
 
 ### Flash Loans
 
@@ -98,8 +98,10 @@ define ways to interact with the hot potato, for example, stamp it with a type s
 extract some information from it. This way, the hot potato can be passed between different modules,
 and even different packages within the same transaction.
 
-The most important compositional pattern is the [Request Pattern](./request-pattern.md), which we
-will cover in the next section.
+<!-- TODO: add [Request Pattern](./request-pattern) -->
+
+The most important compositional pattern is the Request Pattern, which we will cover in the next
+section.
 
 ### Usage in the Sui Framework
 

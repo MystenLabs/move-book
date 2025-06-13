@@ -45,6 +45,7 @@ language, which ensures that all assets are properly handled. An attempt to igno
 the `drop` ability will result in a compilation error.
 
 ```move file=packages/samples/sources/move-basics/drop-ability.move anchor=main
+
 ```
 
 The `drop` ability is often used on custom collection types to eliminate the need for special
@@ -54,23 +55,23 @@ feature of Move's type system is the ability to not have `drop`. This ensures th
 properly handled and not ignored.
 
 A struct with a single `drop` ability is called a _Witness_. We explain the concept of a _Witness_
-in the [Witness and Abstract Implementation](./../programmability/witness-pattern.md) section.
+in the [Witness and Abstract Implementation](./../programmability/witness-pattern) section.
 
 ## Types with the `drop` Ability
 
 All native types in Move have the `drop` ability. This includes:
 
-- [`bool`](./../move-basics/primitive-types.md#booleans)
-- [unsigned integers](./../move-basics/primitive-types.md#integer-types)
-- [`vector<T>`](./../move-basics/vector.md) when `T` has `drop`
-- [`address`](./../move-basics/address.md)
+- [`bool`](./../move-basics/primitive-types#booleans)
+- [unsigned integers](./../move-basics/primitive-types#integer-types)
+- [`vector<T>`](./../move-basics/vector) when `T` has `drop`
+- [`address`](./../move-basics/address)
 
 All of the types defined in the standard library have the `drop` ability as well. This includes:
 
-- [`Option<T>`](./../move-basics/option.md) when `T` has `drop`
-- [`String`](./../move-basics/string.md)
-- [`TypeName`](./../move-basics/type-reflection.md#typename)
+- [`Option<T>`](./../move-basics/option) when `T` has `drop`
+- [`String`](./../move-basics/string)
+- [`TypeName`](./../move-basics/type-reflection)
 
 ## Further Reading
 
-- [Type Abilities](/reference/abilities.html) in the Move Reference.
+- [Type Abilities](./../../reference/abilities) in the Move Reference.

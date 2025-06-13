@@ -2,7 +2,7 @@
 
 `Option` is a type that represents an optional value which may or may not exist. The concept of
 `Option` in Move is borrowed from Rust, and it is a very useful primitive in Move. `Option` is
-defined in the [Standard Library](./standard-library.md), and is defined as follows:
+defined in the [Standard Library](./standard-library), and is defined as follows:
 
 ```move
 module std::option;
@@ -56,7 +56,7 @@ you can use the `Option` type directly without needing a `use` statement.
 
 To create a value of the `Option` type, you can use the `option::some` or `option::none` methods.
 `Option` values also support several operations (borrowing will be discussed in the
-[references](references.md#references-1) chapter):
+[references](references#references-1) chapter):
 
 ```move file=packages/samples/sources/move-basics/option.move anchor=usage
 
@@ -66,5 +66,5 @@ To create a value of the `Option` type, you can use the `option::some` or `optio
 
 - [std::option][option-stdlib] in the standard library
 
-[enum-reference]: /reference/enums.html
+[enum-reference]: ./../../reference/enums
 [option-stdlib]: https://docs.sui.io/references/framework/std/option

@@ -1,7 +1,7 @@
 # Ability: Store
 
 Now that you have an understanding of top-level storage functions which are enabled by the
-[`key`](./key-ability.md) ability, we can talk about the last ability in the list - `store`.
+[`key`](./key-ability) ability, we can talk about the last ability in the list - `store`.
 
 ## Definition
 
@@ -10,7 +10,7 @@ required for the type to be used as a field in a struct that has the `key` abili
 put it is that the `store` ability allows the value to be _wrapped_ in an object.
 
 > The `store` ability also relaxes restrictions on transfer operations. We talk about it more in the
-> [Restricted and Public Transfer](./transfer-restrictions.md) section.
+> [Restricted and Public Transfer](./transfer-restrictions) section.
 
 ## Example
 
@@ -39,17 +39,17 @@ public struct MegaConfig has key {
 
 All native types (except for references) in Move have the `store` ability. This includes:
 
-- [bool](./../move-basics/primitive-types.md#booleans)
-- [unsigned integers](./../move-basics/primitive-types.md#integer-types)
-- [vector](./../move-basics/vector.md)
-- [address](./../move-basics/address.md)
+- [bool](./../move-basics/primitive-types#booleans)
+- [unsigned integers](./../move-basics/primitive-types#integer-types)
+- [vector](./../move-basics/vector)
+- [address](./../move-basics/address)
 
 All of the types defined in the standard library have the `store` ability as well. This includes:
 
-- [Option](./../move-basics/option.md)
-- [String](./../move-basics/string.md)
-- [TypeName](./../move-basics/type-reflection.md#typename)
+- [Option](./../move-basics/option)
+- [String](./../move-basics/string)
+- [TypeName](./../move-basics/type-reflection)
 
 ## Further Reading
 
-- [Type Abilities](/reference/abilities.html) in the Move Reference.
+- [Type Abilities](./../../reference/abilities) in the Move Reference.

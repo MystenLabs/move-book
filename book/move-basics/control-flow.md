@@ -196,4 +196,4 @@ statement is useful when we want to exit a function early if a certain condition
 
 ## Further Reading
 
-- [Control Flow](/reference/control-flow.html) chapter in the Move Reference.
+- [Control Flow](./../../reference/control-flow) chapter in the Move Reference.

@@ -32,7 +32,7 @@ bytecode, and each time they are used, the value is copied.
 Constants must start with a capital letter - this is enforced at the compiler level. For constants
 used as a value, the convention is to use all uppercase letters and underscores between words, which
 makes constants stand out from other identifiers in the code. An exception is made for
-[error constants](./assert-and-abort.md#assert-and-abort), which are written in ECamelCase.
+[error constants](./assert-and-abort#error-constants), which are written in ECamelCase.
 
 ```move file=packages/samples/sources/move-basics/constants-naming.move anchor=naming
 
@@ -70,5 +70,5 @@ upgrade.
 
 ## Links
 
-- [Constants](/reference/constants.html) in the Move Reference
-- [Coding conventions for constants](./../guides/code-quality-checklist.md#regular-constant-are-all_caps)
+- [Constants](./../../reference/constants) in the Move Reference
+- [Coding conventions for constants](./../guides/code-quality-checklist#regular-constant-are-all_caps)

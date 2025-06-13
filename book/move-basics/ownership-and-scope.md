@@ -135,4 +135,4 @@ function, or when they're _moved_ to another scope and then accessed in their or
 
 ## Further Reading
 
-- [Local Variables and Scopes](/reference/variables.html) in the Move Reference.
+- [Local Variables and Scopes](./../../reference/variables) in the Move Reference.

@@ -1,9 +1,9 @@
 # The Key Ability
 
 In the [Basic Syntax](./../move-basics) chapter we already covered two out of four abilities -
-[Drop](./../move-basics/drop-ability.md) and [Copy](./../move-basics/copy-ability.md). They affect
-the behavior of the value in a scope and are not directly related to storage. It is time to cover
-the `key` ability, which allows the struct to be stored.
+[Drop](./../move-basics/drop-ability) and [Copy](./../move-basics/copy-ability). They affect the
+behavior of the value in a scope and are not directly related to storage. It is time to cover the
+`key` ability, which allows the struct to be stored.
 
 Historically, the `key` ability was created to mark the type as a _key in the storage_. A type with
 the `key` ability could be stored at top-level in the storage, and could be _directly owned_ by an
@@ -42,15 +42,15 @@ non-droppable type (we will get to it very soon!), the struct transitively canno
 
 <!-- ## Asset Definition
 
-In the context of the [Object Model](./../object/digital-assets.md), an object with the `key` ability can be considered an asset. It is non-discardable, unique, and can be *owned*.
+In the context of the [Object Model](./../object/digital-assets), an object with the `key` ability can be considered an asset. It is non-discardable, unique, and can be *owned*.
  -->
 
 ## Types with the `key` Ability
 
 Due to the `UID` requirement for types with `key`, none of the native types in Move can have the
-`key` ability, nor can any of the [Standard Library](./../move-basics/standard-library.md) types.
-The `key` ability is only present in the [Sui Framework](./../programmability/sui-framework.md) and
-custom types.
+`key` ability, nor can any of the [Standard Library](./../move-basics/standard-library) types. The
+`key` ability is only present in the [Sui Framework](./../programmability/sui-framework) and custom
+types.
 
 ## Next Steps
 
@@ -59,4 +59,4 @@ we present the `sui::transfer` module, which provides native storage functions f
 
 ## Further Reading
 
-- [Type Abilities](/reference/abilities.html) in the Move Reference.
+- [Type Abilities](./../../reference/abilities) in the Move Reference.

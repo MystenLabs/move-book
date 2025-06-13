@@ -37,7 +37,7 @@ let uid = object::new(ctx);
 ```
 
 On Sui, `UID` acts as a representation of an object, and allows defining behaviors and features of
-an object. One of the key features - [Dynamic Fields](../programmability/dynamic-fields.html) - is
+an object. One of the key features - [Dynamic Fields](../programmability/dynamic-fields) - is
 possible because of the `UID` type being explicit. Additionally, it allows the
 [Transfer to Object (TTO)](https://docs.sui.io/concepts/transfers/transfer-to-object), which we will
 explain later in this chapter.
@@ -62,8 +62,8 @@ id.delete();
 ## Keeping the UID
 
 The `UID` does not need to be deleted immediately after the object struct is unpacked. Sometimes it
-may carry [Dynamic Fields](./../programmability/dynamic-fields.md) or objects transferred to it via
-[Transfer To Object](./transfer-to-object.md). In such cases, the UID may be kept and stored in a
+may carry [Dynamic Fields](./../programmability/dynamic-fields) or objects transferred to it via
+[Transfer To Object](./transfer-to-object). In such cases, the UID may be kept and stored in a
 separate object.
 
 ## Proof of Deletion
@@ -85,7 +85,7 @@ type, and is used to represent an address-pointer. Usually, `ID` is used to poin
 however, there's no restriction, and no guarantee that the `ID` points to an existing object.
 
 > ID can be received as a transaction argument in a
-> [Transaction Block](./../concepts/what-is-a-transaction.md). Alternatively, ID can be created from
+> [Transaction Block](./../concepts/what-is-a-transaction). Alternatively, ID can be created from
 > an `address` value using `to_id()` function.
 
 <!--

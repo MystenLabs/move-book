@@ -7,7 +7,7 @@ other types. The primitive types are:
 
 - [Booleans](#booleans)
 - [Unsigned Integers](#integer-types)
-- [Addresses](./address.md) - covered in the next section
+- [Addresses](./address) - covered in the next section
 
 Before we get to the primitive types, let's first take a look at how to declare and assign variables
 in Move.
@@ -55,7 +55,7 @@ from the value, so there is no need to explicitly specify it.
 ```
 
 Booleans are often used to store flags and to control the flow of the program. Please refer to the
-[Control Flow](./control-flow.md) section for more information.
+[Control Flow](./control-flow) section for more information.
 
 ## Integer Types
 
@@ -96,7 +96,7 @@ multiplication, division, and modulus (remainder). The syntax for these operatio
 | /      | truncating division | The divisor is 0                         |
 
 > For more operations, including bitwise operations, please refer to the
-> [Move Reference](/reference/primitive-types/integers.html#bitwise).
+> [Move Reference](./../../reference/primitive-types/integers#bitwise).
 
 The types of the operands _must match_, or the compiler will raise an error. The result of the
 operation will be of the same type as the operands. To perform operations on different types, the
@@ -140,5 +140,5 @@ let z = x + y;
 
 ## Further Reading
 
-- [Bool](/reference/primitive-types/bool.html) in the Move Reference.
-- [Integer](/reference/primitive-types/integers.html) in the Move Reference.
+- [Bool](./../../reference/primitive-types/bool) in the Move Reference.
+- [Integer](./../../reference/primitive-types/integers) in the Move Reference.

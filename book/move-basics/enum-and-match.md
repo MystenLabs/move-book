@@ -1,8 +1,8 @@
 # Enums and Match
 
-An enum is a user-defined data structure that, unlike a [struct](./struct.md), can represent
-multiple variants. Each variant can contain primitive types, structs, or other enums. However,
-recursive enum definitions — similar to recursive struct definitions — are not allowed.
+An enum is a user-defined data structure that, unlike a [struct](./struct), can represent multiple
+variants. Each variant can contain primitive types, structs, or other enums. However, recursive enum
+definitions — similar to recursive struct definitions — are not allowed.
 
 ## Definition
 
@@ -27,8 +27,8 @@ abilities, and 3 variants:
 Enums are _internal_ to the module in which they are defined. This means an enum can only be
 constructed, read, and unpacked within the same module.
 
-[Similar to structs](./struct.md#create-and-use-an-instance), enums are instantiated by specifying
-the type, the variant, and the values for any fields defined in that variant.
+[Similar to structs](./struct#create-and-use-an-instance), enums are instantiated by specifying the
+type, the variant, and the values for any fields defined in that variant.
 
 ```move file=packages/samples/sources/move-basics/enum-and-match.move anchor=constructors
 
@@ -58,7 +58,7 @@ because we need to make sure that the value we are trying to access is the right
 offers _pattern matching_ syntax.
 
 > This chapter doesn't intend to cover all the features of pattern matching in Move. Refer to the
-> [Pattern Matching](/reference/control-flow/pattern-matching.html) section in the Move Reference.
+> [Pattern Matching](./../../reference/control-flow/pattern-matching) section in the Move Reference.
 
 Pattern matching allows conditioning the logic based on the _pattern_ of the value. It is performed
 using the `match` expression, followed by the matched value in parenthesis and the block of _match
@@ -160,5 +160,5 @@ To learn more about enums and pattern matching, refer to the resources listed in
 
 ## Further Reading
 
-- [Enums](/reference/enums.html) in the Move Reference
-- [Pattern Matching](/reference/control-flow/pattern-matching.html) in the Move Reference
+- [Enums](./../../reference/enums) in the Move Reference
+- [Pattern Matching](/reference/control-flow/pattern-matching) in the Move Reference
