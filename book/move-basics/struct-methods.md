@@ -61,7 +61,7 @@ structs.
 
 It is also possible to associate a function defined in another module with a struct from the current
 module. Following the same approach, we can create an alias for the method defined in another
-module. Let's use the `bcs::to_bytes` method from the [Standard Library](./standard-library.md) and
+module. Let's use the `bcs::to_bytes` method from the [Standard Library](./standard-library) and
 associate it with the `Hero` struct. It will allow serializing the `Hero` struct to a vector of
 bytes.
 
