@@ -1,11 +1,11 @@
 # Modules
 
 **Modules** are the core program unit that define types along with functions that operate on these
-types. Struct types define the schema of Move's [storage](./abilities.md#key), and module functions
+types. Struct types define the schema of Move's [storage](./abilities#key), and module functions
 define the rules interacting with values of those types. While modules themselves are also stored in
 storage, they are not accessible from within a Move program. In a blockchain environment, the
 modules are stored on chain in a process typically referred to as "publishing". After being
-published, [`entry`](./functions.md#entry-modifier) and [`public`](./functions.md#visibility)
+published, [`entry`](./functions#entry-modifier) and [`public`](./functions#visibility)
 functions can be invoked according to the rules of that particular Move instance.
 
 ## Syntax
@@ -18,7 +18,7 @@ module <address>::<identifier> {
 }
 ```
 
-where `<address>` is a valid [address](./primitive-types/address.md) specifying the module's
+where `<address>` is a valid [address](./primitive-types/address) specifying the module's
 package.
 
 For example:
@@ -42,10 +42,10 @@ public fun print(x: u64) {
 ## Names
 
 The `module test_addr::test` part specifies that the module `test` will be published under the
-numerical [address](./primitive-types/address.md) value assigned for the name `test_addr` in the
-[package settings](./packages.md).
+numerical [address](./primitive-types/address) value assigned for the name `test_addr` in the
+[package settings](./packages).
 
-Modules should normally be declared using [named addresses](./primitive-types/address.md) (as
+Modules should normally be declared using [named addresses](./primitive-types/address) (as
 opposed to using the numerical value directly). For example:
 
 ```move
@@ -61,7 +61,7 @@ public fun print() {
 }
 ```
 
-These named addresses commonly match the name of the [package](./packages.md).
+These named addresses commonly match the name of the [package](./packages).
 
 Because named addresses only exist at the source language level and during compilation, named
 addresses will be fully substituted for their value at the bytecode level. For example if we had the
@@ -100,11 +100,11 @@ in a source file named `my_module.move`.
 ## Members
 
 All members inside a `module` block can appear in any order. Fundamentally, a module is a collection
-of [`types`](./structs.md) and [`functions`](./functions.md). The [`use`](./uses.md) keyword refers
-to members from other modules. The [`const`](./constants.md) keyword defines constants that can be
+of [`types`](./structs) and [`functions`](./functions). The [`use`](./uses) keyword refers
+to members from other modules. The [`const`](./constants) keyword defines constants that can be
 used in the functions of a module.
 
-The [`friend`](./friends.md) syntax is a deprecated concept for specifying a list of trusted
-modules. The concept has been superseded by [`public(package)`](./functions.md#visibility)
+The [`friend`](./friends) syntax is a deprecated concept for specifying a list of trusted
+modules. The concept has been superseded by [`public(package)`](./functions#visibility)
 
 <!-- TODO member access rules -->

@@ -1,9 +1,9 @@
 # Abort and Assert
 
-[`return`](./functions.md) and `abort` are two control flow constructs that end execution, one for
+[`return`](./functions) and `abort` are two control flow constructs that end execution, one for
 the current function and one for the entire transaction.
 
-More information on [`return` can be found in the linked section](./functions.md#return-expression)
+More information on [`return` can be found in the linked section](./functions#return-expression)
 
 ## `abort`
 
@@ -26,7 +26,7 @@ Because of this transactional commitment of changes, after an abort there is no 
 backing out changes. While this approach is lacking in flexibility, it is incredibly simple and
 predictable.
 
-Similar to [`return`](./functions.md), `abort` is useful for exiting control flow when some
+Similar to [`return`](./functions), `abort` is useful for exiting control flow when some
 condition cannot be met.
 
 In this example, the function will pop two items off of the vector, but will abort early if the

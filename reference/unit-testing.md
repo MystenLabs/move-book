@@ -4,8 +4,8 @@ Unit testing for Move uses three annotations in the Move source language:
 
 - `#[test]` marks a function as a test;
 - `#[expected_failure]` marks that a test is expected to fail;
-- `#[test_only]` marks a module or module member ([`use`](./uses.md), [function](./functions.md),
-  [struct](./structs.md), or [constant](./constants.md)) as code to be included for testing only.
+- `#[test_only]` marks a module or module member ([`use`](./uses), [function](./functions),
+  [struct](./structs), or [constant](./constants)) as code to be included for testing only.
 
 These annotations can be placed on any appropriate form with any visibility. Whenever a module or
 module member is annotated as `#[test_only]` or `#[test]`, it will not be included in the compiled
@@ -54,7 +54,7 @@ public fun this_other_test_will_abort_and_pass() { abort 1 }
 ```
 
 > **Note**: `#[test]` and `#[test_only]` functions can also call
-> [`entry`](./functions.md#entry-modifier) functions, regardless of their visibility.
+> [`entry`](./functions#entry-modifier) functions, regardless of their visibility.
 
 ## Expected Failures
 
@@ -251,7 +251,7 @@ fun test_only_function(...) { ... }
 
 ## Running Unit Tests
 
-Unit tests for a Move package can be run with the [`sui move test` command](./packages.md).
+Unit tests for a Move package can be run with the [`sui move test` command](./packages).
 
 When running tests, every test will either `PASS`, `FAIL`, or `TIMEOUT`. If a test case fails, the
 location of the failure along with the function name that caused the failure will be reported if

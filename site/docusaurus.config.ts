@@ -40,19 +40,6 @@ const config: Config = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'book',
-        path: './../book',
-        routeBasePath: '/',
-        sidebarPath: './sidebar-book.ts',
-        sidebarCollapsible: false,
-        breadcrumbs: false,
-        numberPrefixParser: false,
-        remarkPlugins: [mdbookAnchorCode],
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
         id: 'reference',
         path: './../reference',
         routeBasePath: '/reference',
@@ -62,26 +49,49 @@ const config: Config = {
         remarkPlugins: [mdbookAnchorCode],
       },
     ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'book',
+        path: './../book',
+        exclude: ['./../reference/**'],
+        routeBasePath: '/',
+        sidebarPath: './sidebar-book.ts',
+        sidebarCollapsible: false,
+        breadcrumbs: false,
+        numberPrefixParser: false,
+        remarkPlugins: [mdbookAnchorCode],
+      },
+    ],
+    [
+      '@docusaurus/plugin-google-gtag',
+      {
+        trackingID: 'G-B1E7R0BHX4',
+        // anonymizeIP: true,
+      },
+    ],
   ],
   themes: [
     ['@docusaurus/theme-classic', { customCss: './src/css/custom.css' }],
     [
-      // require.resolve("@easyops-cn/docusaurus-search-local"),
+      // See https://github.com/easyops-cn/docusaurus-search-local
       '@easyops-cn/docusaurus-search-local',
-      /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
-      ({
-        // ... Your options.
+      {
         // `hashed` is recommended as long-term-cache of index file is possible.
         hashed: true,
         docsRouteBasePath: '/',
-        docsDir: ['./../book', './../reference'],
-
-        // For Docs using Chinese, it is recomended to set:
-        language: ["en"],
-
-        // If you're using `noIndex: true`, set `forceIgnoreNoIndex` to enable local index:
-        // forceIgnoreNoIndex: true,
-      }),
+        // docsDir: ['./../book', './../reference'],
+        searchResultLimits: 10,
+        searchBarShortcutHint: false,
+        blogDir: [],
+        language: ['en'],
+        explicitSearchResultPath: true,
+        highlightSearchTermsOnTargetPage: false, // looks ugly...
+        searchContextByPaths: [
+          { label: 'The Move Book', path: './../book' },
+          { label: 'The Move Reference', path: './../reference' },
+        ],
+      },
     ],
   ],
 
@@ -97,6 +107,7 @@ const config: Config = {
   ],
 
   themeConfig: {
+    titleDelimiter: '+',
     // searchParameters: {
     //   // Add analytics tags to the search results
     // },
@@ -105,7 +116,13 @@ const config: Config = {
     },
     navbar: {
       items: [
-        { to: '/', label: 'Move Book', position: 'left', activeBasePath: '/' },
+        {
+          to: '/',
+          label: 'Move Book',
+          position: 'left',
+          activeBasePath: '/',
+          activeBaseRegex: '^/(?!reference).*',
+        },
         {
           to: '/reference',
           label: 'Move Reference',

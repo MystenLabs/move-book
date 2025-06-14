@@ -37,7 +37,7 @@ functions in the receiver type's defining module. In all cases, the receiver typ
 argument to the function, whether by-value or by-reference.
 
 In this section, when we say a method "resolves" to a function, we mean that the compiler will
-statically replace the method with a normal [function](./functions.md) call. For example if we have
+statically replace the method with a normal [function](./functions) call. For example if we have
 `x.foo(e)` with `foo` resolving to `a::m::foo`, the compiler will replace `x.foo(e)` with
 `a::m::foo(x, e)`, potentially [automatically borrowing](#automatic-borrowing) `x`.
 
@@ -66,7 +66,7 @@ fun example(x: a::m::X) {
 
 ### `use fun` Aliases
 
-Like a traditional [`use`](uses.md), a `use fun` statement creates an alias local to its current
+Like a traditional [`use`](uses), a `use fun` statement creates an alias local to its current
 scope. This could be for the current module or the current expression block. However, the alias is
 associated to a type.
 
@@ -195,7 +195,7 @@ use fun value as Cup<u64>.num; // ERROR!
 
 ### `public use fun` Aliases
 
-Unlike a traditional [`use`](uses.md), the `use fun` statement can be made `public`, which allows it
+Unlike a traditional [`use`](uses), the `use fun` statement can be made `public`, which allows it
 to be used outside of its declared scope. A `use fun` can be made `public` if it is declared in the
 module that defines the receivers type, much like the method aliases that are
 [automatically created](#functions-in-the-defining-module) for functions in the defining module. Or
@@ -311,7 +311,7 @@ See the cases in [Scoping](#scoping) for more details.
 
 ### Scoping
 
-If not `public`, a `use fun` alias is local to its scope, much like a normal [`use`](uses.md). For
+If not `public`, a `use fun` alias is local to its scope, much like a normal [`use`](uses). For
 example
 
 ```move
@@ -378,7 +378,7 @@ fun example(mut y: Y) {
 }
 ```
 
-Note that in both examples, the local variable had to be labeled as [`mut`](./variables.md) to allow
+Note that in both examples, the local variable had to be labeled as [`mut`](./variables) to allow
 for the `&mut` borrow. Without this, there would be an error saying that `x` (or `y` in the second
 example) is not mutable.
 

@@ -148,9 +148,9 @@ let v2: vector<u64> = vector[]; // no error
 ```
 
 In a rarer case, the type system might not be able to infer a type for divergent code (where all the
-following code is unreachable). Both [`return`](./functions.md#return-expression) and
-[`abort`](./abort-and-assert.md) are expressions and can have any type. A
-[`loop`](./control-flow/loops.md) has type `()` if it has a `break` (or `T` if has a `break e` where
+following code is unreachable). Both [`return`](./functions#return-expression) and
+[`abort`](./abort-and-assert) are expressions and can have any type. A
+[`loop`](./control-flow/loops) has type `()` if it has a `break` (or `T` if has a `break e` where
 `e: T`), but if there is no break out of the `loop`, it could have any type. If these types cannot
 be inferred, a type annotation is required. For example, this code:
 
@@ -513,7 +513,7 @@ vector::push_back(&mut v, 100);
 assert!(*vector::borrow(&v, 0) == 100, 42);
 ```
 
-For more details, see [Move references](./primitive-types/references.md).
+For more details, see [Move references](./primitive-types/references).
 
 ## Scopes
 
@@ -592,9 +592,9 @@ This is not just limited to `()` types---any expression can be used as a stateme
 }
 ```
 
-But! If the expression contains a resource (a value without the `drop` [ability](./abilities.md)),
+But! If the expression contains a resource (a value without the `drop` [ability](./abilities)),
 you will get an error. This is because Move's type system guarantees that any value that is dropped
-has the `drop` [ability](./abilities.md). (Ownership must be transferred or the value must be
+has the `drop` [ability](./abilities). (Ownership must be transferred or the value must be
 explicitly destroyed within its declaring module.)
 
 ```move
@@ -670,7 +670,7 @@ assert!(x == b"hello", 42);
 
 After a local is shadowed, the value stored in the local still exists, but will no longer be
 accessible. This is important to keep in mind with values of types without the
-[`drop` ability](./abilities.md), as ownership of the value must be transferred by the end of the
+[`drop` ability](./abilities), as ownership of the value must be transferred by the end of the
 function.
 
 ```move
@@ -728,12 +728,12 @@ let y = copy x + 1;
 let z = copy x + 2;
 ```
 
-Any value with the `copy` [ability](./abilities.md) can be copied in this way, and will be copied
+Any value with the `copy` [ability](./abilities) can be copied in this way, and will be copied
 implicitly unless a `move` is specified.
 
 `move` takes the value out of the local variable _without_ copying the data. After a `move` occurs,
 the local variable is unavailable, even if the value's type has the `copy`
-[ability](./abilities.md).
+[ability](./abilities).
 
 ```move
 let x = 1;
@@ -757,7 +757,7 @@ before it is assigned a value.
 As mentioned above, the Move compiler will infer a `copy` or `move` if one is not indicated. The
 algorithm for doing so is quite simple:
 
-- Any value with the `copy` [ability](./abilities.md) is given a `copy`.
+- Any value with the `copy` [ability](./abilities) is given a `copy`.
 - Any reference (both mutable `&mut` and immutable `&`) is given a `copy`.
   - Except under special circumstances where it is made a `move` for predictable borrow checker
     errors. This will happen once the reference is no longer used.

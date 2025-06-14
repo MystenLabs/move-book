@@ -4,11 +4,11 @@ A _struct_ is a user-defined data structure containing typed fields. Structs can
 non-reference, non-tuple type, including other structs.
 
 Structs can be used to define all "asset" values or unrestricted values, where the operations
-performed on those values can be controlled by the struct's [abilities](./abilities.md). By default,
+performed on those values can be controlled by the struct's [abilities](./abilities). By default,
 structs are linear and ephemeral. By this we mean that they: cannot be copied, cannot be dropped,
 and cannot be stored in storage. This means that all values have to have ownership transferred
 (linear) and the values must be dealt with by the end of the program's execution (ephemeral). We can
-relax this behavior by giving the struct [abilities](./abilities.md) which allow values to be copied
+relax this behavior by giving the struct [abilities](./abilities) which allow values to be copied
 or dropped and also to be stored in storage or to define storage schemas.
 
 ## Defining Structs
@@ -49,14 +49,14 @@ struct can be referred to from any other module. However, the fields of the stru
 to create or destroy the struct, are still internal to the module that defines the struct.
 
 In the future, we plan on adding to declare structs as `public(package)` or as internal, much like
-[functions](./functions.md#visibility).
+[functions](./functions#visibility).
 
 ### Abilities
 
 As mentioned above: by default, a struct declaration is linear and ephemeral. So to allow the value
-to be used in these ways (e.g., copied, dropped, stored in an [object](./abilities/object.md), or
-used to define a storable [object](./abilities/object.md)), structs can be granted
-[abilities](./abilities.md) by annotating them with `has <ability>`:
+to be used in these ways (e.g., copied, dropped, stored in an [object](./abilities/object), or
+used to define a storable [object](./abilities/object)), structs can be granted
+[abilities](./abilities) by annotating them with `has <ability>`:
 
 ```move
 module a::m {
@@ -88,7 +88,7 @@ public struct InvalidAbilities has copy (u64, bool) has drop;
 ```
 
 For more details, see the section on
-[annotating a struct's abilities](./abilities.md#annotating-structs-and-enums).
+[annotating a struct's abilities](./abilities#annotating-structs-and-enums).
 
 ### Naming
 
@@ -299,8 +299,8 @@ let foo2: Foo = *&bar.0;
 
 More canonically, the dot operator can be used to read fields of a struct without any borrowing. As
 is true with
-[dereferencing](./primitive-types/references.md#reading-and-writing-through-references), the field
-type must have the `copy` [ability](./abilities.md).
+[dereferencing](./primitive-types/references#reading-and-writing-through-references), the field
+type must have the `copy` [ability](./abilities).
 
 ```move
 let foo = Foo { x: 3, y: true };
@@ -337,7 +337,7 @@ let mut bar = Bar(foo);               // bar = Bar(Foo { x: 42, y: false })
 ```
 
 Similar to dereferencing, we can instead directly use the dot operator to modify a field. And in
-both cases, the field type must have the `drop` [ability](./abilities.md).
+both cases, the field type must have the `drop` [ability](./abilities).
 
 ```move
 let mut foo = Foo { x: 3, y: true };
@@ -475,5 +475,5 @@ public fun run() {
 ## Storage
 
 Structs can be used to define storage schemas, but the details are different per deployment of Move.
-See the documentation for the [`key` ability](./abilities.md#key) and
-[Sui objects](./abilities/object.md) for more details.
+See the documentation for the [`key` ability](./abilities#key) and
+[Sui objects](./abilities/object) for more details.

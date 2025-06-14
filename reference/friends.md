@@ -1,11 +1,11 @@
 # DEPRECATED: Friends
 
-NOTE: this feature has been superseded by [`public(package)`](./functions.md#visibility).
+NOTE: this feature has been superseded by [`public(package)`](./functions#visibility).
 
 The `friend` syntax was used to declare modules that are trusted by the current module. A trusted
 module is allowed to call any function defined in the current module that have the `public(friend)`
 visibility. For details on function visibilities, refer to the _Visibility_ section in
-[Functions](./functions.md).
+[Functions](./functions).
 
 ## Friend declaration
 
