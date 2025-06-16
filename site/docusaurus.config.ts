@@ -134,7 +134,7 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://github.com/your/repo',
+          href: 'https://github.com/MystenLabs/move-book',
           position: 'right',
           html: '<i class="fab fa-github"></i>', // 👈 icon here
         },
