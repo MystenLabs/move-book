@@ -1,3 +1,10 @@
+---
+title: 'Reference: Clever Errors'
+description:
+  Clever errors are a feature that allows for more informative error messages when an assertion
+  fails or an abort is raised
+---
+
 # Clever Errors
 
 Clever errors are a feature that allows for more informative error messages when an assertion fails

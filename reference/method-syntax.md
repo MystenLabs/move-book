@@ -1,3 +1,8 @@
+---
+title: 'Reference: Method Syntax'
+description: ''
+---
+
 # Methods
 
 As a syntactic convenience, some functions in Move can be called as "methods" on a value. This is done

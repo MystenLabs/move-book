@@ -1,3 +1,8 @@
+---
+title: 'Reference: Abilities'
+description: ''
+---
+
 # Abilities
 
 Abilities are a typing feature in Move that control what actions are permissible for values of a

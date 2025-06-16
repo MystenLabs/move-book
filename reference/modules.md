@@ -1,3 +1,8 @@
+---
+title: 'Reference: Modules'
+description: ''
+---
+
 # Modules
 
 **Modules** are the core program unit that define types along with functions that operate on these

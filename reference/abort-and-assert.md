@@ -1,3 +1,8 @@
+---
+title: 'Reference: Abort and Assert'
+description: ''
+---
+
 # Abort and Assert
 
 [`return`](./functions) and `abort` are two control flow constructs that end execution, one for

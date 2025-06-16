@@ -1,3 +1,8 @@
+---
+title: 'Reference: Index Syntax'
+description: ''
+---
+
 # Index Syntax
 
 Move provides syntax attributes to allow you to define operations that look and feel like native

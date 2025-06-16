@@ -1,3 +1,8 @@
+---
+title: 'Reference: Vector'
+description: ''
+---
+
 # Vector
 
 `vector<T>` is the only primitive collection type provided by Move. A `vector<T>` is a homogeneous

@@ -1,3 +1,8 @@
+---
+title: 'Reference: Enumerations'
+description: ''
+---
+
 # Enumerations
 
 An _enum_ is a user-defined data structure containing one or more _variants_. Each variant can

@@ -1,3 +1,8 @@
+---
+title: 'Reference: Generics'
+description: ''
+---
+
 # Generics
 
 Generics can be used to define functions and structs over different input data types. This language

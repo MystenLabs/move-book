@@ -1,3 +1,8 @@
+---
+title: 'Reference: Friends'
+description: ''
+---
+
 # DEPRECATED: Friends
 
 NOTE: this feature has been superseded by [`public(package)`](./functions#visibility).

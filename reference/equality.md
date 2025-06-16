@@ -1,3 +1,8 @@
+---
+title: 'Reference: Equality'
+description: ''
+---
+
 # Equality
 
 Move supports two equality operations `==` and `!=`

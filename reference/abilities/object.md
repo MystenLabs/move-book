@@ -1,3 +1,8 @@
+---
+title: 'Reference: Sui Objects'
+description: ''
+---
+
 # Sui Objects
 
 For Sui, `key` is used to signify an _object_. Objects the only way to store data in Sui--allowing

@@ -1,3 +1,8 @@
+---
+title: 'Reference: Local Variables and Scope'
+description: ''
+---
+
 # Local Variables and Scope
 
 Local variables in Move are lexically (statically) scoped. New variables are introduced with the
@@ -204,9 +209,9 @@ x = 1;
 
 ### Multiple declarations with structs
 
-`let` can also introduce more than one local variables at a time when destructuring (or matching against) a
-struct. In this form, the `let` creates a set of local variables that are initialized to the values
-of the fields from a struct. The syntax looks like this:
+`let` can also introduce more than one local variables at a time when destructuring (or matching
+against) a struct. In this form, the `let` creates a set of local variables that are initialized to
+the values of the fields from a struct. The syntax looks like this:
 
 ```move
 public struct T { f1: u64, f2: u64 }
@@ -592,10 +597,10 @@ This is not just limited to `()` types---any expression can be used as a stateme
 }
 ```
 
-But! If the expression contains a resource (a value without the `drop` [ability](./abilities)),
-you will get an error. This is because Move's type system guarantees that any value that is dropped
-has the `drop` [ability](./abilities). (Ownership must be transferred or the value must be
-explicitly destroyed within its declaring module.)
+But! If the expression contains a resource (a value without the `drop` [ability](./abilities)), you
+will get an error. This is because Move's type system guarantees that any value that is dropped has
+the `drop` [ability](./abilities). (Ownership must be transferred or the value must be explicitly
+destroyed within its declaring module.)
 
 ```move
 {
@@ -732,8 +737,7 @@ Any value with the `copy` [ability](./abilities) can be copied in this way, and 
 implicitly unless a `move` is specified.
 
 `move` takes the value out of the local variable _without_ copying the data. After a `move` occurs,
-the local variable is unavailable, even if the value's type has the `copy`
-[ability](./abilities).
+the local variable is unavailable, even if the value's type has the `copy` [ability](./abilities).
 
 ```move
 let x = 1;

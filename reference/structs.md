@@ -1,3 +1,8 @@
+---
+title: 'Reference: Structs'
+description: ''
+---
+
 # Structs and Resources
 
 A _struct_ is a user-defined data structure containing typed fields. Structs can store any

@@ -1,3 +1,8 @@
+---
+title: 'Reference: Macro Functions'
+description: ''
+---
+
 # Macro Functions
 
 Macro functions are a way of defining functions that are expanded during compilation at each call

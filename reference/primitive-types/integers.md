@@ -1,3 +1,8 @@
+---
+title: 'Reference: Integers'
+description: ''
+---
+
 # Integers
 
 Move supports six unsigned integer types: `u8`, `u16`, `u32`, `u64`, `u128`, and `u256`. Values of

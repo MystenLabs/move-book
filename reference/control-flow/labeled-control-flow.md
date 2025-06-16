@@ -1,3 +1,8 @@
+---
+title: 'Reference: Labeled Control Flow'
+description: ''
+---
+
 # Labeled Control Flow
 
 Move supports labeled control flow when writing both loops and blocks of code, allowing you

@@ -1,3 +1,8 @@
+---
+title: 'Reference: Primitive Types'
+description: ''
+---
+
 # Primitive Types
 
 The primitive types are the basic building blocks of the language.

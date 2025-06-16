@@ -1,3 +1,8 @@
+---
+title: 'Reference: Address'
+description: ''
+---
+
 # Address
 
 `address` is a built-in type in Move that is used to represent locations (sometimes called accounts)

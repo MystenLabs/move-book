@@ -1,3 +1,8 @@
+---
+title: 'Reference: Functions'
+description: ''
+---
+
 # Functions
 
 Functions are declared inside of modules and define the logic and behavior of the module. Functions
