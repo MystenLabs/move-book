@@ -96,8 +96,8 @@ create or destroy variants of the enum are internal to the module that defines t
 
 Just like with structs, by default an enum declaration is linear and ephemeral. To use an enum value
 in a non-linear or non-ephemeral way -- i.e., copied, dropped, or stored in an
-[object](./../book/storage/key-ability) -- you need to grant it additional [abilities](./abilities)
-by annotating them with `has <ability>`:
+[object](./abilities/object) -- you need to grant it additional [abilities](./abilities) by
+annotating them with `has <ability>`:
 
 ```move
 module a::m;

@@ -6,34 +6,6 @@
  * See extension guide here: https://prismjs.com/extending.html
  */
 
-// tokens supported by the syntax theme:
-// namespace
-// string,
-// attr-value
-// punctuation,
-// operator
-// entity,
-// url,
-// symbol,
-// number,
-// boolean,
-// variable,
-// constant,
-// property,
-// regex,
-// inserted
-// atrule,
-// keyword,
-// attr-name,
-// function,
-// deleted,
-// tag,
-// selector,
-// important,
-// function,
-// bold,
-// italic
-
 (function (Prism) {
   var multilineComment = /\/\*(?:[^*/]|\*(?!\/)|\/(?!\*)|<self>)*\*\//.source;
   for (var i = 0; i < 2; i++) {
@@ -48,20 +20,6 @@
 
   Prism.languages['move'] = {
     comment: [
-      // {
-      //   // Comment that starts with `// ERROR`
-      //   // For better visibility in the book.
-      //   name: 'comment-starts-with-error',
-      //   pattern: /\/\/\s*error.*/i,
-      //   alias: 'error-comment',
-      // },
-      // {
-      //   // Comment that starts with `// ERROR`
-      //   // For better visibility in the book.
-      //   name: 'error-highlight-comment',
-      //   pattern: /\/\/\s+\^+.*/i,
-      //   alias: 'error-comment',
-      // },
       {
         name: 'line-comments',
         pattern: RegExp(/(^|[^\\])/.source + multilineComment),

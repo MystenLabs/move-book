@@ -12,10 +12,10 @@ the notion of storage for the blockchain). This is implemented by gating access 
 instructions so that for a value to be used with the bytecode instruction, it must have the ability
 required (if one is required at all—not every instruction is gated by an ability).
 
-For Sui, `key` is used to signify an [object](./../book/storage/key-ability). Objects are the basic
-unit of storage where each object has a unique, 32-byte ID. `store` is then used to both indicate
-what data can be stored inside of an object, and is also used to indicate what types can be
-transferred outside of their defining module.
+For Sui, `key` is used to signify an [object](./abilities/object). Objects are the basic unit of
+storage where each object has a unique, 32-byte ID. `store` is then used to both indicate what data
+can be stored inside of an object, and is also used to indicate what types can be transferred
+outside of their defining module.
 
 <!-- TODO future section on detailed walk through maybe. We have some examples at the end but it might be helpful to explain why we have precisely this set of abilities
 
@@ -31,9 +31,8 @@ The four abilities are:
   - Allows values of types with this ability to be popped/dropped.
 - [`store`](#store)
   - Allows values of types with this ability to exist inside a value in storage.
-  - For Sui, `store` controls what data can be stored inside of an
-    [object](./../book/storage/key-ability). `store` also controls what types can be transferred
-    outside of their defining module.
+  - For Sui, `store` controls what data can be stored inside of an [object](./abilities/object).
+    `store` also controls what types can be transferred outside of their defining module.
 - [`key`](#key)
   - Allows the type to serve as a "key" for storage. Ostensibly this means the value can be a
     top-level value in storage; in other words, it does not need to be contained in another value to
@@ -73,7 +72,7 @@ directly gate an operation. Instead it gates the existence in storage when used 
 If a value has `store`, all values contained inside of that value have `store`.
 
 For Sui, `store` serves double duty. It controls what values can appear inside of an
-[object](./../book/storage/store-ability), and what objects can be
+[object](/storage/store-ability), and what objects can be
 [transferred](./abilities/object#transfer-rules) outside of their defining module.
 
 ### `key`
@@ -86,7 +85,7 @@ ability.
 If a value has `key`, all values contained inside of that value have `store`. This is the only
 ability with this sort of asymmetry.
 
-For Sui, `key` is used to signify an [object](./../book/storage/key-ability).
+For Sui, `key` is used to signify an [object](./abilities/object).
 
 ## Builtin Types
 

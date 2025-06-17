@@ -17,15 +17,15 @@ const config: Config = {
 
   // TODO: Add forwarding from old pages to new pages.
 
-  url: 'https://damirka.github.io',
-  baseUrl: '/docusaurus-test/',
+  url: 'https://move-book.com',
+  baseUrl: '/',
 
   // GitHub pages deployment config.
-  organizationName: 'damirka',
-  projectName: 'docusaurus-test',
+  organizationName: 'MystenLabs',
+  projectName: 'move-book',
 
   // TODO: circle back
-  onBrokenLinks: 'warn',
+  onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
@@ -89,6 +89,7 @@ const config: Config = {
         searchResultLimits: 10,
         searchBarShortcutHint: false,
         blogDir: [],
+        docsDir: [],
         language: ['en'],
         explicitSearchResultPath: true,
         highlightSearchTermsOnTargetPage: false, // looks ugly...
