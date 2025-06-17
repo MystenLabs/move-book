@@ -70,6 +70,56 @@ const config: Config = {
         // anonymizeIP: true,
       },
     ],
+    // Sets up HTTP redirects for old pages.
+    // Use standard `from` and `to` fields to specify the redirect.
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        fromExtensions: ['html'],
+        redirects: [
+          { from: '/guides/coding-conventions', to: '/guides/code-quality-checklist' },
+          { from: '/introduction/foreword', to: '/foreword' },
+          { from: '/introduction/getting-started', to: '/before-we-begin/' },
+          { from: '/syntax-basics/index', to: '/move-basics/' },
+          { from: '/syntax-basics/concept', to: '/move-basics/module' },
+          { from: '/syntax-basics/comments', to: '/move-basics/comments' },
+          { from: '/syntax-basics/expression', to: '/move-basics/expression' },
+          { from: '/syntax-basics/module', to: '/move-basics/importing-modules' },
+          { from: '/syntax-basics/constants', to: '/move-basics/constants' },
+          { from: '/syntax-basics/function', to: '/move-basics/function' },
+          { from: '/advanced-topics/index', to: '/programmability/' },
+          {
+            from: '/advanced-topics/types-with-abilities/index',
+            to: '/move-basics/abilities-introduction',
+          },
+          {
+            from: '/advanced-topics/ownership-and-scope',
+            to: '/move-basics/ownership-and-scope',
+          },
+          { from: '/advanced-topics/understanding-generics', to: '/move-basics/generics' },
+          {
+            from: '/advanced-topics/advanced-topics/managing-collections-with-vectors',
+            to: '/move-basics/vector',
+          },
+          {
+            from: [
+              '/resources/index',
+              '/resources/signer-type',
+              '/resources/what-is-resource',
+              '/resources/resource-by-example/index',
+              '/resources/resource-by-example/storing-new-resource',
+              '/resources/resource-by-example/access-resource-with-borrow',
+              '/resources/resource-by-example/destroy-resource',
+              '/resources/resource-by-example/further-steps',
+            ],
+            to: '/',
+          },
+          { from: '/tutorials/index', to: '/' },
+          { from: '/tutorials/erc20', to: '/' },
+          { from: '/translations', to: '/' },
+        ],
+      },
+    ],
   ],
   themes: [
     [
