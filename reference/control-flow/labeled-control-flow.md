@@ -1,5 +1,5 @@
 ---
-title: 'Reference: Labeled Control Flow'
+title: 'Labeled Control Flow | Reference'
 description: ''
 ---
 

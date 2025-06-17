@@ -1,5 +1,5 @@
 ---
-title: 'Reference: Primitive Types'
+title: 'Primitive Types | Reference'
 description: ''
 ---
 

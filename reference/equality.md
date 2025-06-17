@@ -1,5 +1,5 @@
 ---
-title: 'Reference: Equality'
+title: 'Equality | Reference'
 description: ''
 ---
 

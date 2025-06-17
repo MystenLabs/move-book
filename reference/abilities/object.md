@@ -1,5 +1,5 @@
 ---
-title: 'Reference: Sui Object'
+title: 'Sui Object | Reference'
 ---
 
 # Sui Objects

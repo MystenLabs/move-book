@@ -1,5 +1,5 @@
 ---
-title: 'Reference: Macro Functions'
+title: 'Macro Functions | Reference'
 description: ''
 ---
 

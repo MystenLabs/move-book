@@ -1,5 +1,5 @@
 ---
-title: 'Reference: Coding Conventions'
+title: 'Coding Conventions | Reference'
 description: ''
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: 'Reference: Packages'
+title: 'Packages | Reference'
 description: ''
 ---
 
@@ -56,7 +56,7 @@ Going through each of these in turn:
 The Move package manifest is defined within the `Move.toml` file and has the following syntax.
 Optional fields are marked with `*`, `+` denotes one or more elements:
 
-```ini
+```toml
 [package]
 name = <string>
 edition* = <string>      # e.g., "2024.alpha" to use the Move 2024 edition,
@@ -130,7 +130,7 @@ published-at* = "<hex-address>" # The address that the package is published at. 
 
 An example of a minimal package manifest:
 
-```ini
+```toml
 [package]
 name = "AName"
 ```
@@ -138,7 +138,7 @@ name = "AName"
 An example of a more standard package manifest that also includes the Move standard library and
 instantiates the named address `std` from the `LocalDep` package with the address value `0x1`:
 
-```ini
+```toml
 [package]
 name = "AName"
 license = "Apache 2.0"
@@ -184,7 +184,7 @@ module named_addr::a {
 We could in `example_pkg/Move.toml` declare the named address `named_addr` in two different ways.
 The first:
 
-```ini
+```toml
 [package]
 name = "example_pkg"
 ...
@@ -200,7 +200,7 @@ be instantiated later on by an importing package.
 
 `named_addr` can also be declared as:
 
-```ini
+```toml
 [package]
 name = "example_pkg"
 ...
@@ -245,7 +245,7 @@ them into scope is imported.
 Renaming a named address when importing can be done as follows in our `P`, `P1`, and `P2` example
 above:
 
-```ini
+```toml
 [package]
 name = "P"
 ...
@@ -281,7 +281,7 @@ named addresses. Additionally, only the `[dev-addresses]` in the root package ar
 mode. For example a root package with the following manifest would not compile outside of `dev` mode
 since `named_addr` would be uninstantiated:
 
-```ini
+```toml
 [package]
 name = "example_pkg"
 ...
@@ -382,7 +382,7 @@ This section contains the core information needed in the lockfile:
   an empty string.
 - The list of dependencies.
 
-```ini
+```toml
 [move]
 version = <string> # Lock file version, used for backwards compatibility checking.
 manifest_digest = <hash> # Sha3-256 hash of the Move.toml file that was used to generate this lock file.
@@ -398,7 +398,7 @@ write the `Move.lock` file and the build fails. If all dependencies resolve, the
 contains the locations (local and remote) of all of the package's transitive dependencies. These
 will be stored in the `Move.lock` file in the following format:
 
-```ini
+```toml
 # ...
 
 [[move.package]]
@@ -416,7 +416,7 @@ As mentioned above, additional fields may be added to the lock file by external 
 the Sui package manager adds toolchain version information to the lock file that can then be used
 for on-chain source verification:
 
-```ini
+```toml
 # ...
 
 [move.toolchain-version]

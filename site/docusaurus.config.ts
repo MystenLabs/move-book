@@ -4,18 +4,14 @@ import mdbookAnchorCode from './src/plugins/mdbook-anchor-code';
 import prismAtomOneDark from './src/theme/prism-atom-one-dark';
 import prismAtomOneLight from './src/theme/prism-atom-one-light';
 
-const config: Config = {
+export default {
   title: 'The Move Book',
   tagline:
     'First book about the Move programming language and the Move VM. Move documentation, Move tutorials and language reference',
   favicon: 'favicon.svg',
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
-  future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
-  },
-
-  // TODO: Add forwarding from old pages to new pages.
+  // Future compatibility flags.
+  future: { v4: true },
 
   url: 'https://move-book.com',
   baseUrl: '/',
@@ -24,9 +20,9 @@ const config: Config = {
   organizationName: 'MystenLabs',
   projectName: 'move-book',
 
-  // TODO: circle back
+  // Relax or throw on broken links, options are: 'warn', 'throw'.
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenMarkdownLinks: 'throw',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -67,11 +63,14 @@ const config: Config = {
       '@docusaurus/plugin-google-gtag',
       {
         trackingID: 'G-B1E7R0BHX4',
-        // anonymizeIP: true,
+        anonymizeIP: true,
       },
     ],
     // Sets up HTTP redirects for old pages.
     // Use standard `from` and `to` fields to specify the redirect.
+    // Notes:
+    // - for folder index, add trailing slash `/`
+    // - html rewrites are already handled by the configuration
     [
       '@docusaurus/plugin-client-redirects',
       {
@@ -135,11 +134,10 @@ const config: Config = {
         // `hashed` is recommended as long-term-cache of index file is possible.
         hashed: true,
         docsRouteBasePath: '/',
-        // docsDir: ['./../book', './../reference'],
         searchResultLimits: 10,
         searchBarShortcutHint: false,
         blogDir: [],
-        docsDir: [],
+        docsDir: [], // ignore, we use `searchContextByPaths` instead
         language: ['en'],
         explicitSearchResultPath: true,
         highlightSearchTermsOnTargetPage: false, // looks ugly...
@@ -264,6 +262,4 @@ const config: Config = {
     },
     breadcrumbs: false,
   } satisfies Preset.ThemeConfig,
-};
-
-export default config;
+} satisfies Config;

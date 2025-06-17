@@ -1,5 +1,5 @@
 ---
-title: 'Reference: Modules'
+title: 'Modules | Reference'
 description: ''
 ---
 

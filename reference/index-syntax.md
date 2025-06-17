@@ -1,5 +1,5 @@
 ---
-title: 'Reference: Index Syntax'
+title: 'Index Syntax | Reference'
 description: ''
 ---
 

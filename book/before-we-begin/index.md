@@ -1,4 +1,4 @@
-# Before we begin
+# Before We Begin
 
 Move requires an environment to run and develop applications, and in this small chapter we will
 cover the prerequisites for the Move language: how to set up your IDE, how to install the compiler

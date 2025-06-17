@@ -1,5 +1,5 @@
 ---
-title: 'Reference: Generics'
+title: 'Generics | Reference'
 description: ''
 ---
 

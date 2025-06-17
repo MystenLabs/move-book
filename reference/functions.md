@@ -1,5 +1,5 @@
 ---
-title: 'Reference: Functions'
+title: 'Functions | Reference'
 description: ''
 ---
 

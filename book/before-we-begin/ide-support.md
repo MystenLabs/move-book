@@ -1,4 +1,4 @@
-# Set up your IDE
+# Set Up Your IDE
 
 There are two most popular IDEs for Move development: VSCode and IntelliJ IDEA. Both of them provide
 basic features like syntax highlighting and error messages, though they differ in their additional

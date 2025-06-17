@@ -10,7 +10,7 @@ You can download the latest Sui binary from the
 [releases page](https://github.com/MystenLabs/sui/releases). The binary is available for macOS,
 Linux and Windows. For education purposes and development, we recommend using the `mainnet` version.
 
-## Install using Homebrew (MacOS)
+## Install Using Homebrew (MacOS)
 
 You can install Sui using the [Homebrew](https://brew.sh/) package manager.
 
@@ -18,7 +18,7 @@ You can install Sui using the [Homebrew](https://brew.sh/) package manager.
 brew install sui
 ```
 
-## Install using Chocolatey (Windows)
+## Install Using Chocolatey (Windows)
 
 You can install Sui using the [Chocolatey](https://chocolatey.org/install) package manager for
 Windows.
@@ -27,7 +27,7 @@ Windows.
 choco install sui
 ```
 
-## Build using Cargo (MacOS, Linux)
+## Build Using Cargo (MacOS, Linux)
 
 You can install and build Sui locally by using the Cargo package manager (requires Rust)
 

@@ -1,5 +1,5 @@
 ---
-title: 'Reference: Integers'
+title: 'Integers | Reference'
 description: ''
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: 'Reference: Clever Errors'
+title: 'Clever Errors | Reference'
 description:
   Clever errors are a feature that allows for more informative error messages when an assertion
   fails or an abort is raised

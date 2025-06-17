@@ -1,5 +1,5 @@
 ---
-title: 'Reference: Pattern Matching'
+title: 'Pattern Matching | Reference'
 description: ''
 ---
 

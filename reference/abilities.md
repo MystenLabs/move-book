@@ -1,5 +1,5 @@
 ---
-title: 'Reference: Abilities'
+title: 'Abilities | Reference'
 description: ''
 ---
 

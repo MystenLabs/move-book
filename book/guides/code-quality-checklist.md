@@ -19,7 +19,7 @@ or [as a CI check](https://github.com/marketplace/actions/move-formatter), or
 All of the features in this guide require Move 2024 Edition, and it has to be specified in the
 package manifest.
 
-```ini
+```toml
 [package]
 name = "my_package"
 edition = "2024.beta" # or (just) "2024"
@@ -29,7 +29,7 @@ edition = "2024.beta" # or (just) "2024"
 
 Starting with Sui 1.45 you no longer need to specify framework dependency in the `Move.toml`:
 
-```ini
+```toml
 # old, pre 1.45
 [dependencies]
 Sui = { ... }
@@ -43,7 +43,7 @@ Sui = { ... }
 If your package has a generic name (e.g., `token`) – especially if your project includes multiple
 packages – make sure to add a prefix to the named address:
 
-```ini
+```toml
 # bad! not indicative of anything, and can conflict
 [addresses]
 math = "0x0"

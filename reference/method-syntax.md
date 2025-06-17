@@ -1,5 +1,5 @@
 ---
-title: 'Reference: Method Syntax'
+title: 'Method Syntax | Reference'
 description: ''
 ---
 

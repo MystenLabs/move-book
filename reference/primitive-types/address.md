@@ -1,5 +1,5 @@
 ---
-title: 'Reference: Address'
+title: 'Address | Reference'
 description: ''
 ---
 

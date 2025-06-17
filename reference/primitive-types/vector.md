@@ -1,5 +1,5 @@
 ---
-title: 'Reference: Vector'
+title: 'Vector | Reference'
 description: ''
 ---
 

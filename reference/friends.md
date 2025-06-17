@@ -1,5 +1,5 @@
 ---
-title: 'Reference: Friends'
+title: 'Friends | Reference'
 description: ''
 ---
 

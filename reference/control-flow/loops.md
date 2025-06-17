@@ -1,5 +1,5 @@
 ---
-title: 'Reference: Loops'
+title: 'Loops | Reference'
 description: ''
 ---
 

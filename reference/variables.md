@@ -1,5 +1,5 @@
 ---
-title: 'Reference: Local Variables and Scope'
+title: 'Local Variables and Scope | Reference'
 description: ''
 ---
 

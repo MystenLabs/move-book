@@ -9,7 +9,7 @@ bookSidebar:
     enumerate: false
     id: foreword
   - type: category
-    label: Before we begin
+    label: Before We Begin
     link:
       id: before-we-begin/index
       type: doc
@@ -20,9 +20,9 @@ bookSidebar:
         id: before-we-begin/ide-support
       - label: Move 2024
         id: before-we-begin/move-2024
-  - label: Hello World
+  - label: Hello World!
     id: your-first-move/hello-world
-  - label: Hello Sui
+  - label: Hello Sui!
     id: your-first-move/hello-sui
   - type: category
     label: Concepts
@@ -36,9 +36,9 @@ bookSidebar:
         id: concepts/manifest
       - label: Address
         id: concepts/address
-      - label: What is an account?
+      - label: Account
         id: concepts/what-is-an-account
-      - label: What is a transaction?
+      - label: Transaction
         id: concepts/what-is-a-transaction
   - type: category
     label: Move Basics
@@ -46,17 +46,17 @@ bookSidebar:
       id: move-basics/index
       type: doc
     items:
-      - label: Module
+      - label: Modules
         id: move-basics/module
       - label: Comments
         id: move-basics/comments
       - label: Primitive Types
         id: move-basics/primitive-types
-      - label: Address
+      - label: Address Type
         id: move-basics/address
-      - label: Expression
+      - label: Expressions
         id: move-basics/expression
-      - label: Struct
+      - label: Structs
         id: move-basics/struct
       - label: Abilities Introduction
         id: move-basics/abilities-introduction
@@ -74,17 +74,17 @@ bookSidebar:
         id: move-basics/string
       - label: Control Flow
         id: move-basics/control-flow
-      - label: Enum and Match
+      - label: Enums and Match
         id: move-basics/enum-and-match
       - label: Constants
         id: move-basics/constants
-      - label: Assert and Abort
+      - label: Aborting Execution
         id: move-basics/assert-and-abort
-      - label: Function
+      - label: Functions
         id: move-basics/function
       - label: Struct Methods
         id: move-basics/struct-methods
-      - label: Visibility
+      - label: Visibility Modifiers
         id: move-basics/visibility
       - label: Ownership and Scope
         id: move-basics/ownership-and-scope
@@ -107,15 +107,15 @@ bookSidebar:
       id: object/index
       type: doc
     items:
-      - label: Digital Assets
+      - label: Language for Digital Assets
         id: object/digital-assets
       - label: Evolution of Move
         id: object/evolution-of-move
-      - label: Object Model
+      - label: What is an Object?
         id: object/object-model
       - label: Ownership
         id: object/ownership
-      - label: Fast Path and Consensus
+      - label: Fast Path & Consensus
         id: object/fast-path-and-consensus
   - type: category
     label: Using Objects
@@ -123,11 +123,11 @@ bookSidebar:
       id: storage/index
       type: doc
     items:
-      - label: Key Ability
+      - label: 'Ability: Key'
         id: storage/key-ability
       - label: Storage Functions
         id: storage/storage-functions
-      - label: Store Ability
+      - label: 'Ability: Store'
         id: storage/store-ability
       - label: UID and ID
         id: storage/uid-and-id
@@ -146,13 +146,13 @@ bookSidebar:
         id: programmability/transaction-context
       - label: Module Initializer
         id: programmability/module-initializer
-      - label: Capability
+      - label: 'Pattern: Capability'
         id: programmability/capability
       - label: Epoch and Time
         id: programmability/epoch-and-time
       - label: Collections
         id: programmability/collections
-      - label: Wrapper Type Pattern
+      - label: 'Pattern: Wrapper Type'
         id: programmability/wrapper-type-pattern
       - label: Dynamic Fields
         id: programmability/dynamic-fields
@@ -160,13 +160,13 @@ bookSidebar:
         id: programmability/dynamic-object-fields
       - label: Dynamic Collections
         id: programmability/dynamic-collections
-      - label: Witness Pattern
+      - label: 'Pattern: Witness'
         id: programmability/witness-pattern
       - label: One-Time Witness
         id: programmability/one-time-witness
-      - label: Publisher
+      - label: Publisher Authority
         id: programmability/publisher
-      - label: Display
+      - label: Object Display
         id: programmability/display
       - label: Events
         id: programmability/events
@@ -175,7 +175,7 @@ bookSidebar:
       #   type: doc
       - label: Sui Framework
         id: programmability/sui-framework
-      - label: Hot Potato Pattern
+      - label: 'Pattern: Hot Potato'
         id: programmability/hot-potato-pattern
       # - label: '8.18 Pattern: Request'
       #   id: programmability/request-pattern
@@ -206,7 +206,7 @@ bookSidebar:
     items:
       - label: 2024 Migration Guide
         id: guides/2024-migration-guide
-      - label: Upgradeability Practices
+      - label: Upgradability Practices
         id: guides/upgradeability-practices
       - label: Building Against Limits
         id: guides/building-against-limits

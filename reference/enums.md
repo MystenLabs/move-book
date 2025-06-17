@@ -1,5 +1,5 @@
 ---
-title: 'Reference: Enumerations'
+title: 'Enumerations | Reference'
 description: ''
 ---
 

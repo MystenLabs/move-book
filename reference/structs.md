@@ -1,5 +1,5 @@
 ---
-title: 'Reference: Structs'
+title: 'Structs | Reference'
 description: ''
 ---
 

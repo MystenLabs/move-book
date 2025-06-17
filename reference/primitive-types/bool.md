@@ -1,5 +1,5 @@
 ---
-title: 'Reference: Bool'
+title: 'Bool | Reference'
 description: ''
 ---
 
