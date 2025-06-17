@@ -71,18 +71,21 @@ Move's type system prevents a local variable from being used before it has been 
 
 ```move
 let x;
+// highlight-error
 x + x // ERROR! x is used before being assigned
 ```
 
 ```move
 let x;
 if (cond) x = 0;
+// highlight-error
 x + x // ERROR! x does not have a value in all cases
 ```
 
 ```move
 let x;
 while (cond) x = 0;
+// highlight-error
 x + x // ERROR! x does not have a value in all cases
 ```
 
@@ -102,8 +105,10 @@ let xA = e;
 let foobar_123 = e;
 
 // all invalid
+// highlight-error-start
 let X = e; // ERROR!
 let Foo = e; // ERROR!
+// highlight-error-end
 ```
 
 ### Type annotations
@@ -121,24 +126,24 @@ Some examples of explicit type annotations:
 ```move
 module 0::example;
 
+public struct S { f: u64, g: u64 }
 
-    public struct S { f: u64, g: u64 }
-
-    fun annotated() {
-        let u: u8 = 0;
-        let b: vector<u8> = b"hello";
-        let a: address = @0x0;
-        let (x, y): (&u64, &mut u64) = (&0, &mut 1);
-        let S { f, g: f2 }: S = S { f: 0, g: 1 };
-    }
+fun annotated() {
+    let u: u8 = 0;
+    let b: vector<u8> = b"hello";
+    let a: address = @0x0;
+    let (x, y): (&u64, &mut u64) = (&0, &mut 1);
+    let S { f, g: f2 }: S = S { f: 0, g: 1 };
 }
 ```
 
 Note that the type annotations must always be to the right of the pattern:
 
 ```move
+// highlight-error-start
 // ERROR! should be let (x, y): (&u64, &mut u64) = ...
 let (x: &u64, y: &mut u64) = (&0, &mut 1);
+// highlight-error-end
 ```
 
 ### When annotations are necessary
@@ -147,8 +152,10 @@ In some cases, a local type annotation is required if the type system cannot inf
 commonly occurs when the type argument for a generic type cannot be inferred. For example:
 
 ```move
+// highlight-error-start
 let _v1 = vector[]; // ERROR!
 //        ^^^^^^^^ Could not infer this type. Try adding an annotation
+// highlight-error-end
 let v2: vector<u64> = vector[]; // no error
 ```
 
@@ -164,12 +171,14 @@ let a: u8 = return ();
 let b: bool = abort 0;
 let c: signer = loop ();
 
+// highlight-error-start
 let x = return (); // ERROR!
 //  ^ Could not infer this type. Try adding an annotation
 let y = abort 0; // ERROR!
 //  ^ Could not infer this type. Try adding an annotation
 let z = loop (); // ERROR!
 //  ^ Could not infer this type. Try adding an annotation
+// highlight-error-end
 ```
 
 Adding type annotations to this code will expose other errors about dead code or unused local
@@ -190,13 +199,16 @@ let (z0, z1, z2, z3) = (0, 1, 2, 3);
 The type of the expression must match the arity of the tuple pattern exactly.
 
 ```move
+// highlight-error
 let (x, y) = (0, 1, 2); // ERROR!
+// highlight-error
 let (x, y, z, q) = (0, 1, 2); // ERROR!
 ```
 
 You cannot declare more than one local with the same name in a single `let`.
 
 ```move
+// highlight-error
 let (x, x) = 0; // ERROR!
 ```
 
@@ -274,6 +286,7 @@ let Y { x1: x1, x2: x2 } = e;
 As shown with tuples, you cannot declare more than one local with the same name in a single `let`.
 
 ```move
+// highlight-error
 let Y { x1: x, x2: x } = e; // ERROR!
 ```
 
@@ -477,6 +490,7 @@ assignments.
 ```move
 let mut x;
 x = 0;
+// highlight-error
 x = false; // ERROR!
 ```
 
@@ -532,8 +546,10 @@ let x = 0;
 {
     let y = 1;
 };
+// highlight-error-start
 x + y // ERROR!
 //  ^ unbound local 'y'
+// highlight-error-end
 ```
 
 But, locals from an outer scope _can_ be used in a nested scope.
@@ -605,8 +621,10 @@ destroyed within its declaring module.)
 ```move
 {
     let x = 0;
+// highlight-error-start
     Coin { value: x }; // ERROR!
 //  ^^^^^^^^^^^^^^^^^ unused value without the `drop` ability
+// highlight-error-end
     x
 }
 ```
@@ -684,12 +702,14 @@ module 0::example;
 public struct Coin has store { value: u64 }
 
 fun unused_coin(): Coin {
+// highlight-error-start
     let x = Coin { value: 0 }; // ERROR!
 //      ^ This local still contains a value without the `drop` ability
     x.value = 1;
     let x = Coin { value: 10 };
     x
 //  ^ Invalid return
+// highlight-error-end
 }
 ```
 
@@ -741,10 +761,12 @@ the local variable is unavailable, even if the value's type has the `copy` [abil
 
 ```move
 let x = 1;
+// highlight-error-start
 let y = move x + 1;
 //      ------ Local was moved here
 let z = move x + 2; // Error!
 //      ^^^^^^ Invalid usage of local 'x'
+// highlight-error-end
 y + z
 ```
 

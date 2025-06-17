@@ -1,15 +1,15 @@
 # Dynamic Collections
 
-[Sui Framework](./sui-framework.md) offers a variety of collection types that build on the
-[dynamic fields](./dynamic-fields.md) and [dynamic object fields](./dynamic-object-fields.md)
-concepts. These collections are designed to be a safer and more understandable way to store and
-manage dynamic fields and objects.
+[Sui Framework](./sui-framework) offers a variety of collection types that build on the
+[dynamic fields](./dynamic-fields) and [dynamic object fields](./dynamic-object-fields) concepts.
+These collections are designed to be a safer and more understandable way to store and manage dynamic
+fields and objects.
 
 For each collection type we will specify the primitive they use, and the specific features they
 offer.
 
 > Unlike dynamic (object) fields which operate on UID, collection types have their own type and
-> allow calling [associated functions](./../move-basics/struct-methods.md).
+> allow calling [associated functions](./../move-basics/struct-methods).
 
 ## Common Concepts
 
@@ -76,7 +76,7 @@ Using the Bag:
 ## ObjectBag
 
 Defined in the `sui::object_bag` module. Identical to [Bag](#bag), but uses
-[dynamic object fields](./dynamic-object-fields.md) internally. Can only store objects as values.
+[dynamic object fields](./dynamic-object-fields) internally. Can only store objects as values.
 
 ## Table
 
@@ -111,7 +111,7 @@ Using the Table:
 ## ObjectTable
 
 Defined in the `sui::object_table` module. Identical to [Table](#table), but uses
-[dynamic object fields](./dynamic-object-fields.md) internally. Can only store objects as values.
+[dynamic object fields](./dynamic-object-fields) internally. Can only store objects as values.
 
 ## Summary
 

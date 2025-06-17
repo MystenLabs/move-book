@@ -17,15 +17,15 @@ const config: Config = {
 
   // TODO: Add forwarding from old pages to new pages.
 
-  url: 'https://move-book.com',
-  baseUrl: '/',
+  url: 'https://damirka.github.io',
+  baseUrl: '/docusaurus-test/',
 
   // GitHub pages deployment config.
-  organizationName: 'MystenLabs',
-  projectName: 'move-book',
+  organizationName: 'damirka',
+  projectName: 'docusaurus-test',
 
   // TODO: circle back
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
@@ -72,7 +72,12 @@ const config: Config = {
     ],
   ],
   themes: [
-    ['@docusaurus/theme-classic', { customCss: './src/css/custom.css' }],
+    [
+      '@docusaurus/theme-classic',
+      {
+        customCss: ['./src/css/custom.css', './src/fonts/fonts.css', './src/css/code.css'],
+      },
+    ],
     [
       // See https://github.com/easyops-cn/docusaurus-search-local
       '@easyops-cn/docusaurus-search-local',
@@ -114,6 +119,12 @@ const config: Config = {
     colorMode: {
       disableSwitch: false,
     },
+    metadata: [
+      {
+        name: 'algolia-site-verification',
+        content: 'BCA21DA2879818D2',
+      },
+    ],
     navbar: {
       items: [
         {
@@ -189,6 +200,16 @@ const config: Config = {
       additionalLanguages: ['ini', 'toml', 'bash'],
       theme: prismAtomOneLight,
       darkTheme: prismAtomOneDark,
+      magicComments: [
+        {
+          className: 'error-comment',
+          line: 'highlight-error',
+          block: {
+            start: 'highlight-error-start',
+            end: 'highlight-error-end',
+          },
+        },
+      ],
     },
     breadcrumbs: false,
   } satisfies Preset.ThemeConfig,

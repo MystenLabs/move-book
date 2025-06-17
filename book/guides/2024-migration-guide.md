@@ -140,8 +140,8 @@ fun aliases() {
 ```
 
 For the full list of built-in aliases, refer to the
-[Standard Library](../move-basics/standard-library.md#source-code) and
-[Sui Framework](../programmability/sui-framework.md#source-code) source code.
+[Standard Library](./../move-basics/standard-library#source-code) and
+[Sui Framework](./../programmability/sui-framework#source-code) source code.
 
 ## Borrowing Operator
 

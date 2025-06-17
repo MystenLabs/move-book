@@ -2,15 +2,14 @@
 
 Collection types are a fundamental part of any programming language. They are used to store a
 collection of data, such as a list of items. The `vector` type has already been covered in the
-[vector section](./../move-basics/vector.md), and in this chapter we will cover the vector-based
-collection types offered by the [Sui Framework](./sui-framework.md).
+[vector section](./../move-basics/vector), and in this chapter we will cover the vector-based
+collection types offered by the [Sui Framework](./sui-framework).
 
 ## Vector
 
-While we have previously covered the `vector` type in the
-[vector section](./../move-basics/vector.md), it is worth going over it again in a new context. This
-time we will cover the usage of the `vector` type in objects and how it can be used in an
-application.
+While we have previously covered the `vector` type in the [vector section](./../move-basics/vector),
+it is worth going over it again in a new context. This time we will cover the usage of the `vector`
+type in objects and how it can be used in an application.
 
 ```move file=packages/samples/sources/programmability/collections.move anchor=vector
 
@@ -76,5 +75,5 @@ if the two `VecSet` instances contain the same elements.
 
 ## Next Steps
 
-In the next section we will cover the [Wrapper Type Pattern](./wrapper-type-pattern.md) - a design
+In the next section we will cover the [Wrapper Type Pattern](./wrapper-type-pattern) - a design
 pattern often used with collection types to extend or restrict their behavior.

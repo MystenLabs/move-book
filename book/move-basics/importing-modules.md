@@ -40,7 +40,7 @@ Another module defined in the same package can import the first module using the
 ```
 
 > Note: Any item (struct, function, constant, etc.) that you want to import from another module must
-> be marked with the `public` (or `public(package)` - see [visibility modifiers](./visibility.md))
+> be marked with the `public` (or `public(package)` - see [visibility modifiers](./visibility))
 > keyword to make it accessible outside its defining module. For example, the `Character` struct and
 > the `new` function in `module_one` are marked public so they can be used in `module_two`.
 
@@ -89,9 +89,9 @@ rename the imported member.
 ## Adding an External Dependency
 
 Move packages can depend on other packages; the dependencies are listed in the
-[Package Manifest](./../concepts/manifest.md) file called `Move.toml`.
+[Package Manifest](./../concepts/manifest) file called `Move.toml`.
 
-Package dependencies are defined in the [Package Manifest](./../concepts/manifest.md) as follows:
+Package dependencies are defined in the [Package Manifest](./../concepts/manifest) as follows:
 
 ```ini title="Move.toml"
 [dependencies]

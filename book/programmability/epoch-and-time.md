@@ -11,7 +11,7 @@ is fixed, however, at the epoch boundary, the validator set can be changed. Epoc
 role in the consensus algorithm and are used to determine the current validator set. They are also
 used as measurement in the staking mechanism.
 
-Epoch can be read from the [transaction context](./transaction-context.md):
+Epoch can be read from the [transaction context](./transaction-context):
 
 ```move file=packages/samples/sources/programmability/epoch-and-time.move anchor=epoch
 

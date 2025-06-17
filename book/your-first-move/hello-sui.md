@@ -1,13 +1,13 @@
 # Hello, Sui!
 
-In the [previous section](./hello-world.md) we created a new package and demonstrated the basic flow
+In the [previous section](./hello-world) we created a new package and demonstrated the basic flow
 of creating, building, and testing a Move package. In this section, we will write a simple
 application that uses the storage model and can be interacted with. To do this, we will create a
 simple todo list application.
 
 ## Create a New Package
 
-Following the same flow as in [Hello, World!](./hello-world.md), we will create a new package called
+Following the same flow as in [Hello, World!](./hello-world), we will create a new package called
 `todo_list`.
 
 ```bash
@@ -377,7 +377,7 @@ how to interact with the package by sending transactions.
 
 To demonstrate the interaction with the `todo_list` package, we will send a transaction to create a
 new list and add an item to it. Transactions are sent via the `sui client ptb` command, it allows
-using the [Transaction Blocks](./../concepts/what-is-a-transaction.md) at full capacity. The command
+using the [Transaction Blocks](./../concepts/what-is-a-transaction) at full capacity. The command
 may look big and complex, but we go through it step by step.
 
 ### Prepare the Variables

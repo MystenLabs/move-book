@@ -25,8 +25,8 @@ In the same package, another module can have its own `init` function, encapsulat
 The function is called on publish, if it is present in the module and follows the rules:
 
 - The function has to be named `init`, be private and have no return values.
-- Takes one or two arguments: [One Time Witness](./one-time-witness.md) (optional) and
-  [TxContext](./transaction-context.md). With `TxContext` always being the last argument.
+- Takes one or two arguments: [One Time Witness](./one-time-witness) (optional) and
+  [TxContext](./transaction-context). With `TxContext` always being the last argument.
 
 ```move
 fun init(ctx: &mut TxContext) { /* ... */}
@@ -51,7 +51,7 @@ function is a good place to set up the initial state of the module, but it is no
 on its own.
 
 There are ways to guarantee that the object was created only once, such as the
-[One Time Witness](./one-time-witness.md). And there are ways to limit or disable the upgrade of the
+[One Time Witness](./one-time-witness). And there are ways to limit or disable the upgrade of the
 module, which we will cover in the Package Upgrades chapter.
 
 ## Next Steps
@@ -60,6 +60,6 @@ As follows from the definition, the `init` function is guaranteed to be called o
 module is published. So it is a good place to put the code that initializes module's objects and
 sets up the environment and configuration.
 
-For example, if there's a [Capability](./capability.md) which is required for certain actions, it
+For example, if there's a [Capability](./capability) which is required for certain actions, it
 should be created in the `init` function. In the next chapter we will talk about the `Capability`
 pattern in more detail.

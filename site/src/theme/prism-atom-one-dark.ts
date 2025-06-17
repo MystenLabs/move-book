@@ -27,7 +27,7 @@ baseTheme.styles.push({
 });
 
 baseTheme.styles.push({
-  types: ['error-const'],
+  types: ['error-const', 'error-comment'],
   style: { color: '#E06C75' },
 });
 

@@ -18,7 +18,7 @@ Links:
 
  -->
 
-Move uses a special type called [address](./../concepts/address.md) to represent addresses. It is a
+Move uses a special type called [address](./../concepts/address) to represent addresses. It is a
 32-byte value that can represent any address on the blockchain. Addresses can be written in two
 forms: hexadecimal addresses prefixed with 0x and named addresses.
 
@@ -28,7 +28,7 @@ forms: hexadecimal addresses prefixed with 0x and named addresses.
 
 An address literal starts with the `@` symbol followed by a hexadecimal number or an identifier. The
 hexadecimal number is interpreted as a 32 byte value. The identifier is looked up in the
-[Move.toml](./../concepts/manifest.md) file and replaced with the corresponding address by the
+[Move.toml](./../concepts/manifest) file and replaced with the corresponding address by the
 compiler. If the identifier is not found in the Move.toml file, the compiler will throw an error.
 
 ## Conversion

@@ -53,9 +53,9 @@ b"" != 0; // ERROR!
 
 ### Typing with references
 
-When comparing [references](./primitive-types/references.md), the type of the reference (immutable
-or mutable) does not matter. This means that you can compare an immutable `&` reference with a
-mutable one `&mut` of the same underlying type.
+When comparing [references](./primitive-types/references), the type of the reference (immutable or
+mutable) does not matter. This means that you can compare an immutable `&` reference with a mutable
+one `&mut` of the same underlying type.
 
 ```move
 let i = &0;
@@ -110,11 +110,11 @@ This automatic borrow is always an immutable borrow.
 ## Restrictions
 
 Both `==` and `!=` consume the value when comparing them. As a result, the type system enforces that
-the type must have [`drop`](./abilities.md). Recall that without the
-[`drop` ability](./abilities.md), ownership must be transferred by the end of the function, and such
-values can only be explicitly destroyed within their declaring module. If these were used directly
-with either equality `==` or non-equality `!=`, the value would be destroyed which would break
-[`drop` ability](./abilities.md) safety guarantees!
+the type must have [`drop`](./abilities). Recall that without the [`drop` ability](./abilities),
+ownership must be transferred by the end of the function, and such values can only be explicitly
+destroyed within their declaring module. If these were used directly with either equality `==` or
+non-equality `!=`, the value would be destroyed which would break [`drop` ability](./abilities)
+safety guarantees!
 
 ```move
 module 0::example;
@@ -127,7 +127,7 @@ fun invalid(c1: Coin, c2: Coin) {
 ```
 
 But, a programmer can _always_ borrow the value first instead of directly comparing the value, and
-reference types have the [`drop` ability](./abilities.md). For example
+reference types have the [`drop` ability](./abilities). For example
 
 ```move
 module 0::example;
@@ -141,8 +141,8 @@ fun swap_if_equal(c1: Coin, c2: Coin): (Coin, Coin) {
 
 ## Avoid Extra Copies
 
-While a programmer _can_ compare any value whose type has [`drop`](./abilities.md), a programmer
-should often compare by reference to avoid expensive copies.
+While a programmer _can_ compare any value whose type has [`drop`](./abilities), a programmer should
+often compare by reference to avoid expensive copies.
 
 ```move
 let v1: vector<u8> = function_that_returns_vector();
@@ -158,7 +158,7 @@ assert!(copy s1 == copy s2, 42);
 use_two_foos(s1, s2);
 ```
 
-This code is perfectly acceptable (assuming `Foo` has [`drop`](./abilities.md)), just not efficient.
+This code is perfectly acceptable (assuming `Foo` has [`drop`](./abilities)), just not efficient.
 The highlighted copies can be removed and replaced with borrows
 
 ```move

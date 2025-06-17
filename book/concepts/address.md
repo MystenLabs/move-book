@@ -26,7 +26,7 @@ Links:
  -->
 
 Address is a unique identifier of a location on the blockchain. It is used to identify
-[packages](./packages.md), [accounts](./what-is-an-account.md), and [objects](./../object/object-model.md).
+[packages](./packages), [accounts](./what-is-an-account), and [objects](./../object/object-model).
 Address has a fixed size of 32 bytes and is usually represented as a hexadecimal string prefixed
 with `0x`. Addresses are case insensitive.
 
@@ -52,9 +52,9 @@ Here are some examples of reserved addresses:
 - `0x2` - address of the Sui Framework (alias `sui`)
 - `0x6` - address of the system `Clock` object
 
-> You can find all reserved addresses in the [Appendix B](../appendix/reserved-addresses.md).
+> You can find all reserved addresses in the [Appendix B](../appendix/reserved-addresses).
 
 ## Further Reading
 
-- [Address type](../move-basics/address.md) in Move
+- [Address type](../move-basics/address) in Move
 - [sui::address module](https://docs.sui.io/references/framework/sui/address)

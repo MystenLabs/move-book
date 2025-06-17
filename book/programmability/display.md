@@ -3,7 +3,7 @@
 Objects on Sui are explicit in their structure and behavior and can be displayed in an
 understandable way. However, to support richer metadata for clients, there's a standard and
 efficient way of "describing" them to the client - the `Display` object defined in the
-[Sui Framework](./sui-framework.md).
+[Sui Framework](./sui-framework).
 
 ## Background
 
@@ -43,8 +43,8 @@ from the need to define the same fields with the same names and types in every o
 ## Creator Privilege
 
 While the objects can be owned by accounts and may be a subject to
-[True Ownership](./../object/ownership.md#account-owner-or-single-owner), the Display can be owned
-by the creator of the object. This way, the creator can update the display metadata and apply the
+[True Ownership](./../object/ownership#account-owner-or-single-owner), the Display can be owned by
+the creator of the object. This way, the creator can update the display metadata and apply the
 changes globally without the need to update every object. The creator can also transfer Display to
 another account or even build an application around the object with custom functionality to manage
 the metadata.
@@ -91,7 +91,7 @@ public struct Display<phantom T: key> has key, store {
 }
 ```
 
-The [Publisher](./publisher.md) object is required to a new Display, since it serves as the proof of
+The [Publisher](./publisher) object is required to a new Display, since it serves as the proof of
 ownership of type.
 
 ## Template Syntax
@@ -122,4 +122,4 @@ the most recently updated `Display<T>` will be used by the full node.
 ## Further Reading
 
 - [Sui Object Display](https://docs.sui.io/standards/display) is Sui Documentation
-- [Publisher](./publisher.md) - the representation of the creator
+- [Publisher](./publisher) - the representation of the creator

@@ -6,17 +6,17 @@ constructed if the property holds.
 
 ## Witness in Move
 
-In the [Struct](./../move-basics/struct.md) section we have shown that a struct can only be
-created - or _packed_ - by the module defining it. Hence, in Move, a module proves ownership of the
-type by constructing it. This is one of the most important patterns in Move, and it is widely used
-for generic type instantiation and authorization.
+In the [Struct](./../move-basics/struct) section we have shown that a struct can only be created -
+or _packed_ - by the module defining it. Hence, in Move, a module proves ownership of the type by
+constructing it. This is one of the most important patterns in Move, and it is widely used for
+generic type instantiation and authorization.
 
 Practically speaking, for the witness to be used, there has to be a function that expects a witness
 as an argument. In the example below it is the `new` function that expects a witness of the `T` type
 to create a `Instance<T>` instance.
 
 > It is often the case that the witness struct is not stored, and for that the function may require
-> the [Drop](./../move-basics/drop-ability.md) ability for the type.
+> the [Drop](./../move-basics/drop-ability) ability for the type.
 
 ```move
 module book::witness;
@@ -77,9 +77,9 @@ public fun supply_value<T>(supply: &Supply<T>): u64 {
 ```
 
 In the example above, which is borrowed from the [`balance` module][balance-framework] of the
-[Sui Framework](./sui-framework.md), the `Supply` a generic struct that can be constructed only by
+[Sui Framework](./sui-framework), the `Supply` a generic struct that can be constructed only by
 supplying a witness of the type `T`. The witness is taken by value and _discarded_ - hence the `T`
-must have the [drop](./../move-basics/drop-ability.md) ability.
+must have the [drop](./../move-basics/drop-ability) ability.
 
 [balance-framework]: https://docs.sui.io/references/framework/sui/balance
 
@@ -107,7 +107,7 @@ public fun increase_supply<T>(self: &mut Supply<T>, value: u64): Balance<T> {
 While a struct can be created any number of times, there are cases where a struct should be
 guaranteed to be created only once. For this purpose, Sui provides the "One-Time Witness" - a
 special witness that can only be used once. We explain it in more detail in the
-[next section](./one-time-witness.md).
+[next section](./one-time-witness).
 
 ## Summary
 
@@ -117,4 +117,4 @@ special witness that can only be used once. We explain it in more detail in the
 
 ## Next Steps
 
-In the next section, we will learn about the [One Time Witness](./one-time-witness.md) pattern.
+In the next section, we will learn about the [One Time Witness](./one-time-witness) pattern.

@@ -25,7 +25,7 @@ This declares an enum `Action` that represents different actions that can be tak
 can `Stop`, `Pause` for a given duration, `MoveTo` a specific location, or `Jump` to a specific
 height.
 
-Similar to structs, enums can have [abilities](./abilities.md) that control what operations can be
+Similar to structs, enums can have [abilities](./abilities) that control what operations can be
 performed on them. It is important to note however that enums cannot have the `key` ability since
 they cannot be top-level objects.
 
@@ -96,8 +96,8 @@ create or destroy variants of the enum are internal to the module that defines t
 
 Just like with structs, by default an enum declaration is linear and ephemeral. To use an enum value
 in a non-linear or non-ephemeral way -- i.e., copied, dropped, or stored in an
-[object](./abilities/object.md) -- you need to grant it additional [abilities](./abilities.md) by
-annotating them with `has <ability>`:
+[object](./../book/storage/key-ability) -- you need to grant it additional [abilities](./abilities)
+by annotating them with `has <ability>`:
 
 ```move
 module a::m;
@@ -124,7 +124,7 @@ public enum NamedInvalidAbilities has copy { Variant } has drop;
 ```
 
 For more details, see the section on
-[annotating abilities](./abilities.md#annotating-structs-and-enums).
+[annotating abilities](./abilities#annotating-structs-and-enums).
 
 ## Naming
 
@@ -199,8 +199,7 @@ You can pattern match on Move values by value, immutable reference, and mutable 
 pattern matching by value, the value is moved into the match arm. When pattern matching by
 reference, the value is borrowed into the match arm (either immutably or mutably). We'll go through
 a brief description of pattern matching using `match` here, but for more information on pattern
-matching using `match` in Move see the [Pattern Matching](./control-flow/pattern-matching.md)
-section.
+matching using `match` in Move see the [Pattern Matching](./control-flow/pattern-matching) section.
 
 A `match` statement is used to pattern match on a Move value and consists of a number of _match
 arms_. Each match arm consists of a pattern, an arrow `=>`, and an expression, followed by a comma

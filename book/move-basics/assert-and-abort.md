@@ -32,7 +32,7 @@ revert any changes that were made.
 
 The `abort` keyword is used to abort the execution of a transaction. It is used in combination with
 an abort code, which is returned to the caller of the transaction. The abort code is an
-[integer](./primitive-types.md) of type `u64`.
+[integer](./primitive-types) of type `u64`.
 
 ```move file=packages/samples/sources/move-basics/assert-and-abort.move anchor=abort
 
@@ -55,10 +55,10 @@ an `if` expression + `abort`. The `code` argument is optional, but has to be a `
 ## Error constants
 
 To make error codes more descriptive, it is a good practice to define
-[error constants](./constants.md). Error constants are defined as `const` declarations and are
-usually prefixed with `E` followed by a camel case name. Error constants are similar to other
-constants and do not have any special handling. However, they are commonly used to improve code
-readability and make abort scenarios easier to understand.
+[error constants](./constants). Error constants are defined as `const` declarations and are usually
+prefixed with `E` followed by a camel case name. Error constants are similar to other constants and
+do not have any special handling. However, they are commonly used to improve code readability and
+make abort scenarios easier to understand.
 
 ```move file=packages/samples/sources/move-basics/assert-and-abort.move anchor=error_const
 
@@ -77,5 +77,5 @@ message.
 ## Further Reading
 
 - [Abort and Assert](./../../reference/abort-and-assert) in the Move Reference.
-- We suggest reading the [Better Error Handling](./../guides/better-error-handling.md) guide to
-  learn about best practices for error handling in Move.
+- We suggest reading the [Better Error Handling](./../guides/better-error-handling) guide to learn
+  about best practices for error handling in Move.

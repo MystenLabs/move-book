@@ -32,8 +32,8 @@ control flow statements (explained in detail below):
 ## Conditional Statements
 
 The `if` expression is used to make decisions in a program. It evaluates a
-[boolean expression](./expression.md#literals) and executes a block of code if the expression is
-true. Paired with `else`, it can execute a different block of code if the expression is false.
+[boolean expression](./expression#literals) and executes a block of code if the expression is true.
+Paired with `else`, it can execute a different block of code if the expression is false.
 
 The syntax for an `if` expression is:
 
@@ -67,8 +67,8 @@ and type safety is maintained.
 
 Conditional expressions are among the most important control flow statements in Move. They evaluate
 user-provided input or stored data to make decisions. One key use case is in the
-[`assert!` macro](./assert-and-abort.md), which checks if a condition is true and aborts execution
-if it is not. We’ll explore this in detail shortly.
+[`assert!` macro](./assert-and-abort), which checks if a condition is true and aborts execution if
+it is not. We’ll explore this in detail shortly.
 
 ## Repeating Statements with Loops
 
@@ -176,7 +176,7 @@ The example below skips odd numbers and prints only even numbers from 0 to 10:
 
 ## Early Return
 
-The `return` statement is used to exit a [function](./function.md) early and return a value. It is
+The `return` statement is used to exit a [function](./function) early and return a value. It is
 often used in combination with a conditional statement to exit the function when a certain condition
 is met. The syntax for the `return` statement is:
 

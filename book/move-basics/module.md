@@ -25,7 +25,7 @@ with underscores between words. Modules names must be unique in the package.
 Usually, a single file in the `sources/` folder contains a single module. The file name should match
 the module name - for example, a `donut_shop` module should be stored in the `donut_shop.move` file.
 You can read more about coding conventions in the
-[Coding Conventions](../guides/code-quality-checklist) section.
+[Coding Conventions](./../guides/code-quality-checklist) section.
 
 > If you need to declare more than one module in a file, you must use [Module Block](#module-block)
 > syntax.
@@ -45,7 +45,7 @@ Structs, functions, constants and imports all part of the module:
 ## Address and Named Address
 
 The module address can be specified as both: an address _literal_ (does not require the `@` prefix)
-or a named address specified in the [Package Manifest](../concepts/manifest). In the example
+or a named address specified in the [Package Manifest](./../concepts/manifest). In the example
 below, both are identical because there's a `book = "0x0"` record in the `[addresses]` section of
 the `Move.toml`.
 

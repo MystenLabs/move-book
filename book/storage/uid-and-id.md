@@ -37,7 +37,7 @@ let uid = object::new(ctx);
 ```
 
 On Sui, `UID` acts as a representation of an object, and allows defining behaviors and features of
-an object. One of the key features - [Dynamic Fields](../programmability/dynamic-fields) - is
+an object. One of the key features - [Dynamic Fields](./../programmability/dynamic-fields) - is
 possible because of the `UID` type being explicit. Additionally, it allows the
 [Transfer to Object (TTO)](https://docs.sui.io/concepts/transfers/transfer-to-object), which we will
 explain later in this chapter.

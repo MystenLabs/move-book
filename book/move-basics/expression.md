@@ -9,10 +9,10 @@ In this section, we cover the types of expressions and introduce the concept of 
 
 ## Literals
 
-In the [Primitive types](./primitive-types.md) section, we introduced the basic types of Move. And
-to illustrate them, we used literals. A literal is a notation for representing a fixed value in
-source code. Literals can be used to initialize variables or directly pass fixed values as arguments
-to functions. Move has the following literals:
+In the [Primitive types](./primitive-types) section, we introduced the basic types of Move. And to
+illustrate them, we used literals. A literal is a notation for representing a fixed value in source
+code. Literals can be used to initialize variables or directly pass fixed values as arguments to
+functions. Move has the following literals:
 
 - Boolean values: `true` and `false`
 - Integer values: `0`, `1`, `123123`
@@ -45,10 +45,10 @@ semicolon). A block is an expression, so it can be used anywhere an expression i
 
 ## Function Calls
 
-We go into detail about functions in the [Functions](./function.md) section. However, we have
-already used function calls in previous sections, so it's worth mentioning them here. A function
-call is an expression that calls a function and returns the value of the last expression in the
-function body, provided the last expression does not have a terminating semi-colon.
+We go into detail about functions in the [Functions](./function) section. However, we have already
+used function calls in previous sections, so it's worth mentioning them here. A function call is an
+expression that calls a function and returns the value of the last expression in the function body,
+provided the last expression does not have a terminating semi-colon.
 
 ```move file=packages/samples/sources/move-basics/expression.move anchor=fun_call
 
@@ -57,7 +57,7 @@ function body, provided the last expression does not have a terminating semi-col
 ## Control Flow Expressions
 
 Control flow expressions are used to control the flow of the program. They are also expressions, so
-they return a value. We cover control flow expressions in the [Control Flow](./control-flow.md)
+they return a value. We cover control flow expressions in the [Control Flow](./control-flow)
 section. Here's a very brief overview:
 
 ```move file=packages/samples/sources/move-basics/expression.move anchor=control_flow

@@ -16,7 +16,7 @@ Notes:
 
  -->
 
-In the [Ownership and Scope](./ownership-and-scope.md) section, we explained that when a value is
+In the [Ownership and Scope](./ownership-and-scope) section, we explained that when a value is
 passed to a function, it is _moved_ to the function's scope. This means that the function becomes
 the owner of the value, and the original scope (owner) can no longer use it. This is an important
 concept in Move, as it ensures that the value is not used in multiple places at the same time.
@@ -34,8 +34,8 @@ will look at 4 different scenarios where a card can be:
 ## Layout
 
 The initial layout of the metro pass application is simple. We define the `Card` type and the `USES`
-[constant](./constants.md) that represents the number of rides on a single card. We also add an
-[error constant](./assert-and-abort.md#error-constants) for the case when the card is empty.
+[constant](./constants) that represents the number of rides on a single card. We also add an
+[error constant](./assert-and-abort#error-constants) for the case when the card is empty.
 
 ```move file=packages/samples/sources/move-basics/references.move anchor=header_new
 module book::metro_pass;
@@ -43,7 +43,7 @@ module book::metro_pass;
 
 ```
 
-<!-- In [the previous section](./ownership-and-scope.md) we explained the ownership and scope in Move. We showed how the value is *moved* to a new scope, and how it changes the owner. In this section, we will explain how to *borrow* a reference to a value to avoid moving it, and how Move's *borrow checker* ensures that the references are used correctly. -->
+<!-- In [the previous section](./ownership-and-scope) we explained the ownership and scope in Move. We showed how the value is *moved* to a new scope, and how it changes the owner. In this section, we will explain how to *borrow* a reference to a value to avoid moving it, and how Move's *borrow checker* ensures that the references are used correctly. -->
 
 ## References
 
@@ -62,7 +62,7 @@ _reference_ to the value, not the value itself.
 Because the function does not take ownership of the Card, it can _read_ its data but cannot _write_
 to it, meaning it cannot modify the number of rides. Additionally, the function signature ensures
 that it cannot be called without a Card instance. This is an important property that allows the
-[Capability Pattern](./../programmability/capability.md), which we will cover in the next chapters.
+[Capability Pattern](./../programmability/capability), which we will cover in the next chapters.
 
 Creating a reference to a value is often referred to as "borrowing" the value. For example, the
 method to get a reference to the value wrapped by an `Option` is called `borrow`.

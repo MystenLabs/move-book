@@ -1,14 +1,14 @@
 # Storage Functions
 
 The module that defines main storage operations is `sui::transfer`. It is implicitly imported in all
-packages that depend on the [Sui Framework](./../programmability/sui-framework.md), so, like other
+packages that depend on the [Sui Framework](./../programmability/sui-framework), so, like other
 implicitly imported modules (e.g. `std::option` or `std::vector`), it does not require adding a use
 statement.
 
 ## Overview
 
 The `transfer` module provides functions to perform all three storage operations matching
-[ownership types](./../object/ownership.md) which we explained:
+[ownership types](./../object/ownership) which we explained:
 
 > On this page we will only talk about so-called _restricted_ storage operations, later we will
 > cover _public_ ones, after the `store` ability is introduced.
@@ -19,12 +19,12 @@ The `transfer` module provides functions to perform all three storage operations
    change.
 
 The `transfer` module is a go-to for most of the storage operations, except a special case with
-[Dynamic Fields](./../programmability/dynamic-fields.md) that awaits us in the next chapter.
+[Dynamic Fields](./../programmability/dynamic-fields) that awaits us in the next chapter.
 
 ## Ownership and References: a Quick Recap
 
-In the [Ownership and Scope](./../move-basics/ownership-and-scope.md) and
-[References](./../move-basics/references.md) chapters, we covered the basics of ownership and
+In the [Ownership and Scope](./../move-basics/ownership-and-scope) and
+[References](./../move-basics/references) chapters, we covered the basics of ownership and
 references in Move. It is important that you understand these concepts when using storage functions.
 Here is a quick recap of the most important points:
 
@@ -55,8 +55,8 @@ public fun borrow_mut<T>(value: &mut T) { /* value is mutably borrowed here! */ 
 ## Transfer
 
 The `transfer::transfer` function is a public function used to transfer an object to another
-address. Its signature is as follows, only accepts a type with the [`key` ability](./key-ability.md)
-and an [address](./../move-basics/address.md) of the recipient. Please, note that the object is
+address. Its signature is as follows, only accepts a type with the [`key` ability](./key-ability)
+and an [address](./../move-basics/address) of the recipient. Please, note that the object is
 passed into the function _by value_, therefore it is _moved_ to the function scope and then moved to
 the recipient address:
 
@@ -123,7 +123,7 @@ public fun mint_and_transfer(
 The `mint_and_transfer` function is a public function that "could" be called by anyone, but it
 requires an `AdminCap` object to be passed as the first argument by reference. Without it, the
 function will not be callable. This is a simple way to restrict access to privileged functions
-called _[Capability](./../programmability/capability.md)_. Because the `AdminCap` object is _account
+called _[Capability](./../programmability/capability)_. Because the `AdminCap` object is _account
 owned_, only `0xa11ce` will be able to call the `mint_and_transfer` function.
 
 The `Gift`s sent to recipients will also be _account owned_, each gift being unique and owned
@@ -143,7 +143,7 @@ _immutable_ state. Once an object is _frozen_, it can never be changed, and it c
 anyone by immutable reference.
 
 The function signature is as follows, only accepts a type with the
-[`key` ability](./key-ability.md). Just like all other storage functions, it takes the object _by
+[`key` ability](./key-ability). Just like all other storage functions, it takes the object _by
 value_:
 
 ```move
@@ -238,7 +238,7 @@ public fun freeze_gift(gift: Gift) {
 The `transfer::share_object` function is a public function used to put an object into a _shared_
 state. Once an object is _shared_, it can be accessed by anyone by a mutable reference (hence,
 immutable too). The function signature is as follows, only accepts a type with the
-[`key` ability](./key-ability.md):
+[`key` ability](./key-ability):
 
 ```move
 module sui::transfer;
@@ -301,6 +301,6 @@ To summarize:
 
 Now that you know main features of the `transfer` module, you can start building more complex
 applications on Sui that involve storage operations. In the next chapter, we will cover the
-[Store Ability](./store-ability.md) which allows storing data inside objects and relaxes transfer
+[Store Ability](./store-ability) which allows storing data inside objects and relaxes transfer
 restrictions which we barely touched on here. And after that we will cover the
-[UID and ID](./uid-and-id.md) types which are the most important types in the Sui storage model.
+[UID and ID](./uid-and-id) types which are the most important types in the Sui storage model.

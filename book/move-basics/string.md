@@ -1,13 +1,13 @@
 # String
 
 While Move does not have a built-in type to represent strings, it does have two standard
-implementations for strings in the [Standard Library](./standard-library.md). The `std::string`
-module defines a `String` type and methods for UTF-8 encoded strings, and the second module,
-`std::ascii`, provides an ASCII `String` type and its methods.
+implementations for strings in the [Standard Library](./standard-library). The `std::string` module
+defines a `String` type and methods for UTF-8 encoded strings, and the second module, `std::ascii`,
+provides an ASCII `String` type and its methods.
 
 > The Sui execution environment automatically converts bytevector into `String` in transaction
 > inputs. As a result, in many cases, constructing a String directly within the
-> [Transaction Block](./../concepts/what-is-a-transaction.md) is unnecessary.
+> [Transaction Block](./../concepts/what-is-a-transaction) is unnecessary.
 
 <!--
 
@@ -16,7 +16,7 @@ module defines a `String` type and methods for UTF-8 encoded strings, and the se
 TODO:
 
 - reference vector
-- reference literals - [Expression](./expression.md#literals)
+- reference literals - [Expression](./expression#literals)
 
 -->
 
@@ -57,7 +57,7 @@ _See [full documentation for std::string][string-stdlib] module._
 ### Creating a String
 
 To create a new UTF-8 `String` instance, you can use the `string::utf8` method. The
-[Standard Library](./standard-library.md) provides an alias `.to_string()` on the `vector<u8>` for
+[Standard Library](./standard-library) provides an alias `.to_string()` on the `vector<u8>` for
 convenience.
 
 ```move file=packages/samples/sources/move-basics/string.move anchor=utf8

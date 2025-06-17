@@ -2,8 +2,8 @@
 
 Sometimes, there’s a need to create a new type that behaves similarly to an existing type but with
 certain modifications or restrictions. For example, you might want to create a
-[collection type](./collections.md) that behaves like a vector but doesn’t allow modifying the
-elements after they’ve been inserted. The wrapper type pattern is an effective way to achieve this.
+[collection type](./collections) that behaves like a vector but doesn’t allow modifying the elements
+after they’ve been inserted. The wrapper type pattern is an effective way to achieve this.
 
 ## Definition
 
@@ -52,6 +52,6 @@ extend the behavior of an existing type. However, it does have some limitations:
 
 The wrapper type pattern is very useful, particularly when used in conjunction with collection
 types, as demonstrated in the previous section. In the next section, we will cover
-[Dynamic Fields](./dynamic-fields.md) — an important primitive that enables
-[Dynamic Collections](./dynamic-collections.md), a way to store large collections of data in a more
+[Dynamic Fields](./dynamic-fields) — an important primitive that enables
+[Dynamic Collections](./dynamic-collections), a way to store large collections of data in a more
 flexible, albeit more expensive, way.

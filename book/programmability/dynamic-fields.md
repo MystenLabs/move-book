@@ -2,7 +2,7 @@
 
 Sui Object model allows objects to be attached to other objects as _dynamic fields_. The behavior is
 similar to how a `Map` works in other programming languages. However, unlike a `Map` which in Move
-would be strictly typed (we have covered it in the [Collections](./collections.md) section), dynamic
+would be strictly typed (we have covered it in the [Collections](./collections) section), dynamic
 fields allow attaching objects of any type. A similar approach from the world of frontend
 development would be a JavaScript Object type which allows storing any type of data dynamically.
 
@@ -10,13 +10,13 @@ development would be a JavaScript Object type which allows storing any type of d
 > fields can be used to store large amounts of data that don't fit into the object limit size.
 
 Dynamic Fields allow for a wide range of applications, from splitting data into smaller parts to
-avoid [object size limit](./../guides/building-against-limits.md) to attaching objects as a part of
+avoid [object size limit](./../guides/building-against-limits) to attaching objects as a part of
 application logic.
 
 ## Definition
 
 Dynamic Fields are defined in the `sui::dynamic_field` module of the
-[Sui Framework](./sui-framework.md). They are attached to object's `UID` via a _name_, and can be
+[Sui Framework](./sui-framework). They are attached to object's `UID` via a _name_, and can be
 accessed using that name. There can be only one field with a given name attached to an object.
 
 ```move
@@ -80,9 +80,9 @@ name, and the `bool` is attached via a `bool` name. Anything is possible with dy
 
 ## Orphaned Dynamic Fields
 
-> To prevent orphaned dynamic fields, please, use
-> [Dynamic Collection Types](./dynamic-collections.md) such as `Bag` as they track the dynamic
-> fields and won't allow unpacking if there are attached fields.
+> To prevent orphaned dynamic fields, please, use [Dynamic Collection Types](./dynamic-collections)
+> such as `Bag` as they track the dynamic fields and won't allow unpacking if there are attached
+> fields.
 
 The `object::delete()` function, which is used to delete a UID, does not track the dynamic fields,
 and cannot prevent dynamic fields from becoming orphaned. Once the parent UID is deleted, the
@@ -120,7 +120,7 @@ As you can see, custom types do work as field names but as long as they can be _
 module, in other words - if they are _internal_ to the module and defined in it. This limitation on
 struct packing can open up new ways in the design of the application.
 
-This approach is used in the Object Capability<!--[]](./object-capability.md)--> pattern, where an
+This approach is used in the Object Capability<!--[]](./object-capability)--> pattern, where an
 application can authorize a foreign object to perform operations in it while not exposing the
 capabilities to other modules.
 
@@ -130,8 +130,8 @@ capabilities to other modules.
 
 Mutable access to `UID` is a security risk. Exposing `UID` of your type as a mutable reference can
 lead to unwanted modifications or removal of the object's dynamic fields. Additionally, it affects
-the Transfer to Object<!--[](./../storage/transfer-to-object.md)--> and
-[Dynamic Object Fields](./dynamic-object-fields.md). Make sure to understand the implications before
+the Transfer to Object<!--[](./../storage/transfer-to-object)--> and
+[Dynamic Object Fields](./dynamic-object-fields). Make sure to understand the implications before
 exposing the `UID` as a mutable reference.
 
 </div>
@@ -165,19 +165,19 @@ implications when making a decision between using dynamic fields and regular fie
 
 ## Limits
 
-Dynamic Fields are not subject to the [object size limit](./../guides/building-against-limits.md),
-and can be used to store large amounts of data. However, they are still subject to the
-[dynamic fields created limit](./../guides/building-against-limits.md), which is set to 1000 fields
-per transaction.
+Dynamic Fields are not subject to the [object size limit](./../guides/building-against-limits), and
+can be used to store large amounts of data. However, they are still subject to the
+[dynamic fields created limit](./../guides/building-against-limits), which is set to 1000 fields per
+transaction.
 
 ## Applications
 
 Dynamic Fields can play a crucial role in applications of any complexity. They open up a variety of
 different use cases, from storing heterogeneous data to attaching objects as part of the application
-logic. They allow for certain [upgradeability practices](./../guides/upgradeability-practices.md)
-based on the ability to define them _later_ and change the type of the field.
+logic. They allow for certain [upgradeability practices](./../guides/upgradeability-practices) based
+on the ability to define them _later_ and change the type of the field.
 
 ## Next Steps
 
-In the next section we will cover [Dynamic Object Fields](./dynamic-object-fields.md) and explain
-how they differ from dynamic fields, and what are the implications of using them.
+In the next section we will cover [Dynamic Object Fields](./dynamic-object-fields) and explain how
+they differ from dynamic fields, and what are the implications of using them.

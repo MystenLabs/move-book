@@ -45,6 +45,7 @@
   --ifm-menu-color: black;
   --ifm-menu-font-weight-base: 400;
   --ifm-menu-color-background-hover: rgba(0, 0, 0, 0.05);
+  --ifm-code-background: rgb(238, 238, 238);
 }
 
 .markdown h1 {
@@ -78,6 +79,7 @@ code {
 [data-theme='dark'] {
   --light-color: rgb(204 204 204);
   --dark-color: rgb(33 37 43);
+  --lighter-color: rgb(40, 44, 52);
   --link-color: rgb(102 178 204);
   --darker-link-color: rgba(102, 179, 204, 0.123);
   --highlight-color: rgb(225 191 141);
@@ -92,7 +94,7 @@ code {
   --ifm-color-primary-lightest: #4fddbf;
   */
 
-  --ifm-background-color: var(--dark-color);
+  --ifm-background-color: var(--lighter-color);
   --ifm-background-color-highlight: var(--highlight-color);
   --ifm-font-color-base: var(--light-color);
 
@@ -108,7 +110,7 @@ html[data-theme='dark'] {
   --ifm-toc-border-color: var(--darker-link-color);
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
   --ifm-menu-color-background: rgb(225 191 141 / 0.1);
-  --ifm-code-background: var(--dark-color);
+  --ifm-code-background: var(--lighter-color);
 }
 
 html {

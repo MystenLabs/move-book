@@ -355,8 +355,8 @@ In particular, the compiler will signal an error if you try to match a value (no
 `drop` using a wildcard, as the wildcard expects to drop the value. Similarly, if you bind a
 non-`drop` value using a binder, it must be used in the right-hand side of the match arm. In
 addition, if you fully destruct that value, you have unpacked it, matching the semantics of
-[non-`drop` struct unpacking](../structs.md#destroying-structs-via-pattern-matching). See the
-[abilities section on `drop`](../abilities.md#drop) for more details about the `drop` capability.
+[non-`drop` struct unpacking](./../structs#destroying-structs-via-pattern-matching). See the
+[abilities section on `drop`](./../abilities#drop) for more details about the `drop` capability.
 
 ```move
 public struct NonDrop(u64)
@@ -577,11 +577,10 @@ mut_on_value(x); // returns 3
 ### `..` Usage
 
 The `..` pattern can only be used within a constructor pattern as a wildcard that matches any number
-of fields -- the
-the compiler expands the `..` to inserting `_` in any missing fields in the constructor pattern (if
-any). So `MyStruct(_, _, _)` is the same as `MyStruct(..)`, `MyStruct(1, _, _)` is the same as
-`MyStruct(1, ..)`. Because of this, there are some restrictions on how, and where the `..` pattern
-can be used:
+of fields -- the the compiler expands the `..` to inserting `_` in any missing fields in the
+constructor pattern (if any). So `MyStruct(_, _, _)` is the same as `MyStruct(..)`,
+`MyStruct(1, _, _)` is the same as `MyStruct(1, ..)`. Because of this, there are some restrictions
+on how, and where the `..` pattern can be used:
 
 - It can only be used **once** within the constructor pattern;
 - In positional arguments it can be used at the beginning, middle, or end of the patterns within the

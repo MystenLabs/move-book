@@ -9,7 +9,7 @@ Packages allow Move programmers to more easily re-use code and share it across p
 package system allows programmers to easily:
 
 - Define a package containing Move code;
-- Parameterize a package by [named addresses](./primitive-types/address.md);
+- Parameterize a package by [named addresses](./primitive-types/address);
 - Import and use packages in other Move code and instantiate named addresses;
 - Build packages and generate associated compilation artifacts from packages; and
 - Work with a common interface around compiled Move artifacts.
@@ -49,7 +49,7 @@ Going through each of these in turn:
 1. The `examples` directory can hold additional code to be used only for development and/or
    tutorials, this will not be included when compiled outside of `test` or `dev` modes.
 1. The `tests` directory can contain Move modules that are only included when compiled in `test`
-   mode or when [Move unit tests](./unit-testing.md) are run.
+   mode or when [Move unit tests](./unit-testing) are run.
 
 ### Move.toml
 
@@ -163,10 +163,10 @@ difficult to understand so we examine them in more detail in
 
 ## Named Addresses During Compilation
 
-Recall that Move has [named addresses](./primitive-types/address.md) and that named addresses cannot
-be declared in Move. Instead they are declared at the package level: in the manifest file
-(`Move.toml`) for a Move package you declare named addresses in the package, instantiate other named
-addresses, and rename named addresses from other packages within the Move package system.
+Recall that Move has [named addresses](./primitive-types/address) and that named addresses cannot be
+declared in Move. Instead they are declared at the package level: in the manifest file (`Move.toml`)
+for a Move package you declare named addresses in the package, instantiate other named addresses,
+and rename named addresses from other packages within the Move package system.
 
 Let's go through each of these actions, and how they are performed in the package's manifest
 one-by-one:

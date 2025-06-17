@@ -26,7 +26,7 @@ defined in the struct. The fields are serialized using the same rules as the top
 
 ## Using BCS
 
-The [Sui Framework](./sui-framework.md) includes the sui::bcs module for encoding and decoding data.
+The [Sui Framework](./sui-framework) includes the sui::bcs module for encoding and decoding data.
 Encoding functions are native to the VM, and decoding functions are implemented in Move.
 
 ## Encoding
@@ -104,7 +104,7 @@ For most common scenarios, `bcs` module provides a basic set of functions for de
 > single variant in BCS, and makes Option in Rust fully compatible with the one in Move.
 -->
 
-[Option](./../move-basics/option.md) is represented as a vector of either 0 or 1 element. To read an
+[Option](./../move-basics/option) is represented as a vector of either 0 or 1 element. To read an
 option, you would treat it like a vector and check its length (first byte - either 1 or 0).
 
 ```move file=packages/samples/sources/programmability/bcs.move anchor=decode_option

@@ -88,7 +88,7 @@ bookSidebar:
         id: move-basics/visibility
       - label: Ownership and Scope
         id: move-basics/ownership-and-scope
-      - label: '5.22 Ability: Copy'
+      - label: 'Ability: Copy'
         id: move-basics/copy-ability
       - label: References
         id: move-basics/references

@@ -32,7 +32,7 @@ public struct TxContext has drop {
 
 Transaction context cannot be constructed manually or directly modified. It is created by the system
 and passed to the function as a reference in a transaction. Any function called in a
-[Transaction](./../concepts/what-is-a-transaction.md) has access to the context and can pass it into
+[Transaction](./../concepts/what-is-a-transaction) has access to the context and can pass it into
 the nested calls.
 
 > `TxContext` has to be the last argument in the function signature.

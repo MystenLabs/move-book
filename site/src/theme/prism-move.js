@@ -48,6 +48,20 @@
 
   Prism.languages['move'] = {
     comment: [
+      // {
+      //   // Comment that starts with `// ERROR`
+      //   // For better visibility in the book.
+      //   name: 'comment-starts-with-error',
+      //   pattern: /\/\/\s*error.*/i,
+      //   alias: 'error-comment',
+      // },
+      // {
+      //   // Comment that starts with `// ERROR`
+      //   // For better visibility in the book.
+      //   name: 'error-highlight-comment',
+      //   pattern: /\/\/\s+\^+.*/i,
+      //   alias: 'error-comment',
+      // },
       {
         name: 'line-comments',
         pattern: RegExp(/(^|[^\\])/.source + multilineComment),
@@ -185,7 +199,7 @@
      */
 
     'struct-or-enum-definition': {
-      pattern: /\b(struct|enum).*[{;]/,
+      pattern: /\b(struct|enum).*[{;\(]/,
       inside: {
         'enum-keyword': {
           pattern: /\b(enum)\b/,
@@ -418,7 +432,7 @@
       // alias: "property",
     },
 
-    punctuation: /|\.\.=|::|[{}[\];(),:]/,
+    // punctuation: /|\.\.=|::|[{}[\];(),:]/,
 
     // abilities: {
     //   pattern: /\b(key|store|copy|drop)\b/

@@ -1,6 +1,6 @@
 # Package Manifest
 
-The `Move.toml` is a manifest file that describes the [package](./packages.md) and its dependencies.
+The `Move.toml` is a manifest file that describes the [package](./packages) and its dependencies.
 It is written in [TOML](https://toml.io/en/) format and contains multiple sections, the most
 important of which are `[package]`, `[dependencies]` and `[addresses]`.
 
@@ -118,4 +118,4 @@ local = "../my-package"
 
 ## Further Reading
 
-- [Packages](../../reference/packages) in the Move Reference.
+- [Packages](./../../reference/packages) in the Move Reference.

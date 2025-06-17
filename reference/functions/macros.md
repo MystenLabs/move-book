@@ -14,9 +14,9 @@ These expression substitution mechanics make `macro` functions similar
 [to macros found in other programming languages](<https://en.wikipedia.org/wiki/Macro_(computer_science)>);
 however, they are more constrained in Move than you might expect from other languages. The
 parameters and return values of `macro` functions are still typed--though this can be partially
-relaxed with the [`_` type](../generics.md#_-type). The upside of this restriction however, is that
+relaxed with the [`_` type](./../generics#_-type). The upside of this restriction however, is that
 `macro` functions can be used anywhere a normal function can be used, which is notably helpful with
-[method syntax](../method-syntax.md).
+[method syntax](./../method-syntax).
 
 A more extensive
 [syntactic macro](<https://en.wikipedia.org/wiki/Macro_(computer_science)#Syntactic_macros>) system
@@ -147,7 +147,7 @@ macro fun add_one<$T>($x: $T): $T {
 
 The above macro will not type check if `$T` is not a primitive integer type.
 
-This can be particularly useful in conjunction with [method syntax](../method-syntax.md), where the
+This can be particularly useful in conjunction with [method syntax](./../method-syntax), where the
 function is not resolved until after the macro is expanded.
 
 ```move
@@ -163,8 +163,8 @@ As described in the [hygiene](#hygiene) section, `foo` will be resolved based on
 ### Type Parameters
 
 Type parameters can be instantiated with any type, including reference types `&` and `&mut`. They
-can also be instantiated with [tuple types](./../primitive-types/tuples.md), though the utility of
-this is limited currently since tuples cannot be bound to a variable.
+can also be instantiated with [tuple types](./../primitive-types/tuples), though the utility of this
+is limited currently since tuples cannot be bound to a variable.
 
 This relaxation forces the constraints of a type parameter to be satisfied at the call site in a way
 that does not normally occur. It is generally recommended however to add all necessary constraints
@@ -210,7 +210,7 @@ the [`_` type](#_-type).
 
 ### `_` Type
 
-Normally, the [`_` placeholder type](../generics.md#_-type) is used in expressions to allow for
+Normally, the [`_` placeholder type](./../generics#_-type) is used in expressions to allow for
 partial annotations of type arguments. However, with `macro` functions, the `_` type can be used in
 place of type parameters to relax the signature for any type. This should increase the ergonomics of
 declaring "generic" `macro` functions.
@@ -401,7 +401,7 @@ let result = {
 };
 ```
 
-Similar to variable hygiene, [method resolution](../method-syntax.md) is also scoped to the macro
+Similar to variable hygiene, [method resolution](./../method-syntax) is also scoped to the macro
 definition. For example
 
 ```move
@@ -466,7 +466,7 @@ let result: vector<u64> = vector['a: {
 ```
 
 Where `return 'a 0` will return to the block `'a: { ... }` and not to the caller's body. See the
-section on [labeled control flow](../control-flow/labeled-control-flow.md) for more details.
+section on [labeled control flow](./../control-flow/labeled-control-flow) for more details.
 
 Similarly, `return` in a lambda will return from the lambda, not from the `macro` body and not from
 the outer function.
@@ -513,7 +513,7 @@ The `return 'any true` exits from the "loop" early when the condition is met. Ot
 
 ### Method Syntax
 
-When applicable, `macro` functions can be called using [method syntax](../method-syntax.md). When
+When applicable, `macro` functions can be called using [method syntax](./../method-syntax). When
 using method syntax, the evaluation of the arguments will change in that the first argument (the
 "receiver" of the method) will be evaluated outside of the macro expansion. This example is
 contrived, but will concisely demonstrate the behavior.

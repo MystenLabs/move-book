@@ -9,7 +9,7 @@ Generics can be used to define functions and structs over different input data t
 feature is sometimes referred to as parametric polymorphism. In Move, we will often use the term
 generics interchangeably with _type parameters_ and _type arguments_.
 
-Generics are commonly used in library code, such as in [vector](./primitive-types/vector.md), to
+Generics are commonly used in library code, such as in [vector](./primitive-types/vector), to
 declare code that works over any possible type (that satisfies the specified constraints). This sort
 of parameterization allows you to reuse the same implementation across multiple types and
 situations.
@@ -262,10 +262,10 @@ appear in any of the fields defined in `Coin`.
 
 In the example above, although `struct Coin` asks for the `store` ability, neither `Coin<A>` nor
 `Coin<B>` will have the `store` ability. This is because of the rules for
-[Conditional Abilities and Generic Types](./abilities.md#conditional-abilities-and-generic-types)
-and the fact that `A` and `B` don't have the `store` ability, despite the fact that they are not
-even used in the body of `struct Coin`. This might cause some unpleasant consequences. For example,
-we are unable to put `Coin<A>` into a wallet in storage.
+[Conditional Abilities and Generic Types](./abilities#conditional-abilities-and-generic-types) and
+the fact that `A` and `B` don't have the `store` ability, despite the fact that they are not even
+used in the body of `struct Coin`. This might cause some unpleasant consequences. For example, we
+are unable to put `Coin<A>` into a wallet in storage.
 
 One possible solution would be to add spurious ability annotations to `A` and `B` (i.e.,
 `public struct Currency1 has store {}`). But, this might lead to bugs or security vulnerabilities
@@ -356,7 +356,7 @@ In the examples above, we have demonstrated how one can use type parameters to d
 types that can be plugged in by callers at a later time. This however means the type system has
 little information about the type and has to perform checks in a very conservative way. In some
 sense, the type system must assume the worst case scenario for an unconstrained generic--a type with
-no [abilities](./abilities.md).
+no [abilities](./abilities).
 
 Constraints offer a way to specify what properties these unknown types have so the type system can
 allow operations that would otherwise be unsafe.
@@ -370,7 +370,7 @@ Constraints can be imposed on type parameters using the following syntax.
 T: <ability> (+ <ability>)*
 ```
 
-The `<ability>` can be any of the four [abilities](./abilities.md), and a type parameter can be
+The `<ability>` can be any of the four [abilities](./abilities), and a type parameter can be
 constrained with multiple abilities at once. So all of the following would be valid type parameter
 declarations:
 
@@ -436,7 +436,7 @@ fun foo(): (NoAbilities, NoAbilities) {
 ```
 
 For more information, see the abilities section on
-[conditional abilities and generic types](./abilities.md#conditional-abilities-and-generic-types).
+[conditional abilities and generic types](./abilities#conditional-abilities-and-generic-types).
 
 ## Limitations on Recursions
 

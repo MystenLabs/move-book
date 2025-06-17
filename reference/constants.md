@@ -42,9 +42,9 @@ const ADDRESS_42: address = @0x42;
 ```
 
 Even though you can use letters `a` to `z` in a constant. The
-[general style guidelines](./coding-conventions.md) are to use just uppercase letters `A` to `Z`,
-with underscores `_` between each word. For error codes, we use `E` as a prefix and then upper camel
-case (also known as Pascal case) for the rest of the name, as seen in `EMyErrorCode`.
+[general style guidelines](./coding-conventions) are to use just uppercase letters `A` to `Z`, with
+underscores `_` between each word. For error codes, we use `E` as a prefix and then upper camel case
+(also known as Pascal case) for the rest of the name, as seen in `EMyErrorCode`.
 
 The current naming restriction of starting with `A` to `Z` is in place to give room for future
 language features.
@@ -53,7 +53,7 @@ language features.
 
 `public` or `public(package)` constants are not currently supported. `const` values can be used only
 in the declaring module. However, as a convenience, they can be used across modules in
-[unit tests attributes](./unit-testing.md).
+[unit tests attributes](./unit-testing).
 
 ## Valid Expressions
 

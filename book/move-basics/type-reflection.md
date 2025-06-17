@@ -5,7 +5,7 @@ structure and behavior. Move has a limited form of reflection that allows you to
 a value at runtime. This is useful when you need to store type information in a homogeneous
 collection, or when you need to check if a type belongs to a package.
 
-Type reflection is implemented in the [Standard Library](./standard-library.md) module
+Type reflection is implemented in the [Standard Library](./standard-library) module
 [`std::type_name`][type-name-stdlib]. Expressed very roughly, it gives a single function `get<T>()`
 which returns the name of the type `T`.
 

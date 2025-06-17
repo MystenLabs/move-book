@@ -102,7 +102,7 @@ module b::other {
 
 Before the addition of `public(package)`, `public(friend)` was used to allow limited public access
 to functions in the same package, but where the list of allowed modules had to be explicitly
-enumerated by the callee's module. see [Friends](./friends.md) for more details.
+enumerated by the callee's module. see [Friends](./friends) for more details.
 
 ### `entry` modifier
 
@@ -138,7 +138,7 @@ restrictions are specific to each individual deployment of Move.
 [The documentation for `entry` functions on Sui can be found here.](https://docs.sui.io/concepts/sui-move-concepts/entry-functions).
 
 To enable easier testing, `entry` functions can be called from
-[`#[test]` and `#[test_only]`](./unit-testing.md) contexts.
+[`#[test]` and `#[test_only]`](./unit-testing) contexts.
 
 ```move
 module a::m {
@@ -177,7 +177,7 @@ fun example() {
 }
 ```
 
-See the chapter on [macros](./functions/macros.md) for more information.
+See the chapter on [macros](./functions/macros) for more information.
 
 ### Name
 
@@ -199,7 +199,7 @@ fun id<T>(x: T): T { x }
 fun example<T1: copy, T2>(x: T1, y: T2): (T1, T1, T2) { (copy x, x, y) }
 ```
 
-For more details, see [Move generics](./generics.md).
+For more details, see [Move generics](./generics).
 
 ### Parameters
 
@@ -239,7 +239,7 @@ fun zero(): u64 { 0 }
 
 Here `: u64` indicates that the function's return type is `u64`.
 
-Using [tuples](./primitive-types/tuples.md), a function can return multiple values:
+Using [tuples](./primitive-types/tuples), a function can return multiple values:
 
 ```move
 fun one_two_three(): (u64, u64, u64) { (0, 1, 2) }
@@ -254,9 +254,9 @@ fun just_unit() { () }
 fun just_unit() { }
 ```
 
-As mentioned in the [tuples section](./primitive-types/tuples.md), these tuple "values" do not exist
-as runtime values. This means that a function that returns unit `()` does not return any value
-during execution.
+As mentioned in the [tuples section](./primitive-types/tuples), these tuple "values" do not exist as
+runtime values. This means that a function that returns unit `()` does not return any value during
+execution.
 
 ### Function body
 
@@ -273,7 +273,7 @@ fun example(): u64 {
 
 See [the section below for more information on returns](#returning-values)
 
-For more information on expression blocks, see [Move variables](./variables.md).
+For more information on expression blocks, see [Move variables](./variables).
 
 ### Native Functions
 
@@ -348,7 +348,7 @@ module b::other {
 }
 ```
 
-For more details, see [Move generics](./generics.md).
+For more details, see [Move generics](./generics).
 
 ## Returning values
 
@@ -362,9 +362,9 @@ fun add(x: u64, y: u64): u64 {
 
 The return value here is the result of `x + y`.
 
-[As mentioned above](#function-body), the function's body is an [expression block](./variables.md).
-The expression block can sequence various statements, and the final expression in the block will be
-be the value of that block
+[As mentioned above](#function-body), the function's body is an [expression block](./variables). The
+expression block can sequence various statements, and the final expression in the block will be be
+the value of that block
 
 ```move
 fun double_and_add(x: u64, y: u64): u64 {

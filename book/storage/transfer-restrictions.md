@@ -1,6 +1,6 @@
 # Restricted and Public Transfer
 
-Storage Operations that we described in the [previous sections](./storage-functions.md) are
+Storage Operations that we described in the [previous sections](./storage-functions) are
 restricted by default - they can only be called in the module defining the object. In other terms,
 the type must be _internal_ to the module to be used in storage operations. This restriction is
 implemented in the Sui Verifier and is enforced at the bytecode level.

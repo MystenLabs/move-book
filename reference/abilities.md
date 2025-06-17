@@ -12,10 +12,10 @@ the notion of storage for the blockchain). This is implemented by gating access 
 instructions so that for a value to be used with the bytecode instruction, it must have the ability
 required (if one is required at all—not every instruction is gated by an ability).
 
-For Sui, `key` is used to signify an [object](./abilities/object.md). Objects are the basic unit of
-storage where each object has a unique, 32-byte ID. `store` is then used to both indicate what data
-can be stored inside of an object, and is also used to indicate what types can be transferred
-outside of their defining module.
+For Sui, `key` is used to signify an [object](./../book/storage/key-ability). Objects are the basic
+unit of storage where each object has a unique, 32-byte ID. `store` is then used to both indicate
+what data can be stored inside of an object, and is also used to indicate what types can be
+transferred outside of their defining module.
 
 <!-- TODO future section on detailed walk through maybe. We have some examples at the end but it might be helpful to explain why we have precisely this set of abilities
 
@@ -31,20 +31,21 @@ The four abilities are:
   - Allows values of types with this ability to be popped/dropped.
 - [`store`](#store)
   - Allows values of types with this ability to exist inside a value in storage.
-  - For Sui, `store` controls what data can be stored inside of an [object](./abilities/object.md).
-    `store` also controls what types can be transferred outside of their defining module.
+  - For Sui, `store` controls what data can be stored inside of an
+    [object](./../book/storage/key-ability). `store` also controls what types can be transferred
+    outside of their defining module.
 - [`key`](#key)
   - Allows the type to serve as a "key" for storage. Ostensibly this means the value can be a
     top-level value in storage; in other words, it does not need to be contained in another value to
     be in storage.
-  - For Sui, `key` is used to signify an [object](./abilities/object.md).
+  - For Sui, `key` is used to signify an [object](./abilities/object).
 
 ### `copy`
 
 The `copy` ability allows values of types with that ability to be copied. It gates the ability to
-copy values out of local variables with the [`copy`](./variables.md#move-and-copy) operator and to
-copy values via references with
-[dereference `*e`](./primitive-types/references.md#reading-and-writing-through-references).
+copy values out of local variables with the [`copy`](./variables#move-and-copy) operator and to copy
+values via references with
+[dereference `*e`](./primitive-types/references#reading-and-writing-through-references).
 
 If a value has `copy`, all values contained inside of that value have `copy`.
 
@@ -55,10 +56,10 @@ value is not transferred and is effectively destroyed as the Move program execut
 ability gates the ability to ignore values in a multitude of locations, including:
 
 - not using the value in a local variable or parameter
-- not using the value in a [sequence via `;`](./variables.md#expression-blocks)
-- overwriting values in variables in [assignments](./variables.md#assignments)
+- not using the value in a [sequence via `;`](./variables#expression-blocks)
+- overwriting values in variables in [assignments](./variables#assignments)
 - overwriting values via references when
-  [writing `*e1 = e2`](./primitive-types/references.md#reading-and-writing-through-references).
+  [writing `*e1 = e2`](./primitive-types/references#reading-and-writing-through-references).
 
 If a value has `drop`, all values contained inside of that value have `drop`.
 
@@ -72,8 +73,8 @@ directly gate an operation. Instead it gates the existence in storage when used 
 If a value has `store`, all values contained inside of that value have `store`.
 
 For Sui, `store` serves double duty. It controls what values can appear inside of an
-[object](./abilities/object.md), and what objects can be
-[transferred](./abilities/object.md#transfer-rules) outside of their defining module.
+[object](./../book/storage/store-ability), and what objects can be
+[transferred](./abilities/object#transfer-rules) outside of their defining module.
 
 ### `key`
 
@@ -85,7 +86,7 @@ ability.
 If a value has `key`, all values contained inside of that value have `store`. This is the only
 ability with this sort of asymmetry.
 
-For Sui, `key` is used to signify an [object](./abilities/object.md).
+For Sui, `key` is used to signify an [object](./../book/storage/key-ability).
 
 ## Builtin Types
 
@@ -108,8 +109,8 @@ storage operations.
 To declare that a `struct` or `enum` has an ability, it is declared with `has <ability>` after the
 datatype name and either before or after the fields/variants. For example:
 
-```move
-{{#include ../../packages/reference/sources/abilities.move:annotating_datatypes}}
+```move file=packages/reference/sources/abilities.move anchor=annotating_datatypes
+
 ```
 
 In this case: `Ignorable*` has the `drop` ability. `Pair*` and `MyVec*` both have `copy`, `drop`,
@@ -176,8 +177,10 @@ public struct MyDataEnum has store {
 When abilities are annotated on a generic type, not all instances of that type are guaranteed to
 have that ability. Consider this struct declaration:
 
+<!-- file=packages/reference/sources/abilities.move anchor=conditional_abilities -->
+
 ```move
-{{#include ../../packages/reference/sources/abilities.move:conditional_abilities}}
+public struct Cup<T> has copy, drop, store, key { item: T }
 ```
 
 It might be very helpful if `Cup` could hold any type, regardless of its abilities. The type system

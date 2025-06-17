@@ -137,10 +137,9 @@ Comparison operations do not abort.
 
 ### Equality
 
-Like all types with [`drop`](../abilities.md), all integer types support the
-["equal"](../equality.md) and ["not equal"](../equality.md) operations. Both arguments need to be of
-the same type. If you need to compare integers of different types, you must [cast](#casting) one of
-them first.
+Like all types with [`drop`](./../abilities), all integer types support the ["equal"](./../equality)
+and ["not equal"](./../equality) operations. Both arguments need to be of the same type. If you need
+to compare integers of different types, you must [cast](#casting) one of them first.
 
 Equality operations do not abort.
 
@@ -149,7 +148,7 @@ Equality operations do not abort.
 | `==`   | equal     |
 | `!=`   | not equal |
 
-For more details see the section on [equality](../equality.md)
+For more details see the section on [equality](./../equality)
 
 ## Casting
 
@@ -178,4 +177,4 @@ For example:
 
 As with the other scalar values built-in to the language, integer values are implicitly copyable,
 meaning they can be copied without an explicit instruction such as
-[`copy`](../variables.md#move-and-copy).
+[`copy`](./../variables#move-and-copy).

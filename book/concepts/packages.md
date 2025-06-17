@@ -18,9 +18,9 @@
 
 Move is a language for writing smart contracts - programs that are stored and run on the blockchain.
 A single program is organized into a package. A package is published on the blockchain and is
-identified by an [address](./address.md). A published package can be interacted with by sending
-[transactions](./what-is-a-transaction.md) calling its functions. It can also act as a dependency
-for other packages.
+identified by an [address](./address). A published package can be interacted with by sending
+[transactions](./what-is-a-transaction) calling its functions. It can also act as a dependency for
+other packages.
 
 > To create a new package, use the `sui move new` command. To learn more about the command, run
 > `sui move new --help`.
@@ -62,8 +62,8 @@ used for code examples, and is also not published on-chain.
 ## Published Package
 
 During development, package doesn't have an address and it needs to be set to `0x0`. Once a package
-is published, it gets a single unique [address](./address.md) on the blockchain containing its
-modules' bytecode. A published package becomes _immutable_ and can be interacted with by sending
+is published, it gets a single unique [address](./address) on the blockchain containing its modules'
+bytecode. A published package becomes _immutable_ and can be interacted with by sending
 transactions.
 
 ```
@@ -74,6 +74,6 @@ transactions.
 
 ## Links
 
-- [Package Manifest](./manifest.md)
-- [Address](./address.md)
+- [Package Manifest](./manifest)
+- [Address](./address)
 - [Packages](./../../reference/packages) in the Move Reference.

@@ -1,10 +1,10 @@
 # Functions
 
 Functions are the building blocks of Move programs. They are called from
-[user transactions](../concepts/what-is-a-transaction) and from other functions and group executable
-code into reusable units. Functions can take arguments and return a value. They are declared with
-the `fun` keyword at the module level. Just like any other module member, by default they're private
-and can only be accessed from within the module.
+[user transactions](./../concepts/what-is-a-transaction) and from other functions and group
+executable code into reusable units. Functions can take arguments and return a value. They are
+declared with the `fun` keyword at the module level. Just like any other module member, by default
+they're private and can only be accessed from within the module.
 
 ```move file=packages/samples/sources/move-basics/function.move anchor=math
 

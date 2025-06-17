@@ -7,9 +7,9 @@ description: ''
 
 `address` is a built-in type in Move that is used to represent locations (sometimes called accounts)
 in storage. An `address` value is a 256-bit (32 byte) identifier. Move uses addresses to
-differentiate packages of [modules](../modules.md), where each package has its own address and
+differentiate packages of [modules](./../modules), where each package has its own address and
 modules. Specific deployments of Move might also use the `address` value for
-[storage](../abilities.md#key) operations.
+[storage](./../abilities#key) operations.
 
 > For Sui, `address` is used to represent "accounts", and also objects via strong type wrappers
 > (with `sui::object::UID` and `sui::object::ID`).
@@ -27,16 +27,16 @@ modules at runtime.
 
 Addresses come in two flavors, named or numerical. The syntax for a named address follows the same
 rules for any named identifier in Move. The syntax of a numerical address is not restricted to
-hex-encoded values, and any valid [`u256` numerical value](./integers.md) can be used as an address
+hex-encoded values, and any valid [`u256` numerical value](./integers) can be used as an address
 value, e.g., `42`, `0xCAFE`, and `10_000` are all valid numerical address literals.
 
 To distinguish when an address is being used in an expression context or not, the syntax when using
 an address differs depending on the context where it's used:
 
 - When an address is used as an expression, the address must be prefixed by the `@` character, i.e.,
-  [`@<numerical_value>`](./integers.md) or `@<named_address_identifier>`.
+  [`@<numerical_value>`](./integers) or `@<named_address_identifier>`.
 - Outside of expression contexts, the address may be written without the leading `@` character,
-  i.e., [`<numerical_value>`](./integers.md) or `<named_address_identifier>`.
+  i.e., [`<numerical_value>`](./integers) or `<named_address_identifier>`.
 
 In general, you can think of `@` as an operator that takes an address from being a namespace item to
 being an expression item.

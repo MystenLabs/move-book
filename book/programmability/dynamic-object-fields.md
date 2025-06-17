@@ -1,6 +1,6 @@
 # Dynamic Object Fields
 
-> This section expands on the [Dynamic Fields](./dynamic-fields.md). Please, read it first to
+> This section expands on the [Dynamic Fields](./dynamic-fields). Please, read it first to
 > understand the basics of dynamic fields.
 
 Another variation of dynamic fields is _dynamic object fields_, which have certain differences from
@@ -14,8 +14,8 @@ explain how they differ from regular dynamic fields.
 ## Definition
 
 Dynamic Object Fields are defined in the `sui::dynamic_object_fields` module in the
-[Sui Framework](./sui-framework.md). They are similar to dynamic fields in many ways, but unlike
-them, dynamic object fields have an extra constraint on the `Value` type. The `Value` must have a
+[Sui Framework](./sui-framework). They are similar to dynamic fields in many ways, but unlike them,
+dynamic object fields have an extra constraint on the `Value` type. The `Value` must have a
 combination of `key` and `store`, not just `store` as in the case of dynamic fields.
 
 They're less explicit in their framework definition, as the concept itself is more abstract:
@@ -31,8 +31,8 @@ public struct Wrapper<Name> has copy, drop, store {
 }
 ```
 
-Unlike `Field` type in the [Dynamic Fields](./dynamic-fields.md#definition) section, the `Wrapper`
-type only stores the name of the field. The value is the object itself, and is _not wrapped_.
+Unlike `Field` type in the [Dynamic Fields](./dynamic-fields#definition) section, the `Wrapper` type
+only stores the name of the field. The value is the object itself, and is _not wrapped_.
 
 The constraints on the `Value` type become visible in the methods available for dynamic object
 fields. Here's the signature for the `add` function:
@@ -50,7 +50,7 @@ public fun add<Name: copy + drop + store, Value: key + store>(
 ```
 
 The rest of the methods which are identical to the ones in the
-[Dynamic Fields](./dynamic-fields.md#usage) section have the same constraints on the `Value` type.
+[Dynamic Fields](./dynamic-fields#usage) section have the same constraints on the `Value` type.
 Let's list them for reference:
 
 - `add` - adds a dynamic object field to the object
@@ -89,5 +89,5 @@ adding and accessing object fields (loading 2 objects compared to 1 for dynamic 
 Both dynamic field and dynamic object fields are powerful features which allow for innovative
 solutions in applications. However, they are relatively low-level and require careful handling to
 avoid orphaned fields. In the next section, we will introduce a higher-level abstraction -
-[Dynamic Collections](./dynamic-collections.md) - which can help with managing dynamic fields and
+[Dynamic Collections](./dynamic-collections) - which can help with managing dynamic fields and
 objects more effectively.

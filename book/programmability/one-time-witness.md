@@ -1,6 +1,6 @@
 # One Time Witness
 
-While regular [Witness](./witness-pattern.md) is a great way to statically prove the ownership of a
+While regular [Witness](./witness-pattern) is a great way to statically prove the ownership of a
 type, there are cases where we need to ensure that a Witness is instantiated only once. And this is
 the purpose of the One Time Witness (OTW).
 
@@ -30,13 +30,13 @@ Here is an example of an OTW:
 
 The OTW cannot be constructed manually, and any code attempting to do so will result in a
 compilation error. The OTW can be received as the first argument in the
-[module initializer](./module-initializer.md). And because the `init` function is called only once
-per module, the OTW is guaranteed to be instantiated only once.
+[module initializer](./module-initializer). And because the `init` function is called only once per
+module, the OTW is guaranteed to be instantiated only once.
 
 ## Enforcing the OTW
 
-To check if a type is an OTW, `sui::types` module of the [Sui Framework](./sui-framework.md) offers
-a special function `is_one_time_witness` that can be used to check if the type is an OTW.
+To check if a type is an OTW, `sui::types` module of the [Sui Framework](./sui-framework) offers a
+special function `is_one_time_witness` that can be used to check if the type is an OTW.
 
 ```move file=packages/samples/sources/programmability/one-time-witness.move anchor=usage
 
@@ -146,7 +146,7 @@ needed in libraries and frameworks. For example, the `sui::coin` module requires
 `coin::create_currency` method, therefore enforcing that the `coin::TreasuryCap` is created only
 once.
 
-OTW is a powerful tool that lays the foundation for the [Publisher](./publisher.md) object, which we
+OTW is a powerful tool that lays the foundation for the [Publisher](./publisher) object, which we
 will cover in the next section.
 
 <!--
