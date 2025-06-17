@@ -6,8 +6,7 @@ one of the methods below.
 
 ## Installing via suiup
 
-The best way to install Sui is by using [`suiup`](https://github.com/MystenLabs/suiup). Not only
-does it provide an easy way to install a binary, but also manage different versions of binaries for
+The best way to install Sui is by using [`suiup`](https://github.com/MystenLabs/suiup). It provides a simple way to install binaries and to manage different versions of binaries for
 different environments (e.g. `testnet` and `mainnet`).
 
 Installation instructions for `suiup` can be found
