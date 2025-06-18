@@ -17,6 +17,11 @@ export type PrismTheme = {
 const baseTheme = prismThemes.oneLight;
 
 baseTheme.styles.push({
+  types: ['comment'],
+  style: { color: '#A0A1A7' },
+});
+
+baseTheme.styles.push({
   types: ['entity'],
   style: { color: '#C18401' },
 });

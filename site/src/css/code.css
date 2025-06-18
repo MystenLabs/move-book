@@ -19,6 +19,18 @@
   background-color: #ff000020;
 }
 
+/* Code-like comments */
+
+.comment {
+  color: #a0a1a7;
+  font-style: italic;
+}
+
+[data-theme='dark'] .comment {
+  color: #5c6370;
+  font-style: italic;
+}
+
 /* Inline code blocks, see theme/CodeInline/index.tsx */
 
 .inline-code {
@@ -30,4 +42,10 @@
 
 [data-theme='dark'] .inline-code {
   background-color: var(--ifm-code-background);
+}
+
+/* Code block icons */
+
+.code-icon {
+  font-size: calc(var(--ifm-code-font-size) + 4px);
 }

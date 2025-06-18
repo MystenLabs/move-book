@@ -1,5 +1,5 @@
-import React, {type ReactNode} from 'react';
-import type {Props} from '@theme/CodeInline';
+import React, { type ReactNode } from 'react';
+import type { Props } from '@theme/CodeInline';
 
 // Simple component used to render inline code blocks
 // its purpose is to be swizzled and customized
