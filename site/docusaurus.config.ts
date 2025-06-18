@@ -7,7 +7,7 @@ import prismAtomOneLight from './src/theme/prism-atom-one-light';
 export default {
   title: 'The Move Book',
   tagline:
-    'First book about the Move programming language and the Move VM. Move documentation, Move tutorials and language reference',
+    'First book about the Move programming language and the Move VM. Move documentation, Move tutorials, and language reference.',
   favicon: 'favicon.svg',
 
   // Future compatibility flags.
