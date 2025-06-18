@@ -132,19 +132,15 @@ export default {
       '@easyops-cn/docusaurus-search-local',
       {
         // `hashed` is recommended as long-term-cache of index file is possible.
-        hashed: true,
+        hashed: false,
         docsRouteBasePath: '/',
         searchResultLimits: 10,
         searchBarShortcutHint: false,
         blogDir: [],
-        docsDir: [], // ignore, we use `searchContextByPaths` instead
+        docsDir: ['./../book', './../reference'],
         language: ['en'],
         explicitSearchResultPath: true,
-        highlightSearchTermsOnTargetPage: false, // looks ugly...
-        searchContextByPaths: [
-          { label: 'The Move Book', path: './../book' },
-          { label: 'The Move Reference', path: './../reference' },
-        ],
+        highlightSearchTermsOnTargetPage: false,
       },
     ],
   ],
