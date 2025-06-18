@@ -204,8 +204,18 @@
     },
 
     visibility: {
-      pattern: /\b(public|package|entry|native|friend)\b/,
+      pattern: /\b(public|entry|native)\b/,
       alias: 'keyword',
+    },
+
+    'public-visibility': {
+      pattern: /\(package|friend\)/,
+      inside: {
+        keywords: {
+          pattern: /\b(package|friend)\b/,
+          alias: 'keyword',
+        },
+      },
     },
 
     macro: {
