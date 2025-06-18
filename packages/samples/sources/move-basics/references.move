@@ -3,7 +3,7 @@
 
 // ANCHOR: main
 module book::references;
-// ANCHOR: header
+// ANCHOR: header_new
 /// Error code for when the card is empty.
 const ENoUses: u64 = 0;
 
@@ -12,13 +12,12 @@ const USES: u8 = 3;
 
 /// A metro pass card
 public struct Card { uses: u8 }
-// ANCHOR_END: header
-// ANCHOR: new
+
 /// Purchase a metro pass card.
 public fun purchase(/* pass a Coin */): Card {
     Card { uses: USES }
 }
-// ANCHOR_END: new
+// ANCHOR_END: header_new
 
 // ANCHOR: immutable
 /// Show the metro pass card to the inspector.

@@ -19,3 +19,4 @@ public fun new(ctx: &mut TxContext): User {
     User { id: object::new(ctx) }
 }
 // ANCHOR_END: with_address
+

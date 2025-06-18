@@ -1,0 +1,234 @@
+# Refer to https://docusaurus.io/docs/sidebar/items
+# For possible values of type
+
+bookSidebar:
+  - label: The Move Book
+    enumerate: false
+    id: index
+  - label: Foreword
+    enumerate: false
+    id: foreword
+  - type: category
+    label: Before We Begin
+    link:
+      id: before-we-begin/index
+      type: doc
+    items:
+      - label: Install Sui
+        id: before-we-begin/install-sui
+      - label: IDE Support
+        id: before-we-begin/ide-support
+      - label: Move 2024
+        id: before-we-begin/move-2024
+  - label: Hello World!
+    id: your-first-move/hello-world
+  - label: Hello Sui!
+    id: your-first-move/hello-sui
+  - type: category
+    label: Concepts
+    link:
+      id: concepts/index
+      type: doc
+    items:
+      - label: Packages
+        id: concepts/packages
+      - label: Manifest
+        id: concepts/manifest
+      - label: Address
+        id: concepts/address
+      - label: Account
+        id: concepts/what-is-an-account
+      - label: Transaction
+        id: concepts/what-is-a-transaction
+  - type: category
+    label: Move Basics
+    link:
+      id: move-basics/index
+      type: doc
+    items:
+      - label: Modules
+        id: move-basics/module
+      - label: Comments
+        id: move-basics/comments
+      - label: Primitive Types
+        id: move-basics/primitive-types
+      - label: Address Type
+        id: move-basics/address
+      - label: Expressions
+        id: move-basics/expression
+      - label: Structs
+        id: move-basics/struct
+      - label: Abilities Introduction
+        id: move-basics/abilities-introduction
+      - label: 'Ability: Drop'
+        id: move-basics/drop-ability
+      - label: Importing Modules
+        id: move-basics/importing-modules
+      - label: Standard Library
+        id: move-basics/standard-library
+      - label: Vector
+        id: move-basics/vector
+      - label: Option
+        id: move-basics/option
+      - label: String
+        id: move-basics/string
+      - label: Control Flow
+        id: move-basics/control-flow
+      - label: Enums and Match
+        id: move-basics/enum-and-match
+      - label: Constants
+        id: move-basics/constants
+      - label: Aborting Execution
+        id: move-basics/assert-and-abort
+      - label: Functions
+        id: move-basics/function
+      - label: Struct Methods
+        id: move-basics/struct-methods
+      - label: Visibility Modifiers
+        id: move-basics/visibility
+      - label: Ownership and Scope
+        id: move-basics/ownership-and-scope
+      - label: 'Ability: Copy'
+        id: move-basics/copy-ability
+      - label: References
+        id: move-basics/references
+      - label: Generics
+        id: move-basics/generics
+      - label: Type Reflection
+        id: move-basics/type-reflection
+      # - label: "5.26 Macros: Introduction"
+      #   type: doc
+      #   id: move-basics/type-parameters
+      - label: Testing
+        id: move-basics/testing
+  - type: category
+    label: Object Model
+    link:
+      id: object/index
+      type: doc
+    items:
+      - label: Language for Digital Assets
+        id: object/digital-assets
+      - label: Evolution of Move
+        id: object/evolution-of-move
+      - label: What is an Object?
+        id: object/object-model
+      - label: Ownership
+        id: object/ownership
+      - label: Fast Path & Consensus
+        id: object/fast-path-and-consensus
+  - type: category
+    label: Using Objects
+    link:
+      id: storage/index
+      type: doc
+    items:
+      - label: 'Ability: Key'
+        id: storage/key-ability
+      - label: Storage Functions
+        id: storage/storage-functions
+      - label: 'Ability: Store'
+        id: storage/store-ability
+      - label: UID and ID
+        id: storage/uid-and-id
+      - label: Transfer Restrictions
+        id: storage/transfer-restrictions
+      # - label: 9.6 Transfer to Object
+      #   id: storage/transfer-to-object
+      #   type: doc
+  - type: category
+    label: Advanced Programmability
+    link:
+      id: programmability/index
+      type: doc
+    items:
+      - label: Transaction Context
+        id: programmability/transaction-context
+      - label: Module Initializer
+        id: programmability/module-initializer
+      - label: 'Pattern: Capability'
+        id: programmability/capability
+      - label: Epoch and Time
+        id: programmability/epoch-and-time
+      - label: Collections
+        id: programmability/collections
+      - label: 'Pattern: Wrapper Type'
+        id: programmability/wrapper-type-pattern
+      - label: Dynamic Fields
+        id: programmability/dynamic-fields
+      - label: Dynamic Object Fields
+        id: programmability/dynamic-object-fields
+      - label: Dynamic Collections
+        id: programmability/dynamic-collections
+      - label: 'Pattern: Witness'
+        id: programmability/witness-pattern
+      - label: One-Time Witness
+        id: programmability/one-time-witness
+      - label: Publisher Authority
+        id: programmability/publisher
+      - label: Object Display
+        id: programmability/display
+      - label: Events
+        id: programmability/events
+      # - label: Balance & Coin
+      #   id: programmability/balance-and-coin
+      #   type: doc
+      - label: Sui Framework
+        id: programmability/sui-framework
+      - label: 'Pattern: Hot Potato'
+        id: programmability/hot-potato-pattern
+      # - label: '8.18 Pattern: Request'
+      #   id: programmability/request-pattern
+      #   type: doc
+      # - label: '8.19 Pattern: Object Capability'
+      #   id: programmability/object-capability-pattern
+      #   type: doc
+      # - label: '8.20 Package Upgrades'
+      #   id: programmability/package-upgrades
+      #   type: doc
+      # - label: '8.21 Transaction Blocks'
+      #   id: programmability/transaction-block
+      #   type: doc
+      # - label: '8.22 Authorization Patterns'
+      #   id: programmability/authorization-patterns
+      #   type: doc
+      # - label: '8.23 Cryptography and Hashing'
+      #   id: programmability/cryptography-and-hashing
+      #   type: doc
+      # - label: '8.24 Randomness'
+      #   id: programmability/cryptography-and-hashing
+      #   type: doc
+      - label: BCS
+        id: programmability/bcs
+  - type: category
+    label: Guides
+    enumerate: false
+    items:
+      - label: 2024 Migration Guide
+        id: guides/2024-migration-guide
+      - label: Upgradability Practices
+        id: guides/upgradeability-practices
+      - label: Building Against Limits
+        id: guides/building-against-limits
+      - label: Better Error Handling
+        id: guides/better-error-handling
+      - label: Code Quality Checklist
+        id: guides/code-quality-checklist
+      # - label: Open-sourcing Libraries
+      #   id: guides/open-sourcing-libraries
+      # - label: Creating an NFT Collection
+      #   id: guides/creating-an-nft-collection
+  - type: category
+    label: Appendix
+    enumerate: false
+    items:
+      - label: A. Glossary
+        id: appendix/glossary
+      - label: B. Reserved Addresses
+        id: appendix/reserved-addresses
+      - label: C. Publications
+        id: appendix/publications
+      - label: D. Contributing
+        id: appendix/contributing
+      - label: E. Acknowledgements
+        id: appendix/acknowledgements

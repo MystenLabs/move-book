@@ -1,27 +1,38 @@
 # The Move Book
 
-This is the repository for [the Move Book](https://move-book.com) and [Move Language Reference](https://move-book.com/reference).
+This is the repository for [the Move Book](https://move-book.com) and
+[Move Language Reference](https://move-book.com/reference).
 
 ## Structure
 
-- Two books are placed in the `book` and `reference` directories. The `book` directory contains the main book, and the `reference` directory contains the reference book.
-
-- The `theme` directory is linked to both books and contains the theme files, fonts and styles.
-
+- Two books are placed in the `book` and `reference` directories. The `book` directory contains the
+  main book, and the `reference` directory contains the reference book.
 - The `packages` directory contains the code samples used in both books.
+- The `site` directory contains [docusaurus](docusaurus.io) configuration and custom plugins for it.
 
 ## Running the Books Locally
 
-To run the books locally, you need to have [mdBook](https://rust-lang.github.io/mdBook/guide/installation.html) installed.
+### Prerequisites
 
-Then it's as simple as running the following commands:
+- NodeJS
+- `pnpm` (installation is: `npm i -g pnpm`)
+
+### Local Server
+
+> All commands can be run from the root.
 
 ```bash
-$ mdbook serve book
-$ mdbook serve reference
+pnpm start
 ```
 
-*The book will be available at `http://localhost:3000`.*
+_The book will be available at `http://localhost:3000`._
+
+### Production Build Test
+
+```bash
+pnpm build
+pnpm serve
+```
 
 ## Archive
 

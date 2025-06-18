@@ -3,16 +3,3 @@ title = "The Move Reference"
 description = "The Move Language Reference maintained by the Move core team."
 authors = ["The Move Contributors"]
 language = "en"
-multilingual = false
-src = "src"
-
-[build]
-build-dir = "build"
-extra-watch-dirs = ["../packages"] # rebuild on Move Source changes
-
-[output.html]
-additional-css = ["theme/css/custom.css"]
-additional-js = ["theme/switcher.js"]
-git-repository-url = "https://github.com/MystenLabs/move-book"
-git-repository-icon = "fa-github"
-edit-url-template = "https://github.com/move-language/move/edit/main/language/documentation/book/{path}"

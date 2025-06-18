@@ -14,17 +14,20 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup mdBook
-        uses: peaceiris/actions-mdbook@v1
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
         with:
-          mdbook-version: "0.4.32"
-      - run: mdbook build book
-      - run: mdbook build reference
-      - run: mv reference/build book/build/reference
-      - name: Deploy
+          version: 9
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm i
+        working-directory: ./site
+      - name: Build website
+        run: pnpm build
+        working-directory: ./site
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./book/build
+          publish_dir: ./site/build
           cname: move-book.com

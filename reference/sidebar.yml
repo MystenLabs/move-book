@@ -1,0 +1,109 @@
+# Refer to https://docusaurus.io/docs/sidebar/items
+# For possible values of type
+
+referenceSidebar:
+  - label: The Move Reference
+    enumerate: false
+    id: index
+  - type: category
+    enumerate: false
+    label: Getting Started
+    items:
+      - label: 1. Modules
+        id: modules
+  - type: category
+    enumerate: false
+    label: Basic Concepts
+    items:
+      - type: category
+        label: 2. Primitive Types
+        link:
+          id: primitive-types
+          type: doc
+        items:
+          - label: 2.1 Integers
+            id: primitive-types/integers
+          - label: 2.2 Bool
+            id: primitive-types/bool
+          - label: 2.3 Address
+            id: primitive-types/address
+          - label: 2.4 Vector
+            id: primitive-types/vector
+          - label: 2.5 References
+            id: primitive-types/references
+          - label: 2.6 Tuples and Unit
+            id: primitive-types/tuples
+      - label: 3. Local Variables and Scopes
+        id: variables
+      - label: 4. Equality
+        id: equality
+      - type: category
+        label: 5. Abort and Assert
+        link:
+          id: abort-and-assert
+          type: doc
+        items:
+          - label: 5.1 Clever Errors
+            id: abort-and-assert/clever-errors
+      - type: category
+        label: 6. Control Flow
+        link:
+          id: control-flow
+          type: doc
+        items:
+          - label: 6.1 Conditional Expressions
+            id: control-flow/conditionals
+          - label: 6.2 Loops
+            id: control-flow/loops
+          - label: 6.3 Labeled Control Flow
+            id: control-flow/labeled-control-flow
+          - label: 6.4 Pattern Matching
+            id: control-flow/pattern-matching
+      - type: category
+        label: 7. Functions
+        link:
+          id: functions
+          type: doc
+        items:
+          - label: 7.1 Macros
+            id: functions/macros
+      - label: 8. Structs
+        id: structs
+      - label: 9. Enums
+        id: enums
+      - label: 10. Constants
+        id: constants
+      - label: 11. Generics
+        id: generics
+      - label: 12. Abilities
+        id: abilities
+      - label: 13. Uses and Aliases
+        id: uses
+  - type: category
+    enumerate: false
+    label: Advanced Concepts
+    items:
+      - label: 14. Method Syntax
+        id: method-syntax
+      - label: 15. Index Syntax
+        id: index-syntax
+  - type: category
+    label: Tooling
+    enumerate: false
+    items:
+      - label: 16. Packages
+        id: packages
+      - label: 17. Unit Testing
+        id: unit-testing
+  - type: category
+    label: Reference
+    enumerate: false
+    items:
+      - label: 18. Coding Conventions
+        id: coding-conventions
+  - type: category
+    label: Deprecated
+    enumerate: false
+    items:
+      - label: 19. Friends
+        id: friends
