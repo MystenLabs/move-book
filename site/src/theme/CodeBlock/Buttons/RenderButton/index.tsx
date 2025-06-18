@@ -21,15 +21,15 @@ function title() {
 function ariaLabel(isCopied: boolean) {
   return isCopied
     ? translate({
-      id: 'theme.CodeBlock.rendered',
-      message: 'Rendered',
-      description: 'The rendered button label on code blocks',
-    })
+        id: 'theme.CodeBlock.rendered',
+        message: 'Rendered',
+        description: 'The rendered button label on code blocks',
+      })
     : translate({
-      id: 'theme.CodeBlock.renderButtonAriaLabel',
-      message: 'Render as image',
-      description: 'The ARIA label for render code blocks button',
-    });
+        id: 'theme.CodeBlock.renderButtonAriaLabel',
+        message: 'Render as image',
+        description: 'The ARIA label for render code blocks button',
+      });
 }
 
 function useRenderButton() {
