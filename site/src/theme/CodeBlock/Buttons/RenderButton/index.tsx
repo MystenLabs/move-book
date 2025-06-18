@@ -21,51 +21,56 @@ function title() {
 function ariaLabel(isCopied: boolean) {
   return isCopied
     ? translate({
-      id: 'theme.CodeBlock.rendered',
-      message: 'Rendered',
-      description: 'The rendered button label on code blocks',
-    })
+        id: 'theme.CodeBlock.rendered',
+        message: 'Rendered',
+        description: 'The rendered button label on code blocks',
+      })
     : translate({
-      id: 'theme.CodeBlock.renderButtonAriaLabel',
-      message: 'Render as image',
-      description: 'The ARIA label for render code blocks button',
-    });
+        id: 'theme.CodeBlock.renderButtonAriaLabel',
+        message: 'Render as image',
+        description: 'The ARIA label for render code blocks button',
+      });
 }
 
 function useRenderButton() {
-  const { metadata: { code } } = useCodeBlockContext();
+  const {
+    metadata: { code },
+  } = useCodeBlockContext();
   const copyTimeout = useRef<number | undefined>(undefined);
   const [isRendered, setIsRendered] = useState(false);
 
-  const renderCode = useCallback((buttonElement: HTMLDivElement) => {
-    const codeBlockElement = buttonElement.parentNode.parentNode.firstChild as HTMLDivElement;
-    const codeInnerElement = codeBlockElement.firstChild as HTMLDivElement;
+  const renderCode = useCallback(
+    (buttonElement: HTMLDivElement) => {
+      const codeBlockElement = buttonElement.parentNode.parentNode.firstChild as HTMLDivElement;
+      const codeInnerElement = codeBlockElement.firstChild as HTMLDivElement;
 
-    // add a signature element to the code block
-    const elem = document.createElement('p');
-    elem.style.marginTop = '10px';
-    elem.style.marginBottom = '0';
-    elem.className = 'token comment';
-    elem.textContent = `// Sample from the Move Book: ${window.location.href}`;
-    codeInnerElement.appendChild(elem);
+      // add a signature element to the code block
+      const elem = document.createElement('p');
+      elem.style.marginTop = '10px';
+      elem.style.marginBottom = '0';
+      elem.className = 'token comment';
+      elem.textContent = `// Sample from the Move Book: ${window.location.href}`;
+      codeInnerElement.appendChild(elem);
 
-    html2canvas(codeBlockElement).then((canvas) => {
-      // remove the signature element
-      codeInnerElement.removeChild(elem);
+      html2canvas(codeBlockElement).then((canvas) => {
+        // remove the signature element
+        codeInnerElement.removeChild(elem);
 
-      canvas.toBlob((blob) => {
-        if (!blob) return;
+        canvas.toBlob((blob) => {
+          if (!blob) return;
 
-        const url = URL.createObjectURL(blob);
-        window.open(url, '_blank');
+          const url = URL.createObjectURL(blob);
+          window.open(url, '_blank');
 
-        setIsRendered(true);
+          setIsRendered(true);
 
-        // Optional: revoke the object URL after some time
-        setTimeout(() => URL.revokeObjectURL(url), 60_000);
-      }, 'image/png');
-    });
-  }, [code]);
+          // Optional: revoke the object URL after some time
+          setTimeout(() => URL.revokeObjectURL(url), 60_000);
+        }, 'image/png');
+      });
+    },
+    [code],
+  );
 
   useEffect(() => () => window.clearTimeout(copyTimeout.current), []);
 

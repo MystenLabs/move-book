@@ -22,12 +22,12 @@
 /* Code-like comments */
 
 .comment {
-  color: #A0A1A7;
+  color: #a0a1a7;
   font-style: italic;
 }
 
 [data-theme='dark'] .comment {
-  color: #5C6370;
+  color: #5c6370;
   font-style: italic;
 }
 
