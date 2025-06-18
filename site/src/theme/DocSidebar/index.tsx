@@ -30,8 +30,7 @@ export default function DocSidebarWrapper(props: Props): ReactNode {
     const activeRect = active.getBoundingClientRect();
 
     const isOutOfView =
-      activeRect.top < containerRect.top ||
-      activeRect.bottom > containerRect.bottom;
+      activeRect.top < containerRect.top || activeRect.bottom > containerRect.bottom;
 
     if (isOutOfView) {
       container.scrollTo({

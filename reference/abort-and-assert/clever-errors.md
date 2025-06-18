@@ -232,7 +232,11 @@ if is_clever_abort {
 
     // Print the constant value (if any)
     if constant_index != 0xffff {
-        let constant_value = module.get_constant_at_table_index(constant_index).deserialize_on_constant_type().to_string();
+        let constant_value = module
+            .get_constant_at_table_index(constant_index)
+            .deserialize_on_constant_type()
+            .to_string();
+
         print!(": {}", constant_value);
     }
 

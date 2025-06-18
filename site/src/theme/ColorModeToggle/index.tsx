@@ -11,10 +11,7 @@ import type { ColorMode } from '@docusaurus/theme-common';
 import styles from './styles.module.css';
 
 // The order of color modes is defined here, and can be customized with swizzle
-function getNextColorMode(
-  colorMode: ColorMode | null,
-  respectPrefersColorScheme: boolean,
-) {
+function getNextColorMode(colorMode: ColorMode | null, respectPrefersColorScheme: boolean) {
   // 2-value transition
   if (!respectPrefersColorScheme) {
     return colorMode === 'dark' ? 'light' : 'dark';
@@ -86,14 +83,8 @@ function CurrentColorModeIcon(): ReactNode {
         aria-hidden
         className={clsx(styles.toggleIcon, styles.lightToggleIcon, 'fas fa-moon')}
       />
-      <i
-        aria-hidden
-        className={clsx(styles.toggleIcon, styles.darkToggleIcon, 'fas fa-sun')}
-      />
-      <i
-        aria-hidden
-        className={clsx(styles.toggleIcon, styles.systemToggleIcon, 'fas fa-moon')}
-      />
+      <i aria-hidden className={clsx(styles.toggleIcon, styles.darkToggleIcon, 'fas fa-sun')} />
+      <i aria-hidden className={clsx(styles.toggleIcon, styles.systemToggleIcon, 'fas fa-moon')} />
     </>
   );
 }
@@ -116,21 +107,19 @@ function ColorModeToggle({
           buttonClassName,
         )}
         type="button"
-        onClick={() =>
-          onChange(getNextColorMode(value, respectPrefersColorScheme))
-        }
+        onClick={() => onChange(getNextColorMode(value, respectPrefersColorScheme))}
         disabled={!isBrowser}
         title={getColorModeLabel(value)}
         aria-label={getColorModeAriaLabel(value)}
 
-      // For accessibility decisions
-      // See https://github.com/facebook/docusaurus/issues/7667#issuecomment-2724401796
+        // For accessibility decisions
+        // See https://github.com/facebook/docusaurus/issues/7667#issuecomment-2724401796
 
-      // aria-live disabled on purpose - This is annoying because:
-      // - without this attribute, VoiceOver doesn't announce on button enter
-      // - with this attribute, VoiceOver announces twice on ctrl+opt+space
-      // - with this attribute, NVDA announces many times
-      // aria-live="polite"
+        // aria-live disabled on purpose - This is annoying because:
+        // - without this attribute, VoiceOver doesn't announce on button enter
+        // - with this attribute, VoiceOver announces twice on ctrl+opt+space
+        // - with this attribute, NVDA announces many times
+        // aria-live="polite"
       >
         <CurrentColorModeIcon />
       </button>

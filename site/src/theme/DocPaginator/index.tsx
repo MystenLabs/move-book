@@ -20,22 +20,27 @@ export default function DocPaginator(props: Props): ReactNode {
         id: 'theme.docs.paginator.navAriaLabel',
         message: 'Docs pages',
         description: 'The ARIA label for the docs pagination',
-      })}>
+      })}
+    >
       {previous && (
         <PaginatorNavLink
-          title={<>
-            <i className="fa fa-angle-left" />
-            <span className="pagination-nav__label">{previous.title}</span>{" "}
-          </>}
+          title={
+            <>
+              <i className="fa fa-angle-left" />
+              <span className="pagination-nav__label">{previous.title}</span>{' '}
+            </>
+          }
           permalink={previous.permalink}
         />
       )}
       {next && (
         <PaginatorNavLink
-          title={<>
-            <span className="pagination-nav__label">{next.title}</span>{" "}
-            <i className="fa fa-angle-right" />
-          </>}
+          title={
+            <>
+              <span className="pagination-nav__label">{next.title}</span>{' '}
+              <i className="fa fa-angle-right" />
+            </>
+          }
           permalink={next.permalink}
           isNext
         />
