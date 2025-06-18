@@ -1,4 +1,4 @@
-name: Run mdbook and publish GitHub Pages
+name: Build Docusaurus Site and Deploy to GitHub Pages
 
 on:
   push:

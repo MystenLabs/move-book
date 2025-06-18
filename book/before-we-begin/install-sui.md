@@ -4,6 +4,20 @@ Move is a compiled language, so you need to install a compiler to be able to wri
 programs. The compiler is included into the Sui binary, which can be installed or downloaded using
 one of the methods below.
 
+## Installing via suiup
+
+The best way to install Sui is by using [`suiup`](https://github.com/MystenLabs/suiup). It provides a simple way to install binaries and to manage different versions of binaries for
+different environments (e.g. `testnet` and `mainnet`).
+
+Installation instructions for `suiup` can be found
+[in the repository README](https://github.com/MystenLabs/suiup).
+
+To install Sui, run the following command:
+
+```bash
+suiup install sui
+```
+
 ## Download Binary
 
 You can download the latest Sui binary from the
