@@ -18,9 +18,9 @@ public struct Villain has drop {
 public fun new_hero(): Hero { Hero { health: 100 } }
 
 /// Create a new Villain.
-public fun new_villain(): Villain { Villain { health: 100 } }
+public fun new_villain(): Villain { Villain { health: 200 } }
 
-// Alias for the `hero_health` method. Will be imported automatically when
+// Alias for the `hero_health` method. It will be imported automatically when
 // the module is imported.
 public use fun hero_health as Hero.health;
 
@@ -39,6 +39,6 @@ fun test_associated_methods() {
     assert!(hero.health() == 100);
 
     let villain = new_villain();
-    assert!(villain.health() == 100);
+    assert!(villain.health() == 200);
 }
 // ANCHOR_END: hero_and_villain
