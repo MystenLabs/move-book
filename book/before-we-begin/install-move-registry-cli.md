@@ -1,8 +1,9 @@
-# Install Move Registry
+# Install MVR
 
-[Move Registry](https://moveregistry.com) is a package manager for Move. It allows anyone to publish
-and use published packages in new applications written in Move. Local binary allows searching
-packages in the registry as well as installing them as a part of the Sui CLI build process.
+[Move Registry (MVR)](https://moveregistry.com) is a package manager for Move. It allows anyone to
+publish and use published packages in new applications written in Move. Local binary allows
+searching packages in the registry as well as installing them as a part of the Sui CLI build
+process.
 
 ## Installing via suiup
 

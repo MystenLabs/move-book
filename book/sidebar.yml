@@ -16,6 +16,8 @@ bookSidebar:
     items:
       - label: Install Sui
         id: before-we-begin/install-sui
+      - label: Install MVR
+        id: before-we-begin/install-move-registry-cli
       - label: IDE Support
         id: before-we-begin/ide-support
       - label: Move 2024
