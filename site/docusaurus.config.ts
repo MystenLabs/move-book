@@ -8,7 +8,7 @@ export default {
   title: 'The Move Book',
   tagline:
     'First book about the Move programming language and the Move VM. Move documentation, Move tutorials, and language reference.',
-  favicon: 'favicon.svg',
+  favicon: '/favicon.svg',
 
   // Future compatibility flags.
   future: { v4: true },
