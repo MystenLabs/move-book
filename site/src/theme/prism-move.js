@@ -138,17 +138,15 @@
         },
         'error-const-name': {
           pattern: /\b(E\w+)(?=\s*:)/,
-          // greedy: true,
           alias: ['error-const'],
-        },
-        'const-name': {
-          pattern: /\b\w+\b/,
-          greedy: true,
-          alias: 'constant',
         },
         // see assignments in the end of this file
         // Prism allows injecting tokens into other tokens
         literals: null,
+        'const-name': {
+          pattern: /\b\w+\b/,
+          alias: 'constant',
+        },
       },
     },
 
@@ -258,12 +256,6 @@
       alias: 'string',
     },
 
-    'function-call': {
-      pattern: /\b([a-z][a-z_]+)(?=\s*[<(])/,
-      greedy: true,
-      alias: 'function',
-    },
-
     'string-literal': {
       pattern: /b"(\\[\s\S]|[^\\"])*"/,
       // alias: "string",
@@ -335,6 +327,12 @@
     'built-in-types': {
       pattern: /\b(bool|address|u8|u16|u32|u64|u128|u256|vector)\b/,
       alias: 'support',
+    },
+
+    'function-call': {
+      pattern: /\b([a-z][a-z0-9_]+)(?=\s*[<(])/,
+      greedy: true,
+      alias: 'function',
     },
 
     /** Just some, non-object, most commonly used */

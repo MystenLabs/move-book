@@ -7,7 +7,6 @@ module book::dynamic_fields;
 // a very common alias for `dynamic_field` is `df` since the
 // module name is quite long
 use sui::dynamic_field as df;
-use std::string::String;
 
 /// The object that we will attach dynamic fields to.
 public struct Character has key {
@@ -121,6 +120,8 @@ public fun borrow<Name: copy + store + drop, Value: store>(
 // ANCHOR_END: exposed_uid_measures
 
 // ANCHOR: custom_type
+use std::string::String;
+
 /// A custom type with fields in it.
 public struct AccessoryKey has copy, drop, store { name: String }
 

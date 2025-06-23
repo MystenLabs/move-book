@@ -19,6 +19,19 @@
   background-color: #ff000020;
 }
 
+.note-comment {
+  --border-width: 3px;
+
+  background-color: #f2f2f2;
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+[data-theme='dark'] .note-comment {
+  background-color: #49505f2f;
+}
+
 /* Code-like comments */
 
 .comment {
@@ -48,4 +61,8 @@
 
 .code-icon {
   font-size: calc(var(--ifm-code-font-size) + 4px);
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
 }

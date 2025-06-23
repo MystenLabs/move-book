@@ -200,6 +200,8 @@ bookSidebar:
       # - label: '8.24 Randomness'
       #   id: programmability/cryptography-and-hashing
       #   type: doc
+      - label: Package Upgrades
+        id: programmability/package-upgrades
       - label: BCS
         id: programmability/bcs
   - type: category

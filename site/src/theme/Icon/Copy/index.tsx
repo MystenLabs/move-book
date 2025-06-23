@@ -1,12 +1,11 @@
 import React, { type ReactNode } from 'react';
-import type { Props } from '@theme/Icon/Copy';
 
 /**
  * Replace default icon with FontAwesome icon.
  */
-export default function IconCopy(props: Props): ReactNode {
+export default function IconCopy(): ReactNode {
   return (
-    <div {...props}>
+    <div>
       <i className={`fa fa-copy code-icon`} />
     </div>
   );

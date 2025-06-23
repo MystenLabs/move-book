@@ -21,8 +21,10 @@
     "@docusaurus/preset-classic": "3.8.1",
     "@docusaurus/theme-classic": "^3.8.1",
     "@docusaurus/theme-common": "^3.8.1",
+    "@docusaurus/theme-live-codeblock": "3.8.1",
     "@easyops-cn/docusaurus-search-local": "^0.51.0",
     "@mdx-js/react": "^3.0.0",
+    "ansi-to-html": "^0.7.2",
     "clsx": "^2.0.0",
     "copy-text-to-clipboard": "^3.2.0",
     "html2canvas": "^1.4.1",
@@ -30,7 +32,9 @@
     "prismjs": "^1.30.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-live": "^4.1.8",
     "remark-code-import": "^1.2.0",
+    "unist-util-visit": "^5.0.0",
     "yaml": "^2.8.0"
   },
   "devDependencies": {

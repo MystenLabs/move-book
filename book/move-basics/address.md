@@ -22,7 +22,7 @@ Move uses a special type called [address](./../concepts/address) to represent ad
 32-byte value that can represent any address on the blockchain. Addresses can be written in two
 forms: hexadecimal addresses prefixed with 0x and named addresses.
 
-```move file=packages/samples/sources/move-basics/address.move anchor=address_literal
+```move file=packages/samples/sources/move-basics/address.move live anchor=address_literal
 
 ```
 

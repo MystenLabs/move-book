@@ -19,7 +19,7 @@ Dynamic Fields are defined in the `sui::dynamic_field` module of the
 [Sui Framework](./sui-framework). They are attached to object's `UID` via a _name_, and can be
 accessed using that name. There can be only one field with a given name attached to an object.
 
-```move
+```move play
 module sui::dynamic_field;
 
 /// Internal object used for storing the field and value

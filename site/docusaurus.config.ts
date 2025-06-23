@@ -143,6 +143,8 @@ export default {
         highlightSearchTermsOnTargetPage: false,
       },
     ],
+    // Allows using `live` flag in code blocks.
+    '@docusaurus/theme-live-codeblock',
   ],
 
   stylesheets: [
@@ -157,6 +159,13 @@ export default {
   ],
 
   themeConfig: {
+    liveCodeBlock: {
+      /**
+       * The position of the live playground, above or under the editor
+       * Possible values: "top" | "bottom"
+       */
+      playgroundPosition: 'bottom',
+    },
     titleDelimiter: '+',
     // searchParameters: {
     //   // Add analytics tags to the search results
@@ -246,6 +255,14 @@ export default {
       theme: prismAtomOneLight,
       darkTheme: prismAtomOneDark,
       magicComments: [
+        {
+          className: 'note-comment',
+          line: 'highlight-note',
+          block: {
+            start: 'highlight-note-start',
+            end: 'highlight-note-end',
+          },
+        },
         {
           className: 'error-comment',
           line: 'highlight-error',
