@@ -30,7 +30,7 @@ cases the Move compiler can infer the correct type.
 
 ```
 
-In the test function `test_generic`, we demonstrate three equivalent ways to create a new
+In the test function `test_container`, we demonstrate three equivalent ways to create a new
 `Container` with a `u8` value. Because numeric constants have ambiguous types, we must specify the
 type of the number literal somewhere (in the type of the container, the parameter to `new`, or the
 number literal itself); once we specify one of these the compiler can infer the others.
