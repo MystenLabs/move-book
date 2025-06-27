@@ -145,6 +145,8 @@ will automatically build the package and use its bytecode to publish in a single
 > We are using the `--gas-budget` argument during publishing. It specifies how much gas we are
 > willing to spend on the transaction. We won't touch on this topic in this section, but it's
 > important to know that every transaction in Sui costs gas, and the gas is paid in SUI coins.
+> It is worth noting that `--gas-budget` is not a required parameter. When you do not set it,
+> there will be a default consumption limit.
 
 The `gas-budget` is specified in _MISTs_. 1 SUI equals 10^9 MISTs. For the sake of demonstration, we
 will use 100,000,000 MISTs, which is 0.1 SUI.
