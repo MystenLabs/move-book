@@ -363,7 +363,7 @@ fun add(x: u64, y: u64): u64 {
 The return value here is the result of `x + y`.
 
 [As mentioned above](#function-body), the function's body is an [expression block](./variables). The
-expression block can sequence various statements, and the final expression in the block will be be
+expression block can sequence various statements, and the final expression in the block will be
 the value of that block
 
 ```move
