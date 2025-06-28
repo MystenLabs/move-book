@@ -34,8 +34,8 @@ will look at 4 different scenarios where a card can be:
 ## Layout
 
 The initial layout of the metro pass application is simple. We define the `Card` type and the `USES`
-[constant](./constants) that represents the number of rides on a single card. We also add an
-[error constant](./assert-and-abort#error-constants) for the case when the card is empty.
+[constant](./constants) that represents the number of rides on a single card. We also add
+[error constants](./assert-and-abort#error-constants) for the case when the card is empty and when the card is not empty.
 
 ```move file=packages/samples/sources/move-basics/references.move anchor=header_new
 module book::metro_pass;
