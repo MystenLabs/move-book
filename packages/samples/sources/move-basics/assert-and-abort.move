@@ -7,10 +7,10 @@ module book::assert_abort;
 fun test_abort() {
 
 // ANCHOR: abort
-let user_has_access = true;
+let user_has_access = false;
 
 // abort with a predefined constant if `user_has_access` is false
-if (user_has_access) {
+if (!user_has_access) {
     abort 1
 };
 // ANCHOR_END: abort
