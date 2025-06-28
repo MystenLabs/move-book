@@ -83,7 +83,8 @@ public fun take_ownership(v: u8) {
 #[test]
 fun test_owner() {
     let a = owner();
-    take_ownership(a);
+    // `u8` is copyable, pass `move a` when calling the function to force the transfer of its ownership
+    take_ownership(move a);
     // a is not valid here
 }
 ```
