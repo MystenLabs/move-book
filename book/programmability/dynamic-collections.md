@@ -78,6 +78,8 @@ Using the Bag:
 Defined in the `sui::object_bag` module. Identical to [Bag](#bag), but uses
 [dynamic object fields](./dynamic-object-fields) internally. Can only store objects as values.
 
+_See [full documentation for sui::object_bag][object-bag-framework] module._
+
 ## Table
 
 Table is a typed dynamic collection that has a fixed type for keys and values. It is defined in the
@@ -113,27 +115,69 @@ Using the Table:
 Defined in the `sui::object_table` module. Identical to [Table](#table), but uses
 [dynamic object fields](./dynamic-object-fields) internally. Can only store objects as values.
 
+_See [full documentation for sui::object_table][object-table-framework] module._
+
+## LinkedTable
+
+It is defined in the `sui::linked_table` module, similar to [Table](#table) but the values are linked together,
+allowing for ordered insertion and removal.
+
+```move
+module sui::linked_table;
+
+public struct LinkedTable<K: copy + drop + store, phantom V: store> has key, store {
+    /// the ID of this table
+    id: UID,
+    /// the number of key-value pairs in the table
+    size: u64,
+    /// the front of the table, i.e. the key of the first entry
+    head: Option<K>,
+    /// the back of the table, i.e. the key of the last entry
+    tail: Option<K>,
+}
+```
+
+_See [full documentation for sui::linked_table][linked-table-framework] module._
+
+Since the values stored in LinkedTable are linked together, it has unique methods for adding and deleting.
+
+- `push_front` - inserts a key-value pair at the front of the table
+- `push_back` - inserts a key-value pair at the back of the table
+- `remove` - removes a key-value pair by key and returns the value
+- `pop_front` - removes the front of the table, returns the key and value
+- `pop_back` - removes the back of the table, returns the key and value
+
+Used as a struct field:
+
+```move file=packages/samples/sources/programmability/dynamic-collections.move anchor=linked_table_struct
+
+```
+
+Using the LinkedTable:
+
+```move file=packages/samples/sources/programmability/dynamic-collections.move anchor=linked_table_usage
+
+```
+
 ## Summary
 
 - [Bag](#bag) - a simple collection that can store any type of data.
 - [ObjectBag](#objectbag) - a collection that can store only objects.
 - [Table](#table) - a typed dynamic collection that has a fixed type for keys and values.
 - [ObjectTable](#objecttable) - same as Table, but can only store objects.
-<!-- [Linked Table](#linkedtable) -->
-
-## LinkedTable
-
-This section is coming soon!
+- [LinkedTable](#linkedtable) - similar to Table but the values are linked together.
 
 ## Further Reading
 
 - [sui::table][table-framework] module documentation.
 - [sui::object_table][object-table-framework] module documentation.
+- [sui::linked_table][linked-table-framework] module documentation.
 - [sui::bag][bag-framework] module documentation.
 - [sui::object_bag][object-bag-framework] module documentation.
 
 [table-framework]: https://docs.sui.io/references/framework/sui/table
 [object-table-framework]: https://docs.sui.io/references/framework/sui/object_table
+[linked-table-framework]: https://docs.sui.io/references/framework/sui/linked_table
 [bag-framework]: https://docs.sui.io/references/framework/sui/bag
 [object-bag-framework]: https://docs.sui.io/references/framework/sui/object_bag
 
@@ -142,7 +186,3 @@ This section is coming soon!
 <!-- ## Choosing a Collection Type
 
 Depending on the needs of your project, you may choose to -->
-
-<!-- ## LinkedTable
-
-TODO: ... -->
