@@ -736,7 +736,7 @@ Remember, locals can change type when they are shadowed.
 let x = 0;
 {
     let x = b"hello";
-    assert!(x = b"hello", 42);
+    assert!(x == b"hello", 42);
 };
 assert!(x == 0, 42);
 ```
@@ -812,7 +812,7 @@ let coins = vector[Coin { value: 0 }, Coin { value: 0 }];
 let s2 = s; // copy
 let foo2 = foo; // copy
 let coin2 = coin; // move
-let coins2 = coin; // move
+let coins2 = coins; // move
 
 let x = 0;
 let b = false;
