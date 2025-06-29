@@ -31,11 +31,11 @@ For example:
 ```move
 module 0::test;
 
-public struct Example has copy, drop { i: u64 }
-
 use std::debug;
 
 const ONE: u64 = 1;
+
+public struct Example has copy, drop { i: u64 }
 
 public fun print(x: u64) {
     let sum = x + ONE;
@@ -56,9 +56,10 @@ opposed to using the numerical value directly). For example:
 ```move
 module test_addr::test;
 
-public struct Example has copy, drop { a: address }
+use std::debug;
+use test_addr::another_test;
 
-friend test_addr::another_test;
+public struct Example has copy, drop { a: address }
 
 public fun print() {
     let example = Example { a: @test_addr };
