@@ -356,7 +356,7 @@ bar.0 = Foo { x: 62, y: true }; // bar = Bar(Foo { x: 62, y: true })
 The dot syntax for assignment also works via a reference to a struct:
 
 ```move
-let foo = Foo { x: 3, y: true };
+let mut foo = Foo { x: 3, y: true };
 let foo_ref = &mut foo;
 foo_ref.x = foo_ref.x + 1;
 ```
@@ -400,7 +400,7 @@ module a::n {
     }
 
     fun f2() {
-        let foo_wrapper = Wrapper { foo: m::new_foo() };
+        let foo_wrapper = Wrapper { foo: a::m::new_foo() };
         //                               ^ valid the function is public
     }
 }
