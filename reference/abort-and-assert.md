@@ -54,7 +54,7 @@ that all numbers in the vector are less than the specified `bound`. And aborts o
 ```move
 use std::vector;
 fun check_vec(v: &vector<u64>, bound: u64) {
-    let i = 0;
+    let mut i = 0;
     let n = v.length();
     while (i < n) {
         let cur = v[i];
@@ -97,7 +97,7 @@ and
 ```move
 use std::vector;
 fun check_vec(v: &vector<u64>, bound: u64) {
-    let i = 0;
+    let mut i = 0;
     let n = v.length();
     while (i < n) {
         let cur = v[i];
@@ -117,7 +117,7 @@ assert!(true, 1 / 0)
 Will not result in an arithmetic error, it is equivalent to
 
 ```move
-if (true) () else (1 / 0)
+if (true) () else abort (1 / 0)
 ```
 
 So the arithmetic expression is never evaluated!

@@ -142,10 +142,10 @@ right-hand side of the match arm. For example:
 ```move
 public struct Wrapper(u64)
 
-fun add_under_wrapper_unless_equal(wrapper: Wrapper, x: u64): u64 {
+fun add_under_wrapper_unless_equal(wrapper: Wrapper, x: u64): Wrapper {
     match (wrapper) {
         Wrapper(y) if (y == x) => Wrapper(y),
-        Wrapper(y) => y + x,
+        Wrapper(y) => Wrapper(y + x),
     }
 }
 add_under_wrapper_unless_equal(Wrapper(1), 2); // returns Wrapper(3)
@@ -312,12 +312,13 @@ of the match arm.
 Take the following:
 
 ```move
-fun f(x: MyEnum) {
+fun f(x: MyEnum): u64 {
     match (x) {
         MyEnum::Variant(1, true) => 1,
         MyEnum::OtherVariant(_, 3) => 2,
         MyEnum::Variant(..) => 3,
         MyEnum::OtherVariant(..) => 4,
+    }
 }
 f(MyEnum::Variant(1, true)); // returns 1
 f(MyEnum::Variant(2, true)); // returns 3
@@ -335,12 +336,13 @@ You can also nest patterns. So, if you wanted to match either 1, 2, or 10, inste
 1 in the previous `MyEnum::Variant`, you could do so with an or-pattern:
 
 ```move
-fun f(x: MyEnum) {
+fun f(x: MyEnum): u64 {
     match (x) {
         MyEnum::Variant(1 | 2 | 10, true) => 1,
         MyEnum::OtherVariant(_, 3) => 2,
         MyEnum::Variant(..) => 3,
         MyEnum::OtherVariant(..) => 4,
+    }
 }
 f(MyEnum::Variant(1, true)); // returns 1
 f(MyEnum::Variant(2, true)); // returns 1
@@ -361,7 +363,7 @@ addition, if you fully destruct that value, you have unpacked it, matching the s
 ```move
 public struct NonDrop(u64)
 
-fun drop_nondrop(x: NonDrop) {
+fun drop_nondrop(x: NonDrop): u64 {
     match (x) {
         NonDrop(1) => 1,
         _ => 2
@@ -369,7 +371,7 @@ fun drop_nondrop(x: NonDrop) {
     }
 }
 
-fun destructure_nondrop(x: NonDrop) {
+fun destructure_nondrop(x: NonDrop): u64 {
     match (x) {
         NonDrop(1) => 1,
         NonDrop(_) => 2
@@ -529,7 +531,7 @@ Note that the `mut` modifier can only be applied to variables, and not other typ
 ```move
 public struct MyStruct(u64)
 
-fun top_level_mut(x: MyStruct) {
+fun top_level_mut(x: MyStruct): u64 {
     match (x) {
         mut MyStruct(y) => 1,
         // ERROR: cannot use mut on a non-variable pattern
@@ -547,7 +549,7 @@ fun mut_on_immut(x: &MyStruct): u64 {
 
 fun mut_on_value(x: MyStruct): u64 {
     match (x) {
-        MyStruct(mut y) =>  {
+        MyStruct(mut y) => {
             *y = *y + 1;
             *y
         },
@@ -556,7 +558,7 @@ fun mut_on_value(x: MyStruct): u64 {
 
 fun mut_on_mut(x: &mut MyStruct): u64 {
     match (x) {
-        MyStruct(mut y) =>  {
+        MyStruct(mut y) => {
             *y = *y + 1;
             *y
         },
@@ -597,7 +599,7 @@ public struct MyStruct2 {
     w: u64,
 }
 
-fun wild_match(x: MyStruct) {
+fun wild_match(x: MyStruct): u64 {
     match (x) {
         MyStruct(.., 1) => 1,
         // OK! The `..` pattern can be used at the beginning of the constructor pattern
@@ -610,7 +612,7 @@ fun wild_match(x: MyStruct) {
     }
 }
 
-fun wild_match2(x: MyStruct2) {
+fun wild_match2(x: MyStruct2): u64 {
     match (x) {
         MyStruct2 { x: 1, .. } => 1,
         MyStruct2 { x: 1, w: 2 .. } => 2,
