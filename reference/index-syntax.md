@@ -77,7 +77,7 @@ let m_0_0 = mat[0, 0];
 During compilation, the compiler translates these into the appropriate function invocations based on
 the position and mutable usage of the expression:
 
-````move
+```move
 let mut mat = matrix::make_matrix(...);
 
 let m_0_0 = mat[0, 0];
@@ -88,7 +88,7 @@ let m_0_0 = &mat[0, 0];
 
 let m_0_0 = &mut mat[0, 0];
 // translates to `matrix::borrow_mut(&mut mat, 0, 0)`
-``
+```
 
 You can also intermix index expressions with field accesses:
 
