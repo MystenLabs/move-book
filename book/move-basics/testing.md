@@ -123,4 +123,4 @@ modules if their visibility is set to `public`.
 
 ## Further Reading
 
-- [Unit Testing](https://move-book.com/reference/unit-testing.html) in the Move Reference.
+- [Unit Testing](./../../reference/unit-testing) in the Move Reference.
