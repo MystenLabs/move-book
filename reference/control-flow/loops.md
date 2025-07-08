@@ -126,22 +126,6 @@ fun foo() {
 }
 ```
 
-Here is an example that uses `loop` to write the `sum` function:
-
-```move
-fun sum(n: u64): u64 {
-    let sum = 0;
-    let i = 0;
-    loop {
-        i = i + 1;
-        if (i > n) break;
-        sum = sum + i
-    };
-
-    sum
-}
-```
-
 ### Using `break` with Values in `loop`
 
 Unlike `while` loops, which always return `()`, a `loop` may return a value using `break`. In doing
