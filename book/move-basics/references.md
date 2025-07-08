@@ -107,7 +107,7 @@ To illustrate the full flow of the application, let's put all the pieces togethe
 
 ## Further Reading
 
-- [References](https://move-book.com/reference/primitive-types/references.html) in the Move
+- [References](/reference/primitive-types/references) in the Move
   Reference.
 
 <!-- ## Dereference and Copy -->
