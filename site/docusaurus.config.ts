@@ -15,6 +15,7 @@ export default {
 
   url: 'https://move-book.com',
   baseUrl: '/',
+  trailingSlash: true, //stops algolia redirect loop
 
   // GitHub pages deployment config.
   organizationName: 'MystenLabs',
