@@ -256,7 +256,7 @@ fun test_only_function(...) { ... }
 
 ## Running Unit Tests
 
-Unit tests for a [Move package](./packages) can be run with the `sui move test` command.
+Use the `sui move test` command to run unit tests for a [Move package](./packages).
 
 When running tests, every test will either `PASS`, `FAIL`, or `TIMEOUT`. If a test case fails, the
 location of the failure along with the function name that caused the failure will be reported if
