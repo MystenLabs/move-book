@@ -3,7 +3,7 @@
 
 #[allow(unused_use, unused_field, unused_variable)]
 module book::dynamic_collections {
-    use std::string::String;
+use std::string::String;
 
 // ANCHOR: bag_struct
 /// Imported from the `sui::bag` module.
@@ -23,12 +23,12 @@ let ctx = &mut tx_context::dummy();
 let mut bag = bag::new(ctx);
 
 // bag has the `length` function to get the number of elements
-assert!(bag.length() == 0, 0);
+assert!(bag.length() == 0);
 
 bag.add(b"my_key", b"my_value".to_string());
 
 // length has changed to 1
-assert!(bag.length() == 1, 1);
+assert!(bag.length() == 1);
 
 // in order: `borrow`, `borrow_mut` and `remove`
 // the value type must be specified
@@ -55,33 +55,79 @@ public struct UserRegistry has key {
 }
 // ANCHOR_END: table_struct
 
-// ANCHOR: table_usage
 #[test] fun test_table() {
 let ctx = &mut tx_context::dummy();
 
+// ANCHOR: table_usage
 // Table requires explicit type parameters for the key and value
 // ...but does it only once in initialization.
 let mut table = table::new<address, String>(ctx);
 
 // table has the `length` function to get the number of elements
-assert!(table.length() == 0, 0);
+assert!(table.length() == 0);
 
 table.add(@0xa11ce, b"my_value".to_string());
 table.add(@0xb0b, b"another_value".to_string());
 
 // length has changed to 2
-assert!(table.length() == 2, 2);
+assert!(table.length() == 2);
 
 // in order: `borrow`, `borrow_mut` and `remove`
-let addr_ref = &table[@0xa11ce];
-let addr_mut = &mut table[@0xa11ce];
+let value_ref = &table[@0xa11ce];
+let value_mut = &mut table[@0xa11ce];
 
 // removing both values
-let _addr = table.remove(@0xa11ce);
-let _addr = table.remove(@0xb0b);
+let _value = table.remove(@0xa11ce);
+let _another_value = table.remove(@0xb0b);
 
 // length is back to 0 - we can unpack
 table.destroy_empty();
 // ANCHOR_END: table_usage
+}
+
+// ANCHOR: linked_table_struct
+/// Imported from the `sui::linked_table` module.
+use sui::linked_table::{Self, LinkedTable};
+
+/// Some record type with `store`
+public struct Permissions has store { /* ... */ }
+
+/// An example of a `LinkedTable` as a struct field.
+public struct AdminRegistry has key {
+    id: UID,
+    linked_table: LinkedTable<address, Permissions>
+}
+// ANCHOR_END: linked_table_struct
+
+#[test] fun test_linked_table() {
+let ctx = &mut tx_context::dummy();
+
+// ANCHOR: linked_table_usage
+// LinkedTable requires explicit type parameters for the key and value
+// ...but does it only once in initialization.
+let mut linked_table = linked_table::new<address, String>(ctx);
+
+// linked_table has the `length` function to get the number of elements
+assert!(linked_table.length() == 0);
+
+linked_table.push_front(@0xa0a, b"first_value".to_string());
+linked_table.push_back(@0xb1b, b"second_value".to_string());
+linked_table.push_back(@0xc2c, b"third_value".to_string());
+
+// length has changed to 3
+assert!(linked_table.length() == 3);
+
+// in order: `borrow`, `borrow_mut` and `remove`
+let first_value_ref = &linked_table[@0xa0a];
+let second_value_mut = &mut linked_table[@0xb1b];
+
+// remove by key, from the beginning or from the end
+let _second_value = linked_table.remove(@0xb1b);
+let (_first_addr, _first_value) = linked_table.pop_front();
+let (_third_addr, _third_value) = linked_table.pop_back();
+
+// length is back to 0 - we can unpack
+linked_table.destroy_empty();
+// ANCHOR_END: linked_table_usage
 }
 }
