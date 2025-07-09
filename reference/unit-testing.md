@@ -38,20 +38,19 @@ have the `#[test]` annotation can also be annotated as an #`[expected_failure]`.
 Some simple examples of using the `#[expected_failure]` annotation are shown below:
 
 ```move
-#[test]
-#[expected_failure]
+#[test, expected_failure]
 public fun this_test_will_abort_and_pass() { abort 1 }
 
-#[test]
-#[expected_failure]
+#[test, expected_failure]
 public fun test_will_error_and_pass() { 1/0; }
 
-#[test] // Will pass since test fails with the expected abort code constant.
-#[expected_failure(abort_code = ENotFound)] // ENotFound is a constant defined in the module
+// Will pass since test fails with the expected abort code constant.
+// ENotFound is a constant defined in the module.
+#[test, expected_failure(abort_code = ENotFound)]
 public fun test_will_error_and_pass_abort_code() { abort ENotFound }
 
-#[test] // Will fail since test fails with a different error than expected.
-#[expected_failure(abort_code = my_module::ENotFound)]
+// Will fail since test fails with a different error than expected.
+#[test, expected_failure(abort_code = my_module::ENotFound)]
 public fun test_will_error_and_fail() { 1/0; }
 
 #[test, expected_failure] // Can have multiple in one attribute. This test will pass.
@@ -86,17 +85,14 @@ module pkg_addr::my_module {
     use pkg_addr::other_module;
     const ENotFound: u64 = 1;
 
-    #[test]
-    #[expected_failure(abort_code = ENotFound)]
+    #[test, expected_failure(abort_code = ENotFound)]
     fun test_will_abort_and_pass() { abort ENotFound }
 
-    #[test]
-    #[expected_failure(abort_code = other_module::ENotFound)]
+    #[test, expected_failure(abort_code = other_module::ENotFound)]
     fun test_will_abort_and_pass() { other_module::will_abort() }
 
     // FAIL: Will not pass since we are expecting the constant from the wrong module.
-    #[test]
-    #[expected_failure(abort_code = ENotFound)]
+    #[test, expected_failure(abort_code = ENotFound)]
     fun test_will_abort_and_pass() { other_module::will_abort() }
 }
 ```
@@ -114,17 +110,16 @@ module pkg_addr::other_module {
 
 module pkg_addr::my_module {
     use pkg_addr::other_module;
-    #[test]
-    #[expected_failure(arithmetic_error, location = Self)]
+    
+    #[test, expected_failure(arithmetic_error, location = Self)]
     fun test_will_arith_error_and_pass1() { 1/0; }
 
-    #[test]
-    #[expected_failure(arithmetic_error, location = pkg_addr::other_module)]
+    #[test, expected_failure(arithmetic_error, location = pkg_addr::other_module)]
     fun test_will_arith_error_and_pass2() { other_module::will_arith_error() }
 
-    // FAIL: Will fail since the location we expect it the fail at is different from where the test actually failed.
-    #[test]
-    #[expected_failure(arithmetic_error, location = Self)]
+    // FAIL: Will fail since the location we expect it the fail at is different from where
+    // the test actually failed.
+    #[test, expected_failure(arithmetic_error, location = Self)]
     fun test_will_arith_error_and_fail() { other_module::will_arith_error() }
 }
 ```
@@ -142,18 +137,16 @@ module pkg_addr::other_module {
 
 module pkg_addr::my_module {
     use pkg_addr::other_module;
-    #[test]
-    #[expected_failure(out_of_gas, location = Self)]
+    
+    #[test, expected_failure(out_of_gas, location = Self)]
     fun test_will_oog_and_pass1() { loop {} }
 
-    #[test]
-    #[expected_failure(arithmetic_error, location = pkg_addr::other_module)]
+    #[test, expected_failure(arithmetic_error, location = pkg_addr::other_module)]
     fun test_will_oog_and_pass2() { other_module::will_oog() }
 
     // FAIL: Will fail since the location we expect it the fail at is different from where
     // the test actually failed.
-    #[test]
-    #[expected_failure(out_of_gas, location = Self)]
+    #[test, expected_failure(out_of_gas, location = Self)]
     fun test_will_oog_and_fail() { other_module::will_oog() }
 }
 ```
@@ -175,35 +168,30 @@ module pkg_addr::other_module {
 }
 
 module pkg_addr::my_module {
-    #[test]
-    #[expected_failure(vector_error, location = Self)]
+    #[test, expected_failure(vector_error, location = Self)]
     fun vector_abort_same_module() {
         vector::borrow(&vector<u64>[], 1);
     }
 
-    #[test]
-    #[expected_failure(vector_error, location = pkg_addr::other_module)]
+    #[test, expected_failure(vector_error, location = pkg_addr::other_module)]
     fun vector_abort_same_module() {
         other_module::vector_borrow_empty();
     }
 
     // Can specify minor statues (i.e., vector-specific error codes) to expect.
-    #[test]
-    #[expected_failure(vector_error, minor_status = 1, location = Self)]
+    #[test, expected_failure(vector_error, minor_status = 1, location = Self)]
     fun native_abort_good_right_code() {
         vector::borrow(&vector<u64>[], 1);
     }
 
     // FAIL: correct error, but wrong location.
-    #[test]
-    #[expected_failure(vector_error, location = pkg_addr::other_module)]
+    #[test, expected_failure(vector_error, location = pkg_addr::other_module)]
     fun vector_abort_same_module() {
         other_module::vector_borrow_empty();
     }
 
     // FAIL: correct error and location but the minor status differs so this test will fail.
-    #[test]
-    #[expected_failure(vector_error, minor_status = 0, location = Self)]
+    #[test, expected_failure(vector_error, minor_status = 0, location = Self)]
     fun vector_abort_wrong_minor_code() {
         vector::borrow(&vector<u64>[], 1);
     }
@@ -217,12 +205,10 @@ using this to annotate expected tests failures, and always prefer one of the way
 instead. Examples of these types of annotations are:
 
 ```move
-#[test]
-#[expected_failure]
+#[test, expected_failure]
 fun test_will_abort_and_pass1() { abort 1 }
 
-#[test]
-#[expected_failure]
+#[test, expected_failure]
 fun test_will_arith_error_and_pass2() { 1/0; }
 ```
 
@@ -307,9 +293,8 @@ fun make_sure_non_zero_coin_passes() {
     let Wrapper(_) = make_sure_non_zero_coin(coin);
 }
 
-#[test]
-// Or #[expected_failure] if we don't care about the abort code
-#[expected_failure(abort_code = ECoinIsZero)]
+#[test, expected_failure(abort_code = ECoinIsZero)]
+// Or #[test, expected_failure] if we don't care about the abort code
 fun make_sure_zero_coin_fails() {
     let coin = Wrapper(0);
     let Wrapper(_) = make_sure_non_zero_coin(coin);
@@ -320,8 +305,7 @@ fun make_coin_zero(coin: &mut Wrapper) {
     coin.0 = 0;
 }
 
-#[test]
-#[expected_failure(abort_code = ECoinIsZero)]
+#[test, expected_failure(abort_code = ECoinIsZero)]
 fun make_sure_zero_coin_fails2() {
     let mut coin = Wrapper(10);
     coin.make_coin_zero();
