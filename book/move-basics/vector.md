@@ -17,8 +17,8 @@ followed by square brackets containing the elements (or no elements for an empty
 ```
 
 The `vector` type is a built-in type in Move, and does not need to be imported from a module.
-However, vector operations are defined in the `std::vector` module, and you need to import the
-module to use them.
+Vector operations are defined in the `std::vector` module, which is implicitly imported
+and can be used directly without explicit `use` import.
 
 ## Vector operations
 
