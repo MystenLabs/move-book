@@ -23,12 +23,12 @@ let ctx = &mut tx_context::dummy();
 let mut bag = bag::new(ctx);
 
 // bag has the `length` function to get the number of elements
-assert!(bag.length() == 0, 0);
+assert!(bag.length() == 0);
 
 bag.add(b"my_key", b"my_value".to_string());
 
 // length has changed to 1
-assert!(bag.length() == 1, 1);
+assert!(bag.length() == 1);
 
 // in order: `borrow`, `borrow_mut` and `remove`
 // the value type must be specified
@@ -64,20 +64,20 @@ let ctx = &mut tx_context::dummy();
 let mut table = table::new<address, String>(ctx);
 
 // table has the `length` function to get the number of elements
-assert!(table.length() == 0, 0);
+assert!(table.length() == 0);
 
 table.add(@0xa11ce, b"my_value".to_string());
 table.add(@0xb0b, b"another_value".to_string());
 
 // length has changed to 2
-assert!(table.length() == 2, 2);
+assert!(table.length() == 2);
 
 // in order: `borrow`, `borrow_mut` and `remove`
-let my_value_ref = &table[@0xa11ce];
-let my_value_mut = &mut table[@0xa11ce];
+let value_ref = &table[@0xa11ce];
+let value_mut = &mut table[@0xa11ce];
 
 // removing both values
-let _my_value = table.remove(@0xa11ce);
+let _value = table.remove(@0xa11ce);
 let _another_value = table.remove(@0xb0b);
 
 // length is back to 0 - we can unpack
@@ -108,14 +108,14 @@ let ctx = &mut tx_context::dummy();
 let mut linked_table = linked_table::new<address, String>(ctx);
 
 // linked_table has the `length` function to get the number of elements
-assert!(linked_table.length() == 0, 0);
+assert!(linked_table.length() == 0);
 
 linked_table.push_front(@0xa0a, b"first_value".to_string());
 linked_table.push_back(@0xb1b, b"second_value".to_string());
 linked_table.push_back(@0xc2c, b"third_value".to_string());
 
 // length has changed to 3
-assert!(linked_table.length() == 3, 3);
+assert!(linked_table.length() == 3);
 
 // in order: `borrow`, `borrow_mut` and `remove`
 let first_value_ref = &linked_table[@0xa0a];
