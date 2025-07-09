@@ -90,8 +90,9 @@ not feasible to list every possible case. For these situations, match supports a
 We can demonstrate this by simplifying our `is_empty` function and replacing the non-`Empty`
 variants with a wildcard:
 
-```move
-public fun is_empty(s: &Segment): bool { file=packages/samples/sources/move-basics/enum-and anchor=matcmove:is_empty_2}}
+```move file=packages/samples/sources/move-basics/enum-and-match.move anchor=is_empty_2
+public fun is_empty(s: &Segment): bool {
+
 ```
 
 Similarly, we can use the same approach to define `is_special` and `is_string`:
