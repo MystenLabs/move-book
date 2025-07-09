@@ -577,7 +577,7 @@ mut_on_value(x); // returns 3
 ### `..` Usage
 
 The `..` pattern can only be used within a constructor pattern as a wildcard that matches any number
-of fields -- the the compiler expands the `..` to inserting `_` in any missing fields in the
+of fields -- the compiler expands the `..` to inserting `_` in any missing fields in the
 constructor pattern (if any). So `MyStruct(_, _, _)` is the same as `MyStruct(..)`,
 `MyStruct(1, _, _)` is the same as `MyStruct(1, ..)`. Because of this, there are some restrictions
 on how, and where the `..` pattern can be used:
