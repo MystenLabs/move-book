@@ -568,7 +568,7 @@ destroy(app);
 ### Doc Comments Start With `///`
 
 ```move
-// bad! tooling does't support JavaDoc-style comments
+// bad! tooling doesn't support JavaDoc-style comments
 /**
  * Cool method
  * @param ...

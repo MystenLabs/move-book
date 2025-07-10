@@ -13,7 +13,7 @@ features. Whatever IDE you choose, you'll need to use the terminal to run the
 - [Move (Extension)](https://marketplace.visualstudio.com/items?itemName=mysten.move) is a language
   server extension for Move maintained by [Mysten Labs](https://mystenlabs.com).
 - [Move Formatter](https://marketplace.visualstudio.com/items?itemName=mysten.prettier-move) - code
-  formatter for Move, developed and maintaned by [Mysten Labs](https://mystenlabs.com).
+  formatter for Move, developed and maintained by [Mysten Labs](https://mystenlabs.com).
 - [Move Syntax](https://marketplace.visualstudio.com/items?itemName=damirka.move-syntax) a simple
   syntax highlighting extension for Move by [Damir Shamanaev](https://github.com/damirka/).
 
