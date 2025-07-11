@@ -62,7 +62,7 @@ offers _pattern matching_ syntax.
 
 Pattern matching allows conditioning the logic based on the _pattern_ of the value. It is performed
 using the `match` expression, followed by the matched value in parenthesis and the block of _match
-arms_, defining the patten and expression to be performed if the pattern is right.
+arms_, defining the pattern and expression to be performed if the pattern is right.
 
 Let's extend our example by adding a set of `is_variant`-like functions, so external packages can
 check the variant. Starting with `is_empty`.

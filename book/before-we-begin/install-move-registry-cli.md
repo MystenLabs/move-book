@@ -30,7 +30,7 @@ environments and supports both `testnet` and `mainnet`.
 
 ## Install Using Cargo
 
-You can install and build MVR locally by using Cargo (requres Rust)
+You can install and build MVR locally by using Cargo (requires Rust)
 
 ```bash
 cargo install --locked --git https://github.com/mystenlabs/mvr --branch release mvr
