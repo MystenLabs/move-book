@@ -6,6 +6,8 @@ module book::references;
 // ANCHOR: header_new
 /// Error code for when the card is empty.
 const ENoUses: u64 = 0;
+/// Error code for when the card is not empty.
+const EHasUses: u64 = 1;
 
 /// Number of uses for a metro pass card.
 const USES: u8 = 3;
@@ -37,7 +39,7 @@ public fun enter_metro(card: &mut Card) {
 // ANCHOR: move
 /// Recycle the metro pass card.
 public fun recycle(card: Card) {
-    assert!(card.uses == 0, ENoUses);
+    assert!(card.uses == 0, EHasUses);
     let Card { uses: _ } = card;
 }
 // ANCHOR_END: move
