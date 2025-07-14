@@ -21,7 +21,90 @@ to others for modification or transfer. This level of ownership clarity is a sig
 over other blockchain systems, where ownership definitions can be more ambiguous, and smart
 contracts may have the ability to alter or transfer assets without the owner's consent.
 
-<!-- TODO: add an example -->
+Let's illustrate this with a simple example:
+
+Write an `AdminCap` structure in the contract, which will be minted and transferred to the publisher
+at the same time as publishing.
+
+```move
+public struct AdminCap has key {
+    id: UID
+}
+
+// Minting and transferring `AdminCap` to the publisher at the time of publication
+fun init(ctx: &mut TxContext) {
+    transfer::transfer(AdminCap {
+        id: object::new(ctx)
+    }, ctx.sender());
+}
+```
+
+Write two functions, both of which can only be called by the owner of `AdminCap`.
+
+```move
+public struct AdminEvent has copy, drop {
+    administrator: address
+}
+
+// Only the owner of `AdminCap` can call this function
+public fun emit(_: &AdminCap, ctx: &TxContext) {
+    event::emit(AdminEvent {
+        administrator: ctx.sender()
+    });
+}
+
+// Only the owner of `AdminCap` can call this function
+public fun transfer(cap: AdminCap, receipt: address) {
+    transfer::transfer(cap, receipt);
+}
+```
+
+Use `sui client publish` to publish and log:
+
+```bash
+PackageID: 0x0b4e5cc5d925414a19f259ed08b7718c08626b9e1206e323d037253adaf82820
+AdminCap ObjectID: 0x6873b1a1a152a44a7b3919770a49ccd1c1f697ae58290ba38c6de1d4a3edfafc
+```
+
+Call and emit event:
+
+```bash
+sui client call --package <PackageID> --module ownership --function emit --args <AdminCap ObjectID>
+
+# event:
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Transaction Block Events                                                                               │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│  ┌──                                                                                                   │
+│  │ EventID: FR32YZyTYHqjaRfJx6gzMMun3XKRBR8YS2f4vEyKhHfs:0                                             │
+│  │ PackageID: 0x0b4e5cc5d925414a19f259ed08b7718c08626b9e1206e323d037253adaf82820                       │
+│  │ Transaction Module: ownership                                                                       │
+│  │ Sender: 0x9e4092b6a894e6b168aa1c6c009f5c1c1fcb83fb95e5aa39144e1d2be4ee0d67                          │
+│  │ EventType: 0xb4e5cc5d925414a19f259ed08b7718c08626b9e1206e323d037253adaf82820::ownership::AdminEvent │
+│  │ ParsedJSON:                                                                                         │
+│  │   ┌───────────────┬────────────────────────────────────────────────────────────────────┐            │
+│  │   │ administrator │ 0x9e4092b6a894e6b168aa1c6c009f5c1c1fcb83fb95e5aa39144e1d2be4ee0d67 │            │
+│  │   └───────────────┴────────────────────────────────────────────────────────────────────┘            │
+│  └──                                                                                                   │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+Switch users and try calling again:
+
+```bash
+sui client switch --address <Address Alias>
+sui client call --package <PackageID> --module ownership --function emit --args <AdminCap ObjectID>
+
+# error...
+```
+
+Of course, as the owner of `AdminCap`, you can call `transfer` to transfer ownership.
+Once completed, only the new owner can complete the above process.
+
+The process of transfer and re-verification will not be shown in this article.
+
+Similarly, on Sui, cryptocurrencies are also objects, and only their owners have the right to
+operate them. This design further protects property security.
 
 ## Shared State
 
