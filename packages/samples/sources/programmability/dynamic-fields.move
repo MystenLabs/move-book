@@ -39,7 +39,6 @@ fun test_character_and_accessories() {
     );
 
     // Check that the hat and mustache are attached to the character
-    //
     assert!(df::exists_(&character.id, b"hat_key"), 0);
     assert!(df::exists_(&character.id, b"mustache_key"), 1);
 
