@@ -65,5 +65,5 @@ Using capabilities has several advantages over the address check:
 However, the address approach has its own advantages. For example, if an address is multisig, and
 transaction building gets more complex, it might be easier to check the address. Also, if there's a
 central object of the application that is used in every function, it can store the admin address,
-and this would simplify migration. The central object approach is also valuable for revokable
+and this would simplify migration. The central object approach is also valuable for revocable
 capabilities, where the admin can revoke the capability from the user.

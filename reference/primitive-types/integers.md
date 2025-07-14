@@ -109,7 +109,7 @@ Bitwise operations do not abort.
 ### Bit Shifts
 
 Similar to the bitwise operations, each integer type supports bit shifts. But unlike the other
-operations, the righthand side operand (how many bits to shift by) must _always_ be a `u8` and need
+operations, the right hand side operand (how many bits to shift by) must _always_ be a `u8` and need
 not match the left side operand (the number you are shifting).
 
 Bit shifts can abort if the number of bits to shift by is greater than or equal to `8`, `16`, `32`,

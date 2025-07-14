@@ -100,7 +100,7 @@ module pkg_addr::my_module {
 ### 2. `#[expected_failure(arithmetic_error, location = <location>)]`
 
 This specifies that the test is expected to fail with an arithmetic error (e.g., integer overflow,
-division by zero, etc) at the specified location. The `<location>` must be a valid path to a module
+division by zero, etc.) at the specified location. The `<location>` must be a valid path to a module
 location, e.g., `Self`, or `my_package::my_module`.
 
 ```move
@@ -154,7 +154,7 @@ module pkg_addr::my_module {
 ### 4. `#[expected_failure(vector_error, minor_status = <u64_opt>, location = <location>)]`
 
 This specifies that the test is expected to fail with a vector error at the specified location with
-the given `minor_status` (if provided). The `<location>` must be a valid path to a module module
+the given `minor_status` (if provided). The `<location>` must be a valid path to a module
 location, e.g., `Self`, or `my_package::my_module`. The `<u64_opt>` is an optional parameter that
 specifies the minor status of the vector error. If it is not specified, the test will pass if the
 test fails with any minor status. If it is specified, the test will only pass if the test fails with
