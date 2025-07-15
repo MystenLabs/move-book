@@ -126,7 +126,7 @@ capabilities to other modules.
 
 ## Exposing UID
 
-<div className="warning">
+<div class="warning">
 
 Mutable access to `UID` is a security risk. Exposing `UID` of your type as a mutable reference can
 lead to unwanted modifications or removal of the object's dynamic fields. Additionally, it affects

@@ -45,7 +45,7 @@ fun init(otw: OTW, ctx: &TxContext) { /* ... */ }
 ## Trust and Security
 
 While `init` function can be used to create sensitive objects once, it is important to know that the
-same object (eg. `StoreOwnerCap` from the first example) can still be created in another function.
+same object (e.g. `StoreOwnerCap` from the first example) can still be created in another function.
 Especially given that new functions can be added to the module during an upgrade. So the `init`
 function is a good place to set up the initial state of the module, but it is not a security measure
 on its own.
