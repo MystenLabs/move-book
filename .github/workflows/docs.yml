@@ -30,7 +30,7 @@ jobs:
       - name: Spell Check Docs
         uses: crate-ci/typos@v1.16.11
         with:
-          files: ./src
+          files: ./book ./reference
 
   build:
     runs-on: ubuntu-latest
