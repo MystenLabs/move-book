@@ -23,85 +23,32 @@ contracts may have the ability to alter or transfer assets without the owner's c
 
 Let's illustrate this with a simple example:
 
-Write an `AdminCap` structure in the contract, which will be minted and transferred to the publisher
-at the same time as publishing.
+A `Key` structure will be minted and transferred to the publisher at the same time as the smart contract
+is published. Only the owner of this `Key` has the right to perform subsequent operations.
 
 ```move
-public struct AdminCap has key {
-    id: UID
+public struct Key has key {
+    id: UID,
+    // Other possible parameters
 }
 
-// Minting and transferring `AdminCap` to the publisher at the time of publication
+// Minting and transferring `Key` to the publisher at the time of publication
 fun init(ctx: &mut TxContext) {
-    transfer::transfer(AdminCap {
-        id: object::new(ctx)
+    transfer::transfer(Key {
+        id: object::new(ctx),
+        // Other possible parameters
     }, ctx.sender());
 }
-```
 
-Write two functions, both of which can only be called by the owner of `AdminCap`.
-
-```move
-public struct AdminEvent has copy, drop {
-    administrator: address
-}
-
-// Only the owner of `AdminCap` can call this function
-public fun emit(_: &AdminCap, ctx: &TxContext) {
-    event::emit(AdminEvent {
-        administrator: ctx.sender()
-    });
-}
-
-// Only the owner of `AdminCap` can call this function
-public fun transfer(cap: AdminCap, receipt: address) {
-    transfer::transfer(cap, receipt);
+// Only the owner of `Key` can call this function
+public fun open(key: &Key) {
+    // Use the key to perform some operations
 }
 ```
 
-Use `sui client publish` to publish and log:
-
-```bash
-PackageID: 0x0b4e5cc5d925414a19f259ed08b7718c08626b9e1206e323d037253adaf82820
-AdminCap ObjectID: 0x6873b1a1a152a44a7b3919770a49ccd1c1f697ae58290ba38c6de1d4a3edfafc
-```
-
-Call and emit event:
-
-```bash
-sui client call --package <PackageID> --module ownership --function emit --args <AdminCap ObjectID>
-
-# event:
-╭────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ Transaction Block Events                                                                               │
-├────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│  ┌──                                                                                                   │
-│  │ EventID: FR32YZyTYHqjaRfJx6gzMMun3XKRBR8YS2f4vEyKhHfs:0                                             │
-│  │ PackageID: 0x0b4e5cc5d925414a19f259ed08b7718c08626b9e1206e323d037253adaf82820                       │
-│  │ Transaction Module: ownership                                                                       │
-│  │ Sender: 0x9e4092b6a894e6b168aa1c6c009f5c1c1fcb83fb95e5aa39144e1d2be4ee0d67                          │
-│  │ EventType: 0xb4e5cc5d925414a19f259ed08b7718c08626b9e1206e323d037253adaf82820::ownership::AdminEvent │
-│  │ ParsedJSON:                                                                                         │
-│  │   ┌───────────────┬────────────────────────────────────────────────────────────────────┐            │
-│  │   │ administrator │ 0x9e4092b6a894e6b168aa1c6c009f5c1c1fcb83fb95e5aa39144e1d2be4ee0d67 │            │
-│  │   └───────────────┴────────────────────────────────────────────────────────────────────┘            │
-│  └──                                                                                                   │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-```
-
-Switch users and try calling again:
-
-```bash
-sui client switch --address <Address Alias>
-sui client call --package <PackageID> --module ownership --function emit --args <AdminCap ObjectID>
-
-# error...
-```
-
-Of course, as the owner of `AdminCap`, you can call `transfer` to transfer ownership.
-Once completed, only the new owner can complete the above process.
-
-The process of transfer and re-verification will not be shown in this article.
+Of course, anyone can query the relevant information of `Key` from the chain, but only its owner
+has the right to use it. In other words, if the person who calls the `open` function is not the
+owner of the `Key`, the transaction will not be executed.
 
 Similarly, on Sui, cryptocurrencies are also objects, and only their owners have the right to
 operate them. This design further protects property security.
