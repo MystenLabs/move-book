@@ -21,7 +21,10 @@ to others for modification or transfer. This level of ownership clarity is a sig
 over other blockchain systems, where ownership definitions can be more ambiguous, and smart
 contracts may have the ability to alter or transfer assets without the owner's consent.
 
-<!-- TODO: add an example -->
+Just like your private mobile phone, you own it, you can easily unlock and operate it, but others cannot.
+Sui is designed to prevent things like cracking someone else's phone password (bypassing permission
+checks to use objects that do not belong to others). Therefore, no one can use your assets unless
+authorized by you.
 
 ## Shared State
 
