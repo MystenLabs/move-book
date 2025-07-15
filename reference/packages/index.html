@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&amp;amp;display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"><link rel="stylesheet" href="/assets/css/styles.f79f3242.css">
-<script src="/assets/js/runtime~main.ba613d9f.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.62e9cdbd.js" defer="defer"></script>
 <script src="/assets/js/main.9757aefb.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -104,7 +104,7 @@ around scoping and renaming become important to understand.</p>
 <ol>
 <li><span class="inline-code">P</span> declares a named address <span class="inline-code">N</span>; or</li>
 <li>A package in one of <span class="inline-code">P</span>&#x27;s transitive dependencies declares the named address <span class="inline-code">N</span> and there is a
-dependency path in the package graph between between <span class="inline-code">P</span> and the declaring package of <span class="inline-code">N</span> with no
+dependency path in the package graph between <span class="inline-code">P</span> and the declaring package of <span class="inline-code">N</span> with no
 renaming of <span class="inline-code">N</span>.</li>
 </ol>
 <p>Additionally, every named address in a package is exported. Because of this and the above scoping
@@ -124,7 +124,7 @@ above:</p>
 <p>It is important to note that <em>renaming is not local</em>: once a named address <span class="inline-code">N</span> has been renamed to
 <span class="inline-code">N2</span> in a package <span class="inline-code">P</span> all packages that import <span class="inline-code">P</span> will not see <span class="inline-code">N</span> but only <span class="inline-code">N2</span> unless <span class="inline-code">N</span> is
 reintroduced from outside of <span class="inline-code">P</span>. This is why rule (2) in the scoping rules at the start of this
-section specifies a &quot;dependency path in the package graph between between <span class="inline-code">P</span> and the declaring
+section specifies a &quot;dependency path in the package graph between <span class="inline-code">P</span> and the declaring
 package of <span class="inline-code">N</span> with no renaming of <span class="inline-code">N</span>.&quot;</p>
 <h3 class="anchor anchorWithStickyNavbar_kl3l" id="instantiating-named-addresses">Instantiating Named Addresses<a href="#instantiating-named-addresses" class="hash-link" aria-label="Direct link to Instantiating Named Addresses" title="Direct link to Instantiating Named Addresses">​</a></h3>
 <p>Named addresses can be instantiated multiple times across the package graph as long as it is always
@@ -162,7 +162,7 @@ to it. You also must not move the file from the root, as it needs to be at the s
 every build of your package is an exact replica of the original, and that changes to the build will
 be apparent as changes to the <span class="inline-code">Move.lock</span> file.</p>
 <p>The <span class="inline-code">Move.lock</span> file is a TOML file that currently contains the following fields.</p>
-<p><strong>Note</strong>: other fields may be added to the lock file either in the future, or by third-party package
+<p><strong>Note</strong>: other fields may be added to the lock file either in the future, or by third-party
 package managers as well.</p>
 <h3 class="anchor anchorWithStickyNavbar_kl3l" id="the-move-section">The <span class="inline-code">[move]</span> Section<a href="#the-move-section" class="hash-link" aria-label="Direct link to the-move-section" title="Direct link to the-move-section">​</a></h3>
 <p>This section contains the core information needed in the lockfile:</p>

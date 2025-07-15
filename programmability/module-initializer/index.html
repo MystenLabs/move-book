@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&amp;amp;display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"><link rel="stylesheet" href="/assets/css/styles.f79f3242.css">
-<script src="/assets/js/runtime~main.ba613d9f.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.62e9cdbd.js" defer="defer"></script>
 <script src="/assets/js/main.9757aefb.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -45,7 +45,7 @@ create new objects it requires the mutable reference to the context.</p>
 <div class="language-move codeBlockContainer_AE_o theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_YOHW"><pre tabindex="0" class="prism-code language-move codeBlock_q9R9 thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_bu_M"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token function-keyword keyword" style="color:hsl(301, 63%, 40%)">fun</span><span class="token plain"> </span><span class="token function-name function" style="color:hsl(221, 87%, 60%)">init</span><span class="token plain">(</span><span class="token property-name function-argument struct-property-name">ctx</span><span class="token plain">: &amp;</span><span class="token struct-types entity" style="color:#C18401">TxContext</span><span class="token plain">) { </span><span class="token comment" style="color:#A0A1A7">/* ... */</span><span class="token plain">}</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain"></span><span class="token function-keyword keyword" style="color:hsl(301, 63%, 40%)">fun</span><span class="token plain"> </span><span class="token function-name function" style="color:hsl(221, 87%, 60%)">init</span><span class="token plain">(</span><span class="token property-name function-argument struct-property-name">otw</span><span class="token plain">: </span><span class="token const-use constant" style="color:hsl(35, 99%, 36%)">OTW</span><span class="token plain">, </span><span class="token property-name function-argument struct-property-name">ctx</span><span class="token plain">: &amp;</span><span class="token struct-types entity" style="color:#C18401">TxContext</span><span class="token plain">) { </span><span class="token comment" style="color:#A0A1A7">/* ... */</span><span class="token plain"> }</span><br></span></code></pre></div></div>
 <h2 class="anchor anchorWithStickyNavbar_kl3l" id="trust-and-security">Trust and Security<a href="#trust-and-security" class="hash-link" aria-label="Direct link to Trust and Security" title="Direct link to Trust and Security">​</a></h2>
 <p>While <span class="inline-code">init</span> function can be used to create sensitive objects once, it is important to know that the
-same object (eg. <span class="inline-code">StoreOwnerCap</span> from the first example) can still be created in another function.
+same object (e.g. <span class="inline-code">StoreOwnerCap</span> from the first example) can still be created in another function.
 Especially given that new functions can be added to the module during an upgrade. So the <span class="inline-code">init</span>
 function is a good place to set up the initial state of the module, but it is not a security measure
 on its own.</p>
