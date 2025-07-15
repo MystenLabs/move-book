@@ -22,8 +22,9 @@ over other blockchain systems, where ownership definitions can be more ambiguous
 contracts may have the ability to alter or transfer assets without the owner's consent.
 
 Just like your private mobile phone, you own it, you can easily unlock and operate it, but others cannot.
-Sui is designed to prevent crimes such as stealing mobile phones (bypassing permission checks to use
-objects that do not belong to others). Therefore, no one can use your assets unless authorized by you.
+Sui is designed to prevent things like cracking someone else's phone password (bypassing permission
+checks to use objects that do not belong to others). Therefore, no one can use your assets unless
+authorized by you.
 
 ## Shared State
 
