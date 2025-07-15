@@ -31,3 +31,17 @@ jobs:
         uses: crate-ci/typos@v1.16.11
         with:
           files: ./src
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm i
+        working-directory: ./site
+      - name: Build website
+        run: pnpm build
+        working-directory: ./site
