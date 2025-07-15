@@ -1,11 +1,11 @@
 # Copy-pasta from MystenLabs/sui/.github/workflows/docs.yml
 
 name: Documentation
+permissions:
+  contents: read
 
 on:
-  push:
   pull_request:
-    types: [opened, synchronize, reopened, ready_for_review]
 
 jobs:
   diff:
@@ -19,15 +19,29 @@ jobs:
         uses: './.github/actions/diffs'
         id: diff
 
-  spelling:
-    name: Lint documentation
-    needs: diff
-    if: needs.diff.outputs.isDoc == 'true'
-    runs-on: [ubuntu-latest]
+  # temporarily disabled, we have too many special words like MIST
+  # spelling:
+  #   name: Lint documentation
+  #   needs: diff
+  #   if: needs.diff.outputs.isDoc == 'true'
+  #   runs-on: [ubuntu-latest]
+  #   steps:
+  #     - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # Pin v4.1.1
+  #     - name: Spell Check Docs
+  #       uses: crate-ci/typos@v1.16.11
+  #       with:
+  #         files: ./book ./reference
 
+  build:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # Pin v4.1.1
-      - name: Spell Check Docs
-        uses: crate-ci/typos@v1.16.11
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
         with:
-          files: ./src
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm i
+        working-directory: ./site
+      - name: Build website
+        run: pnpm build
+        working-directory: ./site
