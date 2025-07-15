@@ -21,37 +21,9 @@ to others for modification or transfer. This level of ownership clarity is a sig
 over other blockchain systems, where ownership definitions can be more ambiguous, and smart
 contracts may have the ability to alter or transfer assets without the owner's consent.
 
-Let's illustrate this with a simple example:
-
-A `Key` structure will be minted and transferred to the publisher at the same time as the smart contract
-is published. Only the owner of this `Key` has the right to perform subsequent operations.
-
-```move
-public struct Key has key {
-    id: UID,
-    // Other possible parameters
-}
-
-// Minting and transferring `Key` to the publisher at the time of publication
-fun init(ctx: &mut TxContext) {
-    transfer::transfer(Key {
-        id: object::new(ctx),
-        // Other possible parameters
-    }, ctx.sender());
-}
-
-// Only the owner of `Key` can call this function
-public fun open(key: &Key) {
-    // Use the key to perform some operations
-}
-```
-
-Of course, anyone can query the relevant information of `Key` from the chain, but only its owner
-has the right to use it. In other words, if the person who calls the `open` function is not the
-owner of the `Key`, the transaction will not be executed.
-
-Similarly, on Sui, cryptocurrencies are also objects, and only their owners have the right to
-operate them. This design further protects property security.
+Just like your private mobile phone, you own it, you can easily unlock and operate it, but others cannot.
+Sui is designed to prevent crimes such as stealing mobile phones (bypassing permission checks to use
+objects that do not belong to others). Therefore, no one can use your assets unless authorized by you.
 
 ## Shared State
 
