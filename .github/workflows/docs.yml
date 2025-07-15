@@ -1,6 +1,8 @@
 # Copy-pasta from MystenLabs/sui/.github/workflows/docs.yml
 
 name: Documentation
+permissions:
+  contents: read
 
 on:
   pull_request:

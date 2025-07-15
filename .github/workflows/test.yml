@@ -1,4 +1,6 @@
 name: Run tests for Move packages
+permissions:
+  contents: read
 
 # Set the VERSION variable to use when downloading the binary
 # Currently, requires explicit setup, ideally it should be fetched
