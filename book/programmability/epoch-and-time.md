@@ -66,8 +66,10 @@ current time in milliseconds since the Unix Epoch.
 
 ```
 
-<!-- TODO:
-
 ## Testing
 
-TODO: how to use Clock in tests. -->
+The `Clock` module provides a number of methods for use in testing.
+
+```move file=packages/samples/sources/programmability/epoch-and-time.move anchor=test
+
+```
