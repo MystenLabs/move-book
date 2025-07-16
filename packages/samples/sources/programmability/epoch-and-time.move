@@ -29,7 +29,9 @@ public fun current_time(clock: &Clock) {
 // ANCHOR_END: clock
 
 // ANCHOR: test
+#[test_only]
 use sui::clock;
+#[test_only]
 use std::unit_test::assert_eq;
 
 #[test]
