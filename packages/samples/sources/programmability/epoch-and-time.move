@@ -29,15 +29,14 @@ public fun current_time(clock: &Clock) {
 // ANCHOR_END: clock
 
 // ANCHOR: test
-#[test_only]
 use sui::clock;
 use std::unit_test::assert_eq;
 
 #[test]
 fun use_clock_in_test() {
     // Get `ctx` and create `Clock` for testing
-    let mut ctx = tx_context::dummy();
-    let mut clock = clock::create_for_testing(&mut ctx);
+    let ctx = &mut tx_context::dummy();
+    let mut clock = clock::create_for_testing(ctx);
     assert_eq!(clock.timestamp_ms(), 0);
 
     // Add a value to the timestamp stored in `Clock`
