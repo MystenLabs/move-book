@@ -5,7 +5,7 @@ everything is an expression, with the sole exception of the `let` statement, whi
 In this section, we cover the types of expressions and introduce the concept of scope.
 
 > Expressions are sequenced with semicolons `;`. If there's "no expression" after the semicolon, the
-> compiler will insert a `unit ()`, which represents an empty expression.
+> compiler will insert `unit`, which is the `()` value in Move and represents an empty expression of type `unit`.
 
 ## Literals
 
@@ -18,7 +18,7 @@ functions. Move has the following literals:
 - Integer values: `0`, `1`, `123123`
 - Hexadecimal values: Numbers prefixed with 0x to represent integers, such as `0x0`, `0x1`, `0x123`
 - Byte vector values: Prefixed with `b`, such as `b"bytes_vector"`
-- Byte values: Hexadecimal literals prefixed with `x`, such as `x"0A"`
+- Byte string values: Hexadecimal-encoded byte sequences prefixed with `x`, such as `x"0A"`
 
 ```move file=packages/samples/sources/move-basics/expression.move anchor=literals
 
