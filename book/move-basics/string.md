@@ -120,7 +120,68 @@ specified index falls within the middle of a character.
 
 ## ASCII Strings
 
-This section is coming soon!
+While `std::string` is the default choice for most string operations, the `std::ascii` module provides a specialized type, `AsciiString`, for working exclusively with ASCII characters (i.e., bytes in the range `0x00` to `0x7F`). This type offers strict validation, ensuring all content conforms to the ASCII standard, and is useful for performance-sensitive code or where UTF-8 is unnecessary.
+
+### Definition
+
+The `AsciiString` type in the `std::ascii` module is defined as:
+
+```move
+module std::ascii;
+
+/// An `AsciiString` holds a sequence of bytes that are guaranteed to be valid ASCII characters.
+public struct AsciiString has copy, drop, store {
+    bytes: vector<u8>,
+}
+```
+
+### Creating an ASCII String
+
+To construct an `AsciiString`, you must use the provided constructor functions, such as `from_bytes`. These will abort if the input contains any invalid (non-ASCII) byte.
+
+```move
+use std::ascii;
+
+/// Valid ASCII bytes
+let ascii_str = ascii::from_bytes(b"Hello");
+
+// Invalid ASCII: will abort due to the byte 0xFF
+let invalid = ascii::from_bytes(b"Hiÿ");
+```
+
+You can also use `try_from_bytes`, which returns an `Option<AsciiString>` instead of aborting:
+
+```move
+let maybe_valid = ascii::try_from_bytes(b"ASCII only!");
+assert!(maybe_valid.is_some());
+
+let maybe_invalid = ascii::try_from_bytes(b"Oopsÿ");
+assert!(maybe_invalid.is_none());
+```
+
+### Common Operations
+
+`AsciiString` provides many of the same methods as `String`, such as:
+
+```move
+let mut s1 = ascii::from_bytes(b"Hello");
+let s2 = ascii::from_bytes(b" World");
+
+s1.append(s2);                    // "Hello World"
+let part = s1.sub_string(0, 5);   // "Hello"
+let len = s1.length();           // 11
+let is_empty = s1.is_empty();    // false
+let bytes = s1.bytes();          // &vector<u8>
+```
+
+Because all characters in an `AsciiString` are exactly one byte long, operations like slicing and indexing are simpler and more efficient compared to UTF-8 strings.
+
+### When to Use `AsciiString`
+
+- When you are sure the content will never include multi-byte UTF-8 characters.
+- For performance-sensitive paths where UTF-8 validation is unnecessary.
+- To enforce strict character constraints in business logic (e.g., identifiers, tags, protocol tokens).
+
 
 ## Further Reading
 
