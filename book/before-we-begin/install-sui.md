@@ -40,8 +40,21 @@ Windows.
 ```bash
 choco install sui
 ```
+## Install Using Pacman (Arch Linux)
 
-## Build Using Cargo (MacOS, Linux)
+If you're using Arch Linux or an Arch-based distribution (like Manjaro), you can install Sui using the `pacman` package manager:
+
+```bash
+sudo pacman -S sui
+```
+
+Make sure your system is up to date before installing:
+
+```bash
+sudo pacman -Syu
+```
+
+## Build Using Cargo (MacOS, Linux, Windows)
 
 You can install and build Sui locally by using the Cargo package manager (requires Rust)
 
