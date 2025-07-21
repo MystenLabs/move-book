@@ -17,11 +17,12 @@ features. Whatever IDE you choose, you'll need to use the terminal to run the
 - [Move Syntax](https://marketplace.visualstudio.com/items?itemName=damirka.move-syntax) a simple
   syntax highlighting extension for Move by [Damir Shamanaev](https://github.com/damirka/).
 
-## IntelliJ IDEA
+## JetBrains IDEs (IntelliJ IDEA, PyCharm, RustRover, WebStorm, etc.)
 
-- [IntelliJ IDEA](https://www.jetbrains.com/idea/) is a commercial IDE from JetBrains.
-- [Move Language Plugin](https://plugins.jetbrains.com/plugin/23301-sui-move-language) provides a
-  Move on Sui language extension for IntelliJ IDEA by [MoveFuns](https://movefuns.org/).
+- [JetBrains IDEs](https://www.jetbrains.com/) such as IntelliJ IDEA, PyCharm, RustRover and WebStorm now support Move via the official plugin.
+- [Move Language Plugin](https://plugins.jetbrains.com/plugin/23301-sui-move-language) — a full-featured plugin for Move on Sui, developed by [MoveFuns](https://movefuns.org/).
+
+> ✅ This plugin supports most JetBrains IDEs, including **IntelliJ IDEA Community/Ultimate**, **PyCharm**, **RustRover** and **WebStorm**.
 
 ## Emacs
 
