@@ -19,7 +19,7 @@ features. Whatever IDE you choose, you'll need to use the terminal to run the
 
 ## JetBrains IDEs (IntelliJ IDEA, PyCharm, RustRover, WebStorm, etc.)
 
-- [JetBrains IDEs](https://www.jetbrains.com/) such as IntelliJ IDEA, PyCharm, RustRover and WebStorm now support Move via the official plugin.
+- [JetBrains IDEs](https://www.jetbrains.com/) such as IntelliJ IDEA, PyCharm, RustRover and WebStorm.
 - [Move Language Plugin](https://plugins.jetbrains.com/plugin/23301-sui-move-language) — a full-featured plugin for Move on Sui, developed by [MoveFuns](https://movefuns.org/).
 
 > ✅ This plugin supports most JetBrains IDEs, including **IntelliJ IDEA Community/Ultimate**, **PyCharm**, **RustRover** and **WebStorm**.
