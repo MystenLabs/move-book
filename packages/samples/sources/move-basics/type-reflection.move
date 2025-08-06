@@ -26,12 +26,13 @@ public fun do_i_know_you<T>(): (String, String, String) {
 
 #[test_only]
 public struct MyType {}
+#[test_only]
+use std::unit_test::assert_eq;
 
 #[test]
 fun test_type_reflection() {
     let (type_name, module_name, _address_str) = do_i_know_you<MyType>();
 
-    //
-    assert!(module_name == b"type_reflection".to_ascii_string());
+    assert_eq!(module_name, b"type_reflection".to_ascii_string());
 }
 // ANCHOR_END: main

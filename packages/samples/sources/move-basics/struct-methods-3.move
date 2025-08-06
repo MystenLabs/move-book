@@ -18,11 +18,14 @@ public struct Hero has drop {
 /// Create a new Hero.
 public fun new(): Hero { Hero { health: 100, mana: 100 } }
 
+#[test_only]
+use std::unit_test::assert_eq;
+
 #[test]
 // Test the methods of the `Hero` struct.
 fun test_hero_serialize() {
     // let mut hero = new();
     // let serialized = hero.to_bytes();
-    // assert!(serialized.length() == 3, 1);
+    // assert_eq!(serialized.length(), 3);
 }
 // ANCHOR_END: hero_to_bytes

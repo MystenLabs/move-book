@@ -24,6 +24,9 @@ public fun register(
 }
 // ANCHOR_END: registry
 
+#[test_only]
+use std::unit_test::{assert_eq, assert_ref_eq};
+
 #[test] fun use_option() {
 
 // ANCHOR: usage
@@ -35,16 +38,16 @@ let mut opt = option::some(b"Alice");
 let empty : Option<u64> = option::none();
 
 // `option.is_some()` returns true if option contains a value.
-assert!(opt.is_some());
-assert!(empty.is_none());
+assert_eq!(opt.is_some(), true);
+assert_eq!(empty.is_none(), true);
 
 // internal value can be `borrow`ed and `borrow_mut`ed.
-assert!(opt.borrow() == &b"Alice");
+assert_ref_eq!(opt.borrow(), &b"Alice");
 
 // `option.extract` takes the value out of the option, leaving the option empty.
 let inner = opt.extract();
 
 // `option.is_none()` returns true if option is None.
-assert!(opt.is_none());
+assert_eq!(opt.is_none(), true);
 // ANCHOR_END: usage
 }

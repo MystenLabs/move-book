@@ -38,6 +38,14 @@ fun foo() {
 }
 ```
 
+> It's a better way to use Macros instead of Loops to achieve a more concise and readable purpose.
+> This article only takes the above function `sum` as an example to experience the charm of macro functions:
+```move
+fun sum(n: u64): u64 {
+    vector::tabulate!(n, |i| i + 1).fold!(0, |sum, num| sum + num)
+}
+```
+
 ### Using `break` Inside of `while` Loops
 
 In Move, `while` loops can use `break` to exit early. For example, suppose we were looking for the
@@ -45,12 +53,12 @@ position of a value in a vector, and would like to `break` if we find it:
 
 ```move
 fun find_position(values: &vector<u64>, target_value: u64): Option<u64> {
-    let size = vector::length(values);
+    let size = values.length();
     let mut i = 0;
     let mut found = false;
 
     while (i < size) {
-        if (vector::borrow(values, i) == &target_value) {
+        if (values[i] == target_value) {
             found = true;
             break
         };
@@ -79,12 +87,12 @@ example:
 
 ```move
 fun sum_even(values: &vector<u64>): u64 {
-    let size = vector::length(values);
+    let size = values.length();
     let mut i = 0;
     let mut even_sum = 0;
 
     while (i < size) {
-        let number = *vector::borrow(values, i);
+        let number = values[i];
         i = i + 1;
         if (number % 2 == 1) continue;
         even_sum = even_sum + number;
@@ -134,11 +142,11 @@ so, the overall `loop` expression evaluates to a value of that type. For example
 
 ```move
 fun find_position(values: &vector<u64>, target_value: u64): Option<u64> {
-    let size = vector::length(values);
+    let size = values.length();
     let mut i = 0;
 
     loop {
-        if (vector::borrow(values, i) == &target_value) {
+        if (values[i] == target_value) {
             break option::some(i)
         } else if (i >= size) {
             break option::none()
@@ -158,13 +166,13 @@ function rewritten using `loop` with `break `and` continue` instead of `while`.
 
 ```move
 fun sum_even(values: &vector<u64>): u64 {
-    let size = vector::length(values);
+    let size = values.length();
     let mut i = 0;
     let mut even_sum = 0;
 
     loop {
         if (i >= size) break;
-        let number = *vector::borrow(values, i);
+        let number = values[i];
         i = i + 1;
         if (number % 2 == 1) continue;
         even_sum = even_sum + number;

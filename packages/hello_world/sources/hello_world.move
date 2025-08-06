@@ -1,3 +1,4 @@
+// ANCHOR: source
 /// The module `hello_world` under named address `hello_world`.
 /// The named address is set in the `Move.toml`.
 module hello_world::hello_world;
@@ -9,3 +10,4 @@ use std::string::String;
 public fun hello_world(): String {
     b"Hello, World!".to_string()
 }
+// ANCHOR_END: source

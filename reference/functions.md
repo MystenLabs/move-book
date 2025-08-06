@@ -402,14 +402,11 @@ However `return` really shines is in exiting deep within other control flow cons
 example, the function iterates through a vector to find the index of a given value:
 
 ```move
-use std::vector;
-use std::option::{Self, Option};
-
 fun index_of<T>(v: &vector<T>, target: &T): Option<u64> {
     let mut i = 0;
-    let n = vector::length(v);
+    let n = v.length();
     while (i < n) {
-        if (vector::borrow(v, i) == target) return option::some(i);
+        if (&v[i] == target) return option::some(i);
         i = i + 1
     };
 

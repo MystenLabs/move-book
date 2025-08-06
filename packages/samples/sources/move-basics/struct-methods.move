@@ -25,13 +25,16 @@ public fun health(hero: &Hero): u8 { hero.health }
 /// A method which returns the mana of the hero.
 public fun mana(hero: &Hero): u8 { hero.mana }
 
+#[test_only]
+use std::unit_test::assert_eq;
+
 #[test]
 // Test the methods of the `Hero` struct.
 fun test_methods() {
     let mut hero = new();
     hero.heal_spell();
 
-    assert!(hero.health() == 110);
-    assert!(hero.mana() == 90);
+    assert_eq!(hero.health(), 110);
+    assert_eq!(hero.mana(), 90);
 }
 // ANCHOR_END: hero

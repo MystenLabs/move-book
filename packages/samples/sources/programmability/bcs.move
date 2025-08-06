@@ -1,7 +1,7 @@
 // Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-#[allow(unused_variable)]
+#[allow(unused_variable, unused_field)]
 module book::bcs {
     use std::string::String;
 
@@ -16,6 +16,9 @@ public struct User has drop {
     is_active: bool,
     name: String
 }
+
+#[test_only]
+use std::unit_test::assert_eq;
 
 #[test] fun test_encode() {
 // ANCHOR: encode
@@ -47,7 +50,7 @@ custom_bytes.append(bcs::to_bytes(&b"hello, world!".to_string()));
 custom_bytes.append(bcs::to_bytes(&true));
 
 // struct is just a sequence of fields, so the bytes should be the same!
-assert!(&struct_bytes == &custom_bytes);
+assert_eq!(struct_bytes, custom_bytes);
 // ANCHOR_END: encode_struct
 }
 
@@ -61,12 +64,12 @@ let mut bcs = bcs::new(x"010000000000000000");
 // Same bytes can be read differently, for example: Option<u64>
 let value: Option<u64> = bcs.peel_option_u64();
 
-assert!(value.is_some());
-assert!(value.borrow() == &0);
+assert_eq!(value.is_some(), true);
+assert_eq!(*value.borrow(), 0);
 
 let remainder = bcs.into_remainder_bytes();
 
-assert!(remainder.length() == 0);
+assert_eq!(remainder.length(), 0);
 // ANCHOR_END: decode
 
 // ANCHOR: chain_decode
@@ -94,21 +97,25 @@ while (len > 0) {
     len = len - 1;
 };
 
-assert!(vec.length() == 1);
+assert_eq!(vec.length(), 1);
+
+// The above `while` can be simplified and made more readable using a `macro`.
+// After using the following macro function, will get the equivalent of `vec`.
+// let vec = vector::tabulate!(bcs.peel_vec_length(), |_| bcs.peel_u64());
 // ANCHOR_END: decode_vector
 
 // ANCHOR: decode_option
 let mut bcs = bcs::new(x"00");
 let is_some = bcs.peel_bool();
 
-assert!(is_some == false);
+assert_eq!(is_some, false);
 
 let mut bcs = bcs::new(x"0101");
 let is_some = bcs.peel_bool();
 let value = bcs.peel_u8();
 
-assert!(is_some == true);
-assert!(value == 1);
+assert_eq!(is_some, true);
+assert_eq!(value, 1);
 // ANCHOR_END: decode_option
 
 // ANCHOR: decode_struct

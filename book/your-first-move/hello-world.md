@@ -148,18 +148,7 @@ excludes comments and some identifiers (for example, for constants).
 To demonstrate these features, let's replace the contents of the _sources/hello_world.move_ file
 with the following:
 
-```move
-/// The module `hello_world` under named address `hello_world`.
-/// The named address is set in the `Move.toml`.
-module hello_world::hello_world;
-
-// Imports the `String` type from the Standard Library
-use std::string::String;
-
-/// Returns the "Hello, World!" as a `String`.
-public fun hello_world(): String {
-    b"Hello, World!".to_string()
-}
+```move file=packages/hello_world/sources/hello_world.move anchor=source
 ```
 
 During compilation, the code is built, but not run. A compiled package only includes functions that
@@ -201,16 +190,7 @@ the compiler. We explain tests in depth in the [Testing](./../move-basics/testin
 
 Replace the contents of the `tests/hello_world_tests.move` with the following content:
 
-```move
-#[test_only]
-module hello_world::hello_world_tests;
-
-use hello_world::hello_world;
-
-#[test]
-fun test_hello_world() {
-    assert!(hello_world::hello_world() == b"Hello, World!".to_string(), 0);
-}
+```move file=packages/hello_world/tests/hello_world_tests.move anchor=test
 ```
 
 Here we import the `hello_world` module, and call its `hello_world` function to test that the output

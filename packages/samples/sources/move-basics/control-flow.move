@@ -1,9 +1,13 @@
 // Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
+#[allow(unused_function)]
 // ANCHOR: module
 module book::control_flow;
 // ANCHOR_END: module
+
+#[test_only]
+use std::unit_test::assert_eq;
 
 // ANCHOR: if_condition
 #[test]
@@ -26,7 +30,7 @@ fun test_if_else() {
         0
     };
 
-    assert!(y == 1);
+    assert_eq!(y, 1);
 }
 // ANCHOR_END: if_else
 // ANCHOR: while_loop
@@ -50,9 +54,9 @@ fun while_loop(mut x: u8): u8 {
 
 #[test]
 fun test_while() {
-    assert!(while_loop(0) == 10); // 10 times
-    assert!(while_loop(5) == 5);  // 5 times
-    assert!(while_loop(10) == 0); // loop never executed
+    assert_eq!(while_loop(0), 10); // 10 times
+    assert_eq!(while_loop(5), 5); // 5 times
+    assert_eq!(while_loop(10), 0); // loop never executed
 }
 // ANCHOR_END: while_loop
 // ANCHOR: infinite_while
@@ -66,7 +70,7 @@ fun test_infinite_while() {
     };
 
     // This line will never be executed.
-    assert!(x == 5);
+    assert_eq!(x, 5);
 }
 // ANCHOR_END: infinite_while
 #[allow(dead_code)]
@@ -81,7 +85,7 @@ fun test_infinite_loop() {
     };
 
     // This line will never be executed.
-    assert!(x == 5);
+    assert_eq!(x, 5);
 }
 // ANCHOR_END: infinite_loop
 // ANCHOR: break_loop
@@ -99,7 +103,7 @@ fun test_break_loop() {
         }
     };
 
-    assert!(x == 5);
+    assert_eq!(x, 5);
 }
 // ANCHOR_END: break_loop
 // ANCHOR: continue_loop
@@ -124,7 +128,7 @@ fun test_continue_loop() {
         }
     };
 
-    assert!(x == 10); // 10
+    assert_eq!(x, 10) // 10
 }
 // ANCHOR_END: continue_loop
 // ANCHOR: return_statement
@@ -144,8 +148,8 @@ fun is_positive(x: u8): bool {
 
 #[test]
 fun test_return() {
-    assert!(is_positive(5) == false);
-    assert!(is_positive(0) == false);
-    assert!(is_positive(1) == true);
+    assert_eq!(is_positive(5), false);
+    assert_eq!(is_positive(0), false);
+    assert_eq!(is_positive(1), true);
 }
 // ANCHOR_END: return_statement

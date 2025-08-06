@@ -1,6 +1,7 @@
 // Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
+#[allow(unused_field)]
 // ANCHOR: usage
 module book::dynamic_fields;
 
@@ -39,8 +40,8 @@ fun test_character_and_accessories() {
     );
 
     // Check that the hat and mustache are attached to the character
-    assert!(df::exists_(&character.id, b"hat_key"), 0);
-    assert!(df::exists_(&character.id, b"mustache_key"), 1);
+    assert!(df::exists_(&character.id, b"hat_key"));
+    assert!(df::exists_(&character.id, b"mustache_key"));
 
     // Modify the color of the hat
     let hat: &mut Hat = df::borrow_mut(&mut character.id, b"hat_key");
@@ -51,8 +52,8 @@ fun test_character_and_accessories() {
     let mustache: Mustache = df::remove(&mut character.id, b"mustache_key");
 
     // Check that the hat and mustache are no longer attached to the character
-    assert!(!df::exists_(&character.id, b"hat_key"), 0);
-    assert!(!df::exists_(&character.id, b"mustache_key"), 1);
+    assert!(!df::exists_(&character.id, b"hat_key"));
+    assert!(!df::exists_(&character.id, b"mustache_key"));
 
     sui::test_utils::destroy(character);
     sui::test_utils::destroy(mustache);

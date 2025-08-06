@@ -1,7 +1,6 @@
 // Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-#[allow(unused_variable)]
 module book::hot_potato_pattern {
 
 // ANCHOR: definition
@@ -24,6 +23,11 @@ public fun confirm_request(request: Request) {
 module book::container_borrow {
 
 // ANCHOR: container_borrow
+/// Trying to return value to incorrect container.
+const ENotCorrectContainer: u64 = 0;
+/// Trying to return incorrect value.
+const ENotCorrectValue: u64 = 1;
+
 /// A generic container for any Object with `key + store`. The Option type
 /// is used to allow taking and putting the value back.
 public struct Container<T: key + store> has key {
@@ -42,7 +46,6 @@ public struct Promise {
 
 /// A function that allows borrowing the value from the container.
 public fun borrow_val<T: key + store>(container: &mut Container<T>): (T, Promise) {
-    assert!(container.value.is_some());
     let value = container.value.extract();
     let id = object::id(&value);
     (value, Promise { id, container_id: object::id(container) })
@@ -53,8 +56,8 @@ public fun return_val<T: key + store>(
     container: &mut Container<T>, value: T, promise: Promise
 ) {
     let Promise { id, container_id } = promise;
-    assert!(object::id(container) == container_id);
-    assert!(object::id(&value) == id);
+    assert!(object::id(container) == container_id, ENotCorrectContainer);
+    assert!(object::id(&value) == id, ENotCorrectValue);
     container.value.fill(value);
 }
 // ANCHOR_END: container_borrow
@@ -63,10 +66,14 @@ public fun return_val<T: key + store>(
 module book::phone_shop {
 
 use sui::coin::Coin;
+
 public struct USD has drop {}
 public struct BONUS has drop {}
 
 // ANCHOR: phone_shop
+/// Trying to puchase `Phone` with incorrect price of `BonusPoints` or `USD`.
+const ENotCorrectPrice: u64 = 0;
+
 /// A `Phone`. Can be purchased in a store.
 public struct Phone has key, store { id: UID }
 
@@ -81,17 +88,17 @@ public fun purchase_phone(ctx: &mut TxContext): (Phone, Ticket) {
     )
 }
 
-/// The customer may pay for the `Phone` with `BonusPoints` or `SUI`.
+/// The customer may pay for the `Phone` with `BonusPoints`.
 public fun pay_in_bonus_points(ticket: Ticket, payment: Coin<BONUS>) {
     let Ticket { amount } = ticket;
-    assert!(payment.value() == amount);
+    assert!(payment.value() == amount, ENotCorrectPrice);
     abort // omitting the rest of the function
 }
 
 /// The customer may pay for the `Phone` with `USD`.
 public fun pay_in_usd(ticket: Ticket, payment: Coin<USD>) {
     let Ticket { amount } = ticket;
-    assert!(payment.value() == amount);
+    assert!(payment.value() == amount, ENotCorrectPrice);
     abort // omitting the rest of the function
 }
 // ANCHOR_END: phone_shop

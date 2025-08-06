@@ -9,8 +9,11 @@ public fun hello_world(): String {
     b"Hello, World!".to_string()
 }
 
+#[test_only]
+use std::unit_test::assert_eq;
+
 #[test]
 fun test_is_hello_world() {
     let expected = b"Hello, World!".to_string();
-    assert!(hello_world() == expected)
+    assert_eq!(hello_world(), expected);
 }

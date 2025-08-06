@@ -5,6 +5,9 @@
 // ANCHOR: math
 module book::math;
 
+#[test_only]
+use std::unit_test::assert_eq;
+
 /// Function takes two arguments of type `u64` and returns their sum.
 /// The `public` visibility modifier makes the function accessible from
 /// outside the module.
@@ -15,7 +18,7 @@ public fun add(a: u64, b: u64): u64 {
 #[test]
 fun test_add() {
     let sum = add(1, 2);
-    assert!(sum == 3);
+    assert_eq!(sum, 3);
 }
 // ANCHOR_END: math
 
@@ -36,8 +39,8 @@ fun get_name_and_age(): (vector<u8>, u8) {
 // Tuple must be destructured to access its elements.
 // Name and age are declared as immutable variables.
 let (name, age) = get_name_and_age();
-assert!(name == b"John");
-assert!(age == 25);
+assert_eq!(name, b"John");
+assert_eq!(age, 25);
 // ANCHOR_END: tuple_return_imm
 
 // ANCHOR: tuple_return_mut

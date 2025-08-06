@@ -6,6 +6,9 @@ module book::shop_price;
 
 use sui::{coin::Coin, sui::SUI};
 
+/// Trying to purchase an item at an incorrect price.
+const EWrongPrice: u64 = 0;
+
 /// The price of an item in the shop.
 const ITEM_PRICE: u64 = 100;
 /// The owner of the shop, an address.
@@ -16,7 +19,7 @@ public struct Item {}
 
 /// Purchase an item from the shop.
 public fun purchase(coin: Coin<SUI>): Item {
-    assert!(coin.value() == ITEM_PRICE);
+    assert!(coin.value() == ITEM_PRICE, EWrongPrice);
 
     transfer::public_transfer(coin, SHOP_OWNER);
 
