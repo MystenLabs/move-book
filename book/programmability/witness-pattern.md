@@ -89,6 +89,8 @@ the supply.
 ```move
 module sui::balance;
 
+const EOverflow: u64 = 0;
+
 /// Storable balance.
 public struct Balance<phantom T> has store {
     value: u64,
