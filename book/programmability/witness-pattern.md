@@ -77,7 +77,7 @@ public fun supply_value<T>(supply: &Supply<T>): u64 {
 ```
 
 In the example above, which is borrowed from the [`balance` module][balance-framework] of the
-[Sui Framework](./sui-framework), the `Supply` a generic struct that can be constructed only by
+[Sui Framework](./sui-framework), the `Supply` is a generic struct that can be constructed only by
 supplying a witness of the type `T`. The witness is taken by value and _discarded_ - hence the `T`
 must have the [drop](./../move-basics/drop-ability) ability.
 
