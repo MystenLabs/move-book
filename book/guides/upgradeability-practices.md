@@ -119,8 +119,6 @@ public struct ConfigV1 has store {
 // ...
 ```
 
-## Modular architecture
-
-This section is coming soon!
+<!-- ## Modular architecture -->
 
 <!-- TODO: add two patterns for modular architecture: object capability (SuiFrens) and witness registry (SuiNS) -->
