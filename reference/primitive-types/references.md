@@ -219,8 +219,7 @@ References and tuples are the _only_ types that cannot be stored as a field valu
 also means that they cannot exist in storage or [objects](./../abilities/object). All references
 created during program execution will be destroyed when a Move program terminates; they are entirely
 ephemeral. This also applies to all types without the `store` ability: any value of a non-`store`
-type must be destroyed before the program terminates. [ability](./../abilities), but note that
-references and tuples go a step further by never being allowed in structs in the first place.
+type must be destroyed before the program terminates.
 
 This is another difference between Move and Rust, which allows references to be stored inside of
 structs.
