@@ -13,7 +13,6 @@ limited:
 
 - They can only appear in expressions (usually in the return position for a function).
 - They cannot be bound to local variables.
-- They cannot be bound to local variables.
 - They cannot be stored in structs.
 - Tuple types cannot be used to instantiate generics.
 
