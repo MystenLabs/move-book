@@ -75,6 +75,18 @@ let x = 'outer: loop {
 };
 ```
 
+> It's a better way to use Macros instead of Loops, similarly, use `return` to control the flow.
+> Just like above function `sum_until_threshold`, can use `macro` to rewrite it:
+```move
+fun sum_until_threshold(input: &vector<vector<u64>>, threshold: u64): u64 {
+    'outer: {
+        (*input).fold!(0, |sum, inner_vec| {
+            inner_vec.fold!(sum, |sum, num| if (sum + num < threshold) sum + num else return 'outer sum)
+        })
+    }
+}
+```
+
 ## Labeled Blocks
 
 Labeled blocks allow you to write Move programs that contain intra-function non-local control flow,

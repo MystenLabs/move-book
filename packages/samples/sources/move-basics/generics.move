@@ -3,6 +3,9 @@
 #[allow(unused_variable, unused_field)]
 module book::generics;
 
+#[test_only]
+use std::unit_test::assert_eq;
+
 // ANCHOR: container
 /// Container for any type `T`.
 public struct Container<T> has drop {
@@ -23,7 +26,7 @@ fun test_container() {
     let container = new<u8>(10); // create a new `Container` with a `u8` value
     let container = new(10u8);
 
-    assert!(container.value == 10, 0x0);
+    assert_eq!(container.value, 10);
 
     // Value can be ignored only if it has the `drop` ability.
     let Container { value: _ } = container;
@@ -51,8 +54,8 @@ fun test_generic() {
     let pair_2 = new_pair<u8, bool>(10, true); // create a new `Pair` with a `u8` and `bool` values
     let pair_3 = new_pair(10u8, true);
 
-    assert!(pair_1.first == 10, 0x0);
-    assert!(pair_1.second, 0x0);
+    assert_eq!(pair_1.first, 10);
+    assert_eq!(pair_1.second, true);
 
     // Unpacking is identical.
     let Pair { first: _, second: _ } = pair_1;
@@ -69,13 +72,13 @@ fun test_swap_type_params() {
     let pair2: Pair<bool, u8> = new_pair(true, 10u8);
 
     // this line will not compile
-    // assert!(pair1 == pair2, 0x0);
+    // assert_eq!(pair1, pair2);
 
     let Pair { first: pf1, second: ps1 } = pair1; // first1: u8, second1: bool
     let Pair { first: pf2, second: ps2 } = pair2; // first2: bool, second2: u8
 
-    assert!(pf1 == ps2); // 10 == 10
-    assert!(ps1 == pf2); // true == true
+    assert_eq!(pf1, ps2); // 10 == 10
+    assert_eq!(ps1, pf2); // true == true
 }
 // ANCHOR_END: test_pair_swap
 

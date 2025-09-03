@@ -28,6 +28,9 @@ public struct Record {
 }
 // ANCHOR_END: def
 
+#[test_only]
+use std::unit_test::assert_eq;
+
 #[test] fun test_pack_unpack() {
 
 // ANCHOR: pack
@@ -41,13 +44,13 @@ let mut artist = Artist {
 let artist_name = artist.name;
 
 // Access a field of the `Artist` struct.
-assert!(artist.name == b"The Beatles".to_string());
+assert_eq!(artist.name, b"The Beatles".to_string());
 
 // Mutate the `name` field of the `Artist` struct.
 artist.name = b"Led Zeppelin".to_string();
 
 // Check that the `name` field has been mutated.
-assert!(artist.name == b"Led Zeppelin".to_string());
+assert_eq!(artist.name, b"Led Zeppelin".to_string());
 // ANCHOR_END: access
 
 // ANCHOR: unpack

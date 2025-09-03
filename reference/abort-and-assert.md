@@ -40,8 +40,6 @@ vector does not have two items
 <!-- {{#include ../../packages/reference/sources/abort-and-assert.move}} -->
 
 ```move
-use std::vector;
-
 fun pop_twice<T>(v: &mut vector<T>): (T, T) {
     if (v.length() < 2) abort 42;
     (v.pop_back(), v.pop_back())
@@ -52,7 +50,6 @@ This is even more useful deep inside a control-flow construct. For example, this
 that all numbers in the vector are less than the specified `bound`. And aborts otherwise
 
 ```move
-use std::vector;
 fun check_vec(v: &vector<u64>, bound: u64) {
     let mut i = 0;
     let n = v.length();
@@ -61,6 +58,13 @@ fun check_vec(v: &vector<u64>, bound: u64) {
         if (cur > bound) abort 42;
         i = i + 1;
     }
+}
+```
+
+> Combine `macro` with `abort`:
+```move
+fun check_vec(v: &vector<u64>, bound: u64) {
+    v.do_ref!(|num| if (*num > bound) abort 42);
 }
 ```
 
@@ -85,7 +89,6 @@ if (condition) () else abort code
 rewritten using `assert`
 
 ```move
-use std::vector;
 fun pop_twice<T>(v: &mut vector<T>): (T, T) {
     assert!(v.length() >= 2, 42); // Now uses 'assert'
     (v.pop_back(), v.pop_back())
@@ -95,7 +98,6 @@ fun pop_twice<T>(v: &mut vector<T>): (T, T) {
 and
 
 ```move
-use std::vector;
 fun check_vec(v: &vector<u64>, bound: u64) {
     let mut i = 0;
     let n = v.length();
@@ -104,6 +106,13 @@ fun check_vec(v: &vector<u64>, bound: u64) {
         assert!(cur <= bound, 42); // Now uses 'assert'
         i = i + 1;
     }
+}
+```
+
+> Combine `macro` with `assert`:
+```move
+fun check_vec(v: &vector<u64>, bound: u64) {
+    v.do_ref!(|num| assert!(*num <= bound, 42));
 }
 ```
 

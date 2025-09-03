@@ -32,13 +32,16 @@ public use fun villain_health as Villain.health;
 
 public fun villain_health(villain: &Villain): u8 { villain.health }
 
+#[test_only]
+use std::unit_test::assert_eq;
+
 #[test]
 // Test the methods of the `Hero` and `Villain` structs.
 fun test_associated_methods() {
     let hero = new_hero();
-    assert!(hero.health() == 100);
+    assert_eq!(hero.health(), 100);
 
     let villain = new_villain();
-    assert!(villain.health() == 200);
+    assert_eq!(villain.health(), 200);
 }
 // ANCHOR_END: hero_and_villain

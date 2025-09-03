@@ -12,10 +12,13 @@ public fun hello_world(): String {
     result
 }
 
+#[test_only]
+use std::unit_test::assert_eq;
+
 #[test]
 fun test_is_hello_world() {
     let expected = b"Hello, World!".to_string();
     let actual = hello_world();
 
-    assert!(actual == expected)
+    assert_eq!(actual, expected);
 }

@@ -14,19 +14,22 @@ the bytecode and are never published.
 ```move
 module book::testing;
 
+#[test_only]
+use std::unit_test::assert_eq;
+
 // The test attribute is placed before the `fun` keyword (can be both above or
 // right before the `fun` keyword, as in `#[test] fun my_test() { ... }`)
 // The name of the test in this case would be `book::testing::simple_test`.
 #[test]
 fun simple_test() {
     let sum = 2 + 2;
-    assert!(sum == 4);
+    assert_eq!(sum, 4);
 }
 
 // The name of this test would be `book::testing::more_advanced_test`.
 #[test] fun more_advanced_test() {
     let sum = 2 + 2 + 2;
-    assert!(sum == 4);
+    assert_eq!(sum, 4);
 }
 ```
 
@@ -94,6 +97,9 @@ where the `#[test_only]` attribute comes in handy.
 ```move
 module book::testing;
 
+#[test_only]
+use std::unit_test::assert_eq;
+
 // Public function which uses the `secret` function.
 public fun multiply_by_secret(x: u64): u64 {
     x * secret()
@@ -114,7 +120,7 @@ public fun secret_for_testing(): u64 {
 // In the test environment we have access to the `secret_for_testing` function.
 fun test_multiply_by_secret() {
     let expected = secret_for_testing() * 2;
-    assert!(multiply_by_secret(2) == expected);
+    assert_eq!(multiply_by_secret(2), expected);
 }
 ```
 

@@ -1,10 +1,13 @@
 // Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-#[allow(unused_field, unused_variable, lint(collection_equality))]
+#[allow(unused_use, lint(collection_equality))]
 module book::collections_compare_vec_set;
 
 use sui::vec_set;
+
+#[test_only]
+use std::unit_test::assert_eq;
 
 #[test, expected_failure]
 fun test_compare() {
@@ -17,6 +20,6 @@ let mut set2 = vec_set::empty();
 set2.insert(2);
 set2.insert(1);
 
-assert!(set1 == set2); // aborts!
+assert_eq!(set1, set2); // aborts!
 // ANCHOR_END: vec_set_comparison
 }
