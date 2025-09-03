@@ -1,8 +1,8 @@
 # Hello, World!
 
 In this chapter, you will learn how to create a new package, write a simple module, compile it, and
-run tests with the Move CLI. Make sure you have [installed Sui](./../before-we-begin/install-sui)
-and set up your [IDE environment](./../before-we-begin/ide-support). Run the command below to test
+run tests with the Move CLI. Make sure you have [installed Sui](./../before-we-begin/install-sui.md)
+and set up your [IDE environment](./../before-we-begin/ide-support.md). Run the command below to test
 if Sui has been installed correctly.
 
 ```bash
@@ -62,10 +62,10 @@ hello_world
 
 ### Manifest
 
-The `Move.toml` file, known as the [package manifest](./../concepts/manifest), contains definitions
+The `Move.toml` file, known as the [package manifest](./../concepts/manifest.md), contains definitions
 and configuration settings for the package. It is used by the Move Compiler to manage package
 metadata, fetch dependencies, and register named addresses. We will explain it in detail in the
-[Concepts](./../concepts) chapter.
+[Concepts](./../concepts/index.md) chapter.
 
 > By default, the package features one named address - the name of the package.
 
@@ -89,7 +89,7 @@ module hello_world::hello_world;
 
 > The `/*` and `*/` are the comment delimiters in Move. Everything in between is ignored by the
 > compiler and can be used for documentation or notes. We explain all ways to comment the code in
-> the [Basic Syntax](./../move-basics/comments).
+> the [Basic Syntax](./../move-basics/comments.md).
 
 The commented out code is a module definition, it starts with the keyword `module` followed by a
 named address (or an address literal), and the module name. The module name is a unique identifier
@@ -164,7 +164,7 @@ public fun hello_world(): String {
 
 During compilation, the code is built, but not run. A compiled package only includes functions that
 can be called by other modules or in a transaction. We will explain these concepts in the
-[Concepts](./../concepts) chapter. But now, let's see what happens when we run the _sui move build_.
+[Concepts](./../concepts/index.md) chapter. But now, let's see what happens when we run the _sui move build_.
 
 ```bash
 # run from the `hello_world` folder
@@ -197,7 +197,7 @@ fetched and compiled dependencies as well as the bytecode for the modules of the
 Before we get to testing, we should add a test. Move Compiler supports tests written in Move and
 provides the execution environment. The tests can be placed in both the source files and in the
 `tests/` folder. Tests are marked with the `#[test]` attribute and are automatically discovered by
-the compiler. We explain tests in depth in the [Testing](./../move-basics/testing) section.
+the compiler. We explain tests in depth in the [Testing](./../move-basics/testing.md) section.
 
 Replace the contents of the `tests/hello_world_tests.move` with the following content:
 
@@ -256,5 +256,5 @@ is structured and what the language can do.
 
 ## Further Reading
 
-- [Package Manifest](./../concepts/manifest) section
+- [Package Manifest](./../concepts/manifest.md) section
 - Package in [The Move Reference](./../../reference/packages)
