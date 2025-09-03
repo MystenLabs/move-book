@@ -38,7 +38,7 @@ they match the _copy_ and _drop_ requirement, are not allowed to be emitted as e
 ## Event Structure
 
 Events are a part of the transaction result and are stored in the _transaction effects_. As such,
-they natively have the `sender` field which is the address who sent the transaction. So adding a
+they natively have the `sender` field which is the address which sent the transaction. So adding a
 "sender" field to the event is not necessary. Similarly, event metadata contains the timestamp. But
 it is important to note that the timestamp is relative to the node and may vary a little from node
 to node.

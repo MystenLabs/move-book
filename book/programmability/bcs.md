@@ -64,7 +64,7 @@ of the data type. The `sui::bcs` module provides various functions to assist wit
 
 BCS is implemented as a wrapper in Move. The decoder takes the bytes by value, and then allows the
 caller to _peel off_ the data by calling different decoding functions, prefixed with `peel_*`. The
-data is split off the bytes, and the remainder bytes are kept in the wrapper until the
+data is extracted from the bytes, and the remaining bytes are kept in the wrapper until the
 `into_remainder_bytes` function is called.
 
 ```move file=packages/samples/sources/programmability/bcs.move anchor=decode
@@ -111,9 +111,9 @@ option, you would treat it like a vector and check its length (first byte - eith
 
 ```
 
-> If you need to decode an option of a custom type, use the method in the code snippet above.
+> If you need to decode an `Option` of a custom type, use the approach in the code snippet above.
 
-The most common scenarios, `bcs` module provides a basic set of functions for decoding Option's:
+For the most common scenarios, `bcs` module provides a basic set of functions for decoding `Option`s:
 
 - `peel_option_address(): Option<address>`
 - `peel_option_bool(): Option<bool>`

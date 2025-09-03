@@ -53,7 +53,7 @@ loop {
 }
 ```
 
-To modify a local variable _after_ it is assigned, or to borrow it mutably `&mut`, it must be
+To modify a local variable _after_ it is assigned, or to borrow it mutably (`&mut`), it must be
 declared as `mut`.
 
 ```move
