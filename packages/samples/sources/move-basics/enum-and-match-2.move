@@ -6,10 +6,11 @@
 module book::segment_tests;
 
 use book::segment;
-use std::unit_test::assert_eq;
 
 #[test]
 fun test_full_enum_cycle() {
+    use std::unit_test::assert_eq;
+
     // Create a vector of different Segment variants.
     let segments = vector[
         segment::new_empty(),

@@ -247,6 +247,14 @@ export default {
       darkTheme: prismAtomOneDark,
       magicComments: [
         {
+          className: 'highlight-important',
+          line: 'highlight-important',
+          block: {
+            start: 'highlight-comment-start',
+            end: 'highlight-comment-end',
+          },
+        },
+        {
           className: 'error-comment',
           line: 'highlight-error',
           block: {

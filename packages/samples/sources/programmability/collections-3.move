@@ -1,7 +1,7 @@
 // Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-#[allow(unused_field, unused_variable)]
+#[allow(unused_field, unused_variable, unused_use)]
 // ANCHOR: vec_map
 module book::collections_vec_map;
 
