@@ -28,7 +28,8 @@ It is important to understand the difference between _defining ID_ and _original
 
 For example, suppose the first version of a package was published at `0xA` and introduced the type
 `Version1`. Later, in an upgrade, the package moved to address `0xB` and introduced a new type
-`Version2`.
+`Version2`. For `Version1`, the defining ID and original ID are the same. For `Version2`, however,
+they differ: the original ID is `0xA`, while the defining ID is `0xB`.
 
 ```move
 // Note: values `0xA` and `0xB` are used for illustration purposes only!
