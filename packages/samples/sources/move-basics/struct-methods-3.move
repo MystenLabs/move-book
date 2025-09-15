@@ -18,8 +18,8 @@ public struct Hero has drop {
 /// Create a new Hero.
 public fun new(): Hero { Hero { health: 100, mana: 100 } }
 
-#[test_only]
-use std::unit_test::assert_eq;
+// #[test_only]
+// use std::unit_test::assert_eq;
 
 #[test]
 // Test the methods of the `Hero` struct.

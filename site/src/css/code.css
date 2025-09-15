@@ -19,6 +19,14 @@
   background-color: #ff000020;
 }
 
+.highlight-important {
+  background-color: #d6f6f8;
+}
+
+[data-theme='dark'] .highlight-important {
+  background-color: #14393e;
+}
+
 /* Code-like comments */
 
 .comment {

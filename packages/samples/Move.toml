@@ -1,5 +1,5 @@
 [package]
-name = "MoveBook"
+name = "book"
 edition = "2024"
 
 [addresses]

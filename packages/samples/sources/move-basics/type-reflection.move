@@ -10,13 +10,13 @@ use std::type_name::{Self, TypeName};
 
 /// A function that returns the name of the type `T` and its module and address.
 public fun do_i_know_you<T>(): (String, String, String) {
-    let type_name: TypeName = type_name::get<T>();
+    let type_name: TypeName = type_name::with_defining_ids<T>();
 
     // there's a way to borrow
-    let str: &String = type_name.borrow_string();
+    let str: &String = type_name.as_string();
 
-    let module_name: String = type_name.get_module();
-    let address_str: String = type_name.get_address();
+    let module_name: String = type_name.module_string();
+    let address_str: String = type_name.address_string();
 
     // and a way to consume the value
     let str = type_name.into_string();
@@ -26,6 +26,7 @@ public fun do_i_know_you<T>(): (String, String, String) {
 
 #[test_only]
 public struct MyType {}
+
 #[test_only]
 use std::unit_test::assert_eq;
 

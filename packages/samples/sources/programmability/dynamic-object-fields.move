@@ -1,7 +1,7 @@
 // Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-#[allow(unused_variable)]
+#[allow(unused_variable, unused_use)]
 // ANCHOR: usage
 module book::dynamic_object_field;
 
