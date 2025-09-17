@@ -429,7 +429,7 @@ function in the `todo_list` package.
 --move-call $PACKAGE_ID::todo_list::new
 ```
 
-The function that we defined actually returns a value, which we want need to store. We use the
+The function that we defined actually returns a value, which we want to store. We use the
 `--assign` command to give a name to the returned value. In this case, we are calling it `list`. And
 then we transfer the object to our account.
 
