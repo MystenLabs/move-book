@@ -7,19 +7,16 @@ statement.
 
 ## Overview
 
-The `transfer` module provides functions to perform all three storage operations matching
-[ownership types](./../object/ownership) which we explained:
-
-> On this page we will only talk about so-called _restricted_ storage operations, later we will
-> cover _public_ ones, after the `store` ability is introduced.
+The `transfer` module provides functions to perform storage operations for each of the
+[ownership types](./../object/ownership).
 
 1. _Transfer_ - send an object to an address, put it into _account owned_ state;
 2. _Share_ - put an object into a _shared_ state, so it is available to everyone;
-3. _Freeze_ - put an object into _immutable_ state, so it becomes a public constant and can never
+3. _Freeze_ - put an object into _immutable_ state, so it becomes a _public constant_ and can never
    change.
 
 The `transfer` module is a go-to for most of the storage operations, except a special case with
-[Dynamic Fields](./../programmability/dynamic-fields) that awaits us in the next chapter.
+[Dynamic Fields](./../programmability/dynamic-fields) which are covered in the next chapter.
 
 ## Ownership and References: a Quick Recap
 
@@ -37,13 +34,13 @@ Here is a quick recap of the most important points:
 
 ```move
 /// Moved by value
-public fun take<T>(value: T) { /* value is moved here! */ abort 0 }
+public fun take<T>(value: T) { /* value is moved here! */ abort }
 
-/// For immutable reference
-public fun borrow<T>(value: &T) { /* value is borrowed here! can be read */ abort 0 }
+/// For immutable reference, value stays in parent scope.
+public fun borrow<T>(value: &T) { /* value is borrowed here! can be read */ abort }
 
-/// For mutable reference
-public fun borrow_mut<T>(value: &mut T) { /* value is mutably borrowed here! */ abort 0 }
+/// For mutable reference, value stays in parent scope but can be mutated.
+public fun borrow_mut<T>(value: &mut T) { /* value is mutably borrowed here! */ abort }
 ```
 
 <!-- TODO part on:
@@ -52,19 +49,49 @@ public fun borrow_mut<T>(value: &mut T) { /* value is mutably borrowed here! */ 
     - the objects must be specified in the transaction by their ID
  -->
 
+## Internal Rule in Transfer Functions
+
+Storage operations can only be performed on objects, and come in two forms: _internal_ and _public_.
+Internal, or sometimes called _restricted_, transfer functions can be performed on `key`-only types,
+and - comes with the name - enforce _internal constraint_. Public versions can be called on any
+object that has `key` and `store`. Hence, `key`-only types' storage is fully governed by their
+defining module, and `store` allows calling public transfer functions in other modules.
+
+```move
+/// T: internal, can be called only in the module which defines the `T`.
+public fun transfer<T: key>(obj: T, recipient: address);
+
+/// No requirement for `T` to be internal to the caller, but requires `store`.
+public fun public_transfer<T: key + store>(obj: T, recipient: address);
+```
+
+In the example above, the `transfer` function can only be called from the module that defines the
+`T`, and has a type constraint `T: key`. While `public_transfer` - clearly indicated in the name -
+can be called from any module, but requires `T` to have `key` and `store`.
+
+Knowing this rule is critical for understanding application design in Move. Choice between making
+object publicly transferable (`key` and `store`) and keeping it internal (`key`-only) may
+drastically affect application logic and further development.
+
 ## Transfer
 
-The `transfer::transfer` function is a public function used to transfer an object to another
-address. Its signature is as follows, only accepts a type with the [`key` ability](./key-ability)
-and an [address](./../move-basics/address) of the recipient. Please, note that the object is
-passed into the function _by value_, therefore it is _moved_ to the function scope and then moved to
-the recipient address:
+The `transfer::transfer` function is a function used to transfer an object to another address. Its
+signature is as follows, only accepts a type with the [`key` ability](./key-ability) and an
+[address](./../move-basics/address) of the recipient. Please, note that the object is passed into
+the function _by value_, therefore it is _moved_ to the function scope and then moved to the
+recipient address.
 
 ```move
 module sui::transfer;
 
+// Transfer `obj` to `recipient`.
 public fun transfer<T: key>(obj: T, recipient: address);
+
+// public version of the `transfer` function.
+public fun public_transfer<T: key + store>(obj: T, recipient: address);
 ```
+
+### Transfer Example
 
 In the next example, you can see how it can be used in a module that defines and sends an object to
 the transaction sender.
@@ -76,15 +103,13 @@ module book::transfer_to_sender;
 public struct AdminCap has key { id: UID }
 
 /// `init` function is a special function that is called when the module
-/// is published. It is a good place to create application objects.
+/// is published. It is a good place to do a setup for an application.
 fun init(ctx: &mut TxContext) {
     // Create a new `AdminCap` object, in this scope.
     let admin_cap = AdminCap { id: object::new(ctx) };
 
     // Transfer the object to the transaction sender.
     transfer::transfer(admin_cap, ctx.sender());
-
-    // admin_cap is gone! Can't be accessed anymore.
 }
 
 /// Transfers the `AdminCap` object to the `recipient`. Thus, the recipient
@@ -99,40 +124,49 @@ we created there will be _transferred_ to the transaction sender. The `ctx.sende
 returns the sender address for the current transaction.
 
 Once the `AdminCap` has been transferred to the sender, for example, to `0xa11ce`, the sender, and
-only the sender, will be able to access the object. The object is now _account owned_.
+only the sender, will be able to access the object. This type of ownership is called _address
+ownership_.
 
 > Account owned objects are a subject to _true ownership_ - only the account owner can access them.
 > This is a fundamental concept in the Sui storage model.
+
+### Public Transfer
 
 Let's extend the example with a function that uses `AdminCap` to authorize a mint of a new object
 and its transfer to another address:
 
 ```move
-/// Some `Gift` object that the admin can `mint_and_transfer`.
-public struct Gift has key { id: UID }
+/// Some `Gift` object that the admin can `mint_and_transfer` to an address.
+public struct Gift has key, store { id: UID }
 
 /// Creates a new `Gift` object and transfers it to the `recipient`.
 public fun mint_and_transfer(
     _: &AdminCap, recipient: address, ctx: &mut TxContext
 ) {
     let gift = Gift { id: object::new(ctx) };
-    transfer::transfer(gift, recipient);
+    transfer::public_transfer(gift, recipient);
 }
 ```
 
 The `mint_and_transfer` function is a public function that "could" be called by anyone, but it
-requires an `AdminCap` object to be passed as the first argument by reference. Without it, the
-function will not be callable. This is a simple way to restrict access to privileged functions
-called _[Capability](./../programmability/capability)_. Because the `AdminCap` object is _account
-owned_, only `0xa11ce` will be able to call the `mint_and_transfer` function.
+requires an `AdminCap` as the first argument by reference. Without it, the function will not be
+callable. This is a simple and very explicit way to restrict access to privileged functions called
+_[Capability](./../programmability/capability)_. Because the `AdminCap` object is _account owned_,
+only `0xa11ce` will be able to call the `mint_and_transfer` function.
 
-The `Gift`s sent to recipients will also be _account owned_, each gift being unique and owned
-exclusively by the recipient.
+Unlike `AdminCap` where we restricted transferability as well as usability by setting only `key`
+ability, `Gift` has a `key` and `store` combination, which means, that whoever owns a `Gift` can
+freely call `transfer::public_transfer` and send it to anyone else. Without `store`, in our current
+implementation, `Gift` would've been _"soulbound"_ meaning that the happy owner of the `Gift` would
+not be able to do anything with it.
 
-A quick recap:
+### Quick Recap
 
 - `transfer` function is used to send an object to an address;
-- The object becomes _account owned_ and can only be accessed by the recipient;
+- _Public_ version of it is `public_transfer` and requires `store`
+- The object becomes _address owned_ and can only be accessed by the recipient;
+- _Address owned_ object can be used by reference or by value, including being transferred to
+  another address;
 - Functions can be gated by requiring an object to be passed as an argument, creating a
   _capability_.
 
@@ -142,9 +176,8 @@ The `transfer::freeze_object` function is a public function that is used to put 
 _immutable_ state. Once an object is _frozen_, it can never be changed, and it can be accessed by
 anyone by immutable reference.
 
-The function signature is as follows, only accepts a type with the
-[`key` ability](./key-ability). Just like all other storage functions, it takes the object _by
-value_:
+The function signature is as follows, only accepts a type with the [`key` ability](./key-ability).
+Just like all other storage functions, it takes the object _by value_:
 
 ```move
 module sui::transfer;

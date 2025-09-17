@@ -255,6 +255,14 @@ export default {
           },
         },
         {
+          className: 'hidden-line',
+          line: 'hidden-line',
+          block: {
+            start: 'hidden-block-start',
+            end: 'hidden-block-end',
+          },
+        },
+        {
           className: 'error-comment',
           line: 'highlight-error',
           block: {

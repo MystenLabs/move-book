@@ -125,16 +125,18 @@ bookSidebar:
       id: storage/index
       type: doc
     items:
+      - label: Internal Constraint
+        id: storage/internal-constraint
       - label: 'Ability: Key'
         id: storage/key-ability
-      - label: Storage Functions
-        id: storage/storage-functions
       - label: 'Ability: Store'
         id: storage/store-ability
-      - label: UID and ID
-        id: storage/uid-and-id
+      - label: Storage Functions
+        id: storage/storage-functions
       - label: Transfer Restrictions
         id: storage/transfer-restrictions
+      - label: UID and ID
+        id: storage/uid-and-id
       # - label: 9.6 Transfer to Object
       #   id: storage/transfer-to-object
       #   type: doc
@@ -162,6 +164,8 @@ bookSidebar:
         id: programmability/dynamic-object-fields
       - label: Dynamic Collections
         id: programmability/dynamic-collections
+      - label: Derived UIDs
+        id: programmability/derived-uids
       - label: 'Pattern: Witness'
         id: programmability/witness-pattern
       - label: One-Time Witness
