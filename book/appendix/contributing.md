@@ -1,4 +1,4 @@
-# Appendix D: Contributing
+# Appendix E: Contributing
 
 To contribute to this book, please, submit a pull request to the
 [GitHub repository](https://github.com/MystenLabs/move-book). The repository contains the source

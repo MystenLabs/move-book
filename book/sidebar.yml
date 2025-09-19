@@ -232,9 +232,11 @@ bookSidebar:
         id: appendix/glossary
       - label: B. Reserved Addresses
         id: appendix/reserved-addresses
-      - label: C. Publications
+      - label: C. Transfer Functions
+        id: appendix/transfer-functions
+      - label: D. Publications
         id: appendix/publications
-      - label: D. Contributing
+      - label: E. Contributing
         id: appendix/contributing
-      - label: E. Acknowledgements
+      - label: F. Acknowledgements
         id: appendix/acknowledgements
