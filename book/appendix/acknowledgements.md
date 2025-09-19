@@ -1,4 +1,4 @@
-# Appendix E: Acknowledgements
+# Appendix F: Acknowledgements
 
 [The Rust Book](https://doc.rust-lang.org/book) has been a great inspiration for this book. I am
 personally grateful to the authors of the book, Steve Klabnik and Carol Nichols, for their work, as

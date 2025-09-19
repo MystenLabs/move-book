@@ -5,8 +5,8 @@ description: ''
 
 # Abort and Assert
 
-[`return`](./functions) and `abort` are two control flow constructs that end execution, one for
-the current function and one for the entire transaction.
+[`return`](./functions) and `abort` are two control flow constructs that end execution, one for the
+current function and one for the entire transaction.
 
 More information on [`return` can be found in the linked section](./functions#return-expression)
 
@@ -31,8 +31,8 @@ Because of this transactional commitment of changes, after an abort there is no 
 backing out changes. While this approach is lacking in flexibility, it is incredibly simple and
 predictable.
 
-Similar to [`return`](./functions), `abort` is useful for exiting control flow when some
-condition cannot be met.
+Similar to [`return`](./functions), `abort` is useful for exiting control flow when some condition
+cannot be met.
 
 In this example, the function will pop two items off of the vector, but will abort early if the
 vector does not have two items
@@ -62,6 +62,7 @@ fun check_vec(v: &vector<u64>, bound: u64) {
 ```
 
 > Combine `macro` with `abort`:
+
 ```move
 fun check_vec(v: &vector<u64>, bound: u64) {
     v.do_ref!(|num| if (*num > bound) abort 42);
@@ -110,6 +111,7 @@ fun check_vec(v: &vector<u64>, bound: u64) {
 ```
 
 > Combine `macro` with `assert`:
+
 ```move
 fun check_vec(v: &vector<u64>, bound: u64) {
     v.do_ref!(|num| assert!(*num <= bound, 42));

@@ -23,7 +23,7 @@ let user_has_access = true;
 // aborts if `user_has_access` is `false` with abort code 0
 assert!(user_has_access, 0);
 
-// expands into:
+// expands to:
 if (!user_has_access) {
     abort 0
 };

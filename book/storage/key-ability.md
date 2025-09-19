@@ -1,62 +1,77 @@
-# The Key Ability
+# Ability: Key
 
-In the [Basic Syntax](./../move-basics) chapter we already covered two out of four abilities -
-[Drop](./../move-basics/drop-ability) and [Copy](./../move-basics/copy-ability). They affect the
-behavior of the value in a scope and are not directly related to storage. It is time to cover the
-`key` ability, which allows the struct to be stored.
+In the [Basic Syntax][basic-syntax] chapter, we already covered two out of four abilities:
+[Drop][drop-ability] and [Copy][copy-ability]. They affect the behavior of a value in a scope and
+are not directly related to storage. Now it is time to cover the `key` ability, which allows a
+struct to be _stored_.
 
-Historically, the `key` ability was created to mark the type as a _key in the storage_. A type with
-the `key` ability could be stored at top-level in the storage, and could be _directly owned_ by an
-account or address. With the introduction of the [Object Model](./../object), the `key` ability
-naturally became the defining ability for the object.
+Historically, the `key` ability was created to mark a type as a _key in storage_. A type with the
+`key` ability could be stored at the top level in global storage and could be _owned_ by an account
+or address. With the introduction of the [Object Model][object-model], the `key` ability became the
+defining ability for _objects_.
 
-<!-- TODO: What is Sui Verifier - link, later -->
+> Later in the book, we will refer to any struct with the `key` ability as an Object.
 
 ## Object Definition
 
-A struct with the `key` ability is considered an object and can be used in the storage functions.
-The Sui Verifier will require the first field of the struct to be named `id` and have the type
-`UID`.
+A struct with the `key` ability is considered _an object_ and can be used in storage functions. The
+Sui Verifier requires the first field of the struct to be named `id` and to have the type `UID`.
+Additionally, it requires all fields to have the `store` ability — we’ll explore it in detail [on
+the next page][store-ability].
 
 ```move
-public struct Object has key {
-    id: UID, // required
-    name: String,
+/// `User` object definition.
+public struct User has key {
+    id: UID, // required by Sui Bytecode Verifier
+    name: String, // field types must have `store`
 }
 
-/// Creates a new Object with a Unique ID
-public fun new(name: String, ctx: &mut TxContext): Object {
-    Object {
+/// Creates a new instance of the `User` type.
+/// Uses the special struct `TxContext` to derive a Unique ID (UID).
+public fun new(name: String, ctx: &mut TxContext): User {
+    User {
         id: object::new(ctx), // creates a new UID
         name,
     }
 }
 ```
 
-A struct with the `key` ability is still a struct, and can have any number of fields and associated
-functions. There is no special handling or syntax for packing, accessing or unpacking the struct.
+## Relation to `copy` and `drop`
 
-However, because the first field of an object struct must be of type `UID` - a non-copyable and
-non-droppable type (we will get to it very soon!), the struct transitively cannot have `drop` and
-`copy` abilities. Thus, the object is non-discardable by design.
+`UID` is a type that does not have the [`drop`][drop-ability] or [`copy`][copy-ability] abilities.
+Since it is required as a field of any type with the `key` ability, this means that types with `key`
+can never have `drop` or `copy`.
 
-<!-- ## Asset Definition
-
-In the context of the [Object Model](./../object/digital-assets), an object with the `key` ability can be considered an asset. It is non-discardable, unique, and can be *owned*.
- -->
+This property can be leveraged in [ability constraints][generics]: requiring `drop` or `copy`
+automatically excludes `key`, and conversely, requiring `key` excludes types with `drop` or `copy`.
 
 ## Types with the `key` Ability
 
 Due to the `UID` requirement for types with `key`, none of the native types in Move can have the
-`key` ability, nor can any of the [Standard Library](./../move-basics/standard-library) types. The
-`key` ability is only present in the [Sui Framework](./../programmability/sui-framework) and custom
-types.
+`key` ability, nor can any of the types in the [Standard Library][standard-library]. The `key`
+ability is present only in some [Sui Framework][sui-framework] types and in custom types.
+
+## Summary
+
+- The `key` ability defines an object
+- The first field of an object must be `id` with type `UID`
+- Fields of a `key` type must the have [`store`][store-ability] ability
+- Objects cannot have [`drop`][drop-ability] or [`copy`][copy-ability]
 
 ## Next Steps
 
-Key ability defines the object in Move, and objects are intended to be _stored_. In the next section
-we present the `sui::transfer` module, which provides native storage functions for objects.
+The `key` ability defines objects in Move and forces the fields to have `store`. In the next section
+we cover the `store` ability to later explain how [storage operations](./storage-functions.md) work.
 
 ## Further Reading
 
 - [Type Abilities](./../../reference/abilities) in the Move Reference.
+
+[drop-ability]: ./../move-basics/drop-ability
+[copy-ability]: ./../move-basics/copy-ability
+[store-ability]: ./store-ability.md
+[generics]: ./../move-basics/generics#constraints-on-type-parameters
+[sui-framework]: ./../programmability/sui-framework
+[standard-library]: ./../move-basics/standard-library
+[object-model]: ./../object
+[basic-syntax]: ./../move-basics

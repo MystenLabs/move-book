@@ -49,7 +49,7 @@ entry fun create_book_entry(ctx: &mut TxContext): Book {
 
 // private functions can be removed and changed
 fun create_book_internal(ctx: &mut TxContext): Book {
-    abort 0
+    abort
 }
 ```
 

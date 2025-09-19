@@ -8,4 +8,5 @@ between environments and are used for specific native operations.
 - `0x5` - address of the `SuiSystem` object
 - `0x6` - address of the system [`Clock` object](./../programmability/epoch-and-time.md)
 - `0x8` - address of the system `Random` object
+- `0xc` - address of the system `CoinRegistry` object
 - `0x403` - address of the `DenyList` system object
