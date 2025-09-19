@@ -9,7 +9,7 @@ This rule is not (yet) part of the Move language itself, which can make it feel 
 an important rule to understand, especially when working with storage-related operations on Sui.
 
 Let’s look at an example from the [Sui Framework][sui-framework]. The emit function in the
-[`sui::event`][event] module requires its type parameter T to be internal to the caller:
+[`sui::event`][event] module requires its type parameter `T` to be _internal_ to the caller:
 
 ```move
 // An actual example of a function that enforces `internal` on `T`.

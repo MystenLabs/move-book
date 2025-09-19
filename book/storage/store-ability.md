@@ -1,7 +1,7 @@
 # Ability: Store
 
 The [`key` ability][key-ability] requires all fields to have `store`, which defines what the `store`
-ability means: it is the ability to serve as a field of an object. A struct with
+ability means: it is the ability to serve as a field of an Object. A struct with
 [`copy`][copy-ability] or [`drop`][drop-ability] but without `store` can never be _stored_. A type
 with `key` but without `store` cannot be wrapped - used as a field—in another object, and is
 constrained to always remain at the top level.

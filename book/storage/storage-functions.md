@@ -163,10 +163,10 @@ not be able to do anything with it.
 ### Quick Recap
 
 - `transfer` function is used to send an object to an address;
-- _Public_ version of it is `public_transfer` and requires `store`
 - The object becomes _address owned_ and can only be accessed by the recipient;
 - _Address owned_ object can be used by reference or by value, including being transferred to
   another address;
+- _Public_ version of it is `public_transfer` and requires `store`
 - Functions can be gated by requiring an object to be passed as an argument, creating a
   _capability_.
 
