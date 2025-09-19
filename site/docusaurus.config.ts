@@ -87,6 +87,7 @@ export default {
           { from: '/syntax-basics/constants', to: '/move-basics/constants' },
           { from: '/syntax-basics/function', to: '/move-basics/function' },
           { from: '/advanced-topics/index', to: '/programmability/' },
+          { from: '/storage/transfer-restrictions', to: '/storage/storage-functions' },
           {
             from: '/advanced-topics/types-with-abilities/index',
             to: '/move-basics/abilities-introduction',
