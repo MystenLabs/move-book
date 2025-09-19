@@ -71,7 +71,7 @@ public struct USD has drop {}
 public struct BONUS has drop {}
 
 // ANCHOR: phone_shop
-/// Trying to puchase `Phone` with incorrect price of `BonusPoints` or `USD`.
+/// Trying to purchase `Phone` with incorrect price of `BonusPoints` or `USD`.
 const ENotCorrectPrice: u64 = 0;
 
 /// A `Phone`. Can be purchased in a store.
