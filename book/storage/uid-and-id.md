@@ -44,8 +44,8 @@ public fun uid(ctx: &mut TxContext) {
 `UID` acts as a representation of an object, and allows defining behaviors and features of an
 object. One of the key features - [Dynamic Fields](./../programmability/dynamic-fields) - is
 possible because of the `UID` type being explicit. Additionally, it allows receiving objects sent to
-other objects. This feature is called [Transfer to Object (TTO)](./transfer-to-object), and we will
-explain later in this chapter.
+other objects. This feature is called [Transfer to Object (TTO)](./transfer-to-object.md), and we
+will explain later in this chapter.
 
 ## UID Derivation
 
@@ -112,7 +112,7 @@ public fun character(ctx: &mut TxContext) {
 
 The `UID` does not need to be deleted immediately after the object struct is unpacked. Sometimes it
 may carry [Dynamic Fields](./../programmability/dynamic-fields) or objects transferred to it via
-[Transfer To Object](./transfer-to-object). In such cases, the UID may be kept and stored in a
+[Transfer To Object](./transfer-to-object.md). In such cases, the UID may be kept and stored in a
 separate object.
 
 ## Proof of Deletion

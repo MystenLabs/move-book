@@ -12,18 +12,19 @@ still part of the same framework._
 <!-- Custom CSS addition in the theme/custom.css  -->
 <div class="modules-table">
 
-| Module                                                                                         | Description                                                             | Chapter                                          |
-| ---------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------------ |
-| [sui::address](https://docs.sui.io/references/framework/sui/address)                           | Adds conversion methods to the [address type](./../move-basics/address) | [Address](./../move-basics/address)              |
-| [sui::transfer](https://docs.sui.io/references/framework/sui/transfer)                         | Implements the storage operations for Objects                           | [It starts with an Object](./../object)          |
-| [sui::tx_context](https://docs.sui.io/references/framework/sui/tx_context)                     | Contains the `TxContext` struct and methods to read it                  | [Transaction Context](./transaction-context)     |
-| [sui::object](https://docs.sui.io/references/framework/sui/object)                             | Defines the `UID` and `ID` type, required for creating objects          | [It starts with an Object](./../object)          |
-| [sui::clock](https://docs.sui.io/references/framework/sui/clock)                               | Defines the `Clock` type and its methods                                | [Epoch and Time](./epoch-and-time)               |
-| [sui::dynamic_field](https://docs.sui.io/references/framework/sui/dynamic_field)               | Implements methods to add, use and remove dynamic fields                | [Dynamic Fields](./dynamic-fields)               |
-| [sui::dynamic_object_field](https://docs.sui.io/references/framework/sui/dynamic_object_field) | Implements methods to add, use and remove dynamic object fields         | [Dynamic Object Fields](./dynamic-object-fields) |
-| [sui::event](https://docs.sui.io/references/framework/sui/event)                               | Allows emitting events for off-chain listeners                          | [Events](./events)                               |
-| [sui::package](https://docs.sui.io/references/framework/sui/package)                           | Defines the `Publisher` type and package upgrade methods                | [Publisher](./publisher), Package Upgrades       |
-| [sui::display](https://docs.sui.io/references/framework/sui/display)                           | Implements the `Display` object and ways to create and update it        | [Display](./display)                             |
+| Module                                                                                         | Description                                                             | Chapter                                                     |
+| ---------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------- |
+| [sui::address](https://docs.sui.io/references/framework/sui/address)                           | Adds conversion methods to the [address type](./../move-basics/address) | [Address](./../move-basics/address)                         |
+| [sui::transfer](https://docs.sui.io/references/framework/sui/transfer)                         | Implements the storage operations for Objects                           | [Storage Functions](./../storage/storage-functions.md)      |
+| [sui::tx_context](https://docs.sui.io/references/framework/sui/tx_context)                     | Contains the `TxContext` struct and methods to read it                  | [Transaction Context](./transaction-context)                |
+| [sui::object](https://docs.sui.io/references/framework/sui/object)                             | Defines the `UID` and `ID` type, required for creating objects          | [UID and ID](./../storage/uid-and-id.md)                    |
+| [sui::derived_object](https://docs.sui.io/references/framework/sui/derived_object)             | Allows `UID` generation through key derivation                          | [UID Derivation](./../storage/uid-and-id.md#uid-derivation) |
+| [sui::clock](https://docs.sui.io/references/framework/sui/clock)                               | Defines the `Clock` type and its methods                                | [Epoch and Time](./epoch-and-time)                          |
+| [sui::dynamic_field](https://docs.sui.io/references/framework/sui/dynamic_field)               | Implements methods to add, use and remove dynamic fields                | [Dynamic Fields](./dynamic-fields)                          |
+| [sui::dynamic_object_field](https://docs.sui.io/references/framework/sui/dynamic_object_field) | Implements methods to add, use and remove dynamic object fields         | [Dynamic Object Fields](./dynamic-object-fields)            |
+| [sui::event](https://docs.sui.io/references/framework/sui/event)                               | Allows emitting events for off-chain listeners                          | [Events](./events)                                          |
+| [sui::package](https://docs.sui.io/references/framework/sui/package)                           | Defines the `Publisher` type and package upgrade methods                | [Publisher](./publisher), Package Upgrades                  |
+| [sui::display](https://docs.sui.io/references/framework/sui/display)                           | Implements the `Display` object and ways to create and update it        | [Display](./display)                                        |
 
 </div>
 

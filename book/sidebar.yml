@@ -137,6 +137,8 @@ bookSidebar:
       #   id: storage/transfer-restrictions
       - label: UID and ID
         id: storage/uid-and-id
+      - label: Receiving as Object
+        id: storage/transfer-to-object
       # - label: 9.6 Transfer to Object
       #   id: storage/transfer-to-object
       #   type: doc
