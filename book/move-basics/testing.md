@@ -74,13 +74,13 @@ const EInvalidArgument: u64 = 1;
 #[test]
 #[expected_failure(abort_code = 0)]
 fun test_fail() {
-    abort 0 // aborts with 0
+    abort 0 // aborts with code 0
 }
 
 // attributes can be grouped together
 #[test, expected_failure(abort_code = EInvalidArgument)]
 fun test_fail_1() {
-    abort 1 // aborts with 1
+    abort EInvalidArgument // aborts with code EInvalidArgument
 }
 ```
 

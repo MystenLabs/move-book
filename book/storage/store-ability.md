@@ -1,55 +1,65 @@
 # Ability: Store
 
-Now that you have an understanding of top-level storage functions which are enabled by the
-[`key`](./key-ability) ability, we can talk about the last ability in the list - `store`.
+The [`key` ability][key-ability] requires all fields to have `store`, which defines what the `store`
+ability means: it is the ability to serve as a field of an Object. A struct with
+[`copy`][copy-ability] or [`drop`][drop-ability] but without `store` can never be _stored_. A type
+with `key` but without `store` cannot be wrapped - used as a field—in another object, and is
+constrained to always remain at the top level.
 
 ## Definition
 
-The `store` is a special ability that allows a type to be _stored_ in objects. This ability is
-required for the type to be used as a field in a struct that has the `key` ability. Another way to
-put it is that the `store` ability allows the value to be _wrapped_ in an object.
-
-> The `store` ability also relaxes restrictions on transfer operations. We talk about it more in the
-> [Restricted and Public Transfer](./transfer-restrictions) section.
-
-## Example
-
-In previous sections we already used types with the `key` ability: all objects must have a `UID`
-field, which we used in examples; we also used the `Storable` type as a part of the `Config` struct.
-The `Config` type also has the `store` ability.
+The `store` ability allows a type to be used as a field in a struct with the `key` ability.
 
 ```move
-/// This type has the `store` ability.
-public struct Storable has store {}
+// hidden-block-start
+use std::string::String;
 
-/// Config contains a `Storable` field which must have the `store` ability.
-public struct Config has key, store {
-    id: UID,
-    stores: Storable,
+// hidden-block-end
+/// Extra metadata with `store`; all fields must have `store` as well!
+public struct Metadata has store {
+    bio: String,
 }
 
-/// MegaConfig contains a `Config` field which has the `store` ability.
-public struct MegaConfig has key {
+/// An object for a single user record.
+public struct User has key {
     id: UID,
-    config: Config, // there it is!
+    name: String,       // String has `store`
+    age: u8,            // All integers have `store`
+    metadata: Metadata, // Another type with the `store` ability
 }
 ```
 
+## Relation to `copy` and `drop`
+
+All three non-`key` abilities can be used in any combination.
+
+## Relation to `key`
+
+An object with the `store` ability can be _stored_ in other objects.
+
+> While not a language or verifier feature, `store` acts as a _public_ modifier on a struct,
+> allowing calling _public_ [transfer functions](./storage-functions.md) which do not have an
+> [internal constraint](./internal-constraint.md).
+
 ## Types with the `store` Ability
 
-All native types (except for references) in Move have the `store` ability. This includes:
+All native types (except references) in Move have the `store` ability. This includes:
 
-- [bool](./../move-basics/primitive-types#booleans)
-- [unsigned integers](./../move-basics/primitive-types#integer-types)
-- [vector](./../move-basics/vector)
-- [address](./../move-basics/address)
+- [bool](./../move-basics/primitive-types.md#booleans)
+- [unsigned integers](./../move-basics/primitive-types.md#integer-types)
+- [vector](./../move-basics/vector.md)
+- [address](./../move-basics/address.md)
 
 All of the types defined in the standard library have the `store` ability as well. This includes:
 
-- [Option](./../move-basics/option)
-- [String](./../move-basics/string)
-- [TypeName](./../move-basics/type-reflection)
+- [Option](./../move-basics/option.md)
+- [String](./../move-basics/string.md) and [ASCII String](./../move-basics/string.md)
+- [TypeName](./../move-basics/type-reflection.md)
 
 ## Further Reading
 
 - [Type Abilities](./../../reference/abilities) in the Move Reference.
+
+[key-ability]: ./key-ability.md
+[drop-ability]: ./../move-basics/drop-ability.md
+[copy-ability]: ./../move-basics/copy-ability.md

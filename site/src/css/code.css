@@ -27,6 +27,10 @@
   background-color: #14393e;
 }
 
+.hidden-line {
+  display: none;
+}
+
 /* Code-like comments */
 
 .comment {
