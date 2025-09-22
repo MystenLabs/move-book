@@ -84,7 +84,7 @@ public fun exists<K: copy + drop + store>(parent: &UID, key: K): bool;
 public fun derive_address<K: copy + drop + store>(parent: ID, key: K): address;
 ```
 
-The same derivation functionality is used to generate UIDs of
+The same derivation functionality is used to generate UIDs for
 [dynamic fields](./../programmability/dynamic-fields.md).
 
 ## UID Lifecycle
