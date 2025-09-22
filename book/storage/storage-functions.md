@@ -191,7 +191,7 @@ module sui::transfer;
 public fun freeze_object<T: key>(obj: T);
 
 // Public version of the `freeze_object` function.
-public fun public_freeze_object<T: key + store>(obj: T, recipient: address);
+public fun public_freeze_object<T: key + store>(obj: T);
 ```
 
 Let's extend the previous example and add a function that allows the admin to create a `Config`

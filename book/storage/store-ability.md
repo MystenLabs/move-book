@@ -45,21 +45,21 @@ An object with the `store` ability can be _stored_ in other objects.
 
 All native types (except references) in Move have the `store` ability. This includes:
 
-- [bool](./../move-basics/primitive-types#booleans)
-- [unsigned integers](./../move-basics/primitive-types#integer-types)
-- [vector](./../move-basics/vector)
-- [address](./../move-basics/address)
+- [bool](./../move-basics/primitive-types.md#booleans)
+- [unsigned integers](./../move-basics/primitive-types.md#integer-types)
+- [vector](./../move-basics/vector.md)
+- [address](./../move-basics/address.md)
 
 All of the types defined in the standard library have the `store` ability as well. This includes:
 
-- [Option](./../move-basics/option)
-- [String](./../move-basics/string) and [ASCII String](./../move-basics/string)
-- [TypeName](./../move-basics/type-reflection)
+- [Option](./../move-basics/option.md)
+- [String](./../move-basics/string.md) and [ASCII String](./../move-basics/string.md)
+- [TypeName](./../move-basics/type-reflection.md)
 
 ## Further Reading
 
 - [Type Abilities](./../../reference/abilities) in the Move Reference.
 
 [key-ability]: ./key-ability.md
-[drop-ability]: ./../move-basics/drop-ability
-[copy-ability]: ./../move-basics/copy-ability
+[drop-ability]: ./../move-basics/drop-ability.md
+[copy-ability]: ./../move-basics/copy-ability.md
