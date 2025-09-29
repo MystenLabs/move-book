@@ -23,9 +23,9 @@ fun vec_set_playground() {
     set.insert(2); // add an item to the set
     set.insert(3);
 
-    assert!(set.contains(&1)); // check if an item is in the set
-    assert!(set.length() == 3); // get the number of items in the set
-    assert!(!set.is_empty()); // check if the set is empty
+    assert_eq!(set.contains(&1), true); // check if an item is in the set
+    assert_eq!(set.length(), 3); // get the number of items in the set
+    assert_eq!(set.is_empty(), false); // check if the set is empty
 
     set.remove(&2); // remove an item from the set
 }
