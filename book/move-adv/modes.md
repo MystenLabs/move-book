@@ -39,10 +39,9 @@ module my_pkg::library {
 }
 ```
 
-
-As we can see here, multiple modes can be listed in a single attribute: `#[mode(name1, name2,
-...)]`. This item will be included during compilation if **any** of the listed names is enabled.
-In addition, any definition without a mode annotation is always included.
+As we can see here, multiple modes can be listed in a single attribute: `#[mode(name1,name2,...)]`.
+This item will be included during compilation if **any** of the listed names is enabled. In
+addition, any definition without a mode annotation is always included.
 
 > Tip: The annotation `#[mode(test)]` is equivalent to `#[test_only]`.
 
@@ -61,20 +60,21 @@ sui move test --test
 sui move test --test --mode debug
 ```
 
-Items annotated with a mode you enabled are compiled **in**; items annotated with a different, non-enabled mode are compiled **out**. Unannotated items are always compiled in.
+Items annotated with a mode you enabled are compiled **in**; items annotated with a different,
+non-enabled mode are compiled **out**. Unannotated items are always compiled in.
 
 > **Publish safety**: Any artifact produced while a mode is enabled (including `--test`) is non-publishable. Always run a clean build **without** `--mode`/`--test` before `sui client publish`.
 
-## Example — `test` mode (unit tests)
+### Example — `test` mode (unit tests)
 
 `#[test_only]` is the built-in mode for unit testing. It works exactly like a mode named `test`.
 
 ```move
-#[test_only]
+#[mode(test)]
 module my_pkg::math_tests {
     use my_pkg::math;
 
-    #[test]
+    #[modetest]
     fun add_basic() { /* ... */ }
 
     // Private test helper
@@ -82,96 +82,17 @@ module my_pkg::math_tests {
 }
 ```
 
-Build & run:
+To build and run:
 
 ```bash
 # Includes modules and members marked #[test_only]
 sui move test --test
 ```
 
-**Intent:** keep test helpers and test-only public functions out of published packages.
+As described in the [testing](../move-basics/testing) documentation, this is a great way to
+keep test helpers and test-only public functions out of published packages.
 
-## Example 2
-
-# Modes
-
-Modes let you include **unpublishable** code only when you explicitly opt into a named build mode. Think of them as generalizations of `#[test_only]` for any purpose you choose (e.g. `debug`, `benchmark`, `sim`, `feature_x`).
-
-* Annotate items with `#[mode(name, ...)]` or use the shorthand `#[test_only]` for the built-in `test` mode.
-* Build with `--mode <name>` (or `--test` for unit testing). Items whose mode list contains a name you enabled are compiled in. Items whose mode list does **not** match are compiled **out**.
-* Code compiled with any mode enabled is **not publishable**. This keeps debug/test scaffolding from ever making it on-chain.
-* Items with **no** `#[mode(...)]`/`#[test_only]` annotation are always included.
-
-> Tip: Modes are *package-local* filters at compile-time—they don’t affect bytecode at runtime. Use them for helpers, simulators, log-only entry points, extra checks, or mock types that should never be published.
-
-## Syntax
-
-You can attach a mode attribute to modules and to individual members:
-
-```move
-// Entire module is included only when a matching mode is enabled
-#[mode(debug)]
-module my_pkg::debug_tools {
-    public fun dump_state() { /* ... */ }
-}
-
-module my_pkg::library {
-    // This function exists only in `debug` or `sim` builds
-    #[mode(debug, sim)]
-    public fun assert_invariants() { /* ... */ }
-
-    // Test-only helper; equivalent to #[mode(test)]
-    #[test_only]
-    fun mk_fake() { /* ... */ }
-}
-```
-
-* `#[mode(name1, name2, ...)]` – includes the item if **any** of the listed names is enabled.
-* `#[test_only]` – convenience for the built-in `test` mode.
-
-## Building with modes
-
-Use the Sui CLI to opt into a mode when building or testing:
-
-```bash
-# Build with a custom mode enabled
-sui move build --mode debug
-
-# Run tests; includes #[test_only] automatically
-sui move test --test
-
-# Combine: run unit tests with extra debug helpers
-sui move test --test --mode debug
-```
-
-Items annotated with a mode you enabled are compiled **in**; items annotated with a different, non-enabled mode are compiled **out**. Unannotated items are always compiled in.
-
-> **Publish safety**: Any artifact produced while a mode is enabled (including `--test`) is non-publishable. Always run a clean build **without** `--mode`/`--test` before `sui client publish`.
-
-## Example 1: `test` mode (unit tests)
-
-`#[test_only]` is the built-in mode for unit testing. It works exactly like a mode named `test`.
-
-```move
-module my_pkg::math_tests {
-    use my_pkg::math;
-
-    #[mode(test)]
-    public fun test() { /* ... */ }
-}
-```
-
-Build & run:
-
-```bash
-# Includes modules and members marked #[test_only]
-sui move test --test
-```
-
-While this is identical to the built-in `#[test_only]`, it illustrates the general pattern of mode
-usage: you can put `mode`-gated code in a separate module or alongside production code.
-
-## Example 2: Debug testing
+### Example 2: Debug testing
 
 Suppose you have a `bank` module with a `transfer` function. You want to add debug logging in test
 runs where you can see internal state, but you only want to run that test with those logs during
@@ -252,7 +173,7 @@ Code built with any mode enabled is non-publishable. Always do a clean build wit
 `--test` before publishing:
 
 ```bash
-sui move build            # no --mode, no --test
+sui move build   # no --mode, no --test
 ```
 
 ## See also

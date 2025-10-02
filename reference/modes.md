@@ -36,7 +36,7 @@ The `#[mode(...)]` may be placed on modules and module members (functions, struc
 etc.).
 
 
-```mode
+```move
 #[mode(name1, name2, ...)]
 module <addr_opt>::<ident> { ... }
 
@@ -59,7 +59,7 @@ declaration `m`, where `#[test_only]` contributes `{test}`, and unannotated decl
 true:
 
 * `S(x) = ∅` (unannotated)
-* ` S(x) ∩ M ≠ ∅:` (annotation included)
+* `S(x) ∩ M ≠ ∅:` (annotation included)
 
 That is: unannotated declarations are always included; annotated declarations are included if and
 only if at least one of their listed names is enabled in the build, and otherwise they are excluded.
