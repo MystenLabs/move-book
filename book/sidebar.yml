@@ -227,6 +227,14 @@ bookSidebar:
       # - label: Creating an NFT Collection
       #   id: guides/creating-an-nft-collection
   - type: category
+    label: Advanced Move Features
+    link:
+      id: move-adv/index
+      type: doc
+    items:
+      - label: Compilation Modes
+        id: move-adv/modes
+  - type: category
     label: Appendix
     enumerate: false
     items:
