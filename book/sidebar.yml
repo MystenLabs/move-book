@@ -216,6 +216,8 @@ bookSidebar:
     items:
       - label: Compilation Modes
         id: move-advanced/modes
+      - label: Module Extensions
+        id: move-advanced/extensions
   - type: category
     label: Guides
     enumerate: false

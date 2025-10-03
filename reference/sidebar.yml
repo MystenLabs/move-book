@@ -97,15 +97,17 @@ referenceSidebar:
         id: unit-testing
       - label: 18. Compilation Modes
         id: modes
+      - label: 19. Module Extensions
+        id: extensions
   - type: category
     label: Reference
     enumerate: false
     items:
-      - label: 19. Coding Conventions
+      - label: 20. Coding Conventions
         id: coding-conventions
   - type: category
     label: Deprecated
     enumerate: false
     items:
-      - label: 20. Friends
+      - label: 21. Friends
         id: friends
