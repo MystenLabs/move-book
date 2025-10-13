@@ -157,7 +157,7 @@
      */
 
     'struct-or-enum-definition': {
-      pattern: /\b(struct|enum).*[{;\(]/,
+      pattern: /\b(struct|enum)\b.*[{;\(]/,
       inside: {
         'enum-keyword': {
           pattern: /\b(enum)\b/,
@@ -259,7 +259,7 @@
     },
 
     'function-call': {
-      pattern: /\b([a-z][a-z_]+)(?=\s*[<(])/,
+      pattern: /\b([a-z][a-z_0-9]+)(?=\s*[<(])/,
       greedy: true,
       alias: 'function',
     },
@@ -277,6 +277,24 @@
           alias: 'string',
         },
         'string-literal-suffix': {
+          pattern: /"/,
+          // alias: "builtin",
+        },
+      },
+    },
+
+    'hex-vector-literal': {
+      pattern: /x"([0-9A-Fa-f]+)"/,
+      inside: {
+        'hex-vector-literal-prefix': {
+          pattern: /x"/,
+          // alias: "builtin",
+        },
+        'hex-vector-literal-content': {
+          pattern: /([0-9A-Fa-f]+)/,
+          alias: 'number',
+        },
+        'hex-vector-literal-suffix': {
           pattern: /"/,
           // alias: "builtin",
         },
@@ -350,18 +368,6 @@
     },
 
     literals: [
-      /** ASCII Bytestring literal: b"this is ascii" */
-      {
-        pattern: /(?:b)"(\\[\s\S]|[^\\"])*"/,
-        lookbehind: true,
-        alias: 'string',
-      },
-      /** HEX Bytestring literal: x"AF" */
-      {
-        pattern: /(?:x)"([0-9A-F]+)"/,
-        lookbehind: true,
-        alias: 'string',
-      },
       /** Boolean literal: true */
       {
         pattern: /\b(?:true|false)\b/,
