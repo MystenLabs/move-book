@@ -26,13 +26,20 @@ use sui::bcs;
 
 // 0x01 - a single byte with value 1 (or 0 for false)
 let bool_bytes = bcs::to_bytes(&true);
+assert_eq!(bool_bytes, x"01");
+
 // 0x2a - just a single byte
 let u8_bytes = bcs::to_bytes(&42u8);
+assert_eq!(u8_bytes, x"2A");
+
 // 0x2a00000000000000 - 8 bytes
 let u64_bytes = bcs::to_bytes(&42u64);
+assert_eq!(u64_bytes, x"2A00000000000000");
+
 // address is a fixed sequence of 32 bytes
 // 0x0000000000000000000000000000000000000000000000000000000000000002
 let addr = bcs::to_bytes(&@sui);
+assert_eq!(addr, x"0000000000000000000000000000000000000000000000000000000000000002");
 // ANCHOR_END: encode
 
 // ANCHOR: encode_struct
@@ -100,8 +107,7 @@ while (len > 0) {
 assert_eq!(vec.length(), 1);
 
 // The above `while` can be simplified and made more readable using a `macro`.
-// After using the following macro function, will get the equivalent of `vec`.
-// let vec = vector::tabulate!(bcs.peel_vec_length(), |_| bcs.peel_u64());
+// bcs.peel_vec!(|bcs| bcs.peel_u64()) is equivalent to the above `while` loop.
 // ANCHOR_END: decode_vector
 
 // ANCHOR: decode_option
@@ -119,16 +125,14 @@ assert_eq!(value, 1);
 // ANCHOR_END: decode_option
 
 // ANCHOR: decode_struct
-// some bytes...
 let mut bcs = bcs::new(x"0101010F0000000000F00000000000");
 
-let (age, is_active, name) = (
-    bcs.peel_u8(),
-    bcs.peel_bool(),
-    bcs.peel_vec_u8().to_string()
-);
-
-let user = User { age, is_active, name };
+// Note: order matters!
+let user = User {
+    age: bcs.peel_u8(),
+    is_active: bcs.peel_bool(),
+    name: bcs.peel_vec_u8().to_string()
+};
 // ANCHOR_END: decode_struct
 }
 }

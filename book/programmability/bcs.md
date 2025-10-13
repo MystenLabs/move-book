@@ -26,8 +26,9 @@ defined in the struct. The fields are serialized using the same rules as the top
 
 ## Using BCS
 
-The [Sui Framework](./sui-framework) includes the sui::bcs module for encoding and decoding data.
-Encoding functions are native to the VM, and decoding functions are implemented in Move.
+The [Sui Framework](./sui-framework) includes the [`sui::bcs`][sui-bcs] module for encoding and
+decoding data. Encoding functions are native to the VM, and decoding functions are implemented in
+Move.
 
 ## Encoding
 
@@ -57,8 +58,8 @@ Structs encode similarly to simple types. Here is how to encode a struct using B
 
 ## Decoding
 
-Because BCS does not self-describe and Move is statically typed, decoding requires prior knowledge
-of the data type. The `sui::bcs` module provides various functions to assist with this process.
+Because BCS is not a self-describing format, decoding requires prior knowledge of the data type. The
+[`sui::bcs`][sui-bcs] module provides various functions to assist with this process.
 
 ### Wrapper API
 
@@ -88,14 +89,19 @@ vector, and then decode each element in a loop.
 
 ```
 
-For most common scenarios, `bcs` module provides a basic set of functions for decoding vectors:
+This functionality is provided by the library as a macro `peel_vec!`. It calls the inner expression
+as many times as the vector length and aggregates the result into a single vector.
 
-- `peel_vec_address(): vector<address>`
-- `peel_vec_bool(): vector<bool>`
-- `peel_vec_u8(): vector<u8>`
-- `peel_vec_u64(): vector<u64>`
-- `peel_vec_u128(): vector<u128>`
-- `peel_vec_vec_u8(): vector<vector<u8>>` - vector of byte vectors
+```move
+let u64_vec = bcs.peel_vec!(|bcs| bcs.peel_u64());
+let address_vec = bcs.peel_vec!(|bcs| bcs.peel_address());
+
+// Caution: this is only possible if `MyStruct` is defined in the current module!
+let my_struct = bcs.peel_vec!(|bcs| MyStruct {
+    user_addr: bcs.peel_address(),
+    age: bcs.peel_u8(),
+});
+```
 
 ### Decoding Option
 
@@ -104,28 +110,25 @@ For most common scenarios, `bcs` module provides a basic set of functions for de
 > single variant in BCS, and makes Option in Rust fully compatible with the one in Move.
 -->
 
-[Option](./../move-basics/option) is represented as a vector of either 0 or 1 element. To read an
-option, you would treat it like a vector and check its length (first byte - either 1 or 0).
+[Option](./../move-basics/option) in Move is represented as a vector of either 0 or 1 element. To
+read an option, you would treat it like a vector and check its length (first byte - either 1 or 0).
 
 ```move file=packages/samples/sources/programmability/bcs.move anchor=decode_option
 
 ```
 
-> If you need to decode an `Option` of a custom type, use the approach in the code snippet above.
+Like with [vector](#decoding-vectors), there is a wrapper macro `peel_option!` which checks the
+variant index and evaluates the expression if the underlying value is _some_.
 
-For the most common scenarios, `bcs` module provides a basic set of functions for decoding `Option`s:
-
-- `peel_option_address(): Option<address>`
-- `peel_option_bool(): Option<bool>`
-- `peel_option_u8(): Option<u8>`
-- `peel_option_u64(): Option<u64>`
-- `peel_option_u128(): Option<u128>`
+```move
+let u8_opt = bcs.peel_option!(|bcs| bcs.peel_u8());
+let bool_opt = bcs.peel_option!(|bcs| bcs.peel_bool());
+```
 
 ### Decoding Structs
 
-Structs are decoded field by field, and there is no standard function to automatically decode bytes
-into a Move struct, and it would have been a violation of the Move's type system. Instead, you need
-to decode each field manually.
+Structs are decoded field by field, and there is no way to automatically decode bytes into a Move
+struct. To parse bytes into a struct, you need to decode each field and instantiate the type.
 
 ```move file=packages/samples/sources/programmability/bcs.move anchor=decode_struct
 
@@ -136,3 +139,5 @@ to decode each field manually.
 Binary Canonical Serialization is an efficient binary format for structured data, ensuring
 consistent serialization across platforms. The Sui Framework provides comprehensive tools for
 working with BCS, allowing extensive functionality through built-in functions.
+
+[sui-bcs]: https://docs.sui.io/references/framework/sui_sui/bcs
