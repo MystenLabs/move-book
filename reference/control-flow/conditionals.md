@@ -30,25 +30,27 @@ The conditional expressions may produce values so that the `if` expression has a
 let z = if (x < 100) x else 100;
 ```
 
-The expressions in the true and false branches must have compatible types. For example:
-
-```move
-// x and y must be u64 integers
-let maximum: u64 = if (x > y) x else y;
-
-// ERROR! branches different types
-let z = if (maximum < 10) 10u8 else 100u64;
-
-// ERROR! branches different types, as default false-branch is () not u64
-if (maximum >= 10) maximum;
-```
-
 If the `else` clause is not specified, the false branch defaults to the unit value. The following
 are equivalent:
 
 ```move
 if (condition) true_branch // implied default: else ()
 if (condition) true_branch else ()
+```
+
+The expressions in the true and false branches must have compatible types. For example:
+
+```move
+// x and y must be u64 integers
+let maximum: u64 = if (x > y) x else y;
+
+// highlight-error-start
+// ERROR! branches different types
+let z = if (maximum < 10) 10u8 else 100u64;
+
+// ERROR! branches different types, as default false-branch is () not u64
+let y = if (maximum >= 10) maximum;
+// highlight-error-end
 ```
 
 Commonly, `if` expressions are used in conjunction with
