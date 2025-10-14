@@ -211,11 +211,11 @@ bookSidebar:
   - type: category
     label: Advanced Move Features
     link:
-      id: move-adv/index
+      id: move-advanced/index
       type: doc
     items:
       - label: Compilation Modes
-        id: move-adv/modes
+        id: move-advanced/modes
   - type: category
     label: Guides
     enumerate: false
