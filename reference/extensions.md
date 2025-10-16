@@ -9,6 +9,93 @@ description: ''
 defined inside that module. Extensions are opt-in via a mode attribute and never modify or remove
 existing items.
 
+### Example
+
+Imagine you have an off-the-shelf module that you want to test in your package, but it
+lacks some internal accessors or testing operations that would allow you to write full tests over
+it. As a toy example, consider a simple counter module defined as a library:
+
+```move
+module counter::counter {
+    public struct Counter has drop { value: u64 }
+
+    public fun new(): Counter { Counter { value: 0 } }
+
+    public fun incr(mut c: Counter): Counter {
+        c.value = c.value + 1;
+        c
+    }
+
+    public fun destroy(c: Counter): u64 {
+        let Counter { value } = c;
+        value
+    }
+}
+```
+
+You might use this module in your own package to implement a step counter:
+
+```move
+module app::step_counter {
+    use counter::counter::{Counter, new, incr, destroy};
+    enum Step { Once, Many(u64) }
+
+    public fun step(c: Counter, s: Step): Counter {
+        match s {
+            Step::Once => incr(c),
+            Step::Many(n) => {
+                let mut c = c;
+                let mut i = 0;
+                while (i < n) {
+                    c = incr(c);
+                    i = i + 1;
+                }
+                c
+            }
+        }
+    }
+}
+```
+
+Suppose you wanted to write additional tests for this counter behavior, including ensuring
+invariants and the ability to peek at the current value without consuming the counter. Extensions
+allow you to add this behavior as test definitions in your own package without forking and updating
+the downstream dependency.
+
+```move
+#[test_only]
+extend module counter::counter {
+    /// Peek at the current value without consuming the counter.
+    public fun peek(c: &Counter): u64 { c.value }
+}
+
+#[test_only]
+extend module app::step_counter {
+    use counter::counter::{Counter, new, incr, peek};
+
+    // Local test helper to keep assertions tidy.
+    fun expect_value(c: &Counter, want: u64) { assert!(c.peek() == want, 0); }
+
+    /// Equivalence: Once == Many(1).
+    #[test]
+    fun once_equals_many1() {
+        let c1a = step(new(), Step::Once);
+        let c1b = step(new(), Step::Many(1));
+        expect_value(&c1a, 1);
+        expect_value(&c1b, 1);
+    }
+}
+```
+
+In this usage, you extend both the `counter::counter` module (to add helpers and tests) and the
+`app::step_counter` module (to add tests for the step logic). All of this code lives in your
+package, and it only affects test builds. The publishable code remains unchanged.
+
+
+> **Note**: Extensions can only add new items; they cannot modify or remove existing items. In >
+> addition, only extensions defined in the root package are applied (extensions in dependencies are
+> not).
+
 ## Extension Syntax
 
 Extension are defined by adding the `extend` keyword before the `module` keyword:
