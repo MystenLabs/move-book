@@ -8,6 +8,7 @@ Modes at a glance:
 
 * Annotate items with `#[mode(name, ...)]` or use the shorthand `#[test_only]` for the built-in
   `test` mode.
+  * The `#[test_only]` attribute is syntactic sugar for `#[mode(test)]`.
 * Build with `--mode <name>` (or `--test` for unit testing). Items whose mode list contains a name
   you enabled are compiled in. Items whose mode list does **not** match are compiled **out**.
 * Code compiled with any mode enabled is **not publishable**. This keeps debug/test scaffolding from
