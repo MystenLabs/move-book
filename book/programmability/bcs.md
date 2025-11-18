@@ -111,7 +111,8 @@ let my_struct = bcs.peel_vec!(|bcs| MyStruct {
 -->
 
 [Option](./../move-basics/option) in Move is represented as a vector of either 0 or 1 element. To
-read an option, you would treat it like a vector and check its length (first byte - either 1 or 0).
+read an `Option`, you would treat it like a vector and check its length (first byte - either 1 or
+0).
 
 ```move file=packages/samples/sources/programmability/bcs.move anchor=decode_option
 
