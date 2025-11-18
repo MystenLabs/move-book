@@ -127,7 +127,7 @@ let mut bcs = bcs::new(x"0101010F0000000000F00000000000");
 let user = User {
     age: bcs.peel_u8(),
     is_active: bcs.peel_bool(),
-    name: bcs.peel_vec!(|bcs| bcs.peel_u8()).to_string()
+    name: bcs.peel_vec_u8().to_string()
 };
 // ANCHOR_END: decode_struct
 }
