@@ -69,7 +69,7 @@ use sui::bcs;
 let mut bcs = bcs::new(x"010000000000000000");
 
 // Same bytes can be read differently, for example: Option<u64>
-let value: Option<u64> = bcs.peel_option_u64();
+let value: Option<u64> = bcs.peel_option!(|bcs| bcs.peel_u64());
 
 assert_eq!(value.is_some(), true);
 assert_eq!(*value.borrow(), 0);
@@ -93,21 +93,17 @@ let (bool_value, u8_value, u64_value) = (
 
 // ANCHOR: decode_vector
 let mut bcs = bcs::new(x"0101010F0000000000F00000000000");
+let vec = bcs.peel_vec!(|bcs| bcs.peel_u64());
 
-// bcs.peel_vec_length() peels the length of the vector :)
-let mut len = bcs.peel_vec_length();
-let mut vec = vector[];
-
-// then iterate depending on the data type
-while (len > 0) {
-    vec.push_back(bcs.peel_u64()); // or any other type
-    len = len - 1;
-};
+// Expands to:
+// let len = bcs.peel_vec_length();
+// let mut vec = vector[];
+// while (len > 0) {
+//     vec.push_back(bcs.peel_u64());
+//     len = len - 1;
+// };
 
 assert_eq!(vec.length(), 1);
-
-// The above `while` can be simplified and made more readable using a `macro`.
-// bcs.peel_vec!(|bcs| bcs.peel_u64()) is equivalent to the above `while` loop.
 // ANCHOR_END: decode_vector
 
 // ANCHOR: decode_option
@@ -131,7 +127,7 @@ let mut bcs = bcs::new(x"0101010F0000000000F00000000000");
 let user = User {
     age: bcs.peel_u8(),
     is_active: bcs.peel_bool(),
-    name: bcs.peel_vec_u8().to_string()
+    name: bcs.peel_vec!(|bcs| bcs.peel_u8()).to_string()
 };
 // ANCHOR_END: decode_struct
 }
