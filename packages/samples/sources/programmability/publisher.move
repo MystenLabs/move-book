@@ -42,7 +42,7 @@ assert!(publisher.from_module<Book>());
 // authority over it.
 assert!(publisher.from_package<Book>());
 // ANCHOR_END: use_publisher
-sui::test_utils::destroy(publisher);
+std::unit_test::destroy(publisher);
 }
 
 // ANCHOR: publisher_as_admin
