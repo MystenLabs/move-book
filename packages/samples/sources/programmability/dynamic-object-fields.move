@@ -44,7 +44,7 @@ fun equip_accessory() {
     let hat: Accessory = dof::remove(&mut character.id, b"hat_key");
 
     // Clean up, Metadata is an orphan now.
-    sui::test_utils::destroy(hat);
-    sui::test_utils::destroy(character);
+    std::unit_test::destroy(hat);
+    std::unit_test::destroy(character);
 }
 // ANCHOR_END: usage
