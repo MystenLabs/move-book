@@ -16,9 +16,9 @@ public struct Character has key {
 }
 
 // List of different accessories that can be attached to a character.
-// They must have the `store` ability.
+// They must have the `store` ability, but they do NOT need to have the `key` ability.
 public struct Hat has key, store { id: UID, color: u32 }
-public struct Mustache has key, store { id: UID }
+public struct Mustache has store { id: UID }
 
 #[test]
 fun test_character_and_accessories() {
