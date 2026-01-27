@@ -34,14 +34,16 @@ Transactions consist of:
 Transaction inputs are the arguments for the transaction and are split between 2 types:
 
 - Pure arguments: These are mostly [primitive types](../move-basics/primitive-types) with some extra
-  additions. A pure argument can be: - [`bool`](../move-basics/primitive-types#booleans). -
-  [unsigned integer](../move-basics/primitive-types#integer-types) (`u8`, `u16`, `u32`, `u64`,
-  `u128`, `u256`). - [`address`](../move-basics/address). -
-  [`std::string::String`](../move-basics/string), UTF8 strings. -
-  [`std::ascii::String`](../move-basics/string#ascii-strings), ASCII strings. -
-  [`vector<T>`](../move-basics/vector), where `T` is a pure type. -
-  [`std::option::Option<T>`](../move-basics/option), where `T` is a pure type. -
-  [`std::object::ID`](../storage/uid-and-id), typically points to an object. See also
+  additions. A pure argument can be:
+  - [`bool`](../move-basics/primitive-types#booleans).
+  - [unsigned integer](../move-basics/primitive-types#integer-types) (`u8`, `u16`, `u32`, `u64`,
+  `u128`, `u256`).
+  - [`address`](../move-basics/address).
+  - [`std::string::String`](../move-basics/string), UTF8 strings.
+  - [`std::ascii::String`](../move-basics/string#ascii-strings), ASCII strings.
+  - [`vector<T>`](../move-basics/vector), where `T` is a pure type.
+  - [`std::option::Option<T>`](../move-basics/option), where `T` is a pure type.
+  - [`std::object::ID`](../storage/uid-and-id), typically points to an object. See also
   [What is an Object](../object/object-model).
 - Object arguments: These are objects or references of objects that the transaction will access. An
   object argument needs to be either a shared object, a frozen object, or an object that the
