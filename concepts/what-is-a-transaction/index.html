@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&amp;amp;display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"><link rel="stylesheet" href="/assets/css/styles.ce6dc1bd.css">
-<script src="/assets/js/runtime~main.52aa90fd.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.3518396f.js" defer="defer"></script>
 <script src="/assets/js/main.7a178bc2.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -41,15 +41,20 @@ strings, or <span class="inline-code">object</span> - objects that the transacti
 <p>Transaction inputs are the arguments for the transaction and are split between 2 types:</p>
 <ul>
 <li>Pure arguments: These are mostly <a href="/move-basics/primitive-types">primitive types</a> with some extra
-additions. A pure argument can be: - <a href="/move-basics/primitive-types#booleans"><span class="inline-code">bool</span></a>. -
-<a href="/move-basics/primitive-types#integer-types">unsigned integer</a> (<span class="inline-code">u8</span>, <span class="inline-code">u16</span>, <span class="inline-code">u32</span>, <span class="inline-code">u64</span>,
-<span class="inline-code">u128</span>, <span class="inline-code">u256</span>). - <a href="/move-basics/address"><span class="inline-code">address</span></a>. -
-<a href="/move-basics/string"><span class="inline-code">std::string::String</span></a>, UTF8 strings. -
-<a href="/move-basics/string#ascii-strings"><span class="inline-code">std::ascii::String</span></a>, ASCII strings. -
-<a href="/move-basics/vector"><span class="inline-code">vector&lt;T&gt;</span></a>, where <span class="inline-code">T</span> is a pure type. -
-<a href="/move-basics/option"><span class="inline-code">std::option::Option&lt;T&gt;</span></a>, where <span class="inline-code">T</span> is a pure type. -
-<a href="/storage/uid-and-id"><span class="inline-code">std::object::ID</span></a>, typically points to an object. See also
+additions. A pure argument can be:<!-- -->
+<ul>
+<li><a href="/move-basics/primitive-types#booleans"><span class="inline-code">bool</span></a>.</li>
+<li><a href="/move-basics/primitive-types#integer-types">unsigned integer</a> (<span class="inline-code">u8</span>, <span class="inline-code">u16</span>, <span class="inline-code">u32</span>, <span class="inline-code">u64</span>,
+<span class="inline-code">u128</span>, <span class="inline-code">u256</span>).</li>
+<li><a href="/move-basics/address"><span class="inline-code">address</span></a>.</li>
+<li><a href="/move-basics/string"><span class="inline-code">std::string::String</span></a>, UTF8 strings.</li>
+<li><a href="/move-basics/string#ascii-strings"><span class="inline-code">std::ascii::String</span></a>, ASCII strings.</li>
+<li><a href="/move-basics/vector"><span class="inline-code">vector&lt;T&gt;</span></a>, where <span class="inline-code">T</span> is a pure type.</li>
+<li><a href="/move-basics/option"><span class="inline-code">std::option::Option&lt;T&gt;</span></a>, where <span class="inline-code">T</span> is a pure type.</li>
+<li><a href="/storage/uid-and-id"><span class="inline-code">std::object::ID</span></a>, typically points to an object. See also
 <a href="/object/object-model">What is an Object</a>.</li>
+</ul>
+</li>
 <li>Object arguments: These are objects or references of objects that the transaction will access. An
 object argument needs to be either a shared object, a frozen object, or an object that the
 transaction sender owns for the transaction to be successful. For more see
