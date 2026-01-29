@@ -14,6 +14,9 @@ public struct Metadata has drop {
     attributes: VecMap<String, String>
 }
 
+#[test_only]
+use std::unit_test::assert_eq;
+
 #[test]
 fun vec_map_playground() {
     let mut map = vec_map::empty(); // create an empty map
@@ -21,7 +24,7 @@ fun vec_map_playground() {
     map.insert(2, b"two".to_string()); // add a key-value pair to the map
     map.insert(3, b"three".to_string());
 
-    assert!(map.contains(&2)); // check if a key is in the map
+    assert_eq!(map.contains(&2), true); // check if a key is in the map
 
     map.remove(&2); // remove a key-value pair from the map
 }
