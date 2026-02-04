@@ -10,4 +10,4 @@
 
 ## Further Reading
 
-- [Module Extensions | Reference](../reference/extensions.md)
+- [Module Extensions | Reference](./../../reference/extensions)
