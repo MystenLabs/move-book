@@ -37,6 +37,8 @@ let hey: String = ascii::string(b"Hey");
 // there is a handy alias `.to_ascii_string()` on the `vector<u8>` type
 let hey = b"Hey".to_ascii_string();
 
+let beep: vector<u8> = "\x0a \\ haha";
+
 // ANCHOR_END: ascii
 }
 
