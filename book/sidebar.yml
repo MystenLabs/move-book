@@ -220,18 +220,18 @@ bookSidebar:
         id: testing/test-utilities
       - label: Random Inputs
         id: testing/random-test
-      - label: Test Scenario
-        id: testing/test-scenario
       - label: Transaction Context
         id: testing/transaction-context
+      - label: Test Scenario
+        id: testing/test-scenario
       - label: Creating System Objects
         id: testing/creating-system-objects
       - label: 'Pattern: Builder'
         id: testing/builder-pattern
-      - label: Extending Modules
-        id: testing/extend-foreign-module
       - label: Writing Test Macros
         id: testing/writing-test-macros
+      - label: Extending Modules
+        id: testing/extend-foreign-module
       - label: Coverage Reports
         id: testing/coverage
       - label: Gas Profiling
