@@ -119,7 +119,6 @@ fun test_ticket_creation() {
     let ticket = ticket::new(1, 42, ctx);
 
     // Test passes - but how do we get rid of `ticket`?
-    // We can't drop it, and we don't want to call punch() in every test.
 
     unit_test::destroy(ticket); // Consumes the ticket
 }
