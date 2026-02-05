@@ -18,7 +18,7 @@ use std::unit_test::assert_eq;
 #[test]
 fun vec_set_playground() {
     let set = vec_set::empty<u8>(); // create an empty set
-    let mut set = vec_set::singleton(1); // create a set with a single item
+    let mut set = vec_set::singleton(1u8); // create a set with a single item
 
     set.insert(2); // add an item to the set
     set.insert(3);

@@ -109,7 +109,7 @@ fun test_break_loop() {
 // ANCHOR: continue_loop
 #[test]
 fun test_continue_loop() {
-    let mut x = 0;
+    let mut x = 0u64;
 
     // This will loop until `x` is 10.
     loop {

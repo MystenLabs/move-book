@@ -7,7 +7,7 @@ module book::comments_line;
 
 // let's add a note to everything!
 fun some_function_with_numbers() {
-    let a = 10;
+    let a = 10u8;
     // let b = 10 this line is commented and won't be executed
     let b = 5; // here comment is placed after code
     a + b; // result is 15, not 10!

@@ -13,7 +13,7 @@ use std::unit_test::assert_eq;
 fun test_compare() {
 // ANCHOR: vec_set_comparison
 let mut set1 = vec_set::empty();
-set1.insert(1);
+set1.insert(1u8);
 set1.insert(2);
 
 let mut set2 = vec_set::empty();

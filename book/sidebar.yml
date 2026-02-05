@@ -216,10 +216,10 @@ bookSidebar:
     items:
       - label: Testing Basics
         id: testing/running-tests
-      - label: What Makes a Good Test
-        id: testing/good-tests
       - label: Unit Test Utilities
         id: testing/test-utilities
+      - label: What Makes a Good Test
+        id: testing/good-tests
       - label: Random Inputs
         id: testing/random-test
       - label: Transaction Context
