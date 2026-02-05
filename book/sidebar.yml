@@ -226,8 +226,8 @@ bookSidebar:
         id: testing/random-test
       - label: Test Scenario
         id: testing/test-scenario
-      - label: Creating System Objects
-        id: testing/creating-system-objects
+      - label: Using System Objects
+        id: testing/using-system-objects
       - label: 'Pattern: Builder'
         id: testing/builder-pattern
       - label: Writing Test Macros

@@ -1,0 +1,4 @@
+.trace
+traces
+lcov.*
+.coverage*
