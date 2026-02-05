@@ -4,6 +4,9 @@ The Move compiler supports randomized test inputs through the `#[random_test]` a
 enables property-based testing, where a test runs multiple times with different randomly generated
 values to discover edge cases you might not think to test manually.
 
+> **Note:** The `#[random_test]` attribute is a compiler feature for test inputs, separate from the
+> `sui::random` module used for on-chain randomness.
+
 ## Basic Usage
 
 Mark a function with `#[random_test]` and declare parameters with primitive types. The test runner
@@ -89,8 +92,8 @@ fun test_add_commutative(a: u64, b: u64) {
 ```
 
 **Use `assert_eq!` for better debugging**: When a random test fails, you need to know which values
-caused the failure. Using [`assert_eq!`](./test-utilities.md) prints both compared values on
-failure, making it easier to reproduce and debug issues:
+caused the failure. Using [`assert_eq!`](./test-utilities.md#assert_eq-and-assert_ref_eq) prints
+both compared values on failure, making it easier to reproduce and debug issues:
 
 ```move
 use std::unit_test::assert_eq;
@@ -105,16 +108,19 @@ fun test_double(value: u64) {
 
 ## Controlling Test Runs
 
-**Number of iterations**: By default, random tests run multiple times with different inputs. Use
-`--rand-num-iters` to control how many iterations each random test runs:
+### Number of iterations
+
+By default, random tests run multiple times with different inputs. Use `--rand-num-iters` to control
+how many iterations each random test runs:
 
 ```bash
 # Run each random test 100 times
 sui move test --rand-num-iters 100
 ```
 
-**Reproducible seeds**: When a random test fails, the output includes the seed and instructions to
-reproduce:
+### Reproducible seeds
+
+When a random test fails, the output includes the seed and instructions to reproduce:
 
 ```
 ┌── test_that_failed ────── (seed = 2033439370411573084)
@@ -136,8 +142,6 @@ sui move test test_that_failed --seed 2033439370411573084
 - **No range constraints**: You cannot limit random values to a specific range directly; use modulo
   or type casting as shown above
 - **Vector size**: No control over generated vector lengths
-- **Independence from sui::random**: The `#[random_test]` attribute is a compiler feature for test
-  inputs, separate from the `sui::random` module used for on-chain randomness
 
 ## Summary
 

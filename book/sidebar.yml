@@ -218,12 +218,12 @@ bookSidebar:
         id: testing/running-tests
       - label: Unit Test Utilities
         id: testing/test-utilities
+      - label: Transaction Context
+        id: testing/transaction-context
       - label: What Makes a Good Test
         id: testing/good-tests
       - label: Random Inputs
         id: testing/random-test
-      - label: Transaction Context
-        id: testing/transaction-context
       - label: Test Scenario
         id: testing/test-scenario
       - label: Creating System Objects

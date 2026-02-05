@@ -40,10 +40,14 @@
 
     'module-header': {
       alias: '',
-      pattern: /\b(module)\s+(\w+)::(\w+)\s*[{;]/,
+      pattern: /(extend\s)?\b(module)\s+(\w+)::(\w+)\s*[{;]/,
       inside: {
         'module-keyword': {
           pattern: /\b(module)\b/,
+          alias: 'keyword',
+        },
+        'extend-keyword': {
+          pattern: /\b(extend)\b/,
           alias: 'keyword',
         },
         'package-name': {
