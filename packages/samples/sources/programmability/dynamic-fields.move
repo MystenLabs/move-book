@@ -55,9 +55,9 @@ fun test_character_and_accessories() {
     assert!(!df::exists_(&character.id, b"hat_key"));
     assert!(!df::exists_(&character.id, b"mustache_key"));
 
-    sui::test_utils::destroy(character);
-    sui::test_utils::destroy(mustache);
-    sui::test_utils::destroy(hat);
+    std::unit_test::destroy(character);
+    std::unit_test::destroy(mustache);
+    std::unit_test::destroy(hat);
 }
 // ANCHOR_END: usage
 
@@ -76,7 +76,7 @@ df::add(&mut character.id, 1000u32, 1_000_000_000u64);
 // Attach a `bool` via a `bool` name
 df::add(&mut character.id, true, false);
 // ANCHOR_END: foreign_types
-sui::test_utils::destroy(character);
+std::unit_test::destroy(character);
 }
 
 #[test] fun orphan_fields() {
@@ -149,5 +149,5 @@ df::add(
 // Attaching via a `MetadataKey`
 df::add(&mut character.id, MetadataKey {}, 42);
 // ANCHOR_END: custom_type_usage
-sui::test_utils::destroy(character);
+std::unit_test::destroy(character);
 }
