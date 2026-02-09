@@ -1,3 +1,7 @@
+---
+description: "Visibility modifiers in Move: private, public, public(package), and entry functions for controlling access to module members."
+---
+
 # Visibility Modifiers
 
 Every module member has a visibility. By default, all module members are _private_ - meaning they

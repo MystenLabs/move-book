@@ -1,3 +1,7 @@
+---
+description: "The Capability pattern in Move: use owned objects as access-control tokens to authorize privileged operations in Sui smart contracts."
+---
+
 # Pattern: Capability
 
 In programming, a _capability_ is a token that gives the owner the right to perform a specific

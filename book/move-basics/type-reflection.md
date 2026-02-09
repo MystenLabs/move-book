@@ -1,3 +1,7 @@
+---
+description: "Type reflection in Move: inspect type names at runtime using std::type_name for dynamic type checks in smart contracts."
+---
+
 # Type Reflection
 
 In programming languages, _reflection_ is the ability of a program to examine and modify its own

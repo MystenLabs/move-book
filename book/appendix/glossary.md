@@ -1,3 +1,7 @@
+---
+description: "Glossary of Move and Sui terminology: fast path, parallel execution, internal types, and other key concepts defined."
+---
+
 # Appendix A: Glossary
 
 - Fast Path - term used to describe a transaction that does not involve shared objects, and can be

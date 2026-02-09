@@ -1,3 +1,7 @@
+---
+description: "Profile gas usage in Move tests: measure computation costs, compare implementations, and analyze traces with sui analyze-trace."
+---
+
 # Gas Profiling
 
 Understanding gas consumption helps optimize your Move code and estimate transaction costs. The Move

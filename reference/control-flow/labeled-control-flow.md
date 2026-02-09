@@ -1,6 +1,6 @@
 ---
 title: 'Labeled Control Flow | Reference'
-description: ''
+description: "Move labeled control flow reference: named loops and blocks, break with labels, and return from named blocks."
 ---
 
 # Labeled Control Flow

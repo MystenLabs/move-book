@@ -1,6 +1,6 @@
 ---
 title: 'Primitive Types | Reference'
-description: ''
+description: "Move primitive types reference: integers, booleans, addresses, vectors, references, tuples, and unit type overview."
 ---
 
 # Primitive Types

@@ -1,3 +1,7 @@
+---
+description: "Reserved addresses on Sui: standard library (0x1), Sui framework (0x2), system objects, and other fixed address assignments."
+---
+
 # Appendix B: Reserved Addresses
 
 Reserved addresses are special addresses that have a specific purpose on Sui. They stay the same

@@ -1,3 +1,7 @@
+---
+description: "Best practices for upgrading Move packages on Sui: maintain compatibility, plan for versioning, and avoid breaking changes."
+---
+
 # Upgradeability Practices
 
 To talk about best practices for upgradeability, we need to first understand what can be upgraded in

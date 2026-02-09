@@ -1,6 +1,6 @@
 ---
 title: 'Module Extensions | Reference'
-description: ''
+description: "Move module extensions reference: add test-only or mode-gated declarations to existing modules from external packages."
 ---
 
 # Module Extensions

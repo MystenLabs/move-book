@@ -1,6 +1,10 @@
+---
+description: "The Wrapper type pattern in Move: create restricted or extended versions of existing types by wrapping them in new structs."
+---
+
 # Pattern: Wrapper type
 
-Sometimes, there’s a need to create a new type that behaves similarly to an existing type but with
+Sometimes, there's a need to create a new type that behaves similarly to an existing type but with
 certain modifications or restrictions. For example, you might want to create a
 [collection type](./collections) that behaves like a vector but doesn’t allow modifying the elements
 after they’ve been inserted. The wrapper type pattern is an effective way to achieve this.

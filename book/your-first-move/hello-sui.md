@@ -1,3 +1,7 @@
+---
+description: "Build and publish a todo list app on Sui: create an account, deploy a Move package, and send transactions via the CLI."
+---
+
 # Hello, Sui!
 
 In the [previous section](./hello-world) we created a new package and demonstrated the basic flow
@@ -187,7 +191,7 @@ argument, and the Coin we used for payment. It also prints the Commands that wer
 this example, the commands `Publish` and `TransferObject` were run - the latter transfers a special
 object `UpgradeCap` to the sender.
 
-```plaintext
+```table
 ╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 │ Transaction Data                                                                                             │
 ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
@@ -237,7 +241,7 @@ object `UpgradeCap` to the sender.
 Transaction Effects contains the status of the transaction, the changes that the transaction made to
 the state of the network and the objects involved in the transaction.
 
-```plaintext
+```table
 ╭───────────────────────────────────────────────────────────────────────────────────────────────────╮
 │ Transaction Effects                                                                               │
 ├───────────────────────────────────────────────────────────────────────────────────────────────────┤
@@ -289,7 +293,7 @@ the state of the network and the objects involved in the transaction.
 If there were any _events_ emitted, you would see them in this section. Our package does not use
 events, so the section is empty.
 
-```plaintext
+```table
 ╭─────────────────────────────╮
 │ No transaction block events │
 ╰─────────────────────────────╯
@@ -301,7 +305,7 @@ These are the changes to _objects_ that transaction has made. In our case, we ha
 `UpgradeCap` object which is a special object that allows the sender to upgrade the package in the
 future, _mutated_ the Gas object, and _published_ a new package. Packages are also objects on Sui.
 
-```plaintext
+```table
 ╭──────────────────────────────────────────────────────────────────────────────────────────────────╮
 │ Object Changes                                                                                   │
 ├──────────────────────────────────────────────────────────────────────────────────────────────────┤
@@ -338,7 +342,7 @@ future, _mutated_ the Gas object, and _published_ a new package. Packages are al
 This last section contains changes to SUI Coins, in our case, we have _spent_ around 0.015 SUI,
 which in MIST is 10,500,000. You can see it under the _amount_ field in the output.
 
-```plaintext
+```table
 ╭───────────────────────────────────────────────────────────────────────────────────────────────────╮
 │ Balance Changes                                                                                   │
 ├───────────────────────────────────────────────────────────────────────────────────────────────────┤
@@ -368,7 +372,7 @@ the output.
 
 In this example, the address is:
 
-```plaintext
+```table
 0x468daa33dfcb3e17162bbc8928f6ec73744bb08d838d1b6eb94eac99269b29fe
 ```
 
@@ -611,7 +615,7 @@ $ sui client objects
 
 It should have an object that looks similar to this:
 
-```plaintext
+```table
 ╭  ...                                                                                  ╮
 │ ╭────────────┬──────────────────────────────────────────────────────────────────────╮ │
 │ │ objectId   │  0x20e0bede16de8a728ab25e228816b9059b45ebea49c8ad384e044580b2d3e553  │ │
@@ -657,7 +661,7 @@ $ sui client object $LIST_ID
 
 The output should contain the item that you have added.
 
-```plaintext
+```table
 ╭───────────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 │ objectId      │  0x20e0bede16de8a728ab25e228816b9059b45ebea49c8ad384e044580b2d3e553                                               │
 │ version       │  24                                                                                                               │

@@ -1,3 +1,7 @@
+---
+description: "What is a Sui Object: unique identifiers, types, ownership, and native operations like transfer and share for on-chain digital assets."
+---
+
 # What is an Object?
 
 The Object Model in Sui can be viewed as a high-level abstraction representing digital assets as

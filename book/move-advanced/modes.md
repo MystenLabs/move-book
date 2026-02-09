@@ -1,3 +1,7 @@
+---
+description: "Modes in Move: include unpublishable code in named build modes like debug, benchmark, or spec beyond the built-in test mode."
+---
+
 # Modes
 
 Modes let you include **unpublishable** code only when you explicitly opt into a named build `mode`.

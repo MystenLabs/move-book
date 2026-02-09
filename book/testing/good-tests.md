@@ -1,3 +1,7 @@
+---
+description: "Best practices for writing effective Move tests: concise, focused, and maintainable tests that catch real bugs in smart contracts."
+---
+
 # What Makes a Good Test
 
 Writing tests is one thing; writing _good_ tests is another. A test suite that merely exists

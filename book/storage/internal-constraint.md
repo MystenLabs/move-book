@@ -1,3 +1,7 @@
+---
+description: "The Sui Verifier internal constraint: why storage operations require the type to be defined in the calling module."
+---
+
 # Sui Verifier: Internal Constraint
 
 The Sui Bytecode Verifier enforces a set of rules on Move bytecode to ensure the safety of critical

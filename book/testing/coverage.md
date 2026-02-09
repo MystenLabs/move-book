@@ -1,3 +1,7 @@
+---
+description: "Generate code coverage reports for Move tests: use the --coverage flag and sui move coverage to identify untested code paths."
+---
+
 # Generating Coverage Reports
 
 Code coverage is a metric that shows which parts of your code are executed during tests. It helps

@@ -1,3 +1,7 @@
+---
+description: "Design for the fast path in Sui: structure owned vs shared objects to maximize transaction parallelism and performance."
+---
+
 # Fast Path
 
 Due to the object model and the data organization model of Sui, some operations can be performed in

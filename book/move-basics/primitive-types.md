@@ -1,3 +1,7 @@
+---
+description: "Move primitive types: booleans, unsigned integers (u8 to u256), addresses, and type casting for blockchain smart contracts."
+---
+
 # Primitive Types
 
 <!-- TODO: Shall we split this into two pages? Maybe give an overview and focus more on specifics? -->

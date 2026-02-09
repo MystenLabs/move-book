@@ -1,3 +1,7 @@
+---
+description: "BCS (Binary Canonical Serialization) in Move: encode and decode structured data for on-chain storage and cross-platform communication."
+---
+
 # Binary Canonical Serialization
 
 Binary Canonical Serialization (BCS) is a binary encoding format for structured data. It was

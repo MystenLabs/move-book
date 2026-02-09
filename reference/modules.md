@@ -1,6 +1,6 @@
 ---
 title: 'Modules | Reference'
-description: ''
+description: "Move module reference: declare modules, define types and functions, control visibility, and organize code in packages."
 ---
 
 # Modules

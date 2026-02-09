@@ -1,6 +1,6 @@
 ---
 title: 'Abort and Assert | Reference'
-description: ''
+description: "Move abort and assert reference: halt execution with error codes, enforce conditions with assert!, and handle transaction failures."
 ---
 
 # Abort and Assert

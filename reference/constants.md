@@ -1,6 +1,6 @@
 ---
 title: 'Constants | Reference'
-description: ''
+description: "Move constants reference: define compile-time values, supported types, naming rules, and usage in modules."
 ---
 
 # Constants

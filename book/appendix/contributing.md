@@ -1,3 +1,7 @@
+---
+description: "How to contribute to The Move Book: submit pull requests, report issues, and help improve the Move programming language guide."
+---
+
 # Appendix E: Contributing
 
 To contribute to this book, please, submit a pull request to the

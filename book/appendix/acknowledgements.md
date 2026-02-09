@@ -1,3 +1,7 @@
+---
+description: "Acknowledgements for The Move Book: credits to The Rust Book, contributors, and the Move community."
+---
+
 # Appendix F: Acknowledgements
 
 [The Rust Book](https://doc.rust-lang.org/book) has been a great inspiration for this book. I am

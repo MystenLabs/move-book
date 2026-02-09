@@ -1,3 +1,7 @@
+---
+description: "Install the Sui binary and Move compiler using suiup, Homebrew, or Chocolatey to start developing Move smart contracts."
+---
+
 # Install Sui
 
 Move is a compiled language, so you need to install a compiler to be able to write and run Move

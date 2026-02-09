@@ -1,6 +1,6 @@
 ---
 title: 'Local Variables and Scope | Reference'
-description: ''
+description: "Move local variables and scope: let bindings, mutability, type annotations, shadowing, and move semantics reference."
 ---
 
 # Local Variables and Scope

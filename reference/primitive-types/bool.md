@@ -1,6 +1,6 @@
 ---
 title: 'Bool | Reference'
-description: ''
+description: "Move bool type reference: true and false literals, logical operators (and, or, not), and boolean expression semantics."
 ---
 
 # Bool

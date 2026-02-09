@@ -1,3 +1,7 @@
+---
+description: "Migrate your Move code to the 2024 edition: updated syntax, new features, method syntax, and step-by-step migration instructions."
+---
+
 # Move 2024 Migration Guide
 
 Move 2024 is the new edition of the Move language that is maintained by Mysten Labs. This guide is

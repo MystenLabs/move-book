@@ -1,3 +1,7 @@
+---
+description: "Dynamic collections in Sui: Bag, Table, ObjectBag, ObjectTable, and LinkedTable built on dynamic fields for flexible storage."
+---
+
 # Dynamic Collections
 
 [Sui Framework](./sui-framework) offers a variety of collection types that build on the

@@ -1,3 +1,7 @@
+---
+description: "Generics in Move: write reusable functions and types that work with any type parameter, with phantom types and constraints."
+---
+
 # Generics
 
 Generics are a way to define a type or function that can work with any type. This is useful when you

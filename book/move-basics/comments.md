@@ -1,3 +1,7 @@
+---
+description: "How to use line comments, block comments, and doc comments in Move for documentation and code annotation."
+---
+
 # Comments
 
 <!--

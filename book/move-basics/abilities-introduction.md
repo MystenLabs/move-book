@@ -1,3 +1,7 @@
+---
+description: "Introduction to Move abilities: copy, drop, key, and store — the system that controls how types behave in smart contracts."
+---
+
 # Abilities: Introduction
 
 Move has a unique type system which allows customizing _type abilities_.

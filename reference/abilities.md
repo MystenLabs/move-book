@@ -1,6 +1,6 @@
 ---
 title: 'Abilities | Reference'
-description: ''
+description: "Move abilities reference: copy, drop, store, and key — rules for how values can be used, stored, copied, and discarded."
 ---
 
 # Abilities

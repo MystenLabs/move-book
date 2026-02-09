@@ -1,3 +1,7 @@
+---
+description: "Guide to open sourcing Move libraries: naming conventions, documentation, testing, and publishing reusable packages for Sui."
+---
+
 # Open Sourcing Libraries
 
 Open sourcing libraries is a great way to contribute to the Move ecosystem. This guide will help you

@@ -1,3 +1,7 @@
+---
+description: "Set up your Move development environment: install Sui, configure your IDE, and learn about the Move 2024 edition."
+---
+
 # Before We Begin
 
 Move requires an environment to run and develop applications, and in this small chapter we will

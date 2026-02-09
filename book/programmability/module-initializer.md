@@ -1,3 +1,7 @@
+---
+description: "The init function in Move: run one-time setup code when a module is published on Sui, with rules and best practices."
+---
+
 # Module Initializer
 
 A common use case in many applications is to run certain code just once when the package is

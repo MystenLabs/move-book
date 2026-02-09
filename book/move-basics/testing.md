@@ -1,3 +1,7 @@
+---
+description: "Write and run unit tests in Move using the #[test] attribute, expected failures, and utilities for testing smart contract logic."
+---
+
 # Testing
 
 Testing is a crucial aspect of software development, especially in blockchain applications where

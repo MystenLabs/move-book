@@ -1,3 +1,7 @@
+---
+description: "The Publisher object in Sui: prove package authority to configure Display, transfer policies, and other type-level settings."
+---
+
 # Publisher Authority
 
 In application design and development, it is often needed to prove publisher authority. This is

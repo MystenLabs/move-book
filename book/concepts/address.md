@@ -1,3 +1,7 @@
+---
+description: "Learn about addresses in Sui — 32-byte unique identifiers used to locate packages, accounts, and objects on the blockchain."
+---
+
 # Address
 
 <!--

@@ -1,3 +1,7 @@
+---
+description: "Vectors in Move: create, manipulate, and iterate over dynamic collections with push, pop, and destroy operations."
+---
+
 # Vector
 
 Vectors are a native way to store collections of elements in Move. They are similar to arrays in

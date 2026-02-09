@@ -1,3 +1,7 @@
+---
+description: "Emit and subscribe to events in Sui Move: notify off-chain listeners about on-chain activity in your smart contracts."
+---
+
 # Events
 
 Events are a way to notify off-chain listeners about on-chain events. They are used to emit

@@ -1,3 +1,7 @@
+---
+description: "UID and ID in Sui Move: unique object identifiers, how they are created, used for dynamic fields, and guaranteed to be unique."
+---
+
 # UID and ID
 
 The use of the `UID` type is required by the Sui Verifier on all types that have the

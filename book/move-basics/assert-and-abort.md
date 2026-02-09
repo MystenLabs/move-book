@@ -1,3 +1,7 @@
+---
+description: "Error handling in Move: use abort to halt execution with error codes and assert! to enforce conditions in smart contracts."
+---
+
 # Aborting Execution
 
 <!-- Consider "aborting execution" -->

@@ -1,3 +1,7 @@
+---
+description: "Learn how Sui transactions work: structure, commands, gas payments, and how they change blockchain state through Move function calls."
+---
+
 # Transaction
 
 Transaction is a fundamental concept in the blockchain world. It is a way to interact with a

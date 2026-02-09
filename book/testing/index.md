@@ -1,3 +1,7 @@
+---
+description: "Testing Move smart contracts on Sui: unit tests, test scenarios, coverage reports, gas profiling, and best practices."
+---
+
 # Testing
 
 Move is designed to be [secure by default](./../foreword.md) - its type system and built-in

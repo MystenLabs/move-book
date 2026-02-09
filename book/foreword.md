@@ -1,3 +1,7 @@
+---
+description: "The design philosophy behind Move: security by default, expressiveness, and intuitive resource management for smart contracts."
+---
+
 # Foreword
 
 This book is dedicated to Move, a smart contract language that captures the essence of safe

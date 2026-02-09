@@ -1,3 +1,7 @@
+---
+description: "The Witness pattern in Move: prove type ownership through struct instantiation for type-safe authorization in Sui smart contracts."
+---
+
 # Pattern: Witness
 
 Witness is a pattern of proving an existence by constructing a proof. In the context of programming,

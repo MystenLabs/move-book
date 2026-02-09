@@ -1,3 +1,7 @@
+---
+description: "Install the Move Registry (MVR) CLI to publish, discover, and manage reusable Move packages for Sui development."
+---
+
 # Install MVR
 
 [Move Registry (MVR)](https://moveregistry.com) is a package manager for Move. It allows anyone to

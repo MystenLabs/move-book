@@ -1,3 +1,7 @@
+---
+description: "The key ability in Move makes a struct an object that can be stored, owned, and transferred on the Sui blockchain."
+---
+
 # Ability: Key
 
 In the [Basic Syntax][basic-syntax] chapter, we already covered two out of four abilities:

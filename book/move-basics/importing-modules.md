@@ -1,3 +1,7 @@
+---
+description: "How to import modules in Move using the use keyword: single imports, grouped imports, member imports, and resolving naming conflicts."
+---
+
 # Importing Modules
 
 <!--

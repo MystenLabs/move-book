@@ -1,3 +1,7 @@
+---
+description: "Struct methods in Move: use receiver syntax to call functions on struct instances with dot notation for cleaner code."
+---
+
 # Struct Methods
 
 Move Compiler supports _receiver syntax_ `e.f()`, which allows defining methods which can be called

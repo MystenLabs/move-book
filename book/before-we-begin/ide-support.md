@@ -1,3 +1,7 @@
+---
+description: "Configure VSCode or IntelliJ IDEA for Move development with syntax highlighting, error checking, and code formatting extensions."
+---
+
 # Set Up Your IDE
 
 There are two most popular IDEs for Move development: VSCode and IntelliJ IDEA. Both of them provide

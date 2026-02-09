@@ -1,3 +1,7 @@
+---
+description: "Define custom types with struct in Move: create, pack, unpack, and access fields for building data models in Sui smart contracts."
+---
+
 # Custom Types with Struct
 
 Move's type system shines when it comes to defining custom types. User defined types can be custom

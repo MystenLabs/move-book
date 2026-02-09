@@ -1,6 +1,6 @@
 ---
 title: 'Coding Conventions | Reference'
-description: ''
+description: "Move coding conventions: naming standards, formatting guidelines, and style recommendations for Sui Move development."
 ---
 
 # Coding Conventions

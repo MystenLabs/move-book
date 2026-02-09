@@ -1,6 +1,6 @@
 ---
 title: 'Integers | Reference'
-description: ''
+description: "Move integer types reference: u8, u16, u32, u64, u128, u256 — literals, operations, casting, and overflow behavior."
 ---
 
 # Integers

@@ -1,3 +1,7 @@
+---
+description: "Learn how to use Sui objects in Move: storage abilities, transfer functions, ownership rules, and object lifecycle management."
+---
+
 # Using Objects
 
 In the [Object Model][object-model] chapter, we introduced the shift in the Move language from an

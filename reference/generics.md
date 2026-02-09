@@ -1,6 +1,6 @@
 ---
 title: 'Generics | Reference'
-description: ''
+description: "Move generics reference: type parameters, constraints, phantom types, and parametric polymorphism for functions and structs."
 ---
 
 # Generics

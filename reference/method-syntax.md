@@ -1,6 +1,6 @@
 ---
 title: 'Method Syntax | Reference'
-description: ''
+description: "Move method syntax reference: call functions with dot notation, receiver types, automatic borrowing, and method resolution."
 ---
 
 # Methods

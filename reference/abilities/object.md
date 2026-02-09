@@ -1,5 +1,6 @@
 ---
 title: 'Sui Object | Reference'
+description: "Sui Object reference: how the key ability defines objects, UID requirements, and object storage on the Sui blockchain."
 ---
 
 # Sui Objects

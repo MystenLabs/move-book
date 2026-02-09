@@ -1,6 +1,6 @@
 ---
 title: 'Equality | Reference'
-description: ''
+description: "Move equality operations reference: == and != operators, type restrictions, and comparison rules for values and references."
 ---
 
 # Equality

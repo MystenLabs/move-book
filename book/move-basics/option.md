@@ -1,3 +1,7 @@
+---
+description: "The Option type in Move: represent optional values safely, with methods for creating, checking, extracting, and destroying options."
+---
+
 # Option
 
 `Option` is a type that represents an optional value which may or may not exist. The concept of

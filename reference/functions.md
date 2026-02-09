@@ -1,6 +1,6 @@
 ---
 title: 'Functions | Reference'
-description: ''
+description: "Move functions reference: declaration, visibility modifiers, entry functions, return values, and calling conventions."
 ---
 
 # Functions

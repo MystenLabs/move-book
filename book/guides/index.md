@@ -1,3 +1,7 @@
+---
+description: "Practical guides for Sui Move development: migration, upgradeability, error handling, code quality, and open-source best practices."
+---
+
 # Guides
 
 This section contains a collection of guides that cover various aspects of programming on Sui. They

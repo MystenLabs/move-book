@@ -1,3 +1,7 @@
+---
+description: "Access time in Sui Move: use epochs for operational periods and Clock for millisecond timestamps in your smart contracts."
+---
+
 # Epoch and Time
 
 Sui has two ways of accessing the current time: `Epoch` and `Time`. The former represents

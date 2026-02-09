@@ -1,3 +1,7 @@
+---
+description: "Advanced Sui programmability: patterns, events, dynamic fields, capabilities, BCS serialization, and design patterns in Move."
+---
+
 # Advanced Programmability
 
 In previous chapters we've covered [the basics of Move](./../move-basics) and

@@ -1,6 +1,6 @@
 ---
 title: 'Friends | Reference'
-description: ''
+description: "Move friends reference (deprecated): the legacy friend syntax replaced by public(package) visibility in Move 2024."
 ---
 
 # DEPRECATED: Friends

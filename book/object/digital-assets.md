@@ -1,3 +1,7 @@
+---
+description: "How Move handles digital assets natively: from fungible tokens to NFTs, with built-in safety and type-level resource guarantees."
+---
+
 # Move - Language for Digital Assets
 
 Smart-contract programming languages have historically focused on defining and managing digital

@@ -1,3 +1,7 @@
+---
+description: "The Builder pattern for Move tests: construct complex test objects with sensible defaults and method chaining for readable tests."
+---
+
 # Pattern: Builder
 
 The builder pattern is used to construct complex objects with many parameters in a flexible and

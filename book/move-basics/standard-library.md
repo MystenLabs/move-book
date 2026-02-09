@@ -1,3 +1,7 @@
+---
+description: "Overview of the Move Standard Library: common modules for strings, vectors, options, and type names available in every Move package."
+---
+
 # Standard Library
 
 <!-- The Move standard library provides a set of modules  -->

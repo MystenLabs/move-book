@@ -1,3 +1,7 @@
+---
+description: "The Hot Potato pattern in Move: a struct with no abilities that must be consumed in the same transaction, enforcing workflow completion."
+---
+
 # Pattern: Hot Potato
 
 A case in the abilities system - a struct without any abilities - is called _hot potato_. It cannot

@@ -1,3 +1,7 @@
+---
+description: "Academic publications about Move and Sui: papers on the borrow checker, resource safety, and formal verification of Move programs."
+---
+
 # Appendix D: Publications
 
 This section lists publications related to Move and Sui.

@@ -1,6 +1,6 @@
 ---
 title: 'Unit Tests | Reference'
-description: ''
+description: "Move unit testing reference: #[test], #[expected_failure], #[test_only] annotations, test flags, and execution options."
 ---
 
 # Unit Tests

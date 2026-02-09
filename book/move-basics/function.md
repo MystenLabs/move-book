@@ -1,3 +1,7 @@
+---
+description: "Functions in Move: declare, call, and return values from functions with support for multiple return values and type parameters."
+---
+
 # Functions
 
 Functions are the building blocks of Move programs. They are called from

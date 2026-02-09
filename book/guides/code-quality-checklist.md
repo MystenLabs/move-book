@@ -1,3 +1,7 @@
+---
+description: "Move code quality checklist: review your Sui smart contracts against current best practices for safety, style, and maintainability."
+---
+
 # Code Quality Checklist
 
 The rapid evolution of the Move language and its ecosystem has rendered many older practices

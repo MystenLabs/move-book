@@ -1,6 +1,6 @@
 ---
 title: 'References | Reference'
-description: ''
+description: "Move references reference: immutable and mutable borrows, reading, writing, ownership rules, and the borrow checker."
 ---
 
 # References

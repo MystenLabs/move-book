@@ -1,3 +1,7 @@
+---
+description: "TxContext in Sui Move: access sender address, transaction digest, epoch, and generate unique IDs in your smart contracts."
+---
+
 # Transaction Context
 
 Every transaction has the execution context. The context is a set of predefined variables that are

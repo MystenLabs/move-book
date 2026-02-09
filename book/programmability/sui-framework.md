@@ -1,3 +1,7 @@
+---
+description: "The Sui Framework: built-in modules for storage, coins, display, clock, events, and other Sui-specific features available to every package."
+---
+
 # Sui Framework
 
 Sui Framework is a default dependency set in the [Package Manifest](./../concepts/manifest). It

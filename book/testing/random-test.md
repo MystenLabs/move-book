@@ -1,3 +1,7 @@
+---
+description: "Property-based testing in Move with #[random_test]: run tests with randomized inputs to discover edge cases automatically."
+---
+
 # Random Inputs
 
 The Move compiler supports running tests with randomized inputs through the `#[random_test]`

@@ -1,3 +1,7 @@
+---
+description: "Improve error handling in Move smart contracts: use descriptive abort codes and error constants for better debugging on Sui."
+---
+
 # Better Error Handling
 
 Whenever execution encounters an abort, transaction fails and abort code is returned to the caller.

@@ -1,6 +1,6 @@
 ---
 title: 'Control Flow | Reference'
-description: ''
+description: "Move control flow reference: if expressions, while and for loops, labeled blocks, pattern matching, and early returns."
 ---
 
 # Control Flow

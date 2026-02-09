@@ -1,3 +1,7 @@
+---
+description: "The store ability in Move allows types to be used as fields in objects and enables public transfer and storage operations on Sui."
+---
+
 # Ability: Store
 
 The [`key` ability][key-ability] requires all fields to have `store`, which defines what the `store`

@@ -1,3 +1,7 @@
+---
+description: "Enums and pattern matching in Move: define variant types, use match expressions, and handle multiple cases in smart contracts."
+---
+
 # Enums and Match
 
 An enum is a user-defined data structure that, unlike a [struct](./struct), can represent multiple

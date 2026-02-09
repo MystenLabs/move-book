@@ -1,3 +1,7 @@
+---
+description: "Object Display in Sui: define rich metadata templates for your objects using the Display standard for wallets and explorers."
+---
+
 # Object Display
 
 Objects on Sui are explicit in their structure and behavior and can be displayed in an

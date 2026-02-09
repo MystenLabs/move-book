@@ -1,6 +1,6 @@
 ---
 title: 'Pattern Matching | Reference'
-description: ''
+description: "Move pattern matching reference: match expressions, destructuring, guards, wildcards, and exhaustive matching rules."
 ---
 
 # Pattern Matching

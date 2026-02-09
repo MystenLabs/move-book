@@ -1,3 +1,7 @@
+---
+description: "Collection types in Sui Move: VecSet, VecMap, and other vector-based data structures from the Sui Framework."
+---
+
 # Collections
 
 Collection types are a fundamental part of any programming language. They are used to store a

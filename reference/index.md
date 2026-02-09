@@ -1,3 +1,7 @@
+---
+description: "The official Move language reference: comprehensive documentation of syntax, types, abilities, functions, and all language features."
+---
+
 # The Move Reference
 
 Welcome to Move, a next generation language for secure asset programming. Its primary use case is in

@@ -1,3 +1,7 @@
+---
+description: "Core Sui and Move concepts: packages, accounts, transactions, addresses, and how data is stored on the Sui blockchain."
+---
+
 # Concepts
 
 In this chapter you will learn about the basic concepts of Sui and Move. You will learn what is a

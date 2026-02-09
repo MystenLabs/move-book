@@ -1,3 +1,7 @@
+---
+description: "Sui network limits and how to build within them: object size, dynamic fields, transaction limits, and protocol constraints."
+---
+
 # Building Against Limits
 
 To guarantee the safety and security of the network, Sui has certain limits and restrictions. These

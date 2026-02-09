@@ -1,5 +1,6 @@
 ---
 draft: true
+description: "Restricted vs public transfer in Sui Move: how the store ability controls whether objects can be transferred outside their module."
 ---
 
 <!-- This page is deprecated. Saving content for now, but should redirect to storage-functions -->

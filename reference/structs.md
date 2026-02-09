@@ -1,6 +1,6 @@
 ---
 title: 'Structs | Reference'
-description: ''
+description: "Move structs reference: define custom types, positional and named fields, abilities, visibility, and resource semantics."
 ---
 
 # Structs and Resources

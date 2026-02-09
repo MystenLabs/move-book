@@ -1,3 +1,7 @@
+---
+description: "Move testing basics: write tests with the #[test] attribute, use expected failures, and organize test-only code in your modules."
+---
+
 # Testing Basics
 
 The Move compiler has a built-in testing framework - tests are written in Move and live alongside

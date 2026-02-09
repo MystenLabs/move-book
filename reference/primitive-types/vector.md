@@ -1,6 +1,6 @@
 ---
 title: 'Vector | Reference'
-description: ''
+description: "Move vector type reference: create, access, push, pop, destroy vectors, and use vector literals with full API documentation."
 ---
 
 # Vector

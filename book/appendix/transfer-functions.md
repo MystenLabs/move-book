@@ -1,3 +1,7 @@
+---
+description: "Quick reference for Sui transfer functions: transfer, share, freeze, receive, and their public variants with permissions and end states."
+---
+
 # Appendix C: Transfer Functions
 
 ## Transfer Functions Comparison

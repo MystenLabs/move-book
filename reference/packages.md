@@ -1,6 +1,6 @@
 ---
 title: 'Packages | Reference'
-description: ''
+description: "Move packages reference: package layout, Move.toml manifest, dependencies, named addresses, and package compilation."
 ---
 
 # Packages

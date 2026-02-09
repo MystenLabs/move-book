@@ -1,3 +1,7 @@
+---
+description: "Modules are the building blocks of Move: learn how to declare, organize, and compile modules in your Sui smart contracts."
+---
+
 # Module
 
 <!--

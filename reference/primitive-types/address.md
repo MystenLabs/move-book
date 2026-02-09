@@ -1,6 +1,6 @@
 ---
 title: 'Address | Reference'
-description: ''
+description: "Move address type reference: 256-bit identifiers, named addresses, hex literals, and address-related operations."
 ---
 
 # Address

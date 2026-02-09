@@ -1,3 +1,7 @@
+---
+description: "Create your first Move package on Sui: learn the project structure, write a module, compile code, and run tests with the Move CLI."
+---
+
 # Hello, World!
 
 In this chapter, you will learn how to create a new package, write a simple module, compile it, and

@@ -1,3 +1,7 @@
+---
+description: "On-chain randomness in Sui: generate secure random values in Move smart contracts using the Random shared object."
+---
+
 # Randomness
 
 <!--

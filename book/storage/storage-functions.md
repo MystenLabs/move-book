@@ -1,3 +1,7 @@
+---
+description: "Sui storage functions: transfer, share, freeze, and receive objects using the sui::transfer module in Move smart contracts."
+---
+
 # Storage Functions
 
 The module that defines main storage operations is `sui::transfer`. It is implicitly imported in all

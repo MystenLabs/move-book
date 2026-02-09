@@ -1,3 +1,7 @@
+---
+description: "Ownership and scope in Move: how variables are owned, moved, and dropped when they go out of scope in the Move language."
+---
+
 # Ownership and Scope
 
 Every variable in Move has a scope and an owner. The scope is the range of code where the variable

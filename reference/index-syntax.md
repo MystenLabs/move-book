@@ -1,6 +1,6 @@
 ---
 title: 'Index Syntax | Reference'
-description: ''
+description: "Move index syntax reference: use bracket notation for custom types with #[syntax(index)] attribute for intuitive access patterns."
 ---
 
 # Index Syntax

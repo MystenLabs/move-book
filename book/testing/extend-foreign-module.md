@@ -1,3 +1,7 @@
+---
+description: "Extend foreign modules in Move tests: add test-only functions to external packages for creating test data and mock objects."
+---
+
 # Extending Modules
 
 When testing code that depends on external packages, you often need to create test data for types

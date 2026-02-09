@@ -1,6 +1,6 @@
 ---
 title: 'Macro Functions | Reference'
-description: ''
+description: "Move macro functions reference: compile-time expansion, lambda parameters, type parameters, and method syntax for macros."
 ---
 
 # Macro Functions

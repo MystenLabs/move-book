@@ -1,3 +1,7 @@
+---
+description: "Expressions in Move: literals, function calls, blocks, and how almost everything returns a value in the Move language."
+---
+
 # Expression
 
 In programming languages, an expression is a unit of code that returns a value. In Move, almost

@@ -1,3 +1,7 @@
+---
+description: "Constants in Move: how to define immutable module-level values, naming conventions, and supported constant types."
+---
+
 # Constants
 
 <!--

@@ -1,3 +1,7 @@
+---
+description: "The copy ability in Move enables value duplication. Learn how to add copy to custom types and understand its role in resource safety."
+---
+
 # Abilities: Copy
 
 In Move, the _copy_ ability on a type indicates that the instance or the value of the type can be

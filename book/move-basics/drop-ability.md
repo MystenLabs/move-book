@@ -1,3 +1,7 @@
+---
+description: "The drop ability in Move allows struct instances to be discarded. Learn how it works and when to use it in Sui smart contracts."
+---
+
 # Abilities: Drop
 
 <!-- TODO: reiterate, given that we introduce abilities one by one -->

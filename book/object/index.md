@@ -1,3 +1,7 @@
+---
+description: "The Sui Object Model explained: theory and concepts behind digital asset representation, ownership, and storage on the Sui blockchain."
+---
+
 # Object Model
 
 This chapter describes the Object Model of Sui. It focuses on the theory and concepts behind the

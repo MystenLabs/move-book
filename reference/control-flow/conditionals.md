@@ -1,6 +1,6 @@
 ---
 title: 'Conditional Expressions | Reference'
-description: ''
+description: "Move conditional expressions reference: if, else, and if-else syntax with type rules and expression-based semantics."
 ---
 
 # Conditional `if` Expressions

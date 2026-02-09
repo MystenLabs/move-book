@@ -1,3 +1,7 @@
+---
+description: "Transfer to Object (TTO) in Sui: send objects to other objects and receive them using the Receiving type in Move."
+---
+
 # Receiving as Object
 
 [Address owned](./storage-functions.md#transfer) Object state supports two types of owners: an

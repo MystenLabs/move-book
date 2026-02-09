@@ -1,6 +1,6 @@
 ---
 title: 'Compilation Modes | Reference'
-description: ''
+description: "Move compilation modes reference: define named build modes, filter declarations, and configure mode-specific compilation."
 ---
 
 # Compilation Modes

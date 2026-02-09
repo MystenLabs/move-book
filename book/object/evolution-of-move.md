@@ -1,3 +1,7 @@
+---
+description: "The evolution of Move from Diem to Sui: how the storage model changed from account-based to the object-based model."
+---
+
 # Evolution of Move
 
 While Move was created to manage digital assets, its initial storage model was bulky and not

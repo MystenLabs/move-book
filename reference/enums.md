@@ -1,6 +1,6 @@
 ---
 title: 'Enumerations | Reference'
-description: ''
+description: "Move enumerations reference: define variant types, pattern matching with match, abilities, and enum-specific operations."
 ---
 
 # Enumerations

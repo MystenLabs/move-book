@@ -1,3 +1,7 @@
+---
+description: "Move test utilities: assert macros, assert_eq, assert_ref_eq, and standard library helpers for writing expressive unit tests."
+---
+
 # Unit Test Utilities
 
 In addition to the built-in `assert!` macro, the

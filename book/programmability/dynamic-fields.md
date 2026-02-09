@@ -1,3 +1,7 @@
+---
+description: "Dynamic fields in Sui: attach heterogeneous key-value data to objects at runtime, bypassing object size limits."
+---
+
 # Dynamic Fields
 
 Sui Object model allows objects to be attached to other objects as _dynamic fields_. The behavior is

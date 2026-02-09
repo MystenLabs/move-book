@@ -1,3 +1,7 @@
+---
+description: "Simulate TxContext in Move tests: create dummy contexts, set sender addresses, and generate fresh UIDs for unit testing."
+---
+
 # Simulating Transaction Context
 
 Most Move functions that create objects or interface with the user have a `TxContext` argument. When

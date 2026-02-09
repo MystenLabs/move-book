@@ -1,6 +1,6 @@
 ---
 title: 'Tuples and Unit | Reference'
-description: ''
+description: "Move tuples and unit type reference: multiple return values, destructuring, unit expressions, and tuple-like syntax."
 ---
 
 # Tuples and Unit

@@ -1,6 +1,6 @@
 ---
 title: 'Uses and Aliases | Reference'
-description: ''
+description: "Move use and aliases reference: import modules, create aliases, group imports, and resolve naming conflicts."
 ---
 
 # Uses and Aliases

@@ -1,6 +1,6 @@
 ---
 title: 'Loops | Reference'
-description: ''
+description: "Move loop constructs reference: while loops, loop expressions, for loops, break, continue, and iteration patterns."
 ---
 
 # Loop Constructs in Move
