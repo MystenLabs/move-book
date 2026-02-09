@@ -79,7 +79,7 @@ non-enabled mode are compiled **out**. Unannotated items are always compiled in.
 module my_pkg::math_tests {
     use my_pkg::math;
 
-    #[modetest]
+    #[mode(test)]
     fun add_basic() { /* ... */ }
 
     // Private test helper
