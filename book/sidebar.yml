@@ -215,23 +215,23 @@ bookSidebar:
       type: doc
     items:
       - label: Testing Basics
-        id: testing/running-tests
-      - label: Unit Test Utilities
-        id: testing/test-utilities
-      - label: Transaction Context
-        id: testing/transaction-context
+        id: testing/testing-basics
       - label: What Makes a Good Test
         id: testing/good-tests
-      - label: Random Inputs
-        id: testing/random-test
+      - label: Unit Test Utilities
+        id: testing/test-utilities
+      - label: Simulating Transaction Context
+        id: testing/transaction-context
       - label: Test Scenario
         id: testing/test-scenario
       - label: Using System Objects
         id: testing/using-system-objects
       - label: 'Pattern: Builder'
         id: testing/builder-pattern
-      - label: Writing Test Macros
-        id: testing/writing-test-macros
+      - label: Random Inputs
+        id: testing/random-test
+      # - label: Writing Test Macros
+      #   id: testing/writing-test-macros
       - label: Extending Modules
         id: testing/extend-foreign-module
       - label: Coverage Reports

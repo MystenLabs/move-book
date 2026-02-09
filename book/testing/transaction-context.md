@@ -1,8 +1,8 @@
-# Transaction Context
+# Simulating Transaction Context
 
 Most Move functions that create objects or interface with the user have a `TxContext` argument. When
-transaction is executed, its value is provided by the runtime, but in tests you need to create it
-yourself. The `sui::tx_context` module provides several utility functions for this purpose.
+a transaction is executed, its value is provided by the runtime, but in tests you need to create and
+pass it yourself. The `sui::tx_context` module provides several utility functions for this purpose.
 
 > **Note:** The utilities in this chapter are suitable for simple unit tests only. They do not
 > provide access to shared or transferred objects from storage. For tests that require taking

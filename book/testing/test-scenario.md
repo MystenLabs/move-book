@@ -1,8 +1,8 @@
 # Test Scenario
 
-The `test_scenario` module from the [Sui Framework](./../programmability/sui-framework.md) provides a
-way to simulate multi-transaction scenarios in tests. It maintains a view of the global object pool
-and allows you to test how objects are created, transferred, and accessed across multiple
+The `test_scenario` module from the [Sui Framework](./../programmability/sui-framework.md) provides
+a way to simulate multi-transaction scenarios in tests. It maintains a view of the global object
+pool and allows you to test how objects are created, transferred, and accessed across multiple
 transactions.
 
 ```move
@@ -12,9 +12,12 @@ use sui::test_scenario;
 
 ## Starting and Ending a Scenario
 
-A test scenario begins with `test_scenario::begin` which takes the sender address as an argument. The
-scenario must be ended with `test_scenario::end` to clean up resources. Failing to end a scenario
-will result in a compilation error.
+A test scenario begins with `test_scenario::begin` which takes the sender address as an argument.
+The scenario must be ended with `test_scenario::end` to clean up resources. Failing to end a
+scenario will result in a compilation error.
+
+> **Note:** there should be only one scenario per test. Creating multiple scenarios in the same test
+> may produce unexpected results and should be avoided.
 
 ```move
 use sui::test_scenario;
@@ -37,7 +40,8 @@ fun test_basic_scenario() {
 
 Use `next_tx` to advance to a new transaction with a specified sender. Objects transferred in the
 previous transaction become available in the next one. Each `next_tx` call returns
-`TransactionEffects` containing information about what happened in the previous transaction.
+[`TransactionEffects`](#reading-transaction-effects) containing information about what happened in
+the previous transaction.
 
 ```move
 use sui::test_scenario;
@@ -54,7 +58,7 @@ fun test_multi_transaction() {
 
     // Advance to second transaction with bob as sender
     // Objects from the first transaction are now available
-    scenario.next_tx(bob);
+    let _effects = scenario.next_tx(bob);
 
     // ... bob can now access objects transferred to him ...
 
@@ -68,8 +72,9 @@ fun test_multi_transaction() {
 ## Accessing Owned Objects
 
 [Owned objects](./../object/ownership.md#owned-by-an-address) transferred to an address can be
-accessed using `take_from_sender` or `take_from_address`. After using an object, it must be returned
-with `return_to_sender` or `return_to_address`, or transferred elsewhere.
+accessed using `take_from_sender` or `take_from_address`. The object then can be passed to a
+function, returned with `return_to_sender` or `return_to_address`, or transferred elsewhere using
+`public_transfer` (if the object has `store` ability).
 
 ```move
 module book::test_scenario_example;
@@ -96,7 +101,7 @@ fun test_take_and_return() {
     // Transaction 1: Create and transfer an item to alice
     {
         let item = create(100, scenario.ctx());
-        sui::transfer::public_transfer(item, alice);
+        transfer::public_transfer(item, alice);
     };
 
     // Transaction 2: Alice takes the item
@@ -133,8 +138,8 @@ fun test_take_by_id() {
     let item2 = create(200, scenario.ctx());
     let id1 = object::id(&item1);
 
-    sui::transfer::public_transfer(item1, alice);
-    sui::transfer::public_transfer(item2, alice);
+    transfer::public_transfer(item1, alice);
+    transfer::public_transfer(item2, alice);
 
     scenario.next_tx(alice);
     {
@@ -164,7 +169,7 @@ fun test_has_object() {
     assert!(!scenario.has_most_recent_for_sender<Item>());
 
     let item = create(100, scenario.ctx());
-    sui::transfer::public_transfer(item, alice);
+    transfer::public_transfer(item, alice);
 
     scenario.next_tx(alice);
 
@@ -189,7 +194,7 @@ public struct Counter has key {
 }
 
 public fun create(ctx: &mut TxContext) {
-    sui::transfer::share_object(Counter {
+    transfer::share_object(Counter {
         id: object::new(ctx),
         value: 0,
     })
@@ -275,7 +280,7 @@ public struct Config has key {
 }
 
 public fun create(max_value: u64, ctx: &mut TxContext) {
-    sui::transfer::freeze_object(Config {
+    transfer::freeze_object(Config {
         id: object::new(ctx),
         max_value,
     })
@@ -310,9 +315,8 @@ fun test_immutable_object() {
 
 ## Accessing Transaction Context
 
-The `ctx` method provides access to the
-[`TxContext`](./../programmability/transaction-context.md) for the current transaction. Use it when
-calling functions that require a context:
+The `ctx` method provides access to the [`TxContext`](./../programmability/transaction-context.md)
+for the current transaction. Use it when calling functions that require a context:
 
 ```move
 #[test]
@@ -328,7 +332,7 @@ fun test_context_access() {
 
     // Use it for operations that need context
     let item = create(100, ctx);
-    sui::transfer::public_transfer(item, alice);
+    transfer::public_transfer(item, alice);
 
     // The sender matches what we passed to begin()
     assert_eq!(ctx.sender(), alice);
@@ -355,10 +359,10 @@ fun test_transaction_effects() {
     // Create objects in first transaction
     let item1 = create(100, scenario.ctx());
     let item2 = create(200, scenario.ctx());
-    sui::transfer::public_transfer(item1, alice);
-    sui::transfer::public_transfer(item2, bob);
+    transfer::public_transfer(item1, alice);
+    transfer::public_transfer(item2, bob);
 
-    // Get effects from the transaction
+    // Get effects from the first transaction
     let effects = scenario.next_tx(alice);
 
     // Check what was created
@@ -376,16 +380,16 @@ fun test_transaction_effects() {
 
 ### Available Effect Fields
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `created()` | `vector<ID>` | Objects created in this transaction |
-| `written()` | `vector<ID>` | Objects modified in this transaction |
-| `deleted()` | `vector<ID>` | Objects deleted in this transaction |
-| `transferred_to_account()` | `VecMap<ID, address>` | Objects transferred to addresses |
-| `transferred_to_object()` | `VecMap<ID, ID>` | Objects transferred to other objects |
-| `shared()` | `vector<ID>` | Objects shared in this transaction |
-| `frozen()` | `vector<ID>` | Objects frozen in this transaction |
-| `num_user_events()` | `u64` | Number of events emitted |
+| Method                     | Returns               | Description                          |
+| -------------------------- | --------------------- | ------------------------------------ |
+| `created()`                | `vector<ID>`          | Objects created in this transaction  |
+| `written()`                | `vector<ID>`          | Objects modified in this transaction |
+| `deleted()`                | `vector<ID>`          | Objects deleted in this transaction  |
+| `transferred_to_account()` | `VecMap<ID, address>` | Objects transferred to addresses     |
+| `transferred_to_object()`  | `VecMap<ID, ID>`      | Objects transferred to other objects |
+| `shared()`                 | `vector<ID>`          | Objects shared in this transaction   |
+| `frozen()`                 | `vector<ID>`          | Objects frozen in this transaction   |
+| `num_user_events()`        | `u64`                 | Number of events emitted             |
 
 ## System Objects
 
@@ -465,10 +469,6 @@ public fun mint(amount: u64, ctx: &mut TxContext): Token {
     Token { id: object::new(ctx), amount }
 }
 
-public fun transfer(token: Token, recipient: address) {
-    sui::transfer::public_transfer(token, recipient)
-}
-
 public fun amount(token: &Token): u64 { token.amount }
 
 #[test]
@@ -486,7 +486,7 @@ fun test_token_transfer_flow() {
     // Admin mints tokens for alice
     {
         let token = mint(1000, scenario.ctx());
-        transfer(token, alice);
+        transfer::public_transfer(token, alice);
     };
 
     // Alice receives and transfers to bob
@@ -495,7 +495,7 @@ fun test_token_transfer_flow() {
         assert!(scenario.has_most_recent_for_sender<Token>());
         let token = scenario.take_from_sender<Token>();
         assert_eq!(token.amount(), 1000);
-        transfer(token, bob);
+        transfer::public_transfer(token, bob);
     };
 
     // Bob receives the token
@@ -514,21 +514,21 @@ fun test_token_transfer_flow() {
 
 ## Summary
 
-| Function | Purpose |
-| --- | --- |
-| `begin(sender)` | Start a new scenario |
-| `end(scenario)` | End the scenario and get final effects |
-| `next_tx(scenario, sender)` | Advance to next transaction |
-| `ctx(scenario)` | Get mutable reference to `TxContext` |
-| `take_from_sender<T>` | Take owned object from sender |
-| `return_to_sender(obj)` | Return object to sender |
-| `take_shared<T>` | Take shared object |
-| `return_shared(obj)` | Return shared object |
-| `take_immutable<T>` | Take immutable object |
-| `return_immutable(obj)` | Return immutable object |
-| `create_system_objects` | Create Clock, Random, DenyList |
-| `next_epoch` | Advance to next epoch |
-| `later_epoch(ms, sender)` | Advance epoch and time |
+| Function                    | Purpose                                |
+| --------------------------- | -------------------------------------- |
+| `begin(sender)`             | Start a new scenario                   |
+| `end(scenario)`             | End the scenario and get final effects |
+| `next_tx(scenario, sender)` | Advance to next transaction            |
+| `ctx(scenario)`             | Get mutable reference to `TxContext`   |
+| `take_from_sender<T>`       | Take owned object from sender          |
+| `return_to_sender(obj)`     | Return object to sender                |
+| `take_shared<T>`            | Take shared object                     |
+| `return_shared(obj)`        | Return shared object                   |
+| `take_immutable<T>`         | Take immutable object                  |
+| `return_immutable(obj)`     | Return immutable object                |
+| `create_system_objects`     | Create Clock, Random, DenyList         |
+| `next_epoch`                | Advance to next epoch                  |
+| `later_epoch(ms, sender)`   | Advance epoch and time                 |
 
 ## Further Reading
 

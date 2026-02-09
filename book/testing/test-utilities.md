@@ -1,7 +1,8 @@
 # Unit Test Utilities
 
-The [Standard Library](./../move-basics/standard-library.md) provides common utilities for testing.
-The most important ones are defined in the [`std::unit_test`][stdlib-unit-test] module. While not a
+In addition to the built-in `assert!` macro, the
+[Standard Library](./../move-basics/standard-library.md) provides common utilities for testing. The
+most important ones are defined in the [`std::unit_test`][stdlib-unit-test] module. While not a
 requirement, it is recommended to use this module in tests.
 
 ## `assert!`

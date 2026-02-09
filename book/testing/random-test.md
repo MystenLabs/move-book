@@ -1,10 +1,10 @@
 # Random Inputs
 
-The Move compiler supports randomized test inputs through the `#[random_test]` attribute. This
-enables property-based testing, where a test runs multiple times with different randomly generated
-values to discover edge cases you might not think to test manually.
+The Move compiler supports running tests with randomized inputs through the `#[random_test]`
+attribute. This enables property-based testing, where a test runs multiple times with randomly
+generated values to discover edge cases you might not think to test manually.
 
-> **Note:** The `#[random_test]` attribute is a compiler feature for test inputs, separate from the
+> The `#[random_test]` attribute is a compiler feature for test inputs, separate from the
 > `sui::random` module used for on-chain randomness.
 
 ## Basic Usage

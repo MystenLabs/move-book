@@ -1,10 +1,14 @@
 # Testing
 
-Testing is crucial in any software project, but it takes on special importance in Move. Because Move
-is designed for programming digital assets and financial applications, bugs can have severe and
-irreversible consequences. Unlike traditional software where issues can be patched quickly, smart
-contracts manage real value and are often immutable or difficult to upgrade after deployment. This
-creates unique challenges:
+Move is designed to be [secure by default](./../foreword.md) - its type system and built-in
+safeguards prevent entire classes of bugs that plague other smart contract languages, such as
+reentrancy, arithmetic overflow, and unauthorized access to assets. But language safety is not the
+same as program correctness. A type system can ensure your code won't violate Move's rules, but it
+cannot verify that your transfer logic sends funds to the right recipient, that your auction closes
+at the right time, or that your access control matches your intended policy. These are properties of
+your design, not the language - and they can only be verified through testing.
+
+The stakes of getting it wrong are uniquely high in on-chain programming:
 
 - **Financial risk**: Bugs in asset-handling code can lead to permanent loss of funds. A single
   overlooked edge case in transfer logic or access control can be exploited, resulting in

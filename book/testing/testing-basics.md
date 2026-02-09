@@ -1,6 +1,11 @@
 # Testing Basics
 
-Move compiler supports tests written in Move and has a built-in testing functionality.
+The Move compiler has a built-in testing framework - tests are written in Move and live alongside
+your source code. You annotate functions with `#[test]`, and the compiler handles discovery and
+execution. The VM execution environment is the same as in production, so your code runs with
+identical semantics. However, network and storage features are simulated in tests and don't behave
+exactly as they do during actual on-chain execution - something to keep in mind when testing
+interactions with objects, transactions, and other platform-specific functionality.
 
 ## What is a Test?
 
@@ -122,7 +127,15 @@ fun test_abort_in_self() {
 ## Test-Only Code
 
 Code marked with `#[test_only]` is compiled only in test mode. Use it for test utilities, helper
-functions, or imports that shouldn't exist in production code.
+functions, or imports that shouldn't exist in production code. It is common for `#[test_only]`
+functions to have `public` or `public(package)` visibility so they can be called from tests in other
+modules - since test-only code is stripped from production builds, this does not affect the public
+API of your package.
+
+> Note: a good rule of thumb is to add `_for_testing` suffix to test-only functions and constants.
+> This helps distinguish them from production code and makes it easier to find them in the codebase.
+> Given that test-only functions often do things that production code cannot, this is a good way to
+> ensure that you are not accidentally using a test-only function in production code.
 
 ### Test-Only Imports
 
@@ -173,15 +186,15 @@ public fun create_test_scenario(): u64 { 42 }
 
 ## Useful CLI Options
 
-| Option                 | Description                                                  |
-| ---------------------- | ------------------------------------------------------------ |
-| `--filter <str>`       | Run only tests matching the filter                           |
-| `--coverage`           | Collect coverage information (see [Coverage](./coverage.md)) |
-| `--trace`              | Generate traces for coverage LCOV output                     |
-| `--statistics`         | Show execution statistics including gas usage                |
-| `--threads <n>`        | Number of threads for parallel test execution                |
-| `--rand-num-iters <n>` | Number of iterations for [random tests](./random-test.md)    |
-| `--seed <n>`           | Seed for reproducible random test runs                       |
+| Option                 | Description                                                                             |
+| ---------------------- | --------------------------------------------------------------------------------------- |
+| `<filter>`             | Run only tests matching the filter (positional argument)                                |
+| `--coverage`           | Collect coverage information (see [Coverage](./coverage.md))                            |
+| `--trace`              | Generate traces for coverage LCOV output                                                |
+| `--statistics`         | Show execution statistics including gas usage (see [Gas Profiling](./gas-profiling.md)) |
+| `--threads <n>`        | Number of threads for parallel test execution                                           |
+| `--rand-num-iters <n>` | Number of iterations for [random tests](./random-test.md)                               |
+| `--seed <n>`           | Seed for reproducible random test runs                                                  |
 
 ## Test Output
 
@@ -192,7 +205,7 @@ When a test fails, the output shows:
 - The location where the failure occurred
 - A stack trace for debugging
 
-```
+```table
 ┌── test_that_failed ──────
 │ error[E11001]: test failure
 │    ┌─ ./sources/module.move:15:9
@@ -206,7 +219,5 @@ When a test fails, the output shows:
 
 ## Next Steps
 
-- [Test Utilities](./test-utilities.md) - `assert_eq!`, `destroy`, and other helpers
-- [Test Scenario](./test-scenario.md) - Multi-transaction integration testing
-- [Random Tests](./random-test.md) - Property-based testing with random inputs
-- [Coverage](./coverage.md) - Measuring test coverage
+In the next sections you will learn how to write good tests, how to use test utilities, how to test
+transactions and how to master the testing framework.

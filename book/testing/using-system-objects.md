@@ -48,39 +48,51 @@ fun test_shared_clock() {
 
 ## Random
 
-The `Random` object provides on-chain randomness. For simple tests that just need random values, use
-`new_generator_for_testing`:
+The `Random` object provides on-chain randomness. In tests, the full `Random` shared object can only
+be created inside a [test scenario](./test-scenario.md) via `random::create_for_testing`. However,
+the preferred approach is to structure your code so that the core logic takes a `RandomGenerator`
+parameter - this lets you create a generator directly in unit tests with
+`random::new_generator_for_testing()`, bypassing the `Random` object entirely. This is easier to
+work with because `Random` requires an `entry` function (which cannot return non-droppable values),
+making it harder to assert on results.
 
 ```move
-use sui::random;
+use sui::random::{Self, Random};
+
+// To use Random, a function must have `entry` modifier, hence it cannot return
+// a value, and not so easy to test.
+entry fun my_entry_function(r: &Random, ctx: &mut TxContext) {
+    let mut gen = random::new_generator(r, ctx);
+    let result = inner_function(&mut gen);
+    result.destroy_or!(abort);
+}
+
+// Example of an inner function that is easier to test than the entry point.
+public(package) fun inner_function(gen: &mut RandomGenerator): Option<u64> {
+    if (gen.generate_bool()) {
+        option::some(gen.generate_u64())
+    } else {
+        option::none()
+    }
+}
 
 #[test]
 fun test_simple_random() {
-    // Non-deterministic (different each run)
+    // Deterministic, always the same value.
     let mut gen = random::new_generator_for_testing();
-    let _value = gen.generate_u64();
+    assert!(inner_function(&mut gen).is_none());
 
     // Deterministic (reproducible with same seed)
-    let seed = x"0102030405060708091011121314151617181920212223242526272829303132";
+    let seed = b"Arbitrary seed bytes";
     let mut gen = random::new_generator_from_seed_for_testing(seed);
-    let _value = gen.generate_u64();
+    assert!(inner_function(&mut gen).is_some());
 }
 ```
 
-The `RandomGenerator` provides methods for generating various random values:
-
-- `generate_u8()`, `generate_u16()`, `generate_u32()`, `generate_u64()`, `generate_u128()`,
-  `generate_u256()` - generate unsigned integers
-- `generate_u64_in_range(min, max)` - generate in a range (inclusive)
-- `generate_bool()` - generate a boolean
-- `generate_bytes(length)` - generate a byte vector
-- `shuffle(vector)` - shuffle a vector in place
-
-For tests that need the full `Random` shared object (e.g., testing code that takes `&Random`), use a
-[test scenario](./test-scenario.md):
+For entry points that take the full `Random` shared object (the only possible way is to take it as a
+reference `&Random`), use a [test scenario](./test-scenario.md):
 
 ```move
-use std::unit_test::assert_eq;
 use sui::random::{Self, Random};
 use sui::test_scenario;
 
@@ -92,19 +104,16 @@ fun test_random_shared() {
     random::create_for_testing(scenario.ctx());
     scenario.next_tx(@0x0);
 
-    let mut random_state = scenario.take_shared<Random>();
+    let mut random = scenario.take_shared<Random>();
 
     // Initialize with seed bytes (required before use)
-    random_state.update_randomness_state_for_testing(
+    random.update_randomness_state_for_testing(
         0,
         x"1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F",
         scenario.ctx(),
     );
 
-    // Create generator from the shared object
-    let mut gen = random_state.new_generator(scenario.ctx());
-    let value = gen.generate_u64_in_range(1, 100);
-    assert!(value >= 1 && value <= 100);
+    my_entry_function(&random);
 
     test_scenario::return_shared(random_state);
     scenario.end();
@@ -168,7 +177,7 @@ fun test_coins() {
 }
 ```
 
-## Using Test Scenario with System Objects
+## Create All System Objects at Once
 
 When using [Test Scenario](./test-scenario.md), you can create all system objects at once with
 `create_system_objects`. This creates and shares `Clock`, `Random`, and `DenyList`:

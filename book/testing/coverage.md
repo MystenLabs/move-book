@@ -133,3 +133,18 @@ sui move coverage bytecode --module <MODULE_NAME>
 
 This shows coverage at the bytecode level, which can be useful for understanding exactly which
 instructions were executed.
+
+## Summary
+
+| Command | Description |
+| --- | --- |
+| `sui move test --coverage` | Run tests and collect coverage data |
+| `sui move test --coverage --trace` | Run tests with trace data (required for LCOV) |
+| `sui move coverage summary` | Show coverage percentage per module |
+| `sui move coverage summary --summarize-functions` | Show coverage broken down by function |
+| `sui move coverage summary --csv` | Output coverage summary in CSV format |
+| `sui move coverage source --module <NAME>` | Show line-by-line coverage for a module |
+| `sui move coverage lcov` | Generate LCOV report (`lcov.info`) |
+| `sui move coverage lcov --differential-test <TEST>` | Show lines covered exclusively by a test |
+| `sui move coverage lcov --only-test <TEST>` | Generate coverage for a single test |
+| `sui move coverage bytecode --module <NAME>` | Show coverage against disassembled bytecode |
