@@ -1,5 +1,0 @@
-build/*
-traces/*
-.trace
-.coverage*
-Pub.*.toml
