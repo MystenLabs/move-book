@@ -27,7 +27,7 @@ public fun safe_add(a: u64, b: u64): u64 {
 fun test_safe_add_never_overflows(a: u64, b: u64) {
     let result = safe_add(a, b);
     // Result should always be >= both inputs (no overflow wrap-around)
-    assert!(result >= a || result >= b);
+    assert!(result >= a && result >= b);
 }
 ```
 
@@ -100,7 +100,7 @@ use std::unit_test::assert_eq;
 
 #[random_test]
 fun test_double(value: u64) {
-    let doubled = value * 2;
+    let doubled = value * 2; // This can overflow, but we omit the check for brevity.
     // On failure, prints: "Assertion failed: <actual> != <expected>"
     assert_eq!(doubled / 2, value);
 }

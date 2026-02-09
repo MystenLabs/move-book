@@ -57,7 +57,7 @@ work with because `Random` requires an `entry` function (which cannot return non
 making it harder to assert on results.
 
 ```move
-use sui::random::{Self, Random};
+use sui::random::{Self, Random, RandomGenerator};
 
 // To use Random, a function must have `entry` modifier, hence it cannot return
 // a value, and not so easy to test.
@@ -113,9 +113,9 @@ fun test_random_shared() {
         scenario.ctx(),
     );
 
-    my_entry_function(&random);
+    my_entry_function(&random, scenario.ctx());
 
-    test_scenario::return_shared(random_state);
+    test_scenario::return_shared(random);
     scenario.end();
 }
 ```

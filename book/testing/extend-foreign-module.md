@@ -109,7 +109,7 @@ fun test_execute_trade_with_price() {
     assert_eq!(result, 50_000);
 
     // Clean up
-    test_utils::destroy(price_info);
+    unit_test::destroy(price_info);
 }
 ```
 
