@@ -1,5 +1,5 @@
 ---
-description: "Modes in Move: include unpublishable code in named build modes like debug, benchmark, or spec beyond the built-in test mode."
+description: "Compilation modes in Move: include unpublishable code in named build modes like debug, benchmark, or spec beyond the built-in test mode."
 ---
 
 # Modes
