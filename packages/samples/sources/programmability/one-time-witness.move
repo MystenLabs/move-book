@@ -9,6 +9,10 @@ module book::one_time;
 /// Only `drop`, no fields, no generics, all uppercase.
 public struct ONE_TIME has drop {}
 
+// This would work, too.
+// Only `drop`, single 'bool' field, no generics, all uppercase.
+// public struct ONE_TIME has drop { flag: bool }
+
 /// Receive the instance of `ONE_TIME` as the first argument.
 fun init(otw: ONE_TIME, ctx: &mut TxContext) {
     // do something with the OTW
