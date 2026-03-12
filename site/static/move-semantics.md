@@ -207,9 +207,6 @@ fun internal_fn() { }             // This module only
 ```move
 // ERROR: Recursive type
 public struct Node { next: Node }
-
-// OK: Use Option or vector for indirection
-public struct Node { next: Option<Node> }
 ```
 
 **Phantom type parameters:**
@@ -283,7 +280,6 @@ take_two(1, 2);        // OK (type inferred)
 | "invalid borrow"     | Borrowing moved value           | Borrow before move, or copy first           |
 | "cannot mutate"      | Variable not `mut`              | Add `mut` to declaration                    |
 | "dangling reference" | Returning local ref             | Return owned value or borrow param          |
-| "recursive type"     | Self-referential struct         | Use `Option` or `vector` indirection        |
 | "visibility"         | Calling private function        | Make function `public` or `public(package)` |
 
 ## 12. Quick Reference: Valid Patterns
@@ -305,8 +301,8 @@ public fun increment(self: &mut Coin) {
     self.value = self.value + 1;
 }
 
-// Entry function (Sui)
-public entry fun mint(ctx: &mut TxContext) { ... }
+// Entry function (Sui), not composable
+entry fun mint(ctx: &mut TxContext) { ... }
 ```
 
 ---
@@ -371,13 +367,12 @@ public fun init(ctx: &mut TxContext) { }     // Must be private
 entry fun init(ctx: &mut TxContext) { }      // Cannot be entry
 fun init<T>(ctx: &mut TxContext) { }         // No type parameters
 fun init(ctx: &mut TxContext): u64 { 0 }     // Must return unit
-fun init(a: u64, b: u64, ctx: &mut TxContext) { }  // Max 2 params
+fun init(a: u64, b: u64, ctx: &mut TxContext) { }  // Only OTW is allowed
 ```
 
 **Rules:**
 
 - Must be private (no visibility modifier)
-- Cannot be `entry`
 - No type parameters allowed
 - Must return `()`
 - Last parameter must be `&TxContext` or `&mut TxContext`
@@ -404,7 +399,7 @@ fun init(otw: MY_COIN, ctx: &mut TxContext) {
 - Name must be uppercase version of module name
 - Only `drop` ability (no `copy`, `store`, `key`)
 - No type parameters
-- No fields, or single `bool` field
+- No fields, or single `bool` field (redundant, cannot be used)
 - Cannot be manually constructed (passed by runtime to `init`)
 
 ### 13.4 Public and Entry Functions
@@ -424,6 +419,7 @@ public fun composable_create(ctx: &mut TxContext): MyObject { ... }
 entry fun transaction_only(ctx: &mut TxContext) { ... }
 
 // Callable from PTBs AND other modules - but has unnecessary signature restrictions
+// Discouraged and will trigger the `public_entry` lint warning, use `public` instead
 public entry fun redundant(ctx: &mut TxContext) { ... }
 ```
 
