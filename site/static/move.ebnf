@@ -1,0 +1,105 @@
+(* Move 2024 EBNF - Compact AI Reference, No Spec *)
+(* Comma<X> = [ X { "," X } [","] ] throughout *)
+(* Notation: [ optional ] { repeated } | alternation *)
+(* Keywords: abort as break const continue copy else enum false for friend fun if let loop match module move mut native public return struct true type use while *)
+(* Contextual: address entry has macro phantom Self *)
+(* Abilities: copy drop store key *)
+
+(* == Lexical == *)
+BlockLabel = "'" Identifier ;
+Value = "@" LeadingNameAccess | "true" | "false" | NumValue | NumTypedValue | ByteStringValue | HexStringValue | StringValue ;
+NumValue = <decimal> | "0x" <hex> ;
+NumTypedValue = NumValue ("u8"|"u16"|"u32"|"u64"|"u128"|"u256") ;
+
+(* == Top Level == *)
+File = { Definition } ;
+Definition = ModuleDefinition | AddressBlock ;
+AddressBlock = "address" LeadingNameAccess "{" { ModuleDefinition } "}" ;
+ModuleDefinition = {Attributes} [DocComment] ["extend"] "module" LeadingNameAccess "::" Identifier ( "{" {ModuleMember} "}" | ";" {ModuleMember} ) ;
+
+(* == Module Members == *)
+ModuleMember = UseDecl | FriendDecl | ConstantDecl | StructDecl | EnumDecl | FunctionDecl ;
+UseDecl = {Attributes} [Visibility] "use" Use ";" ;
+Use = "fun" NameAccessChain "as" NameAccessChain "." Identifier | LeadingNameAccess "::" UseModule | LeadingNameAccess "::" "{" Comma<UseNestedModule> "}" ;
+UseModule = Identifier [UseAlias] | Identifier "::" UseMember | Identifier "::" "{" Comma<UseMember> "}" ;
+UseNestedModule = Identifier UseModule ;
+UseMember = Identifier [ "as" Identifier ] ;
+FriendDecl = {Attributes} "friend" NameAccessChain ";" ;
+ConstantDecl = {Attributes} [DocComment] "const" Identifier ":" Type "=" Exp ";" ;
+
+(* == Structs & Enums == *)
+StructDecl = {Attributes} [DocComment] "public" ["native"] "struct" Identifier [TypeParameters] ["has" AbilityList] StructFields ["has" AbilityList ";"] ;
+StructFields = "{" Comma<FieldAnnot> "}" | "(" Comma<Type> ")" | ";" ;
+FieldAnnot = [DocComment] Identifier ":" Type ;
+EnumDecl = {Attributes} [DocComment] "public" "enum" Identifier [TypeParameters] ["has" AbilityList] "{" Comma<VariantDecl> "}" ["has" AbilityList ";"] ;
+VariantDecl = [DocComment] Identifier [ "{" Comma<FieldAnnot> "}" | "(" Comma<Type> ")" ] ;
+
+(* == Functions == *)
+FunctionDecl = {Attributes} [DocComment] {Modifier} "fun" Identifier [TypeParameters] "(" Comma<Parameter> ")" [":" Type] FunctionBody ;
+Modifier = Visibility | "native" | "entry" | "macro" ;
+Visibility = "public" | "public" "(" "friend" ")" | "public" "(" "package" ")" ;
+Parameter = ["mut"] Identifier ":" Type ;
+FunctionBody = "{" Sequence "}" | ";" ;
+
+(* == Type Parameters & Types == *)
+TypeParameters = "<" Comma<TypeParameter> ">" ;
+TypeParameter = ["phantom"] Identifier [":" AbilityList] ;
+AbilityList = Ability { "," Ability } ;
+Type = NameAccessChain | "&" Type | "&" "mut" Type | "(" Comma<Type> ")" | "|" Comma<Type> "|" ["->" Type] | "||" ["->" Type] ;
+
+(* == Name Access == *)
+NameAccessChain = ["::"] LeadingNameAccess [TypeArgs] { "::" Identifier [TypeArgs] } ["!"] ;
+LeadingNameAccess = Identifier | NumValue ;
+TypeArgs = "<" Comma<Type> ">" ;
+
+(* == Sequences & Expressions == *)
+Sequence = {UseDecl} { SequenceItem ";" } [Exp] ;
+SequenceItem = "let" BindList [":" Type] ["=" Exp] | Exp ;
+Exp = LambdaExp | UnaryExp "=" Exp | UnaryExp { BinOp UnaryExp } ;
+LambdaExp = "|" Comma<LambdaBinding> "|" Exp | "|" Comma<LambdaBinding> "|" "->" Type "{" Sequence "}" | "||" Exp | "||" "->" Type "{" Sequence "}" ;
+LambdaBinding = BindList [":" Type] ;
+BinOp = "||" | "&&" | "==" | "!=" | "<" | ">" | "<=" | ">=" | "as" | "|" | "^" | "&" | "<<" | ">>" | "+" | "-" | "*" | "/" | "%" ;
+UnaryExp = "!" UnaryExp | "&" ["mut"] UnaryExp | "*" UnaryExp | "move" UnaryExp | "copy" UnaryExp | DotOrIndexChain ;
+DotOrIndexChain = Term { "." Identifier | "." NumValue | "." Identifier ["!"] [TypeArgs] "(" Comma<Exp> ")" } ;
+
+Term = Value | NameExp | "()" | "(" Exp ")" | "(" Exp ":" Type ")" | "(" Exp "," Comma<Exp> ")" | "{" Sequence "}" | "vector" [TypeArgs] "[" Comma<Exp> "]" | ControlExp | BlockLabel ":" Exp ;
+NameExp = NameAccessChain [ "(" Comma<Exp> ")" | "!" "(" Comma<Exp> ")" | "{" Comma<ExpField> "}" ] ;
+ExpField = Identifier [":" Exp] ;
+
+(* == Control Flow == *)
+ControlExp = IfExp | WhileExp | LoopExp | MatchExp | BreakExp | ContinueExp | ReturnExp | AbortExp ;
+IfExp = "if" "(" Exp ")" ExpOrBlock ["else" ExpOrBlock] ;
+WhileExp = "while" "(" Exp ")" ExpOrBlock ;
+LoopExp = "loop" ExpOrBlock ;
+MatchExp = "match" "(" Exp ")" "{" Comma<MatchArm> "}" ;
+MatchArm = MatchPattern ["if" "(" Exp ")"] "=>" ExpOrBlock ;
+MatchPattern = AtPattern { "|" AtPattern } ;
+AtPattern = [Identifier "@"] ConstructorPattern ;
+ConstructorPattern = "(" MatchPattern ")" | ["mut"] NameAccessChain | NameAccessChain "{" Comma<FieldPattern> "}" | NameAccessChain "(" Comma<PosFieldPattern> ")" | Value ;
+FieldPattern = ".." | ["mut"] Identifier [":" MatchPattern] ;
+PosFieldPattern = ".." | MatchPattern ;
+BreakExp = "break" [BlockLabel] [Exp] ;
+ContinueExp = "continue" [BlockLabel] ;
+ReturnExp = "return" [BlockLabel] [Exp] ;
+AbortExp = "abort" [Exp] ;
+ExpOrBlock = [BlockLabel ":"] "{" Sequence "}" | Exp ;
+
+(* == Bindings == *)
+BindList = Bind | "(" Comma<Bind> ")" ;
+Bind = ["mut"] Identifier | NameAccessChain "{" Comma<BindField> "}" | NameAccessChain "(" Comma<BindOrEllipsis> ")" ;
+BindField = ".." | ["mut"] Identifier [":" Bind] ;
+BindOrEllipsis = ".." | Bind ;
+
+(* == Attributes == *)
+Attributes = "#" "[" Comma<Attribute> "]" ;
+Attribute = Identifier | Identifier "=" (Value|NameAccessChain) | Identifier "(" Comma<Attribute> ")" ;
+
+(* == Semantic Rules (not enforced by parser) ==
+   SEM-1: Lambdas restricted to macro function arguments only
+   SEM-2: Only one module per file may use label syntax (;)
+   SEM-3: use fun requires receiver type as first parameter
+   SEM-4: break/continue only with loop labels, not named blocks
+   SEM-5: Types without drop/copy have linear usage restrictions
+   SEM-6: Generic type ability constraints must propagate
+   SEM-7: Struct construction uses {}; Name::x() for enums/use fun only
+*)

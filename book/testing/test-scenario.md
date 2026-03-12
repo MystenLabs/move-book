@@ -75,7 +75,7 @@ fun test_multi_transaction() {
 
 ## Accessing Owned Objects
 
-[Owned objects](./../object/ownership.md#owned-by-an-address) transferred to an address can be
+[Owned objects](./../object/ownership.md#account-owner-or-single-owner) transferred to an address can be
 accessed using `take_from_sender` or `take_from_address`. The object then can be passed to a
 function, returned with `return_to_sender` or `return_to_address`, or transferred elsewhere using
 `public_transfer` (if the object has `store` ability).
@@ -272,7 +272,7 @@ fun test_with_shared_macro() {
 
 ## Accessing Immutable Objects
 
-[Immutable (frozen) objects](./../object/ownership.md#immutable-frozen-object) are accessed with
+[Immutable (frozen) objects](./../object/ownership.md#immutable-frozen-state) are accessed with
 `take_immutable` and returned with `return_immutable`:
 
 ```move

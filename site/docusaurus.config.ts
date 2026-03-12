@@ -1,6 +1,7 @@
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import mdbookAnchorCode from './src/plugins/mdbook-anchor-code';
+import llmsTxt from './src/plugins/llms-txt';
 import prismAtomOneDark from './src/theme/prism-atom-one-dark';
 import prismAtomOneLight from './src/theme/prism-atom-one-light';
 
@@ -33,6 +34,7 @@ export default {
   },
 
   plugins: [
+    llmsTxt,
     [
       '@docusaurus/plugin-content-docs',
       {

@@ -1,3 +1,9 @@
 build
 .idea
 .DS_Store
+
+# Generated AI-friendly docs (created by llms-txt plugin)
+site/static/llms.txt
+site/static/llms-full.txt
+site/static/**/*.md
+!site/static/move-semantics.md

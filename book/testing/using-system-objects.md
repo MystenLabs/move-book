@@ -11,7 +11,7 @@ functions to create and manipulate them.
 
 ## Clock
 
-The [`Clock`](./../programmability/epoch-and-time.md#clock) provides the current network timestamp.
+The [`Clock`](./../programmability/epoch-and-time.md#time) provides the current network timestamp.
 Use `clock::create_for_testing` to create one, and manipulate time with test-only functions:
 
 ```move
