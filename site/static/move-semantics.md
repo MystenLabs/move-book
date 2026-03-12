@@ -406,8 +406,8 @@ fun init(otw: MY_COIN, ctx: &mut TxContext) {
 
 Both `public` and `entry` functions can be called directly from Programmable Transaction Blocks (PTBs). The key difference:
 
-- **`public fun`** - Callable from PTBs AND from other Move modules
-- **`entry fun`** - Callable from PTBs only, NOT from other Move modules
+- **`public fun`** - Callable from PTBs AND from other Move modules, any return value
+- **`entry fun`** - Callable from PTBs only, NOT from other Move modules, must have `drop` return value
 
 The `entry` modifier exists to allow **non-public** functions to be callable from transactions:
 
@@ -591,7 +591,7 @@ public fun bad(obj: MyObject) {
 - Any address can read/write (if function allows)
 - Requires consensus ordering (slower than owned)
 - Cannot be transferred or made immutable once shared
-- Use `&mut` reference in entry functions to modify
+- Use `&mut` reference in functions to modify
 - **Must share freshly created objects** (not from parameters or unpacking)
 
 ### 14.3 Immutable Objects
