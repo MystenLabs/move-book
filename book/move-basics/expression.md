@@ -13,7 +13,7 @@ In this section, we cover the types of expressions and introduce the concept of 
 
 ## Literals
 
-In the [Primitive types](./primitive-types) section, we introduced the basic types of Move. And to
+In the [Primitive Types](./primitive-types) section, we introduced the basic types of Move. And to
 illustrate them, we used literals. A literal is a notation for representing a fixed value in source
 code. Literals can be used to initialize variables or directly pass fixed values as arguments to
 functions. Move has the following literals:
@@ -52,7 +52,7 @@ semicolon). A block is an expression, so it can be used anywhere an expression i
 We go into detail about functions in the [Functions](./function) section. However, we have already
 used function calls in previous sections, so it's worth mentioning them here. A function call is an
 expression that calls a function and returns the value of the last expression in the function body,
-provided the last expression does not have a terminating semi-colon.
+provided the last expression does not have a terminating semicolon.
 
 ```move file=packages/samples/sources/move-basics/expression.move anchor=fun_call
 

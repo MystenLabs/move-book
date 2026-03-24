@@ -35,7 +35,7 @@ The core technical elements of Move are:
 - _Programmable transaction blocks_ (PTBs) to enable atomic client-side composition of Move-powered
   APIs.
 
-Move was born in 2018 as part of Facebook's Libra project. It was publicly revealed in 2019, the
+Move was born in 2018 as part of Facebook's Libra project. It was publicly revealed in 2019; the
 first Move-powered network launched in 2020. As of April 2024, there are numerous Move-powered
 chains in production with several more in the works. Move is an embedded language with a
 platform-agnostic core, which means it takes on a slightly different personality in each chain that

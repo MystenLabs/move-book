@@ -77,7 +77,7 @@ Move supports unsigned integers of various sizes, from 8-bit to 256-bit. The int
 ```
 
 While boolean literals like `true` and `false` are clearly booleans, an integer literal like `42`
-could be any of the integer types. In most of the cases, the compiler will infer the type from the
+could be any of the integer types. In most cases, the compiler will infer the type from the
 value, usually defaulting to `u64`. However, sometimes the compiler is unable to infer the type and
 will require an explicit type annotation. It can either be provided during assignment or by using a
 type suffix.
@@ -129,7 +129,7 @@ A more complex example, preventing overflow:
 
 ```
 
-### Overflow
+### Overflow and Underflow
 
 Move does not support overflow / underflow; an operation that results in a value outside the range
 of the type will raise a runtime error. This is a safety feature to prevent unexpected behavior.

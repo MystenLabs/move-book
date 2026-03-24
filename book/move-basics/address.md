@@ -31,14 +31,14 @@ forms: hexadecimal addresses prefixed with 0x and named addresses.
 ```
 
 An address literal starts with the `@` symbol followed by a hexadecimal number or an identifier. The
-hexadecimal number is interpreted as a 32 byte value. The identifier is looked up in the
+hexadecimal number is interpreted as a 32-byte value. The identifier is looked up in the
 [Move.toml](./../concepts/manifest) file and replaced with the corresponding address by the
 compiler. If the identifier is not found in the Move.toml file, the compiler will throw an error.
 
 ## Conversion
 
 Sui Framework offers a set of helper functions to work with addresses. Given that the address type
-is a 32 byte value, it can be converted to a `u256` type and vice versa. It can also be converted to
+is a 32-byte value, it can be converted to a `u256` type and vice versa. It can also be converted to
 and from a `vector<u8>` type.
 
 Example: Convert an address to a `u256` type and back.
