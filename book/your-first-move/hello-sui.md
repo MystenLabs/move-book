@@ -65,7 +65,7 @@ To publish and interact with the package, we need to set up an account. While de
 option for doing so is to run your own
 [Local Network](https://docs.sui.io/guides/developer/getting-started/local-network). For now you
 just need to run `RUST_LOG="off,sui_node=info" sui start --with-faucet --force-regenesis`. The Sui
-Local Network will run on port 9000 of your machine, so make sure that the port isn’t being used by
+Local Network will run on port 9000 of your machine, so make sure that the port isn't being used by
 any other application.
 
 If you are doing it for the first time, you will need to create a new account. To do this, run the
@@ -192,48 +192,39 @@ this example, the commands `Publish` and `TransferObject` were run - the latter 
 object `UpgradeCap` to the sender.
 
 ```table
-╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ Transaction Data                                                                                             │
-├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│ Sender: 0x091ef55506ad814920adcef32045f9078f2f6e9a72f4cf253a1e6274157380a1                                   │
-│ Gas Owner: 0x091ef55506ad814920adcef32045f9078f2f6e9a72f4cf253a1e6274157380a1                                │
-│ Gas Budget: 100000000 MIST                                                                                   │
-│ Gas Price: 1000 MIST                                                                                         │
-│ Gas Payment:                                                                                                 │
-│  ┌──                                                                                                         │
-│  │ ID: 0x4ea1303e4f5e2f65fc3709bc0fb70a3035fdd2d53dbcff33e026a50a742ce0de                                    │
-│  │ Version: 7                                                                                                │
-│  │ Digest: AXYPnups8A5J6pkvLa6RekX2ye3qur66EZ88mEbaUDQ1                                                      │
-│  └──                                                                                                         │
-│                                                                                                              │
-│ Transaction Kind: Programmable                                                                               │
-│ ╭──────────────────────────────────────────────────────────────────────────────────────────────────────────╮ │
-│ │ Input Objects                                                                                            │ │
-│ ├──────────────────────────────────────────────────────────────────────────────────────────────────────────┤ │
-│ │ 0   Pure Arg: Type: address, Value: "0x091ef55506ad814920adcef32045f9078f2f6e9a72f4cf253a1e6274157380a1" │ │
-│ ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────╯ │
-│ ╭─────────────────────────────────────────────────────────────────────────╮                                  │
-│ │ Commands                                                                │                                  │
-│ ├─────────────────────────────────────────────────────────────────────────┤                                  │
-│ │ 0  Publish:                                                             │                                  │
-│ │  ┌                                                                      │                                  │
-│ │  │ Dependencies:                                                        │                                  │
-│ │  │   0x0000000000000000000000000000000000000000000000000000000000000001 │                                  │
-│ │  │   0x0000000000000000000000000000000000000000000000000000000000000002 │                                  │
-│ │  └                                                                      │                                  │
-│ │                                                                         │                                  │
-│ │ 1  TransferObjects:                                                     │                                  │
-│ │  ┌                                                                      │                                  │
-│ │  │ Arguments:                                                           │                                  │
-│ │  │   Result 0                                                           │                                  │
-│ │  │ Address: Input  0                                                    │                                  │
-│ │  └                                                                      │                                  │
-│ ╰─────────────────────────────────────────────────────────────────────────╯                                  │
-│                                                                                                              │
-│ Signatures:                                                                                                  │
-│    gebjSbVwZwTkizfYg2XIuzdx+d66VxFz8EmVaisVFiV3GkDay6L+hQG3n2CQ1hrWphP6ZLc7bd1WRq4ss+hQAQ==                  │
-│                                                                                                              │
-╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Transaction Data                                                                                         │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ Sender: 0x091ef55506ad814920adcef32045f9078f2f6e9a72f4cf253a1e6274157380a1                               │
+│ Gas Owner: 0x091ef55506ad814920adcef32045f9078f2f6e9a72f4cf253a1e6274157380a1                            │
+│ Gas Budget: 100000000 MIST                                                                               │
+│ Gas Price: 1000 MIST                                                                                     │
+│ Gas Payment:                                                                                             │
+│  ┌──                                                                                                     │
+│  │ ID: 0x4ea1303e4f5e2f65fc3709bc0fb70a3035fdd2d53dbcff33e026a50a742ce0de                                │
+│  │ Version: 7                                                                                            │
+│  │ Digest: AXYPnups8A5J6pkvLa6RekX2ye3qur66EZ88mEbaUDQ1                                                  │
+│  └──                                                                                                     │
+│                                                                                                          │
+│ Transaction Kind: Programmable                                                                           │
+│ ╭────────────────────────────────────────────────────────────────────────────────────────────────╮       │
+│ │ Commands                                                                                       │       │
+│ ├────────────────────────────────────────────────────────────────────────────────────────────────┤       │
+│ │ 0  Publish:                                                                                    │       │
+│ │  ┌                                                                                             │       │
+│ │  │ Dependencies:                                                                               │       │
+│ │  │   0x0000000000000000000000000000000000000000000000000000000000000001                        │       │
+│ │  │   0x0000000000000000000000000000000000000000000000000000000000000002                        │       │
+│ │  └                                                                                             │       │
+│ │                                                                                                │       │
+│ │ 1  TransferObjects:                                                                            │       │
+│ │  ┌                                                                                             │       │
+│ │  │ Arguments:                                                                                  │       │
+│ │  │   Result 0                                                                                  │       │
+│ │  │ Address: Input  0                                                                           │       │
+│ │  └                                                                                             │       │
+│ ╰────────────────────────────────────────────────────────────────────────────────────────────────╯       │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 ```
 
 ### Transaction Effects
@@ -269,8 +260,7 @@ the state of the network and the objects involved in the transaction.
 │  │ Version: 8                                                                                     │
 │  │ Digest: 7ydahjaM47Gyb33PB4qnW2ZAGqZvDuWScV6sWPiv7LTc                                           │
 │  └──                                                                                              │
-│ Gas Object:                                                                                       │
-│  ┌──                                                                                              │
+│ Gas Object:                                                                                       │  ┌──                                                                                              │
 │  │ ID: 0x4ea1303e4f5e2f65fc3709bc0fb70a3035fdd2d53dbcff33e026a50a742ce0de                         │
 │  │ Owner: Account Address ( 0x091ef55506ad814920adcef32045f9078f2f6e9a72f4cf253a1e6274157380a1 )  │
 │  │ Version: 8                                                                                     │
@@ -280,8 +270,7 @@ the state of the network and the objects involved in the transaction.
 │    Storage Cost: 10404400 MIST                                                                    │
 │    Computation Cost: 1000000 MIST                                                                 │
 │    Storage Rebate: 978120 MIST                                                                    │
-│    Non-refundable Storage Fee: 9880 MIST                                                          │
-│                                                                                                   │
+│    Non-refundable Storage Fee: 9880 MIST │                                                                                                   │
 │ Transaction Dependencies:                                                                         │
 │    7Ukrc5GqdFqTA41wvWgreCdHn2vRLfgQ3YMFkdks72Vk                                                   │
 │    7d4amuHGhjtYKujEs9YkJARzNEn4mRbWWv3fn4cdKdyh                                                   │
@@ -449,130 +438,6 @@ Once the command is constructed, you can run it in the terminal. If everything i
 should see the output similar to the one we had in previous sections. The output will contain the
 transaction digest, the transaction data, and the transaction effects.
 
-<details>
-<summary><a>Spoiler: Full transaction output</a></summary>
-
-```bash
-Transaction Digest: BJwYEnuuMzU4Y8cTwMoJbbQA6cLwPmwxvsRpSmvThoK8
-╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ Transaction Data                                                                                             │
-├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│ Sender: 0x091ef55506ad814920adcef32045f9078f2f6e9a72f4cf253a1e6274157380a1                                   │
-│ Gas Owner: 0x091ef55506ad814920adcef32045f9078f2f6e9a72f4cf253a1e6274157380a1                                │
-│ Gas Budget: 100000000 MIST                                                                                  │
-│ Gas Price: 1000 MIST                                                                                         │
-│ Gas Payment:                                                                                                 │
-│  ┌──                                                                                                         │
-│  │ ID: 0xe5ddeb874a8d7ead328e9f2dd2ad8d25383ab40781a5f1aefa75600973b02bc4                                    │
-│  │ Version: 22                                                                                               │
-│  │ Digest: DiBrBMshDiD9cThpaEgpcYSF76uV4hCoE1qRyQ3rnYCB                                                      │
-│  └──                                                                                                         │
-│                                                                                                              │
-│ Transaction Kind: Programmable                                                                               │
-│ ╭──────────────────────────────────────────────────────────────────────────────────────────────────────────╮ │
-│ │ Input Objects                                                                                            │ │
-│ ├──────────────────────────────────────────────────────────────────────────────────────────────────────────┤ │
-│ │ 0   Pure Arg: Type: address, Value: "0x091ef55506ad814920adcef32045f9078f2f6e9a72f4cf253a1e6274157380a1" │ │
-│ ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────╯ │
-│ ╭──────────────────────────────────────────────────────────────────────────────────╮                         │
-│ │ Commands                                                                         │                         │
-│ ├──────────────────────────────────────────────────────────────────────────────────┤                         │
-│ │ 0  MoveCall:                                                                     │                         │
-│ │  ┌                                                                               │                         │
-│ │  │ Function:  new                                                                │                         │
-│ │  │ Module:    todo_list                                                          │                         │
-│ │  │ Package:   0x468daa33dfcb3e17162bbc8928f6ec73744bb08d838d1b6eb94eac99269b29fe │                         │
-│ │  └                                                                               │                         │
-│ │                                                                                  │                         │
-│ │ 1  TransferObjects:                                                              │                         │
-│ │  ┌                                                                               │                         │
-│ │  │ Arguments:                                                                    │                         │
-│ │  │   Result 0                                                                    │                         │
-│ │  │ Address: Input  0                                                             │                         │
-│ │  └                                                                               │                         │
-│ ╰──────────────────────────────────────────────────────────────────────────────────╯                         │
-│                                                                                                              │
-│ Signatures:                                                                                                  │
-│    C5Lie4dtP5d3OkKzFBa+xM0BiNoB/A4ItthDCRTRBUrEE+jXeNs7mP4AuGwi3nzfTskh29+R1j1Kba4Wdy3QDA==                  │
-│                                                                                                              │
-╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-╭───────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ Transaction Effects                                                                               │
-├───────────────────────────────────────────────────────────────────────────────────────────────────┤
-│ Digest: BJwYEnuuMzU4Y8cTwMoJbbQA6cLwPmwxvsRpSmvThoK8                                              │
-│ Status: Success                                                                                   │
-│ Executed Epoch: 1213                                                                              │
-│                                                                                                   │
-│ Created Objects:                                                                                  │
-│  ┌──                                                                                              │
-│  │ ID: 0x74973c4ea2e78dc409f60481e23761cee68a48156df93a93fbcceb77d1cacdf6                         │
-│  │ Owner: Account Address ( 0x091ef55506ad814920adcef32045f9078f2f6e9a72f4cf253a1e6274157380a1 )  │
-│  │ Version: 23                                                                                    │
-│  │ Digest: DuHTozDHMsuA7cFnWRQ1Gb8FQghAEBaj3inasJxqYq1c                                           │
-│  └──                                                                                              │
-│ Mutated Objects:                                                                                  │
-│  ┌──                                                                                              │
-│  │ ID: 0xe5ddeb874a8d7ead328e9f2dd2ad8d25383ab40781a5f1aefa75600973b02bc4                         │
-│  │ Owner: Account Address ( 0x091ef55506ad814920adcef32045f9078f2f6e9a72f4cf253a1e6274157380a1 )  │
-│  │ Version: 23                                                                                    │
-│  │ Digest: 82fwKarGuDhtomr5oS6ZGNvZNw9QVXLSbPdQu6jQgNV7                                           │
-│  └──                                                                                              │
-│ Gas Object:                                                                                       │
-│  ┌──                                                                                              │
-│  │ ID: 0xe5ddeb874a8d7ead328e9f2dd2ad8d25383ab40781a5f1aefa75600973b02bc4                         │
-│  │ Owner: Account Address ( 0x091ef55506ad814920adcef32045f9078f2f6e9a72f4cf253a1e6274157380a1 )  │
-│  │ Version: 23                                                                                    │
-│  │ Digest: 82fwKarGuDhtomr5oS6ZGNvZNw9QVXLSbPdQu6jQgNV7                                           │
-│  └──                                                                                              │
-│ Gas Cost Summary:                                                                                 │
-│    Storage Cost: 2318000 MIST                                                                     │
-│    Computation Cost: 1000000 MIST                                                                 │
-│    Storage Rebate: 978120 MIST                                                                    │
-│    Non-refundable Storage Fee: 9880 MIST                                                          │
-│                                                                                                   │
-│ Transaction Dependencies:                                                                         │
-│    FSz2fYXmKqTf77mFXNq5JK7cKY8agWja7V5yDKEgL8c3                                                   │
-│    GgMZKTt482DYApbAZkPDtdssGHZLbxgjm2uMXhzJax8Q                                                   │
-╰───────────────────────────────────────────────────────────────────────────────────────────────────╯
-╭─────────────────────────────╮
-│ No transaction block events │
-╰─────────────────────────────╯
-
-╭───────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ Object Changes                                                                                        │
-├───────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│ Created Objects:                                                                                      │
-│  ┌──                                                                                                  │
-│  │ ObjectID: 0x74973c4ea2e78dc409f60481e23761cee68a48156df93a93fbcceb77d1cacdf6                       │
-│  │ Sender: 0x091ef55506ad814920adcef32045f9078f2f6e9a72f4cf253a1e6274157380a1                         │
-│  │ Owner: Account Address ( 0x091ef55506ad814920adcef32045f9078f2f6e9a72f4cf253a1e6274157380a1 )      │
-│  │ ObjectType: 0x468daa33dfcb3e17162bbc8928f6ec73744bb08d838d1b6eb94eac99269b29fe::todo_list::TodoList  │
-│  │ Version: 23                                                                                        │
-│  │ Digest: DuHTozDHMsuA7cFnWRQ1Gb8FQghAEBaj3inasJxqYq1c                                               │
-│  └──                                                                                                  │
-│ Mutated Objects:                                                                                      │
-│  ┌──                                                                                                  │
-│  │ ObjectID: 0xe5ddeb874a8d7ead328e9f2dd2ad8d25383ab40781a5f1aefa75600973b02bc4                       │
-│  │ Sender: 0x091ef55506ad814920adcef32045f9078f2f6e9a72f4cf253a1e6274157380a1                         │
-│  │ Owner: Account Address ( 0x091ef55506ad814920adcef32045f9078f2f6e9a72f4cf253a1e6274157380a1 )      │
-│  │ ObjectType: 0x2::coin::Coin<0x2::sui::SUI>                                                         │
-│  │ Version: 23                                                                                        │
-│  │ Digest: 82fwKarGuDhtomr5oS6ZGNvZNw9QVXLSbPdQu6jQgNV7                                               │
-│  └──                                                                                                  │
-╰───────────────────────────────────────────────────────────────────────────────────────────────────────╯
-╭───────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ Balance Changes                                                                                   │
-├───────────────────────────────────────────────────────────────────────────────────────────────────┤
-│  ┌──                                                                                              │
-│  │ Owner: Account Address ( 0x091ef55506ad814920adcef32045f9078f2f6e9a72f4cf253a1e6274157380a1 )  │
-│  │ CoinType: 0x2::sui::SUI                                                                        │
-│  │ Amount: -2339880                                                                               │
-│  └──                                                                                              │
-╰───────────────────────────────────────────────────────────────────────────────────────────────────╯
-```
-
-</details>
-
 The section that we want to focus on is the "Object Changes". More specifically, the "Created
 Objects" part of it. It contains the object ID, the type and the version of the `TodoList` that you
 have created. We will use this object ID to interact with the list.
@@ -597,8 +462,7 @@ have created. We will use this object ID to interact with the list.
 │  │ Owner: Account Address ( 0x091ef55506ad814920adcef32045f9078f2f6e9a72f4cf253a1e6274157380a1 )      │
 │  │ ObjectType: 0x2::coin::Coin<0x2::sui::SUI>                                                         │
 │  │ Version: 22                                                                                        │
-│  │ Digest: DiBrBMshDiD9cThpaEgpcYSF76uV4hCoE1qRyQ3rnYCB                                               │
-│  └──                                                                                                  │
+│  │ Digest: DiBrBMshDiD9cThpaEgpcYSF76uV4hCoE1qRyQ3rnYCB                                               │  └──                                                                                                  │
 ╰───────────────────────────────────────────────────────────────────────────────────────────────────────╯
 ```
 
@@ -659,36 +523,8 @@ Now you can check the list object to see if the item was added.
 $ sui client object $LIST_ID
 ```
 
-The output should contain the item that you have added.
-
-```table
-╭───────────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ objectId      │  0x20e0bede16de8a728ab25e228816b9059b45ebea49c8ad384e044580b2d3e553                                               │
-│ version       │  24                                                                                                               │
-│ digest        │  FGcXH8MGpMs5BdTnC62CQ3VLAwwexYg2id5DKU7Jr9aQ                                                                     │
-│ objType       │  0x468daa33dfcb3e17162bbc8928f6ec73744bb08d838d1b6eb94eac99269b29fe::todo_list::TodoList                          │
-│ owner         │ ╭──────────────┬──────────────────────────────────────────────────────────────────────╮                           │
-│               │ │ AddressOwner │  0x091ef55506ad814920adcef32045f9078f2f6e9a72f4cf253a1e6274157380a1  │                           │
-│               │ ╰──────────────┴──────────────────────────────────────────────────────────────────────╯                           │
-│ prevTx        │  EJVK6FEHtfTdCuGkNsU1HcrmUBEN6H6jshfcptnw8Yt1                                                                     │
-│ storageRebate │  1558000                                                                                                          │
-│ content       │ ╭───────────────────┬───────────────────────────────────────────────────────────────────────────────────────────╮ │
-│               │ │ dataType          │  moveObject                                                                               │ │
-│               │ │ type              │  0x468daa33dfcb3e17162bbc8928f6ec73744bb08d838d1b6eb94eac99269b29fe::todo_list::TodoList  │ │
-│               │ │ hasPublicTransfer │  true                                                                                     │ │
-│               │ │ fields            │ ╭───────┬───────────────────────────────────────────────────────────────────────────────╮ │ │
-│               │ │                   │ │ id    │ ╭────┬──────────────────────────────────────────────────────────────────────╮ │ │ │
-│               │ │                   │ │       │ │ id │  0x20e0bede16de8a728ab25e228816b9059b45ebea49c8ad384e044580b2d3e553  │ │ │ │
-│               │ │                   │ │       │ ╰────┴──────────────────────────────────────────────────────────────────────╯ │ │ │
-│               │ │                   │ │ items │ ╭─────────────────────────────────╮                                           │ │ │
-│               │ │                   │ │       │ │  finish the Hello, Sui chapter  │                                           │ │ │
-│               │ │                   │ │       │ ╰─────────────────────────────────╯                                           │ │ │
-│               │ │                   │ ╰───────┴───────────────────────────────────────────────────────────────────────────────╯ │ │
-│               │ ╰───────────────────┴───────────────────────────────────────────────────────────────────────────────────────────╯ │
-╰───────────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-```
-
-A JSON representation of the object can be obtained by adding the `--json` flag to the command.
+The output should contain the item that you have added. The `items` field in the object will show
+the list of items. A JSON representation of the object can be obtained by adding the `--json` flag:
 
 ```bash
 $ sui client object $LIST_ID --json

@@ -116,10 +116,6 @@ However, it is not possible to check any of these conditions inside the Move cod
 To solve the case of multiple `TreasuryCap`s, we can use the OTW pattern. By defining the `COIN_OTW` type as an OTW, we can ensure that the `COIN_OTW` is used only once. The `COIN_OTW` is then used to create a new `TreasuryCap` and mint a new `Coin`.
 
 ```move
-
-With
-
-```move
 module book::coin_otw {
 
     /// The OTW for the `book::coin_otw` module.

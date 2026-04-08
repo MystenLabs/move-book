@@ -171,18 +171,20 @@ function generateFiles(outDir: string) {
   const allDocs = [...bookDocs, ...refDocs];
 
   // Write individual .md files
+  const llmsTxtDirective = '> For the complete documentation index, see [llms.txt](https://move-book.com/llms.txt)\n\n';
   for (const doc of allDocs) {
     const mdPath = path.join(outDir, doc.urlPath + '.md');
     mkdirp(path.dirname(mdPath));
-    fs.writeFileSync(mdPath, doc.resolved);
+    fs.writeFileSync(mdPath, llmsTxtDirective + doc.resolved);
   }
   console.log(`[llms-txt] Generated ${allDocs.length} individual .md files`);
 
   // Build index lines
+  const siteUrl = 'https://move-book.com';
   const buildIndexLine = (doc: ProcessedDoc) => {
     const indent = '  '.repeat(doc.entry.depth);
     const desc = doc.description ? `: ${doc.description}` : '';
-    return `${indent}- [${doc.entry.label}](${doc.urlPath}.md)${desc}`;
+    return `${indent}- [${doc.entry.label}](${siteUrl}${doc.urlPath}.md)${desc}`;
   };
 
   // llms.txt
@@ -194,10 +196,10 @@ The Move Book covers the Move language fundamentals, Sui object model, advanced 
 
 ## Move Language
 
-- [Move language syntax (EBNF grammar)](/move.ebnf)
-- [Move semantics](/move-semantics.md)
-- [Best practices](/guides/code-quality-checklist.md)
-- [Full book content for large-context models](/llms-full.txt)
+- [Move language syntax (EBNF grammar)](${siteUrl}/move.ebnf)
+- [Move semantics](${siteUrl}/move-semantics.md)
+- [Best practices](${siteUrl}/guides/code-quality-checklist.md)
+- [Full book content for large-context models](${siteUrl}/llms-full.txt)
 
 ## Book
 
@@ -233,6 +235,115 @@ export default function pluginLlmsTxt(): Plugin {
     async loadContent() {
       const staticDir = path.join(process.cwd(), 'static');
       generateFiles(staticDir);
+    },
+
+    injectHtmlTags() {
+      return {
+        postBodyTags: [
+          `<a href="/llms.txt" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap">llms.txt</a>`,
+        ],
+      };
+    },
+
+    configureWebpack() {
+      const staticDir = path.join(process.cwd(), 'static');
+      const bookDir = path.join(ROOT, 'book');
+      const refDir = path.join(ROOT, 'reference');
+
+      return {
+        devServer: {
+          historyApiFallback: false,
+          setupMiddlewares(middlewares: any[]) {
+            // Set cache headers and content types for all responses
+            middlewares.unshift({
+              name: 'agent-friendly-headers',
+              middleware: (req: any, res: any, next: any) => {
+                const url = req.url?.split('?')[0] || '';
+
+                // Cache headers for all content
+                res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+
+                if (url.endsWith('.md')) {
+                  res.setHeader('Content-Type', 'text/markdown; charset=utf-8');
+                  res.setHeader('Content-Disposition', 'inline');
+                } else if (url.endsWith('.txt') || url.endsWith('.ebnf')) {
+                  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+                  res.setHeader('Content-Disposition', 'inline');
+                }
+                next();
+              },
+            });
+
+            // Return 404 for non-existent pages (prevent SPA fallback)
+            middlewares.push({
+              name: 'proper-404',
+              middleware: (req: any, res: any, next: any) => {
+                const url = req.url?.split('?')[0] || '';
+
+                // Skip assets, hot-reload, and known static extensions
+                if (
+                  url.startsWith('/__') ||
+                  url.startsWith('/assets/') ||
+                  url.includes('hot-update') ||
+                  url.endsWith('.js') ||
+                  url.endsWith('.css') ||
+                  url.endsWith('.map') ||
+                  url.endsWith('.json') ||
+                  url.endsWith('.svg') ||
+                  url.endsWith('.png') ||
+                  url.endsWith('.ico') ||
+                  url.endsWith('.woff') ||
+                  url.endsWith('.woff2')
+                ) {
+                  return next();
+                }
+
+                // Check if it's a known static file
+                if (url.endsWith('.md') || url.endsWith('.txt') || url.endsWith('.ebnf')) {
+                  const filePath = path.join(staticDir, url);
+                  if (!fs.existsSync(filePath)) {
+                    res.statusCode = 404;
+                    res.end('Not found');
+                    return;
+                  }
+                  return next();
+                }
+
+                // Check if it's a known doc page (has a matching .md or directory)
+                const cleanUrl = url.replace(/\/$/, '') || '/index';
+                const segments = cleanUrl.replace(/^\//, '');
+
+                // Check book and reference directories
+                const bookFile = path.join(bookDir, segments + '.md');
+                const refFile = path.join(refDir, segments + '.md');
+                const bookIndex = path.join(bookDir, segments, 'index.md');
+                const refIndex = path.join(refDir, segments, 'index.md');
+
+                const exists =
+                  fs.existsSync(bookFile) ||
+                  fs.existsSync(refFile) ||
+                  fs.existsSync(bookIndex) ||
+                  fs.existsSync(refIndex) ||
+                  url === '/' ||
+                  url === '';
+
+                if (!exists) {
+                  res.statusCode = 404;
+                  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+                  res.end('<html><body><h1>404 - Page Not Found</h1></body></html>');
+                  return;
+                }
+
+                // Known page — rewrite to index.html for SPA routing
+                req.url = '/index.html';
+                next();
+              },
+            });
+
+            return middlewares;
+          },
+        },
+      };
     },
   };
 }
