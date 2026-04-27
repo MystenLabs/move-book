@@ -35,6 +35,7 @@ export default {
 
   plugins: [
     llmsTxt,
+    '@docusaurus/plugin-sitemap',
     [
       '@docusaurus/plugin-content-docs',
       {
