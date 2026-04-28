@@ -26,7 +26,7 @@ package manifest.
 ```toml
 [package]
 name = "my_package"
-edition = "2024.beta" # or (just) "2024"
+edition = "2024"
 ```
 
 ### Implicit Framework Dependency
@@ -40,21 +40,6 @@ Sui = { ... }
 
 # modern day, Sui, Bridge, MoveStdlib and SuiSystem are imported implicitly!
 [dependencies]
-```
-
-### Prefix Named Addresses
-
-If your package has a generic name (e.g., `token`) – especially if your project includes multiple
-packages – make sure to add a prefix to the named address:
-
-```toml
-# bad! not indicative of anything, and can conflict
-[addresses]
-math = "0x0"
-
-# good! clearly states project, unlikely to conflict
-[addresses]
-my_protocol_math = "0x0"
 ```
 
 ## Imports, Module and Constants
@@ -257,19 +242,16 @@ let balance = payment.balance_mut().split(amount);
 let coin = balance.into_coin(ctx);
 ```
 
-### Do Not Import `std::string::utf8`
+### Use String Literals
 
 ```move
-// bad! unfortunately, very common!
-use std::string::utf8;
+use std::string::String;
 
-let str = utf8(b"hello, world!");
-
-// good!
+// bad! not required
 let str = b"hello, world!".to_string();
 
-// also, for ASCII string
-let ascii = b"hello, world!".to_ascii_string();
+// good!
+let str: String = "hello, world!";
 ```
 
 ### UID has `delete`
@@ -470,13 +452,13 @@ id.delete();
 ```move
 // bad!
 #[test]
-#[expected_failure]
+#[expected_failure(abort_code = my_app::EIncorrectValue)]
 fun value_passes_check() {
-    abort
+    external_call();
 }
 
 // good!
-#[test, expected_failure]
+#[test, expected_failure(abort_code = my_app::EIncorrectValue)]
 fun value_passes_check() {
     abort
 }
@@ -506,9 +488,9 @@ fun try_take_missing_object_fail() {
 ### Do Not Prefix Tests With `test_` in Testing Modules
 
 ```move
-// bad! the module is already called _tests
 module my_package::my_module_tests;
 
+// bad! the module is already called _tests
 #[test]
 fun test_this_feature() { /* ... */ }
 
@@ -534,18 +516,21 @@ app::mint(ctx).destroy();
 ### Do Not Use Abort Codes in `assert!` in Tests
 
 ```move
-// bad! may match application error codes by accident
-assert!(is_success, 0);
+#[test]
+fun test_something() {
+    // bad! may match application error codes by accident
+    assert!(is_success, 0);
 
-// good!
-assert!(is_success);
+    // good! no need for abort code
+    assert!(is_success);
+}
 ```
 
 ### Use `assert_eq!` Whenever Possible
 
 ```move
 // bad! old-style code
-assert!(result == b"expected_value", 0);
+assert!(result == "expected_value");
 
 // good! will print both values if fails
 use std::unit_test::assert_eq;
