@@ -19,6 +19,10 @@ const PORT = process.argv[2] || 3001;
 const BUILD_DIR = path.join(__dirname, 'build');
 const BUILD_ROOT = path.resolve(BUILD_DIR);
 const BUILD_ROOT_WITH_SEP = BUILD_ROOT.endsWith(path.sep) ? BUILD_ROOT : BUILD_ROOT + path.sep;
+const CANONICAL_BUILD_ROOT = fs.realpathSync(BUILD_ROOT);
+const CANONICAL_BUILD_ROOT_WITH_SEP = CANONICAL_BUILD_ROOT.endsWith(path.sep)
+  ? CANONICAL_BUILD_ROOT
+  : CANONICAL_BUILD_ROOT + path.sep;
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -67,11 +71,27 @@ function resolveUnderBuildDir(relativePath) {
     return null;
   }
 
-  const resolved = path.resolve(BUILD_ROOT, '.' + decodedPath);
+  const normalizedPath = decodedPath.replace(/\\/g, '/');
+  const resolved = path.resolve(BUILD_ROOT, '.' + normalizedPath);
   if (resolved !== BUILD_ROOT && !resolved.startsWith(BUILD_ROOT_WITH_SEP)) {
     return null;
   }
-  return resolved;
+
+  let canonicalResolved;
+  try {
+    canonicalResolved = fs.realpathSync(resolved);
+  } catch (e) {
+    return null;
+  }
+
+  if (
+    canonicalResolved !== CANONICAL_BUILD_ROOT &&
+    !canonicalResolved.startsWith(CANONICAL_BUILD_ROOT_WITH_SEP)
+  ) {
+    return null;
+  }
+
+  return canonicalResolved;
 }
 
 /**
