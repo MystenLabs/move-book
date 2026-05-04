@@ -74,6 +74,19 @@ function isCanonicalPathUnderBuildRoot(targetPath) {
   }
 }
 
+function isSafeRequestPathname(pathname) {
+  if (typeof pathname !== 'string' || pathname.length === 0) return false;
+  if (!pathname.startsWith('/')) return false;
+  if (pathname.includes('\0') || pathname.includes('\\')) return false;
+
+  const segments = pathname.split('/');
+  for (const segment of segments) {
+    if (segment === '.' || segment === '..') return false;
+  }
+
+  return true;
+}
+
 function resolveUnderBuildDir(relativePath) {
   let decodedPath;
   try {
@@ -132,6 +145,12 @@ function resolveMarkdownFile(pathname) {
 const server = http.createServer((req, res) => {
   const parsedUrl = url.parse(req.url);
   let pathname = parsedUrl.pathname;
+
+  if (!isSafeRequestPathname(pathname)) {
+    res.writeHead(400, { 'Content-Type': 'text/plain' });
+    res.end('400 Bad Request');
+    return;
+  }
 
   // Content negotiation: serve markdown when Accept: text/markdown
   if (acceptsMarkdown(req)) {
