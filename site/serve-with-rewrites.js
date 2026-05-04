@@ -126,6 +126,17 @@ function resolveUnderBuildDir(relativePath) {
 function resolveMarkdownFile(pathname) {
   const clean = pathname.replace(/\/+$/, '') || '/';
 
+  // Explicit allowlist validation to prevent path traversal and make
+  // user-controlled path constraints obvious to static analysis.
+  if (
+    !clean.startsWith('/') ||
+    clean.includes('\0') ||
+    /(^|\/)\.\.(\/|$)/.test(clean) ||
+    !/^\/[A-Za-z0-9._/-]*$/.test(clean)
+  ) {
+    return null;
+  }
+
   if (clean === '/') {
     const candidate = resolveUnderBuildDir('/index.md');
     if (candidate && fs.existsSync(candidate)) return candidate;
@@ -195,7 +206,10 @@ const server = http.createServer((req, res) => {
       return;
     }
 
-    if (canonicalFilePath !== BUILD_ROOT && !canonicalFilePath.startsWith(BUILD_ROOT_WITH_SEP)) {
+    if (
+      canonicalFilePath !== CANONICAL_BUILD_ROOT &&
+      !canonicalFilePath.startsWith(CANONICAL_BUILD_ROOT_WITH_SEP)
+    ) {
       res.writeHead(403, { 'Content-Type': 'text/plain' });
       res.end('403 Forbidden');
       return;
