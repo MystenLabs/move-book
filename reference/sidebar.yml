@@ -75,8 +75,14 @@ referenceSidebar:
         id: constants
       - label: 11. Generics
         id: generics
-      - label: 12. Abilities
-        id: abilities
+      - type: category
+        label: 12. Abilities
+        link:
+          id: abilities
+          type: doc
+        items:
+          - label: 12.1 Sui Object
+            id: abilities/object
       - label: 13. Uses and Aliases
         id: uses
   - type: category

@@ -96,8 +96,13 @@ function extractAnchor(fileContent: string, anchor: string): string | null {
   return fileContent.slice(contentStart, endIdx).trimEnd();
 }
 
+function stripHtmlComments(content: string): string {
+  return content.replace(/<!--[\s\S]*?-->/g, '').replace(/\n{3,}/g, '\n\n');
+}
+
 function resolveCodeIncludes(content: string): string {
-  return content.replace(
+  const stripped = stripHtmlComments(content);
+  return stripped.replace(
     /^(```\w*)\s+(?:title="[^"]*"\s+)?file=(\S+?)(?:\s+anchor=(\S+))?\s*\n[\s\S]*?^```/gm,
     (match, fence, filePath, anchor) => {
       const absPath = path.join(ROOT, filePath);
@@ -190,16 +195,9 @@ function generateFiles(outDir: string) {
   // llms.txt
   const llmsTxt = `# The Move Book
 
-> A comprehensive guide to the Move programming language on Sui.
+> A comprehensive guide to the Move programming language on Sui. Additional resources: [EBNF grammar](${siteUrl}/move.ebnf), [Move semantics](${siteUrl}/move-semantics.md), [full book for large-context models](${siteUrl}/llms-full.txt).
 
 The Move Book covers the Move language fundamentals, Sui object model, advanced programmability patterns, and testing. The Move Reference provides formal language specification.
-
-## Move Language
-
-- [Move language syntax (EBNF grammar)](${siteUrl}/move.ebnf)
-- [Move semantics](${siteUrl}/move-semantics.md)
-- [Best practices](${siteUrl}/guides/code-quality-checklist.md)
-- [Full book content for large-context models](${siteUrl}/llms-full.txt)
 
 ## Book
 
@@ -209,10 +207,19 @@ ${bookDocs.map(buildIndexLine).join('\n')}
 
 ${refDocs.map(buildIndexLine).join('\n')}
 
+## Site
+
+- [Search](${siteUrl}/search.md)
+
 `;
 
   fs.writeFileSync(path.join(outDir, 'llms.txt'), llmsTxt);
   console.log('[llms-txt] Built llms.txt');
+
+  // Generate search.md for the custom search page
+  const searchMd = llmsTxtDirective + '# Search\n\nSearch across all Move Book and Move Reference documentation.\n';
+  fs.writeFileSync(path.join(outDir, 'search.md'), searchMd);
+  console.log('[llms-txt] Generated search.md');
 
   // llms-full.txt
   const fullTxt = [
@@ -269,6 +276,39 @@ export default function pluginLlmsTxt(): Plugin {
                 } else if (url.endsWith('.txt') || url.endsWith('.ebnf')) {
                   res.setHeader('Content-Type', 'text/plain; charset=utf-8');
                   res.setHeader('Content-Disposition', 'inline');
+                }
+                next();
+              },
+            });
+
+            // Content negotiation: serve markdown when Accept: text/markdown
+            middlewares.unshift({
+              name: 'content-negotiation',
+              middleware: (req: any, res: any, next: any) => {
+                const accept = req.headers['accept'] || '';
+                if (!accept.includes('text/markdown')) return next();
+
+                const url = (req.url?.split('?')[0] || '').replace(/\/+$/, '') || '/';
+                let mdPath: string | null = null;
+
+                if (url === '/') {
+                  const candidate = path.join(staticDir, 'index.md');
+                  if (fs.existsSync(candidate)) mdPath = candidate;
+                } else {
+                  const asMd = path.join(staticDir, url + '.md');
+                  if (fs.existsSync(asMd)) mdPath = asMd;
+                  if (!mdPath) {
+                    const asIndex = path.join(staticDir, url, 'index.md');
+                    if (fs.existsSync(asIndex)) mdPath = asIndex;
+                  }
+                }
+
+                if (mdPath) {
+                  res.setHeader('Content-Type', 'text/markdown; charset=utf-8');
+                  res.setHeader('Content-Disposition', 'inline');
+                  res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+                  res.end(fs.readFileSync(mdPath, 'utf-8'));
+                  return;
                 }
                 next();
               },

@@ -101,7 +101,7 @@ fun borrow_first(input: &Vs): &u64 {
     &input.vs[0].v[0]
     // translates to `vector::borrow(&vector::borrow(&input.vs, 0).v, 0)`
 }
-````
+```
 
 ### Index Functions Take Flexible Arguments
 

@@ -180,32 +180,20 @@ bookSidebar:
         id: programmability/display
       - label: Events
         id: programmability/events
-      # - label: Balance & Coin
-      #   id: programmability/balance-and-coin
-      #   type: doc
+      - label: Balance & Coin
+        id: programmability/balance-and-coin
       - label: 'Pattern: Hot Potato'
         id: programmability/hot-potato-pattern
-      # - label: '8.18 Pattern: Request'
-      #   id: programmability/request-pattern
-      #   type: doc
-      # - label: '8.19 Pattern: Object Capability'
-      #   id: programmability/object-capability-pattern
-      #   type: doc
-      # - label: '8.20 Package Upgrades'
-      #   id: programmability/package-upgrades
-      #   type: doc
-      # - label: '8.21 Transaction Blocks'
-      #   id: programmability/transaction-block
-      #   type: doc
-      # - label: '8.22 Authorization Patterns'
-      #   id: programmability/authorization-patterns
-      #   type: doc
-      # - label: '8.23 Cryptography and Hashing'
-      #   id: programmability/cryptography-and-hashing
-      #   type: doc
-      # - label: '8.24 Randomness'
-      #   id: programmability/cryptography-and-hashing
-      #   type: doc
+      - label: 'Pattern: Object Capability'
+        id: programmability/object-capability
+      - label: Authorization Patterns
+        id: programmability/authorization-patterns
+      - label: Cryptography and Hashing
+        id: programmability/cryptography-and-hashing
+      - label: Randomness
+        id: programmability/randomness
+      - label: Fast Path
+        id: programmability/fast-path
       - label: BCS
         id: programmability/bcs
   - type: category
@@ -249,6 +237,9 @@ bookSidebar:
   - type: category
     label: Guides
     enumerate: false
+    link:
+      id: guides/index
+      type: doc
     items:
       - label: 2024 Migration Guide
         id: guides/2024-migration-guide
@@ -260,10 +251,8 @@ bookSidebar:
         id: guides/better-error-handling
       - label: Code Quality Checklist
         id: guides/code-quality-checklist
-      # - label: Open-sourcing Libraries
-      #   id: guides/open-sourcing-libraries
-      # - label: Creating an NFT Collection
-      #   id: guides/creating-an-nft-collection
+      - label: Open-sourcing Libraries
+        id: guides/open-sourcing-libraries
   - type: category
     label: Appendix
     enumerate: false
