@@ -17,6 +17,8 @@ const url = require('url');
 
 const PORT = process.argv[2] || 3001;
 const BUILD_DIR = path.join(__dirname, 'build');
+const BUILD_ROOT = path.resolve(BUILD_DIR);
+const BUILD_ROOT_WITH_SEP = BUILD_ROOT.endsWith(path.sep) ? BUILD_ROOT : BUILD_ROOT + path.sep;
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -57,6 +59,21 @@ function acceptsMarkdown(req) {
   return accept.includes('text/markdown');
 }
 
+function resolveUnderBuildDir(relativePath) {
+  let decodedPath;
+  try {
+    decodedPath = decodeURIComponent(relativePath || '/');
+  } catch (e) {
+    return null;
+  }
+
+  const resolved = path.resolve(BUILD_ROOT, '.' + decodedPath);
+  if (resolved !== BUILD_ROOT && !resolved.startsWith(BUILD_ROOT_WITH_SEP)) {
+    return null;
+  }
+  return resolved;
+}
+
 /**
  * Tries to resolve a markdown file for the given pathname.
  * Maps e.g. "/" -> "index.md", "/foreword" -> "foreword.md",
@@ -66,17 +83,17 @@ function resolveMarkdownFile(pathname) {
   const clean = pathname.replace(/\/+$/, '') || '/';
 
   if (clean === '/') {
-    const candidate = path.join(BUILD_DIR, 'index.md');
-    if (fs.existsSync(candidate)) return candidate;
+    const candidate = resolveUnderBuildDir('/index.md');
+    if (candidate && fs.existsSync(candidate)) return candidate;
     return null;
   }
 
   // Try <path>.md first, then <path>/index.md
-  const asMd = path.join(BUILD_DIR, clean + '.md');
-  if (fs.existsSync(asMd)) return asMd;
+  const asMd = resolveUnderBuildDir(clean + '.md');
+  if (asMd && fs.existsSync(asMd)) return asMd;
 
-  const asIndex = path.join(BUILD_DIR, clean, 'index.md');
-  if (fs.existsSync(asIndex)) return asIndex;
+  const asIndex = resolveUnderBuildDir(path.join(clean, 'index.md'));
+  if (asIndex && fs.existsSync(asIndex)) return asIndex;
 
   return null;
 }
@@ -101,12 +118,17 @@ const server = http.createServer((req, res) => {
   }
 
   // Resolve file path
-  let filePath = path.join(BUILD_DIR, pathname);
+  let filePath = resolveUnderBuildDir(pathname);
+  if (!filePath) {
+    res.writeHead(403, { 'Content-Type': 'text/plain' });
+    res.end('403 Forbidden');
+    return;
+  }
 
   if (!fs.existsSync(filePath)) {
     // Try index.html for directory-style routes
-    const indexPath = path.join(BUILD_DIR, pathname, 'index.html');
-    if (fs.existsSync(indexPath)) {
+    const indexPath = resolveUnderBuildDir(path.join(pathname, 'index.html'));
+    if (indexPath && fs.existsSync(indexPath)) {
       filePath = indexPath;
     } else {
       res.writeHead(404, { 'Content-Type': 'text/plain' });
@@ -114,7 +136,13 @@ const server = http.createServer((req, res) => {
       return;
     }
   } else if (fs.statSync(filePath).isDirectory()) {
-    filePath = path.join(filePath, 'index.html');
+    const directoryIndexPath = resolveUnderBuildDir(path.join(pathname, 'index.html'));
+    if (!directoryIndexPath) {
+      res.writeHead(403, { 'Content-Type': 'text/plain' });
+      res.end('403 Forbidden');
+      return;
+    }
+    filePath = directoryIndexPath;
   }
 
   if (!fs.existsSync(filePath)) {

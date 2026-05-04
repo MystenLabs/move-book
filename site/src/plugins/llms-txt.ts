@@ -97,7 +97,14 @@ function extractAnchor(fileContent: string, anchor: string): string | null {
 }
 
 function stripHtmlComments(content: string): string {
-  return content.replace(/<!--[\s\S]*?-->/g, '').replace(/\n{3,}/g, '\n\n');
+  let current = content;
+  let previous: string;
+  do {
+    previous = current;
+    current = current.replace(/<!--[\s\S]*?-->/g, '');
+  } while (current !== previous);
+
+  return current.replace(/\n{3,}/g, '\n\n');
 }
 
 function resolveCodeIncludes(content: string): string {
