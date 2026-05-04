@@ -63,6 +63,17 @@ function acceptsMarkdown(req) {
   return accept.includes('text/markdown');
 }
 
+function isCanonicalPathUnderBuildRoot(targetPath) {
+  try {
+    const realTarget = fs.realpathSync.native ? fs.realpathSync.native(targetPath) : fs.realpathSync(targetPath);
+    const realBuildRoot = fs.realpathSync.native ? fs.realpathSync.native(BUILD_ROOT) : fs.realpathSync(BUILD_ROOT);
+    const realBuildRootWithSep = realBuildRoot.endsWith(path.sep) ? realBuildRoot : realBuildRoot + path.sep;
+    return realTarget === realBuildRoot || realTarget.startsWith(realBuildRootWithSep);
+  } catch (e) {
+    return false;
+  }
+}
+
 function resolveUnderBuildDir(relativePath) {
   let decodedPath;
   try {
@@ -168,6 +179,12 @@ const server = http.createServer((req, res) => {
   if (!fs.existsSync(filePath)) {
     res.writeHead(404, { 'Content-Type': 'text/plain' });
     res.end('404 Not Found');
+    return;
+  }
+
+  if (!isCanonicalPathUnderBuildRoot(filePath)) {
+    res.writeHead(403, { 'Content-Type': 'text/plain' });
+    res.end('403 Forbidden');
     return;
   }
 
