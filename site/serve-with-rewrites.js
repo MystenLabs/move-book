@@ -166,14 +166,33 @@ const server = http.createServer((req, res) => {
       res.end('404 Not Found');
       return;
     }
-  } else if (fs.statSync(filePath).isDirectory()) {
-    const directoryIndexPath = resolveUnderBuildDir(path.join(pathname, 'index.html'));
-    if (!directoryIndexPath) {
+  } else {
+    let canonicalFilePath;
+    try {
+      canonicalFilePath = fs.realpathSync(filePath);
+    } catch (e) {
+      res.writeHead(404, { 'Content-Type': 'text/plain' });
+      res.end('404 Not Found');
+      return;
+    }
+
+    if (canonicalFilePath !== BUILD_ROOT && !canonicalFilePath.startsWith(BUILD_ROOT_WITH_SEP)) {
       res.writeHead(403, { 'Content-Type': 'text/plain' });
       res.end('403 Forbidden');
       return;
     }
-    filePath = directoryIndexPath;
+
+    filePath = canonicalFilePath;
+
+    if (fs.statSync(filePath).isDirectory()) {
+      const directoryIndexPath = resolveUnderBuildDir(path.join(pathname, 'index.html'));
+      if (!directoryIndexPath) {
+        res.writeHead(403, { 'Content-Type': 'text/plain' });
+        res.end('403 Forbidden');
+        return;
+      }
+      filePath = directoryIndexPath;
+    }
   }
 
   if (!fs.existsSync(filePath)) {
