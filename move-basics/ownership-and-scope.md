@@ -7,14 +7,6 @@ is valid, and the owner is the scope that this variable belongs to. Once the own
 variable is dropped. This is a fundamental concept in Move, and it is important to understand how it
 works.
 
-<!--
-
-- Borrow Checker
-- Mention Rust's borrow checker
-- Borrowing / References intro
-
--->
-
 ## Ownership
 
 A variable defined in a function scope is owned by this scope. The runtime goes through the function

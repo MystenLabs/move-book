@@ -5,8 +5,6 @@
 
 # The Move Book
 
-<!-- TODO: insert author(s) -->
-
 This is The Move Book - a comprehensive guide to the Move programming language and the Sui
 blockchain. The book is intended for developers who are interested in learning about Move and
 building on Sui.
@@ -265,7 +263,6 @@ in this book are written in Move 2024. If you're used to the pre-2024 version of
 to the [Move 2024 Migration Guide](./../guides/2024-migration-guide.md) to learn about the changes
 and improvements in the new edition.
 
-<!-- Notes ? -->
 
 
 ---
@@ -367,8 +364,6 @@ The commented out code is a module definition, it starts with the keyword `modul
 named address (or an address literal), and the module name. The module name is a unique identifier
 for the module and has to be unique within the package. The module name is used to reference the
 module from other modules or transactions.
-
-<!-- And the module name has to be a valid Move identifier: alphanumeric with underscores to separate words. A common convention is to call modules (and functions) in snake_case - all lowercase, with underscores. Coding conventions are important for readability and maintainability of the code, we summarize them in the Coding Conventions section. -->
 
 ### Tests
 
@@ -1206,22 +1201,6 @@ basic concepts required to write Move programs on Sui.
 
 # Package
 
-<!--
-
-    - packages and how they're stored
-        - overview of packages and their contents (use a diagram)
-        - how a package is created, and what it consists of
-        - what is the package manifest
-        - describe how "name" field is used
-        - mention the "edition" field
-        - what are the folders in a package and what are they for
-        - how packages are imported (give Sui as an example)
-        - what are addresses, and how they identify packages
-        - how packages are published
-        - leave a note that packages are also *upgradable*
-
--->
-
 Move is a language for writing smart contracts - programs that are stored and run on the blockchain.
 A single program is organized into a package. A package is published on the blockchain and is
 identified by an [address](./address). A published package can be interacted with by sending
@@ -1313,8 +1292,6 @@ edition for the compiler.
 - `name` - the name of the package when it is imported;
 - `edition` - the edition of the Move language; currently, the only valid value is `2024`.
 
-<!-- published-at -->
-
 ### Dependencies
 
 The `[dependencies]` section is used to specify the dependencies of the project. Each dependency is
@@ -1385,31 +1362,6 @@ local = "../my-package"
 
 # Address
 
-<!--
-
-Chapter: Concepts
-Goal: explain locations and addresses
-Notes:
-    - don't talk about the type
-    - packages, accounts and objects are identified by addresses
-    - addresses are 32 bytes long
-    - addresses are unique
-    - represented as hex strings (64 characters) prefixed with 0x
-    - addresses are case insensitive
-
-Links:
-    - address type
-
-
-- mention what an address is, because it identifies a package
-    - address is used for packages, objects, and accounts
-    - address is a 32-byte value
-    - address is written in hexadecimal notation
-    - don't describe the type yet
-    - focus on the concept of address on blockchain and on Sui in particular
-
- -->
-
 Address is a unique identifier of a location on the blockchain. It is used to identify
 [packages](./packages), [accounts](./what-is-an-account), and [objects](./../object/object-model).
 Address has a fixed size of 32 bytes and is usually represented as a hexadecimal string prefixed
@@ -1449,21 +1401,6 @@ Here are some examples of reserved addresses:
 
 # Account
 
-<!--
-
-- user is an account
-    - account is identified by an address
-    - account is generated from a private key
-    - account can own objects
-    - account can send transactions
-    - every transaction has a sender
-    - sender is identified by an address
-    - sui cryptographic agility
-    - sui account types
-    - supported curves: ed25519, secp256k1, zklogin
-
- -->
-
 An account is a way to identify a user. An account is generated from a private key, and is
 identified by an address. An account can own objects, and can send transactions. Every transaction
 has a sender, and the sender is identified by an [address](./address).
@@ -1472,8 +1409,6 @@ Sui supports multiple cryptographic algorithms for account generation. The two s
 ed25519, secp256k1, and there is also a special way of generating an account - zklogin. The
 cryptographic agility - the unique feature of Sui - allows for flexibility in the account
 generation.
-
-<!-- The cryptographic agility allows for flexibility in the account generation -->
 
 ## Further Reading
 
@@ -1493,17 +1428,6 @@ Transaction is a fundamental concept in the blockchain world. It is a way to int
 blockchain. Transactions are used to change the state of the blockchain, and they are the only way
 to do so. In Move, transactions are used to call functions in a package, deploy new packages, and
 upgrade existing ones.
-
-<!--
-
-- how user interacts with a program
-    - mention public functions
-    - give a concept of an entry / public function without getting into details
-    - mention that functions are called in transactions
-    - mention that transactions are sent by accounts
-    - every transaction specifies object it operates on
-
- -->
 
 ## Transaction Structure
 
@@ -1566,10 +1490,6 @@ In this example, the transaction consists of three commands:
    with the given arguments - the `payment` object;
 3. `TransferObjects` - a built-in command that transfers the object to the recipient.
 
-<!--
-> There are multiple different implementations of transaction building, for example
--->
-
 ## Transaction Effects
 
 Transaction effects are the changes that a transaction makes to the blockchain state. More
@@ -1602,24 +1522,11 @@ storage model or a blockchain, and explains the essential concepts of the langua
 features specific to Sui, such as storage functions and abilities, refer to the
 [Using Objects](./../storage/) chapter, however, it is recommended to start with this chapter first.
 
-<!-- TODO: cross link with Reference -->
 
 
 ---
 
 # Module
-
-<!--
-
-Chapter: Base Syntax
-Goal: Introduce module keyword.
-Notes:
-    - modules are the base unit of code organization
-    - module members are private by default
-    - types internal to the module have special access rules
-    - only module can pack and unpack its types
-
- -->
 
 A module is the base unit of code organization in Move. Modules are used to group and isolate code,
 and all members of the module are private to the module by default. In this section you will learn
@@ -1739,18 +1646,6 @@ module book::another_module_in_the_file {
 
 # Comments
 
-<!--
-
-Chapter: Basic Syntax
-Goal: Introduce comments.
-Notes:
-    - doc comments are used in docgen
-    - only public members are documented
-    - doc comments are placed in between attributes and the definition
-    - doc comments are allowed for: modules, structs, functions, constants
-    - give an example of how doc comments are translated
- -->
-
 Comments are a way to add notes or document your code. They are ignored by the compiler and don't
 result in Move bytecode. You can use comments to explain what your code does, add notes to yourself
 or other developers, temporarily remove a part of your code, or generate documentation. There are
@@ -1827,14 +1722,11 @@ fun do_something() {}
 Unlike some languages, whitespace (spaces, tabs, and newlines) have no impact on the meaning of the
 program.
 
-<!-- TODO: docgen, which members are in the documentation -->
 
 
 ---
 
 # Primitive Types
-
-<!-- TODO: Shall we split this into two pages? Maybe give an overview and focus more on specifics? -->
 
 For simple values, Move has a number of built-in primitive types. They're the foundation for all
 other types. The primitive types are:
@@ -1944,9 +1836,6 @@ The types of the operands _must match_, or the compiler will raise an error. The
 operation will be of the same type as the operands. To perform operations on different types, the
 operands need to be cast to the same type.
 
-<!-- TODO: add examples + parentheses for arithmetic operations -->
-<!-- TODO: add bitwise operators -->
-
 ### Casting with `as`
 
 Move supports explicit casting between integer types. The syntax is as follows:
@@ -1993,24 +1882,6 @@ let z = x + y;
 ---
 
 # Address Type
-
-<!--
-
-Chapter: Basic Syntax
-Goal: Introduce the address type
-Notes:
-    - a special type
-    - named addresses via the Move.toml
-    - address literals
-    - 0x2 is 0x0000000...02
-
-Links:
-    - address concept
-    - transaction context
-    - Move.toml
-    - your first move
-
- -->
 
 Move uses a special type called [address](./../concepts/address) to represent addresses. It is a
 32-byte value that can represent any address on the blockchain. Addresses can be written in two
@@ -2266,15 +2137,6 @@ assert_eq!(artist.name, b"Led Zeppelin".to_string());
 Only the module defining the struct can access its fields (both mutably and immutably). So the above
 code should be in the same module as the `Artist` struct.
 
-<!-- ## Accessing Fields
-
-Struct fields are private and can be accessed only by the module defining the struct. To access the fields of a struct, you can use the `.` operator followed by the field name.
-
-```move
-# anchor: access file=packages/samples/sources/move-basics/struct.move anchor=access
-```
--->
-
 ## Unpacking a struct
 
 Structs are non-discardable by default, meaning that the initialized struct value must be used,
@@ -2371,44 +2233,6 @@ Potato is one of the most powerful patterns in Move, and we go into more detail 
 
 # Abilities: Drop
 
-<!-- TODO: reiterate, given that we introduce abilities one by one -->
-
-<!-- TODO:
-
-- introduce abilities first
-- mention them all
-- then do one by one
-
-consistency: we / I / you ?
-who is we? I am alone, there's no one else here
-
-
--->
-
-<!--
-
-// Shall we only talk about `drop` ?
-// So that we don't explain scopes and `copy` / `move` semantics just yet?
-
-Chapter: Basic Syntax
-Goal: Introduce Copy and Drop abilities of Move. Follows the `struct` section
-Notes:
-    - compare them to primitive types introduces before;
-    - what is an ability without drop
-    - drop is not necessary for unpacking
-    - make a joke about a bacteria pattern in the code
-    - mention that a struct with only `drop` ability is called a Witness
-    - mention that a struct without abilities is called a Hot Potato
-    - mention that there are two more abilities which are covered in a later chapter
-
-Links:
-    - language reference (abilities)
-    - authorization patterns (or witness)
-    - hot potato pattern
-    - key and store abilities (later chapter)
-
- -->
-
 The `drop` ability - the simplest of them - allows the instance of a struct to be _ignored_ or
 _discarded_. In many programming languages this behavior is considered default. However, in Move, a
 struct without the `drop` ability is not allowed to be ignored. This is a safety feature of the Move
@@ -2471,25 +2295,6 @@ All of the types defined in the standard library have the `drop` ability as well
 ---
 
 # Importing Modules
-
-<!--
-    TODO: create a better example for:
-        1. Importing a module in general
-        2. Importing a member
-        3. Importing multiple members
-        4. Grouping imports
-        5. Self keyword for groups
--->
-
-<!--
-
-Goals:
-    - Show the import syntax
-    - Local dependencies
-    - External dependencies
-    - Importing modules from other packages
-
- -->
 
 Move achieves high modularity and code reuse by allowing module imports. Modules within the same
 package can import each other, and a new package can depend on already existing packages and use
@@ -2658,8 +2463,6 @@ use sui::coin;   // sui = 0x2, coin is a module in the Sui Framework
 
 # Standard Library
 
-<!-- The Move standard library provides a set of modules  -->
-
 The Move Standard Library provides functionality for native types and operations. It is a standard
 collection of modules that do not interact with storage, but provide basic tools for working with
 and manipulating data. It is the only dependency of the
@@ -2671,7 +2474,6 @@ In this book we go into detail about most of the modules in the Standard Library
 also helpful to give an overview of the features, so that you can get a sense of what is available
 and which module implements it.
 
-<!-- Custom CSS addition in the theme/custom.css  -->
 <div class="modules-table">
 
 | Module                                                                           | Description                                                                | Chapter                              |
@@ -2699,7 +2501,6 @@ not be imported directly, as their functions are available on every integer valu
 > All of the modules provide the same set of functions. Namely, `max`, `diff`,
 > `divide_and_round_up`, `sqrt` and `pow`.
 
-<!-- Custom CSS addition in the theme/custom.css  -->
 <div class="modules-table">
 
 | Module                                                         | Description                   |
@@ -2957,17 +2758,6 @@ provides an ASCII `String` type and its methods.
 > inputs. As a result, in many cases, constructing a String directly within the
 > [Transaction Block](./../concepts/what-is-a-transaction) is unnecessary.
 
-<!--
-
-## Bytestring Literal
-
-TODO:
-
-- reference vector
-- reference literals - [Expression](./expression#literals)
-
--->
-
 ## Strings are bytes
 
 No matter which type of string you use, it is important to know that strings are just bytes. The
@@ -3115,25 +2905,6 @@ This section is coming soon!
 
 # Control Flow
 
-<!--
-
-Chapter: Basic Syntax
-Goal: Introduce control flow statements.
-Notes:
-    - if/else is an expression
-    - while () {} loop
-    - continue and break
-    - loop {}
-    - infinite loop is possible but will lead to gas exhaustion
-    - return keyword
-    - if is an expression and as such requires a semicolon (!!!)
-
-Links:
-    - reference (control flow)
-    - coding conventions (control flow)
-
- -->
-
 Control flow statements are used to control the flow of execution in a program. They are used to
 make decisions, repeat a block of code, or exit a block of code early. Move includes the following
 control flow statements (explained in detail below):
@@ -3195,8 +2966,6 @@ than 0, `y` is assigned the value 1; otherwise, it is assigned 0. The `else` blo
 because both branches of the `if` expression must return a value of the same type. Omitting the
 `else` block would result in a compiler error, as it ensures all possible branches are accounted for
 and type safety is maintained.
-
-<!-- TODO: add an error -->
 
 Conditional expressions are among the most important control flow statements in Move. They evaluate
 user-provided input or stored data to make decisions. One key use case is in the
@@ -3726,24 +3495,6 @@ To learn more about enums and pattern matching, refer to the resources listed in
 
 # Constants
 
-<!--
-
-Chapter: Basic Syntax
-Goal: Introduce constants.
-Notes:
-    - constants are immutable
-    - constants are private
-    - start with a capital letter always
-    - stored in the bytecode (but w/o a name)
-    - mention standard for naming constants
-
-Links:
-    - next section (abort and assert)
-    - coding conventions (constants)
-    - constants (language reference)
-
- -->
-
 Constants are immutable values that are defined at the module level. They often serve as a way to
 give names to static values that are used throughout a module. For example, if there's a default
 price for a product, you might define a constant for it. Constants are stored in the module's
@@ -3840,26 +3591,6 @@ upgrade.
 ---
 
 # Aborting Execution
-
-<!-- Consider "aborting execution" -->
-
-<!--
-
-Chapter: Basic Syntax
-Goal: Introduce abort keyword and `assert!` macro.
-Notes:
-    - previous chapter mentions constants
-    - error constants standard ECamelCase
-    - `assert!` macro
-    - asserts should go before the main logic
-    - Move has no catch mechanism
-    - abort codes are local to the module
-    - there are no error messages emitted
-    - error codes should handle all possible scenarios in this module
-
-Links:
-    - constants (previous section)
- -->
 
 A transaction can either succeed or fail. Successful execution applies all changes made to objects
 and on-chain data, and the transaction is committed to the blockchain. Alternatively, if a
@@ -4207,43 +3938,6 @@ structs.
 > `public use fun hero_health as Hero.health`, which provides controlled access to the private
 > field.
 
-<!-- ## Aliasing an external module's method
-
-It is also possible to associate a function defined in another module with a struct from the current
-module. Following the same approach, we can create an alias for the method defined in another
-module. Let's use the `bcs::to_bytes` method from the [Standard Library](./standard-library) and
-associate it with the `Hero` struct. It will allow serializing the `Hero` struct to a vector of
-bytes.
-
-```move
-// TODO: better example (external module...)
-module book::hero_to_bytes;
-
-// Alias for the `bcs::to_bytes` method. Imported aliases should be defined
-// in the top of the module.
-// public use fun bcs::to_bytes as Hero.to_bytes;
-
-/// A struct representing a hero.
-public struct Hero has drop {
-    health: u8,
-    mana: u8,
-}
-
-/// Create a new Hero.
-public fun new(): Hero { Hero { health: 100, mana: 100 } }
-
-// #[test_only]
-// use std::unit_test::assert_eq;
-
-#[test]
-// Test the methods of the `Hero` struct.
-fun test_hero_serialize() {
-    // let mut hero = new();
-    // let serialized = hero.to_bytes();
-    // assert_eq!(serialized.length(), 3);
-}
-``` -->
-
 ## Further Reading
 
 - [Method Syntax](./../../reference/method-syntax) in the Move Reference.
@@ -4277,8 +3971,6 @@ fun call_internal() {
 ```
 
 The following code will not compile:
-
-<!-- TODO: add failure flag to example -->
 
 ```move
 module book::try_calling_internal;
@@ -4376,14 +4068,6 @@ Every variable in Move has a scope and an owner. The scope is the range of code 
 is valid, and the owner is the scope that this variable belongs to. Once the owner scope ends, the
 variable is dropped. This is a fundamental concept in Move, and it is important to understand how it
 works.
-
-<!--
-
-- Borrow Checker
-- Mention Rust's borrow checker
-- Borrowing / References intro
-
--->
 
 ## Ownership
 
@@ -4588,22 +4272,6 @@ All of the types defined in the standard library have the `copy` ability as well
 
 # References
 
-<!--
-
-Chapter: Basic Syntax
-Goal: Show what the borrow checker is and how it works.
-Notes:
-    - give the metro pass example
-    - show why passing by reference is useful
-    - mention that reference comparison is faster
-    - references can be both mutable and immutable
-    - immutable access to shared objects is faster
-    - implicit copy
-    - moving the value
-    - unpacking a reference (mutable and immutable)
-
- -->
-
 In the [Ownership and Scope](./ownership-and-scope) section, we explained that when a value is
 passed to a function, it is _moved_ to the function's scope. This means that the function becomes
 the owner of the value, and the original scope (owner) can no longer use it. This is an important
@@ -4642,8 +4310,6 @@ public fun purchase(/* pass a Coin */): Card {
     Card { uses: USES }
 }
 ```
-
-<!-- In [the previous section](./ownership-and-scope) we explained the ownership and scope in Move. We showed how the value is *moved* to a new scope, and how it changes the owner. In this section, we will explain how to *borrow* a reference to a value to avoid moving it, and how Move's *borrow checker* ensures that the references are used correctly. -->
 
 ## References
 
@@ -4733,39 +4399,6 @@ fun test_card_2024() {
 - [References](/reference/primitive-types/references) in the Move
   Reference.
 
-<!-- ## Dereference and Copy -->
-
-<!-- TODO: defer and copy, *& -->
-
-<!-- ## Notes -->
-
-<!--
-    Move 2024 is great but it's better to show the example with explicit &t and &mut t
-    ...and then say that the example could be rewritten with the new syntax
-
-
--->
-
-<!-- ## Move 2024
-
-Here's the test from this page written with the Move 2024 syntax:
-
-```move
-#[test]
-fun test_card_2024() {
-    // declaring variable as mutable because we modify it
-    let mut card = purchase();
-
-    card.enter_metro(); // modify the card but don't move it
-    assert!(card.is_valid()); // read the card!
-
-    card.enter_metro(); // modify the card but don't move it
-    card.enter_metro(); // modify the card but don't move it
-
-    card.recycle(); // move the card out of the scope
-}
-```
--->
 
 
 ---
@@ -4984,8 +4617,6 @@ public struct CopyableDroppable<T: copy + drop> {
 The Move Compiler will enforce that the type parameter `T` has the specified abilities. If the type
 parameter does not have the specified abilities, the code will not compile.
 
-<!-- TODO: failure case -->
-
 ```move
 /// Type without any abilities.
 public struct NoAbilities {}
@@ -5183,16 +4814,10 @@ the blockchain. Subsequently, the introduction of the ERC-721 standard marked a 
 evolution, popularizing the concept of non-fungible tokens (NFTs), which represent unique,
 indivisible assets. These standards laid the groundwork for the complex digital assets we see today.
 
-<!-- ## Move and Digital Assets -->
-
-<!-- note: consider "native" -> "fine-grained" -->
-
 However, Ethereum's programming model lacked a native representation of assets. In other words,
 externally, a Smart Contract behaved like an asset, but the language itself did not have a way to
 inherently represent assets. From the start, Move aimed to provide a first-class abstraction for
 assets, opening up new avenues for thinking about and programming assets.
-
-<!-- Move was initially created in 2018 as part of the Libra project. The language was designed to address shortcomings in existing smart contract languages, especially in handling assets and access control. The Move language aims to provide first-class abstractions for these concepts, improving the safety and productivity of smart contract programming. -->
 
 It is important to highlight which properties are essential for an asset:
 
@@ -5279,8 +4904,6 @@ Objects in Sui have the following properties:
 - **Unique ID:** Each object has a unique identifier, distinguishing it from other objects. This ID
   is generated upon the object's creation and is immutable. It's used to track and identify objects
   within the system.
-
-<!-- Note: consider "shared across many entities" -->
 
 - **Owner:** Every object is associated with an owner, who has control over changes to the object.
   Ownership on Sui can be exclusive to an account, shared across the network, or frozen, allowing
@@ -5438,8 +5061,6 @@ sequencing to ensure that the state is updated and consistent across all nodes. 
 execution through _consensus_, where transactions accessing shared objects are subject to the
 agreement process to maintain network consistency.
 
-<!-- On Sui consensus is per-object - mention!!! -->
-
 ## Objects owned by Objects
 
 Lastly, it is important to mention that objects owned by other objects are subject to the same rules
@@ -5468,7 +5089,6 @@ continuing.
 
 [object-model]: ./../object
 
-<!-- Mention what Sui Verifier is! Bytecode level verification. -->
 
 
 ---
@@ -5737,12 +5357,6 @@ public fun borrow<T>(value: &T) { /* value is borrowed here! can be read */ abor
 /// For mutable reference, value stays in parent scope but can be mutated.
 public fun borrow_mut<T>(value: &mut T) { /* value is mutably borrowed here! */ abort }
 ```
-
-<!-- TODO part on:
-    - object does not have an associated storage type
-    - the same type of object can be stored differently
-    - the objects must be specified in the transaction by their ID
- -->
 
 ## Internal Rule in Transfer Functions
 
@@ -6374,7 +5988,6 @@ still part of the same framework._
 
 ## Core
 
-<!-- Custom CSS addition in the theme/custom.css  -->
 <div class="modules-table">
 
 | Module                                                                                         | Description                                                             | Chapter                                                     |
@@ -6452,58 +6065,6 @@ types that are available without explicit `use` import:
 The source code of the Sui Framework is available in the
 [Sui repository](https://github.com/MystenLabs/sui/tree/main/crates/sui-framework/packages/sui-framework/sources).
 
-<!--
-
-Modules:
-
-Coins:
-- sui::pay
-- sui::sui
-- sui::coin
-- sui::token
-- sui::balance
-- sui::deny_list
-
-Commerce:
-- sui::kiosk
-- sui::display
-- sui::kiosk_extension
-- sui::transfer_policy
-
-
-Utilities:
-+ sui::bcs
-+ sui::hex
-- sui::math (deprecated)
-+ sui::types
-+ sui::borrow
-
-
-- sui::authenticator
-
-- sui::priority_queue
-- sui::table_vec
-
-- sui::url
-- sui::versioned
-
-- sui::prover
-- sui::random
-
-- sui::bls12381
-- sui::ecdsa_k1
-- sui::ecdsa_r1
-- sui::ecvrf
-- sui::ed25519
-(also mention verifier 16 growth)
-- sui::group_ops
-- sui::hash
-- sui::hmac
-- sui::poseidon
-- sui::zklogin_verified_id
-- sui::zklogin_verified_issuer
-
- -->
 
 
 ---
@@ -6609,7 +6170,7 @@ function will automatically be called when the module is published.
 > All of the modules' `init` functions are called during the publishing process. Currently, this
 > behavior is limited to the publish command and does not extend to package upgrades.
 >
-> <!-- [package upgrades]() -->
+> 
 
 ```move
 module book::shop;
@@ -7433,7 +6994,7 @@ As you can see, custom types do work as field names but as long as they can be _
 module, in other words - if they are _internal_ to the module and defined in it. This limitation on
 struct packing can open up new ways in the design of the application.
 
-This approach is used in the Object Capability<!--[]](./object-capability)--> pattern, where an
+This approach is used in the Object Capability pattern, where an
 application can authorize a foreign object to perform operations in it while not exposing the
 capabilities to other modules.
 
@@ -7443,7 +7004,7 @@ capabilities to other modules.
 
 Mutable access to `UID` is a security risk. Exposing `UID` of your type as a mutable reference can
 lead to unwanted modifications or removal of the object's dynamic fields. Additionally, it affects
-the Transfer to Object<!--[](./../storage/transfer-to-object)--> and
+the Transfer to Object and
 [Dynamic Object Fields](./dynamic-object-fields). Make sure to understand the implications before
 exposing the `UID` as a mutable reference.
 
@@ -7926,11 +7487,6 @@ linked_table.destroy_empty();
 [bag-framework]: https://docs.sui.io/references/framework/sui/bag
 [object-bag-framework]: https://docs.sui.io/references/framework/sui/object_bag
 
-<!-- TODO! -->
-
-<!-- ## Choosing a Collection Type
-
-Depending on the needs of your project, you may choose to -->
 
 
 ---
@@ -8067,13 +7623,6 @@ While regular [Witness](./witness-pattern) is a great way to statically prove th
 type, there are cases where we need to ensure that a Witness is instantiated only once. And this is
 the purpose of the One Time Witness (OTW).
 
-<!--
-Notes to self:
-  - background first or definition first - which one is better?
-  - why would someone read this section?
-  - if we removed the OTW from docs, then we should give definition first.
--->
-
 ## Definition
 
 The OTW is a special type of Witness that can be used only once. It cannot be manually created and
@@ -8121,98 +7670,6 @@ public fun takes_witness<T: drop>(otw: T) {
 }
 ```
 
-<!-- ## Background
-
-Before we get to actual definition of the OTW, let's consider a simple example. We want to build a generic implementation of a Coin type, which can be initialized with a witness. A instance of a witness `T` is used to create a new `TreasuryCap<T>` which is then used to mint a new `Coin<T>`.
-
-```move
-module book::simple_coin {
-
-    /// Controls the supply of the Coin.
-    public struct TreasuryCap<phantom T> has key, store {
-        id: UID,
-        total_supply: u64,
-    }
-
-    /// The Coin type where the `T` is a witness.
-    public struct Coin<phantom T> has key, store {
-        id: UID,
-        value: u64,
-    }
-
-    /// Create a new TreasuryCap with a witness.
-    /// Vulnerable: we can create multiple TreasuryCap<T> with the same witness.
-    public fun new<T: drop>(_: T, ctx: &mut TxContext): TreasuryCap<T> {
-        TreasuryCap { id: object::new(ctx), total_supply: 0 }
-    }
-
-    /// We use a regular witness to authorize the minting.
-    public fun mint<T>(
-        treasury: &mut TreasuryCap<T>,
-        value: u64,
-        ctx: &mut TxContext
-    ) {
-        treasury.total_supply = treasury.total_supply + value;
-        Coin { id: object::new(ctx), value }
-    }
-}
-```
-
-A dishonest developer would be able to create multiple `TreasuryCap`s with the same witness, and mint more `Coin`s than expected. Here is an example of such a malicious module:
-
-```move
-module book::simple_coin_cheater {
-    /// The Coin witness.
-    public struct Move has drop {}
-
-    /// Initialize the TreasuryCap with the Move witness.
-    /// ...and do it twice! >_<
-    fun init(ctx: &mut TxContext) {
-        let treasury_cap = book::simple_coin::new(Move {}, ctx);
-        let secret_treasury = book::simple_coin::new(Move {}, ctx);
-
-        transfer::public_transfer(treasury_cap, ctx.sender())
-        transfer::public_transfer(secret_treasury, ctx.sender())
-    }
-}
-
-```
-
-The example above has no protection against issuing multiple `TreasuryCap`s with the same witness, and in real-world application, this creates a problem of trust. If it was a human decision to support a Coin based on this implementation, they would have to make sure that:
-
-- there is only one `TreasuryCap` for a given `T`.
-- the module cannot be upgraded to issue more `TreasuryCap`s.
-- the module code does not contain any backdoors to issue more `TreasuryCap`s.
-
-However, it is not possible to check any of these conditions inside the Move code. And to prevent the need for trust, Sui introduces the OTW pattern.
-
-## Solving the Coin Problem
-
-To solve the case of multiple `TreasuryCap`s, we can use the OTW pattern. By defining the `COIN_OTW` type as an OTW, we can ensure that the `COIN_OTW` is used only once. The `COIN_OTW` is then used to create a new `TreasuryCap` and mint a new `Coin`.
-
-```move
-module book::coin_otw {
-
-    /// The OTW for the `book::coin_otw` module.
-    struct COIN_OTW has drop {}
-
-    /// Receive the instance of `COIN_OTW` as the first argument.
-    fun init(otw: COIN_OTW, ctx: &mut TxContext) {
-        let treasury_cap = book::simple_coin::new(COIN_OTW {}, ctx);
-        transfer::public_transfer(treasury_cap, ctx.sender())
-    }
-}
-```
-
-
- -->
-
-<!-- ## Case Study: Coin
-
-TODO: add a story behind TreasuryCap and Coin
-
--->
-
 ## Summary
 
 The OTW pattern is a great way to ensure that a type is used only once. Most of the developers
@@ -8224,13 +7681,6 @@ once.
 OTW is a powerful tool that lays the foundation for the [Publisher](./publisher) object, which we
 will cover in the next section.
 
-<!--
-
-## Questions
-- What other ways could be used to prevent multiple `TreasuryCap`s?
-- Are there any other ways to use the OTW?
-
- -->
 
 
 ---
@@ -8611,7 +8061,6 @@ they natively have the `sender` field which is the address which sent the transa
 it is important to note that the timestamp is relative to the node and may vary a little from node
 to node.
 
-<!-- ## Reliability -->
 
 
 ---
@@ -8787,11 +8236,6 @@ Hot potato can be used to link together different modules in a compositional way
 define ways to interact with the hot potato, for example, stamp it with a type signature, or to
 extract some information from it. This way, the hot potato can be passed between different modules,
 and even different packages within the same transaction.
-
-<!-- TODO: add [Request Pattern](./request-pattern)
-
-The most important compositional pattern is the Request Pattern, which we will cover in the next
-section. -->
 
 ### Usage in the Sui Framework
 
@@ -8992,11 +8436,6 @@ let my_struct = bcs.peel_vec!(|bcs| MyStruct {
 ```
 
 ### Decoding Option
-
-<!--
-> Coincidentally, Option, being a vector in Move, overlaps with the representation of an enum with a
-> single variant in BCS, and makes Option in Rust fully compatible with the one in Move.
--->
 
 [Option](./../move-basics/option) in Move is represented as a vector of either 0 or 1 element. To
 read an option, you would treat it like a vector and check its length (first byte - either 1 or 0).
@@ -12028,22 +11467,6 @@ use fun my_custom_function as vector.do_magic;
 public use fun kiosk_owner_cap_for as KioskOwnerCap.kiosk;
 ```
 
-<!-- ## Macros
-
-Macros are introduced in Move 2024. And `assert!` is no longer a built-in function - Instead, it's a macro.
-
-```move
-// can be called as for!(0, 10, |i| call(i));
-macro fun for($start: u64, $stop: u64, $body: |u64|) {
-    let mut i = $start;
-    let stop = $stop;
-    while (i < stop) {
-        $body(i);
-        i = i + 1
-    }
-}
-```
- -->
 
 
 ---
@@ -12103,15 +11526,7 @@ fun create_book_internal(ctx: &mut TxContext): Book {
 }
 ```
 
-<!--
-## Using entry and friend functions
-
-TODO: Add a section about entry and friend functions
--->
-
 ## Versioning objects
-
-<!-- This practice is for function version locking based on a shared state -->
 
 To discard previous versions of the package, the objects can be versioned. As long as the object
 contains a version field, and the code which uses the object expects and asserts a specific version,
@@ -12141,8 +11556,6 @@ public fun mutate(state: &mut SharedState) {
 
 ## Versioning configuration with dynamic fields
 
-<!-- This practice is for versioning the contents / structure of objects -->
-
 There's a common pattern in Sui which allows changing the stored configuration of an object while
 retaining the same object signature. This is done by keeping the base object simple and versioned
 and adding an actual configuration object as a dynamic field. Using this _anchor_ pattern, the
@@ -12169,9 +11582,6 @@ public struct ConfigV1 has store {
 // ...
 ```
 
-<!-- ## Modular architecture -->
-
-<!-- TODO: add two patterns for modular architecture: object capability (SuiFrens) and witness registry (SuiNS) -->
 
 
 ---
@@ -13100,7 +12510,6 @@ mind outside a blockchain context as well.
 Move takes its cue from [Rust](https://www.rust-lang.org/) by using resource types with move (hence
 the name) semantics as an explicit representation of digital assets, such as currency.
 
-<!-- TODO do we have a pre-existing summary we can copy in here? -->
 
 
 ---
@@ -13215,7 +12624,6 @@ used in the functions of a module.
 The [`friend`](./friends) syntax is a deprecated concept for specifying a list of trusted
 modules. The concept has been superseded by [`public(package)`](./functions#visibility)
 
-<!-- TODO member access rules -->
 
 
 ---
@@ -13650,8 +13058,6 @@ library:
 | `vector::remove<T>(v: &mut vector<T>, i: u64): T`          | Remove the `i`th element of the vector `v`, shifting all subsequent elements. This is O(n) and preserves ordering of elements in the vector                     | If `i` is out of bounds        |
 | `vector::swap_remove<T>(v: &mut vector<T>, i: u64): T`     | Swap the `i`th element of the vector `v` with the last element and then pop the element, This is O(1), but does not preserve ordering of elements in the vector | If `i` is out of bounds        |
 
-<!-- TODO we should just link out to generated stdlib docs? Maybe?  -->
-
 More operations may be added over time.
 
 ## Example
@@ -13954,7 +13360,6 @@ support storing references inside of structs. In short, Move's reference safety 
 expand to support stored references, and it is something we are keeping an eye on as the language
 evolves.
 
-<!-- TODO actually document a sketch of the borrow rules -->
 
 
 ---
@@ -14016,7 +13421,6 @@ fun returns_unit_2(): () { }
 
 // explicit version of `returns_unit_1` and `returns_unit_2`
 fun returns_unit_3(): () { () }
-
 
 fun returns_3_values(): (u64, bool, address) {
     (0, false, @0x42)
@@ -14882,8 +14286,6 @@ Move's type system will prevent a value from being used after it is moved. This 
 check described in [`let` declaration](#let-bindings) that prevents local variables from being used
 before it is assigned a value.
 
-<!-- For more information, see TODO future section on ownership and move semantics. -->
-
 ### Inference
 
 As mentioned above, the Move compiler will infer a `copy` or `move` if one is not indicated. The
@@ -15142,8 +14544,6 @@ cannot be met.
 
 In this example, the function will pop two items off of the vector, but will abort early if the
 vector does not have two items
-
-<!-- {{#include ../../packages/reference/sources/abort-and-assert.move}} -->
 
 ```move
 fun pop_twice<T>(v: &mut vector<T>): (T, T) {
@@ -19339,10 +18739,6 @@ storage where each object has a unique, 32-byte ID. `store` is then used to both
 can be stored inside of an object, and is also used to indicate what types can be transferred
 outside of their defining module.
 
-<!-- TODO future section on detailed walk through maybe. We have some examples at the end but it might be helpful to explain why we have precisely this set of abilities
-
-If you are already somewhat familiar with abilities from writing Move programs, but are still confused as to what is going on, it might be helpful to skip to the [motivating walkthrough](#motivating-walkthrough) section to get an idea of what the system is setup in the way that it is. -->
-
 ## The Four Abilities
 
 The four abilities are:
@@ -19503,8 +18899,6 @@ public struct MyDataEnum has store {
 
 When abilities are annotated on a generic type, not all instances of that type are guaranteed to
 have that ability. Consider this struct declaration:
-
-<!-- file=packages/reference/sources/abilities.move anchor=conditional_abilities -->
 
 ```move
 public struct Cup<T> has copy, drop, store, key { item: T }
@@ -20548,7 +19942,7 @@ fun borrow_first(input: &Vs): &u64 {
     &input.vs[0].v[0]
     // translates to `vector::borrow(&vector::borrow(&input.vs, 0).v, 0)`
 }
-````
+```
 
 ### Index Functions Take Flexible Arguments
 
@@ -21546,7 +20940,6 @@ Failures in 0x0::my_module:
 │ Test timed out
 └──────────────────
 
-
 ┌── make_sure_zero_coin_fails ──────
 │ error[E11001]: test failure
 │    ┌─ ./sources/my_module.move:22:27
@@ -21558,7 +20951,6 @@ Failures in 0x0::my_module:
 │
 │
 └──────────────────
-
 
 ┌── make_sure_zero_coin_fails2 ──────
 │ error[E11001]: test failure
@@ -21643,7 +21035,6 @@ introductory tutorial with examples, see the guide page.)
 
 The `#[mode(...)]` may be placed on modules and module members (functions, structs, constants,
 etc.).
-
 
 ```move
 #[mode(name1, name2, ...)]
@@ -21797,7 +21188,6 @@ extend module app::step_counter {
 In this usage, you extend both the `counter::counter` module (to add helpers and tests) and the
 `app::step_counter` module (to add tests for the step logic). All of this code lives in your
 package, and it only affects test builds. The publishable code remains unchanged.
-
 
 > **Note**: Extensions can only add new items; they cannot modify or remove existing items. In >
 > addition, only extensions defined in the root package are applied (extensions in dependencies are

@@ -8,4 +8,3 @@ storage model or a blockchain, and explains the essential concepts of the langua
 features specific to Sui, such as storage functions and abilities, refer to the
 [Using Objects](./../storage/) chapter, however, it is recommended to start with this chapter first.
 
-<!-- TODO: cross link with Reference -->

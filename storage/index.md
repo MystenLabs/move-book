@@ -11,4 +11,3 @@ continuing.
 
 [object-model]: ./../object
 
-<!-- Mention what Sui Verifier is! Bytecode level verification. -->

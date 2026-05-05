@@ -2,8 +2,6 @@
 
 # Primitive Types
 
-<!-- TODO: Shall we split this into two pages? Maybe give an overview and focus more on specifics? -->
-
 For simple values, Move has a number of built-in primitive types. They're the foundation for all
 other types. The primitive types are:
 
@@ -111,9 +109,6 @@ multiplication, division, and modulus (remainder). The syntax for these operatio
 The types of the operands _must match_, or the compiler will raise an error. The result of the
 operation will be of the same type as the operands. To perform operations on different types, the
 operands need to be cast to the same type.
-
-<!-- TODO: add examples + parentheses for arithmetic operations -->
-<!-- TODO: add bitwise operators -->
 
 ### Casting with `as`
 

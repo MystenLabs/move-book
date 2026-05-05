@@ -14,10 +14,6 @@ storage where each object has a unique, 32-byte ID. `store` is then used to both
 can be stored inside of an object, and is also used to indicate what types can be transferred
 outside of their defining module.
 
-<!-- TODO future section on detailed walk through maybe. We have some examples at the end but it might be helpful to explain why we have precisely this set of abilities
-
-If you are already somewhat familiar with abilities from writing Move programs, but are still confused as to what is going on, it might be helpful to skip to the [motivating walkthrough](#motivating-walkthrough) section to get an idea of what the system is setup in the way that it is. -->
-
 ## The Four Abilities
 
 The four abilities are:
@@ -178,8 +174,6 @@ public struct MyDataEnum has store {
 
 When abilities are annotated on a generic type, not all instances of that type are guaranteed to
 have that ability. Consider this struct declaration:
-
-<!-- file=packages/reference/sources/abilities.move anchor=conditional_abilities -->
 
 ```move
 public struct Cup<T> has copy, drop, store, key { item: T }

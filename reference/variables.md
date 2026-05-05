@@ -778,8 +778,6 @@ Move's type system will prevent a value from being used after it is moved. This 
 check described in [`let` declaration](#let-bindings) that prevents local variables from being used
 before it is assigned a value.
 
-<!-- For more information, see TODO future section on ownership and move semantics. -->
-
 ### Inference
 
 As mentioned above, the Move compiler will infer a `copy` or `move` if one is not indicated. The

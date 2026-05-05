@@ -10,7 +10,7 @@ function will automatically be called when the module is published.
 > All of the modules' `init` functions are called during the publishing process. Currently, this
 > behavior is limited to the publish command and does not extend to package upgrades.
 >
-> <!-- [package upgrades]() -->
+> 
 
 ```move
 module book::shop;

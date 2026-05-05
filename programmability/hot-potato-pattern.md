@@ -172,11 +172,6 @@ define ways to interact with the hot potato, for example, stamp it with a type s
 extract some information from it. This way, the hot potato can be passed between different modules,
 and even different packages within the same transaction.
 
-<!-- TODO: add [Request Pattern](./request-pattern)
-
-The most important compositional pattern is the Request Pattern, which we will cover in the next
-section. -->
-
 ### Usage in the Sui Framework
 
 The pattern is used in various forms in the Sui Framework. Here are some examples:

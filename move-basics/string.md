@@ -11,17 +11,6 @@ provides an ASCII `String` type and its methods.
 > inputs. As a result, in many cases, constructing a String directly within the
 > [Transaction Block](./../concepts/what-is-a-transaction) is unnecessary.
 
-<!--
-
-## Bytestring Literal
-
-TODO:
-
-- reference vector
-- reference literals - [Expression](./expression#literals)
-
--->
-
 ## Strings are bytes
 
 No matter which type of string you use, it is important to know that strings are just bytes. The

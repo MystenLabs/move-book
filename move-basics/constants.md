@@ -2,24 +2,6 @@
 
 # Constants
 
-<!--
-
-Chapter: Basic Syntax
-Goal: Introduce constants.
-Notes:
-    - constants are immutable
-    - constants are private
-    - start with a capital letter always
-    - stored in the bytecode (but w/o a name)
-    - mention standard for naming constants
-
-Links:
-    - next section (abort and assert)
-    - coding conventions (constants)
-    - constants (language reference)
-
- -->
-
 Constants are immutable values that are defined at the module level. They often serve as a way to
 give names to static values that are used throughout a module. For example, if there's a default
 price for a product, you might define a constant for it. Constants are stored in the module's

@@ -110,4 +110,3 @@ used in the functions of a module.
 The [`friend`](./friends) syntax is a deprecated concept for specifying a list of trusted
 modules. The concept has been superseded by [`public(package)`](./functions#visibility)
 
-<!-- TODO member access rules -->

@@ -58,7 +58,6 @@ fun returns_unit_2(): () { }
 // explicit version of `returns_unit_1` and `returns_unit_2`
 fun returns_unit_3(): () { () }
 
-
 fun returns_3_values(): (u64, bool, address) {
     (0, false, @0x42)
 }

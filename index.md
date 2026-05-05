@@ -2,8 +2,6 @@
 
 # The Move Book
 
-<!-- TODO: insert author(s) -->
-
 This is The Move Book - a comprehensive guide to the Move programming language and the Sui
 blockchain. The book is intended for developers who are interested in learning about Move and
 building on Sui.

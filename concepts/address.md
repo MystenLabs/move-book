@@ -2,31 +2,6 @@
 
 # Address
 
-<!--
-
-Chapter: Concepts
-Goal: explain locations and addresses
-Notes:
-    - don't talk about the type
-    - packages, accounts and objects are identified by addresses
-    - addresses are 32 bytes long
-    - addresses are unique
-    - represented as hex strings (64 characters) prefixed with 0x
-    - addresses are case insensitive
-
-Links:
-    - address type
-
-
-- mention what an address is, because it identifies a package
-    - address is used for packages, objects, and accounts
-    - address is a 32-byte value
-    - address is written in hexadecimal notation
-    - don't describe the type yet
-    - focus on the concept of address on blockchain and on Sui in particular
-
- -->
-
 Address is a unique identifier of a location on the blockchain. It is used to identify
 [packages](./packages), [accounts](./what-is-an-account), and [objects](./../object/object-model).
 Address has a fixed size of 32 bytes and is usually represented as a hexadecimal string prefixed

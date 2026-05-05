@@ -11,7 +11,6 @@ still part of the same framework._
 
 ## Core
 
-<!-- Custom CSS addition in the theme/custom.css  -->
 <div class="modules-table">
 
 | Module                                                                                         | Description                                                             | Chapter                                                     |
@@ -89,55 +88,3 @@ types that are available without explicit `use` import:
 The source code of the Sui Framework is available in the
 [Sui repository](https://github.com/MystenLabs/sui/tree/main/crates/sui-framework/packages/sui-framework/sources).
 
-<!--
-
-Modules:
-
-Coins:
-- sui::pay
-- sui::sui
-- sui::coin
-- sui::token
-- sui::balance
-- sui::deny_list
-
-Commerce:
-- sui::kiosk
-- sui::display
-- sui::kiosk_extension
-- sui::transfer_policy
-
-
-Utilities:
-+ sui::bcs
-+ sui::hex
-- sui::math (deprecated)
-+ sui::types
-+ sui::borrow
-
-
-- sui::authenticator
-
-- sui::priority_queue
-- sui::table_vec
-
-- sui::url
-- sui::versioned
-
-- sui::prover
-- sui::random
-
-- sui::bls12381
-- sui::ecdsa_k1
-- sui::ecdsa_r1
-- sui::ecvrf
-- sui::ed25519
-(also mention verifier 16 growth)
-- sui::group_ops
-- sui::hash
-- sui::hmac
-- sui::poseidon
-- sui::zklogin_verified_id
-- sui::zklogin_verified_issuer
-
- -->

@@ -2,24 +2,6 @@
 
 # Address Type
 
-<!--
-
-Chapter: Basic Syntax
-Goal: Introduce the address type
-Notes:
-    - a special type
-    - named addresses via the Move.toml
-    - address literals
-    - 0x2 is 0x0000000...02
-
-Links:
-    - address concept
-    - transaction context
-    - Move.toml
-    - your first move
-
- -->
-
 Move uses a special type called [address](./../concepts/address) to represent addresses. It is a
 32-byte value that can represent any address on the blockchain. Addresses can be written in two
 forms: hexadecimal addresses prefixed with 0x and named addresses.

@@ -229,4 +229,3 @@ support storing references inside of structs. In short, Move's reference safety 
 expand to support stored references, and it is something we are keeping an eye on as the language
 evolves.
 
-<!-- TODO actually document a sketch of the borrow rules -->

@@ -9,16 +9,10 @@ the blockchain. Subsequently, the introduction of the ERC-721 standard marked a 
 evolution, popularizing the concept of non-fungible tokens (NFTs), which represent unique,
 indivisible assets. These standards laid the groundwork for the complex digital assets we see today.
 
-<!-- ## Move and Digital Assets -->
-
-<!-- note: consider "native" -> "fine-grained" -->
-
 However, Ethereum's programming model lacked a native representation of assets. In other words,
 externally, a Smart Contract behaved like an asset, but the language itself did not have a way to
 inherently represent assets. From the start, Move aimed to provide a first-class abstraction for
 assets, opening up new avenues for thinking about and programming assets.
-
-<!-- Move was initially created in 2018 as part of the Libra project. The language was designed to address shortcomings in existing smart contract languages, especially in handling assets and access control. The Move language aims to provide first-class abstractions for these concepts, improving the safety and productivity of smart contract programming. -->
 
 It is important to highlight which properties are essential for an asset:
 

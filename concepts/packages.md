@@ -2,22 +2,6 @@
 
 # Package
 
-<!--
-
-    - packages and how they're stored
-        - overview of packages and their contents (use a diagram)
-        - how a package is created, and what it consists of
-        - what is the package manifest
-        - describe how "name" field is used
-        - mention the "edition" field
-        - what are the folders in a package and what are they for
-        - how packages are imported (give Sui as an example)
-        - what are addresses, and how they identify packages
-        - how packages are published
-        - leave a note that packages are also *upgradable*
-
--->
-
 Move is a language for writing smart contracts - programs that are stored and run on the blockchain.
 A single program is organized into a package. A package is published on the blockchain and is
 identified by an [address](./address). A published package can be interacted with by sending

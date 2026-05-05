@@ -32,7 +32,6 @@ introductory tutorial with examples, see the guide page.)
 The `#[mode(...)]` may be placed on modules and module members (functions, structs, constants,
 etc.).
 
-
 ```move
 #[mode(name1, name2, ...)]
 module <addr_opt>::<ident> { ... }

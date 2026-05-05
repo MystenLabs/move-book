@@ -134,43 +134,6 @@ structs.
 > `public use fun hero_health as Hero.health`, which provides controlled access to the private
 > field.
 
-<!-- ## Aliasing an external module's method
-
-It is also possible to associate a function defined in another module with a struct from the current
-module. Following the same approach, we can create an alias for the method defined in another
-module. Let's use the `bcs::to_bytes` method from the [Standard Library](./standard-library) and
-associate it with the `Hero` struct. It will allow serializing the `Hero` struct to a vector of
-bytes.
-
-```move
-// TODO: better example (external module...)
-module book::hero_to_bytes;
-
-// Alias for the `bcs::to_bytes` method. Imported aliases should be defined
-// in the top of the module.
-// public use fun bcs::to_bytes as Hero.to_bytes;
-
-/// A struct representing a hero.
-public struct Hero has drop {
-    health: u8,
-    mana: u8,
-}
-
-/// Create a new Hero.
-public fun new(): Hero { Hero { health: 100, mana: 100 } }
-
-// #[test_only]
-// use std::unit_test::assert_eq;
-
-#[test]
-// Test the methods of the `Hero` struct.
-fun test_hero_serialize() {
-    // let mut hero = new();
-    // let serialized = hero.to_bytes();
-    // assert_eq!(serialized.length(), 3);
-}
-``` -->
-
 ## Further Reading
 
 - [Method Syntax](./../../reference/method-syntax) in the Move Reference.

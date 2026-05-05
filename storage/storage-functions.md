@@ -48,12 +48,6 @@ public fun borrow<T>(value: &T) { /* value is borrowed here! can be read */ abor
 public fun borrow_mut<T>(value: &mut T) { /* value is mutably borrowed here! */ abort }
 ```
 
-<!-- TODO part on:
-    - object does not have an associated storage type
-    - the same type of object can be stored differently
-    - the objects must be specified in the transaction by their ID
- -->
-
 ## Internal Rule in Transfer Functions
 
 Storage operations can only be performed on objects, and come in two forms: _internal_ and _public_.

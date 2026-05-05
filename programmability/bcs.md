@@ -174,11 +174,6 @@ let my_struct = bcs.peel_vec!(|bcs| MyStruct {
 
 ### Decoding Option
 
-<!--
-> Coincidentally, Option, being a vector in Move, overlaps with the representation of an enum with a
-> single variant in BCS, and makes Option in Rust fully compatible with the one in Move.
--->
-
 [Option](./../move-basics/option) in Move is represented as a vector of either 0 or 1 element. To
 read an option, you would treat it like a vector and check its length (first byte - either 1 or 0).
 

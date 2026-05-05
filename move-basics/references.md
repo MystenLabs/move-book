@@ -2,22 +2,6 @@
 
 # References
 
-<!--
-
-Chapter: Basic Syntax
-Goal: Show what the borrow checker is and how it works.
-Notes:
-    - give the metro pass example
-    - show why passing by reference is useful
-    - mention that reference comparison is faster
-    - references can be both mutable and immutable
-    - immutable access to shared objects is faster
-    - implicit copy
-    - moving the value
-    - unpacking a reference (mutable and immutable)
-
- -->
-
 In the [Ownership and Scope](./ownership-and-scope) section, we explained that when a value is
 passed to a function, it is _moved_ to the function's scope. This means that the function becomes
 the owner of the value, and the original scope (owner) can no longer use it. This is an important
@@ -56,8 +40,6 @@ public fun purchase(/* pass a Coin */): Card {
     Card { uses: USES }
 }
 ```
-
-<!-- In [the previous section](./ownership-and-scope) we explained the ownership and scope in Move. We showed how the value is *moved* to a new scope, and how it changes the owner. In this section, we will explain how to *borrow* a reference to a value to avoid moving it, and how Move's *borrow checker* ensures that the references are used correctly. -->
 
 ## References
 
@@ -147,36 +129,3 @@ fun test_card_2024() {
 - [References](/reference/primitive-types/references) in the Move
   Reference.
 
-<!-- ## Dereference and Copy -->
-
-<!-- TODO: defer and copy, *& -->
-
-<!-- ## Notes -->
-
-<!--
-    Move 2024 is great but it's better to show the example with explicit &t and &mut t
-    ...and then say that the example could be rewritten with the new syntax
-
-
--->
-
-<!-- ## Move 2024
-
-Here's the test from this page written with the Move 2024 syntax:
-
-```move
-#[test]
-fun test_card_2024() {
-    // declaring variable as mutable because we modify it
-    let mut card = purchase();
-
-    card.enter_metro(); // modify the card but don't move it
-    assert!(card.is_valid()); // read the card!
-
-    card.enter_metro(); // modify the card but don't move it
-    card.enter_metro(); // modify the card but don't move it
-
-    card.recycle(); // move the card out of the scope
-}
-```
--->

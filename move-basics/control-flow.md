@@ -2,25 +2,6 @@
 
 # Control Flow
 
-<!--
-
-Chapter: Basic Syntax
-Goal: Introduce control flow statements.
-Notes:
-    - if/else is an expression
-    - while () {} loop
-    - continue and break
-    - loop {}
-    - infinite loop is possible but will lead to gas exhaustion
-    - return keyword
-    - if is an expression and as such requires a semicolon (!!!)
-
-Links:
-    - reference (control flow)
-    - coding conventions (control flow)
-
- -->
-
 Control flow statements are used to control the flow of execution in a program. They are used to
 make decisions, repeat a block of code, or exit a block of code early. Move includes the following
 control flow statements (explained in detail below):
@@ -82,8 +63,6 @@ than 0, `y` is assigned the value 1; otherwise, it is assigned 0. The `else` blo
 because both branches of the `if` expression must return a value of the same type. Omitting the
 `else` block would result in a compiler error, as it ensures all possible branches are accounted for
 and type safety is maintained.
-
-<!-- TODO: add an error -->
 
 Conditional expressions are among the most important control flow statements in Move. They evaluate
 user-provided input or stored data to make decisions. One key use case is in the

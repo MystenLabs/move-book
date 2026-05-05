@@ -84,15 +84,6 @@ assert_eq!(artist.name, b"Led Zeppelin".to_string());
 Only the module defining the struct can access its fields (both mutably and immutably). So the above
 code should be in the same module as the `Artist` struct.
 
-<!-- ## Accessing Fields
-
-Struct fields are private and can be accessed only by the module defining the struct. To access the fields of a struct, you can use the `.` operator followed by the field name.
-
-```move
-# anchor: access file=packages/samples/sources/move-basics/struct.move anchor=access
-```
--->
-
 ## Unpacking a struct
 
 Structs are non-discardable by default, meaning that the initialized struct value must be used,

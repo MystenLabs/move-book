@@ -17,8 +17,6 @@ Objects in Sui have the following properties:
   is generated upon the object's creation and is immutable. It's used to track and identify objects
   within the system.
 
-<!-- Note: consider "shared across many entities" -->
-
 - **Owner:** Every object is associated with an owner, who has control over changes to the object.
   Ownership on Sui can be exclusive to an account, shared across the network, or frozen, allowing
   read-only access without modification or transfer capabilities. We will discuss ownership in more

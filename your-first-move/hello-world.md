@@ -98,8 +98,6 @@ named address (or an address literal), and the module name. The module name is a
 for the module and has to be unique within the package. The module name is used to reference the
 module from other modules or transactions.
 
-<!-- And the module name has to be a valid Move identifier: alphanumeric with underscores to separate words. A common convention is to call modules (and functions) in snake_case - all lowercase, with underscores. Coding conventions are important for readability and maintainability of the code, we summarize them in the Coding Conventions section. -->
-
 ### Tests
 
 The `tests/` directory contains package tests. The compiler excludes these files in the regular

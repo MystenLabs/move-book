@@ -88,7 +88,6 @@ In this usage, you extend both the `counter::counter` module (to add helpers and
 `app::step_counter` module (to add tests for the step logic). All of this code lives in your
 package, and it only affects test builds. The publishable code remains unchanged.
 
-
 > **Note**: Extensions can only add new items; they cannot modify or remove existing items. In >
 > addition, only extensions defined in the root package are applied (extensions in dependencies are
 > not).

@@ -2,26 +2,6 @@
 
 # Aborting Execution
 
-<!-- Consider "aborting execution" -->
-
-<!--
-
-Chapter: Basic Syntax
-Goal: Introduce abort keyword and `assert!` macro.
-Notes:
-    - previous chapter mentions constants
-    - error constants standard ECamelCase
-    - `assert!` macro
-    - asserts should go before the main logic
-    - Move has no catch mechanism
-    - abort codes are local to the module
-    - there are no error messages emitted
-    - error codes should handle all possible scenarios in this module
-
-Links:
-    - constants (previous section)
- -->
-
 A transaction can either succeed or fail. Successful execution applies all changes made to objects
 and on-chain data, and the transaction is committed to the blockchain. Alternatively, if a
 transaction aborts, changes are not applied. Use the `abort` keyword to abort a transaction and

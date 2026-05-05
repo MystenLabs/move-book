@@ -27,8 +27,6 @@ fun call_internal() {
 
 The following code will not compile:
 
-<!-- TODO: add failure flag to example -->
-
 ```move
 module book::try_calling_internal;
 

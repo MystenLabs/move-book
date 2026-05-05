@@ -26,8 +26,6 @@ edition for the compiler.
 - `name` - the name of the package when it is imported;
 - `edition` - the edition of the Move language; currently, the only valid value is `2024`.
 
-<!-- published-at -->
-
 ### Dependencies
 
 The `[dependencies]` section is used to specify the dependencies of the project. Each dependency is

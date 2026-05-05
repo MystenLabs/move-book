@@ -2,18 +2,6 @@
 
 # Comments
 
-<!--
-
-Chapter: Basic Syntax
-Goal: Introduce comments.
-Notes:
-    - doc comments are used in docgen
-    - only public members are documented
-    - doc comments are placed in between attributes and the definition
-    - doc comments are allowed for: modules, structs, functions, constants
-    - give an example of how doc comments are translated
- -->
-
 Comments are a way to add notes or document your code. They are ignored by the compiler and don't
 result in Move bytecode. You can use comments to explain what your code does, add notes to yourself
 or other developers, temporarily remove a part of your code, or generate documentation. There are
@@ -90,4 +78,3 @@ fun do_something() {}
 Unlike some languages, whitespace (spaces, tabs, and newlines) have no impact on the meaning of the
 program.
 
-<!-- TODO: docgen, which members are in the documentation -->

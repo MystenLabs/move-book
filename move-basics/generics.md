@@ -214,8 +214,6 @@ public struct CopyableDroppable<T: copy + drop> {
 The Move Compiler will enforce that the type parameter `T` has the specified abilities. If the type
 parameter does not have the specified abilities, the code will not compile.
 
-<!-- TODO: failure case -->
-
 ```move
 /// Type without any abilities.
 public struct NoAbilities {}

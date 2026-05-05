@@ -39,8 +39,6 @@ sequencing to ensure that the state is updated and consistent across all nodes. 
 execution through _consensus_, where transactions accessing shared objects are subject to the
 agreement process to maintain network consistency.
 
-<!-- On Sui consensus is per-object - mention!!! -->
-
 ## Objects owned by Objects
 
 Lastly, it is important to mention that objects owned by other objects are subject to the same rules

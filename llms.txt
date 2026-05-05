@@ -1,15 +1,8 @@
 # The Move Book
 
-> A comprehensive guide to the Move programming language on Sui.
+> A comprehensive guide to the Move programming language on Sui. Additional resources: [EBNF grammar](https://move-book.com/move.ebnf), [Move semantics](https://move-book.com/move-semantics.md), [full book for large-context models](https://move-book.com/llms-full.txt).
 
 The Move Book covers the Move language fundamentals, Sui object model, advanced programmability patterns, and testing. The Move Reference provides formal language specification.
-
-## Move Language
-
-- [Move language syntax (EBNF grammar)](https://move-book.com/move.ebnf)
-- [Move semantics](https://move-book.com/move-semantics.md)
-- [Best practices](https://move-book.com/guides/code-quality-checklist.md)
-- [Full book content for large-context models](https://move-book.com/llms-full.txt)
 
 ## Book
 
@@ -148,4 +141,8 @@ The Move Book covers the Move language fundamentals, Sui object model, advanced 
   - [19. Module Extensions](https://move-book.com/reference/extensions.md): Move module extensions reference: add test-only or mode-gated declarations to existing modules from external packages.
   - [20. Coding Conventions](https://move-book.com/reference/coding-conventions.md): Move coding conventions: naming standards, formatting guidelines, and style recommendations for Sui Move development.
   - [21. Friends](https://move-book.com/reference/friends.md): Move friends reference (deprecated): the legacy friend syntax replaced by public(package) visibility in Move 2024.
+
+## Site
+
+- [Search](https://move-book.com/search.md)
 

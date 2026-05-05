@@ -2,25 +2,6 @@
 
 # Importing Modules
 
-<!--
-    TODO: create a better example for:
-        1. Importing a module in general
-        2. Importing a member
-        3. Importing multiple members
-        4. Grouping imports
-        5. Self keyword for groups
--->
-
-<!--
-
-Goals:
-    - Show the import syntax
-    - Local dependencies
-    - External dependencies
-    - Importing modules from other packages
-
- -->
-
 Move achieves high modularity and code reuse by allowing module imports. Modules within the same
 package can import each other, and a new package can depend on already existing packages and use
 their modules too. This section will cover the basics of importing modules and how to use them in

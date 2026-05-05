@@ -34,8 +34,6 @@ cannot be met.
 In this example, the function will pop two items off of the vector, but will abort early if the
 vector does not have two items
 
-<!-- {{#include ../../packages/reference/sources/abort-and-assert.move}} -->
-
 ```move
 fun pop_twice<T>(v: &mut vector<T>): (T, T) {
     if (v.length() < 2) abort 42;

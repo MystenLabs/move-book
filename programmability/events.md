@@ -73,4 +73,3 @@ they natively have the `sender` field which is the address which sent the transa
 it is important to note that the timestamp is relative to the node and may vary a little from node
 to node.
 
-<!-- ## Reliability -->

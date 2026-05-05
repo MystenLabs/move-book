@@ -273,8 +273,3 @@ linked_table.destroy_empty();
 [bag-framework]: https://docs.sui.io/references/framework/sui/bag
 [object-bag-framework]: https://docs.sui.io/references/framework/sui/object_bag
 
-<!-- TODO! -->
-
-<!-- ## Choosing a Collection Type
-
-Depending on the needs of your project, you may choose to -->

@@ -2,18 +2,6 @@
 
 # Module
 
-<!--
-
-Chapter: Base Syntax
-Goal: Introduce module keyword.
-Notes:
-    - modules are the base unit of code organization
-    - module members are private by default
-    - types internal to the module have special access rules
-    - only module can pack and unpack its types
-
- -->
-
 A module is the base unit of code organization in Move. Modules are used to group and isolate code,
 and all members of the module are private to the module by default. In this section you will learn
 how to define a module, declare its members, and access it from other modules.

@@ -2,8 +2,6 @@
 
 # Standard Library
 
-<!-- The Move standard library provides a set of modules  -->
-
 The Move Standard Library provides functionality for native types and operations. It is a standard
 collection of modules that do not interact with storage, but provide basic tools for working with
 and manipulating data. It is the only dependency of the
@@ -15,7 +13,6 @@ In this book we go into detail about most of the modules in the Standard Library
 also helpful to give an overview of the features, so that you can get a sense of what is available
 and which module implements it.
 
-<!-- Custom CSS addition in the theme/custom.css  -->
 <div class="modules-table">
 
 | Module                                                                           | Description                                                                | Chapter                              |
@@ -43,7 +40,6 @@ not be imported directly, as their functions are available on every integer valu
 > All of the modules provide the same set of functions. Namely, `max`, `diff`,
 > `divide_and_round_up`, `sqrt` and `pow`.
 
-<!-- Custom CSS addition in the theme/custom.css  -->
 <div class="modules-table">
 
 | Module                                                         | Description                   |

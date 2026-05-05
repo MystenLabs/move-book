@@ -7,17 +7,6 @@ blockchain. Transactions are used to change the state of the blockchain, and the
 to do so. In Move, transactions are used to call functions in a package, deploy new packages, and
 upgrade existing ones.
 
-<!--
-
-- how user interacts with a program
-    - mention public functions
-    - give a concept of an entry / public function without getting into details
-    - mention that functions are called in transactions
-    - mention that transactions are sent by accounts
-    - every transaction specifies object it operates on
-
- -->
-
 ## Transaction Structure
 
 > Every transaction explicitly specifies the objects it operates on!
@@ -78,10 +67,6 @@ In this example, the transaction consists of three commands:
 2. `MoveCall` - a command that calls a function `purchase` in a package `0xAAA`, module `market`
    with the given arguments - the `payment` object;
 3. `TransferObjects` - a built-in command that transfers the object to the recipient.
-
-<!--
-> There are multiple different implementations of transaction building, for example
--->
 
 ## Transaction Effects
 
