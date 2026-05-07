@@ -149,6 +149,8 @@ export default {
     ],
   ],
 
+  clientModules: [require.resolve('./src/clientModules/plausiblePageview.js')],
+
   stylesheets: [
     {
       href: 'https://fonts.googleapis.com/css2?family=Rubik:wght@300&amp;display=swap',
@@ -165,6 +167,7 @@ export default {
       tagName: 'script',
       attributes: {
         async: 'true',
+        'data-manual': 'true',
         src: 'https://plausible.io/js/pa-bN7BN21wQVcP-pdkKddge.js',
       },
     },
