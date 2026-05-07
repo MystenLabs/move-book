@@ -35,7 +35,6 @@ export default {
 
   plugins: [
     llmsTxt,
-    '@docusaurus/plugin-sitemap',
     [
       '@docusaurus/plugin-content-docs',
       {
@@ -157,6 +156,22 @@ export default {
     {
       href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css',
       type: 'text/css',
+    },
+  ],
+
+  headTags: [
+    {
+      tagName: 'script',
+      attributes: {
+        async: 'true',
+        src: 'https://plausible.io/js/pa-bN7BN21wQVcP-pdkKddge.js',
+      },
+    },
+    {
+      tagName: 'script',
+      attributes: {},
+      innerHTML:
+        'window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()',
     },
   ],
 
