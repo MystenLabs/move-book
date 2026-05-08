@@ -67,7 +67,7 @@ The fields that are supported most widely are:
 - `project_url` - A link to a website associated with the object or creator.
 - `creator` - A string that indicates the object creator.
 
-> Please, refer to the [Sui Documentation](https://docs.sui.io/standards/display) for the most
+> Please, refer to the [Sui Documentation](https://docs.sui.io/guides/developer/objects/display) for the most
 > up-to-date list of supported fields.
 
 While there's a standard set of fields, the Display object does not enforce them. The developer can
@@ -125,5 +125,5 @@ the most recently updated `Display<T>` will be used by the full node.
 
 ## Further Reading
 
-- [Sui Object Display](https://docs.sui.io/standards/display) is Sui Documentation
+- [Sui Object Display](https://docs.sui.io/guides/developer/objects/display) is Sui Documentation
 - [Publisher](./publisher) - the representation of the creator

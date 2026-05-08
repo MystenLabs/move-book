@@ -15,6 +15,6 @@ In no way should this chapter be considered a comprehensive guide to the Object 
 high-level overview of the concepts and principles behind the Object Model.
 
 For a more detailed description, refer to the
-[Sui Documentation](https://docs.sui.io/concepts/object-model).
+[Sui Documentation](https://docs.sui.io/guides/developer/objects/object-model).
 
 </div>

@@ -5,4 +5,5 @@ description: "Move coding conventions: naming standards, formatting guidelines, 
 
 # Coding Conventions
 
-See [Sui's Coding Conventions for Move](https://docs.sui.io/concepts/sui-move-concepts/conventions)
+See [Move Best Practices](https://docs.sui.io/guides/developer/move-best-practices)
+and [Code Quality Checklist](/guides/code-quality-checklist).
