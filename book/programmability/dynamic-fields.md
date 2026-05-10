@@ -46,9 +46,11 @@ and `Value` type parameters define the abilities that the key and value must hav
 ## Usage
 
 The methods available for dynamic fields are straightforward: a field can be added with `add`,
-removed with `remove`, and read with `borrow` and `borrow_mut`. Additionally, the `exists_` method
+removed with `remove`, and read with `borrow` and `borrow_mut`. Additionally, the `exists` method
 can be used to check if a field exists (for stricter checks with type, there is an
-`exists_with_type` method).
+`exists_with_type` method). Note: `exists_` is deprecated in favor of `exists`. To remove a field
+if it exists and return an `Option`, use `remove_opt` (note: `remove_if_exists` is deprecated in
+favor of `remove_opt`).
 
 ```move file=packages/samples/sources/programmability/dynamic-fields.move anchor=usage
 

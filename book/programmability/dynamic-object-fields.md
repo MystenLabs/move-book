@@ -59,9 +59,10 @@ Let's list them for reference:
 
 - `add` - adds a dynamic object field to the object
 - `remove` - removes a dynamic object field from the object
+- `remove_opt` - removes a dynamic object field if it exists, returning an `Option`
 - `borrow` - borrows a dynamic object field from the object
 - `borrow_mut` - borrows a mutable reference to a dynamic object field from the object
-- `exists_` - checks if a dynamic object field exists
+- `exists` - checks if a dynamic object field exists
 - `exists_with_type` - checks if a dynamic object field exists with a specific type
 
 Additionally, there is an `id` method which returns the `ID` of the `Value` object without

@@ -294,12 +294,13 @@ ctx.sender()
 
 ### Vector Has a Literal. And Associated Functions
 
+`vector::empty` and `vector::singleton` are deprecated in MoveStdlib. Use vector literal syntax instead.
+
 ```move
-// bad!
+// bad! (vector::empty and vector::singleton are now deprecated)
 let mut my_vec = vector::empty();
 vector::push_back(&mut my_vec, 10);
-let first_el = vector::borrow(&my_vec);
-assert!(vector::length(&my_vec) == 1);
+let singleton = vector::singleton(10); // also deprecated
 
 // good!
 let mut my_vec = vector[10];
