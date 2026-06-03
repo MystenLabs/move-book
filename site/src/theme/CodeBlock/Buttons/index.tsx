@@ -5,6 +5,7 @@ import BrowserOnly from '@docusaurus/BrowserOnly';
 import CopyButton from './CopyButton';
 import WordWrapButton from './WordWrapButton';
 import RenderButton from './RenderButton';
+import OpenInAgentButton from '../../../shared/components/OpenInAgentButton';
 import type { Props } from '@theme/CodeBlock/Buttons';
 
 import styles from './styles.module.css';
@@ -17,6 +18,7 @@ export default function CodeBlockButtons({ className }: Props): ReactNode {
     <BrowserOnly>
       {() => (
         <div className={clsx(className, styles.buttonGroup)}>
+          <OpenInAgentButton />
           <RenderButton />
           <WordWrapButton />
           <CopyButton />
