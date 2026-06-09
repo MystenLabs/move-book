@@ -104,7 +104,7 @@ objects. One of the reasons to use it is the extra authorization performed upon 
 
 ## Links
 
-- [Transfer to Object](https://docs.sui.io/concepts/transfers/transfer-to-object) in Sui
+- [Transfer to Object](https://docs.sui.io/guides/developer/objects/transfers/transfer-to-object) in Sui
   Documentation
 - [`sui::transfer`][transfer] module documentation
 
@@ -113,3 +113,4 @@ objects. One of the reasons to use it is the extra authorization performed upon 
 [store]: ./store-ability.md
 [uid]: ./uid-and-id.md
 [internal]: ./internal-constraint.md
+[storage-funs]: ./storage-functions.md

@@ -8,7 +8,7 @@ the Move language.
 
 > This guide provides a high-level overview of the changes in the new edition. For a more detailed
 > and exhaustive list of changes, refer to the
-> [Sui Documentation](https://docs.sui.io/guides/developer/advanced/move-2024-migration).
+> [Sui Blog](https://blog.sui.io/move-2024-migration-guide).
 
 ## Using the New Edition
 

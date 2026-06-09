@@ -15,7 +15,7 @@ generation.
 
 - [Cryptography in Sui](https://blog.sui.io/wallet-cryptography-specifications/) in the
   [Sui Blog](https://blog.sui.io)
-- [Keys and Addresses](https://docs.sui.io/concepts/cryptography/transaction-auth/keys-addresses) in
+- [Keys and Addresses](https://docs.sui.io/guides/developer/transactions/transaction-auth/auth-overview) in
   the [Sui Docs](https://docs.sui.io)
-- [Signatures](https://docs.sui.io/concepts/cryptography/transaction-auth/signatures) in the
+- [Signatures](https://docs.sui.io/guides/developer/cryptography/signing) in the
   [Sui Docs](https://docs.sui.io)

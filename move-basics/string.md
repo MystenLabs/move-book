@@ -149,6 +149,6 @@ This section is coming soon!
 - [std::string][string-stdlib] module documentation.
 - [std::ascii][ascii-stdlib] module documentation.
 
-[enum-reference]: /reference/enums.html
+[enum-reference]: /reference/enums
 [string-stdlib]: https://docs.sui.io/references/framework/std/string
 [ascii-stdlib]: https://docs.sui.io/references/framework/std/ascii
