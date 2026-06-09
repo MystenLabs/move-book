@@ -13,9 +13,9 @@
 <script async="true" data-manual="true" src="https://plausible.io/js/pa-bN7BN21wQVcP-pdkKddge.js"></script>
 <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}},plausible.init()</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&amp;amp;display=swap">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"><link rel="stylesheet" href="/assets/css/styles.4750fbb9.css">
-<script src="/assets/js/runtime~main.0eb22a42.js" defer="defer"></script>
-<script src="/assets/js/main.a7e279b9.js" defer="defer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"><link rel="stylesheet" href="/assets/css/styles.c0a13782.css">
+<script src="/assets/js/runtime~main.519f1507.js" defer="defer"></script>
+<script src="/assets/js/main.ba113e53.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs>
@@ -68,7 +68,7 @@ publishing a package) or a call to a function in an already published package. T
 executed in the order they are listed in the transaction, and they can use the results of the
 previous commands, forming a chain. Transaction either succeeds or fails as a whole.</p>
 <p>Schematically, a transaction looks like this (in pseudo-code):</p>
-<div class="language-text codeBlockContainer_lhNI theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_e6Q0"><pre tabindex="0" class="prism-code language-text codeBlock_o5bO thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_MlBX"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">Inputs:</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">- sender = 0xa11ce</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">Commands:</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">- payment = SplitCoins(Gas, [ 1000 ])</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">- item = MoveCall(0xAAA::market::purchase, [ payment ])</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">- TransferObjects(item, sender)</span><br></span></code></pre></div></div>
+<div><div class="language-text codeBlockContainer_lhNI theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_e6Q0"><pre tabindex="0" class="prism-code language-text codeBlock_o5bO thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_MlBX"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">Inputs:</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">- sender = 0xa11ce</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">Commands:</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">- payment = SplitCoins(Gas, [ 1000 ])</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">- item = MoveCall(0xAAA::market::purchase, [ payment ])</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">- TransferObjects(item, sender)</span><br></span></code></pre></div></div></div>
 <p>In this example, the transaction consists of three commands:</p>
 <ol>
 <li><span class="inline-code">SplitCoins</span> - a built-in command that splits a new coin from the passed object, in this case,

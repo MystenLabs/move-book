@@ -13,9 +13,9 @@
 <script async="true" data-manual="true" src="https://plausible.io/js/pa-bN7BN21wQVcP-pdkKddge.js"></script>
 <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}},plausible.init()</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&amp;amp;display=swap">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"><link rel="stylesheet" href="/assets/css/styles.4750fbb9.css">
-<script src="/assets/js/runtime~main.0eb22a42.js" defer="defer"></script>
-<script src="/assets/js/main.a7e279b9.js" defer="defer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"><link rel="stylesheet" href="/assets/css/styles.c0a13782.css">
+<script src="/assets/js/runtime~main.519f1507.js" defer="defer"></script>
+<script src="/assets/js/main.ba113e53.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs>
@@ -26,14 +26,14 @@
 <a href="/concepts/packages">packages</a>, <a href="/concepts/what-is-an-account">accounts</a>, and <a href="/object/object-model">objects</a>.
 Address has a fixed size of 32 bytes and is usually represented as a hexadecimal string prefixed
 with <span class="inline-code">0x</span>. Addresses are case insensitive.</p>
-<div class="language-move codeBlockContainer_lhNI theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_e6Q0"><pre tabindex="0" class="prism-code language-move codeBlock_o5bO thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_MlBX"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">0xe51ff5cd221a81c3d6e22b9e670ddf99004d71de4f769b0312b68c7c4872e2f1</span><br></span></code></pre></div></div>
+<div><div class="language-move codeBlockContainer_lhNI theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_e6Q0"><pre tabindex="0" class="prism-code language-move codeBlock_o5bO thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_MlBX"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">0xe51ff5cd221a81c3d6e22b9e670ddf99004d71de4f769b0312b68c7c4872e2f1</span><br></span></code></pre></div></div></div>
 <p>The address above is an example of a valid address. It is 64 characters long (32 bytes) and prefixed
 with <span class="inline-code">0x</span>.</p>
 <p>Sui also has reserved addresses that are used to identify standard packages and objects. Reserved
 addresses are typically simple values that are easy to remember and type. For example, the address
 of the Standard Library is <span class="inline-code">0x1</span>. Addresses, shorter than 32 bytes, are padded with zeros to the
 left.</p>
-<div class="language-move codeBlockContainer_lhNI theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_e6Q0"><pre tabindex="0" class="prism-code language-move codeBlock_o5bO thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_MlBX"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token literals number" style="color:hsl(35, 99%, 36%)">0x1</span><span class="token plain"> = </span><span class="token literals number" style="color:hsl(35, 99%, 36%)">0x0000000000000000000000000000000000000000000000000000000000000001</span><br></span></code></pre></div></div>
+<div><div class="language-move codeBlockContainer_lhNI theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_e6Q0"><pre tabindex="0" class="prism-code language-move codeBlock_o5bO thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_MlBX"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token literals number" style="color:hsl(35, 99%, 36%)">0x1</span><span class="token plain"> = </span><span class="token literals number" style="color:hsl(35, 99%, 36%)">0x0000000000000000000000000000000000000000000000000000000000000001</span><br></span></code></pre></div></div></div>
 <p>Here are some examples of reserved addresses:</p>
 <ul>
 <li><span class="inline-code">0x1</span> - address of the Sui Standard Library (alias <span class="inline-code">std</span>)</li>
