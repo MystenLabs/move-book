@@ -46,9 +46,17 @@ and `Value` type parameters define the abilities that the key and value must hav
 ## Usage
 
 The methods available for dynamic fields are straightforward: a field can be added with `add`,
-removed with `remove`, and read with `borrow` and `borrow_mut`. Additionally, the `exists_` method
-can be used to check if a field exists (for stricter checks with type, there is an
-`exists_with_type` method).
+removed with `remove`, replaced with `replace`, and read with `borrow` and `borrow_mut`.
+Additionally, the `exists_` method can be used to check if a field exists (for stricter checks with
+type, there is an `exists_with_type` method).
+
+The `replace` function swaps the existing value of a field for a new one and returns the old value,
+without requiring a separate `remove` and `add` call. For example:
+
+```move
+// Replace the current hat and get the old one back
+let old_hat = df::replace(&mut character.id, b"hat_key", Hat { color: 0xFF0000 });
+```
 
 ```move file=packages/samples/sources/programmability/dynamic-fields.move anchor=usage
 
