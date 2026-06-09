@@ -6822,9 +6822,17 @@ and `Value` type parameters define the abilities that the key and value must hav
 ## Usage
 
 The methods available for dynamic fields are straightforward: a field can be added with `add`,
-removed with `remove`, and read with `borrow` and `borrow_mut`. Additionally, the `exists_` method
-can be used to check if a field exists (for stricter checks with type, there is an
-`exists_with_type` method).
+removed with `remove`, replaced with `replace`, and read with `borrow` and `borrow_mut`.
+Additionally, the `exists_` method can be used to check if a field exists (for stricter checks with
+type, there is an `exists_with_type` method).
+
+The `replace` function swaps the existing value of a field for a new one and returns the old value,
+without requiring a separate `remove` and `add` call. For example:
+
+```move
+// Replace the current hat and get the old one back
+let old_hat = df::replace(&mut character.id, b"hat_key", Hat { color: 0xFF0000 });
+```
 
 ```move
 module book::dynamic_fields;
@@ -7072,7 +7080,6 @@ on the ability to define them _later_ and change the type of the field.
 In the next section we will cover [Dynamic Object Fields](./dynamic-object-fields) and explain how
 they differ from dynamic fields, and what are the implications of using them.
 
-
 ---
 
 # Dynamic Object Fields
@@ -7132,6 +7139,7 @@ Let's list them for reference:
 
 - `add` - adds a dynamic object field to the object
 - `remove` - removes a dynamic object field from the object
+- `replace` - replaces the value of an existing dynamic object field, returning the old value
 - `borrow` - borrows a dynamic object field from the object
 - `borrow_mut` - borrows a mutable reference to a dynamic object field from the object
 - `exists_` - checks if a dynamic object field exists
@@ -7211,7 +7219,6 @@ solutions in applications. However, they are relatively low-level and require ca
 avoid orphaned fields. In the next section, we will introduce a higher-level abstraction -
 [Dynamic Collections](./dynamic-collections) - which can help with managing dynamic fields and
 objects more effectively.
-
 
 ---
 
