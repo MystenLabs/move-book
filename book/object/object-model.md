@@ -50,4 +50,4 @@ Objects in Sui have the following properties:
 
 ## Further Reading
 
-- [Object Model](https://docs.sui.io/concepts/object-model) in Sui Documentation.
+- [Object Model](https://docs.sui.io/guides/developer/objects/object-model) in Sui Documentation.

@@ -10,9 +10,9 @@ the data to persist between transactions.
 
 For more details, see the Sui documentation on
 
-- [The Object Model](https://docs.sui.io/concepts/object-model)
+- [The Object Model](https://docs.sui.io/guides/developer/objects)
 - [Move Rules for Objects](https://docs.sui.io/concepts/sui-move-concepts#global-unique)
-- [Transferring Objects](https://docs.sui.io/concepts/transfers)
+- [Transferring Objects](https://docs.sui.io/guides/developer/objects/transfers)
 
 ## Object Rules
 

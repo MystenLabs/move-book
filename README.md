@@ -8,7 +8,7 @@ This is the repository for [the Move Book](https://move-book.com) and
 - Two books are placed in the `book` and `reference` directories. The `book` directory contains the
   main book, and the `reference` directory contains the reference book.
 - The `packages` directory contains the code samples used in both books.
-- The `site` directory contains [docusaurus](docusaurus.io) configuration and custom plugins for it.
+- The `site` directory contains [docusaurus](https://docusaurus.io/) configuration and custom plugins for it.
 
 ## Running the Books Locally
 

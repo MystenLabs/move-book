@@ -168,7 +168,7 @@ marketplace.
 
 - [`sui::object`][object] module documentation
 - [`sui::derived_object`][derived-object] module documentation
-- [Derived Objects](https://docs.sui.io/concepts/sui-move-concepts/derived-objects) in Sui
+- [Derived Objects](https://docs.sui.io/guides/developer/objects/derived-objects) in Sui
   Documentation
 
 [object]: https://docs.sui.io/references/framework/sui_sui/object
