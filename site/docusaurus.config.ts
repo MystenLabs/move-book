@@ -149,7 +149,29 @@ export default {
     ],
   ],
 
-  clientModules: [require.resolve('./src/clientModules/plausiblePageview.js')],
+  clientModules: [
+    require.resolve('./src/clientModules/plausiblePageview.js'),
+    require.resolve('./src/clientModules/kapa-sidebar.js'),
+  ],
+
+  scripts: [
+    {
+      src: 'https://widget.kapa.ai/kapa-widget.bundle.js',
+      'data-website-id': '6c642476-22cd-4976-888e-9949ea770589',
+      'data-project-name': 'Move Book',
+      'data-project-color': '#298DFF',
+      'data-button-hide': 'true',
+      'data-view-mode': 'sidebar',
+      'data-modal-title': 'Ask Move AI',
+      'data-modal-ask-ai-input-placeholder': 'Ask me anything about Move!',
+      'data-modal-example-questions':
+        'How do I define a struct in Move?,What are abilities in Move?,How do I publish a Move package?,What are dynamic fields?',
+      'data-modal-overlay-hidden': 'true',
+      'data-modal-lock-scroll': 'false',
+      'data-modal-image': '/favicon.svg',
+      async: true,
+    },
+  ],
 
   stylesheets: [
     {
