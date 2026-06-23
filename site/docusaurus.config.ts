@@ -157,7 +157,7 @@ export default {
   scripts: [
     {
       src: 'https://widget.kapa.ai/kapa-widget.bundle.js',
-      'data-website-id': '6c642476-22cd-4976-888e-9949ea770589',
+      'data-website-id': 'de266438-2cd4-4ed5-9633-a1c6b931dd7d',
       'data-project-name': 'Move Book',
       'data-project-color': '#298DFF',
       'data-button-hide': 'true',
