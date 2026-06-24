@@ -10,6 +10,7 @@ import NavbarItem from "@theme/NavbarItem";
 import NavbarMobileSidebarToggle from "@theme/Navbar/MobileSidebar/Toggle";
 import NavbarLogo from "@theme/Navbar/Logo";
 import NavbarSearch from "@theme/Navbar/Search";
+import NavbarColorModeToggle from "@theme/Navbar/ColorModeToggle";
 import SearchBar from "@theme/SearchBar";
 
 function useNavbarItems() {
@@ -27,21 +28,25 @@ function useMobileSidebarSafe() {
 function NavbarItems({ items }) {
   return (
     <>
-      {items.map((item, i) => (
-        <ErrorCauseBoundary
-          key={i}
-          onError={(error) =>
-            new Error(
-              `A theme navbar item failed to render.
+      {items.map((item, i) => {
+        // Skip the search item — we render SearchBar separately
+        if (item.type === "search") return null;
+        return (
+          <ErrorCauseBoundary
+            key={i}
+            onError={(error) =>
+              new Error(
+                `A theme navbar item failed to render.
 Please double-check the following navbar item (themeConfig.navbar.items) of your Docusaurus config:
 ${JSON.stringify(item, null, 2)}`,
-              { cause: error },
-            )
-          }
-        >
-          <NavbarItem {...item} />
-        </ErrorCauseBoundary>
-      ))}
+                { cause: error },
+              )
+            }
+          >
+            <NavbarItem {...item} />
+          </ErrorCauseBoundary>
+        );
+      })}
     </>
   );
 }
@@ -78,7 +83,6 @@ export default function NavbarContent() {
   const mobileSidebar = useMobileSidebarSafe();
   const items = useNavbarItems();
   const [leftItems, rightItems] = splitNavbarItems(items);
-  const searchBarItem = items.find((item) => item.type === "search");
 
   return (
     <NavbarContentLayout
@@ -92,12 +96,11 @@ export default function NavbarContent() {
       right={
         <>
           <NavbarItems items={rightItems} />
+          <NavbarColorModeToggle />
           <KapaButton />
-          {searchBarItem && (
-            <NavbarSearch>
-              <SearchBar />
-            </NavbarSearch>
-          )}
+          <NavbarSearch>
+            <SearchBar />
+          </NavbarSearch>
         </>
       }
     />
