@@ -21,7 +21,6 @@ if (typeof window !== "undefined") {
     "data-modal-example-questions": "How do I define a struct in Move?,What are abilities in Move?,How do I publish a Move package?,What are dynamic fields?",
     "data-modal-overlay-hidden": "true",
     "data-modal-lock-scroll": "false",
-    "data-modal-image": "/favicon.svg",
     "data-color-scheme-selector": "[data-theme='dark']",
   };
   for (const [key, value] of Object.entries(attrs)) {

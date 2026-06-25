@@ -73,7 +73,6 @@ function KapaButton() {
       onClick={handleClick}
       className="kapa-trigger-btn"
     >
-      <img src="/favicon.svg" alt="" width="23" height="23" />
       <span>Ask Move AI</span>
     </button>
   );
