@@ -149,7 +149,10 @@ export default {
     ],
   ],
 
-  clientModules: [require.resolve('./src/clientModules/plausiblePageview.js')],
+  clientModules: [
+    require.resolve('./src/clientModules/plausiblePageview.js'),
+    require.resolve('./src/clientModules/kapa-sidebar.js'),
+  ],
 
   stylesheets: [
     {
