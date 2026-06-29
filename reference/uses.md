@@ -68,8 +68,8 @@ use std::option::some as s;
 
 fun new_vec(): vector<std::option::Option<u8>> {
     let mut v = vector[];
-    vector::push_back(&mut v, s(0));
-    vector::push_back(&mut v, std::option::none());
+    push_back(&mut v, s(0));
+    push_back(&mut v, std::option::none());
     v
 }
 ```
@@ -163,8 +163,8 @@ use std::vector;
 
 fun new_vec(): vector<Option<u8>> {
     let mut v = vector[];
-    vector::push_back(&mut v, 0);
-    vector::push_back(&mut v, 10);
+    vector::push_back(&mut v, some(0));
+    vector::push_back(&mut v, none());
     v
 }
 
@@ -183,9 +183,9 @@ You can add `use` declarations to the beginning of any expression block
 ```move
 module a::example;
 
-fun new_vec(): vector<Option<u8>> {
+fun new_vec(): vector<std::option::Option<u8>> {
     use std::vector::push_back;
-    use std::option::{Option, some, none};
+    use std::option::{some, none};
 
     let mut v = vector[];
     push_back(&mut v, some(0));
@@ -200,10 +200,10 @@ block.
 ```move
 module a::example;
 
-fun new_vec(): vector<Option<u8>> {
+fun new_vec(): vector<std::option::Option<u8>> {
     let result = {
         use std::vector::push_back;
-        use std::option::{Option, some, none};
+        use std::option::{some, none};
 
         let mut v = vector[];
         push_back(&mut v, some(0));
@@ -217,10 +217,10 @@ fun new_vec(): vector<Option<u8>> {
 Attempting to use the alias after the block ends will result in an error
 
 ```move
-fun new_vec(): vector<Option<u8>> {
+fun new_vec(): vector<std::option::Option<u8>> {
     let mut result = {
         use std::vector::push_back;
-        use std::option::{Option, some, none};
+        use std::option::{some, none};
 
         let mut v = vector[];
         push_back(&mut v, some(0));
