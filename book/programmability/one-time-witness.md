@@ -22,7 +22,7 @@ it is guaranteed to be unique per module. Sui Adapter treats a type as an OTW if
 rules:
 
 1. Has only `drop` ability.
-2. Has no fields.
+2. Has no fields, or exactly one field of type 'bool'.
 3. Is not a generic type.
 4. Named after the module with all uppercase letters.
 
