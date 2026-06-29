@@ -57,3 +57,6 @@ Some of the tools listed above have CLI-supported versions.
 
 - [prettier-plugin-move](https://www.npmjs.com/package/@mysten/prettier-plugin-move) contains the
   TypeScript package for the Prettier@v3 plugin as well as the binary to run it in a terminal
+- `sui move format` is a built-in CLI command that provides a passthrough to the `prettier-move`
+  auto-formatter, allowing you to format Move code directly from the Sui CLI without additional
+  tool installation.

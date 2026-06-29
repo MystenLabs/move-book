@@ -12,9 +12,11 @@ recommendations as possible to your code.
 ## Code Organization
 
 Some of the issues mentioned in this guide can be fixed by using
-[Move Formatter](https://www.npmjs.com/package/@mysten/prettier-plugin-move) either as a CLI tool,
-or [as a CI check](https://github.com/marketplace/actions/move-formatter), or
-[as a plugin for VSCode (Cursor)](https://marketplace.visualstudio.com/items?itemName=mysten.prettier-move).
+[Move Formatter](https://www.npmjs.com/package/@mysten/prettier-plugin-move), available directly
+through the `sui move format` CLI command, as a standalone
+[CLI tool](https://www.npmjs.com/package/@mysten/prettier-plugin-move),
+as [a CI check](https://github.com/marketplace/actions/move-formatter), or
+as [a plugin for VSCode (Cursor)](https://marketplace.visualstudio.com/items?itemName=mysten.prettier-move).
 
 ## Package Manifest
 
