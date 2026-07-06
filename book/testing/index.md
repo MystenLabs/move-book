@@ -1,4 +1,5 @@
 ---
+title: Testing Move Programs
 description: "Testing Move smart contracts on Sui: unit tests, test scenarios, coverage reports, gas profiling, and best practices."
 ---
 
