@@ -17,10 +17,10 @@ use std::unit_test::assert_eq;
 
 #[test]
 fun vec_set_playground() {
-    let set = vec_set::empty<u8>(); // create an empty set
-    let mut set = vec_set::singleton(1u8); // create a set with a single item
+    let mut set = vec_set::empty(); // create an empty set
 
-    set.insert(2); // add an item to the set
+    set.insert(1u8); // add items to the set
+    set.insert(2);
     set.insert(3);
 
     assert_eq!(set.contains(&1), true); // check if an item is in the set
@@ -28,5 +28,10 @@ fun vec_set_playground() {
     assert_eq!(set.is_empty(), false); // check if the set is empty
 
     set.remove(&2); // remove an item from the set
+    assert_eq!(set.contains(&2), false);
+
+    // the contents can be taken out as a plain vector, e.g. for iteration
+    let items = set.into_keys();
+    assert_eq!(items, vector[1, 3]);
 }
 // ANCHOR_END: vec_set

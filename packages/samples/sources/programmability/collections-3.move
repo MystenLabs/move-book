@@ -15,7 +15,7 @@ public struct Metadata has drop {
 }
 
 #[test_only]
-use std::unit_test::assert_eq;
+use std::unit_test::{assert_eq, assert_ref_eq};
 
 #[test]
 fun vec_map_playground() {
@@ -25,7 +25,21 @@ fun vec_map_playground() {
     map.insert(3, "three");
 
     assert_eq!(map.contains(&2), true); // check if a key is in the map
+    assert_eq!(map.length(), 2); // get the number of entries
 
-    map.remove(&2); // remove a key-value pair from the map
+    // index syntax borrows a value by key, aborts if the key is missing
+    assert_ref_eq!(&map[&2], &"two");
+
+    // `try_get` copies the value, returns `none` if the key is missing
+    assert_eq!(map.try_get(&2), option::some("two"));
+    assert_eq!(map.try_get(&4), option::none());
+
+    // an existing value can be replaced through a mutable reference
+    *(&mut map[&3]) = "III";
+
+    // `remove` returns the key-value pair
+    let (key, value) = map.remove(&2);
+    assert_eq!(key, 2);
+    assert_eq!(value, "two");
 }
 // ANCHOR_END: vec_map

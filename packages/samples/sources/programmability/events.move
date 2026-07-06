@@ -19,7 +19,7 @@ public struct ItemPurchased has copy, drop {
 }
 
 /// A marketplace function which performs the purchase of an item.
-public fun purchase(coin: Coin<SUI>, ctx: &mut TxContext) {
+public fun purchase(seller: address, coin: Coin<SUI>, ctx: &mut TxContext): Item {
     let item = Item { id: object::new(ctx) };
 
     // Create an instance of `ItemPurchased` and pass it to `event::emit`.
@@ -28,8 +28,9 @@ public fun purchase(coin: Coin<SUI>, ctx: &mut TxContext) {
         price: coin.value()
     });
 
-    // Omitting the rest of the implementation to keep the example simple.
-    abort
+    // Send the payment to the seller, return the item to the caller.
+    transfer::public_transfer(coin, seller);
+    item
 }
 // ANCHOR_END: emit
 

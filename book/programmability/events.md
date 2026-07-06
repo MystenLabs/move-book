@@ -36,7 +36,7 @@ public native fun emit<T: copy + drop>(event: T);
 
 An event can be any custom type with the [copy](./../move-basics/copy-ability) and
 [drop](./../move-basics/drop-ability) abilities. Additionally, the Sui Verifier requires the type
-to be _internal to the module_ that emits it: it is impossible to emit a type defined in another
+to be [_internal to the module_](./../storage/internal-constraint) that emits it: it is impossible to emit a type defined in another
 module, and, even though they satisfy the `copy + drop` requirement,
 [primitive types](./../move-basics/primitive-types) cannot be emitted either. This rule makes the
 event type an unforgeable label - an `ItemPurchased` event can only ever originate from the module
@@ -58,13 +58,17 @@ dedicated type per action, and name it after the action that happened, in past t
 indexer would need to make sense of the action without fetching anything else: the IDs of the
 objects involved, amounts, and the relevant addresses.
 
+Note that events are attached to a _successful_ transaction: if the transaction aborts after the
+`emit` call, no events are recorded.
+
 ## Event Structure
 
 Events become part of the _transaction effects_, and the system attaches metadata to each of them:
 
 - the _sender_ - the address that signed the transaction;
 - the _transaction digest_ - linking the event to the transaction that emitted it;
-- the _timestamp_ - the node-local time of execution, which may vary slightly from node to node;
+- the _timestamp_ - the time of the checkpoint that finalized the transaction, shared by all
+  events of that transaction;
 - the _type signature_ of the event, including the package and module that emitted it.
 
 Because the sender and the transaction digest are always present in the metadata, there is no need

@@ -232,6 +232,8 @@ bookSidebar:
       #   id: testing/writing-test-macros
       - label: Extending Modules
         id: testing/extend-foreign-module
+      - label: Running Lints
+        id: testing/linting
       - label: Coverage Reports
         id: testing/coverage
       - label: Gas Profiling
