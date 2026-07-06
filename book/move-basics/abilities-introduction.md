@@ -4,53 +4,105 @@ description: "Introduction to Move abilities: copy, drop, key, and store — the
 
 # Abilities: Introduction
 
-Move has a unique type system which allows customizing _type abilities_.
-[In the previous section](./struct), we introduced the `struct` definition and how to use it.
-However, the instances of the `Artist` and `Record` structs had to be unpacked for the code to
-compile. This is default behavior of a struct without _abilities_.
-
-> Throughout the book you will see chapters with name `Ability: <name>`, where `<name>` is the name
-> of the ability. These chapters will cover the ability in detail, how it works, and how to use it
-> in Move.
+Move has a unique type system in which each type declares what its values are allowed to do. In the
+[previous section](./struct), every instance of `Artist` and `Record` had to be used: stored,
+passed on, or unpacked - discarding a value, or copying it, was not an option. This is not
+accidental strictness. By default, a Move value can only be created, moved around, and taken apart;
+everything beyond that is a privilege the type must be granted explicitly. These privileges are
+called _abilities_.
 
 ## What are Abilities?
 
-Abilities are a way to allow certain behaviors for a type. They are a part of the struct declaration
-and define which behaviors are allowed for the instances of the struct.
+Abilities are permissions on a type. They are declared as a part of the struct definition, and the
+compiler rejects any operation the type is not permitted to perform. An ability does not add any
+functionality to the type itself - it unlocks behavior that is otherwise a compile error.
+
+There are four abilities in Move. Two of them control what can happen to a value during execution:
+
+- `copy` - the value can be _duplicated_;
+- `drop` - the value can be _discarded_;
+
+and two control storage:
+
+- `key` - the value can be a unit of storage - on Sui, an _object_;
+- `store` - the value can be stored _inside_ other values in storage.
+
+This "deny by default" design is what allows Move types to model assets faithfully: a type without
+`copy` cannot be duplicated, and a type without `drop` cannot be lost - guarantees that a language
+with ordinary, freely copyable values cannot give.
+
+> Throughout the book you will see sections named `Ability: <name>`, each covering one ability in
+> detail: how it works, and when to use it.
 
 ## Abilities Syntax
 
-Abilities are set in the struct definition using the `has` keyword followed by a list of abilities.
-The abilities are separated by commas. Move supports 4 abilities: `copy`, `drop`, `key`, and
-`store`. Each ability defines a specific behavior for the struct instances.
+Abilities are set in the struct definition using the `has` keyword followed by a comma-separated
+list of abilities:
+
+```move file=packages/samples/sources/move-basics/abilities-introduction.move anchor=definition
+
+```
+
+The two declared abilities change how instances of `VeryAble` behave. Compare the following code to
+the pack-and-unpack ceremony from the [previous section](./struct):
+
+```move file=packages/samples/sources/move-basics/abilities-introduction.move anchor=use
+
+```
+
+Now, let's take a quick tour of all four abilities, one at a time.
+
+## `drop`: Discarding Values
+
+The `drop` ability allows an instance to be _discarded_: assigned to an unused variable, ignored
+with the `_` wildcard, or simply left behind when the scope ends. In other words, `drop` makes a
+type behave the way values behave in most other programming languages. It belongs on types that
+represent plain _data_, and its absence protects types that represent _assets_. The
+[next section](./drop-ability) is dedicated to it.
+
+## `copy`: Duplicating Values
+
+The `copy` ability allows an instance to be _duplicated_, implicitly by the compiler or explicitly
+with the `copy` keyword. All the primitive types - integers, `bool`, `address` - behave as if they
+have it. Note that `copy` almost always comes together with `drop`: a value that can be duplicated
+but not discarded would force every one of its copies to be used. The details are covered in the
+[Ability: Copy](./copy-ability) section.
+
+## `key`: Objects and Storage
+
+The `key` ability marks a type as a _unit of storage_: an instance can be written to the blockchain
+state and later found by its unique identifier - its "key". On Sui, a struct with the `key` ability
+is called an _object_, and it is required to have an `id: UID` as its first field. Objects are the
+heart of the Sui programming model, and the whole [Object Model](./../object/) chapter is dedicated
+to them, followed by [Ability: Key](./../storage/key-ability) covering the ability itself.
+
+## `store`: Storing Inside Objects
+
+The `store` ability allows an instance to be stored _inside_ other structs that end up in storage.
+While `key` makes a type a top-level record in the blockchain state, `store` permits a type to be a
+_part_ of one. It is explained in the [Ability: Store](./../storage/store-ability) section.
+
+## Abilities Come from Fields
+
+An ability is a promise about the whole value, including its contents - so a struct can only be
+granted an ability that all of its field types support. A struct with `copy` requires every field to
+have `copy`, and the same holds for `drop` and `store`; `key` requires every field to have `store`.
+The compiler enforces this at the definition site, and the following code will not compile:
 
 ```move
-/// This struct has the `copy` and `drop` abilities.
-public struct VeryAble has copy, drop {
-    // field: Type1,
-    // field2: Type2,
-    // ...
+public struct NoAbilities {}
+
+public struct Wrapper has copy, drop {
+    inner: NoAbilities,
+    //     ^ error! The struct was declared with the ability 'copy'
+    //       so all fields require the ability 'copy'
 }
 ```
 
-## Overview
-
-A quick overview of the abilities:
-
-> All of the built-in types except [references](references) have `copy`, `drop`, and `store`
-> abilities. References have `copy` and `drop`.
-
-- `copy` - allows the struct to be _copied_. Explained in the [Ability: Copy](./copy-ability)
-  chapter.
-- `drop` - allows the struct to be _dropped_ or _discarded_. Explained in the
-  [Ability: Drop](./drop-ability) chapter.
-- `key` - allows the struct to be used as a _key_ in a storage. Explained in the
-  [Ability: Key](./../storage/key-ability) chapter.
-- `store` - allows the struct to be _stored_ in structs that have the _key_ ability. Explained in
-  the [Ability: Store](./../storage/store-ability) chapter.
-
-While it is important to briefly mention them here, we will go into more detail about each ability
-in the following chapters and give proper context on how to use them.
+> All of the built-in types except [references](./references) have the `copy`, `drop`, and `store`
+> abilities, and references have `copy` and `drop`. Container types like [`vector`](./vector) and
+> [`Option`](./option) support `copy`, `drop`, and `store` _conditionally_ - a vector can only be
+> copied if its elements can.
 
 ## No Abilities
 

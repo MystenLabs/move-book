@@ -9,7 +9,7 @@ everything is an expression, with the sole exception of the `let` statement, whi
 In this section, we cover the types of expressions and introduce the concept of scope.
 
 > Expressions are sequenced with semicolons `;`. If there's "no expression" after the semicolon, the
-> compiler will insert a `unit ()`, which represents an empty expression.
+> compiler will insert a _unit_ `()` - a value that represents an empty expression.
 
 ## Literals
 
@@ -23,6 +23,9 @@ functions. Move has the following literals:
 - Hexadecimal values: Numbers prefixed with 0x to represent integers, such as `0x0`, `0x1`, `0x123`
 - Byte vector values: Prefixed with `b`, such as `b"bytes_vector"`
 - Byte values: Hexadecimal literals prefixed with `x`, such as `x"0A"`
+- String values: Double-quoted text, such as `"hello"`. Unlike other literals, the type of a string
+  literal is inferred from the context - it can be a `vector<u8>` or one of the two standard string
+  types. Strings are covered in detail in the [String](./string) section.
 
 ```move file=packages/samples/sources/move-basics/expression.move anchor=literals
 
@@ -31,7 +34,8 @@ functions. Move has the following literals:
 ## Operators
 
 Arithmetic, logical, and bitwise operators are used to perform operations on values. Since these
-operations produce values, they are considered expressions.
+operations produce values, they are considered expressions. The integer operators - and when they
+abort - are listed in the [Primitive Types](./primitive-types#operations) section.
 
 ```move file=packages/samples/sources/move-basics/expression.move anchor=operators
 
@@ -47,12 +51,16 @@ semicolon). A block is an expression, so it can be used anywhere an expression i
 
 ```
 
+A block also delimits _scope_: a variable declared inside a block exists only until the block's
+closing brace. What exactly happens to values when their scope ends is an important question in
+Move, and the [Ownership and Scope](./ownership-and-scope) section is devoted to it.
+
 ## Function Calls
 
-We go into detail about functions in the [Functions](./function) section. However, we have already
-used function calls in previous sections, so it's worth mentioning them here. A function call is an
-expression that calls a function and returns the value of the last expression in the function body,
-provided the last expression does not have a terminating semicolon.
+We go into detail about functions in the very next section - [Functions](./function). Here, it is
+enough to say that a function call is an expression: it calls a function and returns the value of
+the last expression in the function body, provided the last expression does not have a terminating
+semicolon.
 
 ```move file=packages/samples/sources/move-basics/expression.move anchor=fun_call
 
@@ -67,3 +75,8 @@ section. Here's a very brief overview:
 ```move file=packages/samples/sources/move-basics/expression.move anchor=control_flow
 
 ```
+
+## Further Reading
+
+- [Equality](./../../reference/equality) in the Move Reference.
+- [Control Flow](./../../reference/control-flow) in the Move Reference.

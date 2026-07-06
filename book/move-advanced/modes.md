@@ -116,17 +116,20 @@ module my_pkg::bank {
 #[mode(debug)]
 module my_pkg::bank_debug {
     use std::debug;
+    use std::string::String;
     use my_pkg::bank;
 
     public fun transfer_debug(from: &signer, to: address, amount: u64) {
         // Perform debugging prints before the real call
-        debug::print(&b"[DEBUG] transfer begin".to_vector());
+        let begin: String = "[DEBUG] transfer begin";
+        debug::print(&begin);
         debug::print(&amount);
         debug::print(&to);
         // Main Call
         bank::transfer(from, to, amount);
         // More debugging prints
-        debug::print(&b"[DEBUG] transfer end".to_vector());
+        let end: String = "[DEBUG] transfer end";
+        debug::print(&end);
     }
 }
 ```

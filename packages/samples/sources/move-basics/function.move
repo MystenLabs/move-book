@@ -30,7 +30,7 @@ fun return_nothing() {
 
 // ANCHOR: tuple_return
 fun get_name_and_age(): (vector<u8>, u8) {
-    (b"John", 25)
+    ("John", 25)
 }
 // ANCHOR_END: tuple_return
 
@@ -39,7 +39,7 @@ fun get_name_and_age(): (vector<u8>, u8) {
 // Tuple must be destructured to access its elements.
 // Name and age are declared as immutable variables.
 let (name, age) = get_name_and_age();
-assert_eq!(name, b"John");
+assert_eq!(name, "John");
 assert_eq!(age, 25);
 // ANCHOR_END: tuple_return_imm
 

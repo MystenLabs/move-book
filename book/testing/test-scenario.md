@@ -413,9 +413,9 @@ fun test_with_clock() {
     let mut scenario = test_scenario::begin(alice);
 
     // Create system objects (Clock, Random, DenyList)
+    // This call advances the transaction, so the objects are immediately available
     scenario.create_system_objects();
 
-    scenario.next_tx(alice);
     {
         // Now Clock is available as a shared object
         let clock = scenario.take_shared<Clock>();
@@ -510,9 +510,10 @@ fun test_token_transfer_flow() {
         scenario.return_to_sender(token);
     };
 
-    // Verify final state via effects
+    // Verify final state via effects - `return_to_sender` is recorded as a
+    // transfer back to bob in the effects of the final transaction
     let effects = scenario.end();
-    assert_eq!(effects.transferred_to_account().size(), 0); // No transfers in final tx
+    assert_eq!(effects.transferred_to_account().size(), 1);
 }
 ```
 

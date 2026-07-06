@@ -4,18 +4,6 @@ description: "How to use line comments, block comments, and doc comments in Move
 
 # Comments
 
-<!--
-
-Chapter: Basic Syntax
-Goal: Introduce comments.
-Notes:
-    - doc comments are used in docgen
-    - only public members are documented
-    - doc comments are placed in between attributes and the definition
-    - doc comments are allowed for: modules, structs, functions, constants
-    - give an example of how doc comments are translated
- -->
-
 Comments are a way to add notes or document your code. They are ignored by the compiler and don't
 result in Move bytecode. You can use comments to explain what your code does, add notes to yourself
 or other developers, temporarily remove a part of your code, or generate documentation. There are
@@ -45,16 +33,19 @@ This example is a bit extreme, but it shows all the ways that you can use block 
 ## Doc Comment
 
 Documentation comments are special comments that are used to generate documentation for your code.
-They are similar to block comments but start with three slashes `///` and are placed before the
-definition of the item they document.
+They are similar to line comments but start with three slashes `///` and are placed before the
+definition of the item they document - a module, a struct, a function, or a constant.
 
 ```move file=packages/samples/sources/move-basics/comments-doc.move anchor=main
 
 ```
 
+Documentation tooling collects doc comments of the public members into reference pages - the
+[standard library and framework documentation](https://docs.sui.io/references/framework) linked
+throughout this book is generated exactly this way. A well-written doc comment states what the
+function does, and under which conditions it aborts.
+
 ## Whitespace
 
-Unlike some languages, whitespace (spaces, tabs, and newlines) have no impact on the meaning of the
+Unlike some languages, whitespace (spaces, tabs, and newlines) has no impact on the meaning of the
 program.
-
-<!-- TODO: docgen, which members are in the documentation -->

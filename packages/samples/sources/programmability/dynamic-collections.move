@@ -28,7 +28,9 @@ let mut bag = bag::new(ctx);
 // bag has the `length` function to get the number of elements
 assert_eq!(bag.length(), 0);
 
-bag.add(b"my_key", b"my_value".to_string());
+// the type of the value is defined at insertion; here it is a `String`
+let value: String = "my_value";
+bag.add(b"my_key", value);
 
 // length has changed to 1
 assert_eq!(bag.length(), 1);
@@ -69,8 +71,8 @@ let mut table = table::new<address, String>(ctx);
 // table has the `length` function to get the number of elements
 assert_eq!(table.length(), 0);
 
-table.add(@0xa11ce, b"my_value".to_string());
-table.add(@0xb0b, b"another_value".to_string());
+table.add(@0xa11ce, "my_value");
+table.add(@0xb0b, "another_value");
 
 // length has changed to 2
 assert_eq!(table.length(), 2);
@@ -113,9 +115,9 @@ let mut linked_table = linked_table::new<address, String>(ctx);
 // linked_table has the `length` function to get the number of elements
 assert_eq!(linked_table.length(), 0);
 
-linked_table.push_front(@0xa0a, b"first_value".to_string());
-linked_table.push_back(@0xb1b, b"second_value".to_string());
-linked_table.push_back(@0xc2c, b"third_value".to_string());
+linked_table.push_front(@0xa0a, "first_value");
+linked_table.push_back(@0xb1b, "second_value");
+linked_table.push_back(@0xc2c, "third_value");
 
 // length has changed to 3
 assert_eq!(linked_table.length(), 3);

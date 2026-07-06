@@ -19,6 +19,7 @@ let h = 0x0A;     // 0x0A is a literal
 let v = b"hello"; // b"hello" is a byte vector literal
 let x = x"0A";    // x"0A" is a byte vector literal
 let c = vector[1, 2, 3]; // vector[] is a vector literal
+let s: std::string::String = "hello"; // "hello" is a string literal
 // ANCHOR_END: literals
 
 // ANCHOR: operators

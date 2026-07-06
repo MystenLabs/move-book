@@ -68,7 +68,8 @@ let ctx = &mut tx_context::dummy();
 let mut character = Character { id: object::new(ctx) };
 
 // Attach a `String` via a `vector<u8>` name
-df::add(&mut character.id, b"string_key", b"Hello, World!".to_string());
+let string_value: String = "Hello, World!";
+df::add(&mut character.id, b"string_key", string_value);
 
 // Attach a `u64` via a `u32` name
 df::add(&mut character.id, 1000u32, 1_000_000_000u64);
@@ -133,21 +134,21 @@ let ctx = &mut tx_context::dummy();
 // ANCHOR: custom_type_usage
 let mut character = Character { id: object::new(ctx) };
 
-// Attaching via an `AccessoryKey { name: b"hat" }`
+// Attaching via an `AccessoryKey { name: "hat" }`
 df::add(
     &mut character.id,
-    AccessoryKey { name: b"hat".to_string() },
+    AccessoryKey { name: "hat" },
     Hat { id: object::new(ctx), color: 0xFF0000 }
 );
-// Attaching via an `AccessoryKey { name: b"mustache" }`
+// Attaching via an `AccessoryKey { name: "mustache" }`
 df::add(
     &mut character.id,
-    AccessoryKey { name: b"mustache".to_string() },
+    AccessoryKey { name: "mustache" },
     Mustache { id: object::new(ctx) }
 );
 
 // Attaching via a `MetadataKey`
-df::add(&mut character.id, MetadataKey {}, 42);
+df::add(&mut character.id, MetadataKey {}, 42u64);
 // ANCHOR_END: custom_type_usage
 std::unit_test::destroy(character);
 }

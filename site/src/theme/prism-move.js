@@ -305,6 +305,14 @@
       },
     },
 
+    // Plain string literal: "hello". Must come after the `b"..."` and
+    // `x"..."` forms so those prefixed literals are matched first.
+    'quoted-string-literal': {
+      pattern: /"(\\[\s\S]|[^\\"])*"/,
+      greedy: true,
+      alias: 'string',
+    },
+
     'macro-call': {
       pattern: /\b(\w+)!/,
       inside: {

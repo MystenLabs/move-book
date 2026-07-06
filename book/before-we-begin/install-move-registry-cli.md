@@ -44,3 +44,8 @@ cargo install --locked --git https://github.com/mystenlabs/mvr --branch release 
 
 For troubleshooting the installation process, please refer to the
 [Install MVR](https://docs.suins.io/move-registry/tooling/mvr-cli#installation) Guide.
+
+## Using MVR
+
+To learn how to find packages in the registry and use them as dependencies in your projects, see
+the [Using Move Registry](./../guides/using-move-registry) guide.

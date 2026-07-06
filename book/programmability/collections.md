@@ -11,9 +11,8 @@ collection types offered by the [Sui Framework](./sui-framework).
 
 ## Vector
 
-While we have previously covered the `vector` type in the [vector section](./../move-basics/vector),
-it is worth going over it again in a new context. This time we will cover the usage of the `vector`
-type in objects and how it can be used in an application.
+We covered the `vector` type in the [vector section](./../move-basics/vector) as a standalone
+value; here it appears in its most common role - a field of an object:
 
 ```move file=packages/samples/sources/programmability/collections.move anchor=vector
 
@@ -29,7 +28,7 @@ items, such as a list of IDs or addresses.
 
 ```
 
-VecSet will fail on attempt to insert an item that already exists in the set.
+`VecSet` aborts on an attempt to insert an item that already exists in the set.
 
 ## VecMap
 
@@ -54,9 +53,10 @@ allow you to store a wrong type in a collection; and they're limited in size - b
 limit. They will work for relatively small-sized sets and lists, but for larger collections you may
 need to use a different approach.
 
-Another limitations on collection types is inability to compare them. Because the order of insertion
-is not guaranteed, an attempt to compare a `VecSet` to another `VecSet` may not yield the expected
-results.
+Another limitation of vector-based collections is equality comparison. `VecSet` and `VecMap` keep
+their contents in insertion order, and the `==` operator compares the underlying vectors element by
+element. As a result, two sets that contain the same elements, but received them in a different
+order, are _not_ equal.
 
 > This behavior is caught by the linter and will emit a warning: _Comparing collections of type
 > 'sui::vec_set::VecSet' may yield unexpected result_
@@ -65,9 +65,10 @@ results.
 
 ```
 
-In the example above, the comparison will fail because the order of insertion is not guaranteed, and
-the two `VecSet` instances may have different orders of elements. And the comparison will fail even
-if the two `VecSet` instances contain the same elements.
+In the example above, both sets contain the same elements - `1` and `2` - but they were inserted in
+a different order. Since the comparison is order-sensitive, `set1 == set2` evaluates to `false`, and
+the assertion aborts. Do not rely on `==` to compare vector-based collections, unless you can
+guarantee that the elements were inserted in the same order.
 
 ## Summary
 

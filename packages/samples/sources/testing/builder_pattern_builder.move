@@ -59,9 +59,9 @@ public fun is_active(mut self: UserBuilder, is_active: bool): UserBuilder {
 public fun build(self: UserBuilder): User {
     let UserBuilder { name, age, email, balance, is_active } = self;
     user::new(
-        name.destroy_or!(b"Default User".to_string()),
+        name.destroy_or!("Default User"),
         age.destroy_or!(18),
-        email.destroy_or!(b"user@example.com".to_string()),
+        email.destroy_or!("user@example.com"),
         balance.destroy_or!(0),
         is_active.destroy_or!(true),
     )
@@ -73,9 +73,9 @@ public fun build(self: UserBuilder): User {
 fun test_balance_check_without_builder() {
     // We only care about `balance`, but must specify everything
     let user = user::new(
-        b"Alice".to_string(),
+        "Alice",
         25,
-        b"alice@example.com".to_string(),
+        "alice@example.com",
         1000, // <-- the only field we care about
         true,
     );
@@ -86,9 +86,9 @@ fun test_balance_check_without_builder() {
 fun test_inactive_user_without_builder() {
     // We only care about `is_active`, but must specify everything
     let user = user::new(
-        b"Bob".to_string(),
+        "Bob",
         30,
-        b"bob@example.com".to_string(),
+        "bob@example.com",
         500,
         false, // <-- the only field we care about
     );

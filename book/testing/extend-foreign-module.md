@@ -188,12 +188,11 @@ Extensions have important constraints to be aware of:
 - **Edition compatibility**: Extension code is subject to the same edition features as the target
   module. If the target module uses an older edition, your extension code must be compatible with
   that edition.
-- **Edition requirement**: Extensions require the `2024.alpha` edition or later. Ensure your
-  `Move.toml` specifies a compatible edition.
+- **Edition requirement**: Extensions are currently available only in the `2024.alpha` edition.
+  Ensure your `Move.toml` specifies it.
 
 ## Further Reading
 
 - [Module Extensions | Reference](./../../reference/extensions) - detailed specification of the
   extension syntax and semantics
 - [Integrating Pyth in Sui](https://docs.pyth.network/price-feeds/core/use-real-time-data/pull-integration/sui)
-- [App Examples: Oracles](https://docs.sui.io/guides/developer/app-examples/oracle)

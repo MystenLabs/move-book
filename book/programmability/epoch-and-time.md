@@ -4,18 +4,17 @@ description: "Access time in Sui Move: use epochs for operational periods and Cl
 
 # Epoch and Time
 
-Sui has two ways of accessing the current time: `Epoch` and `Time`. The former represents
-operational periods in the system and changed roughly every 24 hours. The latter represents the
-current time in milliseconds since the Unix Epoch. Both can be accessed freely in the program.
+Sui has two ways of accessing the current time: the _epoch_ and the `Clock` object. The former
+represents operational periods in the system and changes roughly every 24 hours. The latter gives
+the current time in milliseconds since the Unix Epoch. Both can be accessed freely in the program.
 
 ## Epoch
 
 Epochs are used to separate the system into operational periods. During an epoch the validator set
-is fixed, however, at the epoch boundary, the validator set can be changed. Epochs play a crucial
-role in the consensus algorithm and are used to determine the current validator set. They are also
-used as measurement in the staking mechanism.
+is fixed; at the epoch boundary, it can change. Epochs play a crucial role in the consensus
+algorithm and are used as a unit of measurement in the staking mechanism.
 
-Epoch can be read from the [transaction context](./transaction-context):
+The current epoch can be read from the [transaction context](./transaction-context):
 
 ```move file=packages/samples/sources/programmability/epoch-and-time.move anchor=epoch
 
@@ -63,8 +62,8 @@ public struct Clock has key {
 }
 ```
 
-There is only one public function available in the `Clock` module - `timestamp_ms`. It returns the
-current time in milliseconds since the Unix Epoch.
+For regular use, the module exposes a single function - `timestamp_ms`. It returns the current
+time in milliseconds since the Unix Epoch.
 
 ```move file=packages/samples/sources/programmability/epoch-and-time.move anchor=clock
 
@@ -72,8 +71,13 @@ current time in milliseconds since the Unix Epoch.
 
 ## Testing
 
-The `Clock` module provides a number of methods for use in testing.
+Since the real `Clock` is only updated by the system, the module provides test-only functions to
+create a clock, set its value, and destroy it:
 
 ```move file=packages/samples/sources/programmability/epoch-and-time.move anchor=test
 
 ```
+
+## Further Reading
+
+- [sui::clock](https://docs.sui.io/references/framework/sui/clock) module documentation.

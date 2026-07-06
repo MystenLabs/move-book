@@ -34,6 +34,6 @@ use std::unit_test::assert_eq;
 fun test_type_reflection() {
     let (type_name, module_name, _address_str) = do_i_know_you<MyType>();
 
-    assert_eq!(module_name, b"type_reflection".to_ascii_string());
+    assert_eq!(module_name, "type_reflection");
 }
 // ANCHOR_END: main

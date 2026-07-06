@@ -93,7 +93,20 @@ function extractAnchor(fileContent: string, anchor: string): string | null {
   const contentStart = fileContent.indexOf('\n', startIdx) + 1;
   const endIdx = fileContent.indexOf(endMarker, contentStart);
   if (endIdx === -1) return null;
-  return fileContent.slice(contentStart, endIdx).trimEnd();
+
+  const snippet = fileContent
+    .slice(contentStart, endIdx)
+    .trimEnd()
+    .split('\n')
+    .filter((line) => !line.includes('// ANCHOR'));
+
+  // Strip the common leading indentation so a snippet anchored inside a
+  // function body renders flush-left; relative nesting is preserved. Mirrors
+  // the dedent in the remark plugin (mdbook-anchor-code.ts).
+  const nonBlank = snippet.filter((line) => line.trim().length > 0);
+  if (nonBlank.length === 0) return snippet.join('\n');
+  const indent = Math.min(...nonBlank.map((line) => line.match(/^[ \t]*/)![0].length));
+  return snippet.map((line) => (line.trim().length > 0 ? line.slice(indent) : '')).join('\n');
 }
 
 function stripHtmlComments(content: string): string {

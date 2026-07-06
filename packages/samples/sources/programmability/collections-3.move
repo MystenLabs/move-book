@@ -19,10 +19,10 @@ use std::unit_test::assert_eq;
 
 #[test]
 fun vec_map_playground() {
-    let mut map = vec_map::empty(); // create an empty map
+    let mut map: VecMap<u64, String> = vec_map::empty(); // create an empty map
 
-    map.insert(2, b"two".to_string()); // add a key-value pair to the map
-    map.insert(3, b"three".to_string());
+    map.insert(2, "two"); // add a key-value pair to the map
+    map.insert(3, "three");
 
     assert_eq!(map.contains(&2), true); // check if a key is in the map
 

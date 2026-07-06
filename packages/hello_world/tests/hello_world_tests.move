@@ -8,6 +8,6 @@ use hello_world::hello_world;
 
 #[test]
 fun test_hello_world() {
-    assert_eq!(hello_world::hello_world(), b"Hello, World!".to_string());
+    assert_eq!(hello_world::hello_world(), "Hello, World!");
 }
 // ANCHOR_END: test

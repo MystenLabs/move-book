@@ -18,3 +18,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Generated files of production builds (kept separate so builds do not
+# clobber a running dev server, see package.json build script)
+.docusaurus-build

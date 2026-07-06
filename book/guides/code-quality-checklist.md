@@ -44,8 +44,8 @@ Sui = { ... }
 
 ### Prefix Named Addresses
 
-If your package has a generic name (e.g., `token`) – especially if your project includes multiple
-packages – make sure to add a prefix to the named address:
+If your package has a generic name (e.g., `token`) - especially if your project includes multiple
+packages - make sure to add a prefix to the named address:
 
 ```toml
 # bad! not indicative of anything, and can conflict
@@ -97,7 +97,7 @@ use my_package::my_module::OtherMember;
 use my_package::my_module::{Self, OtherMember};
 ```
 
-### Error Constants are in `EPascalCase`
+### Error Constants Are in `EPascalCase`
 
 ```move
 // bad! all-caps are used for regular constants
@@ -107,14 +107,14 @@ const NOT_AUTHORIZED: u64 = 0;
 const ENotAuthorized: u64 = 0;
 ```
 
-### Regular Constant are `ALL_CAPS`
+### Regular Constants Are `ALL_CAPS`
 
 ```move
 // bad! PascalCase is associated with error consts
-const MyConstant: vector<u8> = b"my const";
+const MyConstant: vector<u8> = "my const";
 
 // good! clear indication that it's a constant value
-const MY_CONSTANT: vector<u8> = b"my const";
+const MY_CONSTANT: vector<u8> = "my const";
 ```
 
 ## Structs
@@ -265,12 +265,16 @@ use std::string::utf8;
 
 let str = utf8(b"hello, world!");
 
-// good!
-let str = b"hello, world!".to_string();
+// good! the literal is checked at compile time
+let str: String = "hello, world!";
 
 // also, for ASCII string
-let ascii = b"hello, world!".to_ascii_string();
+let ascii: ascii::String = "hello, world!";
 ```
+
+> The `.to_string()` and `.to_ascii_string()` methods on `vector<u8>` still have their place -
+> converting bytes that are not known at compile time. For literals, prefer the string literal
+> syntax.
 
 ### UID has `delete`
 
@@ -545,7 +549,7 @@ assert!(is_success);
 
 ```move
 // bad! old-style code
-assert!(result == b"expected_value", 0);
+assert!(result == "expected_value", 0);
 
 // good! will print both values if fails
 use std::unit_test::assert_eq;

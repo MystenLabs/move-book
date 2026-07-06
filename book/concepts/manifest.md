@@ -1,3 +1,7 @@
+---
+description: "The Move.toml package manifest: package metadata, dependencies, named addresses, and dependency overrides explained."
+---
+
 # Package Manifest
 
 The `Move.toml` is a manifest file that describes the [package](./packages) and its dependencies. It
@@ -22,9 +26,9 @@ published on chain, but they are used in tooling and release management; they al
 edition for the compiler.
 
 - `name` - the name of the package when it is imported;
-- `edition` - the edition of the Move language; currently, the only valid value is `2024`.
-
-<!-- published-at -->
+- `edition` - the edition of the Move language; currently, the only valid value is `2024`;
+- `published-at` - the address the package was published at; set after publishing, it lets
+  dependent packages and tooling resolve the on-chain address of this package.
 
 ### Dependencies
 
@@ -41,13 +45,25 @@ example = { git = "https://github.com/example/example.git", subdir = "path/to/pa
 my_package = { local = "../my-package" }
 ```
 
-Packages also import addresses from other packages. For example, the Sui dependency adds the `std`
-and `sui` addresses to the project. These addresses can be used in the code as aliases for the
-addresses.
+Packages also import named addresses from their dependencies. For example, the Sui dependency adds
+the `std` and `sui` addresses to the project, usable in the code in place of the full `0x1` and
+`0x2` addresses.
 
 Starting with version 1.45 of the Sui CLI, the Sui system packages (`std`, `sui`, `system`,
 `bridge`, and `deepbook`) are automatically added as dependencies if none of them are explicitly
 listed.
+
+### Addresses
+
+The `[addresses]` section declares _named addresses_: aliases that can be used in the code in place
+of full addresses. The package's own name is conventionally declared here with the value `0x0`,
+which is the placeholder used until the package is published:
+
+```toml
+[addresses]
+my_project = "0x0"
+alice = "0xA11CE"
+```
 
 ### Resolving Version Conflicts with Override
 

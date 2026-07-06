@@ -4,10 +4,10 @@ description: "The Publisher object in Sui: prove package authority to configure 
 
 # Publisher Authority
 
-In application design and development, it is often needed to prove publisher authority. This is
-especially important in the context of digital assets, where the publisher may enable or disable
-certain features for their assets. The Publisher Object is an object, defined in the
-[Sui Framework](./sui-framework), that allows the publisher to prove their _authority over a type_.
+Applications often need to prove _who published a type_. This is especially important in the
+context of digital assets, where the publisher may enable or disable certain features for their
+assets. The Publisher object, defined in the [Sui Framework](./sui-framework), is what allows the
+publisher to prove their _authority over a type_.
 
 ## Definition
 
@@ -26,19 +26,20 @@ public struct Publisher has key, store {
 }
 ```
 
-> If you're not familiar with the One Time Witness, you can read more about it
-> [here](./one-time-witness).
-
 Here's a simple example of claiming a `Publisher` object in a module:
 
 ```move file=packages/samples/sources/programmability/publisher.move anchor=publisher
 
 ```
 
+> For the common claim-and-transfer flow, the `sui::package` module also provides a shorthand -
+> `package::claim_and_keep` - which claims the `Publisher` object and transfers it to the sender in
+> one call.
+
 ## Usage
 
-The Publisher object has two functions associated with it which are used to prove the publisher's
-authority over a type:
+The Publisher object has two functions associated with it - `from_module` and `from_package` -
+which check whether a type was defined in the module or package this `Publisher` stands for:
 
 ```move file=packages/samples/sources/programmability/publisher.move anchor=use_publisher
 
@@ -54,20 +55,23 @@ system configurations, it can also be used to manage the application's state.
 
 ```
 
-However, Publisher misses some native properties of [Capabilities](./capability), such as type
-safety and expressiveness. The signature for the `admin_action` is not very explicit, can be called
-by anyone else. And due to `Publisher` object being standard, there is now a risk of unauthorized
-access if the `from_module` check is not performed. So it's important to be cautious when using the
-`Publisher` object as an admin role.
+However, the Publisher object lacks some of the native properties of
+[Capabilities](./capability), such as type safety and expressiveness. The signature of
+`admin_action` says nothing about the required authority - the function can be called by anyone
+holding _any_ `Publisher` object, so the authorization must be checked inside the function body.
+And since every published package produces a `Publisher`, forgetting the `from_module` check opens
+the action to every publisher on the network. For these reasons, it is important to be cautious
+when using the `Publisher` object as an admin role.
 
 ## Role on Sui
 
-Publisher is required for certain features on Sui. [Object Display](./display) can be created only
-by the Publisher, and TransferPolicy - an important component of the Kiosk system - also requires
-the Publisher object to prove ownership of the type.
+Publisher is required for certain features on Sui. [Object Display](./display) can be created with
+the Publisher when it is set up outside of the module defining the type, and TransferPolicy - an
+important component of the Kiosk system - also requires the Publisher object to prove ownership of
+the type.
 
 ## Next Steps
 
-In the next chapter we will cover the first feature that requires the Publisher object - Object
+In the next section we will cover the first feature that can use the Publisher object - Object
 Display - a way to describe objects for clients, and standardize metadata. A must-have for
 user-friendly applications.

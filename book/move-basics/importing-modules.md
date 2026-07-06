@@ -4,25 +4,6 @@ description: "How to import modules in Move using the use keyword: single import
 
 # Importing Modules
 
-<!--
-    TODO: create a better example for:
-        1. Importing a module in general
-        2. Importing a member
-        3. Importing multiple members
-        4. Grouping imports
-        5. Self keyword for groups
--->
-
-<!--
-
-Goals:
-    - Show the import syntax
-    - Local dependencies
-    - External dependencies
-    - Importing modules from other packages
-
- -->
-
 Move achieves high modularity and code reuse by allowing module imports. Modules within the same
 package can import each other, and a new package can depend on already existing packages and use
 their modules too. This section will cover the basics of importing modules and how to use them in
@@ -71,8 +52,8 @@ Importing function names is less common in Move, since the function names can ov
 confusion. A recommended practice is to import the entire module and use the module path to access
 the function. Types have unique names and should be imported individually.
 
-To import members and the module itself in the group import, you can use the `Self` keyword. The
-`Self` keyword refers to the module itself and can be used to import the module and its members.
+To import both the module itself and some of its members in one group import, use the `Self`
+keyword, which stands for the module:
 
 ```move file=packages/samples/sources/move-basics/importing-modules-self.move anchor=self
 
@@ -106,13 +87,11 @@ Local = { local = "../my_other_package" }
 The `dependencies` section contains an entry for each package dependency. The key of the entry is
 the name of the package (`Example` or `Local` in the example), and the value is either a git import
 table or a local path. The git import contains the URL of the package, the subdirectory where the
-package is located, and the revision of the package. The local path is a relative path to the qa
+package is located, and the revision of the package. The local path is a relative path to the
 package directory.
 
-If you add a dependency, all of its dependencies also become available to your package.
-
-If a dependency is added to the `Move.toml` file, the compiler will automatically fetch (and later
-refetch) the dependencies when building the package.
+The compiler automatically fetches (and later refetches) the listed dependencies when building the
+package, and all of their dependencies become available to your package as well.
 
 > Starting with version 1.45 of the sui CLI, the system packages are automatically included as
 > dependencies for all packages if they are not present in `Move.toml`. Therefore, `MoveStdlib`,
@@ -135,3 +114,7 @@ module path consists of the package address (or alias) and the module name, sepa
 
 > Note: Module address names come from the `[addresses]` section of the manifest file (`Move.toml`),
 > not the names used in the `[dependencies]` section.
+
+## Further Reading
+
+- [Uses and Aliases](./../../reference/uses) in the Move Reference.

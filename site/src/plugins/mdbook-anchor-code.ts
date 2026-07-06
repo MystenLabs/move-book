@@ -47,9 +47,21 @@ const plugin: Plugin<[Options?], Root> = ({ rootDir = process.cwd() } = {}) => {
           throw new Error(`No end anchor for "${anchor}" in ${absPath}`);
         }
 
-        content = lines
+        const snippet = lines
           .slice(start + 1, end)
-          .filter((e) => !e.includes('// ANCHOR_END') && !e.includes('// ANCHOR'))
+          .filter((e) => !e.includes('// ANCHOR_END') && !e.includes('// ANCHOR'));
+
+        // Strip the common leading indentation, so a snippet anchored inside a
+        // function body renders flush-left instead of jumping to the right.
+        // Relative (nested) indentation is preserved; blank lines are ignored
+        // when measuring and left empty in the output.
+        const indent = Math.min(
+          ...snippet
+            .filter((line) => line.trim().length > 0)
+            .map((line) => line.match(/^[ \t]*/)![0].length),
+        );
+        content = snippet
+          .map((line) => (line.trim().length > 0 ? line.slice(indent) : ''))
           .join('\n');
       }
 

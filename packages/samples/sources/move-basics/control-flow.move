@@ -1,7 +1,7 @@
 // Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-#[allow(unused_function)]
+#[allow(unused_function, untyped_literal)]
 // ANCHOR: module
 module book::control_flow;
 // ANCHOR_END: module
@@ -16,7 +16,8 @@ fun test_if() {
 
     // `x > 0` is a boolean expression.
     if (x > 0) {
-        std::debug::print(&b"X is bigger than 0".to_string())
+        let message: std::string::String = "X is bigger than 0";
+        std::debug::print(&message)
     };
 }
 // ANCHOR_END: if_condition
@@ -33,6 +34,22 @@ fun test_if_else() {
     assert_eq!(y, 1);
 }
 // ANCHOR_END: if_else
+// ANCHOR: else_if
+// Returns a letter grade for a score from 0 to 100.
+fun grade(score: u8): vector<u8> {
+    if (score >= 90) "A"
+    else if (score >= 80) "B"
+    else if (score >= 70) "C"
+    else "F"
+}
+
+#[test]
+fun test_else_if() {
+    assert_eq!(grade(95), "A");
+    assert_eq!(grade(82), "B");
+    assert_eq!(grade(40), "F");
+}
+// ANCHOR_END: else_if
 // ANCHOR: while_loop
 // This function iterates over the `x` variable until it reaches 10, the
 // return value is the number of iterations it took to reach 10.
@@ -131,6 +148,63 @@ fun test_continue_loop() {
     assert_eq!(x, 10) // 10
 }
 // ANCHOR_END: continue_loop
+// ANCHOR: labeled_loop
+// Searches a grid (a vector of rows) for `target`, returning `true` as
+// soon as it is found. The `'search` label lets the inner loop break out
+// of *both* loops at once.
+fun grid_contains(grid: &vector<vector<u8>>, target: u8): bool {
+    let mut row = 0;
+
+    'search: loop {
+        // Ran out of rows without finding the target.
+        if (row >= grid.length()) break false;
+
+        let inner = &grid[row];
+        let mut col = 0;
+
+        while (col < inner.length()) {
+            if (inner[col] == target) {
+                // Found it - break the outer `'search` loop directly,
+                // skipping any remaining columns and rows.
+                break 'search true
+            };
+            col = col + 1;
+        };
+
+        row = row + 1;
+    }
+}
+
+#[test]
+fun test_grid_contains() {
+    let grid = vector[
+        vector[1, 2, 3],
+        vector[4, 5, 6],
+        vector[7, 8, 9],
+    ];
+
+    assert_eq!(grid_contains(&grid, 5), true);
+    assert_eq!(grid_contains(&grid, 10), false);
+}
+// ANCHOR_END: labeled_loop
+// ANCHOR: labeled_block
+// Classifies a number, exiting the `'result` block early with `return`
+// as soon as the answer is known.
+fun classify(x: u64): vector<u8> {
+    'result: {
+        if (x == 0) return 'result "zero";
+        if (x % 2 == 0) return 'result "even";
+        "odd"
+    }
+}
+
+#[test]
+fun test_labeled_block() {
+    assert_eq!(classify(0), "zero");
+    assert_eq!(classify(4), "even");
+    assert_eq!(classify(7), "odd");
+}
+// ANCHOR_END: labeled_block
 // ANCHOR: return_statement
 /// This function returns `true` if `x` is greater than 0 and not 5,
 /// otherwise it returns `false`.

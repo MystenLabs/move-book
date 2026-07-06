@@ -10,8 +10,9 @@ a value at runtime. This is handy when you need to store type information in a h
 collection, or when you want to check if a type comes from a particular package.
 
 Type reflection is implemented in the [Standard Library](./standard-library) module
-[`std::type_name`][type-name-stdlib]. It provides a set of functions, main of which are
-`with_defining_ids` and `with_original_ids`.
+[`std::type_name`][type-name-stdlib]. Its main functions are `with_defining_ids` and
+`with_original_ids`, which capture the type as a `TypeName` value, and their lighter counterparts
+that return only the package address:
 
 ```move
 let defining_type_name: TypeName = type_name::with_defining_ids<T>();
@@ -59,10 +60,10 @@ public struct Version1 has drop {}
 public struct Version2 has drop {}
 ```
 
-## In practice
+## In Practice
 
-The module is straightforward, and operations allowed on the result are limited to getting a string
-representation and extracting the module and address of the type.
+The module is straightforward: the operations allowed on the resulting `TypeName` are limited to
+getting a string representation and extracting the module name and address of the type.
 
 ```move file=packages/samples/sources/move-basics/type-reflection.move anchor=main
 

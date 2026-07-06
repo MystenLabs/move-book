@@ -81,11 +81,11 @@ fun test_with_hint() {
 
 ## Tracking Created Objects
 
-When testing object creation, you may want to verify how many objects were created or get the ID of
-the last created object:
+When testing object creation, you may want to verify how many objects were created or get the
+address of the last created object:
 
 ```move
-use std::unit_test::assert_eq;
+use std::unit_test::{assert_eq, destroy};
 
 #[test]
 fun test_object_creation_count() {
@@ -99,10 +99,13 @@ fun test_object_creation_count() {
     let obj2 = my_module::new(ctx);
     assert_eq!(ctx.ids_created(), 2);
 
-    // Get the ID of the most recently created object
+    // Get the address of the most recently created object (derived from its ID)
     let last_id = ctx.last_created_object_id();
+    assert_eq!(last_id, object::id(&obj2).to_address());
 
-    // ...
+    // Objects don't have `drop`, so they need to be cleaned up
+    destroy(obj1);
+    destroy(obj2);
 }
 ```
 
@@ -165,7 +168,7 @@ fun test_with_full_context() {
 | `new_from_hint()`             | Like `new` but generates tx_hash from integer |
 | `create()`                    | Full control including gas parameters         |
 | `ids_created()`               | Check number of objects created               |
-| `last_created_object_id()`    | Get ID of most recent object                  |
+| `last_created_object_id()`    | Get address of the most recent object         |
 | `increment_epoch_number()`    | Simulate epoch progression                    |
 | `increment_epoch_timestamp()` | Simulate time passing                         |
 

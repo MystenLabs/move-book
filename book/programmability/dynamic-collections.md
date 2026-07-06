@@ -61,7 +61,7 @@ public struct Bag has key, store {
 
 _See [full documentation for sui::bag][bag-framework] module._
 
-Due to Bag storing any types, the extra methods it offers is:
+Since Bag stores values of any type, it offers one extra method:
 
 - `contains_with_type` - checks if a field exists with a specific type
 
@@ -123,8 +123,8 @@ _See [full documentation for sui::object_table][object-table-framework] module._
 
 ## LinkedTable
 
-It is defined in the `sui::linked_table` module, similar to [Table](#table) but the values are linked together,
-allowing for ordered insertion and removal.
+Defined in the `sui::linked_table` module. Similar to [Table](#table), but the entries are linked
+together, allowing ordered insertion, removal, and iteration.
 
 ```move
 module sui::linked_table;
@@ -163,6 +163,20 @@ Using the LinkedTable:
 
 ```
 
+## Choosing a Collection Type
+
+A short decision guide:
+
+- The key and value types are fixed and known - use [Table](#table); if the values vary in type,
+  use [Bag](#bag);
+- the values are objects that should stay visible to wallets and explorers - take the
+  [ObjectTable](#objecttable) / [ObjectBag](#objectbag) variant;
+- the collection has to be iterated on-chain or preserve insertion order - use
+  [LinkedTable](#linkedtable), the only one of the five that links its entries;
+- the collection is small, bounded, and needs to be embedded or compared as a plain value - the
+  vector-based [collections](./collections) from the earlier section may be a better fit than a
+  dynamic one.
+
 ## Summary
 
 - [Bag](#bag) - a simple collection that can store any type of data.
@@ -184,9 +198,3 @@ Using the LinkedTable:
 [linked-table-framework]: https://docs.sui.io/references/framework/sui/linked_table
 [bag-framework]: https://docs.sui.io/references/framework/sui/bag
 [object-bag-framework]: https://docs.sui.io/references/framework/sui/object_bag
-
-<!-- TODO! -->
-
-<!-- ## Choosing a Collection Type
-
-Depending on the needs of your project, you may choose to -->

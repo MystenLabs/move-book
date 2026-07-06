@@ -4,6 +4,9 @@ description: "Best practices for upgrading Move packages on Sui: maintain compat
 
 # Upgradeability Practices
 
+> This guide builds on the [Package Upgrades](./../programmability/package-upgrades) section, which
+> explains the mechanics of upgrades: versions, the `UpgradeCap`, and state migrations.
+
 To talk about best practices for upgradeability, we need to first understand what can be upgraded in
 a package. The base premise of upgradeability is that an upgrade should not break public
 compatibility with the previous version. The parts of the module which can be used in dependent
@@ -25,7 +28,7 @@ public struct Book has key {
     title: String,
 }
 
-// public structs can not be removed and can't be changed
+// the same rule applies to event structs
 public struct BookCreated has copy, drop {
     /* ... */
 }
