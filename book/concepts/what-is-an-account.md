@@ -27,3 +27,4 @@ Sui unusual flexibility in how accounts are created and controlled.
   the [Sui Docs](https://docs.sui.io)
 - [Signatures](https://docs.sui.io/guides/developer/cryptography/signing) in the
   [Sui Docs](https://docs.sui.io)
+- [Passkey](https://docs.sui.io/develop/cryptography/passkeys) in the [Sui Docs](https://docs.sui.io)
