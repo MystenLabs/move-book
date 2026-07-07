@@ -2,7 +2,7 @@
 description: "Fast path vs consensus in Sui: how owned objects skip consensus for faster transactions while shared objects require ordering."
 ---
 
-# Fast Path & Consensus
+# Fast Path and Consensus
 
 The Object Model allows for variable transaction execution paths, depending on the object's
 ownership type. The transaction execution path determines how the transaction is processed and
@@ -23,36 +23,57 @@ transaction succeeds while the other is rightfully rejected.
 
 ## Fast Path
 
-However, not all transactions require the same level of validation and consensus. For example, if
-Alice wants to transfer an object that she owns to Bob, the network can process this transaction
-without sequencing it with respect to all other transactions in the network, as only Alice has the
-authority to access the object. This is known as the _fast path_ execution, where transactions
-accessing account-owned objects are processed quickly without the need for extensive consensus. No
-concurrent data access -> simpler challenge -> fast path.
+However, not all transactions require the same level of validation. If Alice transfers an object
+she owns to Bob, no other party could have touched that object in the first place - Alice is its
+single owner. There is no conflict to resolve, so the network does not need to order this
+transaction against all other transactions in the network. Transactions that access only
+account-owned objects take the _fast path_: they skip full sequencing and are processed quickly.
+This is a direct payoff of the [single owner](./ownership#account-owner-or-single-owner) model -
+exclusive access removes the concurrency problem entirely.
 
-Another ownership model that allows for fast path execution is the _immutable state_. Since
-immutable objects cannot change, transactions involving them can be processed quickly without the
-need to sequence them.
+Immutable objects also qualify for the fast path. Since a
+[frozen object](./ownership#immutable-frozen-state) can never change, any number of transactions
+can read it concurrently without any ordering.
 
 ## Consensus Path
 
-Transactions that do access shared state - on Sui it is represented with shared objects - require
-sequencing to ensure that the state is updated and consistent across all nodes. This is known as the
-execution through _consensus_, where transactions accessing shared objects are subject to the
-agreement process to maintain network consistency.
+Transactions that access _shared_ objects are the case consensus exists for: multiple parties may
+attempt to modify the same object at the same time, so the network must agree on the order of
+these modifications. Such transactions go through the _consensus path_ - they are sequenced by the
+consensus protocol before execution, which keeps the state consistent across all nodes.
 
-<!-- On Sui consensus is per-object - mention!!! -->
+[Party objects](./ownership#party-objects) also take the consensus path, even though they have a
+single owner - that is precisely their trade-off: owner-only access with consensus ordering.
 
-## Objects owned by Objects
+An important detail: consensus on Sui orders transactions _per object_, not globally. Two
+transactions touching two unrelated shared objects do not compete with each other - only
+transactions accessing the _same_ shared object need to be ordered relative to each other. This is
+what allows Sui to execute non-conflicting transactions in parallel.
 
-Lastly, it is important to mention that objects owned by other objects are subject to the same rules
-as the parent object. If the parent object is _shared_, the child object is also transitively
-shared. If the parent object is immutable, the child object is also immutable.
+A single transaction can mix inputs: if it accesses both owned and shared objects, it goes through
+consensus - the execution path is determined by the "slowest" input. This is worth keeping in mind
+when designing an application: whether your central state is a shared object or stays within owned
+objects directly affects how your users' transactions are executed.
+
+## Objects Owned by Objects
+
+Lastly, objects owned by other objects follow the execution path of their parent - a child is only
+reachable through its parent, so accessing it means accessing the parent first. If the parent
+object is _shared_, working with the child requires consensus; if the parent is account-owned, the
+whole chain qualifies for the fast path.
 
 ## Summary
 
-- **Fast Path:** Transactions involving account-owned objects or immutable shared state are
-  processed quickly without the need for extensive consensus.
-- **Consensus Path:** Transactions involving shared objects require sequencing and consensus to
-  ensure network integrity.
-- **Objects owned by Objects:** Child objects inherit the ownership model of the parent object.
+- **Fast Path:** Transactions involving only account-owned or immutable objects are processed
+  quickly without full consensus sequencing.
+- **Consensus Path:** Transactions involving shared or party objects are sequenced by consensus -
+  per object, allowing non-conflicting transactions to run in parallel.
+- **Mixed Inputs:** A transaction touching both owned and shared objects goes through consensus.
+- **Objects Owned by Objects:** Child objects follow the execution path of their parent.
+
+## Next Steps
+
+This concludes the conceptual tour of the Object Model: you know what an object is, who can own
+it, and how ownership shapes execution. The next chapter - [Using Objects](./../storage) - turns
+these concepts into code: how to define an object, and how to transfer, share, and freeze it from
+a Move module.

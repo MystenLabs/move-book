@@ -1,3 +1,7 @@
+---
+description: "The Move.toml package manifest: package metadata, dependencies, named addresses, and dependency overrides explained."
+---
+
 # Package Manifest
 
 The `Move.toml` is a manifest file that describes the [package](./packages) and its dependencies. It
@@ -18,13 +22,11 @@ example = { git = "https://github.com/example/example.git", subdir = "path/to/pa
 ### Package
 
 The `[package]` section is used to describe the package. None of the fields in this section are
-published on chain, but they are used in tooling and release management; they also specify the Move
+published onchain, but they are used in tooling and release management; they also specify the Move
 edition for the compiler.
 
 - `name` - the name of the package when it is imported;
-- `edition` - the edition of the Move language; currently, the only valid value is `2024`.
-
-<!-- published-at -->
+- `edition` - the edition of the Move language; currently, the only valid value is `2024`;
 
 ### Dependencies
 
@@ -41,9 +43,9 @@ example = { git = "https://github.com/example/example.git", subdir = "path/to/pa
 my_package = { local = "../my-package" }
 ```
 
-Packages also import addresses from other packages. For example, the Sui dependency adds the `std`
-and `sui` addresses to the project. These addresses can be used in the code as aliases for the
-addresses.
+Packages also import named addresses from their dependencies. For example, the Sui dependency adds
+the `std` and `sui` addresses to the project, usable in the code in place of the full `0x1` and
+`0x2` addresses.
 
 Starting with version 1.45 of the Sui CLI, the Sui system packages (`std`, `sui`, `system`,
 `bridge`, and `deepbook`) are automatically added as dependencies if none of them are explicitly
@@ -89,4 +91,5 @@ local = "../my-package"
 
 ## Further Reading
 
+- [Move Package Management](https://docs.sui.io/develop/manage-packages/move-package-management) in the Sui Docs.
 - [Packages](./../../reference/packages) in the Move Reference.

@@ -101,7 +101,8 @@ use sui_system::validator_builder;
 
 #[test]
 fun test_validator_operations() {
-    let validator = validator_builder::preset()
+    let ctx = &mut tx_context::dummy();
+    let validator = validator_builder::preset(1)
         .name("My Validator")
         .gas_price(1000)
         .commission_rate(500) // 5%
@@ -112,25 +113,26 @@ fun test_validator_operations() {
 }
 ```
 
-The `preset()` function returns a builder pre-filled with valid test defaults, so tests only
-override the fields they care about.
+The `preset(index)` function returns a builder pre-filled with valid test defaults - keys, addresses
+and economic parameters - for one of several predefined validators, so tests only override the
+fields they care about.
 
 ### TxContextBuilder in Sui Framework
 
 The [`TxContextBuilder`][tx-context-builder] allows customizing transaction context for specific
-test scenarios:
+test scenarios. The builder is passed to `begin_with_context()` to start a scenario, or to
+`next_with_context()` to advance an existing one:
 
 ```move
 use sui::test_scenario as ts;
 
 #[test]
 fun test_epoch_dependent_logic() {
-    let mut test = ts::begin(@0x1);
-    let ctx = test
-        .ctx_builder()
-        .set_epoch(100)
-        .set_epoch_timestamp(1000000)
-        .build();
+    let mut test = ts::begin_with_context(
+        ts::ctx_builder_from_sender(@0x1)
+            .set_epoch(100)
+            .set_epoch_timestamp(1_000_000),
+    );
 
     // test logic that depends on epoch...
 

@@ -28,3 +28,17 @@ fun init(ctx: &mut TxContext) {
     });
 }
 // ANCHOR_END: main
+
+// ANCHOR: test
+#[test_only]
+use std::unit_test::assert_eq;
+
+#[test]
+fun test_init() {
+    let ctx = &mut tx_context::dummy();
+    init(ctx);
+
+    // Two objects were created: the `ShopOwnerCap` and the `Shop`.
+    assert_eq!(ctx.ids_created(), 2);
+}
+// ANCHOR_END: test

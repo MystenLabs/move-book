@@ -24,10 +24,21 @@ understand what scenario is being tested and what the expected outcome is.
 > [Builder Pattern](./builder-pattern.md) which is covered later in this chapter.
 
 ```move
+module book::readable_tests;
+
+public struct Balance has copy, drop { value: u64 }
+
+public fun new(value: u64): Balance { Balance { value } }
+public fun add(balance: &mut Balance, amount: u64) { balance.value = balance.value + amount; }
+public fun value(balance: &Balance): u64 { balance.value }
+
+#[test_only]
+use std::unit_test::assert_eq;
+
 #[test]
 fun test_add_increases_balance_by_specified_amount() {
     // Arrange: set up initial state
-    let mut balance = balance::new(100);
+    let mut balance = new(100);
 
     // Act: perform the operation being tested
     balance.add(50);
@@ -82,7 +93,7 @@ implementations without breaking tests.
 Edge cases are where bugs often hide. For numeric operations, consider:
 
 - Zero values
-- Maximum values (`U64_MAX`, `U128_MAX`)
+- Maximum values (`std::u64::max_value!()`, `std::u128::max_value!()`)
 - Boundary conditions (off-by-one errors)
 - Empty collections
 

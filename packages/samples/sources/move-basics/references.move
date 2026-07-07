@@ -44,6 +44,28 @@ public fun recycle(card: Card) {
 }
 // ANCHOR_END: move
 
+// ANCHOR: getter
+/// Getter: a reference to the `uses` field, derived from
+/// the `card` reference taken as an argument.
+public fun uses(card: &Card): &u8 {
+    &card.uses
+}
+// ANCHOR_END: getter
+
+#[test]
+fun test_getter() {
+    let mut card = purchase();
+    assert!(*card.uses() == 3);
+
+    enter_metro(&mut card);
+    assert!(*card.uses() == 2);
+
+    // spend the remaining rides and recycle the card
+    enter_metro(&mut card);
+    enter_metro(&mut card);
+    recycle(card);
+}
+
 // ANCHOR: test
 #[test]
 fun test_card() {
@@ -60,6 +82,26 @@ fun test_card() {
     recycle(card); // move the card out of the scope
 }
 // ANCHOR_END: test
+
+// ANCHOR: deref
+#[test]
+fun test_dereference() {
+    let mut card = purchase();
+
+    // A reference to the `uses` field - a `u8` value.
+    let uses_ref = &card.uses;
+
+    // The dereference operator `*` copies the value behind the reference.
+    let uses: u8 = *uses_ref;
+    assert!(uses == 3);
+
+    // Writing through a mutable reference is also a dereference.
+    *(&mut card.uses) = 0;
+    assert!(card.uses == 0);
+
+    recycle(card);
+}
+// ANCHOR_END: deref
 
 // ANCHOR: move_2024
 #[test]

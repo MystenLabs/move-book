@@ -8,7 +8,8 @@ Functions are the building blocks of Move programs. They are called from
 [user transactions](./../concepts/what-is-a-transaction) and from other functions and group
 executable code into reusable units. Functions can take arguments and return a value. They are
 declared with the `fun` keyword at the module level. Just like any other module member, by default
-they're private and can only be accessed from within the module.
+they're private and can only be accessed from within the module; making them visible to other
+modules is the topic of the [Visibility Modifiers](./visibility) section, later in this chapter.
 
 ```move file=packages/samples/sources/move-basics/function.move anchor=math
 
@@ -16,37 +17,39 @@ they're private and can only be accessed from within the module.
 
 In this example, we define a function `add` that takes two arguments of type `u64` and returns their
 sum. The `test_add` function, located in the same module, is a test function that calls `add`. The
-test uses the `assert!` macro to compare the result of `add` with the expected value. If the
-condition inside `assert!` evaluates to false, the execution is aborted automatically.
+test uses the `assert_eq!` macro to compare the result of `add` with the expected value. If the
+two values differ, the execution is aborted automatically.
 
-## Function declaration
+## Function Declaration
 
 > In Move, functions are typically named using the `snake_case` convention. This means function
 > names should be all lowercase, with words separated by underscores. Examples include
 > `do_something`, `add`, `get_balance`, `is_authorized`, and so on.
 
 A function is declared with the `fun` keyword followed by the function name (a valid Move
-identifier), a list of arguments in parentheses, and a return type. The function body is a block of
-code that contains a sequence of statements and expressions. The last expression the function body
-is the return value of the function.
+identifier), a list of arguments in parentheses, and a return type. The function body is a
+[block](./expression#blocks), and, like in any block, the last expression without a semicolon is
+the function's return value. The `return` keyword allows returning early - it is covered with the
+other [control flow](./control-flow) expressions.
 
 ```move file=packages/samples/sources/move-basics/function.move anchor=return_nothing
 
 ```
 
-## Accessing functions
+## Accessing Functions
 
 Just like other module members, functions can be imported and accessed using a path. The path
 consists of the module path and the function name, separated by ::. For example, if you have a
 function named `add` in the `math` module within the `book` package, its full path would be
-`book::math::add`. If the module has already been imported, you can access it directly as
-`math::add` as in the following example:
+`book::math::add`. If the module has already been imported - imports are covered in the
+[Importing Modules](./importing-modules) section - you can access it directly as `math::add`, as
+in the following example:
 
 ```move file=packages/samples/sources/move-basics/function_use.move anchor=use_math
 
 ```
 
-## Multiple return values
+## Multiple Return Values
 
 Move functions can return multiple values, which is particularly useful when you need to return more
 than one piece of data from a function. The return type is specified as a tuple of types, and the
@@ -70,7 +73,7 @@ variable name:
 
 ```
 
-If some of the arguments are not used, they can be ignored with the `_` symbol:
+If some of the returned values are not needed, they can be ignored with the `_` symbol:
 
 ```move file=packages/samples/sources/move-basics/function.move anchor=tuple_return_ignore
 

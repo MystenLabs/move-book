@@ -58,6 +58,8 @@ bookSidebar:
         id: move-basics/address
       - label: Expressions
         id: move-basics/expression
+      - label: Functions
+        id: move-basics/function
       - label: Structs
         id: move-basics/struct
       - label: Abilities Introduction
@@ -78,12 +80,6 @@ bookSidebar:
         id: move-basics/control-flow
       - label: Enums and Match
         id: move-basics/enum-and-match
-      - label: Constants
-        id: move-basics/constants
-      - label: Aborting Execution
-        id: move-basics/assert-and-abort
-      - label: Functions
-        id: move-basics/function
       - label: Struct Methods
         id: move-basics/struct-methods
       - label: Visibility Modifiers
@@ -92,15 +88,20 @@ bookSidebar:
         id: move-basics/ownership-and-scope
       - label: 'Ability: Copy'
         id: move-basics/copy-ability
+      - label: Constants
+        id: move-basics/constants
+      - label: Aborting Execution
+        id: move-basics/assert-and-abort
       - label: References
         id: move-basics/references
       - label: Generics
         id: move-basics/generics
+      - label: Macro Functions
+        id: move-basics/macros
+      - label: Internal Permit
+        id: move-basics/internal-permit
       - label: Type Reflection
         id: move-basics/type-reflection
-      # - label: "5.26 Macros: Introduction"
-      #   type: doc
-      #   id: move-basics/type-parameters
       - label: Testing
         id: move-basics/testing
   - type: category
@@ -117,7 +118,7 @@ bookSidebar:
         id: object/object-model
       - label: Ownership
         id: object/ownership
-      - label: Fast Path & Consensus
+      - label: Fast Path and Consensus
         id: object/fast-path-and-consensus
   - type: category
     label: Using Objects
@@ -125,16 +126,14 @@ bookSidebar:
       id: storage/index
       type: doc
     items:
-      - label: Internal Constraint
-        id: storage/internal-constraint
       - label: 'Ability: Key'
         id: storage/key-ability
       - label: 'Ability: Store'
         id: storage/store-ability
+      - label: Internal Constraint
+        id: storage/internal-constraint
       - label: Storage Functions
         id: storage/storage-functions
-      # - label: Transfer Restrictions
-      #   id: storage/transfer-restrictions
       - label: UID and ID
         id: storage/uid-and-id
       - label: Receiving as Object
@@ -180,19 +179,19 @@ bookSidebar:
         id: programmability/display
       - label: Events
         id: programmability/events
-      # - label: Balance & Coin
-      #   id: programmability/balance-and-coin
-      #   type: doc
+      - label: Balance and Coin
+        id: programmability/balance-and-coin
+      - label: Address Balances
+        id: programmability/address-balances
       - label: 'Pattern: Hot Potato'
         id: programmability/hot-potato-pattern
+      - label: Package Upgrades
+        id: programmability/package-upgrades
       # - label: '8.18 Pattern: Request'
       #   id: programmability/request-pattern
       #   type: doc
       # - label: '8.19 Pattern: Object Capability'
       #   id: programmability/object-capability-pattern
-      #   type: doc
-      # - label: '8.20 Package Upgrades'
-      #   id: programmability/package-upgrades
       #   type: doc
       # - label: '8.21 Transaction Blocks'
       #   id: programmability/transaction-block
@@ -203,9 +202,8 @@ bookSidebar:
       # - label: '8.23 Cryptography and Hashing'
       #   id: programmability/cryptography-and-hashing
       #   type: doc
-      # - label: '8.24 Randomness'
-      #   id: programmability/cryptography-and-hashing
-      #   type: doc
+      - label: Randomness
+        id: programmability/randomness
       - label: BCS
         id: programmability/bcs
   - type: category
@@ -234,6 +232,8 @@ bookSidebar:
       #   id: testing/writing-test-macros
       - label: Extending Modules
         id: testing/extend-foreign-module
+      - label: Running Lints
+        id: testing/linting
       - label: Coverage Reports
         id: testing/coverage
       - label: Gas Profiling
@@ -246,6 +246,8 @@ bookSidebar:
     items:
       - label: Compilation Modes
         id: move-advanced/modes
+      - label: Entry Functions
+        id: move-advanced/entry-functions
   - type: category
     label: Guides
     enumerate: false
@@ -260,6 +262,8 @@ bookSidebar:
         id: guides/better-error-handling
       - label: Code Quality Checklist
         id: guides/code-quality-checklist
+      - label: Using Move Registry
+        id: guides/using-move-registry
       # - label: Open-sourcing Libraries
       #   id: guides/open-sourcing-libraries
       # - label: Creating an NFT Collection

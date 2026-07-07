@@ -4,21 +4,20 @@ description: "Struct methods in Move: use receiver syntax to call functions on s
 
 # Struct Methods
 
-Move Compiler supports _receiver syntax_ `e.f()`, which allows defining methods which can be called
-on instances of a struct. The term "receiver" specifically refers to the instance that receives the
-method call. This is like the method syntax in other programming languages. It is a convenient way
-to define functions that operate on the fields of a struct, providing direct access to the struct's
-fields and creating cleaner, more intuitive code than passing the struct as a parameter.
+Throughout the previous sections we have called functions on values with the dot operator:
+`v.length()`, `opt.is_some()`, `artist.name()`. This is the _receiver syntax_ - "receiver" refers
+to the instance that receives the method call - and this section explains how it works and how to
+control it. Methods make code that operates on a struct read naturally: the value comes first, the
+operation follows, and there is no need to import or spell out the function's module.
 
-## Method syntax
+## Method Syntax
 
-If the first argument of a function is a struct internal to the module that defines the function,
-then the function can be called using the `.` operator. However, if the type of the first argument
-is defined in another module, then method won't be associated with the struct by default. In this
-case, the `.` operator syntax is not available, and the function must be called using standard
-function call syntax.
-
-When a module is imported, its methods are automatically associated with the struct.
+The core rule: a function is callable with the `.` operator when its first argument is a struct
+defined in the _same module_ as the function. Such methods are automatically available everywhere
+the struct is used - this is exactly why `vector` and `Option` values could be called with the dot
+syntax as soon as we had them. If the type of the first argument is defined in another module, the
+function is not associated with the struct by default and must be called with the standard function
+call syntax - unless an _alias_ is declared, as shown below.
 
 ```move file=packages/samples/sources/move-basics/struct-methods.move anchor=hero
 
@@ -61,16 +60,19 @@ structs.
 > `public use fun hero_health as Hero.health`, which provides controlled access to the private
 > field.
 
-<!-- ## Aliasing an external module's method
+## Aliasing a Method of an External Type
 
-It is also possible to associate a function defined in another module with a struct from the current
-module. Following the same approach, we can create an alias for the method defined in another
-module. Let's use the `bcs::to_bytes` method from the [Standard Library](./standard-library) and
-associate it with the `Hero` struct. It will allow serializing the `Hero` struct to a vector of
-bytes.
+Aliases are not limited to the module's own structs: a local (non-public) alias can attach a method
+name to a type from another module. Here we give the standard `String` type an extra method name,
+`num_bytes` - a more precise name for what its `length` function actually counts:
 
-```move file=packages/samples/sources/move-basics/struct-methods-3.move anchor=hero_to_bytes
-``` -->
+```move file=packages/samples/sources/move-basics/struct-methods-3.move anchor=string_alias
+
+```
+
+The alias only exists within the module that declares it - which is exactly why it cannot be
+`public`: the module does not own the `String` type, so it cannot extend its interface for everyone
+else.
 
 ## Further Reading
 

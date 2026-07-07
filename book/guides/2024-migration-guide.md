@@ -1,48 +1,68 @@
 ---
-description: "Migrate your Move code to the 2024 edition: updated syntax, new features, method syntax, and step-by-step migration instructions."
+description: "Migrate your Move code to the 2024 edition: module labels, let mut, public structs, method syntax, enums and match, macros, clever errors, and step-by-step instructions."
 ---
 
 # Move 2024 Migration Guide
 
-Move 2024 is the new edition of the Move language that is maintained by Mysten Labs. This guide is
-intended to help you understand the differences between the 2024 edition and the previous version of
-the Move language.
+Move 2024 is the current edition of the Move language maintained by Mysten Labs, and the edition
+this book teaches. This guide is written for readers migrating code - or knowledge - from the
+original edition (referred to below as _Move 2020_): it lists what changed, feature by feature,
+with a before-and-after example for each.
 
-> This guide provides a high-level overview of the changes in the new edition. For a more detailed
-> and exhaustive list of changes, refer to the
-> [Sui Blog](https://blog.sui.io/move-2024-migration-guide).
+> This guide is a high-level overview. Every feature listed here has a dedicated section in the
+> book, linked from its heading - refer to them for the full story.
 
-## Using the New Edition
+## Using the 2024 Edition
 
-To use the new edition, you need to specify the edition in the `move` file. The edition is specified
-in the `move` file using the `edition` keyword. Currently, the only available edition is
-`2024.beta`.
+The edition is specified in the `[package]` section of the [Package Manifest](./../concepts/manifest).
+The stable `2024` edition is the default choice and the one to prefer; the `2024.beta` and
+`2024.alpha` editions give early access to features that are still in development and may change:
 
-```ini
+```toml
+[package]
+name = "my_package"
 edition = "2024"
-# alternatively, for new features:
-edition = "2024.beta"
 ```
 
 ## Migration Tool
 
-The Move CLI has a migration tool that updates the code to the new edition. To use the migration
-tool, run the following command:
+The Move CLI has a migration tool that updates legacy code to the new edition. To use the migration
+tool, run the following command in the package directory:
 
 ```bash
 $ sui move migrate
 ```
 
-The migration tool will update the code to use the `let mut` syntax, the new `public` modifier for
-structs, and the `public(package)` function visibility instead of `friend` declarations.
+The migration tool handles the mechanical changes: the `let mut` syntax, the `public` modifier on
+structs, and the `public(package)` visibility in place of `friend` declarations.
+
+## Module Label
+
+_See [Module](./../move-basics/module#module-block)._
+
+A module no longer needs to wrap its body in a block: the _module label_ syntax declares the module
+once, and everything that follows belongs to it - saving a level of indentation in the entire file.
+The block syntax is still supported, but only useful for declaring multiple modules in one file,
+which is not a recommended practice:
+
+```move
+// Move 2020: module block
+module book::my_module {
+    public struct Book {}
+}
+
+// Move 2024: module label
+module book::my_module;
+
+public struct Book {}
+```
 
 ## Mutable Bindings with `let mut`
 
-Move 2024 introduces `let mut` syntax to declare mutable variables. The `let mut` syntax is used to
-declare a mutable variable that can be changed after it is declared.
+_See [Primitive Types](./../move-basics/primitive-types#variables-and-assignment)._
 
-> `let mut` declaration is now required for mutable variables. Compiler will emit an error if you
-> try to reassign a variable without the `mut` keyword.
+Move 2024 requires the `mut` keyword to declare a variable that can be reassigned or mutably
+borrowed. The compiler emits an error on an attempt to change a variable declared without `mut`:
 
 ```move
 // Move 2020
@@ -54,8 +74,8 @@ let mut x: u64 = 10;
 x = 20;
 ```
 
-Additionally, the `mut` keyword is used in tuple destructuring and function arguments to declare
-mutable variables.
+Additionally, the `mut` keyword is used in tuple destructuring and function arguments, placed
+before the variable name:
 
 ```move
 // takes by value and mutates
@@ -64,38 +84,23 @@ fun takes_by_value_and_mutates(mut v: Value): Value {
     v
 }
 
-// `mut` should be placed before the variable name
+// in tuple destructuring
 fun destruct() {
-    let (x, y) = point::get_point();
     let (mut x, y) = point::get_point();
-    let (mut x, mut y) = point::get_point();
 }
 
 // in struct unpack
 fun unpack() {
     let Point { x, mut y } = point::get_point();
-    let Point { mut x, mut y } = point::get_point();
 }
-```
-
-## Friends are Deprecated
-
-In Move 2024, the `friend` keyword is deprecated. Instead, you can use the `public(package)`
-visibility modifier to make functions visible to other modules in the same package.
-
-```move
-// Move 2020
-friend book::friend_module;
-public(friend) fun protected_function() {}
-
-// Move 2024
-public(package) fun protected_function_2024() {}
 ```
 
 ## Struct Visibility
 
-In Move 2024, structs get a visibility modifier. Currently, the only available visibility modifier
-is `public`.
+_See [Custom Types with Struct](./../move-basics/struct#defining-a-struct)._
+
+In Move 2024, struct declarations require a visibility modifier. Currently, the only available
+visibility is `public`:
 
 ```move
 // Move 2020
@@ -105,104 +110,157 @@ struct Book {}
 public struct Book {}
 ```
 
+Note that `public` applies to the struct _type_ - the fields stay internal to the module, and only
+the defining module can pack and unpack the struct, exactly as before.
+
+## Friends Are Deprecated
+
+_See [Visibility Modifiers](./../move-basics/visibility#package-visibility)._
+
+The `friend` declarations and the `public(friend)` visibility are deprecated. In their place, the
+`public(package)` visibility makes a function callable from any module of the same package - with
+no declaration required. The `friend book::module_name;` statements are gone entirely:
+
+```move
+// Move 2020
+friend book::friend_module;
+public(friend) fun protected_function() {}
+
+// Move 2024: no friend declaration needed
+public(package) fun protected_function() {}
+```
+
 ## Method Syntax
 
-In the new edition, functions which have a struct as the first argument are associated with the
-struct. This means that the function can be called using the dot notation. Methods defined in the
-same module with the type are automatically exported.
+_See [Struct Methods](./../move-basics/struct-methods)._
 
-> Methods are automatically exported if the type is defined in the same module as the method. It is
-> impossible to export methods for types defined in other modules. However, you can create
-> [custom aliases](#method-aliases) for methods in the module scope.
+Functions whose first argument is a type defined in the same module become _methods_ of that type,
+callable with the dot syntax anywhere the type is used:
 
 ```move
 public fun count(c: &Counter): u64 { /* ... */ }
 
-fun use_counter() {
-    // move 2020
-    let count = counter::count(&c);
+fun use_counter(c: &Counter) {
+    // Move 2020
+    let count = counter::count(c);
 
-    // move 2024
+    // Move 2024
     let count = c.count();
 }
 ```
 
-## Methods for Built-in Types
-
-In Move 2024, some of the native and standard types received associated methods. For example, the
-`vector` type has a `to_string` method that converts the vector into a UTF8 string.
+The standard library and the Sui Framework make full use of this: native and standard types come
+with associated methods out of the box:
 
 ```move
-fun aliases() {
-    // vector to string and ascii string
-    let str: String = b"Hello, World!".to_string();
-    let ascii: ascii::String = b"Hello, World!".to_ascii_string();
+// vector to string and ascii string
+let str: String = b"Hello, World!".to_string();
+let ascii: ascii::String = b"Hello, World!".to_ascii_string();
 
-    // address to bytes
-    let bytes = @0xa11ce.to_bytes();
-}
+// address to bytes
+let bytes = @0xa11ce.to_bytes();
 ```
 
-For the full list of built-in aliases, refer to the
-[Standard Library](./../move-basics/standard-library#source-code) and
-[Sui Framework](./../programmability/sui-framework#source-code) source code.
+## `use fun` and Method Aliases
 
-## Borrowing Operator
+_See [Struct Methods](./../move-basics/struct-methods#method-aliases)._
 
-Some of the built-in types support borrowing operators. The borrowing operator is used to get a
-reference to the element at the specified index. The borrowing operator is defined as `[]`.
-
-```move
-fun play_vec() {
-    let v = vector[1,2,3,4];
-    let first = &v[0];         // calls vector::borrow(v, 0)
-    let first_mut = &mut v[0]; // calls vector::borrow_mut(v, 0)
-    let first_copy = v[0];     // calls *vector::borrow(v, 0)
-}
-```
-
-Types that support the borrowing operator are:
-
-- `vector`
-- `sui::vec_map::VecMap`
-- `sui::table::Table`
-- `sui::bag::Bag`
-- `sui::object_table::ObjectTable`
-- `sui::object_bag::ObjectBag`
-- `sui::linked_table::LinkedTable`
-
-To implement the borrowing operator for a custom type, you need to add a `#[syntax(index)]`
-attribute to the methods.
+The `use fun` declaration associates a function with a type under a chosen method name. An alias
+can be declared for any type locally to the module; or publicly - with `public use fun` - if the
+type is defined in the same module:
 
 ```move
-#[syntax(index)]
-public fun borrow(c: &List<T>, key: String): &T { /* ... */ }
-
-#[syntax(index)]
-public fun borrow_mut(c: &mut List<T>, key: String): &mut T { /* ... */ }
-```
-
-## Method Aliases
-
-In Move 2024, methods can be associated with types. The alias can be defined for any type locally to
-the module; or publicly, if the type is defined in the same module.
-
-```move
-// my_module.move
-// Local: type is foreign to the module
+// Local: the type is foreign to the module
 use fun my_custom_function as vector.do_magic;
 
-// sui-framework/kiosk/kiosk.move
-// Exported: type is defined in the same module
+// Exported: the type is defined in the same module
 public use fun kiosk_owner_cap_for as KioskOwnerCap.kiosk;
 ```
 
-<!-- ## Macros
+## Index Syntax for Borrowing
 
-Macros are introduced in Move 2024. And `assert!` is no longer a built-in function - Instead, it's a macro.
+_See [Vector](./../move-basics/vector#reading-elements) and
+[Index Syntax](./../../reference/index-syntax) in the Move Reference._
+
+Square brackets replace explicit `borrow` and `borrow_mut` calls on collection types:
 
 ```move
-// can be called as for!(0, 10, |i| call(i));
+fun play_vec() {
+    let mut v = vector[1, 2, 3, 4];
+    let first = &v[0];         // calls vector::borrow(&v, 0)
+    let first_mut = &mut v[0]; // calls vector::borrow_mut(&mut v, 0)
+    let first_copy = v[0];     // calls *vector::borrow(&v, 0)
+}
+```
+
+The syntax is supported by `vector` and the collection types of the Sui Framework: `VecMap`,
+`Table`, `Bag`, `ObjectTable`, `ObjectBag`, and `LinkedTable`. A custom type can implement it by
+marking its borrow functions with the `#[syntax(index)]` attribute:
+
+```move
+#[syntax(index)]
+public fun borrow<T>(c: &List<T>, key: String): &T { /* ... */ }
+
+#[syntax(index)]
+public fun borrow_mut<T>(c: &mut List<T>, key: String): &mut T { /* ... */ }
+```
+
+## String Literals
+
+_See [String](./../move-basics/string#string-literals)._
+
+Move 2020 offered only byte-string literals, and constructing a `String` required an explicit
+conversion. The new edition adds the string literal `"..."`, with the type _inferred_ from context -
+it becomes a `String`, an `ascii::String`, or a `vector<u8>`, whichever is expected:
+
+```move
+// Move 2020: bytes, converted at runtime
+let str: String = string::utf8(b"Hello");
+
+// Move 2024: the literal is checked and typed at compile time
+let str: String = "Hello";
+let ascii: std::ascii::String = "ASCII";
+```
+
+The contents are validated at compile time: a literal used as an `ascii::String` must contain only
+ASCII characters, or the code will not compile.
+
+## Enums and `match`
+
+_See [Enums and Match](./../move-basics/enum-and-match)._
+
+Move 2024 introduces _enums_ - user-defined types with multiple variants - and the `match`
+expression for handling them. Together they allow expressing varying data structures under a single
+type, something previously emulated with multiple structs and runtime checks:
+
+```move
+/// One type - three different shapes of data.
+public enum Segment has copy, drop {
+    Empty,
+    String(String),
+    Special { content: vector<u8>, encoding: u8 },
+}
+
+public fun is_empty(s: &Segment): bool {
+    match (s) {
+        Segment::Empty => true,
+        _ => false,
+    }
+}
+```
+
+The `match` expression is not limited to enums: it works on primitive values and structs as well,
+requires the arms to be exhaustive, and supports the `_` wildcard for the remaining cases.
+
+## Macros
+
+_See [Macro Functions](./../move-basics/macros)._
+
+Move 2024 introduces _macro functions_ - functions expanded at the call site during compilation,
+which can take _lambdas_ as arguments. Macro names are followed by the `!` mark:
+
+```move
+// can be called as `for!(0, 10, |i| call(i));`
 macro fun for($start: u64, $stop: u64, $body: |u64|) {
     let mut i = $start;
     let stop = $stop;
@@ -212,4 +270,72 @@ macro fun for($start: u64, $stop: u64, $body: |u64|) {
     }
 }
 ```
- -->
+
+The familiar `assert!` is no longer special-cased compiler magic - it is a regular macro, and its
+error-code argument is now optional. The standard library ships a rich set of macros which quickly
+became the idiomatic way to write iteration:
+
+```move
+let v = vector[1, 2, 3];
+
+// instead of a hand-written while loop:
+let doubled = v.map!(|n| n * 2);
+let sum = v.fold!(0, |acc, n| acc + n);
+v.do!(|n| std::debug::print(&n));
+```
+
+## Abort Without a Code
+
+_See [Aborting Execution](./../move-basics/assert-and-abort#omitting-the-abort-code)._
+
+The abort code is now optional: a bare `abort` (and `assert!` without a second argument) derives
+the code automatically, encoding the module and source line of the failure. It is a good fit for
+branches that are not expected to be reachable:
+
+```move
+// Move 2020: a code was always required
+if (!is_valid) abort 0;
+
+// Move 2024
+if (!is_valid) abort;
+assert!(is_valid);
+```
+
+## Clever Errors
+
+_See [Aborting Execution](./../move-basics/assert-and-abort#error-messages)._
+
+Error constants marked with the `#[error]` attribute can carry a human-readable message - a
+`vector<u8>` instead of a bare `u64`. On abort, tooling decodes the constant name, the message, and
+the source line, removing the need to look up numeric codes:
+
+```move
+#[error]
+const ENotAuthorized: vector<u8> = "The caller is not authorized to perform this action";
+
+public fun protected_action(/* ... */) {
+    assert!(is_authorized, ENotAuthorized);
+}
+```
+
+## Extending Modules in Tests
+
+_See [Extending Modules](./../testing/extend-foreign-module)._
+
+The `extend module` declaration adds test-only members to an existing module - including a module
+from a foreign package - with full access to its private types. It solves the long-standing problem
+of testing against dependencies that ship no test utilities:
+
+```move
+#[test_only]
+extend module pyth::price_info;
+
+// Functions defined here can pack and unpack the private
+// types of `pyth::price_info` - in tests only.
+```
+
+> Module extensions are still in development and currently require the `2024.alpha` edition.
+
+## Further Reading
+
+- [Move 2024 Migration Guide](https://blog.sui.io/move-2024-migration-guide) on the Sui Blog.

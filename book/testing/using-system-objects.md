@@ -52,7 +52,7 @@ fun test_shared_clock() {
 
 ## Random
 
-The `Random` object provides on-chain randomness. In tests, the full `Random` shared object can only
+The `Random` object provides onchain randomness. In tests, the full `Random` shared object can only
 be created inside a [test scenario](./test-scenario.md) via `random::create_for_testing`. However,
 the preferred approach is to structure your code so that the core logic takes a `RandomGenerator`
 parameter - this lets you create a generator directly in unit tests with
@@ -82,13 +82,18 @@ public(package) fun inner_function(gen: &mut RandomGenerator): Option<u64> {
 
 #[test]
 fun test_simple_random() {
-    // Deterministic, always the same value.
+    // Non-deterministic seed, useful for fuzzing. The result differs between
+    // runs, so don't assert a specific outcome.
     let mut gen = random::new_generator_for_testing();
-    assert!(inner_function(&mut gen).is_none());
+    let _result = inner_function(&mut gen);
 
     // Deterministic (reproducible with same seed)
-    let seed = b"Arbitrary seed bytes";
+    let seed: vector<u8> = "Arbitrary seed bytes";
     let mut gen = random::new_generator_from_seed_for_testing(seed);
+    assert!(inner_function(&mut gen).is_none());
+
+    // A different seed gives a different - but still reproducible - result
+    let mut gen = random::new_generator_from_seed_for_testing("move book");
     assert!(inner_function(&mut gen).is_some());
 }
 ```
@@ -110,10 +115,10 @@ fun test_random_shared() {
 
     let mut random = scenario.take_shared<Random>();
 
-    // Initialize with seed bytes (required before use)
+    // Initialize with 32 bytes of randomness (required before use)
     random.update_randomness_state_for_testing(
         0,
-        x"1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F",
+        x"2020202020202020202020202020202020202020202020202020202020202020",
         scenario.ctx(),
     );
 
@@ -197,8 +202,8 @@ fun test_with_all_system_objects() {
     let mut scenario = test_scenario::begin(@0xA);
 
     // Creates Clock, Random, and DenyList as shared objects
+    // (advances the transaction, so they are immediately available)
     scenario.create_system_objects();
-    scenario.next_tx(@0xA);
 
     // Take objects by type
     let clock = scenario.take_shared<Clock>();
@@ -228,7 +233,6 @@ use sui::test_scenario::{Self, most_recent_id_shared};
 fun test_take_by_id() {
     let mut scenario = test_scenario::begin(@0xA);
     scenario.create_system_objects();
-    scenario.next_tx(@0xA);
 
     // Get the ID of the most recent shared Clock
     let clock_id = most_recent_id_shared<Clock>().destroy_some();

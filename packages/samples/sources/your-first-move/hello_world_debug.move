@@ -7,7 +7,7 @@ use std::string::String;
 use std::debug;
 
 public fun hello_world(): String {
-    let result = b"Hello, World!".to_string();
+    let result: String = "Hello, World!";
     debug::print(&result);
     result
 }
@@ -17,7 +17,7 @@ use std::unit_test::assert_eq;
 
 #[test]
 fun test_is_hello_world() {
-    let expected = b"Hello, World!".to_string();
+    let expected: String = "Hello, World!";
     let actual = hello_world();
 
     assert_eq!(actual, expected);

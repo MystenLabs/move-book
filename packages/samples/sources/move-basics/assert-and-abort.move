@@ -16,6 +16,14 @@ if (!user_has_access) {
 // ANCHOR_END: abort
 }
 
+#[test, expected_failure]
+fun test_clean_abort() {
+    // ANCHOR: clean_abort
+    // `abort` can also be used without an explicit abort code.
+    abort
+    // ANCHOR_END: clean_abort
+}
+
 #[test]
 fun show_assert() {
 let user_has_access = true;
@@ -27,6 +35,9 @@ assert!(user_has_access, 0);
 if (!user_has_access) {
     abort 0
 };
+
+// the abort code can be omitted
+assert!(user_has_access);
 // ANCHOR_END: assert
 }
 
@@ -50,10 +61,10 @@ public struct User { is_authorized: bool, value: u64 }
 
 // ANCHOR: error_attribute
 #[error]
-const ENotAuthorized: vector<u8> = b"The user is not authorized to perform this action";
+const ENotAuthorized: vector<u8> = "The user is not authorized to perform this action";
 
 #[error]
-const EValueTooLow: vector<u8> = b"The value is too low, it should be at least 10";
+const EValueTooLow: vector<u8> = "The value is too low, it should be at least 10";
 
 /// Performs an action on behalf of the user.
 public fun update_value(user: &mut User, value: u64) {

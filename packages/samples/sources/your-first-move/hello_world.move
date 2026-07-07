@@ -6,7 +6,7 @@ module book::hello_world;
 use std::string::String;
 
 public fun hello_world(): String {
-    b"Hello, World!".to_string()
+    "Hello, World!"
 }
 
 #[test_only]
@@ -14,6 +14,6 @@ use std::unit_test::assert_eq;
 
 #[test]
 fun test_is_hello_world() {
-    let expected = b"Hello, World!".to_string();
+    let expected: String = "Hello, World!";
     assert_eq!(hello_world(), expected);
 }

@@ -7,7 +7,7 @@ public struct User has key, store { id: UID }
 
 // ANCHOR: with_capability
 /// Grants the owner the right to create new users in the system.
-public struct AdminCap {}
+public struct AdminCap has key { id: UID }
 
 /// Creates a new user in the system. Requires the `AdminCap` capability to be
 /// passed as the first argument.

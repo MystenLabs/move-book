@@ -8,7 +8,7 @@ The Move compiler has a built-in testing framework - tests are written in Move a
 your source code. You annotate functions with `#[test]`, and the compiler handles discovery and
 execution. The VM execution environment is the same as in production, so your code runs with
 identical semantics. However, network and storage features are simulated in tests and don't behave
-exactly as they do during actual on-chain execution - something to keep in mind when testing
+exactly as they do during actual onchain execution - something to keep in mind when testing
 interactions with objects, transactions, and other platform-specific functionality.
 
 ## What is a Test?
@@ -111,6 +111,18 @@ fun test_wrong_error_code() {
 }
 ```
 
+### Abort Codes from Other Modules
+
+The `abort_code` argument can also reference a constant defined in another module - including the
+[Standard Library](./../move-basics/standard-library) and the
+[Sui Framework](./../programmability/sui-framework) - by spelling out its full path. Visibility
+does not matter here: the attribute can name a private constant of a dependency. This is the way to
+test a function that is expected to fail _inside_ a dependency:
+
+```move file=packages/samples/sources/testing/testing-basics.move anchor=foreign_abort_code
+
+```
+
 ### Expected Location
 
 Specify where the abort should occur using `location`:
@@ -122,9 +134,9 @@ fun test_abort_location() {
 }
 
 // Use `location = Self` for aborts in the current module
-#[test, expected_failure(abort_code = 1, location = Self)]
+#[test, expected_failure(abort_code = ENotFound, location = Self)]
 fun test_abort_in_self() {
-    abort 1
+    abort ENotFound
 }
 ```
 
@@ -136,10 +148,11 @@ functions to have `public` or `public(package)` visibility so they can be called
 modules - since test-only code is stripped from production builds, this does not affect the public
 API of your package.
 
-> Note: a good rule of thumb is to add `_for_testing` suffix to test-only functions and constants.
-> This helps distinguish them from production code and makes it easier to find them in the codebase.
-> Given that test-only functions often do things that production code cannot, this is a good way to
-> ensure that you are not accidentally using a test-only function in production code.
+> Note: a good rule of thumb is to add a `_for_testing` suffix to test-only functions and a `TEST_`
+> prefix to test-only constants. This helps distinguish them from production code and makes it
+> easier to find them in the codebase. Given that test-only functions often do things that
+> production code cannot, this is a good way to ensure that you are not accidentally using a
+> test-only function in production code.
 
 ### Test-Only Imports
 

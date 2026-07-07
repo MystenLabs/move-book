@@ -4,23 +4,24 @@ description: "Dynamic fields in Sui: attach heterogeneous key-value data to obje
 
 # Dynamic Fields
 
-Sui Object model allows objects to be attached to other objects as _dynamic fields_. The behavior is
-similar to how a `Map` works in other programming languages. However, unlike a `Map` which in Move
-would be strictly typed (we have covered it in the [Collections](./collections) section), dynamic
-fields allow attaching objects of any type. A similar approach from the world of frontend
-development would be a JavaScript Object type which allows storing any type of data dynamically.
+The Sui Object Model allows attaching extra data to objects at runtime as _dynamic fields_. The
+behavior is similar to how a `Map` works in other programming languages. However, unlike a `Map`,
+which in Move would be strictly typed (we have covered it in the [Collections](./collections)
+section), dynamic fields allow attaching values of any type. A similar approach from the world of
+frontend development would be a JavaScript Object type which allows storing any type of data
+dynamically.
 
 > There's no limit to the number of dynamic fields that can be attached to an object. Thus, dynamic
-> fields can be used to store large amounts of data that don't fit into the object limit size.
+> fields can be used to store large amounts of data that don't fit into the object size limit.
 
-Dynamic Fields allow for a wide range of applications, from splitting data into smaller parts to
-avoid [object size limit](./../guides/building-against-limits) to attaching objects as a part of
-application logic.
+Dynamic fields allow for a wide range of applications, from splitting data into smaller parts to
+avoid the [object size limit](./../guides/building-against-limits) to attaching objects as a part
+of application logic.
 
 ## Definition
 
-Dynamic Fields are defined in the `sui::dynamic_field` module of the
-[Sui Framework](./sui-framework). They are attached to object's `UID` via a _name_, and can be
+Dynamic fields are defined in the `sui::dynamic_field` module of the
+[Sui Framework](./sui-framework). They are attached to an object's `UID` via a _name_, and can be
 accessed using that name. There can be only one field with a given name attached to an object.
 
 ```move
@@ -29,7 +30,7 @@ module sui::dynamic_field;
 /// Internal object used for storing the field and value
 public struct Field<Name: copy + drop + store, Value: store> has key {
     /// Determined by the hash of the object ID, the field name
-    /// value and it's type, i.e. hash(parent.id || name || Name)
+    /// value and its type, i.e. hash(parent.id || name || Name)
     id: UID,
     /// The value for the name of this field
     name: Name,
@@ -43,20 +44,15 @@ As the definition shows, dynamic fields are stored in an internal `Field` object
 The `Field` object contains the field name and the value bound to it. The constraints on the `Name`
 and `Value` type parameters define the abilities that the key and value must have.
 
+_See [full documentation for sui::dynamic_field][dynamic-field-framework] module._
+
 ## Usage
 
 The methods available for dynamic fields are straightforward: a field can be added with `add`,
-removed with `remove`, replaced with `replace`, and read with `borrow` and `borrow_mut`.
-Additionally, the `exists_` method can be used to check if a field exists (for stricter checks with
-type, there is an `exists_with_type` method).
-
-The `replace` function swaps the existing value of a field for a new one and returns the old value,
-without requiring a separate `remove` and `add` call. For example:
-
-```move
-// Replace the current hat and get the old one back
-let old_hat = df::replace(&mut character.id, b"hat_key", Hat { color: 0xFF0000 });
-```
+removed with `remove`, and read with `borrow` and `borrow_mut`. Additionally, the `exists_` method
+can be used to check if a field exists (for stricter checks with type, there is an
+`exists_with_type` method), and `remove_if_exists` removes a field if it is present, returning an
+[`Option`](./../move-basics/option) with the value.
 
 ```move file=packages/samples/sources/programmability/dynamic-fields.move anchor=usage
 
@@ -64,7 +60,7 @@ let old_hat = df::replace(&mut character.id, b"hat_key", Hat { color: 0xFF0000 }
 
 In the example above, we define a `Character` object and two different types of accessories that
 could never be put together in a vector. However, dynamic fields allow us to store them together in
-a single object. Both objects are attached to the `Character` via a `vector<u8>` (bytestring
+a single object. Both objects are attached to the `Character` via a `vector<u8>` (a byte string
 literal), and can be accessed using their respective names.
 
 As you can see, when we attached the accessories to the Character, we passed them _by value_. In
@@ -90,25 +86,6 @@ In this example we showed how different types can be used for both _name_ and th
 dynamic field. The `String` is attached via a `vector<u8>` name, the `u64` is attached via a `u32`
 name, and the `bool` is attached via a `bool` name. Anything is possible with dynamic fields!
 
-## Orphaned Dynamic Fields
-
-> To prevent orphaned dynamic fields, please, use [Dynamic Collection Types](./dynamic-collections)
-> such as `Bag` as they track the dynamic fields and won't allow unpacking if there are attached
-> fields.
-
-The `object::delete()` function, which is used to delete a UID, does not track the dynamic fields,
-and cannot prevent dynamic fields from becoming orphaned. Once the parent UID is deleted, the
-dynamic fields are not automatically deleted, and they become orphaned. This means that the dynamic
-fields are still stored in the blockchain, but they will never become accessible again.
-
-```move file=packages/samples/sources/programmability/dynamic-fields.move anchor=orphan_fields
-
-```
-
-Orphaned objects are not a subject to storage rebate, and the storage fees will remain unclaimed.
-One way to avoid orphaned dynamic fields during unpacking of an object is to return the `UID` and
-store it somewhere temporarily until the dynamic fields are removed and handled properly.
-
 ## Custom Type as a Field Name
 
 In the examples above, we used primitive types as field names since they have the required set of
@@ -128,13 +105,13 @@ Two field names that we defined above are `AccessoryKey` and `MetadataKey`. The 
 
 ```
 
-As you can see, custom types do work as field names but as long as they can be _constructed_ by the
-module, in other words - if they are _internal_ to the module and defined in it. This limitation on
+As you can see, custom types work as field names as long as they can be _constructed_ by the
+module - in other words, if they are _internal_ to the module and defined in it. This limitation on
 struct packing can open up new ways in the design of the application.
 
-This approach is used in the Object Capability<!--[]](./object-capability)--> pattern, where an
-application can authorize a foreign object to perform operations in it while not exposing the
-capabilities to other modules.
+This approach is used in the [Object Capability](./object-capability) pattern, where an application
+can authorize a foreign object to perform operations in it while not exposing the capabilities to
+other modules.
 
 ## Exposing UID
 
@@ -142,7 +119,7 @@ capabilities to other modules.
 
 Mutable access to `UID` is a security risk. Exposing `UID` of your type as a mutable reference can
 lead to unwanted modifications or removal of the object's dynamic fields. Additionally, it affects
-the Transfer to Object<!--[](./../storage/transfer-to-object)--> and
+[Transfer to Object](./../storage/transfer-to-object) and
 [Dynamic Object Fields](./dynamic-object-fields). Make sure to understand the implications before
 exposing the `UID` as a mutable reference.
 
@@ -169,6 +146,25 @@ specific fields.
 
 ```
 
+## Orphaned Dynamic Fields
+
+> To prevent orphaned dynamic fields, please use [Dynamic Collection Types](./dynamic-collections)
+> such as `Bag` as they track the dynamic fields and won't allow unpacking if there are attached
+> fields.
+
+The `object::delete()` function, which is used to delete a UID, does not track the dynamic fields,
+and cannot prevent dynamic fields from becoming orphaned. Once the parent UID is deleted, the
+dynamic fields are not automatically deleted, and they become orphaned. This means that the dynamic
+fields are still stored in the blockchain, but they will never become accessible again.
+
+```move file=packages/samples/sources/programmability/dynamic-fields.move anchor=orphan_fields
+
+```
+
+Orphaned objects are not subject to the storage rebate, and the storage fees will remain unclaimed.
+One way to avoid orphaned dynamic fields during unpacking of an object is to return the `UID` and
+store it somewhere temporarily until the dynamic fields are removed and handled properly.
+
 ## Dynamic Fields vs Fields
 
 Dynamic Fields are more expensive than regular fields, as they require additional storage and costs
@@ -184,12 +180,28 @@ transaction.
 
 ## Applications
 
-Dynamic Fields can play a crucial role in applications of any complexity. They open up a variety of
+Dynamic fields can play a crucial role in applications of any complexity. They open up a variety of
 different use cases, from storing heterogeneous data to attaching objects as part of the application
 logic. They allow for certain [upgradeability practices](./../guides/upgradeability-practices) based
 on the ability to define them _later_ and change the type of the field.
+
+## Summary
+
+- Dynamic fields attach values to an object's `UID` under a _name_; both the name and the value
+  can be of almost any type, including types defined in other modules.
+- Attached values are owned by the parent object and can only be accessed through it.
+- Custom types used as field names can only be constructed by the defining module, which protects
+  the fields from external access.
+- Deleting the parent `UID` does not remove its dynamic fields - the fields left behind become
+  inaccessible _orphans_.
 
 ## Next Steps
 
 In the next section we will cover [Dynamic Object Fields](./dynamic-object-fields) and explain how
 they differ from dynamic fields, and what are the implications of using them.
+
+## Further Reading
+
+- [sui::dynamic_field][dynamic-field-framework] module documentation.
+
+[dynamic-field-framework]: https://docs.sui.io/references/framework/sui/dynamic_field

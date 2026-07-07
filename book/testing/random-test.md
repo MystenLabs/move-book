@@ -9,7 +9,7 @@ attribute. This enables property-based testing, where a test runs multiple times
 generated values to discover edge cases you might not think to test manually.
 
 > The `#[random_test]` attribute is a compiler feature for test inputs, separate from the
-> `sui::random` module used for on-chain randomness.
+> `sui::random` module used for onchain randomness.
 
 ## Basic Usage
 
@@ -85,7 +85,7 @@ use std::unit_test::assert_eq;
 // Targeted test for specific case
 #[test]
 fun test_add_zero() {
-    assert_eq!(safe_add(std::u64::max(), 0), std::u64::max());
+    assert_eq!(safe_add(std::u64::max_value!(), 0), std::u64::max_value!());
 }
 
 // Random test for general properties
@@ -129,9 +129,8 @@ When a random test fails, the output includes the seed and instructions to repro
 ```
 ┌── test_that_failed ────── (seed = 2033439370411573084)
 │ ...
-│ This test uses randomly generated inputs. Rerun with
-│ `sui move test test_that_failed --seed 2033439370411573084`
-│ to recreate this test failure.
+│ This test uses randomly generated inputs. Rerun with `test test_that_failed --seed 2033439370411573084` to recreate this test failure.
+│
 └──────────────────
 ```
 

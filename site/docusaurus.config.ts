@@ -35,7 +35,15 @@ export default {
 
   plugins: [
     llmsTxt,
-    '@docusaurus/plugin-sitemap',
+    [
+      '@docusaurus/plugin-sitemap',
+      {
+        // Use git history to emit <lastmod> for each page.
+        lastmod: 'date',
+        // Keep utility routes out of the sitemap.
+        ignorePatterns: ['/404', '/search'],
+      },
+    ],
     [
       '@docusaurus/plugin-content-docs',
       {
@@ -156,7 +164,7 @@ export default {
 
   stylesheets: [
     {
-      href: 'https://fonts.googleapis.com/css2?family=Rubik:wght@300&amp;display=swap',
+      href: 'https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap',
       type: 'text/css',
     },
     {
@@ -166,6 +174,20 @@ export default {
   ],
 
   headTags: [
+    // Bitmap favicon fallbacks: DuckDuckGo, Bing and older browsers do not
+    // render the SVG favicon and look for /favicon.ico or PNG links instead.
+    {
+      tagName: 'link',
+      attributes: { rel: 'icon', href: '/favicon.ico', sizes: '48x48' },
+    },
+    {
+      tagName: 'link',
+      attributes: { rel: 'icon', href: '/favicon-32x32.png', type: 'image/png', sizes: '32x32' },
+    },
+    {
+      tagName: 'link',
+      attributes: { rel: 'apple-touch-icon', href: '/apple-touch-icon.png', sizes: '180x180' },
+    },
     {
       tagName: 'script',
       attributes: {

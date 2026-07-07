@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 #[allow(unused_variable)]
-module book::epoch_and_time {
+module book::epoch_and_time;
 
 // ANCHOR: epoch
 public fun current_epoch(ctx: &TxContext) {
@@ -60,5 +60,3 @@ fun use_clock_in_test() {
     clock.destroy_for_testing();
 }
 // ANCHOR_END: test
-
-}

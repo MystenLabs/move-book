@@ -79,6 +79,35 @@ above is present in the `u64` abort code when coupled with the module where the 
 > Clever abort code values do _not_ need to be a `vector<u8>` -- it can be any valid constant type
 > in Move.
 
+## Explicit Error Codes
+
+By default, a clever error derives its identifying information entirely from the source -- the line
+of the abort, and the name and value of the constant. The `#[error]` attribute also accepts an
+explicit `code` argument, written `#[error(code = <n>)]`, which attaches a developer-chosen code to
+the error:
+
+```move
+module 0x42::a_module;
+
+/// Tries to create an object twice with the same parent-key combination.
+#[error(code = 0)]
+const EObjectAlreadyExists: vector<u8> = b"Derived object is already claimed.";
+```
+
+The code is an unsigned 8-bit integer, and it is stored in its own field of the `u64` abort code,
+separate from the line number and from the constant's name and value. Unlike the line number, which
+shifts whenever the source file changes, the code is fixed by the developer, so it gives each error
+a stable numeric identifier that tooling can display and match on. When a code is present, decoders
+surface it alongside the rendered message, for example:
+
+```
+Error from '0x42::a_module::claim' (line 22), error code 0, 'EObjectAlreadyExists': "Derived object is already claimed."
+```
+
+The constant's name and value are still recorded, so the human-readable message renders just as it
+does for a bare `#[error]`. Assigning explicit codes this way is the convention used throughout the
+Sui Framework, where each module gives its error constants small, stable codes.
+
 ## Assertions with no Abort Codes
 
 Assertions and `abort` statements without an abort code will automatically derive an abort code from
@@ -193,6 +222,9 @@ Precisely, the layout of a clever abort code is as follows:
 Note that the Move abort will come with some additional information -- importantly in our case the
 module where the error occurred. This is important because the identifier index, and constant index
 are relative to the module's identifier and constant tables (if not set the sentinel values).
+
+The high bits that this layout labels _reserved_ also hold the explicit error code set with
+[`#[error(code = N)]`](#explicit-error-codes), in a dedicated 8-bit field, when one is provided.
 
 > To decode a clever abort code, you will need to know the module where the error occurred if either
 > the identifier index or constant index are not set to the sentinel value of `0xffff`.

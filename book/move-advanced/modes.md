@@ -16,10 +16,10 @@ Modes at a glance:
 * Build with `--mode <name>` (or `--test` for unit testing). Items whose mode list contains a name
   you enabled are compiled in. Items whose mode list does **not** match are compiled **out**.
 * Code compiled with any mode enabled is **not publishable**. This keeps debug/test scaffolding from
-  ever making it on-chain.
+  ever making it onchain.
 * Items with **no** `#[mode(...)]`/`#[test_only]` annotation are always included.
 
-> Tip: Modes are filters enforced at compile-time—they don’t affect bytecode at runtime. Use them
+> Tip: Modes are filters enforced at compile-time - they don’t affect bytecode at runtime. Use them
 > for helpers, simulators, and other mock types and functions that should never be published.
 
 ## Syntax
@@ -70,7 +70,7 @@ non-enabled mode are compiled **out**. Unannotated items are always compiled in.
 
 > **Publish safety**: Any artifact produced while a mode is enabled (including `--test`) is non-publishable. Always run a clean build **without** `--mode`/`--test` before `sui client publish`.
 
-### Example — `test` mode (unit tests)
+### Example - `test` mode (unit tests)
 
 `#[test_only]` is the built-in mode for unit testing. It works exactly like a mode named `test`.
 
@@ -116,17 +116,20 @@ module my_pkg::bank {
 #[mode(debug)]
 module my_pkg::bank_debug {
     use std::debug;
+    use std::string::String;
     use my_pkg::bank;
 
     public fun transfer_debug(from: &signer, to: address, amount: u64) {
         // Perform debugging prints before the real call
-        debug::print(&b"[DEBUG] transfer begin".to_vector());
+        let begin: String = "[DEBUG] transfer begin";
+        debug::print(&begin);
         debug::print(&amount);
         debug::print(&to);
         // Main Call
         bank::transfer(from, to, amount);
         // More debugging prints
-        debug::print(&b"[DEBUG] transfer end".to_vector());
+        let end: String = "[DEBUG] transfer end";
+        debug::print(&end);
     }
 }
 ```

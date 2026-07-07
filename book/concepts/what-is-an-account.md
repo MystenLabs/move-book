@@ -4,31 +4,20 @@ description: "Understand Sui accounts: how they are generated from private keys,
 
 # Account
 
-<!--
-
-- user is an account
-    - account is identified by an address
-    - account is generated from a private key
-    - account can own objects
-    - account can send transactions
-    - every transaction has a sender
-    - sender is identified by an address
-    - sui cryptographic agility
-    - sui account types
-    - supported curves: ed25519, secp256k1, zklogin
-
- -->
-
 An account is a way to identify a user. An account is generated from a private key, and is
 identified by an address. An account can own objects, and can send transactions. Every transaction
 has a sender, and the sender is identified by an [address](./address).
 
-Sui supports multiple cryptographic algorithms for account generation. The two supported curves are
-ed25519, secp256k1, and there is also a special way of generating an account - zklogin. The
-cryptographic agility - the unique feature of Sui - allows for flexibility in the account
-generation.
+An account does not need to be created or registered anywhere: it exists as soon as a keypair is
+generated, and any valid address can receive objects without prior setup. There is no onchain
+record of "all accounts" - an address with no objects and no transaction history is
+indistinguishable from one that was never used.
 
-<!-- The cryptographic agility allows for flexibility in the account generation -->
+Sui supports multiple signature schemes for accounts: ed25519, ECDSA (over the secp256k1 and
+secp256r1 curves), passkeys (device authenticators such as Face ID, Touch ID, or a hardware
+security key, based on the WebAuthn standard), multisig (an account controlled by a combination of
+keys), and zkLogin, which derives an account from a Web2 login. This _cryptographic agility_ gives
+Sui unusual flexibility in how accounts are created and controlled.
 
 ## Further Reading
 
@@ -38,3 +27,4 @@ generation.
   the [Sui Docs](https://docs.sui.io)
 - [Signatures](https://docs.sui.io/guides/developer/cryptography/signing) in the
   [Sui Docs](https://docs.sui.io)
+- [Passkey](https://docs.sui.io/develop/cryptography/passkeys) in the [Sui Docs](https://docs.sui.io)

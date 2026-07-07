@@ -9,7 +9,7 @@ testing framework provides built-in tools to measure gas usage during test execu
 that, a special utility `sui analyze-trace` is available for more thorough analysis of gas usage.
 
 > The statistics shown by `-s` only reflect **computation units** - they do not include storage
-> costs. Additionally, compiler computation units don't map directly to actual on-chain gas charges;
+> costs. Additionally, compiler computation units don't map directly to actual onchain gas charges;
 > they show relative computational complexity, useful for comparing implementations against each
 > other. To get actual gas costs, publish your package to testnet and measure real transactions.
 
@@ -30,11 +30,11 @@ Test Statistics:
 ┌────────────────────────────────────────────────────────┬────────────┬───────────────────────────┐
 │                       Test Name                        │    Time    │         Gas Used          │
 ├────────────────────────────────────────────────────────┼────────────┼───────────────────────────┤
-│ book::my_module::test_simple_operation                 │   0.003    │             1             │
+│ book::my_module::test_simple_operation                 │   0.006    │          998001           │
 ├────────────────────────────────────────────────────────┼────────────┼───────────────────────────┤
-│ book::my_module::test_complex_operation                │   0.011    │            59             │
+│ book::my_module::test_complex_operation                │   0.007    │          998068           │
 ├────────────────────────────────────────────────────────┼────────────┼───────────────────────────┤
-│ book::my_module::test_with_objects                     │   0.008    │            25             │
+│ book::my_module::test_with_objects                     │   0.006    │          998001           │
 └────────────────────────────────────────────────────────┴────────────┴───────────────────────────┘
 
 Test result: OK. Total tests: 3; passed: 3; failed: 0
@@ -43,6 +43,10 @@ Test result: OK. Total tests: 3; passed: 3; failed: 0
 - **Test Name**: Fully qualified name of the test function
 - **Time**: Execution time in seconds
 - **Gas Used**: Gas units consumed by the test
+
+> Every test's total includes a large fixed base cost - even an empty test reports roughly 998000
+> gas units. When comparing tests, look at the difference between their totals rather than the
+> absolute values.
 
 ## CSV Output
 
@@ -55,10 +59,10 @@ sui move test -s csv
 This produces comma-separated output:
 
 ```
-test_name,time_ns,gas_used
-book::my_module::test_simple_operation,3381750,1
-book::my_module::test_complex_operation,8454125,59
-book::my_module::test_with_objects,3905625,25
+name,nanos,gas
+book::my_module::test_simple_operation,5992125,998001
+book::my_module::test_complex_operation,6870583,998068
+book::my_module::test_with_objects,6022917,998001
 ```
 
 The time is in nanoseconds, which allows for more precise measurements when comparing similar
@@ -70,14 +74,18 @@ Use the `-i` or `--gas-limit` flag to set a maximum gas budget for tests. Tests 
 will timeout:
 
 ```bash
-sui move test -i 50
+sui move test -i 1000
 ```
+
+> The limit is measured in internal execution gas units, which do not map one-to-one to the values
+> in the `Gas Used` column - a trivial test that reports ~998000 gas passes comfortably with a
+> limit of 1000.
 
 Output when a test exceeds the gas limit:
 
 ```
-[ PASS    ] book::my_module::test_simple_operation
 [ TIMEOUT ] book::my_module::test_complex_operation
+[ PASS    ] book::my_module::test_simple_operation
 [ PASS    ] book::my_module::test_with_objects
 
 Test failures:
@@ -87,6 +95,8 @@ Failures in book::my_module:
 ┌── test_complex_operation ──────
 │ Test timed out
 └──────────────────
+
+Test result: FAILED. Total tests: 3; passed: 2; failed: 1
 ```
 
 This is useful for:
@@ -117,32 +127,34 @@ public fun sum_formula(n: u64): u64 {
 
 #[test]
 fun test_sum_loop() {
-    let result = sum_loop(100);
-    assert_eq!(result, 4950);
+    let result = sum_loop(1000);
+    assert_eq!(result, 499500);
 }
 
 #[test]
 fun test_sum_formula() {
-    let result = sum_formula(100);
-    assert_eq!(result, 4950);
+    let result = sum_formula(1000);
+    assert_eq!(result, 499500);
 }
 ```
 
 Running with statistics reveals the difference:
 
 ```bash
-sui move test -s comparison
+sui move test comparison -s
 ```
 
 ```table
 ┌────────────────────────────────────┬────────────┬───────────────────────────┐
 │           Test Name                │    Time    │         Gas Used          │
 ├────────────────────────────────────┼────────────┼───────────────────────────┤
-│ book::comparison::test_sum_loop    │   0.005    │            201            │
+│ book::comparison::test_sum_loop    │   0.003    │          998078           │
 ├────────────────────────────────────┼────────────┼───────────────────────────┤
-│ book::comparison::test_sum_formula │   0.002    │             3             │
+│ book::comparison::test_sum_formula │   0.001    │          998001           │
 └────────────────────────────────────┴────────────┴───────────────────────────┘
 ```
+
+The loop costs 77 gas units on top of the base cost, while the formula adds nothing measurable.
 
 ## Trace Analysis
 
@@ -158,7 +170,7 @@ Run tests with the `--trace` flag to produce trace files:
 sui move test --trace
 ```
 
-Trace files are written to the `traces/` directory inside the package build folder.
+Trace files are written to the `traces/` directory in the package root (next to `Move.toml`).
 
 ### Step 2: Generate a Gas Profile
 
@@ -169,10 +181,10 @@ sui analyze-trace -p traces/<TRACE_FILE> gas-profile
 ```
 
 This outputs a `gas_profile_<TRACE_FILE>.json` file in the current directory. You can specify a
-different output directory with the `-o` flag:
+different output directory with the `-o` flag, which goes before the `gas-profile` subcommand:
 
 ```bash
-sui analyze-trace -p traces/<TRACE_FILE> gas-profile -o ./profiles
+sui analyze-trace -p traces/<TRACE_FILE> -o ./profiles gas-profile
 ```
 
 ### Step 3: Visualize with Speedscope

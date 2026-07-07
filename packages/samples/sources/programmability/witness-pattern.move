@@ -3,10 +3,8 @@
 
 module book::witness_definition;
 
-// ANCHOR: definition
 /// Canonical definition of a witness - a type with the `drop` ability.
 public struct MyWitness has drop {}
-// ANCHOR_END: definition
 
 // ANCHOR: regulated_coin
 /// A custom RegulatedCoin type with implementable functions.
@@ -41,3 +39,20 @@ public fun join<T>(coin: &mut RegulatedCoin<T>, other: RegulatedCoin<T>) {
     id.delete();
 }
 // ANCHOR_END: regulated_coin
+
+#[test_only]
+use std::unit_test::assert_eq;
+
+#[test]
+fun test_regulated_coin() {
+    let ctx = &mut tx_context::dummy();
+
+    // The privileged functions require the `MyWitness` witness.
+    let mut coin = mint(MyWitness {}, 100, ctx);
+    let other = mint(MyWitness {}, 50, ctx);
+
+    // The public `join` function does not.
+    coin.join(other);
+
+    assert_eq!(burn(MyWitness {}, coin), 150);
+}

@@ -45,9 +45,9 @@ public struct Segments(vector<Segment>) has copy, drop;
 fun test_segments() {
     let _ = Segments(vector[
         Segment::Empty,
-        Segment::String(b"hello".to_string()),
-        Segment::String(b" move".to_string()),
-        Segment::Special { content: b"21", encoding: 1 },
+        Segment::String("hello"),
+        Segment::String(" move"),
+        Segment::Special { content: "21", encoding: 1 },
     ]);
 }
 // ANCHOR_END: struct
@@ -107,18 +107,19 @@ public fun try_into_inner_string(s: Segment): Option<String> {
 public fun to_string(s: &Segment): String {
     match (*s) {
         // Return an empty string.
-        Segment::Empty => b"".to_string(),
+        Segment::Empty => "",
         // Return the inner string.
         Segment::String(str) => str,
         // Return the decoded contents based on the encoding.
         Segment::Special { content, encoding } => {
-            // Perform a match on the encoding, we only support 0 - ut8, 1 - hex.
+            // Perform a match on the encoding; we support 0 - UTF-8 and 1 - ASCII.
             match (encoding) {
-                // Plain encoding, return content.
+                // UTF-8 encoding, interpret content as a UTF-8 string.
                 0 => content.to_string(),
-                // HEX encoding, decode and return.
-                1 => sui::hex::decode(content).to_string(),
+                // ASCII encoding - stricter, aborts on non-ASCII bytes.
+                1 => content.to_ascii_string().to_string(),
                 // We have to provide a wildcard pattern, because values of `u8` are 0-255.
+                // Abort execution if the encoding is unknown.
                 _ => abort,
             }
         },

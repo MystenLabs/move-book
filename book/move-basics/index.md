@@ -4,10 +4,32 @@ description: "Learn Move language fundamentals: types, modules, functions, struc
 
 # Move Basics
 
-This chapter is all about the basic syntax of the Move language. It covers the basics of the
-language, such as types, modules, functions, and control flow. It focuses on the language without a
-storage model or a blockchain, and explains the essential concepts of the language. To learn
-features specific to Sui, such as storage functions and abilities, refer to the
-[Using Objects](./../storage/) chapter, however, it is recommended to start with this chapter first.
+This chapter covers the foundations of the Move language: the syntax, the type system, and the
+concepts that every Move program is built from. It focuses on the language itself and mostly sets
+the blockchain aside - everything here applies to any Move program, and the features specific to
+storage and Sui are covered right after, starting with the [Object Model](./../object/) chapter.
 
-<!-- TODO: cross link with Reference -->
+The sections build on one another and are meant to be read in order:
+
+- **How code is organized:** [modules](./module), [comments](./comments),
+  [primitive types](./primitive-types), the [address type](./address),
+  [expressions](./expression), and [functions](./function).
+- **Defining custom types:** [structs](./struct), and the
+  [ability system](./abilities-introduction) that controls what values of a type can do -
+  starting with [drop](./drop-ability).
+- **Reusing existing code:** [imports](./importing-modules) and the
+  [Standard Library](./standard-library) with its core types - [vector](./vector),
+  [Option](./option), and [String](./string).
+- **Writing logic:** [control flow](./control-flow), [enums with pattern
+  matching](./enum-and-match), [struct methods](./struct-methods), and
+  [visibility modifiers](./visibility).
+- **The core of Move's safety story:** [ownership and scope](./ownership-and-scope), the
+  [copy ability](./copy-ability), [constants](./constants) and
+  [aborting execution](./assert-and-abort), and [references](./references).
+- **Abstraction tools:** [generics](./generics), [macro functions](./macros),
+  [internal permits](./internal-permit), [type reflection](./type-reflection), and, finally,
+  [testing](./testing).
+
+Every code sample in this chapter comes from a compiling, tested package. Most samples are
+excerpts placed inside test functions, so you can copy any of them into the package created in the
+[Hello World](./../your-first-move/hello-world) chapter and run them with `sui move test`.

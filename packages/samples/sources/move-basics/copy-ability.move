@@ -11,12 +11,16 @@ public struct Copyable has copy {}
 #[test] fun test_copy() {
 
 // ANCHOR: copyable_test
-let a = Copyable {}; // allowed because the Copyable struct has the `copy` ability
-let b = a;   // `a` is copied to `b`
-let c = *&b; // explicit copy via dereference operator
+let a = Copyable {};
 
-// Copyable doesn't have the `drop` ability, so every instance (a, b, and c) must
-// be used or explicitly destructured. The `drop` ability is explained below.
+// `a` is copied into `b` implicitly - both are usable afterwards.
+let b = a;
+
+// The `copy` keyword makes the copy explicit.
+let c = copy a;
+
+// `Copyable` does not have the `drop` ability, so every instance -
+// `a`, `b`, and `c` - has to be used. Here, we unpack all of them.
 let Copyable {} = a;
 let Copyable {} = b;
 let Copyable {} = c;

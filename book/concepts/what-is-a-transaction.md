@@ -4,21 +4,9 @@ description: "Learn how Sui transactions work: structure, commands, gas payments
 
 # Transaction
 
-Transaction is a fundamental concept in the blockchain world. It is a way to interact with a
-blockchain. Transactions are used to change the state of the blockchain, and they are the only way
-to do so. In Move, transactions are used to call functions in a package, deploy new packages, and
-upgrade existing ones.
-
-<!--
-
-- how user interacts with a program
-    - mention public functions
-    - give a concept of an entry / public function without getting into details
-    - mention that functions are called in transactions
-    - mention that transactions are sent by accounts
-    - every transaction specifies object it operates on
-
- -->
+A transaction is the fundamental way to interact with a blockchain. Transactions are used to
+change the state of the blockchain, and they are the only way to do so. On Sui, a transaction can
+call functions in published packages, deploy new packages, and upgrade existing ones.
 
 ## Transaction Structure
 
@@ -31,11 +19,11 @@ Transactions consist of:
 - command inputs - the arguments for the commands: either `pure` - simple values like numbers or
   strings, or `object` - objects that the transaction will access;
 - a gas object - the `Coin` object used to pay for the transaction;
-- gas price and budget - the cost of the transaction;
+- a gas price and budget - the cost of the transaction.
 
 ## Inputs
 
-Transaction inputs are the arguments for the transaction and are split between 2 types:
+Transaction inputs are the arguments for the transaction, and come in two types:
 
 - Pure arguments: These are mostly [primitive types](../move-basics/primitive-types) with some extra
   additions. A pure argument can be:
@@ -47,7 +35,7 @@ Transaction inputs are the arguments for the transaction and are split between 2
   - [`std::ascii::String`](../move-basics/string#ascii-strings), ASCII strings.
   - [`vector<T>`](../move-basics/vector), where `T` is a pure type.
   - [`std::option::Option<T>`](../move-basics/option), where `T` is a pure type.
-  - [`std::object::ID`](../storage/uid-and-id), typically points to an object. See also
+  - [`sui::object::ID`](../storage/uid-and-id), typically points to an object. See also
   [What is an Object](../object/object-model).
 - Object arguments: These are objects or references of objects that the transaction will access. An
   object argument needs to be either a shared object, a frozen object, or an object that the
@@ -60,6 +48,13 @@ Sui transactions may consist of multiple commands. Each command is a single buil
 publishing a package) or a call to a function in an already published package. The commands are
 executed in the order they are listed in the transaction, and they can use the results of the
 previous commands, forming a chain. Transaction either succeeds or fails as a whole.
+
+Any [`public`](../move-basics/visibility#public-visibility) function can be called as a command:
+making a function `public` is all it takes for users to call it in a transaction, and it is the
+default way to expose functionality in Move. (There is also the
+[`entry`](../move-basics/visibility#entry-modifier) modifier, which creates functions callable
+_only_ as transaction commands - a deliberately restricted option, covered in the
+[Entry Functions](../move-advanced/entry-functions) section.)
 
 Schematically, a transaction looks like this (in pseudo-code):
 
@@ -81,10 +76,6 @@ In this example, the transaction consists of three commands:
    with the given arguments - the `payment` object;
 3. `TransferObjects` - a built-in command that transfers the object to the recipient.
 
-<!--
-> There are multiple different implementations of transaction building, for example
--->
-
 ## Transaction Effects
 
 Transaction effects are the changes that a transaction makes to the blockchain state. More
@@ -104,4 +95,12 @@ The result of the executed transaction consists of different parts:
 - Events - the custom [events](./../programmability/events) emitted by the transaction;
 - Object Changes - the changes made to the objects, including the _change of ownership_;
 - Balance Changes - the changes made to the aggregate balances of the account involved in the
-  transaction;
+  transaction.
+
+## Further Reading
+
+- [Transactions](https://docs.sui.io/concepts/transactions) in the Sui Documentation.
+- [Programmable Transaction Blocks](https://docs.sui.io/concepts/transactions/prog-txn-blocks) in
+  the Sui Documentation.
+- [Using Address Balances](https://docs.sui.io/onchain-finance/asset-custody/address-balances/using-address-balances)
+  in the Sui Documentation - paying gas and moving funds without a `Coin` object.

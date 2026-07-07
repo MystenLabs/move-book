@@ -1,142 +1,177 @@
 ---
-description: "Ownership and scope in Move: how variables are owned, moved, and dropped when they go out of scope in the Move language."
+description: "Ownership and scope in Move: how values are moved between scopes, why they cannot be copied or lost, and how the compiler enforces it."
 ---
 
 # Ownership and Scope
 
-Every variable in Move has a scope and an owner. The scope is the range of code where the variable
-is valid, and the owner is the scope that this variable belongs to. Once the owner scope ends, the
-variable is dropped. This is a fundamental concept in Move, and it is important to understand how it
-works.
+Ownership is the central concept of Move - it is even where the language got its name. Move is
+designed for digital assets, and its main promise is that a value cannot be duplicated and cannot be
+accidentally lost. The mechanism behind this promise is ownership, and it is enforced by the
+compiler: a program that breaks the rules does not compile.
 
-<!--
+The rules are:
 
-- Borrow Checker
-- Mention Rust's borrow checker
-- Borrowing / References intro
+- Every value has exactly one owner - the scope in which it is defined.
+- When a value is passed to a function, assigned to a new variable, or returned, it is _moved_ to a
+  new owner, and the previous owner can no longer use it.
+- When a scope ends, every value it still owns must be either discardable or already moved out.
 
--->
+The rest of this section walks through these rules one by one. If some of them seem strict - that is
+the point: the restrictions are what make it safe to treat a value in Move as an asset.
 
-## Ownership
+## Variable Scope
 
-A variable defined in a function scope is owned by this scope. The runtime goes through the function
-scope and executes every expression and statement. After the function scope ends, the variables
-defined in it are dropped or deallocated.
+A scope is the range of code in which a value is valid. A variable defined in a function is owned by
+that function's scope: it comes into scope at the declaration, and goes out of scope when the
+function ends.
+
+```move file=packages/samples/sources/move-basics/ownership-and-scope.move anchor=scope
+
+```
+
+Nothing surprising so far - this is how local variables behave in most languages. Ownership becomes
+interesting when a value needs to leave its scope.
+
+## Moving a Value
+
+To demonstrate the rules, we will use a small module with a `Coin` type and two functions - one that
+creates a coin and one that destroys it:
+
+```move file=packages/samples/sources/move-basics/ownership-and-scope.move anchor=coin
+
+```
+
+The `Coin` struct has no [abilities](./abilities-introduction), so the compiler places the strictest
+constraints on its values: they cannot be copied and cannot be discarded. A value like this can only
+change hands - which is exactly what we want from an asset.
+
+When a value is passed to a function, it is _moved_ into the function's scope. The function becomes
+the new owner, and the caller loses access to the value. This is called _move semantics_.
+
+```move file=packages/samples/sources/move-basics/ownership-and-scope.move anchor=move_to_function
+
+```
+
+Let's see what happens if we break the rule and try to use `coin` after it was moved:
 
 ```move
-module book::ownership;
-
-public fun owner() {
-    let a = 1; // a is owned by the `owner` function
-} // a is dropped here
-
-public fun other() {
-    let b = 2; // b is owned by the `other` function
-} // b is dropped here
-
 #[test]
-fun test_owner() {
-    owner();
-    other();
-    // a & b are not valid here
+fun test_move_semantics() {
+    let coin = mint(100);
+    spend(coin); // ownership of the value moves into `spend`
+    spend(coin); // ERROR! `coin` was already moved
 }
 ```
 
-In the example above, the variable `a` is owned by the `owner` function, and the variable `b` is
-owned by the `other` function. When each of these functions are called, the variables are defined,
-and when the function ends, the variables are discarded.
+The code above will not compile, and the compiler will point at the exact spot where the value was
+moved:
+
+```text
+error[E06002]: use of unassigned variable
+   ┌─ sources/ownership.move:12:11
+   │
+11 │     spend(coin);
+   │           ----
+   │           │
+   │           The value of 'coin' was previously moved here.
+   │           Suggestion: use 'copy coin' to avoid the move.
+12 │     spend(coin);
+   │           ^^^^ Invalid usage of previously moved variable 'coin'.
+```
+
+The compiler suggests using `copy coin`, but that only works for values that can be copied - and
+`Coin` cannot. There is no way to spend the same coin twice, and this guarantee is checked before
+the code ever runs.
+
+Assigning a value to a new variable is also a move. The value itself is not changed or copied - only
+its owner is:
+
+```move file=packages/samples/sources/move-basics/ownership-and-scope.move anchor=move_to_variable
+
+```
 
 ## Returning a Value
 
-If we changed the `owner` function to return the variable `a`, then the ownership of `a` would be
-transferred to the caller of the function.
+Moves also work in the opposite direction: a function can return a value, moving it to the caller's
+scope. This is how the `mint` function from our example transfers ownership of a newly created coin
+to whoever called it. Combined with passing by value, this gives a full picture of a value's
+lifetime: `mint` creates the coin and hands it to the test function, which then hands it over to
+`spend`, which destroys it. At every point in the program, the coin has exactly one owner.
+
+## Every Value Must Be Used
+
+What if a value is never passed on? Let's mint a coin and simply let the function end:
 
 ```move
-module book::ownership;
-
-public fun owner(): u8 {
-    let a = 1; // a defined here
-    a // scope ends, a is returned
-}
-
 #[test]
-fun test_owner() {
-    let a = owner();
-    // a is valid here
-} // a is dropped here
+fun test_lose_a_coin() {
+    let coin = mint(100);
+} // ERROR! `coin` still contains a value which cannot be discarded
 ```
 
-## Passing by Value
+The third rule kicks in: a scope cannot end while it still owns a value that is not discardable.
 
-Additionally, if we passed the variable `a` to another function, the ownership of `a` would be
-transferred to this function. When performing this operation, we _move_ the value from one scope to
-another. This is also called _move semantics_.
-
-```move
-module book::ownership;
-
-public fun owner(): u8 {
-    let a = 10;
-    a
-} // a is returned
-
-public fun take_ownership(v: u8) {
-    // v is owned by `take_ownership`
-} // v is dropped here
-
-#[test]
-fun test_owner() {
-    let a = owner();
-    // `u8` is copyable, pass `move a` when calling the function to force the transfer of its ownership
-    take_ownership(move a);
-    // a is not valid here
-}
+```text
+error[E06001]: unused value without 'drop'
+  ┌─ sources/ownership.move:7:35
+  │
+4 │ public struct Coin { value: u64 }
+  │               ---- To satisfy the constraint, the 'drop' ability would need to be added here
+  ·
+7 │     let coin = mint(100);
+  │         ----  ↑ The local variable 'coin' still contains a value.
+  │                The value does not have the 'drop' ability and must
+  │                be consumed before the function returns
 ```
 
-## Scopes with Blocks
-
-Each function has a main scope, and it can also have sub-scopes via the use of blocks. A block is a
-sequence of statements and expressions, and it has its own scope. Variables defined in a block are
-owned by this block, and when the block ends, the variables are dropped.
-
-```move
-module book::ownership;
-
-public fun owner() {
-    let a = 1; // a is owned by the `owner` function's scope
-    {
-        let b = 2; // the block that declares b owns it
-        {
-            let c = 3; // the block that declares c owns it
-        }; // c is dropped here
-    }; // b is dropped here
-    // a = b; // error: b is not valid here
-    // a = c; // error: c is not valid here
-} // a is dropped here
-```
-
-However, if we return a value from a block, the ownership of the variable is transferred to the
-caller of the block.
-
-```move
-module book::ownership;
-
-public fun owner(): u8 {
-    let a = 1; // a is owned by the `owner` function's scope
-    let b = {
-        let c = 2; // the block that declares c owns it
-        c // c is returned from the block and transferred to b
-    };
-    a + b // both a and b are valid here
-}
-```
+Whether a value can be discarded is controlled by the `drop` ability, which we covered in the
+[Ability: Drop](./drop-ability) section. For a type like `Coin`, the absence of `drop` means a coin
+cannot be forgotten in a local variable and silently vanish - the code holding it is forced to do
+something with it.
 
 ## Copyable Types
 
-Some types in Move are _copyable_, which means that they can be copied without transferring
-ownership. This is useful for types that are small and cheap to copy, such as integers and booleans.
-The Move compiler will automatically copy these types when they are passed to or returned from a
-function, or when they're _moved_ to another scope and then accessed in their original scope.
+Some values do not need this level of protection. All primitive types - integers, `bool`, `address`
+- have the `copy` ability, and instead of being moved, they are copied when assigned or passed to a
+function:
+
+```move file=packages/samples/sources/move-basics/ownership-and-scope.move anchor=copy_types
+
+```
+
+Copying is implicit for primitive types because they are small and cheap to duplicate. Custom types
+can also opt into this behavior by adding the `copy` ability, which we cover in the
+[Ability: Copy](./copy-ability) section.
+
+If needed, a copyable value can still be moved explicitly with the `move` keyword:
+
+```move file=packages/samples/sources/move-basics/ownership-and-scope.move anchor=explicit_move
+
+```
+
+## Scopes and Blocks
+
+Besides the function's main scope, every block forms its own scope. Variables declared inside a
+block are owned by it and go out of scope when the block ends. Code inside a block can access the
+variables of the enclosing scope, but not the other way around:
+
+```move file=packages/samples/sources/move-basics/ownership-and-scope.move anchor=blocks
+
+```
+
+A block is an expression, and its resulting value is moved out to the enclosing scope - the same
+move semantics as returning a value from a function:
+
+```move file=packages/samples/sources/move-basics/ownership-and-scope.move anchor=block_return
+
+```
+
+## Next Steps
+
+So far, the only way to let a function use a value was to give the ownership away. Doing that for
+every operation would be impractical - reading a field should not require handing over the whole
+value. Move solves this with _references_, which allow a function to borrow a value without taking
+ownership. We cover them in the [References](./references) section.
 
 ## Further Reading
 

@@ -106,6 +106,35 @@ public fun update_age<T>(user: &mut User<T>, age: u8) {
 }
 // ANCHOR_END: update_user
 
+// ANCHOR: test_user
+#[test]
+fun test_user() {
+    // In this instance, the `metadata` field is a `u64`...
+    let mut user1 = User {
+        name: "Alice",
+        age: 30,
+        metadata: 1000u64,
+    };
+
+    // ...and in this instance, it is a `bool`.
+    let mut user2 = User {
+        name: "Bob",
+        age: 40,
+        metadata: true,
+    };
+
+    // The same functions work for both instances.
+    user1.update_name("Alice II");
+    user2.update_name("Bob II");
+
+    assert_eq!(user1.name, "Alice II");
+    assert_eq!(user2.name, "Bob II");
+
+    let User { .. } = user1;
+    let User { .. } = user2;
+}
+// ANCHOR_END: test_user
+
 // ANCHOR: phantom
 /// A generic type with a phantom type parameter.
 public struct Coin<phantom T> {
@@ -121,6 +150,10 @@ public struct EUR {}
 fun test_phantom_type() {
     let coin1: Coin<USD> = Coin { value: 10 };
     let coin2: Coin<EUR> = Coin { value: 20 };
+
+    // This line will not compile: `Coin<USD>` and `Coin<EUR>`
+    // are different types and cannot be mixed up.
+    // let mixed: Coin<USD> = coin2;
 
     // Unpacking is identical because the phantom type parameter is not used.
     let Coin { value: _ } = coin1;

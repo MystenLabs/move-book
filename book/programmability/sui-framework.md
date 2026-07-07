@@ -5,8 +5,9 @@ description: "The Sui Framework: built-in modules for storage, coins, display, c
 # Sui Framework
 
 Sui Framework is a default dependency set in the [Package Manifest](./../concepts/manifest). It
-depends on the [Standard Library](./../move-basics/standard-library) and provides Sui-specific
-features, including the interaction with the storage, and Sui-specific native types and modules.
+depends on the [Standard Library](./../move-basics/standard-library) and provides the Sui-specific
+functionality: storage operations, native types, and the modules the rest of this chapter is built
+on.
 
 _For convenience, we grouped the modules in the Sui Framework into multiple categories. But they're
 still part of the same framework._
@@ -26,8 +27,8 @@ still part of the same framework._
 | [sui::clock](https://docs.sui.io/references/framework/sui/clock)                               | Defines the `Clock` type and its methods                                | [Epoch and Time](./epoch-and-time)                          |
 | [sui::dynamic_field](https://docs.sui.io/references/framework/sui/dynamic_field)               | Implements methods to add, use and remove dynamic fields                | [Dynamic Fields](./dynamic-fields)                          |
 | [sui::dynamic_object_field](https://docs.sui.io/references/framework/sui/dynamic_object_field) | Implements methods to add, use and remove dynamic object fields         | [Dynamic Object Fields](./dynamic-object-fields)            |
-| [sui::event](https://docs.sui.io/references/framework/sui/event)                               | Allows emitting events for off-chain listeners                          | [Events](./events)                                          |
-| [sui::package](https://docs.sui.io/references/framework/sui/package)                           | Defines the `Publisher` type and package upgrade methods                | [Publisher](./publisher), Package Upgrades                  |
+| [sui::event](https://docs.sui.io/references/framework/sui/event)                               | Allows emitting events for offchain listeners                          | [Events](./events)                                          |
+| [sui::package](https://docs.sui.io/references/framework/sui/package)                           | Defines the `Publisher` type and package upgrade methods                | [Publisher](./publisher)                                    |
 | [sui::display](https://docs.sui.io/references/framework/sui/display)                           | Implements the `Display` object and ways to create and update it        | [Display](./display)                                        |
 
 </div>
@@ -48,6 +49,21 @@ still part of the same framework._
 
 </div>
 
+## Coins and Assets
+
+<div class="modules-table">
+
+| Module                                                                 | Description                                            | Chapter                                  |
+| ---------------------------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------- |
+| [sui::balance](https://docs.sui.io/references/framework/sui/balance)   | The `Balance` type - the underlying store of value     | [Balance and Coin](./balance-and-coin)     |
+| [sui::coin](https://docs.sui.io/references/framework/sui/coin)         | The `Coin` type - a transferable fungible asset        | [Balance and Coin](./balance-and-coin)     |
+| [sui::sui](https://docs.sui.io/references/framework/sui/sui)           | The SUI coin type                                      | [Balance and Coin](./balance-and-coin)     |
+| [sui::pay](https://docs.sui.io/references/framework/sui/pay)           | Helper functions for splitting and merging coins       | -                                        |
+| [sui::deny_list](https://docs.sui.io/references/framework/sui/deny_list) | Deny list for regulated coin types                   | -                                        |
+| [sui::token](https://docs.sui.io/references/framework/sui/token)       | The closed-loop token standard                         | -                                        |
+
+</div>
+
 ## Utilities
 
 <div class="modules-table">
@@ -57,21 +73,24 @@ still part of the same framework._
 | [sui::bcs](https://docs.sui.io/references/framework/sui/bcs)       | Implements the BCS encoding and decoding functions         | [Binary Canonical Serialization](./bcs) |
 | [sui::borrow](https://docs.sui.io/references/framework/sui/borrow) | Implements the borrowing mechanic for borrowing by _value_ | [Hot Potato](./hot-potato-pattern)      |
 | [sui::hex](https://docs.sui.io/references/framework/sui/hex)       | Implements the hex encoding and decoding functions         | -                                       |
+| [sui::random](https://docs.sui.io/references/framework/sui/random) | The `Random` object and secure onchain randomness         | [Randomness](./randomness)              |
 | [sui::types](https://docs.sui.io/references/framework/sui/types)   | Provides a way to check if the type is a One-Time-Witness  | [One Time Witness](./one-time-witness)  |
 
 </div>
 
+The framework also contains modules not covered in this book: the commerce primitives
+([sui::kiosk](https://docs.sui.io/references/framework/sui/kiosk),
+[sui::transfer_policy](https://docs.sui.io/references/framework/sui/transfer_policy)), a set of
+cryptographic functions ([sui::hash](https://docs.sui.io/references/framework/sui/hash),
+[sui::ed25519](https://docs.sui.io/references/framework/sui/ed25519),
+[sui::bls12381](https://docs.sui.io/references/framework/sui/bls12381), and others), and assorted
+utilities such as [sui::url](https://docs.sui.io/references/framework/sui/url) and
+[sui::versioned](https://docs.sui.io/references/framework/sui/versioned). Refer to the
+[framework documentation](https://docs.sui.io/references/framework) for the full list.
+
 ## Exported Addresses
 
 Sui Framework exports two named addresses: `sui = 0x2` and `std = 0x1` from the std dependency.
-
-```toml
-[addresses]
-sui = "0x2"
-
-# Exported from the MoveStdlib dependency
-std = "0x1"
-```
 
 ## Implicit Imports
 
@@ -90,56 +109,3 @@ types that are available without explicit `use` import:
 
 The source code of the Sui Framework is available in the
 [Sui repository](https://github.com/MystenLabs/sui/tree/main/crates/sui-framework/packages/sui-framework/sources).
-
-<!--
-
-Modules:
-
-Coins:
-- sui::pay
-- sui::sui
-- sui::coin
-- sui::token
-- sui::balance
-- sui::deny_list
-
-Commerce:
-- sui::kiosk
-- sui::display
-- sui::kiosk_extension
-- sui::transfer_policy
-
-
-Utilities:
-+ sui::bcs
-+ sui::hex
-- sui::math (deprecated)
-+ sui::types
-+ sui::borrow
-
-
-- sui::authenticator
-
-- sui::priority_queue
-- sui::table_vec
-
-- sui::url
-- sui::versioned
-
-- sui::prover
-- sui::random
-
-- sui::bls12381
-- sui::ecdsa_k1
-- sui::ecdsa_r1
-- sui::ecvrf
-- sui::ed25519
-(also mention verifier 16 growth)
-- sui::group_ops
-- sui::hash
-- sui::hmac
-- sui::poseidon
-- sui::zklogin_verified_id
-- sui::zklogin_verified_issuer
-
- -->

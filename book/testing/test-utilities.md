@@ -28,10 +28,10 @@ In published code, `assert!` should normally have an abort code as the second ar
 identify failures. However, in tests, the abort code is not necessary and doesn't provide any value.
 
 ```move
-// In published code - abort code required
+// In published code - abort code recommended
 assert!(balance >= amount, EInsufficientBalance);
 
-// In test code - abort code optional
+// In test code - abort code unnecessary
 assert!(balance >= amount);
 ```
 
@@ -55,12 +55,13 @@ The `assert_eq!` macro from `std::unit_test` solves this by printing both values
 fails:
 
 ```move
+#[test_only]
 use std::unit_test::assert_eq;
 
 #[test]
 fun test_balance_update() {
     let balance = calculate_balance();
-    assert_eq!(balance, 1000); // fails with: "Assertion failed: 750 != 1000"
+    assert_eq!(balance, 1000); // on failure, prints: "Assertion failed:", 750, "!=", 1000
 }
 ```
 
@@ -72,6 +73,7 @@ assertion fails.
 To compare by reference, use `assert_ref_eq!` instead of `assert_eq!`:
 
 ```move
+#[test_only]
 use std::unit_test::assert_ref_eq;
 
 #[test]
@@ -91,7 +93,7 @@ logic implemented for each type.
 ```move
 module std::unit_test;
 
-/// Consumes any value `T` and makes it disappear.
+/// Black hole function to destroy any value in `test` mode.
 public native fun destroy<T>(v: T);
 ```
 
@@ -116,6 +118,7 @@ In published code, `Ticket` type may not have a deletion function or require a c
 before deletion. In this case, `destroy` is the best way to deal with the value:
 
 ```move
+#[test_only]
 use std::unit_test;
 
 #[test]

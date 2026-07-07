@@ -1,5 +1,6 @@
 ---
-description: "Testing Move smart contracts on Sui: unit tests, test scenarios, coverage reports, gas profiling, and best practices."
+title: Testing Move Programs
+description: "Testing Move smart contracts on Sui: unit tests, test scenarios, linting, coverage reports, gas profiling, and best practices."
 ---
 
 # Testing
@@ -12,7 +13,7 @@ cannot verify that your transfer logic sends funds to the right recipient, that 
 at the right time, or that your access control matches your intended policy. These are properties of
 your design, not the language - and they can only be verified through testing.
 
-The stakes of getting it wrong are uniquely high in on-chain programming:
+The stakes of getting it wrong are uniquely high in onchain programming:
 
 - **Financial risk**: Bugs in asset-handling code can lead to permanent loss of funds. A single
   overlooked edge case in transfer logic or access control can be exploited, resulting in
@@ -21,10 +22,10 @@ The stakes of getting it wrong are uniquely high in on-chain programming:
   with the ability to upgrade, the previous version of the code will always be available. Thorough
   testing before deployment is your primary defense against vulnerabilities.
 - **Adversarial environment**: Published Move packages are effectively open-source - anyone can read
-  and decompile on-chain bytecode. This means malicious actors can study your code in detail,
+  and decompile onchain bytecode. This means malicious actors can study your code in detail,
   searching for exploitable flaws. Your code must handle not just expected inputs, but intentional
   attempts to break it.
-- **Composability risks**: Move modules interact with other on-chain code. Testing must verify that
+- **Composability risks**: Move modules interact with other onchain code. Testing must verify that
   your code behaves correctly not only in isolation but also when composed with other packages.
 
 Given these stakes, comprehensive testing is not optional - it is essential for any Move application

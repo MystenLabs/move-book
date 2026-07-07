@@ -34,7 +34,7 @@ fun equip_accessory() {
 
     // However for non-key structs we can only use `dynamic_field`
     df::add(&mut character.id, b"metadata_key", Metadata {
-        name: b"John".to_string()
+        name: "John"
     });
 
     // Borrow the hat from the character

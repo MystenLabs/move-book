@@ -4,28 +4,12 @@ description: "Constants in Move: how to define immutable module-level values, na
 
 # Constants
 
-<!--
-
-Chapter: Basic Syntax
-Goal: Introduce constants.
-Notes:
-    - constants are immutable
-    - constants are private
-    - start with a capital letter always
-    - stored in the bytecode (but w/o a name)
-    - mention standard for naming constants
-
-Links:
-    - next section (abort and assert)
-    - coding conventions (constants)
-    - constants (language reference)
-
- -->
-
 Constants are immutable values that are defined at the module level. They often serve as a way to
 give names to static values that are used throughout a module. For example, if there's a default
 price for a product, you might define a constant for it. Constants are stored in the module's
-bytecode, and each time they are used, the value is copied.
+bytecode, and each time they are used, the value is copied. Like every module member, constants are
+private by default - and unlike functions or structs, they cannot be made public; the
+[config pattern](#using-the-config-pattern) below shows how to share them between modules.
 
 ```move file=packages/samples/sources/move-basics/constants-shop-price.move anchor=shop_price
 
@@ -36,15 +20,16 @@ bytecode, and each time they are used, the value is copied.
 Constants must start with a capital letter - this is enforced at the compiler level. For constants
 used as a value, the convention is to use all uppercase letters and underscores between words, which
 makes constants stand out from other identifiers in the code. An exception is made for
-[error constants](./assert-and-abort#error-constants), which are written in ECamelCase.
+[error constants](./assert-and-abort#error-constants), which are written as `E` followed by a
+CamelCase description, as in `ENoAccess`.
 
 ```move file=packages/samples/sources/move-basics/constants-naming.move anchor=naming
 
 ```
 
-## Constants are Immutable
+## Constants Are Immutable
 
-Constants can't be changed and assigned new values. As part of the package bytecode, they are
+Constants can't be changed or assigned new values. As part of the package bytecode, they are
 inherently immutable.
 
 ```move
@@ -58,11 +43,12 @@ fun change_price() {
 }
 ```
 
-## Using Config Pattern
+## Using the Config Pattern
 
 A common use case for an application is to define a set of constants that are used throughout the
 codebase. But due to constants being private to the module, they can't be accessed from other
-modules. One way to solve this is to define a "config" module that exports the constants.
+modules. One way to solve this is to define a "config" module that exports the constants through
+public functions:
 
 ```move file=packages/samples/sources/move-basics/constants-config.move anchor=config
 
@@ -72,7 +58,7 @@ This way other modules can import and read the constants, and the update process
 the constants need to be changed, only the config module needs to be updated during the package
 upgrade.
 
-## Links
+## Further Reading
 
 - [Constants](./../../reference/constants) in the Move Reference
-- [Coding conventions for constants](./../guides/code-quality-checklist#regular-constant-are-all_caps)
+- [Coding conventions for constants](./../guides/code-quality-checklist#regular-constants-are-all_caps)

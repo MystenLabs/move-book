@@ -1,31 +1,24 @@
 // Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-// ANCHOR: hero_to_bytes
-// TODO: better example (external module...)
-module book::hero_to_bytes;
+// ANCHOR: string_alias
+module book::string_alias;
 
-// Alias for the `bcs::to_bytes` method. Imported aliases should be defined
-// in the top of the module.
-// public use fun bcs::to_bytes as Hero.to_bytes;
+use std::string::String;
 
-/// A struct representing a hero.
-public struct Hero has drop {
-    health: u8,
-    mana: u8,
-}
+/// Alias `std::string::length` as `String.num_bytes`.
+/// A local alias can be declared for any type, even an external one.
+use fun std::string::length as String.num_bytes;
 
-/// Create a new Hero.
-public fun new(): Hero { Hero { health: 100, mana: 100 } }
-
-// #[test_only]
-// use std::unit_test::assert_eq;
+#[test_only]
+use std::unit_test::assert_eq;
 
 #[test]
-// Test the methods of the `Hero` struct.
-fun test_hero_serialize() {
-    // let mut hero = new();
-    // let serialized = hero.to_bytes();
-    // assert_eq!(serialized.length(), 3);
+fun test_string_alias() {
+    let s: String = "Hello";
+
+    // Same function, two names: the built-in method and our alias.
+    assert_eq!(s.length(), 5);
+    assert_eq!(s.num_bytes(), 5);
 }
-// ANCHOR_END: hero_to_bytes
+// ANCHOR_END: string_alias

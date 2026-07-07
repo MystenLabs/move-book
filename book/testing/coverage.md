@@ -16,8 +16,9 @@ To generate coverage data, run your tests with the `--coverage` flag:
 sui move test --coverage
 ```
 
-This will run all tests and collect coverage information. The coverage data is stored in the `build`
-directory and can be analyzed using the `sui move coverage` subcommands.
+This will run all tests and collect coverage information. The coverage data is stored in a
+`.coverage_map.mvcov` file in the package root (next to `Move.toml`) and can be analyzed using the
+`sui move coverage` subcommands.
 
 ## Coverage Summary
 
@@ -33,16 +34,18 @@ This outputs a table showing the coverage percentage for each module:
 +-------------------------+
 | Move Coverage Summary   |
 +-------------------------+
-Module 0x0::my_module
+Module 0000000000000000000000000000000000000000000000000000000000000000::my_module
 >>> % Module coverage: 85.71
-Module 0x0::another_module
+Module 0000000000000000000000000000000000000000000000000000000000000000::another_module
 >>> % Module coverage: 100.00
-Module 0x0::untested_module
+Module 0000000000000000000000000000000000000000000000000000000000000000::untested_module
 >>> % Module coverage: 0.00
 +-------------------------+
 | % Move Coverage: 62.50  |
 +-------------------------+
 ```
+
+> Modules are listed under the full 32-byte form of their package address - `0x0` in this example.
 
 To see coverage broken down by individual functions, add the `--summarize-functions` flag:
 
