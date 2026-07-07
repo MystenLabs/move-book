@@ -53,7 +53,8 @@ Any [`public`](../move-basics/visibility#public-visibility) function can be call
 making a function `public` is all it takes for users to call it in a transaction, and it is the
 default way to expose functionality in Move. (There is also the
 [`entry`](../move-basics/visibility#entry-modifier) modifier, which creates functions callable
-_only_ as transaction commands - a deliberately restricted option, covered later in the book.)
+_only_ as transaction commands - a deliberately restricted option, covered in the
+[Entry Functions](../move-advanced/entry-functions) section.)
 
 Schematically, a transaction looks like this (in pseudo-code):
 
@@ -101,3 +102,5 @@ The result of the executed transaction consists of different parts:
 - [Transactions](https://docs.sui.io/concepts/transactions) in the Sui Documentation.
 - [Programmable Transaction Blocks](https://docs.sui.io/concepts/transactions/prog-txn-blocks) in
   the Sui Documentation.
+- [Using Address Balances](https://docs.sui.io/onchain-finance/asset-custody/address-balances/using-address-balances)
+  in the Sui Documentation - paying gas and moving funds without a `Coin` object.

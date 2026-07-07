@@ -14,9 +14,10 @@ record of "all accounts" - an address with no objects and no transaction history
 indistinguishable from one that was never used.
 
 Sui supports multiple signature schemes for accounts: ed25519, ECDSA (over the secp256k1 and
-secp256r1 curves), multisig - an account controlled by a combination of keys - and zkLogin, which
-derives an account from a Web2 login. This _cryptographic agility_ gives Sui unusual flexibility in
-how accounts are created and controlled.
+secp256r1 curves), passkeys (device authenticators such as Face ID, Touch ID, or a hardware
+security key, based on the WebAuthn standard), multisig (an account controlled by a combination of
+keys), and zkLogin, which derives an account from a Web2 login. This _cryptographic agility_ gives
+Sui unusual flexibility in how accounts are created and controlled.
 
 ## Further Reading
 

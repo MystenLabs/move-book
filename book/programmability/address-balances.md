@@ -14,9 +14,9 @@ Under the hood, the value lives in an onchain _accumulator_ keyed by the pair `(
 The balance of `T` at an address is a single number that goes up when funds are sent to it and down
 when they are withdrawn - much closer to how a bank account works than to a wallet full of coins.
 
-> Address balances are a newer addition to the Sui Framework. The core `send`/`withdraw` API is
-> described below; some related capabilities (such as withdrawing from an object) are being rolled
-> out behind protocol flags.
+> Address balances are a recent addition to the Sui Framework. This section covers the core
+> `send_funds` / `redeem_funds` API, withdrawing from an object, and the transaction-level rules
+> that protect withdrawals from replay.
 
 ## Sending Funds to an Address
 
@@ -103,12 +103,37 @@ passing a mutable reference to its `UID`:
 
 ```
 
-This lets a shared object hold and pay out fungible value without wrapping individual `Coin`
-objects. The withdrawal it produces is redeemed the same way as a sender's - through
-`redeem_funds`.
+This lets any object - a shared vault, an escrow, a treasury - hold and pay out fungible value
+without wrapping individual `Coin` objects. The withdrawal it produces is redeemed the same way as a
+sender's - through `redeem_funds`.
 
-> Withdrawing from an object is gated behind a protocol feature flag and may not be enabled on every
-> network yet.
+## Replay Protection and Parallel Execution
+
+Address balances also change how a transaction proves that it is unique and cannot be replayed. The
+usual anchor is an [owned object](./../object/ownership#account-owner-or-single-owner): every object
+carries a [version](./../object/object-model) that the system bumps on each change, so a signed
+transaction referencing it can execute only once - after the version moves, the transaction no
+longer matches. The gas coin normally provides this anchor for free.
+
+A transaction that has no owned-object input - for instance, one that pays gas straight from an
+address balance, or whose inputs are only shared objects - has nothing to anchor it, so it must
+carry the protection itself. Two fields of the transaction data cover this. SDKs set them when they
+build such a transaction, so this is a matter of how the transaction is _constructed_ rather than
+anything in Move code:
+
+- **Expiration (`ValidDuring`).** The transaction sets its expiration to
+  `TransactionExpiration::ValidDuring` with a `min_epoch` and a `max_epoch` spanning at most one
+  epoch (`max_epoch <= min_epoch + 1`). Bounding validity to a narrow epoch window bounds the window
+  in which the transaction could be replayed, taking the place of the version check that protects
+  owned objects.
+- **Nonce.** The transaction includes a `nonce` - an arbitrary value whose only job is to make two
+  otherwise-identical transactions distinct. Unlike the nonces of account-based chains, it is not
+  sequential and has no gap problem; it simply lets transactions that would otherwise share a digest
+  coexist.
+
+These same properties are what keep such transactions parallelizable: with unique digests and the
+[per-object ordering](./../object/fast-path-and-consensus#consensus-path) that Sui already uses,
+non-conflicting withdrawals never have to wait on one another.
 
 ## Summary
 
@@ -119,9 +144,14 @@ objects. The withdrawal it produces is redeemed the same way as a sender's - thr
 - withdrawing requires a `Withdrawal<Balance<T>>` - an authorization with an `owner` and a `limit` -
   which the transaction provides for the sender, or an object provides for itself;
 - `coin::redeem_funds` turns a `Withdrawal` into a `Coin`, and can only be called from the module
-  defining the type, via the [internal permit](./../move-basics/internal-permit) mechanism.
+  defining the type, via the [internal permit](./../move-basics/internal-permit) mechanism;
+- a transaction with no owned-object input (paying gas from an address balance, or using only shared
+  objects) carries its own replay protection: a `ValidDuring` expiration bounded to one epoch, and a
+  `nonce` that makes its digest unique.
 
 ## Further Reading
 
-- [sui::balance](https://docs.sui.io/references/framework/sui_sui/balance) module documentation.
+- [sui::balance](https://docs.sui.io/references/framework/sui/balance) module documentation.
+- [Using Address Balances](https://docs.sui.io/onchain-finance/asset-custody/address-balances/using-address-balances)
+  in the Sui Documentation.
 - [Balance and Coin](./balance-and-coin) for the object-based side of fungible tokens.
