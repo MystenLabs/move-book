@@ -80,8 +80,8 @@ Importing function names is less common in Move, since the function names can ov
 confusion. A recommended practice is to import the entire module and use the module path to access
 the function. Types have unique names and should be imported individually.
 
-To import members and the module itself in the group import, you can use the `Self` keyword. The
-`Self` keyword refers to the module itself and can be used to import the module and its members.
+To import both the module itself and some of its members in one group import, use the `Self`
+keyword, which stands for the module:
 
 ```move
 module book::self_imports;
@@ -131,13 +131,11 @@ Local = { local = "../my_other_package" }
 The `dependencies` section contains an entry for each package dependency. The key of the entry is
 the name of the package (`Example` or `Local` in the example), and the value is either a git import
 table or a local path. The git import contains the URL of the package, the subdirectory where the
-package is located, and the revision of the package. The local path is a relative path to the qa
+package is located, and the revision of the package. The local path is a relative path to the
 package directory.
 
-If you add a dependency, all of its dependencies also become available to your package.
-
-If a dependency is added to the `Move.toml` file, the compiler will automatically fetch (and later
-refetch) the dependencies when building the package.
+The compiler automatically fetches (and later refetches) the listed dependencies when building the
+package, and all of their dependencies become available to your package as well.
 
 > Starting with version 1.45 of the sui CLI, the system packages are automatically included as
 > dependencies for all packages if they are not present in `Move.toml`. Therefore, `MoveStdlib`,
@@ -163,3 +161,7 @@ use sui::coin;   // sui = 0x2, coin is a module in the Sui Framework
 
 > Note: Module address names come from the `[addresses]` section of the manifest file (`Move.toml`),
 > not the names used in the `[dependencies]` section.
+
+## Further Reading
+
+- [Uses and Aliases](./../../reference/uses) in the Move Reference.

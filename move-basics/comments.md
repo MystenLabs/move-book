@@ -52,8 +52,8 @@ This example is a bit extreme, but it shows all the ways that you can use block 
 ## Doc Comment
 
 Documentation comments are special comments that are used to generate documentation for your code.
-They are similar to block comments but start with three slashes `///` and are placed before the
-definition of the item they document.
+They are similar to line comments but start with three slashes `///` and are placed before the
+definition of the item they document - a module, a struct, a function, or a constant.
 
 ```move
 /// Module has documentation!
@@ -73,8 +73,12 @@ public struct AStruct {
 fun do_something() {}
 ```
 
+Documentation tooling collects doc comments of the public members into reference pages - the
+[standard library and framework documentation](https://docs.sui.io/references/framework) linked
+throughout this book is generated exactly this way. A well-written doc comment states what the
+function does, and under which conditions it aborts.
+
 ## Whitespace
 
-Unlike some languages, whitespace (spaces, tabs, and newlines) have no impact on the meaning of the
+Unlike some languages, whitespace (spaces, tabs, and newlines) has no impact on the meaning of the
 program.
-

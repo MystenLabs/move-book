@@ -111,9 +111,9 @@ public fun is_active(mut self: UserBuilder, is_active: bool): UserBuilder {
 public fun build(self: UserBuilder): User {
     let UserBuilder { name, age, email, balance, is_active } = self;
     user::new(
-        name.destroy_or!(b"Default User".to_string()),
+        name.destroy_or!("Default User"),
         age.destroy_or!(18),
-        email.destroy_or!(b"user@example.com".to_string()),
+        email.destroy_or!("user@example.com"),
         balance.destroy_or!(0),
         is_active.destroy_or!(true),
     )
@@ -138,9 +138,9 @@ test:
 fun test_balance_check_without_builder() {
     // We only care about `balance`, but must specify everything
     let user = user::new(
-        b"Alice".to_string(),
+        "Alice",
         25,
-        b"alice@example.com".to_string(),
+        "alice@example.com",
         1000, // <-- the only field we care about
         true,
     );
@@ -151,9 +151,9 @@ fun test_balance_check_without_builder() {
 fun test_inactive_user_without_builder() {
     // We only care about `is_active`, but must specify everything
     let user = user::new(
-        b"Bob".to_string(),
+        "Bob",
         30,
-        b"bob@example.com".to_string(),
+        "bob@example.com",
         500,
         false, // <-- the only field we care about
     );
@@ -240,7 +240,8 @@ use sui_system::validator_builder;
 
 #[test]
 fun test_validator_operations() {
-    let validator = validator_builder::preset()
+    let ctx = &mut tx_context::dummy();
+    let validator = validator_builder::preset(1)
         .name("My Validator")
         .gas_price(1000)
         .commission_rate(500) // 5%
@@ -251,25 +252,26 @@ fun test_validator_operations() {
 }
 ```
 
-The `preset()` function returns a builder pre-filled with valid test defaults, so tests only
-override the fields they care about.
+The `preset(index)` function returns a builder pre-filled with valid test defaults - keys, addresses
+and economic parameters - for one of several predefined validators, so tests only override the
+fields they care about.
 
 ### TxContextBuilder in Sui Framework
 
 The [`TxContextBuilder`][tx-context-builder] allows customizing transaction context for specific
-test scenarios:
+test scenarios. The builder is passed to `begin_with_context()` to start a scenario, or to
+`next_with_context()` to advance an existing one:
 
 ```move
 use sui::test_scenario as ts;
 
 #[test]
 fun test_epoch_dependent_logic() {
-    let mut test = ts::begin(@0x1);
-    let ctx = test
-        .ctx_builder()
-        .set_epoch(100)
-        .set_epoch_timestamp(1000000)
-        .build();
+    let mut test = ts::begin_with_context(
+        ts::ctx_builder_from_sender(@0x1)
+            .set_epoch(100)
+            .set_epoch_timestamp(1_000_000),
+    );
 
     // test logic that depends on epoch...
 

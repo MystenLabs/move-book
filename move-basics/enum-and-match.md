@@ -4,14 +4,14 @@
 
 An enum is a user-defined data structure that, unlike a [struct](./struct), can represent multiple
 variants. Each variant can contain primitive types, structs, or other enums. However, recursive enum
-definitions — similar to recursive struct definitions — are not allowed.
+definitions - similar to recursive struct definitions - are not allowed.
 
 ## Definition
 
 An enum is defined using the `enum` keyword, followed by optional abilities and a block of variant
 definitions. Each variant has a tag name and may optionally include either positional values or
-named fields. Enum must have at least one variant. The structure of each variant is not flexible,
-and the total number of variants can be relatively large - up to 100.
+named fields. An enum must have at least one variant; the shape of each variant is fixed at
+definition, and the total number of variants can be relatively large - up to 100.
 
 ```move
 module book::segment;
@@ -45,7 +45,7 @@ abilities, and 3 variants:
 Enums are _internal_ to the module in which they are defined. This means an enum can only be
 constructed, read, and unpacked within the same module.
 
-[Similar to structs](./struct#create-and-use-an-instance), enums are instantiated by specifying the
+[Similar to structs](./struct#creating-an-instance), enums are instantiated by specifying the
 type, the variant, and the values for any fields defined in that variant.
 
 ```move
@@ -80,16 +80,19 @@ public struct Segments(vector<Segment>) has copy, drop;
 fun test_segments() {
     let _ = Segments(vector[
         Segment::Empty,
-        Segment::String(b"hello".to_string()),
-        Segment::String(b" move".to_string()),
-        Segment::Special { content: b"21", encoding: 1 },
+        Segment::String("hello"),
+        Segment::String(" move"),
+        Segment::Special { content: "21", encoding: 1 },
     ]);
 }
 ```
 
-All variants of the Segment enum share the same type – `Segment` – which allows us to create a
+All variants of the Segment enum share the same type - `Segment` - which allows us to create a
 homogeneous vector containing instances of different variants. This kind of flexibility is not
 achievable with structs, as each struct defines a single, fixed shape.
+
+> `Segments` is a [positional struct](./struct#positional-structs) wrapping a single
+> `vector<Segment>` field; note how its abilities are declared after the parentheses.
 
 ## Pattern Matching
 
@@ -106,7 +109,7 @@ using the `match` expression, followed by the matched value in parenthesis and t
 arms_, defining the pattern and expression to be performed if the pattern is right.
 
 Let's extend our example by adding a set of `is_variant`-like functions, so external packages can
-check the variant. Starting with `is_empty`.
+check the variant, starting with `is_empty`:
 
 ```move
 /// Whether this is an `Empty` segment.
@@ -130,7 +133,7 @@ use them, marking unused values with `_` to avoid compiler warnings).
 ### Trick #1 - _any_ Condition
 
 The Move compiler infers the type of the value used in a `match` expression and ensures that the
-_match arms_ are exhaustive – that is, all possible variants or values must be covered.
+_match arms_ are exhaustive - that is, all possible variants or values must be covered.
 
 However, in some cases, such as matching on a primitive value or a collection like a vector, it's
 not feasible to list every possible case. For these situations, match supports a wildcard pattern
@@ -171,7 +174,7 @@ public fun is_string(s: &Segment): bool {
 ### Trick #2 - `try_into` Helpers
 
 With the addition of `is_variant` functions, we enabled external modules to check which variant an
-enum instance represents. However, this is often not enough – external code still cannot access the
+enum instance represents. However, this is often not enough - external code still cannot access the
 inner value of a variant due to enums being internal to their module.
 
 A common pattern for addressing this is to define `try_into` functions. These functions match on the
@@ -187,32 +190,33 @@ public fun try_into_inner_string(s: Segment): Option<String> {
 }
 ```
 
-This pattern safely exposes internal data in a controlled way, avoiding abort.
+This pattern safely exposes internal data in a controlled way, without the risk of an abort.
 
 ### Trick #3 - Matching on Primitive Values
 
-The `match` expression in Move can be used with values of any type – enums, structs, or primitives.
+The `match` expression in Move can be used with values of any type - enums, structs, or primitives.
 To demonstrate this, let’s implement a `to_string` function that creates a new `String` from a
 `Segment`. In the case of the `Special` variant, we will match on the `encoding` field to determine
-how to decode the content.
+how to interpret the content: `0` stands for UTF-8, and `1` for the stricter ASCII encoding.
 
 ```move
 /// Return a `String` representation of a segment.
 public fun to_string(s: &Segment): String {
     match (*s) {
         // Return an empty string.
-        Segment::Empty => b"".to_string(),
+        Segment::Empty => "",
         // Return the inner string.
         Segment::String(str) => str,
         // Return the decoded contents based on the encoding.
         Segment::Special { content, encoding } => {
-            // Perform a match on the encoding, we only support 0 - ut8, 1 - hex.
+            // Perform a match on the encoding; we support 0 - UTF-8 and 1 - ASCII.
             match (encoding) {
-                // Plain encoding, return content.
+                // UTF-8 encoding, interpret content as a UTF-8 string.
                 0 => content.to_string(),
-                // HEX encoding, decode and return.
-                1 => sui::hex::decode(content).to_string(),
+                // ASCII encoding - stricter, aborts on non-ASCII bytes.
+                1 => content.to_ascii_string().to_string(),
                 // We have to provide a wildcard pattern, because values of `u8` are 0-255.
+                // Abort execution if the encoding is unknown.
                 _ => abort,
             }
         },
@@ -220,10 +224,16 @@ public fun to_string(s: &Segment): String {
 }
 ```
 
-This function demonstrates two key things:
+This function demonstrates several key things:
 
 - Nested `match` expressions can be used for deeper logic branching.
 - Wildcards are essential for covering all possible values in primitive types like `u8`.
+- The function takes `s` by reference, but matching arms bind inner values _by value_. The `*s`
+  expression makes this possible: the [dereference operator](./references#dereferencing) `*`
+  copies the value behind the reference, which is allowed because `Segment` has the `copy`
+  ability.
+- The wildcard arm uses `abort` without an abort code to reject unknown encodings - a _clean
+  abort_, covered in the [Aborting Execution](./assert-and-abort) section.
 
 ## The Final Test
 
@@ -235,6 +245,7 @@ scenario where we build enums into a vector.
 module book::segment_tests;
 
 use book::segment;
+use std::string::String;
 
 #[test]
 fun test_full_enum_cycle() {
@@ -243,14 +254,14 @@ fun test_full_enum_cycle() {
     // Create a vector of different Segment variants.
     let segments = vector[
         segment::new_empty(),
-        segment::new_string(b"hello".to_string()),
-        segment::new_special(b" ", 0), // plaintext
-        segment::new_string(b"move".to_string()),
-        segment::new_special(b"21", 1), // hex
+        segment::new_string("hello"),
+        segment::new_special(" ", 0), // utf8
+        segment::new_string("move"),
+        segment::new_special("!", 1), // ascii
     ];
 
     // Aggregate all segments into the final string using `vector::fold!` macro.
-    let result = segments.fold!(b"".to_string(), |mut acc, segment| {
+    let result = segments.fold!("", |mut acc: String, segment| {
         // Do not append empty, only `Special` and `String`.
         if (!segment.is_empty()) {
             acc.append(segment.to_string());
@@ -259,7 +270,7 @@ fun test_full_enum_cycle() {
     });
 
     // Check that the result is what's expected.
-    assert_eq!(result, b"hello move!".to_string());
+    assert_eq!(result, "hello move!");
 }
 ```
 
@@ -284,4 +295,4 @@ To learn more about enums and pattern matching, refer to the resources listed in
 ## Further Reading
 
 - [Enums](./../../reference/enums) in the Move Reference
-- [Pattern Matching](/reference/control-flow/pattern-matching) in the Move Reference
+- [Pattern Matching](./../../reference/control-flow/pattern-matching) in the Move Reference

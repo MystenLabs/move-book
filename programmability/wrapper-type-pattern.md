@@ -1,6 +1,6 @@
 > For the complete documentation index, see [llms.txt](https://move-book.com/llms.txt)
 
-# Pattern: Wrapper type
+# Pattern: Wrapper Type
 
 Sometimes, there's a need to create a new type that behaves similarly to an existing type but with
 certain modifications or restrictions. For example, you might want to create a
@@ -12,7 +12,8 @@ after they’ve been inserted. The wrapper type pattern is an effective way to a
 The wrapper type pattern is a design pattern in which you create a new type that wraps an existing
 type. The wrapper type is distinct from the original but can be converted to and from it.
 
-Often, it is implemented as a positional struct with a single field.
+Often, it is implemented as a [positional struct](./../move-basics/struct.md#positional-structs)
+with a single field.
 
 ```move
 module book::wrapper_type_pattern;
@@ -77,7 +78,7 @@ The wrapper type pattern offers several benefits:
 
 ## Disadvantages
 
-The wrapper type pattern is powerful in two scenarios—when you want to limit the behavior of an
+The wrapper type pattern is powerful in two scenarios - when you want to limit the behavior of an
 existing type while providing a custom interface to the same data structure, and when you want to
 extend the behavior of an existing type. However, it does have some limitations:
 
@@ -90,6 +91,6 @@ extend the behavior of an existing type. However, it does have some limitations:
 
 The wrapper type pattern is very useful, particularly when used in conjunction with collection
 types, as demonstrated in the previous section. In the next section, we will cover
-[Dynamic Fields](./dynamic-fields) — an important primitive that enables
+[Dynamic Fields](./dynamic-fields) - an important primitive that enables
 [Dynamic Collections](./dynamic-collections), a way to store large collections of data in a more
 flexible, albeit more expensive, way.

@@ -2,7 +2,7 @@
 
 # Pattern: Hot Potato
 
-A case in the abilities system - a struct without any abilities - is called _hot potato_. It cannot
+A special case in the abilities system - a struct without any abilities - is called _hot potato_. It cannot
 be stored (not as [an object](./../storage/key-ability) nor as
 [a field in another struct](./../storage/store-ability)), it cannot be
 [copied](./../move-basics/copy-ability) or [discarded](./../move-basics/drop-ability). Hence, once
@@ -99,26 +99,31 @@ a [dynamic field](./dynamic-fields).
 
 ### Flash Loans
 
-Canonical example of the hot potato pattern is flash loans. A flash loan is a loan that is borrowed
-and repaid in the same transaction. The borrowed funds are used to perform some operations, and the
+The canonical example of the hot potato pattern is the flash loan - a loan that is borrowed and
+repaid in the same transaction. The borrowed funds are used to perform some operations, and the
 repaid funds are returned to the lender. The hot potato pattern ensures that the borrowed funds are
 returned to the lender.
 
 An example usage of this pattern may look like this:
 
 ```move
-// Borrow the funds from the lender.
-let (asset_a, potato) = lender.borrow(amount);
+// Borrow the funds from the lender; the `potato` obligates us to repay.
+let (funds, potato) = lender.borrow(amount);
 
 // Perform some operations with the borrowed funds.
-let asset_b = dex.trade(loan);
-let proceeds = another_contract::do_something(asset_b);
+let asset = dex.trade(funds);
+let proceeds = another_contract::do_something(asset);
 
-// Keep the commission and return the rest to the lender.
-let pay_back = proceeds.split(amount, ctx);
-lender.repay(pay_back, potato);
+// Repay the loan and keep the profit.
+let payback = proceeds.split(amount, ctx);
+lender.repay(payback, potato);
 transfer::public_transfer(proceeds, ctx.sender());
 ```
+
+> An outstanding hot potato also affects what the rest of the transaction is allowed to do: values
+> entangled with it cannot be passed to non-`public` `entry` functions until the potato is
+> consumed. The exact rules - with a worked flash-loan example - are described in
+> [Entry Functions](./../move-advanced/entry-functions).
 
 ### Variable-path Execution
 
@@ -182,14 +187,18 @@ The pattern is used in various forms in the Sui Framework. Here are some example
   which can only be consumed if all conditions are met.
 - [sui::token][token-framework] - in the Closed Loop Token system, an `ActionRequest` carries the
   information about the performed action and collects approvals similarly to `TransferRequest`.
+- [sui::package][package-framework] - the `UpgradeTicket` and `UpgradeReceipt` guarding the
+  [package upgrade](./package-upgrades) flow are hot potatoes: an authorized upgrade must be
+  performed and committed within the same transaction.
 
-[borrow-framework]: https://docs.sui.io/references/framework/sui-framework/borrow
-[transfer-policy-framework]: https://docs.sui.io/references/framework/sui-framework/transfer_policy
-[token-framework]: https://docs.sui.io/references/framework/sui-framework/token
+[borrow-framework]: https://docs.sui.io/references/framework/sui/borrow
+[package-framework]: https://docs.sui.io/references/framework/sui/package
+[transfer-policy-framework]: https://docs.sui.io/references/framework/sui/transfer_policy
+[token-framework]: https://docs.sui.io/references/framework/sui/token
 
 ## Summary
 
-- A hot potato is a struct without abilities, it must come with a way to create and destroy it.
+- A hot potato is a struct without abilities; its module must provide ways to create and destroy it.
 - Hot potatoes are used to ensure that some action is taken before the transaction ends, similar to
   a callback.
 - Most common use cases for hot potato are borrowing, flash loans, variable-path execution, and

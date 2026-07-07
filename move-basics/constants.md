@@ -5,7 +5,9 @@
 Constants are immutable values that are defined at the module level. They often serve as a way to
 give names to static values that are used throughout a module. For example, if there's a default
 price for a product, you might define a constant for it. Constants are stored in the module's
-bytecode, and each time they are used, the value is copied.
+bytecode, and each time they are used, the value is copied. Like every module member, constants are
+private by default - and unlike functions or structs, they cannot be made public; the
+[config pattern](#using-the-config-pattern) below shows how to share them between modules.
 
 ```move
 module book::shop_price;
@@ -38,7 +40,8 @@ public fun purchase(coin: Coin<SUI>): Item {
 Constants must start with a capital letter - this is enforced at the compiler level. For constants
 used as a value, the convention is to use all uppercase letters and underscores between words, which
 makes constants stand out from other identifiers in the code. An exception is made for
-[error constants](./assert-and-abort#error-constants), which are written in ECamelCase.
+[error constants](./assert-and-abort#error-constants), which are written as `E` followed by a
+CamelCase description, as in `ENoAccess`.
 
 ```move
 /// Price of the item used at the shop.
@@ -48,9 +51,9 @@ const ITEM_PRICE: u64 = 100;
 const EItemNotFound: u64 = 1;
 ```
 
-## Constants are Immutable
+## Constants Are Immutable
 
-Constants can't be changed and assigned new values. As part of the package bytecode, they are
+Constants can't be changed or assigned new values. As part of the package bytecode, they are
 inherently immutable.
 
 ```move
@@ -64,11 +67,12 @@ fun change_price() {
 }
 ```
 
-## Using Config Pattern
+## Using the Config Pattern
 
 A common use case for an application is to define a set of constants that are used throughout the
 codebase. But due to constants being private to the module, they can't be accessed from other
-modules. One way to solve this is to define a "config" module that exports the constants.
+modules. One way to solve this is to define a "config" module that exports the constants through
+public functions:
 
 ```move
 module book::config;
@@ -89,7 +93,7 @@ This way other modules can import and read the constants, and the update process
 the constants need to be changed, only the config module needs to be updated during the package
 upgrade.
 
-## Links
+## Further Reading
 
 - [Constants](./../../reference/constants) in the Move Reference
-- [Coding conventions for constants](./../guides/code-quality-checklist#regular-constant-are-all_caps)
+- [Coding conventions for constants](./../guides/code-quality-checklist#regular-constants-are-all_caps)
