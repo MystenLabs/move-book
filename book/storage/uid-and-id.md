@@ -77,14 +77,14 @@ until the associated data is dealt with and the UID can be safely deleted.
 
 Sui allows deriving UIDs from other UIDs using _derivation keys_. This functionality is
 implemented in the [`sui::derived_object`][derived-object] module, and produces predictable,
-deterministic IDs for easier off-chain discovery. The UID for each parent + key pair can be
+deterministic IDs for easier offchain discovery. The UID for each parent + key pair can be
 claimed only once:
 
 ```move file=packages/samples/sources/storage/uid-and-id.move anchor=derived
 
 ```
 
-Derived addresses reduce the load on off-chain indexers: it is enough to know the ID of the parent
+Derived addresses reduce the load on offchain indexers: it is enough to know the ID of the parent
 object, and the IDs of derived objects can be computed with a derivation function - present in
 most SDKs, and in Move itself:
 
@@ -119,7 +119,7 @@ is no restriction - and no guarantee - that the ID points to an existing object.
 
 [`TxContext`](./../programmability/transaction-context) provides the `fresh_object_address`
 function, which produces a unique address using the same derivation as `object::new` - without
-creating a `UID`. It is useful for applications that need unique identifiers for off-chain
+creating a `UID`. It is useful for applications that need unique identifiers for offchain
 entities - for example, an `order_id` in a marketplace.
 
 ## Summary
@@ -129,7 +129,7 @@ entities - for example, an `order_id` in a marketplace.
 - Fresh UIDs come from `object::new(ctx)` and can never be reused for a new object.
 - A UID is deleted with `object::delete` after unpacking - or kept, if data is still attached to
   it.
-- Derived UIDs (`sui::derived_object`) make object IDs predictable and discoverable off-chain.
+- Derived UIDs (`sui::derived_object`) make object IDs predictable and discoverable offchain.
 
 ## Further Reading
 

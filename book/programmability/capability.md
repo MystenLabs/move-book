@@ -50,7 +50,7 @@ are the ones you are most likely to encounter:
 
 - `sui::coin::TreasuryCap<T>` - created together with a new currency, grants the right to mint and
   burn coins of type `T`. Owning the `TreasuryCap` is owning the supply of the currency; we explore
-  it in the [Balance & Coin](./balance-and-coin) chapter;
+  it in the [Balance and Coin](./balance-and-coin) chapter;
 - `sui::package::UpgradeCap` - created when a package is published, authorizes future upgrades of
   the package. The owner of the `UpgradeCap` can also restrict future upgrades, or disable them
   completely by making the capability immutable;

@@ -126,7 +126,7 @@ error[Sui E02011]: invalid internal permit call
 ```
 
 The check does not stop at the compiler. The same rule is enforced by the bytecode verifier when a
-package is published on chain, so it cannot be bypassed by hand-crafting bytecode or using a
+package is published onchain, so it cannot be bypassed by hand-crafting bytecode or using a
 modified compiler. A published `Permit<T>` is a hard guarantee: if a function received one, the
 module defining `T` created it.
 
@@ -148,7 +148,7 @@ of the [Witness](./../programmability/witness-pattern) and
 standard, zero-field witness meaning "the module that defines `T` approved this call".
 
 The abilities of `Permit` are chosen to keep that meaning precise. Without `copy`, a function that
-receives a permit cannot duplicate it; without `store`, it cannot be kept on chain and reused later.
+receives a permit cannot duplicate it; without `store`, it cannot be kept onchain and reused later.
 The authorization is valid for the current call and then gone - every privileged action requires the
 defining module to explicitly create a new permit. And because the type parameter is `phantom`, the
 proof is free: no instance of `T` is created, copied, or consumed to produce it.

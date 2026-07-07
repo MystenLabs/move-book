@@ -118,7 +118,7 @@ bookSidebar:
         id: object/object-model
       - label: Ownership
         id: object/ownership
-      - label: Fast Path & Consensus
+      - label: Fast Path and Consensus
         id: object/fast-path-and-consensus
   - type: category
     label: Using Objects
@@ -179,7 +179,7 @@ bookSidebar:
         id: programmability/display
       - label: Events
         id: programmability/events
-      - label: Balance & Coin
+      - label: Balance and Coin
         id: programmability/balance-and-coin
       - label: Address Balances
         id: programmability/address-balances

@@ -104,7 +104,7 @@ created, used, and destroyed, and no external code can violate the rules the mod
 guarantees on them.
 
 > Note that just because a struct field is not accessible from other modules does not mean its value
-> is confidential - it is always possible to read the contents of an on-chain object from outside of
+> is confidential - it is always possible to read the contents of an onchain object from outside of
 > Move. You should never store unencrypted secrets inside of objects.
 
 ## Getters and Setters
@@ -149,7 +149,7 @@ what external code can and cannot do with its structs.
 
 Structs are non-discardable by default: a struct value cannot simply be left behind at the end of a
 function - code that does so will not compile. Every created value must be used: either stored (for
-example, placed inside another struct, or kept in on-chain storage, as shown in the
+example, placed inside another struct, or kept in onchain storage, as shown in the
 [Using Objects](./../storage/) chapter) or _unpacked_. Unpacking a struct means deconstructing it
 into its fields, and it is the mirror image of packing: the `let` keyword, followed by the struct
 name and the field names to bind.

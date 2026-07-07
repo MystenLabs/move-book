@@ -54,7 +54,7 @@ whether values can be copied or discarded, pass them around by reference or by v
 with pattern matching, abstract it with generics and macros - and test all of it. What we have set
 aside so far is what makes Move on Sui special: the storage model. The
 [Object Model](./../object/) chapter picks up exactly there - it introduces _objects_, the Move
-structs that become on-chain assets, and the chapters after it show how to store, own, and
+structs that become onchain assets, and the chapters after it show how to store, own, and
 transfer them.
 
 ## Further Reading

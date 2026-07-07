@@ -93,7 +93,7 @@ We cover object creation in detail in the [UID and ID](./../storage/uid-and-id) 
 The same derivation mechanism can be used directly in your program to generate unique addresses.
 The `sui::tx_context` module exposes the `fresh_object_address` function for that, which may be
 useful if an application needs a unique identifier - for example, to use as a key in a
-[dynamic field](./dynamic-fields) or an off-chain index.
+[dynamic field](./dynamic-fields) or an offchain index.
 
 ```move
 module sui::tx_context;

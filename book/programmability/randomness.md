@@ -1,10 +1,10 @@
 ---
 description:
-  'On-chain randomness in Sui: generate secure random values in Move smart contracts using the
+  'Onchain randomness in Sui: generate secure random values in Move smart contracts using the
   Random shared object.'
 ---
 
-# On-Chain Randomness
+# Onchain Randomness
 
 Randomness is a surprisingly hard problem for a blockchain. Execution has to be deterministic -
 every validator must run a transaction and arrive at exactly the same result - and every input is
@@ -179,13 +179,13 @@ system address `0x0`:
 See [Creating and Using System Objects in Tests](./../testing/using-system-objects) for more details
 on testing with system objects.
 
-> On-chain randomness should not be confused with the [`#[random_test]`](./../testing/random-test)
+> Onchain randomness should not be confused with the [`#[random_test]`](./../testing/random-test)
 > attribute, which is a compiler feature for generating random test inputs.
 
 ## Limitations
 
-On-chain randomness is unpredictable _before_ the transaction executes, but it is not a secret: once
-the transaction is committed, the result is public, like everything else on chain. This makes it a
+Onchain randomness is unpredictable _before_ the transaction executes, but it is not a secret: once
+the transaction is committed, the result is public, like everything else onchain. This makes it a
 great fit for fair selection - raffles, loot tables, matchmaking, shuffling - but not for hidden
 information. A card game where players hold concealed hands cannot be built on the `Random` object
 alone and requires additional cryptography.
@@ -227,6 +227,6 @@ To mitigate exposure:
 
 ## Further Reading
 
-- [On-Chain Randomness](https://docs.sui.io/guides/developer/advanced/randomness-onchain) guide in
+- [Onchain Randomness](https://docs.sui.io/guides/developer/advanced/randomness-onchain) guide in
   Sui documentation.
 - [sui::random](https://docs.sui.io/references/framework/sui/random) module documentation.

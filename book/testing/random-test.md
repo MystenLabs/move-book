@@ -9,7 +9,7 @@ attribute. This enables property-based testing, where a test runs multiple times
 generated values to discover edge cases you might not think to test manually.
 
 > The `#[random_test]` attribute is a compiler feature for test inputs, separate from the
-> `sui::random` module used for on-chain randomness.
+> `sui::random` module used for onchain randomness.
 
 ## Basic Usage
 

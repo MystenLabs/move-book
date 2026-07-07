@@ -44,8 +44,8 @@ Move.toml
 ```
 
 The `tests` directory is optional and contains tests for the package. Code placed into the `tests`
-directory is not published on-chain and is only available in tests. The `examples` directory can be
-used for code examples, and is also not published on-chain.
+directory is not published onchain and is only available in tests. The `examples` directory can be
+used for code examples, and is also not published onchain.
 
 ## Published Package
 

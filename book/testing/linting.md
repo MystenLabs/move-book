@@ -106,6 +106,9 @@ JSON format.
 
 ## Lint Reference
 
+The linter groups its checks into two sets: the _default_ lints that run on every compilation, and
+the _extra_ lints that only run under the `--lint` flag.
+
 ### Default Lints
 
 These run on every compilation:

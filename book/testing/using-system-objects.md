@@ -52,7 +52,7 @@ fun test_shared_clock() {
 
 ## Random
 
-The `Random` object provides on-chain randomness. In tests, the full `Random` shared object can only
+The `Random` object provides onchain randomness. In tests, the full `Random` shared object can only
 be created inside a [test scenario](./test-scenario.md) via `random::create_for_testing`. However,
 the preferred approach is to structure your code so that the core logic takes a `RandomGenerator`
 parameter - this lets you create a generator directly in unit tests with

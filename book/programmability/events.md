@@ -1,18 +1,18 @@
 ---
-description: "Emit and test events in Sui Move: notify off-chain listeners about on-chain activity in your smart contracts."
+description: "Emit and test events in Sui Move: notify offchain listeners about onchain activity in your smart contracts."
 ---
 
 # Events
 
-On-chain storage keeps the _current_ state of the application: objects, their fields, and their
+Onchain storage keeps the _current_ state of the application: objects, their fields, and their
 owners. What it does not keep is the history of actions that led to this state. A marketplace
 module stores listed items, but once an item is sold and the object changes hands, there is no
-on-chain trace of the purchase - the price paid, the time of the sale, or the parties involved.
+onchain trace of the purchase - the price paid, the time of the sale, or the parties involved.
 Applications, however, often need exactly that: an activity feed, a trading history, or analytics.
 
 _Events_ are the mechanism for this. An event is a piece of data attached to the result of a
-successful transaction and stored off-chain. Emitting an event does not modify any objects and
-costs no storage fees; instead, events are indexed by full nodes, and off-chain services can query
+successful transaction and stored offchain. Emitting an event does not modify any objects and
+costs no storage fees; instead, events are indexed by full nodes, and offchain services can query
 or subscribe to them. Events are the main way for a Move program to communicate with the outside
 world.
 
@@ -24,9 +24,9 @@ of the [Sui Framework](./sui-framework):
 ```move
 module sui::event;
 
-/// Emit a custom Move event, sending the data off-chain.
+/// Emit a custom Move event, sending the data offchain.
 ///
-/// Used for creating custom indexes and tracking on-chain
+/// Used for creating custom indexes and tracking onchain
 /// activity in a way that suits a specific application the most.
 ///
 /// The type `T` is the main way to index the event, and can contain
@@ -45,13 +45,13 @@ that declares it.
 ## Emitting Events
 
 To emit an event, define a struct for it and pass an instance of the struct to `event::emit`. The
-event data is passed by value and sent off-chain as part of the transaction result:
+event data is passed by value and sent offchain as part of the transaction result:
 
 ```move file=packages/samples/sources/programmability/events.move anchor=emit
 
 ```
 
-The type of the event serves as the primary filter for off-chain queries - services subscribe to
+The type of the event serves as the primary filter for offchain queries - services subscribe to
 `ItemPurchased` events by naming the type. This suggests a simple design principle: emit a
 dedicated type per action, and name it after the action that happened, in past tense -
 `ItemPurchased`, `AuctionStarted`, `ConfigUpdated`. Inside the event, include the values an
@@ -77,13 +77,13 @@ unless the "logical" sender differs from the transaction signer (for example, in
 transaction executed on behalf of a user).
 
 It is important to understand that events are a one-way channel. Emitted events are not stored
-on-chain and cannot be read back by Move code - not in the same transaction, and not in any later
+onchain and cannot be read back by Move code - not in the same transaction, and not in any later
 one. If a value needs to be accessed by the program, it belongs in an object; if it needs to be
 seen by the outside world, it belongs in an event.
 
 ## Testing Events
 
-Because events are the interface between the application and its off-chain services, it is
+Because events are the interface between the application and its offchain services, it is
 important to test that the right events are emitted with the right values. The `sui::event` module
 provides two test-only functions for this: `num_events`, returning the number of events emitted so
 far in the test, and `events_by_type<T>`, returning a vector of all emitted events of type `T`.
@@ -97,8 +97,8 @@ module of the same package with appropriate accessors) can inspect their fields 
 
 ## Summary
 
-- Events attach application-defined data to the transaction result; they are indexed off-chain and
-  are the main way to notify the outside world about on-chain activity.
+- Events attach application-defined data to the transaction result; they are indexed offchain and
+  are the main way to notify the outside world about onchain activity.
 - Any custom type with `copy` and `drop` can be an event, but it must be internal to the emitting
   module - this makes the event type an unforgeable label.
 - Event metadata already contains the sender, the transaction digest, and a timestamp; event
@@ -110,6 +110,6 @@ module of the same package with appropriate accessors) can inspect their fields 
 
 - [sui::event][event-framework] module documentation.
 - [Using Events](https://docs.sui.io/guides/developer/sui-101/using-events) in the Sui
-  Documentation - querying and subscribing to events off-chain.
+  Documentation - querying and subscribing to events offchain.
 
 [event-framework]: https://docs.sui.io/references/framework/sui/event

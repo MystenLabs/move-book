@@ -8,7 +8,7 @@ The Move compiler has a built-in testing framework - tests are written in Move a
 your source code. You annotate functions with `#[test]`, and the compiler handles discovery and
 execution. The VM execution environment is the same as in production, so your code runs with
 identical semantics. However, network and storage features are simulated in tests and don't behave
-exactly as they do during actual on-chain execution - something to keep in mind when testing
+exactly as they do during actual onchain execution - something to keep in mind when testing
 interactions with objects, transactions, and other platform-specific functionality.
 
 ## What is a Test?

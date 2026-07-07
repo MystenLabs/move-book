@@ -75,7 +75,7 @@ specifying its type.
 The main difference between dynamic fields and dynamic object fields is that the latter allows
 storing _only objects_ as values. This means that you can't store primitive types like `u64` or
 `bool`. In exchange for this restriction, the attached object is _not wrapped_ into a separate
-object: it keeps its ID and stays visible to off-chain tooling.
+object: it keeps its ID and stays visible to offchain tooling.
 
 > This is the property to weigh when choosing between the two: a value attached as a regular
 > dynamic field is wrapped into a `Field` object and disappears from ID-based queries, while a

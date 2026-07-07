@@ -174,12 +174,12 @@ INCLUDING DEPENDENCY SuiSystem
 INCLUDING DEPENDENCY Sui
 INCLUDING DEPENDENCY MoveStdlib
 BUILDING todo_list
-Successfully verified dependencies on-chain against source.
+Successfully verified dependencies onchain against source.
 Transaction Digest: GpcDV6JjjGQMRwHpEz582qsd5MpCYgSwrDAq1JXcpFjW
 ```
 
 As you can see, when we run the `publish` command, the CLI first builds the package, then verifies
-the dependencies on-chain, and finally publishes the package. The output of the command is the
+the dependencies onchain, and finally publishes the package. The output of the command is the
 transaction digest, which is a unique identifier of the transaction and can be used to query the
 transaction status.
 
@@ -354,7 +354,7 @@ $ sui client publish --gas-budget 100000000 --json
 
 ### Using the Results
 
-After the package is published on chain, we can interact with it. To do this, we need to find the
+After the package is published onchain, we can interact with it. To do this, we need to find the
 address (object ID) of the package. It's under the `Published Objects` section of the
 `Object Changes` output. The address is unique for each package, so you will need to copy it from
 the output.
@@ -608,7 +608,7 @@ sui client object $LIST_ID --json
 
 Commands don't have to be in the same package or operate on the same object. Within a single
 transaction block, you can interact with multiple packages and objects. This is a powerful feature
-that allows you to build complex interactions on-chain!
+that allows you to build complex interactions onchain!
 
 ## Conclusion
 

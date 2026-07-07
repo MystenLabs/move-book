@@ -2,7 +2,7 @@
 description: "Fast path vs consensus in Sui: how owned objects skip consensus for faster transactions while shared objects require ordering."
 ---
 
-# Fast Path & Consensus
+# Fast Path and Consensus
 
 The Object Model allows for variable transaction execution paths, depending on the object's
 ownership type. The transaction execution path determines how the transaction is processed and

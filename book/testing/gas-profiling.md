@@ -9,7 +9,7 @@ testing framework provides built-in tools to measure gas usage during test execu
 that, a special utility `sui analyze-trace` is available for more thorough analysis of gas usage.
 
 > The statistics shown by `-s` only reflect **computation units** - they do not include storage
-> costs. Additionally, compiler computation units don't map directly to actual on-chain gas charges;
+> costs. Additionally, compiler computation units don't map directly to actual onchain gas charges;
 > they show relative computational complexity, useful for comparing implementations against each
 > other. To get actual gas costs, publish your package to testnet and measure real transactions.
 

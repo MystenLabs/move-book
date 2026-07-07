@@ -27,7 +27,7 @@ still part of the same framework._
 | [sui::clock](https://docs.sui.io/references/framework/sui/clock)                               | Defines the `Clock` type and its methods                                | [Epoch and Time](./epoch-and-time)                          |
 | [sui::dynamic_field](https://docs.sui.io/references/framework/sui/dynamic_field)               | Implements methods to add, use and remove dynamic fields                | [Dynamic Fields](./dynamic-fields)                          |
 | [sui::dynamic_object_field](https://docs.sui.io/references/framework/sui/dynamic_object_field) | Implements methods to add, use and remove dynamic object fields         | [Dynamic Object Fields](./dynamic-object-fields)            |
-| [sui::event](https://docs.sui.io/references/framework/sui/event)                               | Allows emitting events for off-chain listeners                          | [Events](./events)                                          |
+| [sui::event](https://docs.sui.io/references/framework/sui/event)                               | Allows emitting events for offchain listeners                          | [Events](./events)                                          |
 | [sui::package](https://docs.sui.io/references/framework/sui/package)                           | Defines the `Publisher` type and package upgrade methods                | [Publisher](./publisher)                                    |
 | [sui::display](https://docs.sui.io/references/framework/sui/display)                           | Implements the `Display` object and ways to create and update it        | [Display](./display)                                        |
 
@@ -55,9 +55,9 @@ still part of the same framework._
 
 | Module                                                                 | Description                                            | Chapter                                  |
 | ---------------------------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------- |
-| [sui::balance](https://docs.sui.io/references/framework/sui/balance)   | The `Balance` type - the underlying store of value     | [Balance & Coin](./balance-and-coin)     |
-| [sui::coin](https://docs.sui.io/references/framework/sui/coin)         | The `Coin` type - a transferable fungible asset        | [Balance & Coin](./balance-and-coin)     |
-| [sui::sui](https://docs.sui.io/references/framework/sui/sui)           | The SUI coin type                                      | [Balance & Coin](./balance-and-coin)     |
+| [sui::balance](https://docs.sui.io/references/framework/sui/balance)   | The `Balance` type - the underlying store of value     | [Balance and Coin](./balance-and-coin)     |
+| [sui::coin](https://docs.sui.io/references/framework/sui/coin)         | The `Coin` type - a transferable fungible asset        | [Balance and Coin](./balance-and-coin)     |
+| [sui::sui](https://docs.sui.io/references/framework/sui/sui)           | The SUI coin type                                      | [Balance and Coin](./balance-and-coin)     |
 | [sui::pay](https://docs.sui.io/references/framework/sui/pay)           | Helper functions for splitting and merging coins       | -                                        |
 | [sui::deny_list](https://docs.sui.io/references/framework/sui/deny_list) | Deny list for regulated coin types                   | -                                        |
 | [sui::token](https://docs.sui.io/references/framework/sui/token)       | The closed-loop token standard                         | -                                        |
@@ -73,7 +73,7 @@ still part of the same framework._
 | [sui::bcs](https://docs.sui.io/references/framework/sui/bcs)       | Implements the BCS encoding and decoding functions         | [Binary Canonical Serialization](./bcs) |
 | [sui::borrow](https://docs.sui.io/references/framework/sui/borrow) | Implements the borrowing mechanic for borrowing by _value_ | [Hot Potato](./hot-potato-pattern)      |
 | [sui::hex](https://docs.sui.io/references/framework/sui/hex)       | Implements the hex encoding and decoding functions         | -                                       |
-| [sui::random](https://docs.sui.io/references/framework/sui/random) | The `Random` object and secure on-chain randomness         | [Randomness](./randomness)              |
+| [sui::random](https://docs.sui.io/references/framework/sui/random) | The `Random` object and secure onchain randomness         | [Randomness](./randomness)              |
 | [sui::types](https://docs.sui.io/references/framework/sui/types)   | Provides a way to check if the type is a One-Time-Witness  | [One Time Witness](./one-time-witness)  |
 
 </div>

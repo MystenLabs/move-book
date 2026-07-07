@@ -7,7 +7,7 @@ description:
 # Package Upgrades
 
 As we mentioned in the [Packages](./../concepts/packages) concept, published packages are
-_immutable_ - the bytecode stored on-chain can never be modified or deleted. Yet real applications
+_immutable_ - the bytecode stored onchain can never be modified or deleted. Yet real applications
 need to evolve: bugs get fixed, features get added, and dependencies move forward. Sui reconciles
 these two requirements with _package upgrades_ - a way to publish a new version of a package while
 keeping every previous version intact.
@@ -21,7 +21,7 @@ has already created. For design advice on writing upgrade-friendly code, see the
 
 An upgrade does not touch the published bytecode. Instead, it publishes the new version of the code
 at a _new address_ and records it as the successor of the previous version. Both versions - in
-fact, all versions ever published - remain on-chain side by side:
+fact, all versions ever published - remain onchain side by side:
 
 ```
 0xAAA... <- version 1, published
@@ -181,7 +181,7 @@ shared.
 ## Summary
 
 - An upgrade publishes a new version of a package at a new address; all previous versions stay
-  on-chain and _remain callable_.
+  onchain and _remain callable_.
 - Compatibility rules protect callers: implementations can change and new code can be added, but
   `public` function signatures and type definitions are permanent.
 - The `UpgradeCap` is the capability authorizing upgrades; its policy can be restricted one way -

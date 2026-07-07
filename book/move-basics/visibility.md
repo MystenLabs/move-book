@@ -48,7 +48,7 @@ fun try_calling_internal() {
 ```
 
 Note that just because a struct field is not visible from Move does not mean that its value is kept
-confidential &mdash; it is always possible to read the contents of an on-chain object from outside
+confidential &mdash; it is always possible to read the contents of an onchain object from outside
 of Move. You should never store unencrypted secrets inside of objects.
 
 ## Public Visibility

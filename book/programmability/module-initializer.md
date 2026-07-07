@@ -41,7 +41,7 @@ These rules are not a convention - they are enforced by the bytecode verifier. A
 `init` that violates any of them fails verification, and the package cannot be published.
 
 `TxContext` can also be taken as an immutable reference `&TxContext`, but in practice it should
-always be `&mut TxContext`: the `init` function cannot access the on-chain state, so creating new
+always be `&mut TxContext`: the `init` function cannot access the onchain state, so creating new
 objects is the whole point of it - and that requires a mutable reference to the context.
 
 ## Trust and Security

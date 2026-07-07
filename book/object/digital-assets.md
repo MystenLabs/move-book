@@ -26,7 +26,7 @@ for thinking about and programming assets.
 It is important to highlight which properties are essential for an asset:
 
 - **Ownership:** Every asset is associated with an owner, mirroring the straightforward concept of
-  ownership in the physical world—just as you own a car, you can own a digital asset. Move
+  ownership in the physical world, just as you own a car, you can own a digital asset. Move
   enforces ownership in such a way that once an asset is _moved_, the previous owner completely
   loses any control over it. This mechanism ensures a clear and secure change of ownership.
 

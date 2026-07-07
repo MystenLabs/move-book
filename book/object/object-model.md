@@ -1,5 +1,5 @@
 ---
-description: "What is a Sui Object: unique identifiers, types, ownership, and native operations like transfer and share for on-chain digital assets."
+description: "What is a Sui Object: unique identifiers, types, ownership, and native operations like transfer and share for onchain digital assets."
 ---
 
 # What is an Object?
@@ -42,7 +42,7 @@ attached to it in storage. We cover the definition rules in detail in the
   [Ownership](./ownership) section.
 
   Note that ownership does not control the confidentiality of an object &mdash; it is always
-  possible to read the contents of an on-chain object from outside of Move. You should never store
+  possible to read the contents of an onchain object from outside of Move. You should never store
   unencrypted secrets inside of objects.
 
 - **Data:** Objects encapsulate their data, simplifying management and manipulation. The data

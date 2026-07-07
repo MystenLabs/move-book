@@ -9,7 +9,7 @@ identified by an address. An account can own objects, and can send transactions.
 has a sender, and the sender is identified by an [address](./address).
 
 An account does not need to be created or registered anywhere: it exists as soon as a keypair is
-generated, and any valid address can receive objects without prior setup. There is no on-chain
+generated, and any valid address can receive objects without prior setup. There is no onchain
 record of "all accounts" - an address with no objects and no transaction history is
 indistinguishable from one that was never used.
 

@@ -31,7 +31,7 @@ independent threads, and it is fine to follow the one you need right now:
   [Hot Potato](./hot-potato-pattern).
 
 - **Assets and funds** - fungible value and the two ways to hold it, as objects and as balances
-  attached directly to an address: [Balance & Coin](./balance-and-coin) and
+  attached directly to an address: [Balance and Coin](./balance-and-coin) and
   [Address Balances](./address-balances).
 
 - **Code evolution** - what happens after the code ships: publishing new versions of a package,

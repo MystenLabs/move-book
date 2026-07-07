@@ -11,7 +11,7 @@ protects a handful of critical framework functions _directly_ - no permit value 
 component enforcing it is the _Sui Verifier_.
 
 The Sui Verifier is a set of bytecode-level checks that run on top of regular Move verification,
-both at compilation and when a package is published on chain. Most of its rules formalize what
+both at compilation and when a package is published onchain. Most of its rules formalize what
 this chapter has already described - such as the `id: UID` first-field requirement from the
 [key ability](./key-ability) section. The _internal constraint_ is the rule that matters most for
 what comes next: a function marked with it can only be called with a type parameter `T` that is

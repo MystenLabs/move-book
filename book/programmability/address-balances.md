@@ -10,7 +10,7 @@ a set of individual objects that have to be tracked, merged, and split. _Address
 different model: fungible value held directly at an address, as a running total, with no object to
 manage.
 
-Under the hood, the value lives in an on-chain _accumulator_ keyed by the pair `(address, type)`.
+Under the hood, the value lives in an onchain _accumulator_ keyed by the pair `(address, type)`.
 The balance of `T` at an address is a single number that goes up when funds are sent to it and down
 when they are withdrawn - much closer to how a bank account works than to a wallet full of coins.
 
@@ -112,7 +112,7 @@ objects. The withdrawal it produces is redeemed the same way as a sender's - thr
 
 ## Summary
 
-- An _address balance_ is fungible value of type `T` held directly at an address in an on-chain
+- An _address balance_ is fungible value of type `T` held directly at an address in an onchain
   accumulator, rather than as a `Coin` object;
 - `coin.send_funds(recipient)` (or `balance.send_funds`) deposits value into an address balance,
   consuming the coin;
@@ -124,4 +124,4 @@ objects. The withdrawal it produces is redeemed the same way as a sender's - thr
 ## Further Reading
 
 - [sui::balance](https://docs.sui.io/references/framework/sui_sui/balance) module documentation.
-- [Balance & Coin](./balance-and-coin) for the object-based side of fungible tokens.
+- [Balance and Coin](./balance-and-coin) for the object-based side of fungible tokens.

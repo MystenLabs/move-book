@@ -44,10 +44,10 @@ destroyed - and since the number of dynamic fields accessed per transaction is
 [limited](./../guides/building-against-limits), dismantling a large collection may take more than
 one transaction.
 
-Another property, inherited from dynamic fields, is that the keys are not discoverable on-chain:
-to access an entry, the code has to know its key. Off-chain tooling can still list all entries, as
+Another property, inherited from dynamic fields, is that the keys are not discoverable onchain:
+to access an entry, the code has to know its key. Offchain tooling can still list all entries, as
 they are stored as dynamic fields on the collection's `UID`. The only collection that can be
-iterated on-chain is [LinkedTable](#linkedtable).
+iterated onchain is [LinkedTable](#linkedtable).
 
 All collection types support index syntax for `borrow` and `borrow_mut` methods. If you see square
 brackets in the examples, they are translated into `borrow` and `borrow_mut` calls.
@@ -105,7 +105,7 @@ Using the Bag:
 
 Defined in the `sui::object_bag` module. Identical to [Bag](#bag), but uses
 [dynamic object fields](./dynamic-object-fields) internally. Can only store objects as values, and
-in exchange keeps them discoverable by their IDs in off-chain tooling. Use it for the same
+in exchange keeps them discoverable by their IDs in offchain tooling. Use it for the same
 heterogeneous scenarios as Bag when the stored values are assets that should remain visible in
 wallets and explorers - such as an inventory of NFTs of different types.
 
@@ -155,7 +155,7 @@ Using the Table:
 
 Defined in the `sui::object_table` module. Identical to [Table](#table), but uses
 [dynamic object fields](./dynamic-object-fields) internally. Can only store objects as values, and
-in exchange keeps them discoverable by their IDs in off-chain tooling. Use it when a registry
+in exchange keeps them discoverable by their IDs in offchain tooling. Use it when a registry
 stores whole objects of the same type - for example, user profile objects keyed by the owner's
 address - and each of them should stay individually discoverable.
 
@@ -180,8 +180,8 @@ Using the ObjectTable:
 
 Defined in the `sui::linked_table` module. Built on [dynamic fields](./dynamic-fields), similar to
 [Table](#table), but the entries are linked together, allowing insertion at either end, ordered
-removal, and on-chain iteration. This makes it the choice
-for anything that must be enumerated or processed in order on-chain: queues and waitlists,
+removal, and onchain iteration. This makes it the choice
+for anything that must be enumerated or processed in order onchain: queues and waitlists,
 leaderboards, or registries whose entries have to be listed - like the `AdminRegistry` in the
 example below.
 
@@ -211,7 +211,7 @@ goes, so instead of `add` it has:
 - `pop_back` - removes the back of the table, returns the key and value
 
 Additionally, the `front`, `back`, `prev`, and `next` methods return the keys of neighboring
-entries, making it possible to iterate over the table on-chain. Like [Table](#table), LinkedTable
+entries, making it possible to iterate over the table onchain. Like [Table](#table), LinkedTable
 offers the `drop` method for value types with the [drop](./../move-basics/drop-ability) ability.
 
 Used as a struct field:
@@ -242,7 +242,7 @@ A short decision guide:
   use [Bag](#bag);
 - The values are objects that should stay visible to wallets and explorers - take the
   [ObjectTable](#objecttable) / [ObjectBag](#objectbag) variant;
-- The collection has to be iterated on-chain or preserve insertion order - use
+- The collection has to be iterated onchain or preserve insertion order - use
   [LinkedTable](#linkedtable), the only one of the five that links its entries;
 - The collection is small, bounded, and needs to be embedded or compared as a plain value - the
   vector-based [collections](./collections) from the earlier section may be a better fit than a
@@ -263,7 +263,7 @@ A short decision guide:
 - [ObjectTable](#objecttable) - same as Table, but can only store objects; fits registries of
   same-type objects that should stay individually discoverable.
 - [LinkedTable](#linkedtable) - similar to Table but the entries are linked together; fits queues
-  and anything iterated on-chain.
+  and anything iterated onchain.
 
 ## Next Steps
 

@@ -1,5 +1,5 @@
 ---
-description: "BCS (Binary Canonical Serialization) in Move: encode and decode structured data for on-chain storage and cross-platform communication."
+description: "BCS (Binary Canonical Serialization) in Move: encode and decode structured data for onchain storage and cross-platform communication."
 ---
 
 # Binary Canonical Serialization
@@ -9,11 +9,11 @@ originally designed in Diem, and became the standard serialization format for Mo
 efficient, deterministic, and easy to implement in any programming language.
 
 While serialization may sound like an advanced topic, BCS is everywhere on Sui: arguments of a
-transaction are BCS-encoded, objects and events are stored as - and read off-chain as - BCS bytes,
+transaction are BCS-encoded, objects and events are stored as - and read offchain as - BCS bytes,
 and messages signed and verified in smart contracts are usually BCS-serialized structs. Most of the
 time the encoding is handled for you, but sooner or later an application needs to do it by hand:
 decode a signed payload, parse raw bytes passed as a `vector<u8>` argument, or produce bytes that
-match what an off-chain client built.
+match what an offchain client built.
 
 > The full format specification is available in the
 > [BCS repository](https://github.com/zefchain/bcs).

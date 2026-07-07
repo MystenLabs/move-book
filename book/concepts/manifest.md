@@ -22,7 +22,7 @@ example = { git = "https://github.com/example/example.git", subdir = "path/to/pa
 ### Package
 
 The `[package]` section is used to describe the package. None of the fields in this section are
-published on chain, but they are used in tooling and release management; they also specify the Move
+published onchain, but they are used in tooling and release management; they also specify the Move
 edition for the compiler.
 
 - `name` - the name of the package when it is imported;

@@ -1,8 +1,8 @@
 ---
-description: "Balance, Coin, and CoinRegistry in Sui Move: create fungible tokens with the Currency standard, manage supply with TreasuryCap, and store metadata on-chain."
+description: "Balance, Coin, and CoinRegistry in Sui Move: create fungible tokens with the Currency standard, manage supply with TreasuryCap, and store metadata onchain."
 ---
 
-# Balance & Coin
+# Balance and Coin
 
 Fungible tokens are the most common kind of digital asset: units of value that are interchangeable
 with each other, like money. On Sui, the main abstraction for fungible tokens is
@@ -301,7 +301,7 @@ both consuming the `TreasuryCap`:
 Both can be applied either during initialization (on the `CurrencyInitializer`) or later, on the
 shared `Currency<T>` object. Consuming the capability is not just ceremony: the transition unpacks
 the `TreasuryCap` and moves its `Supply<T>` _into_ the `Currency` object - which is why, from that
-point on, the `Currency` itself tracks the total supply, readable on-chain with `total_supply`.
+point on, the `Currency` itself tracks the total supply, readable onchain with `total_supply`.
 
 ## Managing Metadata
 
@@ -364,7 +364,7 @@ New code should always use the `coin_registry` flows.
   or dropped, only moved, split, and joined - and the type applications embed to keep funds;
 - `Currency<T>` describes the coin type: metadata, supply state, and regulatory status. It is
   created through the `CoinRegistry` system object, either with an OTW in `init` or dynamically -
-  and can be _read_ on-chain by any module;
+  and can be _read_ onchain by any module;
 - `Supply<T>` is the accounting authority: the only gate through which `Balance` value is created
   and destroyed. `TreasuryCap<T>` is its object form - it controls minting and burning, and can be
   given up to fix the supply;
