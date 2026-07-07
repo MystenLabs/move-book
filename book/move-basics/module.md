@@ -1,5 +1,7 @@
 ---
-description: "Modules are the building blocks of Move: learn how to declare, organize, and compile modules in your Sui smart contracts."
+description:
+  'Modules are the building blocks of Move: learn how to declare, organize, and compile modules in
+  your Sui smart contracts.'
 ---
 
 # Module
@@ -12,10 +14,9 @@ access it from other modules.
 
 ## Module Declaration
 
-Modules are declared using the `module` keyword followed by the package address and the module
-name, separated by `::`, then a semicolon and the module body. The module name should be in
-`snake_case` - all lowercase letters with underscores between words. Module names must be unique in
-the package.
+Modules are declared using the `module` keyword followed by the package address and the module name,
+separated by `::`, then a semicolon and the module body. The module name should be in `snake_case` -
+all lowercase letters with underscores between words. Module names must be unique in the package.
 
 Usually, a single file in the `sources/` folder contains a single module. The file name should match
 the module name - for example, a `donut_shop` module should be stored in the `donut_shop.move` file.
@@ -31,21 +32,19 @@ You can read more about coding conventions in the
 
 ## Address and Named Address
 
-The module address can be specified in two ways: as an address _literal_ (which does not require
-the `@` prefix) or as a named address declared in the [Package Manifest](./../concepts/manifest).
-In the example below, both are identical because there's a `book = "0x0"` record in the
-`[addresses]` section of the `Move.toml`.
+The module address can be specified in two ways: as an address _literal_ (which does not require the
+`@` prefix) or as a package name declared in the [Package Manifest](./../concepts/manifest).
 
 ```move file=packages/samples/sources/move-basics/module.move anchor=address_literal
 
 ```
 
-Addresses section in the Move.toml:
+Package section in the Move.toml:
 
 ```toml
-# Move.toml
-[addresses]
-book = "0x0"
+[package]
+name = "book"
+edition = "2024"
 ```
 
 ## Module Members
@@ -68,7 +67,7 @@ all of them live at the module level.
 
 The pre-2024 edition of Move required the body of the module to be a _module block_ - the contents
 of the module surrounded by curly braces `{}`. The block syntax is still supported, and the only
-reason to prefer it over the _label_ syntax used above is declaring more than one module in a
+reason to prefer it over the _label_ syntax shown above is declaring more than one module in a
 file - which is rarely needed, and not a recommended practice.
 
 ```move file=packages/samples/sources/move-basics/module.move anchor=members

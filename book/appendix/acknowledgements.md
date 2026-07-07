@@ -1,5 +1,7 @@
 ---
-description: "Acknowledgements for The Move Book: credits to The Rust Book, contributors, and the Move community."
+description:
+  'Acknowledgements for The Move Book: credits to The Rust Book, contributors, and the Move
+  community.'
 ---
 
 # Appendix F: Acknowledgements
@@ -13,13 +15,11 @@ similar learning experience to the Move community.
 
 Just as important is the Move community, which has shaped this book from its very first edition -
 written back when the language had no official documentation. Readers who asked questions, pointed
-out confusing passages, reported mistakes, and opened issues and pull requests made the book what
-it is today. The full list of contributors is available on
+out confusing passages, reported mistakes, and opened issues and pull requests made the book what it
+is today. The full list of contributors is available on
 [GitHub](https://github.com/MystenLabs/move-book/graphs/contributors), and the
 [Contributing](./contributing) appendix describes how to join them.
 
-The Move language itself is the work of a large community of researchers and engineers - from the
-original Move team, who designed the language and wrote the first reference materials, to the
-contributors evolving it today across many companies and projects. The
-[Move Reference](/reference), published alongside this book, builds directly on the Move Language
-Reference written by the Move contributors.
+Finally, none of this would exist without the people who created Move and continue to develop it
+today - the original Move team and the many contributors advancing the language. The
+[Move Reference](/reference) published alongside this book is adapted from their work.

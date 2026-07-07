@@ -92,14 +92,6 @@ utilities such as [sui::url](https://docs.sui.io/references/framework/sui/url) a
 
 Sui Framework exports two named addresses: `sui = 0x2` and `std = 0x1` from the std dependency.
 
-```toml
-[addresses]
-sui = "0x2"
-
-# Exported from the MoveStdlib dependency
-std = "0x1"
-```
-
 ## Implicit Imports
 
 Just like with [Standard Library](./../move-basics/standard-library#implicit-imports), some of the

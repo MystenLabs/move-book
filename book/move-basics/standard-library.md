@@ -68,11 +68,6 @@ not be imported directly, as their functions are available on every integer valu
 The Standard Library exports a single named address - `std = 0x1`. This is where the `std` alias
 used throughout the book is defined.
 
-```toml
-[addresses]
-std = "0x1"
-```
-
 ## Implicit Imports
 
 Some modules are imported implicitly and are available in the module without the explicit `use`

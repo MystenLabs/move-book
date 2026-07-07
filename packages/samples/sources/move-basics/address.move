@@ -21,7 +21,7 @@ let other = @sui;
 // ANCHOR: to_u256
 use sui::address;
 
-let addr_as_u256: u256 = address::to_u256(@0x1);
+let addr_as_u256: u256 = @0x1.to_u256();
 let addr = address::from_u256(addr_as_u256);
 // ANCHOR_END: to_u256
 }
@@ -32,7 +32,7 @@ let addr = address::from_u256(addr_as_u256);
 use sui::address;
 use std::string::String;
 
-let addr_as_string: String = address::to_string(@0x1);
+let addr_as_string: String = @0x1.to_string();
 // ANCHOR_END: to_string
 }
 
@@ -41,7 +41,7 @@ let addr_as_string: String = address::to_string(@0x1);
 // ANCHOR: to_bytes
 use sui::address;
 
-let addr_as_u8: vector<u8> = address::to_bytes(@0x1);
+let addr_as_u8: vector<u8> = @0x1.to_bytes();
 let addr = address::from_bytes(addr_as_u8);
 // ANCHOR_END: to_bytes
 }

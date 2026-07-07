@@ -82,8 +82,6 @@ recommended - way to expose functionality to users: a public function can be a c
 transaction, be freely combined with other commands in it, and serve as a building block for other
 packages. No extra modifier is needed for any of this.
 
-Unlike some languages, struct fields cannot be made public.
-
 ## Package Visibility
 
 A function with _package_ visibility can be called from any module within the same package, but not

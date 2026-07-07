@@ -1,5 +1,7 @@
 ---
-description: "The Wrapper type pattern in Move: create restricted or extended versions of existing types by wrapping them in new structs."
+description:
+  'The Wrapper type pattern in Move: create restricted or extended versions of existing types by
+  wrapping them in new structs.'
 ---
 
 # Pattern: Wrapper Type
@@ -14,7 +16,8 @@ after they’ve been inserted. The wrapper type pattern is an effective way to a
 The wrapper type pattern is a design pattern in which you create a new type that wraps an existing
 type. The wrapper type is distinct from the original but can be converted to and from it.
 
-Often, it is implemented as a positional struct with a single field.
+Often, it is implemented as a [positional struct](./../move-basics/struct.md#positional-structs)
+with a single field.
 
 ```move file=packages/samples/sources/programmability/wrapper-type-pattern.move anchor=main
 

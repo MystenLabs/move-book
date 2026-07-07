@@ -27,8 +27,6 @@ edition for the compiler.
 
 - `name` - the name of the package when it is imported;
 - `edition` - the edition of the Move language; currently, the only valid value is `2024`;
-- `published-at` - the address the package was published at; set after publishing, it lets
-  dependent packages and tooling resolve the on-chain address of this package.
 
 ### Dependencies
 
@@ -52,18 +50,6 @@ the `std` and `sui` addresses to the project, usable in the code in place of the
 Starting with version 1.45 of the Sui CLI, the Sui system packages (`std`, `sui`, `system`,
 `bridge`, and `deepbook`) are automatically added as dependencies if none of them are explicitly
 listed.
-
-### Addresses
-
-The `[addresses]` section declares _named addresses_: aliases that can be used in the code in place
-of full addresses. The package's own name is conventionally declared here with the value `0x0`,
-which is the placeholder used until the package is published:
-
-```toml
-[addresses]
-my_project = "0x0"
-alice = "0xA11CE"
-```
 
 ### Resolving Version Conflicts with Override
 
@@ -105,4 +91,5 @@ local = "../my-package"
 
 ## Further Reading
 
+- [Move Package Management](https://docs.sui.io/develop/manage-packages/move-package-management) in the Sui Docs.
 - [Packages](./../../reference/packages) in the Move Reference.

@@ -146,11 +146,8 @@ argument - as mentioned above, the address is identical on every network. For ex
 CLI:
 
 ```bash
-sui client call \
-    --package $PACKAGE_ID \
-    --module randomness \
-    --function mint_medal \
-    --args 0x8
+sui client ptb \
+    --move-call $PACKAGE_ID::randomness::mint_medal @0x8
 ```
 
 Due to the restrictions described in the previous section, the call must effectively be the last
