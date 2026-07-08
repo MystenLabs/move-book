@@ -1,7 +1,6 @@
 // Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
-import React, { useCallback, useState, useRef, useEffect, type ReactNode } from 'react';
-import clsx from 'clsx';
+import React, { useCallback, useRef, type ReactNode } from 'react';
 
 function getNearestCodeText(start: HTMLElement | null): string | null {
   let el: HTMLElement | null = start;
@@ -17,19 +16,6 @@ function getNearestCodeText(start: HTMLElement | null): string | null {
 
 export default function PlayMoveButton(): ReactNode {
   const wrapperRef = useRef<HTMLButtonElement | null>(null);
-  const [isMove, setIsMove] = useState(false);
-
-  useEffect(() => {
-    let el: HTMLElement | null = wrapperRef.current;
-    while (el) {
-      const code = el.querySelector?.("pre code[class*='language-move']") as HTMLElement | null;
-      if (code) {
-        setIsMove(true);
-        return;
-      }
-      el = el.parentElement;
-    }
-  }, []);
 
   const handleClick = useCallback(() => {
     const code = getNearestCodeText(wrapperRef.current);
@@ -37,10 +23,6 @@ export default function PlayMoveButton(): ReactNode {
     const url = `https://www.playmove.dev/#${encodeURIComponent(code)}`;
     window.open(url, '_blank', 'noopener');
   }, []);
-
-  if (!isMove) {
-    return <button ref={wrapperRef} type="button" style={{ display: 'none' }} />;
-  }
 
   return (
     <button
