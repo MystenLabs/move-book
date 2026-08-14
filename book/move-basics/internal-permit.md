@@ -12,12 +12,15 @@ keywords:
 questions:
   - What is Internal Permit in Move?
   - How do I use Internal Permit in Move?
-  - How does Internal Permit work on Sui?
+  - What is The Problem in Move?
+  - What is The Permit Type in Move?
 answer: >-
   The std::internal module in Move: use Permit<T> to restrict generic function
   calls to the module that defines the type T.
 goal:
-  description: Reader understands and can apply Internal Permit in Move programs
+  description: >-
+    Reader understands the std::internal module in Move: use Permit<T> to
+    restrict generic function calls to the module that defines the type T
   requires:
     - has_frontmatter:
         - title

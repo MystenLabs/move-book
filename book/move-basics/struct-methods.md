@@ -12,12 +12,15 @@ keywords:
 questions:
   - What is Struct Methods in Move?
   - How do I use Struct Methods in Move?
-  - How does Struct Methods work on Sui?
+  - What is Method Syntax in Move?
+  - What is Method Aliases in Move?
 answer: >-
   Struct methods in Move: use receiver syntax to call functions on struct
   instances with dot notation for cleaner code.
 goal:
-  description: Reader understands and can apply Struct Methods in Move programs
+  description: >-
+    Reader understands struct methods in Move: use receiver syntax to call
+    functions on struct instances with dot notation for cleaner code
   requires:
     - has_frontmatter:
         - title

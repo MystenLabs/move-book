@@ -12,12 +12,16 @@ keywords:
 questions:
   - What is Visibility Modifiers in Move?
   - How do I use Visibility Modifiers in Move?
-  - How does Visibility Modifiers work on Sui?
+  - What is Internal Visibility in Move?
+  - What is Public Visibility in Move?
 answer: >-
   Visibility modifiers in Move: private, public, public(package), and entry
   functions for controlling access to module members.
 goal:
-  description: Reader understands and can apply Visibility Modifiers in Move programs
+  description: >-
+    Reader understands visibility modifiers in Move: private, public,
+    public(package), and entry functions for controlling access to module
+    members
   requires:
     - has_frontmatter:
         - title

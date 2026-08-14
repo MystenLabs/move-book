@@ -11,12 +11,15 @@ keywords:
 questions:
   - What is Constants in Move?
   - How do I use Constants in Move?
-  - How does Constants work on Sui?
+  - What is Naming Convention in Move?
+  - What is Constants Are Immutable in Move?
 answer: >-
   Constants in Move: how to define immutable module-level values, naming
   conventions, and supported constant types.
 goal:
-  description: Reader understands and can apply Constants in Move programs
+  description: >-
+    Reader understands constants in Move: how to define immutable module-level
+    values, naming conventions, and supported constant types
   requires:
     - has_frontmatter:
         - title

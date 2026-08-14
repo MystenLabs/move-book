@@ -10,14 +10,10 @@ keywords:
   - appendix
   - contributing
 questions:
-  - 'What is Appendix E: Contributing in Move?'
-  - 'How do I use Appendix E: Contributing in Move?'
-  - 'How does Appendix E: Contributing work on Sui?'
-answer: >-
-  How to contribute to The Move Book: submit pull requests, report issues, and
-  help improve the Move programming language guide.
+  - How do I contribute to The Move Book?
+answer: Contributions to The Move Book are welcome via pull requests on GitHub.
 goal:
-  description: 'Reader understands and can apply Appendix E: Contributing in Move programs'
+  description: Reader knows how to contribute to The Move Book
   requires:
     - has_frontmatter:
         - title

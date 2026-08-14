@@ -11,12 +11,15 @@ keywords:
 questions:
   - What is Expression in Move?
   - How do I use Expression in Move?
-  - How does Expression work on Sui?
+  - What is Literals in Move?
+  - What is Operators in Move?
 answer: >-
   Expressions in Move: literals, function calls, blocks, and how almost
   everything returns a value in the Move language.
 goal:
-  description: Reader understands and can apply Expression in Move programs
+  description: >-
+    Reader understands expressions in Move: literals, function calls, blocks,
+    and how almost everything returns a value in the Move language
   requires:
     - has_frontmatter:
         - title

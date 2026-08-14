@@ -13,12 +13,15 @@ keywords:
 questions:
   - What is Address Type in Move?
   - How do I use Address Type in Move?
-  - How does Address Type work on Sui?
+  - What is Conversion in Move?
 answer: >-
   The address type in Move: literals, named addresses, conversion functions, and
   how addresses identify accounts and packages on Sui.
 goal:
-  description: Reader understands and can apply Address Type in Move programs
+  description: >-
+    Reader understands the address type in Move: literals, named addresses,
+    conversion functions, and how addresses identify accounts and packages on
+    Sui
   requires:
     - has_frontmatter:
         - title

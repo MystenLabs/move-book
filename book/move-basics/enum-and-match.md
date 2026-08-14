@@ -12,12 +12,15 @@ keywords:
 questions:
   - What is Enums and Match in Move?
   - How do I use Enums and Match in Move?
-  - How does Enums and Match work on Sui?
+  - What is Definition in Move?
+  - What is Instantiating in Move?
 answer: >-
   Enums and pattern matching in Move: define variant types, use match
   expressions, and handle multiple cases in smart contracts.
 goal:
-  description: Reader understands and can apply Enums and Match in Move programs
+  description: >-
+    Reader understands enums and pattern matching in Move: define variant types,
+    use match expressions, and handle multiple cases in smart contracts
   requires:
     - has_frontmatter:
         - title

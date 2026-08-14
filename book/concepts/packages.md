@@ -11,12 +11,15 @@ keywords:
 questions:
   - What is Package in Move?
   - How do I use Package in Move?
-  - How does Package work on Sui?
+  - What is Package Structure in Move?
+  - What is Published Package in Move?
 answer: >-
   Understand Move packages — the unit of code organization containing modules,
   dependencies, and addresses published on the Sui blockchain.
 goal:
-  description: Reader understands and can apply Package in Move programs
+  description: >-
+    Reader understands Move packages — the unit of code organization containing
+    modules, dependencies, and addresses published on the Sui blockchain
   requires:
     - has_frontmatter:
         - title

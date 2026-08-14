@@ -10,14 +10,17 @@ keywords:
   - address
   - reference
 questions:
-  - What is Address  Reference in Move?
-  - How do I use Address  Reference in Move?
-  - How does Address  Reference work on Sui?
+  - How does Address work in Move?
+  - What is the syntax for Address in Move?
+  - What is Addresses and Their Syntax in Move?
+  - What is Named Addresses in Move?
 answer: >-
   Move address type reference: 256-bit identifiers, named addresses, hex
   literals, and address-related operations.
 goal:
-  description: Reader understands and can apply Address | Reference in Move programs
+  description: >-
+    Reader understands move address type reference: 256-bit identifiers, named
+    addresses, hex literals, and address-related operations
   requires:
     - has_frontmatter:
         - title

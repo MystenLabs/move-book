@@ -14,14 +14,13 @@ keywords:
 questions:
   - 'What is Sui Verifier: Internal Constraint in Move?'
   - 'How do I use Sui Verifier: Internal Constraint in Move?'
-  - 'How does Sui Verifier: Internal Constraint work on Sui?'
 answer: >-
   The Sui Verifier internal constraint: why storage operations require the type
   to be defined in the calling module.
 goal:
   description: >-
-    Reader understands and can apply Sui Verifier: Internal Constraint in Move
-    programs
+    Reader understands the Sui Verifier internal constraint: why storage
+    operations require the type to be defined in the calling module
   requires:
     - has_frontmatter:
         - title

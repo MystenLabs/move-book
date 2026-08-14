@@ -12,12 +12,15 @@ keywords:
 questions:
   - What is Module in Move?
   - How do I use Module in Move?
-  - How does Module work on Sui?
+  - What is Module Declaration in Move?
+  - What is Address and Named Address in Move?
 answer: >-
   Modules are the building blocks of Move: learn how to declare, organize, and
   compile modules in your Sui smart contracts.
 goal:
-  description: Reader understands and can apply Module in Move programs
+  description: >-
+    Reader understands modules are the building blocks of Move: learn how to
+    declare, organize, and compile modules in your Sui smart contracts
   requires:
     - has_frontmatter:
         - title

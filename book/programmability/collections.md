@@ -11,12 +11,16 @@ keywords:
 questions:
   - What is Collections in Move?
   - How do I use Collections in Move?
-  - How does Collections work on Sui?
+  - What is Vector in Move?
+  - What is VecSet in Move?
 answer: >-
   Vector-based collections in the Sui Framework: VecSet and VecMap, their
   operations and constraints, and when to reach for dynamic collections instead.
 goal:
-  description: Reader understands and can apply Collections in Move programs
+  description: >-
+    Reader understands vector-based collections in the Sui Framework: VecSet and
+    VecMap, their operations and constraints, and when to reach for dynamic
+    collections instead
   requires:
     - has_frontmatter:
         - title

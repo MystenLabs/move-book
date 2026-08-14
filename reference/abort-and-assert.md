@@ -12,16 +12,18 @@ keywords:
   - reference
   - error handling
 questions:
-  - What is Abort and Assert  Reference in Move?
-  - How do I use Abort and Assert  Reference in Move?
-  - How does Abort and Assert  Reference work on Sui?
+  - How does Abort and Assert work in Move?
+  - What is the syntax for Abort and Assert in Move?
+  - What is abort in Move?
+  - What is The type of abort in Move?
 answer: >-
   Move abort and assert reference: halt execution with error codes, enforce
   conditions with assert!, and handle transaction failures.
 goal:
   description: >-
-    Reader understands and can apply Abort and Assert | Reference in Move
-    programs
+    Reader understands move abort and assert reference: halt execution with
+    error codes, enforce conditions with assert!, and handle transaction
+    failures
   requires:
     - has_frontmatter:
         - title

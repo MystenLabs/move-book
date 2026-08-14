@@ -12,12 +12,15 @@ keywords:
 questions:
   - What is Transaction Context in Move?
   - How do I use Transaction Context in Move?
-  - How does Transaction Context work on Sui?
+  - What is Reading the Transaction Context in Move?
+  - What is Mutability in Move?
 answer: >-
   TxContext in Sui Move: access sender address, transaction digest, epoch, gas
   price, and generate unique IDs in your smart contracts.
 goal:
-  description: Reader understands and can apply Transaction Context in Move programs
+  description: >-
+    Reader understands txContext in Sui Move: access sender address, transaction
+    digest, epoch, gas price, and generate unique IDs in your smart contracts
   requires:
     - has_frontmatter:
         - title

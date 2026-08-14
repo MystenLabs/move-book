@@ -12,12 +12,16 @@ keywords:
 questions:
   - What is Vector in Move?
   - How do I use Vector in Move?
-  - How does Vector work on Sui?
+  - What is Vector Syntax in Move?
+  - What is Reading Elements in Move?
 answer: >-
   Vectors in Move: create dynamic collections, read, add and remove elements,
   iterate with vector macros, and destroy vectors of non-droppable types.
 goal:
-  description: Reader understands and can apply Vector in Move programs
+  description: >-
+    Reader understands vectors in Move: create dynamic collections, read, add
+    and remove elements, iterate with vector macros, and destroy vectors of
+    non-droppable types
   requires:
     - has_frontmatter:
         - title

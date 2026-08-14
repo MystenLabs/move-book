@@ -14,12 +14,16 @@ keywords:
 questions:
   - What is Unit Test Utilities in Move?
   - How do I use Unit Test Utilities in Move?
-  - How does Unit Test Utilities work on Sui?
+  - What is assert! in Move?
+  - What is assert_eq! and assert_ref_eq! in Move?
 answer: >-
   Move test utilities: assert macros, assert_eq, assert_ref_eq, and standard
   library helpers for writing expressive unit tests.
 goal:
-  description: Reader understands and can apply Unit Test Utilities in Move programs
+  description: >-
+    Reader understands move test utilities: assert macros, assert_eq,
+    assert_ref_eq, and standard library helpers for writing expressive unit
+    tests
   requires:
     - has_frontmatter:
         - title

@@ -11,12 +11,15 @@ keywords:
 questions:
   - What is References in Move?
   - How do I use References in Move?
-  - How does References work on Sui?
+  - What is The Metro Pass Application in Move?
+  - What is Immutable References in Move?
 answer: >-
   References in Move: immutable and mutable borrows, the borrow checker, and how
   to safely pass values without transferring ownership.
 goal:
-  description: Reader understands and can apply References in Move programs
+  description: >-
+    Reader understands references in Move: immutable and mutable borrows, the
+    borrow checker, and how to safely pass values without transferring ownership
   requires:
     - has_frontmatter:
         - title

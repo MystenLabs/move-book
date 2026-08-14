@@ -13,12 +13,15 @@ keywords:
 questions:
   - What is Module Initializer in Move?
   - How do I use Module Initializer in Move?
-  - How does Module Initializer work on Sui?
+  - What is The init Rules in Move?
+  - What is Trust and Security in Move?
 answer: >-
   The init function in Move: run one-time setup code when a module is published
   on Sui, with rules and best practices.
 goal:
-  description: Reader understands and can apply Module Initializer in Move programs
+  description: >-
+    Reader understands the init function in Move: run one-time setup code when a
+    module is published on Sui, with rules and best practices
   requires:
     - has_frontmatter:
         - title

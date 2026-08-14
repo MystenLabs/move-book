@@ -12,12 +12,16 @@ keywords:
 questions:
   - What is Testing Basics in Move?
   - How do I use Testing Basics in Move?
-  - How does Testing Basics work on Sui?
+  - What is a Test?
+  - What is Running Tests in Move?
 answer: >-
   Move testing basics: write tests with the #[test] attribute, use expected
   failures, and organize test-only code in your modules.
 goal:
-  description: Reader understands and can apply Testing Basics in Move programs
+  description: >-
+    Reader understands move testing basics: write tests with the #[test]
+    attribute, use expected failures, and organize test-only code in your
+    modules
   requires:
     - has_frontmatter:
         - title

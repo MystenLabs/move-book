@@ -13,12 +13,15 @@ keywords:
 questions:
   - 'What is Pattern: Builder in Move?'
   - 'How do I use Pattern: Builder in Move?'
-  - 'How does Pattern: Builder work on Sui?'
+  - What is Defining a Builder in Move?
+  - What is Method Chaining in Move?
 answer: >-
   The Builder pattern for Move tests: construct complex test objects with
   sensible defaults and method chaining for readable tests.
 goal:
-  description: 'Reader understands and can apply Pattern: Builder in Move programs'
+  description: >-
+    Reader understands the Builder pattern for Move tests: construct complex
+    test objects with sensible defaults and method chaining for readable tests
   requires:
     - has_frontmatter:
         - title

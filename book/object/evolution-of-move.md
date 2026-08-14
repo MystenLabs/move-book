@@ -12,12 +12,13 @@ keywords:
 questions:
   - What is Evolution of Move in Move?
   - How do I use Evolution of Move in Move?
-  - How does Evolution of Move work on Sui?
 answer: >-
   The evolution of Move from Diem to Sui: how the storage model changed from
   account-based to the object-based model.
 goal:
-  description: Reader understands and can apply Evolution of Move in Move programs
+  description: >-
+    Reader understands the evolution of Move from Diem to Sui: how the storage
+    model changed from account-based to the object-based model
   requires:
     - has_frontmatter:
         - title

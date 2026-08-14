@@ -11,14 +11,15 @@ keywords:
   - flow
   - reference
 questions:
-  - What is Control Flow  Reference in Move?
-  - How do I use Control Flow  Reference in Move?
-  - How does Control Flow  Reference work on Sui?
+  - How does Control Flow work in Move?
+  - What is the syntax for Control Flow in Move?
 answer: >-
   Move control flow reference: if expressions, while and for loops, labeled
   blocks, pattern matching, and early returns.
 goal:
-  description: Reader understands and can apply Control Flow | Reference in Move programs
+  description: >-
+    Reader understands move control flow reference: if expressions, while and
+    for loops, labeled blocks, pattern matching, and early returns
   requires:
     - has_frontmatter:
         - title

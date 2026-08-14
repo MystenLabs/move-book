@@ -10,14 +10,17 @@ keywords:
   - loops
   - reference
 questions:
-  - What is Loops  Reference in Move?
-  - How do I use Loops  Reference in Move?
-  - How does Loops  Reference work on Sui?
+  - How does Loops work in Move?
+  - What is the syntax for Loops in Move?
+  - What is while Loops in Move?
+  - What is loop Expressions in Move?
 answer: >-
   Move loop constructs reference: while loops, loop expressions, for loops,
   break, continue, and iteration patterns.
 goal:
-  description: Reader understands and can apply Loops | Reference in Move programs
+  description: >-
+    Reader understands move loop constructs reference: while loops, loop
+    expressions, for loops, break, continue, and iteration patterns
   requires:
     - has_frontmatter:
         - title

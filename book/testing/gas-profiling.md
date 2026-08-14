@@ -12,12 +12,15 @@ keywords:
 questions:
   - What is Gas Profiling in Move?
   - How do I use Gas Profiling in Move?
-  - How does Gas Profiling work on Sui?
+  - 'What is Simple Measurement: Test Statistics in Move?'
+  - What is CSV Output in Move?
 answer: >-
   Profile gas usage in Move tests: measure computation costs, compare
   implementations, and analyze traces with sui analyze-trace.
 goal:
-  description: Reader understands and can apply Gas Profiling in Move programs
+  description: >-
+    Reader understands profile gas usage in Move tests: measure computation
+    costs, compare implementations, and analyze traces with sui analyze-trace
   requires:
     - has_frontmatter:
         - title

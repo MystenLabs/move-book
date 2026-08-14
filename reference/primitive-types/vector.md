@@ -11,14 +11,17 @@ keywords:
   - reference
   - collections
 questions:
-  - What is Vector  Reference in Move?
-  - How do I use Vector  Reference in Move?
-  - How does Vector  Reference work on Sui?
+  - How does Vector work in Move?
+  - What is the syntax for Vector in Move?
+  - What is Literals in Move?
+  - What is Operations in Move?
 answer: >-
   Move vector type reference: create, access, push, pop, destroy vectors, and
   use vector literals with full API documentation.
 goal:
-  description: Reader understands and can apply Vector | Reference in Move programs
+  description: >-
+    Reader understands move vector type reference: create, access, push, pop,
+    destroy vectors, and use vector literals with full API documentation
   requires:
     - has_frontmatter:
         - title

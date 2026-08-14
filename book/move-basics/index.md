@@ -10,14 +10,14 @@ keywords:
   - move
   - basics
 questions:
-  - What is Move Basics in Move?
-  - How do I use Move Basics in Move?
-  - How does Move Basics work on Sui?
+  - What are the basics of Move?
+  - What Move features should I learn first?
 answer: >-
-  Learn Move language fundamentals: types, modules, functions, structs,
-  abilities, generics, and control flow for Sui smart contracts.
+  Move basics covers modules, functions, primitive types, structs, abilities,
+  generics, control flow, constants, strings, and other foundational language
+  features.
 goal:
-  description: Reader understands the scope and topics covered in the Move Basics section
+  description: Reader understands what Move language fundamentals this section covers
   requires:
     - has_frontmatter:
         - title

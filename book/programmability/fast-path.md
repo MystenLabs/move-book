@@ -12,12 +12,15 @@ keywords:
 questions:
   - What is Fast Path in Move?
   - How do I use Fast Path in Move?
-  - How does Fast Path work on Sui?
+  - What is Frozen objects in Move?
+  - What is In Practice in Move?
 answer: >-
   Design for the fast path in Sui: structure owned vs shared objects to maximize
   transaction parallelism and performance.
 goal:
-  description: Reader understands and can apply Fast Path in Move programs
+  description: >-
+    Reader understands design for the fast path in Sui: structure owned vs
+    shared objects to maximize transaction parallelism and performance
   requires:
     - has_frontmatter:
         - title

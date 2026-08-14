@@ -12,14 +12,18 @@ keywords:
   - reference
   - testing
 questions:
-  - What is Unit Tests  Reference in Move?
-  - How do I use Unit Tests  Reference in Move?
-  - How does Unit Tests  Reference work on Sui?
+  - How does Unit Tests work in Move?
+  - What is the syntax for Unit Tests in Move?
+  - What is Test Annotations in Move?
+  - What is Expected Failures in Move?
 answer: >-
   Move unit testing reference: #[test], #[expected_failure], #[test_only]
   annotations, test flags, and execution options.
 goal:
-  description: Reader understands and can apply Unit Tests | Reference in Move programs
+  description: >-
+    Reader understands move unit testing reference: #[test],
+    #[expected_failure], #[test_only] annotations, test flags, and execution
+    options
   requires:
     - has_frontmatter:
         - title

@@ -10,14 +10,17 @@ keywords:
   - generics
   - reference
 questions:
-  - What is Generics  Reference in Move?
-  - How do I use Generics  Reference in Move?
-  - How does Generics  Reference work on Sui?
+  - How does Generics work in Move?
+  - What is the syntax for Generics in Move?
+  - What is Declaring Type Parameters in Move?
+  - What is Type Arguments in Move?
 answer: >-
   Move generics reference: type parameters, constraints, phantom types, and
   parametric polymorphism for functions and structs.
 goal:
-  description: Reader understands and can apply Generics | Reference in Move programs
+  description: >-
+    Reader understands move generics reference: type parameters, constraints,
+    phantom types, and parametric polymorphism for functions and structs
   requires:
     - has_frontmatter:
         - title

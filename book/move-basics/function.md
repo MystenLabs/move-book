@@ -11,12 +11,15 @@ keywords:
 questions:
   - What is Functions in Move?
   - How do I use Functions in Move?
-  - How does Functions work on Sui?
+  - What is Function Declaration in Move?
+  - What is Accessing Functions in Move?
 answer: >-
   Functions in Move: declare, call, and return values from functions with
   support for multiple return values and type parameters.
 goal:
-  description: Reader understands and can apply Functions in Move programs
+  description: >-
+    Reader understands functions in Move: declare, call, and return values from
+    functions with support for multiple return values and type parameters
   requires:
     - has_frontmatter:
         - title

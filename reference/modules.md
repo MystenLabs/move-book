@@ -10,14 +10,17 @@ keywords:
   - modules
   - reference
 questions:
-  - What is Modules  Reference in Move?
-  - How do I use Modules  Reference in Move?
-  - How does Modules  Reference work on Sui?
+  - How does Modules work in Move?
+  - What is the syntax for Modules in Move?
+  - What is Names in Move?
+  - What is Members in Move?
 answer: >-
   Move module reference: declare modules, define types and functions, control
   visibility, and organize code in packages.
 goal:
-  description: Reader understands and can apply Modules | Reference in Move programs
+  description: >-
+    Reader understands move module reference: declare modules, define types and
+    functions, control visibility, and organize code in packages
   requires:
     - has_frontmatter:
         - title

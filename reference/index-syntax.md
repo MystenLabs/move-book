@@ -11,14 +11,17 @@ keywords:
   - syntax
   - reference
 questions:
-  - What is Index Syntax  Reference in Move?
-  - How do I use Index Syntax  Reference in Move?
-  - How does Index Syntax  Reference work on Sui?
+  - How does Index Syntax work in Move?
+  - What is the syntax for Index Syntax in Move?
+  - What is Usage in Move?
+  - What is Defining Index Syntax Functions in Move?
 answer: >-
   Move index syntax reference: use bracket notation for custom types with
   #[syntax(index)] attribute for intuitive access patterns.
 goal:
-  description: Reader understands and can apply Index Syntax | Reference in Move programs
+  description: >-
+    Reader understands move index syntax reference: use bracket notation for
+    custom types with #[syntax(index)] attribute for intuitive access patterns
   requires:
     - has_frontmatter:
         - title

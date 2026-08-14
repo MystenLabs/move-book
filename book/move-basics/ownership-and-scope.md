@@ -12,12 +12,15 @@ keywords:
 questions:
   - What is Ownership and Scope in Move?
   - How do I use Ownership and Scope in Move?
-  - How does Ownership and Scope work on Sui?
+  - What is Variable Scope in Move?
+  - What is Moving a Value in Move?
 answer: >-
   Ownership and scope in Move: how values are moved between scopes, why they
   cannot be copied or lost, and how the compiler enforces it.
 goal:
-  description: Reader understands and can apply Ownership and Scope in Move programs
+  description: >-
+    Reader understands ownership and scope in Move: how values are moved between
+    scopes, why they cannot be copied or lost, and how the compiler enforces it
   requires:
     - has_frontmatter:
         - title

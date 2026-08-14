@@ -13,12 +13,13 @@ keywords:
 questions:
   - What is Authorization Patterns in Move?
   - How do I use Authorization Patterns in Move?
-  - How does Authorization Patterns work on Sui?
 answer: >-
   Authorization patterns in Sui Move: compare capabilities, witnesses, and
   object-based access control for smart contract security.
 goal:
-  description: Reader understands and can apply Authorization Patterns in Move programs
+  description: >-
+    Reader understands authorization patterns in Sui Move: compare capabilities,
+    witnesses, and object-based access control for smart contract security
   requires:
     - has_frontmatter:
         - title

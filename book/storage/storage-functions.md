@@ -12,12 +12,15 @@ keywords:
 questions:
   - What is Storage Functions in Move?
   - How do I use Storage Functions in Move?
-  - How does Storage Functions work on Sui?
+  - 'What is Ownership and References: a Quick Recap in Move?'
+  - What is Internal Rule in Transfer Functions in Move?
 answer: >-
   Sui storage functions: transfer, share, freeze, and receive objects using the
   sui::transfer module in Move smart contracts.
 goal:
-  description: Reader understands and can apply Storage Functions in Move programs
+  description: >-
+    Reader understands sui storage functions: transfer, share, freeze, and
+    receive objects using the sui::transfer module in Move smart contracts
   requires:
     - has_frontmatter:
         - title

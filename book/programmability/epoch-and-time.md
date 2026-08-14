@@ -12,12 +12,15 @@ keywords:
 questions:
   - What is Epoch and Time in Move?
   - How do I use Epoch and Time in Move?
-  - How does Epoch and Time work on Sui?
+  - What is Epoch in Move?
+  - What is Time in Move?
 answer: >-
   Access time in Sui Move: use epochs for operational periods and Clock for
   millisecond timestamps in your smart contracts.
 goal:
-  description: Reader understands and can apply Epoch and Time in Move programs
+  description: >-
+    Reader understands access time in Sui Move: use epochs for operational
+    periods and Clock for millisecond timestamps in your smart contracts
   requires:
     - has_frontmatter:
         - title

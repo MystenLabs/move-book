@@ -11,16 +11,15 @@ keywords:
   - move
   - usage
 questions:
-  - What is Advanced Move Usage in Move?
-  - How do I use Advanced Move Usage in Move?
-  - How does Advanced Move Usage work on Sui?
+  - What are advanced Move features?
+  - What is beyond Move basics?
 answer: >-
-  Advanced Move language features: modes, extended build configurations, and
-  advanced programming techniques for Sui developers.
+  Advanced Move covers entry functions, visibility modes, macro functions, and
+  other features beyond the language fundamentals.
 goal:
   description: >-
-    Reader understands the scope and topics covered in the Advanced Move Usage
-    section
+    Reader understands advanced Move features like entry functions, visibility,
+    and macros
   requires:
     - has_frontmatter:
         - title

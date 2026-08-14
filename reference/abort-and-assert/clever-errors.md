@@ -12,14 +12,17 @@ keywords:
   - reference
   - error handling
 questions:
-  - What is Clever Errors  Reference in Move?
-  - How do I use Clever Errors  Reference in Move?
-  - How does Clever Errors  Reference work on Sui?
+  - How does Clever Errors work in Move?
+  - What is the syntax for Clever Errors in Move?
+  - What is Clever Abort Codes in Move?
+  - What is Explicit Error Codes in Move?
 answer: >-
   Clever errors are a feature that allows for more informative error messages
   when an assertion fails or an abort is raised
 goal:
-  description: Reader understands and can apply Clever Errors | Reference in Move programs
+  description: >-
+    Reader understands clever errors are a feature that allows for more
+    informative error messages when an assertion fails or an abort is raised
   requires:
     - has_frontmatter:
         - title

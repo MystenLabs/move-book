@@ -11,16 +11,17 @@ keywords:
   - aliases
   - reference
 questions:
-  - What is Uses and Aliases  Reference in Move?
-  - How do I use Uses and Aliases  Reference in Move?
-  - How does Uses and Aliases  Reference work on Sui?
+  - How does Uses and Aliases work in Move?
+  - What is the syntax for Uses and Aliases in Move?
+  - What is Inside a module in Move?
+  - What is Inside an expression in Move?
 answer: >-
   Move use and aliases reference: import modules, create aliases, group imports,
   and resolve naming conflicts.
 goal:
   description: >-
-    Reader understands and can apply Uses and Aliases | Reference in Move
-    programs
+    Reader understands move use and aliases reference: import modules, create
+    aliases, group imports, and resolve naming conflicts
   requires:
     - has_frontmatter:
         - title

@@ -11,12 +11,16 @@ keywords:
 questions:
   - What is Modes in Move?
   - How do I use Modes in Move?
-  - How does Modes work on Sui?
+  - What is Building with modes in Move?
+  - What is Publication in Move?
 answer: >-
   Compilation modes in Move: include unpublishable code in named build modes
   like debug, benchmark, or spec beyond the built-in test mode.
 goal:
-  description: Reader understands and can apply Modes in Move programs
+  description: >-
+    Reader understands compilation modes in Move: include unpublishable code in
+    named build modes like debug, benchmark, or spec beyond the built-in test
+    mode
   requires:
     - has_frontmatter:
         - title

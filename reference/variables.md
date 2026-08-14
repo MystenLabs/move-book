@@ -12,16 +12,17 @@ keywords:
   - scope
   - reference
 questions:
-  - What is Local Variables and Scope  Reference in Move?
-  - How do I use Local Variables and Scope  Reference in Move?
-  - How does Local Variables and Scope  Reference work on Sui?
+  - How does Local Variables and Scope work in Move?
+  - What is the syntax for Local Variables and Scope in Move?
+  - What is Declaring Local Variables in Move?
+  - What is Mutations in Move?
 answer: >-
   Move local variables and scope: let bindings, mutability, type annotations,
   shadowing, and move semantics reference.
 goal:
   description: >-
-    Reader understands and can apply Local Variables and Scope | Reference in
-    Move programs
+    Reader understands move local variables and scope: let bindings, mutability,
+    type annotations, shadowing, and move semantics reference
   requires:
     - has_frontmatter:
         - title

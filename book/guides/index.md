@@ -9,14 +9,13 @@ keywords:
   - Move tutorial
   - guides
 questions:
-  - What is Guides in Move?
-  - How do I use Guides in Move?
-  - How does Guides work on Sui?
+  - What Move guides are available?
+  - How do I build specific features in Move?
 answer: >-
-  Practical guides for Sui Move development: migration, upgradeability, error
-  handling, code quality, and open-source best practices.
+  The guides section covers creating fungible tokens, NFT marketplaces, package
+  upgrades, access control, and programmable transactions.
 goal:
-  description: Reader understands the scope and topics covered in the Guides section
+  description: Reader can find the right guide for common Move development tasks
   requires:
     - has_frontmatter:
         - title

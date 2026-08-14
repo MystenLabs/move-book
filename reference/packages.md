@@ -11,14 +11,17 @@ keywords:
   - reference
   - package
 questions:
-  - What is Packages  Reference in Move?
-  - How do I use Packages  Reference in Move?
-  - How does Packages  Reference work on Sui?
+  - How does Packages work in Move?
+  - What is the syntax for Packages in Move?
+  - What is Package Layout and Manifest Syntax in Move?
+  - What is Named Addresses During Compilation in Move?
 answer: >-
   Move packages reference: package layout, Move.toml manifest, dependencies,
   named addresses, and package compilation.
 goal:
-  description: Reader understands and can apply Packages | Reference in Move programs
+  description: >-
+    Reader understands move packages reference: package layout, Move.toml
+    manifest, dependencies, named addresses, and package compilation
   requires:
     - has_frontmatter:
         - title

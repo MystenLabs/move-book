@@ -12,12 +12,15 @@ keywords:
 questions:
   - What is Importing Modules in Move?
   - How do I use Importing Modules in Move?
-  - How does Importing Modules work on Sui?
+  - What is Importing a Module in Move?
+  - What is Importing Members in Move?
 answer: >-
   How to import modules in Move using the use keyword: single imports, grouped
   imports, member imports, and resolving naming conflicts.
 goal:
-  description: Reader understands and can apply Importing Modules in Move programs
+  description: >-
+    Reader understands import modules in Move using the use keyword: single
+    imports, grouped imports, member imports, and resolving naming conflicts
   requires:
     - has_frontmatter:
         - title

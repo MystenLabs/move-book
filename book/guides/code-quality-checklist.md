@@ -13,12 +13,16 @@ keywords:
 questions:
   - What is Code Quality Checklist in Move?
   - How do I use Code Quality Checklist in Move?
-  - How does Code Quality Checklist work on Sui?
+  - What is Code Organization in Move?
+  - What is Package Manifest in Move?
 answer: >-
   Move code quality checklist: review your Sui smart contracts against current
   best practices for safety, style, and maintainability.
 goal:
-  description: Reader understands and can apply Code Quality Checklist in Move programs
+  description: >-
+    Reader understands move code quality checklist: review your Sui smart
+    contracts against current best practices for safety, style, and
+    maintainability
   requires:
     - has_frontmatter:
         - title

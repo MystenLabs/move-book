@@ -11,14 +11,15 @@ keywords:
   - your
   - ide
 questions:
-  - What is Set Up Your IDE in Move?
-  - How do I use Set Up Your IDE in Move?
-  - How does Set Up Your IDE work on Sui?
+  - What IDE should I use for Move?
+  - How do I set up VS Code for Move?
+  - Is there a Move language server?
 answer: >-
-  Configure VSCode or IntelliJ IDEA for Move development with syntax
-  highlighting, error checking, and code formatting extensions.
+  Move has official IDE support through the move-analyzer language server,
+  providing syntax highlighting, diagnostics, go-to-definition, and autocomplete
+  in VS Code and other editors.
 goal:
-  description: Reader understands and can apply Set Up Your IDE in Move programs
+  description: Reader has their IDE configured with Move language support
   requires:
     - has_frontmatter:
         - title

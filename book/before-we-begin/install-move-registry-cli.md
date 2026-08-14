@@ -10,14 +10,14 @@ keywords:
   - install
   - mvr
 questions:
-  - What is Install MVR in Move?
-  - How do I use Install MVR in Move?
-  - How does Install MVR work on Sui?
+  - What is the Move Registry CLI?
+  - How do I install MVR?
+  - How do I manage Move dependencies?
 answer: >-
-  Install the Move Registry (MVR) CLI to publish, discover, and manage reusable
-  Move packages for Sui development.
+  The Move Registry (MVR) CLI resolves and manages Move package dependencies
+  from a decentralized registry for easier package sharing and reuse.
 goal:
-  description: Reader understands and can apply Install MVR in Move programs
+  description: Reader has MVR installed and can manage Move package dependencies
   requires:
     - has_frontmatter:
         - title

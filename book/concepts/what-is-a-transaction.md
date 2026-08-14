@@ -11,12 +11,15 @@ keywords:
 questions:
   - What is Transaction in Move?
   - How do I use Transaction in Move?
-  - How does Transaction work on Sui?
+  - What is Transaction Structure in Move?
+  - What is Inputs in Move?
 answer: >-
   Learn how Sui transactions work: structure, commands, gas payments, and how
   they change blockchain state through Move function calls.
 goal:
-  description: Reader understands and can apply Transaction in Move programs
+  description: >-
+    Reader understands how Sui transactions work: structure, commands, gas
+    payments, and how they change blockchain state through Move function calls
   requires:
     - has_frontmatter:
         - title

@@ -11,16 +11,15 @@ keywords:
   - conventions
   - reference
 questions:
-  - What is Coding Conventions  Reference in Move?
-  - How do I use Coding Conventions  Reference in Move?
-  - How does Coding Conventions  Reference work on Sui?
+  - How does Coding Conventions work in Move?
+  - What is the syntax for Coding Conventions in Move?
 answer: >-
   Move coding conventions: naming standards, formatting guidelines, and style
   recommendations for Sui Move development.
 goal:
   description: >-
-    Reader understands and can apply Coding Conventions | Reference in Move
-    programs
+    Reader understands move coding conventions: naming standards, formatting
+    guidelines, and style recommendations for Sui Move development
   requires:
     - has_frontmatter:
         - title

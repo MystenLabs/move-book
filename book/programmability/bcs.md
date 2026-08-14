@@ -14,14 +14,15 @@ keywords:
 questions:
   - What is Binary Canonical Serialization in Move?
   - How do I use Binary Canonical Serialization in Move?
-  - How does Binary Canonical Serialization work on Sui?
+  - What is Format in Move?
+  - What is Using BCS in Move?
 answer: >-
   BCS (Binary Canonical Serialization) in Move: encode and decode structured
   data for onchain storage and cross-platform communication.
 goal:
   description: >-
-    Reader understands and can apply Binary Canonical Serialization in Move
-    programs
+    Reader understands bCS (Binary Canonical Serialization) in Move: encode and
+    decode structured data for onchain storage and cross-platform communication
   requires:
     - has_frontmatter:
         - title

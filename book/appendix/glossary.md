@@ -10,14 +10,13 @@ keywords:
   - appendix
   - glossary
 questions:
-  - 'What is Appendix A: Glossary in Move?'
-  - 'How do I use Appendix A: Glossary in Move?'
-  - 'How does Appendix A: Glossary work on Sui?'
+  - What does this Move term mean?
+  - Where is the Move glossary?
 answer: >-
-  Glossary of Move and Sui terminology: fast path, parallel execution, internal
-  types, and other key concepts defined.
+  The glossary defines key terms in the Move language and Sui ecosystem
+  including abilities, objects, modules, packages, and blockchain concepts.
 goal:
-  description: 'Reader understands and can apply Appendix A: Glossary in Move programs'
+  description: Reader can look up definitions of Move and Sui terminology
   requires:
     - has_frontmatter:
         - title

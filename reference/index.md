@@ -10,16 +10,16 @@ keywords:
   - move
   - reference
 questions:
-  - What is The Move Reference in Move?
-  - How do I use The Move Reference in Move?
-  - How does The Move Reference work on Sui?
+  - Where is the Move language reference?
+  - What does the Move reference cover?
 answer: >-
-  The official Move language reference: comprehensive documentation of syntax,
-  types, abilities, functions, and all language features.
+  The Move Reference is the comprehensive language specification covering
+  syntax, types, abilities, functions, and all features of the Move programming
+  language.
 goal:
   description: >-
-    Reader understands the scope and topics covered in the The Move Reference
-    section
+    Reader can navigate the Move language reference to find detailed
+    documentation
   requires:
     - has_frontmatter:
         - title

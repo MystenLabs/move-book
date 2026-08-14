@@ -15,14 +15,15 @@ keywords:
 questions:
   - What is Creating and Using System Objects in Tests in Move?
   - How do I use Creating and Using System Objects in Tests in Move?
-  - How does Creating and Using System Objects in Tests work on Sui?
+  - What is Clock in Move?
+  - What is Random in Move?
 answer: >-
   Use system objects in Move tests: create and manipulate Clock, Random, and
   DenyList for testing time, randomness, and deny lists.
 goal:
   description: >-
-    Reader understands and can apply Creating and Using System Objects in Tests
-    in Move programs
+    Reader can use system objects in Move tests: create and manipulate Clock,
+    Random, and DenyList for testing time, randomness, and deny lists
   requires:
     - has_frontmatter:
         - title

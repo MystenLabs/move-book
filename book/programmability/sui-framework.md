@@ -12,12 +12,16 @@ keywords:
 questions:
   - What is Sui Framework in Move?
   - How do I use Sui Framework in Move?
-  - How does Sui Framework work on Sui?
+  - What is Core in Move?
+  - What is Collections in Move?
 answer: >-
   The Sui Framework: built-in modules for storage, coins, display, clock,
   events, and other Sui-specific features available to every package.
 goal:
-  description: Reader understands and can apply Sui Framework in Move programs
+  description: >-
+    Reader understands the Sui Framework: built-in modules for storage, coins,
+    display, clock, events, and other Sui-specific features available to every
+    package
   requires:
     - has_frontmatter:
         - title

@@ -11,16 +11,16 @@ keywords:
   - programmability
   - abilities
 questions:
-  - What is Advanced Programmability in Move?
-  - How do I use Advanced Programmability in Move?
-  - How does Advanced Programmability work on Sui?
+  - What advanced features does Move on Sui offer?
+  - What programmability patterns are available?
 answer: >-
-  Advanced Sui programmability: patterns, events, dynamic fields, capabilities,
-  BCS serialization, and design patterns in Move.
+  Move on Sui provides transaction context, module initializers, pattern
+  matching, type reflection, events, dynamic fields, BCS serialization, and
+  other advanced features.
 goal:
   description: >-
-    Reader understands the scope and topics covered in the Advanced
-    Programmability section
+    Reader understands the advanced programmability features available in Move
+    on Sui
   requires:
     - has_frontmatter:
         - title

@@ -12,12 +12,15 @@ keywords:
 questions:
   - What is Control Flow in Move?
   - How do I use Control Flow in Move?
-  - How does Control Flow work on Sui?
+  - What is Conditional Statements in Move?
+  - What is Repeating Statements with Loops in Move?
 answer: >-
   Control flow in Move: if/else expressions, while and loop constructs, break,
   continue, and return statements.
 goal:
-  description: Reader understands and can apply Control Flow in Move programs
+  description: >-
+    Reader understands control flow in Move: if/else expressions, while and loop
+    constructs, break, continue, and return statements
   requires:
     - has_frontmatter:
         - title

@@ -13,13 +13,17 @@ keywords:
 questions:
   - What is Entry Functions in Move?
   - How do I use Entry Functions in Move?
-  - How does Entry Functions work on Sui?
+  - What is The Hot Potato Guarantee in Move?
+  - What is The Rules in Move?
 answer: >-
   Entry functions in Move: how the entry modifier restricts a function to
   transaction-only calls, and the static hot-potato guarantee its arguments
   receive in return.
 goal:
-  description: Reader understands and can apply Entry Functions in Move programs
+  description: >-
+    Reader understands entry functions in Move: how the entry modifier restricts
+    a function to transaction-only calls, and the static hot-potato guarantee
+    its arguments receive in return
   requires:
     - has_frontmatter:
         - title

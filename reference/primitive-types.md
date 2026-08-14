@@ -12,16 +12,15 @@ keywords:
   - reference
   - type system
 questions:
-  - What is Primitive Types  Reference in Move?
-  - How do I use Primitive Types  Reference in Move?
-  - How does Primitive Types  Reference work on Sui?
+  - How does Primitive Types work in Move?
+  - What is the syntax for Primitive Types in Move?
 answer: >-
   Move primitive types reference: integers, booleans, addresses, vectors,
   references, tuples, and unit type overview.
 goal:
   description: >-
-    Reader understands and can apply Primitive Types | Reference in Move
-    programs
+    Reader understands move primitive types reference: integers, booleans,
+    addresses, vectors, references, tuples, and unit type overview
   requires:
     - has_frontmatter:
         - title

@@ -13,14 +13,17 @@ keywords:
   - test
   - testing
 questions:
-  - What is What Makes a Good Test in Move?
+  - What Makes a Good Test?
   - How do I use What Makes a Good Test in Move?
-  - How does What Makes a Good Test work on Sui?
+  - What is Characteristics of Good Tests in Move?
+  - What to Test?
 answer: >-
   Best practices for writing effective Move tests: concise, focused, and
   maintainable tests that catch real bugs in smart contracts.
 goal:
-  description: Reader understands and can apply What Makes a Good Test in Move programs
+  description: >-
+    Reader understands best practices for writing effective Move tests: concise,
+    focused, and maintainable tests that catch real bugs in smart contracts
   requires:
     - has_frontmatter:
         - title

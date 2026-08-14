@@ -11,14 +11,17 @@ keywords:
   - reference
   - struct
 questions:
-  - What is Structs  Reference in Move?
-  - How do I use Structs  Reference in Move?
-  - How does Structs  Reference work on Sui?
+  - How does Structs work in Move?
+  - What is the syntax for Structs in Move?
+  - What is Defining Structs in Move?
+  - What is Using Structs in Move?
 answer: >-
   Move structs reference: define custom types, positional and named fields,
   abilities, visibility, and resource semantics.
 goal:
-  description: Reader understands and can apply Structs | Reference in Move programs
+  description: >-
+    Reader understands move structs reference: define custom types, positional
+    and named fields, abilities, visibility, and resource semantics
   requires:
     - has_frontmatter:
         - title

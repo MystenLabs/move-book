@@ -13,12 +13,15 @@ keywords:
 questions:
   - What is Dynamic Collections in Move?
   - How do I use Dynamic Collections in Move?
-  - How does Dynamic Collections work on Sui?
+  - What is Common Concepts in Move?
+  - What is ObjectBag in Move?
 answer: >-
   Dynamic collections in Sui: Bag, Table, ObjectBag, ObjectTable, and
   LinkedTable built on dynamic fields for flexible storage.
 goal:
-  description: Reader understands and can apply Dynamic Collections in Move programs
+  description: >-
+    Reader understands dynamic collections in Sui: Bag, Table, ObjectBag,
+    ObjectTable, and LinkedTable built on dynamic fields for flexible storage
   requires:
     - has_frontmatter:
         - title

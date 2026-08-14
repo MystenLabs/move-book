@@ -14,12 +14,16 @@ keywords:
 questions:
   - 'What is Pattern: Hot Potato in Move?'
   - 'How do I use Pattern: Hot Potato in Move?'
-  - 'How does Pattern: Hot Potato work on Sui?'
+  - What is Defining a Hot Potato in Move?
+  - What is Applications in Move?
 answer: >-
   The Hot Potato pattern in Move: a struct with no abilities that must be
   consumed in the same transaction, enforcing workflow completion.
 goal:
-  description: 'Reader understands and can apply Pattern: Hot Potato in Move programs'
+  description: >-
+    Reader understands the Hot Potato pattern in Move: a struct with no
+    abilities that must be consumed in the same transaction, enforcing workflow
+    completion
   requires:
     - has_frontmatter:
         - title

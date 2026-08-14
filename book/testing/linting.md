@@ -12,12 +12,15 @@ keywords:
 questions:
   - What is Running Lints in Move?
   - How do I use Running Lints in Move?
-  - How does Running Lints work on Sui?
+  - What is Default and Extra Lints in Move?
 answer: >-
   Run Move linters with sui move lint: catch Sui-specific antipatterns at
   compile time, suppress false positives, and enforce lints in CI.
 goal:
-  description: Reader understands and can apply Running Lints in Move programs
+  description: >-
+    Reader understands run Move linters with sui move lint: catch Sui-specific
+    antipatterns at compile time, suppress false positives, and enforce lints in
+    CI
   requires:
     - has_frontmatter:
         - title

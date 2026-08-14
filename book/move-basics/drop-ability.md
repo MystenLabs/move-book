@@ -12,12 +12,15 @@ keywords:
 questions:
   - 'What is Abilities: Drop in Move?'
   - 'How do I use Abilities: Drop in Move?'
-  - 'How does Abilities: Drop work on Sui?'
+  - When to Use drop?
+  - What is Types with the drop Ability in Move?
 answer: >-
   The drop ability in Move allows struct instances to be discarded. Learn how it
   works and when to use it in Sui smart contracts.
 goal:
-  description: 'Reader understands and can apply Abilities: Drop in Move programs'
+  description: >-
+    Reader understands the drop ability in Move allows struct instances to be
+    discarded. Learn how it works and when to use it in Sui smart contracts
   requires:
     - has_frontmatter:
         - title

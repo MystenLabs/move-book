@@ -12,12 +12,16 @@ keywords:
 questions:
   - What is Macro Functions in Move?
   - How do I use Macro Functions in Move?
-  - How does Macro Functions work on Sui?
+  - What is a Macro Function?
+  - What is Defining a Macro in Move?
 answer: >-
   Macro functions in Move: compile-time expanded functions with lambda arguments
   - how to use standard library macros and define your own.
 goal:
-  description: Reader understands and can apply Macro Functions in Move programs
+  description: >-
+    Reader understands macro functions in Move: compile-time expanded functions
+    with lambda arguments - how to use standard library macros and define your
+    own
   requires:
     - has_frontmatter:
         - title

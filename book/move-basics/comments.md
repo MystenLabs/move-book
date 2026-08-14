@@ -11,12 +11,15 @@ keywords:
 questions:
   - What is Comments in Move?
   - How do I use Comments in Move?
-  - How does Comments work on Sui?
+  - What is Line Comment in Move?
+  - What is Block Comment in Move?
 answer: >-
   How to use line comments, block comments, and doc comments in Move for
   documentation and code annotation.
 goal:
-  description: Reader understands and can apply Comments in Move programs
+  description: >-
+    Reader understands use line comments, block comments, and doc comments in
+    Move for documentation and code annotation
   requires:
     - has_frontmatter:
         - title

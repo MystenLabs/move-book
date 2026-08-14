@@ -10,14 +10,17 @@ keywords:
   - constants
   - reference
 questions:
-  - What is Constants  Reference in Move?
-  - How do I use Constants  Reference in Move?
-  - How does Constants  Reference work on Sui?
+  - How does Constants work in Move?
+  - What is the syntax for Constants in Move?
+  - What is Declaration in Move?
+  - What is Naming in Move?
 answer: >-
   Move constants reference: define compile-time values, supported types, naming
   rules, and usage in modules.
 goal:
-  description: Reader understands and can apply Constants | Reference in Move programs
+  description: >-
+    Reader understands move constants reference: define compile-time values,
+    supported types, naming rules, and usage in modules
   requires:
     - has_frontmatter:
         - title

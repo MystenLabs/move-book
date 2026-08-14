@@ -13,12 +13,15 @@ keywords:
 questions:
   - What is Building Against Limits in Move?
   - How do I use Building Against Limits in Move?
-  - How does Building Against Limits work on Sui?
+  - What is Transaction Size in Move?
+  - What is Object Size in Move?
 answer: >-
   Sui network limits and how to build within them: object size, dynamic fields,
   transaction limits, and protocol constraints.
 goal:
-  description: Reader understands and can apply Building Against Limits in Move programs
+  description: >-
+    Reader understands sui network limits and how to build within them: object
+    size, dynamic fields, transaction limits, and protocol constraints
   requires:
     - has_frontmatter:
         - title

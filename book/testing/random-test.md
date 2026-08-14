@@ -12,12 +12,15 @@ keywords:
 questions:
   - What is Random Inputs in Move?
   - How do I use Random Inputs in Move?
-  - How does Random Inputs work on Sui?
+  - What is Basic Usage in Move?
+  - What is Supported Types in Move?
 answer: >-
   Property-based testing in Move with #[random_test]: run tests with randomized
   inputs to discover edge cases automatically.
 goal:
-  description: Reader understands and can apply Random Inputs in Move programs
+  description: >-
+    Reader understands property-based testing in Move with #[random_test]: run
+    tests with randomized inputs to discover edge cases automatically
   requires:
     - has_frontmatter:
         - title

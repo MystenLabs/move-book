@@ -14,12 +14,13 @@ keywords:
 questions:
   - What is Object Capability in Move?
   - How do I use Object Capability in Move?
-  - How does Object Capability work on Sui?
 answer: >-
   Object Capability pattern in Sui Move: use objects as fine-grained access
   tokens for secure authorization in smart contracts.
 goal:
-  description: Reader understands and can apply Object Capability in Move programs
+  description: >-
+    Reader understands object Capability pattern in Sui Move: use objects as
+    fine-grained access tokens for secure authorization in smart contracts
   requires:
     - has_frontmatter:
         - title

@@ -13,14 +13,15 @@ keywords:
 questions:
   - What is Simulating Transaction Context in Move?
   - How do I use Simulating Transaction Context in Move?
-  - How does Simulating Transaction Context work on Sui?
+  - What is Creating a Dummy Context in Move?
+  - What is Custom Context with new in Move?
 answer: >-
   Simulate TxContext in Move tests: create dummy contexts, set sender addresses,
   and generate fresh UIDs for unit testing.
 goal:
   description: >-
-    Reader understands and can apply Simulating Transaction Context in Move
-    programs
+    Reader understands simulate TxContext in Move tests: create dummy contexts,
+    set sender addresses, and generate fresh UIDs for unit testing
   requires:
     - has_frontmatter:
         - title

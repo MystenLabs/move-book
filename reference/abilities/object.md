@@ -12,14 +12,17 @@ keywords:
   - reference
   - object model
 questions:
-  - What is Sui Object  Reference in Move?
-  - How do I use Sui Object  Reference in Move?
-  - How does Sui Object  Reference work on Sui?
+  - How does Sui Object work in Move?
+  - What is the syntax for Sui Object in Move?
+  - What is Object Rules in Move?
+  - What is Transfer Rules in Move?
 answer: >-
   Sui Object reference: how the key ability defines objects, UID requirements,
   and object storage on the Sui blockchain.
 goal:
-  description: Reader understands and can apply Sui Object | Reference in Move programs
+  description: >-
+    Reader understands sui Object reference: how the key ability defines
+    objects, UID requirements, and object storage on the Sui blockchain
   requires:
     - has_frontmatter:
         - title

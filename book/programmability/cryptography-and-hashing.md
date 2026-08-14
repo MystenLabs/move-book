@@ -12,12 +12,13 @@ keywords:
 questions:
   - What is Cryptography and Hashing in Move?
   - How do I use Cryptography and Hashing in Move?
-  - How does Cryptography and Hashing work on Sui?
 answer: >-
   Cryptography and hashing in Sui Move: use SHA2-256, SHA3-256, Blake2b, and
   other hash functions in your smart contracts.
 goal:
-  description: Reader understands and can apply Cryptography and Hashing in Move programs
+  description: >-
+    Reader understands cryptography and hashing in Sui Move: use SHA2-256,
+    SHA3-256, Blake2b, and other hash functions in your smart contracts
   requires:
     - has_frontmatter:
         - title

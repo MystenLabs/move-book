@@ -10,14 +10,17 @@ keywords:
   - move
   - book
 questions:
-  - What is The Move Book in Move?
-  - How do I use The Move Book in Move?
-  - How does The Move Book work on Sui?
+  - What is The Move Book?
+  - How do I learn Move programming?
+  - What topics does The Move Book cover?
 answer: >-
-  A comprehensive guide to the Move programming language and Sui blockchain for
-  smart contract developers.
+  The Move Book is a comprehensive guide to the Move programming language and
+  Sui blockchain, covering everything from first steps to advanced patterns,
+  storage, and programmability.
 goal:
-  description: Reader understands the scope and topics covered in the The Move Book section
+  description: >-
+    Reader understands the scope of The Move Book and can navigate to the right
+    chapter
   requires:
     - has_frontmatter:
         - title

@@ -13,12 +13,14 @@ keywords:
 questions:
   - What is Object Display in Move?
   - How do I use Object Display in Move?
-  - How does Object Display work on Sui?
+  - What is Background in Move?
 answer: >-
   Object Display in Sui: define metadata templates for your objects with the
   Display Registry, and migrate Display from V1 to V2.
 goal:
-  description: Reader understands and can apply Object Display in Move programs
+  description: >-
+    Reader understands object Display in Sui: define metadata templates for your
+    objects with the Display Registry, and migrate Display from V1 to V2
   requires:
     - has_frontmatter:
         - title

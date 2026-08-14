@@ -11,12 +11,16 @@ keywords:
 questions:
   - What is String in Move?
   - How do I use String in Move?
-  - How does String work on Sui?
+  - What is Strings Are Bytes in Move?
+  - What is String Literals in Move?
 answer: >-
   Strings in Move: string literals, the UTF-8 and ASCII String types, common
   operations, and conversions between them in Sui smart contracts.
 goal:
-  description: Reader understands and can apply String in Move programs
+  description: >-
+    Reader understands strings in Move: string literals, the UTF-8 and ASCII
+    String types, common operations, and conversions between them in Sui smart
+    contracts
   requires:
     - has_frontmatter:
         - title

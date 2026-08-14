@@ -11,14 +11,17 @@ keywords:
   - model
   - object model
 questions:
-  - What is Object Model in Move?
-  - How do I use Object Model in Move?
-  - How does Object Model work on Sui?
+  - What is the Sui object model?
+  - How do structs become objects?
+  - What abilities do objects need?
 answer: >-
-  The Sui Object Model explained: theory and concepts behind digital asset
-  representation, ownership, and storage on the Sui blockchain.
+  The Sui object model defines how Move structs with the key ability and a UID
+  field become addressable onchain objects that can be owned, shared, frozen, or
+  wrapped.
 goal:
-  description: Reader understands the scope and topics covered in the Object Model section
+  description: >-
+    Reader understands the Sui object model and how Move structs become onchain
+    objects
   requires:
     - has_frontmatter:
         - title

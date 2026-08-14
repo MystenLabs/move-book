@@ -10,14 +10,13 @@ keywords:
   - install
   - sui
 questions:
-  - What is Install Sui in Move?
-  - How do I use Install Sui in Move?
-  - How does Install Sui work on Sui?
+  - How do I install the Sui CLI?
+  - How do I set up Sui for Move development?
 answer: >-
-  Install the Sui binary and Move compiler using suiup, Homebrew, or Chocolatey
-  to start developing Move smart contracts.
+  Install the Sui CLI using the official installer, then verify with sui
+  --version to begin compiling and testing Move code.
 goal:
-  description: Reader understands and can apply Install Sui in Move programs
+  description: Reader has the Sui CLI installed and can run sui move commands
   requires:
     - has_frontmatter:
         - title

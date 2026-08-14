@@ -10,14 +10,16 @@ keywords:
   - friends
   - reference
 questions:
-  - What is Friends  Reference in Move?
-  - How do I use Friends  Reference in Move?
-  - How does Friends  Reference work on Sui?
+  - How does Friends work in Move?
+  - What is the syntax for Friends in Move?
+  - What is Friend declaration in Move?
 answer: >-
   Move friends reference (deprecated): the legacy friend syntax replaced by
   public(package) visibility in Move 2024.
 goal:
-  description: Reader understands and can apply Friends | Reference in Move programs
+  description: >-
+    Reader understands move friends reference (deprecated): the legacy friend
+    syntax replaced by public(package) visibility in Move 2024
   requires:
     - has_frontmatter:
         - title

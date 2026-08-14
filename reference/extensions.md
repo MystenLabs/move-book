@@ -12,16 +12,17 @@ keywords:
   - reference
   - modules
 questions:
-  - What is Module Extensions  Reference in Move?
-  - How do I use Module Extensions  Reference in Move?
-  - How does Module Extensions  Reference work on Sui?
+  - How does Module Extensions work in Move?
+  - What is the syntax for Module Extensions in Move?
+  - What is Extension Syntax in Move?
+  - What is Applying Extensions in Move?
 answer: >-
   Move module extensions reference: add test-only or mode-gated declarations to
   existing modules from external packages.
 goal:
   description: >-
-    Reader understands and can apply Module Extensions | Reference in Move
-    programs
+    Reader understands move module extensions reference: add test-only or
+    mode-gated declarations to existing modules from external packages
   requires:
     - has_frontmatter:
         - title

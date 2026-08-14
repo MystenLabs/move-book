@@ -11,16 +11,17 @@ keywords:
   - functions
   - reference
 questions:
-  - What is Macro Functions  Reference in Move?
-  - How do I use Macro Functions  Reference in Move?
-  - How does Macro Functions  Reference work on Sui?
+  - How does Macro Functions work in Move?
+  - What is the syntax for Macro Functions in Move?
+  - What is Lambdas in Move?
+  - What is Typing in Move?
 answer: >-
   Move macro functions reference: compile-time expansion, lambda parameters,
   type parameters, and method syntax for macros.
 goal:
   description: >-
-    Reader understands and can apply Macro Functions | Reference in Move
-    programs
+    Reader understands move macro functions reference: compile-time expansion,
+    lambda parameters, type parameters, and method syntax for macros
   requires:
     - has_frontmatter:
         - title

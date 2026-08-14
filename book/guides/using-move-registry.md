@@ -13,12 +13,16 @@ keywords:
 questions:
   - What is Using Move Registry in Move?
   - How do I use Using Move Registry in Move?
-  - How does Using Move Registry work on Sui?
+  - What is Package Names in Move?
+  - What is Finding a Package in Move?
 answer: >-
   Use Move Registry (MVR) to add external dependencies to your Move package:
   search for packages, add them to the manifest, and call them in your code.
 goal:
-  description: Reader understands and can apply Using Move Registry in Move programs
+  description: >-
+    Reader can use Move Registry (MVR) to add external dependencies to your Move
+    package: search for packages, add them to the manifest, and call them in
+    your code
   requires:
     - has_frontmatter:
         - title

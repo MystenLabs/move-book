@@ -12,12 +12,15 @@ keywords:
 questions:
   - What is Standard Library in Move?
   - How do I use Standard Library in Move?
-  - How does Standard Library work on Sui?
+  - What is Most Common Modules in Move?
+  - What is Integer Modules in Move?
 answer: >-
   Overview of the Move Standard Library: common modules for strings, vectors,
   options, and type names available in every Move package.
 goal:
-  description: Reader understands and can apply Standard Library in Move programs
+  description: >-
+    Reader understands overview of the Move Standard Library: common modules for
+    strings, vectors, options, and type names available in every Move package
   requires:
     - has_frontmatter:
         - title

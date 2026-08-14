@@ -10,14 +10,13 @@ keywords:
   - appendix
   - publications
 questions:
-  - 'What is Appendix D: Publications in Move?'
-  - 'How do I use Appendix D: Publications in Move?'
-  - 'How does Appendix D: Publications work on Sui?'
+  - What papers exist about Move?
+  - Where can I find Move research?
 answer: >-
-  Academic publications about Move and Sui: papers on the borrow checker,
-  resource safety, and formal verification of Move programs.
+  This appendix lists academic papers and technical publications about the Move
+  language, type system, and formal verification.
 goal:
-  description: 'Reader understands and can apply Appendix D: Publications in Move programs'
+  description: Reader can find academic and technical publications about Move
   requires:
     - has_frontmatter:
         - title

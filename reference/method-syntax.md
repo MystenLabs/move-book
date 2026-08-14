@@ -11,14 +11,17 @@ keywords:
   - syntax
   - reference
 questions:
-  - What is Method Syntax  Reference in Move?
-  - How do I use Method Syntax  Reference in Move?
-  - How does Method Syntax  Reference work on Sui?
+  - How does Method Syntax work in Move?
+  - What is the syntax for Method Syntax in Move?
+  - What is Method Resolution in Move?
+  - What is Automatic Borrowing in Move?
 answer: >-
   Move method syntax reference: call functions with dot notation, receiver
   types, automatic borrowing, and method resolution.
 goal:
-  description: Reader understands and can apply Method Syntax | Reference in Move programs
+  description: >-
+    Reader understands move method syntax reference: call functions with dot
+    notation, receiver types, automatic borrowing, and method resolution
   requires:
     - has_frontmatter:
         - title

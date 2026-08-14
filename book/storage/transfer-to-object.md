@@ -13,12 +13,15 @@ keywords:
 questions:
   - What is Receiving as Object in Move?
   - How do I use Receiving as Object in Move?
-  - How does Receiving as Object work on Sui?
+  - What is Definition in Move?
+  - What is Use Cases in Move?
 answer: >-
   Transfer to Object (TTO) in Sui: send objects to other objects and receive
   them using the Receiving type in Move.
 goal:
-  description: Reader understands and can apply Receiving as Object in Move programs
+  description: >-
+    Reader understands transfer to Object (TTO) in Sui: send objects to other
+    objects and receive them using the Receiving type in Move
   requires:
     - has_frontmatter:
         - title

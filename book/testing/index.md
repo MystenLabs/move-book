@@ -11,16 +11,13 @@ keywords:
   - move
   - programs
 questions:
-  - What is Testing Move Programs in Move?
-  - How do I use Testing Move Programs in Move?
-  - How does Testing Move Programs work on Sui?
+  - How do I test Move code?
+  - What testing framework does Move use?
 answer: >-
-  Testing Move smart contracts on Sui: unit tests, test scenarios, linting,
-  coverage reports, gas profiling, and best practices.
+  Move has a built-in testing framework with #[test] annotations, test-only
+  functions, and test scenarios for simulating transactions.
 goal:
-  description: >-
-    Reader understands the scope and topics covered in the Testing Move Programs
-    section
+  description: Reader understands the Move testing framework and can write effective tests
   requires:
     - has_frontmatter:
         - title

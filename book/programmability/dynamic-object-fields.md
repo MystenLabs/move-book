@@ -15,12 +15,15 @@ keywords:
 questions:
   - What is Dynamic Object Fields in Move?
   - How do I use Dynamic Object Fields in Move?
-  - How does Dynamic Object Fields work on Sui?
+  - What is Definition in Move?
+  - What is Usage and Differences with Dynamic Fields in Move?
 answer: >-
   Dynamic object fields in Sui: attach objects as fields that remain accessible
   by ID, with differences from regular dynamic fields.
 goal:
-  description: Reader understands and can apply Dynamic Object Fields in Move programs
+  description: >-
+    Reader understands dynamic object fields in Sui: attach objects as fields
+    that remain accessible by ID, with differences from regular dynamic fields
   requires:
     - has_frontmatter:
         - title

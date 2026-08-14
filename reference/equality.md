@@ -10,14 +10,17 @@ keywords:
   - equality
   - reference
 questions:
-  - What is Equality  Reference in Move?
-  - How do I use Equality  Reference in Move?
-  - How does Equality  Reference work on Sui?
+  - How does Equality work in Move?
+  - What is the syntax for Equality in Move?
+  - What is Operations in Move?
+  - What is Restrictions in Move?
 answer: >-
   Move equality operations reference: == and != operators, type restrictions,
   and comparison rules for values and references.
 goal:
-  description: Reader understands and can apply Equality | Reference in Move programs
+  description: >-
+    Reader understands move equality operations reference: == and != operators,
+    type restrictions, and comparison rules for values and references
   requires:
     - has_frontmatter:
         - title

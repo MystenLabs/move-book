@@ -12,12 +12,15 @@ keywords:
 questions:
   - 'What is Abilities: Copy in Move?'
   - 'How do I use Abilities: Copy in Move?'
-  - 'How does Abilities: Copy work on Sui?'
+  - What is Copying and Drop in Move?
+  - What is Types with the copy Ability in Move?
 answer: >-
   The copy ability in Move enables value duplication. Learn how to add copy to
   custom types and understand its role in resource safety.
 goal:
-  description: 'Reader understands and can apply Abilities: Copy in Move programs'
+  description: >-
+    Reader understands the copy ability in Move enables value duplication. Learn
+    how to add copy to custom types and understand its role in resource safety
   requires:
     - has_frontmatter:
         - title

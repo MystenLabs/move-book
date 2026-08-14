@@ -10,16 +10,16 @@ keywords:
   - before
   - begin
 questions:
-  - What is Before We Begin in Move?
-  - How do I use Before We Begin in Move?
-  - How does Before We Begin work on Sui?
+  - What do I need before writing Move?
+  - How do I set up my Move development environment?
 answer: >-
-  Set up your Move development environment: install Sui, configure your IDE, and
-  learn about the Move 2024 edition.
+  Before writing Move, install the Sui CLI, set up IDE support with
+  move-analyzer, and optionally install the Move Registry CLI for package
+  management.
 goal:
   description: >-
-    Reader understands the scope and topics covered in the Before We Begin
-    section
+    Reader has the prerequisites ready and environment configured to start
+    writing Move
   requires:
     - has_frontmatter:
         - title

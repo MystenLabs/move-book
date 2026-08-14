@@ -13,12 +13,16 @@ keywords:
 questions:
   - What is Open Sourcing Libraries in Move?
   - How do I use Open Sourcing Libraries in Move?
-  - How does Open Sourcing Libraries work on Sui?
+  - What is README in Move?
+  - What is Named Addresses in Move?
 answer: >-
   Guide to open sourcing Move libraries: naming conventions, documentation,
   testing, and publishing reusable packages for Sui.
 goal:
-  description: Reader understands and can apply Open Sourcing Libraries in Move programs
+  description: >-
+    Reader understands guide to open sourcing Move libraries: naming
+    conventions, documentation, testing, and publishing reusable packages for
+    Sui
   requires:
     - has_frontmatter:
         - title

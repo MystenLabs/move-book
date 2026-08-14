@@ -15,13 +15,17 @@ keywords:
 questions:
   - What is Move 2024 Migration Guide in Move?
   - How do I use Move 2024 Migration Guide in Move?
-  - How does Move 2024 Migration Guide work on Sui?
+  - What is Using the 2024 Edition in Move?
+  - What is Migration Tool in Move?
 answer: >-
   Migrate your Move code to the 2024 edition: module labels, let mut, public
   structs, method syntax, enums and match, macros, clever errors, and
   step-by-step instructions.
 goal:
-  description: Reader understands and can apply Move 2024 Migration Guide in Move programs
+  description: >-
+    Reader understands migrate your Move code to the 2024 edition: module
+    labels, let mut, public structs, method syntax, enums and match, macros,
+    clever errors, and step-by-step instructions
   requires:
     - has_frontmatter:
         - title

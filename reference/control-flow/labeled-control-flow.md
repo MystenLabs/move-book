@@ -12,16 +12,17 @@ keywords:
   - flow
   - reference
 questions:
-  - What is Labeled Control Flow  Reference in Move?
-  - How do I use Labeled Control Flow  Reference in Move?
-  - How does Labeled Control Flow  Reference work on Sui?
+  - How does Labeled Control Flow work in Move?
+  - What is the syntax for Labeled Control Flow in Move?
+  - What is Loops in Move?
+  - What is Labeled Blocks in Move?
 answer: >-
   Move labeled control flow reference: named loops and blocks, break with
   labels, and return from named blocks.
 goal:
   description: >-
-    Reader understands and can apply Labeled Control Flow | Reference in Move
-    programs
+    Reader understands move labeled control flow reference: named loops and
+    blocks, break with labels, and return from named blocks
   requires:
     - has_frontmatter:
         - title

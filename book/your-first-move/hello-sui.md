@@ -10,14 +10,14 @@ keywords:
   - hello
   - sui
 questions:
-  - 'What is Hello, Sui! in Move?'
-  - 'How do I use Hello, Sui! in Move?'
-  - 'How does Hello, Sui! work on Sui?'
+  - How do I create an object in Move?
+  - How do I deploy Move to Sui?
+  - What is Hello Sui?
 answer: >-
-  Build and publish a todo list app on Sui: create an account, deploy a Move
-  package, and send transactions via the CLI.
+  Hello Sui extends Hello World by creating a Sui object with a UID,
+  transferring it to the sender, and publishing the package to the blockchain.
 goal:
-  description: 'Reader understands and can apply Hello, Sui! in Move programs'
+  description: Reader can write a Move module that creates and transfers an object on Sui
   requires:
     - has_frontmatter:
         - title

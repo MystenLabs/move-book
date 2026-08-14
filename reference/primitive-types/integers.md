@@ -10,14 +10,17 @@ keywords:
   - integers
   - reference
 questions:
-  - What is Integers  Reference in Move?
-  - How do I use Integers  Reference in Move?
-  - How does Integers  Reference work on Sui?
+  - How does Integers work in Move?
+  - What is the syntax for Integers in Move?
+  - What is Literals in Move?
+  - What is Operations in Move?
 answer: >-
   Move integer types reference: u8, u16, u32, u64, u128, u256 — literals,
   operations, casting, and overflow behavior.
 goal:
-  description: Reader understands and can apply Integers | Reference in Move programs
+  description: >-
+    Reader understands move integer types reference: u8, u16, u32, u64, u128,
+    u256 — literals, operations, casting, and overflow behavior
   requires:
     - has_frontmatter:
         - title

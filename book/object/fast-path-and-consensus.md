@@ -13,12 +13,15 @@ keywords:
 questions:
   - What is Fast Path and Consensus in Move?
   - How do I use Fast Path and Consensus in Move?
-  - How does Fast Path and Consensus work on Sui?
+  - What is Concurrency Challenge in Move?
+  - What is Fast Path in Move?
 answer: >-
   Fast path vs consensus in Sui: how owned objects skip consensus for faster
   transactions while shared objects require ordering.
 goal:
-  description: Reader understands and can apply Fast Path and Consensus in Move programs
+  description: >-
+    Reader understands fast path vs consensus in Sui: how owned objects skip
+    consensus for faster transactions while shared objects require ordering
   requires:
     - has_frontmatter:
         - title

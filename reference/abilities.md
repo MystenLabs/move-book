@@ -10,14 +10,17 @@ keywords:
   - abilities
   - reference
 questions:
-  - What is Abilities  Reference in Move?
-  - How do I use Abilities  Reference in Move?
-  - How does Abilities  Reference work on Sui?
+  - How does Abilities work in Move?
+  - What is the syntax for Abilities in Move?
+  - What is The Four Abilities in Move?
+  - What is Builtin Types in Move?
 answer: >-
   Move abilities reference: copy, drop, store, and key — rules for how values
   can be used, stored, copied, and discarded.
 goal:
-  description: Reader understands and can apply Abilities | Reference in Move programs
+  description: >-
+    Reader understands move abilities reference: copy, drop, store, and key —
+    rules for how values can be used, stored, copied, and discarded
   requires:
     - has_frontmatter:
         - title

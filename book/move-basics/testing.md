@@ -11,12 +11,15 @@ keywords:
 questions:
   - What is Testing in Move?
   - How do I use Testing in Move?
-  - How does Testing work on Sui?
+  - What is Test-Only Code in Move?
+  - What is Explore More in Move?
 answer: >-
   Write and run unit tests in Move using the #[test] attribute, expected
   failures, and utilities for testing smart contract logic.
 goal:
-  description: Reader understands and can apply Testing in Move programs
+  description: >-
+    Reader can write and run unit tests in Move using the #[test] attribute,
+    expected failures, and utilities for testing smart contract logic
   requires:
     - has_frontmatter:
         - title

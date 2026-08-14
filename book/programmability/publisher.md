@@ -13,12 +13,15 @@ keywords:
 questions:
   - What is Publisher Authority in Move?
   - How do I use Publisher Authority in Move?
-  - How does Publisher Authority work on Sui?
+  - What is Definition in Move?
+  - What is Usage in Move?
 answer: >-
   The Publisher object in Sui: prove package authority to configure Display,
   transfer policies, and other type-level settings.
 goal:
-  description: Reader understands and can apply Publisher Authority in Move programs
+  description: >-
+    Reader understands the Publisher object in Sui: prove package authority to
+    configure Display, transfer policies, and other type-level settings
   requires:
     - has_frontmatter:
         - title

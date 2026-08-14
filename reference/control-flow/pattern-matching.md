@@ -12,16 +12,17 @@ keywords:
   - reference
   - design patterns
 questions:
-  - What is Pattern Matching  Reference in Move?
-  - How do I use Pattern Matching  Reference in Move?
-  - How does Pattern Matching  Reference work on Sui?
+  - How does Pattern Matching work in Move?
+  - What is the syntax for Pattern Matching in Move?
+  - What is match Syntax in Move?
+  - What is Pattern Syntax in Move?
 answer: >-
   Move pattern matching reference: match expressions, destructuring, guards,
   wildcards, and exhaustive matching rules.
 goal:
   description: >-
-    Reader understands and can apply Pattern Matching | Reference in Move
-    programs
+    Reader understands move pattern matching reference: match expressions,
+    destructuring, guards, wildcards, and exhaustive matching rules
   requires:
     - has_frontmatter:
         - title

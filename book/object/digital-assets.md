@@ -14,14 +14,13 @@ keywords:
 questions:
   - What is Move - Language for Digital Assets in Move?
   - How do I use Move - Language for Digital Assets in Move?
-  - How does Move - Language for Digital Assets work on Sui?
 answer: >-
   How Move handles digital assets natively: from fungible tokens to NFTs, with
   built-in safety and type-level resource guarantees.
 goal:
   description: >-
-    Reader understands and can apply Move - Language for Digital Assets in Move
-    programs
+    Reader understands how Move handles digital assets natively: from fungible
+    tokens to NFTs, with built-in safety and type-level resource guarantees
   requires:
     - has_frontmatter:
         - title

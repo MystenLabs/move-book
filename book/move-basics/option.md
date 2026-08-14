@@ -11,12 +11,16 @@ keywords:
 questions:
   - What is Option in Move?
   - How do I use Option in Move?
-  - How does Option work on Sui?
+  - What is The Option Type in Move?
+  - What is Creating and Using an Option in Move?
 answer: >-
   The Option type in Move: represent a value that may be absent, create and
   inspect options, extract values safely, and process them with option macros.
 goal:
-  description: Reader understands and can apply Option in Move programs
+  description: >-
+    Reader understands the Option type in Move: represent a value that may be
+    absent, create and inspect options, extract values safely, and process them
+    with option macros
   requires:
     - has_frontmatter:
         - title

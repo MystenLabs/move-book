@@ -11,14 +11,16 @@ keywords:
   - object
   - object model
 questions:
-  - What is What is an Object? in Move?
+  - What is an Object?
   - How do I use What is an Object? in Move?
-  - How does What is an Object? work on Sui?
 answer: >-
   What is a Sui Object: unique identifiers, types, ownership, and native
   operations like transfer and share for onchain digital assets.
 goal:
-  description: Reader understands and can apply What is an Object? in Move programs
+  description: >-
+    Reader understands what is a Sui Object: unique identifiers, types,
+    ownership, and native operations like transfer and share for onchain digital
+    assets
   requires:
     - has_frontmatter:
         - title

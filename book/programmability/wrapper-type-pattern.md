@@ -15,12 +15,15 @@ keywords:
 questions:
   - 'What is Pattern: Wrapper Type in Move?'
   - 'How do I use Pattern: Wrapper Type in Move?'
-  - 'How does Pattern: Wrapper Type work on Sui?'
+  - What is Definition in Move?
+  - What is Common Practices in Move?
 answer: >-
   The Wrapper type pattern in Move: create restricted or extended versions of
   existing types by wrapping them in new structs.
 goal:
-  description: 'Reader understands and can apply Pattern: Wrapper Type in Move programs'
+  description: >-
+    Reader understands the Wrapper type pattern in Move: create restricted or
+    extended versions of existing types by wrapping them in new structs
   requires:
     - has_frontmatter:
         - title

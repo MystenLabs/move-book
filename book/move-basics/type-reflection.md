@@ -13,12 +13,15 @@ keywords:
 questions:
   - What is Type Reflection in Move?
   - How do I use Type Reflection in Move?
-  - How does Type Reflection work on Sui?
+  - What is Defining IDs vs. Original IDs in Move?
+  - What is In Practice in Move?
 answer: >-
   Type reflection in Move: inspect type names at runtime using std::type_name
   for dynamic type checks in smart contracts.
 goal:
-  description: Reader understands and can apply Type Reflection in Move programs
+  description: >-
+    Reader understands type reflection in Move: inspect type names at runtime
+    using std::type_name for dynamic type checks in smart contracts
   requires:
     - has_frontmatter:
         - title

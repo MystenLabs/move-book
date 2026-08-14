@@ -11,16 +11,17 @@ keywords:
   - unit
   - reference
 questions:
-  - What is Tuples and Unit  Reference in Move?
-  - How do I use Tuples and Unit  Reference in Move?
-  - How does Tuples and Unit  Reference work on Sui?
+  - How does Tuples and Unit work in Move?
+  - What is the syntax for Tuples and Unit in Move?
+  - What is Literals in Move?
+  - What is Operations in Move?
 answer: >-
   Move tuples and unit type reference: multiple return values, destructuring,
   unit expressions, and tuple-like syntax.
 goal:
   description: >-
-    Reader understands and can apply Tuples and Unit | Reference in Move
-    programs
+    Reader understands move tuples and unit type reference: multiple return
+    values, destructuring, unit expressions, and tuple-like syntax
   requires:
     - has_frontmatter:
         - title

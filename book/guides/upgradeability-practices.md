@@ -14,12 +14,15 @@ keywords:
 questions:
   - What is Upgradeability Practices in Move?
   - How do I use Upgradeability Practices in Move?
-  - How does Upgradeability Practices work on Sui?
+  - What is Using entry and friend functions in Move?
+  - What is Versioning objects in Move?
 answer: >-
   Best practices for upgrading Move packages on Sui: maintain compatibility,
   plan for versioning, and avoid breaking changes.
 goal:
-  description: Reader understands and can apply Upgradeability Practices in Move programs
+  description: >-
+    Reader understands best practices for upgrading Move packages on Sui:
+    maintain compatibility, plan for versioning, and avoid breaking changes
   requires:
     - has_frontmatter:
         - title

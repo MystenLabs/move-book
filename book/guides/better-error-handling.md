@@ -14,12 +14,15 @@ keywords:
 questions:
   - What is Better Error Handling in Move?
   - How do I use Better Error Handling in Move?
-  - How does Better Error Handling work on Sui?
+  - 'What is Rule 1: Handle All Possible Scenarios in Move?'
+  - 'What is Rule 2: Abort with Different Codes in Move?'
 answer: >-
   Improve error handling in Move smart contracts: use descriptive abort codes
   and error constants for better debugging on Sui.
 goal:
-  description: Reader understands and can apply Better Error Handling in Move programs
+  description: >-
+    Reader understands improve error handling in Move smart contracts: use
+    descriptive abort codes and error constants for better debugging on Sui
   requires:
     - has_frontmatter:
         - title

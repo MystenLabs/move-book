@@ -11,16 +11,16 @@ keywords:
   - expressions
   - reference
 questions:
-  - What is Conditional Expressions  Reference in Move?
-  - How do I use Conditional Expressions  Reference in Move?
-  - How does Conditional Expressions  Reference work on Sui?
+  - How does Conditional Expressions work in Move?
+  - What is the syntax for Conditional Expressions in Move?
+  - What is Grammar for Conditionals in Move?
 answer: >-
   Move conditional expressions reference: if, else, and if-else syntax with type
   rules and expression-based semantics.
 goal:
   description: >-
-    Reader understands and can apply Conditional Expressions | Reference in Move
-    programs
+    Reader understands move conditional expressions reference: if, else, and
+    if-else syntax with type rules and expression-based semantics
   requires:
     - has_frontmatter:
         - title

@@ -11,12 +11,15 @@ keywords:
 questions:
   - What is Events in Move?
   - How do I use Events in Move?
-  - How does Events work on Sui?
+  - What is Definition in Move?
+  - What is Emitting Events in Move?
 answer: >-
   Emit and test events in Sui Move: notify offchain listeners about onchain
   activity in your smart contracts.
 goal:
-  description: Reader understands and can apply Events in Move programs
+  description: >-
+    Reader can emit and test events in Sui Move: notify offchain listeners about
+    onchain activity in your smart contracts
   requires:
     - has_frontmatter:
         - title

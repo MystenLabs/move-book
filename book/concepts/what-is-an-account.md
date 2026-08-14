@@ -11,12 +11,13 @@ keywords:
 questions:
   - What is Account in Move?
   - How do I use Account in Move?
-  - How does Account work on Sui?
 answer: >-
   Understand Sui accounts: how they are generated from private keys, identified
   by addresses, and support multiple crypto schemes.
 goal:
-  description: Reader understands and can apply Account in Move programs
+  description: >-
+    Reader understands Sui accounts: how they are generated from private keys,
+    identified by addresses, and support multiple crypto schemes
   requires:
     - has_frontmatter:
         - title

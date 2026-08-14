@@ -10,14 +10,17 @@ keywords:
   - functions
   - reference
 questions:
-  - What is Functions  Reference in Move?
-  - How do I use Functions  Reference in Move?
-  - How does Functions  Reference work on Sui?
+  - How does Functions work in Move?
+  - What is the syntax for Functions in Move?
+  - What is Declaration in Move?
+  - What is Calling in Move?
 answer: >-
   Move functions reference: declaration, visibility modifiers, entry functions,
   return values, and calling conventions.
 goal:
-  description: Reader understands and can apply Functions | Reference in Move programs
+  description: >-
+    Reader understands move functions reference: declaration, visibility
+    modifiers, entry functions, return values, and calling conventions
   requires:
     - has_frontmatter:
         - title

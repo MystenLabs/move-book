@@ -11,16 +11,17 @@ keywords:
   - modes
   - reference
 questions:
-  - What is Compilation Modes  Reference in Move?
-  - How do I use Compilation Modes  Reference in Move?
-  - How does Compilation Modes  Reference work on Sui?
+  - How does Compilation Modes work in Move?
+  - What is the syntax for Compilation Modes in Move?
+  - What is Mode Basics in Move?
+  - What is Mode Names in Move?
 answer: >-
   Move compilation modes reference: define named build modes, filter
   declarations, and configure mode-specific compilation.
 goal:
   description: >-
-    Reader understands and can apply Compilation Modes | Reference in Move
-    programs
+    Reader understands move compilation modes reference: define named build
+    modes, filter declarations, and configure mode-specific compilation
   requires:
     - has_frontmatter:
         - title

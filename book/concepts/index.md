@@ -9,14 +9,14 @@ keywords:
   - Move tutorial
   - concepts
 questions:
-  - What is Concepts in Move?
-  - How do I use Concepts in Move?
-  - How does Concepts work on Sui?
+  - What are the core concepts in Move?
+  - How are Move packages structured?
+  - What is Move.toml?
 answer: >-
-  Core Sui and Move concepts: packages, accounts, transactions, addresses, and
-  how data is stored on the Sui blockchain.
+  Core Move concepts include packages (units of code organization), the
+  Move.toml manifest, named addresses, and the account/address model on Sui.
 goal:
-  description: Reader understands the scope and topics covered in the Concepts section
+  description: 'Reader understands packages, manifests, addresses, and accounts in Move'
   requires:
     - has_frontmatter:
         - title

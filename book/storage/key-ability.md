@@ -13,12 +13,15 @@ keywords:
 questions:
   - 'What is Ability: Key in Move?'
   - 'How do I use Ability: Key in Move?'
-  - 'How does Ability: Key work on Sui?'
+  - What is Object Definition in Move?
+  - What is Relation to copy and drop in Move?
 answer: >-
   The key ability in Move makes a struct an object that can be stored, owned,
   and transferred on the Sui blockchain.
 goal:
-  description: 'Reader understands and can apply Ability: Key in Move programs'
+  description: >-
+    Reader understands the key ability in Move makes a struct an object that can
+    be stored, owned, and transferred on the Sui blockchain
   requires:
     - has_frontmatter:
         - title

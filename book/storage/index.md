@@ -11,14 +11,14 @@ keywords:
   - objects
   - object model
 questions:
-  - What is Using Objects in Move?
-  - How do I use Using Objects in Move?
-  - How does Using Objects work on Sui?
+  - How does storage work on Sui?
+  - How do I store objects onchain?
 answer: >-
-  Learn how to use Sui objects in Move: storage abilities, transfer functions,
-  ownership rules, and object lifecycle management.
+  Sui storage covers how objects with key and store abilities are persisted
+  onchain, including transfer functions, storage operations, and the UID/ID
+  system.
 goal:
-  description: Reader understands the scope and topics covered in the Using Objects section
+  description: 'Reader understands how objects are stored, transferred, and managed on Sui'
   requires:
     - has_frontmatter:
         - title

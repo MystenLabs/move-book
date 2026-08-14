@@ -10,14 +10,17 @@ keywords:
   - enumerations
   - reference
 questions:
-  - What is Enumerations  Reference in Move?
-  - How do I use Enumerations  Reference in Move?
-  - How does Enumerations  Reference work on Sui?
+  - How does Enumerations work in Move?
+  - What is the syntax for Enumerations in Move?
+  - What is Defining Enums in Move?
+  - What is Visibility in Move?
 answer: >-
   Move enumerations reference: define variant types, pattern matching with
   match, abilities, and enum-specific operations.
 goal:
-  description: Reader understands and can apply Enumerations | Reference in Move programs
+  description: >-
+    Reader understands move enumerations reference: define variant types,
+    pattern matching with match, abilities, and enum-specific operations
   requires:
     - has_frontmatter:
         - title

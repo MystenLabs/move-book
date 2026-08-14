@@ -13,13 +13,17 @@ keywords:
 questions:
   - What is Package Upgrades in Move?
   - How do I use Package Upgrades in Move?
-  - How does Package Upgrades work on Sui?
+  - What is An Upgrade Is a New Package in Move?
+  - What Can Change?
 answer: >-
   Package upgrades on Sui: how new versions are published, what the UpgradeCap
   is, how to make a package immutable, and how to version and migrate shared
   state.
 goal:
-  description: Reader understands and can apply Package Upgrades in Move programs
+  description: >-
+    Reader understands package upgrades on Sui: how new versions are published,
+    what the UpgradeCap is, how to make a package immutable, and how to version
+    and migrate shared state
   requires:
     - has_frontmatter:
         - title

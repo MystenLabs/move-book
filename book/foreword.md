@@ -9,14 +9,17 @@ keywords:
   - Move tutorial
   - foreword
 questions:
-  - What is Foreword in Move?
-  - How do I use Foreword in Move?
-  - How does Foreword work on Sui?
+  - What is the design philosophy of Move?
+  - Why was Move created?
+  - What makes Move different from other smart contract languages?
 answer: >-
-  The design philosophy behind Move: security by default, expressiveness, and
-  intuitive resource management for smart contracts.
+  Move is a smart contract language designed around security by default,
+  expressiveness for digital assets, and intuitive resource management, making
+  it safe for programming with digital assets.
 goal:
-  description: Reader understands and can apply Foreword in Move programs
+  description: >-
+    Reader understands the design philosophy behind Move: security,
+    expressiveness, and intuitive resource management
   requires:
     - has_frontmatter:
         - title

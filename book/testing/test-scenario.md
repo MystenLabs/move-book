@@ -13,12 +13,15 @@ keywords:
 questions:
   - What is Test Scenario in Move?
   - How do I use Test Scenario in Move?
-  - How does Test Scenario work on Sui?
+  - What is Starting and Ending a Scenario in Move?
+  - What is Transaction Simulation in Move?
 answer: >-
   Test Scenario in Sui Move: simulate multi-transaction flows, test object
   transfers, and verify shared object behavior in tests.
 goal:
-  description: Reader understands and can apply Test Scenario in Move programs
+  description: >-
+    Reader can test Scenario in Sui Move: simulate multi-transaction flows, test
+    object transfers, and verify shared object behavior in tests
   requires:
     - has_frontmatter:
         - title

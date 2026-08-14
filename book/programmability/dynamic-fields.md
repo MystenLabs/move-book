@@ -13,12 +13,15 @@ keywords:
 questions:
   - What is Dynamic Fields in Move?
   - How do I use Dynamic Fields in Move?
-  - How does Dynamic Fields work on Sui?
+  - What is Definition in Move?
+  - What is Usage in Move?
 answer: >-
   Dynamic fields in Sui: attach heterogeneous key-value data to objects at
   runtime, bypassing object size limits.
 goal:
-  description: Reader understands and can apply Dynamic Fields in Move programs
+  description: >-
+    Reader understands dynamic fields in Sui: attach heterogeneous key-value
+    data to objects at runtime, bypassing object size limits
   requires:
     - has_frontmatter:
         - title

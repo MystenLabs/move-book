@@ -12,12 +12,15 @@ keywords:
 questions:
   - What is Package Manifest in Move?
   - How do I use Package Manifest in Move?
-  - How does Package Manifest work on Sui?
+  - What is Sections in Move?
+  - What is TOML Styles in Move?
 answer: >-
   The Move.toml package manifest: package metadata, dependencies, named
   addresses, and dependency overrides explained.
 goal:
-  description: Reader understands and can apply Package Manifest in Move programs
+  description: >-
+    Reader understands the Move.toml package manifest: package metadata,
+    dependencies, named addresses, and dependency overrides explained
   requires:
     - has_frontmatter:
         - title

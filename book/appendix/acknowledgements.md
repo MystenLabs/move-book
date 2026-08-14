@@ -12,14 +12,14 @@ keywords:
 questions:
   - 'What is Appendix F: Acknowledgements in Move?'
   - 'How do I use Appendix F: Acknowledgements in Move?'
-  - 'How does Appendix F: Acknowledgements work on Sui?'
+  - What is The Move Community in Move?
 answer: >-
   Acknowledgements for The Move Book: credits to The Rust Book, contributors,
   and the Move community.
 goal:
   description: >-
-    Reader understands and can apply Appendix F: Acknowledgements in Move
-    programs
+    Reader understands acknowledgements for The Move Book: credits to The Rust
+    Book, contributors, and the Move community
   requires:
     - has_frontmatter:
         - title

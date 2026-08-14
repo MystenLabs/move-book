@@ -12,12 +12,15 @@ keywords:
 questions:
   - What is Onchain Randomness in Move?
   - How do I use Onchain Randomness in Move?
-  - How does Onchain Randomness work on Sui?
+  - What is The Random Object in Move?
+  - What is Using Randomness in Move?
 answer: >-
   Onchain randomness in Sui: generate secure random values in Move smart
   contracts using the Random shared object.
 goal:
-  description: Reader understands and can apply Onchain Randomness in Move programs
+  description: >-
+    Reader understands onchain randomness in Sui: generate secure random values
+    in Move smart contracts using the Random shared object
   requires:
     - has_frontmatter:
         - title

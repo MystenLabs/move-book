@@ -10,14 +10,14 @@ keywords:
   - hello
   - world
 questions:
-  - 'What is Hello, World! in Move?'
-  - 'How do I use Hello, World! in Move?'
-  - 'How does Hello, World! work on Sui?'
+  - How do I create my first Move project?
+  - How do I write Hello World in Move?
+  - How do I compile and test Move code?
 answer: >-
-  Create your first Move package on Sui: learn the project structure, write a
-  module, compile code, and run tests with the Move CLI.
+  Create a Move package with sui move new, write a module with a public
+  function, compile with sui move build, and test with sui move test.
 goal:
-  description: 'Reader understands and can apply Hello, World! in Move programs'
+  description: 'Reader can create a Move package, write a module, compile it, and run tests'
   requires:
     - has_frontmatter:
         - title

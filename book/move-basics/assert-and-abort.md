@@ -13,12 +13,15 @@ keywords:
 questions:
   - What is Aborting Execution in Move?
   - How do I use Aborting Execution in Move?
-  - How does Aborting Execution work on Sui?
+  - What is Abort in Move?
+  - What is Omitting the Abort Code in Move?
 answer: >-
   Error handling in Move: use abort to halt execution with error codes and
   assert! to enforce conditions in smart contracts.
 goal:
-  description: Reader understands and can apply Aborting Execution in Move programs
+  description: >-
+    Reader understands error handling in Move: use abort to halt execution with
+    error codes and assert! to enforce conditions in smart contracts
   requires:
     - has_frontmatter:
         - title

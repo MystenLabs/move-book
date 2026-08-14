@@ -11,12 +11,15 @@ keywords:
 questions:
   - What is Generics in Move?
   - How do I use Generics in Move?
-  - How does Generics work on Sui?
+  - What is The Problem Generics Solve in Move?
+  - What is Generic Syntax in Move?
 answer: >-
   Generics in Move: write reusable functions and types that work with any type
   parameter, with phantom types and constraints.
 goal:
-  description: Reader understands and can apply Generics in Move programs
+  description: >-
+    Reader understands generics in Move: write reusable functions and types that
+    work with any type parameter, with phantom types and constraints
   requires:
     - has_frontmatter:
         - title

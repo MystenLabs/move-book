@@ -14,13 +14,17 @@ keywords:
 questions:
   - What is Primitive Types in Move?
   - How do I use Primitive Types in Move?
-  - How does Primitive Types work on Sui?
+  - What is Variables and Assignment in Move?
+  - What is Booleans in Move?
 answer: >-
   Move primitive types: booleans and unsigned integers from u8 to u256 -
   literals and type inference, arithmetic and comparison, casting with as, and
   overflow behavior.
 goal:
-  description: Reader understands and can apply Primitive Types in Move programs
+  description: >-
+    Reader understands move primitive types: booleans and unsigned integers from
+    u8 to u256 - literals and type inference, arithmetic and comparison, casting
+    with as, and overflow behavior
   requires:
     - has_frontmatter:
         - title

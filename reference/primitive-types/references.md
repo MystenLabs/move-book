@@ -10,14 +10,17 @@ keywords:
   - references
   - reference
 questions:
-  - What is References  Reference in Move?
-  - How do I use References  Reference in Move?
-  - How does References  Reference work on Sui?
+  - How does References work in Move?
+  - What is the syntax for References in Move?
+  - What is Reference Operators in Move?
+  - What is Reading and Writing Through References in Move?
 answer: >-
   Move references reference: immutable and mutable borrows, reading, writing,
   ownership rules, and the borrow checker.
 goal:
-  description: Reader understands and can apply References | Reference in Move programs
+  description: >-
+    Reader understands move references reference: immutable and mutable borrows,
+    reading, writing, ownership rules, and the borrow checker
   requires:
     - has_frontmatter:
         - title

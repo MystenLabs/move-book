@@ -10,14 +10,17 @@ keywords:
   - bool
   - reference
 questions:
-  - What is Bool  Reference in Move?
-  - How do I use Bool  Reference in Move?
-  - How does Bool  Reference work on Sui?
+  - How does Bool work in Move?
+  - What is the syntax for Bool in Move?
+  - What is Literals in Move?
+  - What is Operations in Move?
 answer: >-
   Move bool type reference: true and false literals, logical operators (and, or,
   not), and boolean expression semantics.
 goal:
-  description: Reader understands and can apply Bool | Reference in Move programs
+  description: >-
+    Reader understands move bool type reference: true and false literals,
+    logical operators (and, or, not), and boolean expression semantics
   requires:
     - has_frontmatter:
         - title

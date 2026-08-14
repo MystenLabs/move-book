@@ -11,12 +11,15 @@ keywords:
 questions:
   - What is Ownership in Move?
   - How do I use Ownership in Move?
-  - How does Ownership work on Sui?
+  - What is Account Owner (or Single Owner) in Move?
+  - What is Shared State in Move?
 answer: >-
   Object ownership types in Sui: single owner, shared state, immutable objects,
   and object-owned objects explained with examples.
 goal:
-  description: Reader understands and can apply Ownership in Move programs
+  description: >-
+    Reader understands object ownership types in Sui: single owner, shared
+    state, immutable objects, and object-owned objects explained with examples
   requires:
     - has_frontmatter:
         - title
