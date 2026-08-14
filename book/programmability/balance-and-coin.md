@@ -1,5 +1,36 @@
 ---
-description: "Balance, Coin, and CoinRegistry in Sui Move: create fungible tokens with the Currency standard, manage supply with TreasuryCap, and store metadata onchain."
+description: >-
+  Balance, Coin, and CoinRegistry in Sui Move: create fungible tokens with the
+  Currency standard, manage supply with TreasuryCap, and store metadata onchain.
+title: Balance and Coin
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - balance
+  - coin
+  - tokens
+questions:
+  - What is Balance and Coin in Move?
+  - How do I use Balance and Coin in Move?
+  - How does Balance and Coin work on Sui?
+answer: >-
+  Balance, Coin, and CoinRegistry in Sui Move: create fungible tokens with the
+  Currency standard, manage supply with TreasuryCap, and store metadata onchain.
+goal:
+  description: Reader understands and can apply Balance and Coin in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Balance and Coin

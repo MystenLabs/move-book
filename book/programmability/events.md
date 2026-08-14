@@ -1,5 +1,34 @@
 ---
-description: "Emit and test events in Sui Move: notify offchain listeners about onchain activity in your smart contracts."
+description: >-
+  Emit and test events in Sui Move: notify offchain listeners about onchain
+  activity in your smart contracts.
+title: Events
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - events
+questions:
+  - What is Events in Move?
+  - How do I use Events in Move?
+  - How does Events work on Sui?
+answer: >-
+  Emit and test events in Sui Move: notify offchain listeners about onchain
+  activity in your smart contracts.
+goal:
+  description: Reader understands and can apply Events in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Events

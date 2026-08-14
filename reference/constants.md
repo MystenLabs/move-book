@@ -1,6 +1,35 @@
 ---
-title: 'Constants | Reference'
-description: "Move constants reference: define compile-time values, supported types, naming rules, and usage in modules."
+title: Constants | Reference
+description: >-
+  Move constants reference: define compile-time values, supported types, naming
+  rules, and usage in modules.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - constants
+  - reference
+questions:
+  - What is Constants  Reference in Move?
+  - How do I use Constants  Reference in Move?
+  - How does Constants  Reference work on Sui?
+answer: >-
+  Move constants reference: define compile-time values, supported types, naming
+  rules, and usage in modules.
+goal:
+  description: Reader understands and can apply Constants | Reference in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Constants

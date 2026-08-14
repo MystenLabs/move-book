@@ -1,5 +1,35 @@
 ---
-description: "Introduction to Move abilities: copy, drop, key, and store — the system that controls how types behave in smart contracts."
+description: >-
+  Introduction to Move abilities: copy, drop, key, and store — the system that
+  controls how types behave in smart contracts.
+title: 'Abilities: Introduction'
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - abilities
+  - introduction
+questions:
+  - 'What is Abilities: Introduction in Move?'
+  - 'How do I use Abilities: Introduction in Move?'
+  - 'How does Abilities: Introduction work on Sui?'
+answer: >-
+  Introduction to Move abilities: copy, drop, key, and store — the system that
+  controls how types behave in smart contracts.
+goal:
+  description: 'Reader understands and can apply Abilities: Introduction in Move programs'
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Abilities: Introduction

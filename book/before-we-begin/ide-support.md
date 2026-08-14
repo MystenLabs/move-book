@@ -1,5 +1,36 @@
 ---
-description: "Configure VSCode or IntelliJ IDEA for Move development with syntax highlighting, error checking, and code formatting extensions."
+description: >-
+  Configure VSCode or IntelliJ IDEA for Move development with syntax
+  highlighting, error checking, and code formatting extensions.
+title: Set Up Your IDE
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - set
+  - your
+  - ide
+questions:
+  - What is Set Up Your IDE in Move?
+  - How do I use Set Up Your IDE in Move?
+  - How does Set Up Your IDE work on Sui?
+answer: >-
+  Configure VSCode or IntelliJ IDEA for Move development with syntax
+  highlighting, error checking, and code formatting extensions.
+goal:
+  description: Reader understands and can apply Set Up Your IDE in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Set Up Your IDE

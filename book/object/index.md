@@ -1,5 +1,36 @@
 ---
-description: "The Sui Object Model explained: theory and concepts behind digital asset representation, ownership, and storage on the Sui blockchain."
+description: >-
+  The Sui Object Model explained: theory and concepts behind digital asset
+  representation, ownership, and storage on the Sui blockchain.
+title: Object Model
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - object
+  - model
+  - object model
+questions:
+  - What is Object Model in Move?
+  - How do I use Object Model in Move?
+  - How does Object Model work on Sui?
+answer: >-
+  The Sui Object Model explained: theory and concepts behind digital asset
+  representation, ownership, and storage on the Sui blockchain.
+goal:
+  description: Reader understands the scope and topics covered in the Object Model section
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 30
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Object Model

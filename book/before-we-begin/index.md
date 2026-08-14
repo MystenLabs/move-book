@@ -1,5 +1,37 @@
 ---
-description: "Set up your Move development environment: install Sui, configure your IDE, and learn about the Move 2024 edition."
+description: >-
+  Set up your Move development environment: install Sui, configure your IDE, and
+  learn about the Move 2024 edition.
+title: Before We Begin
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - before
+  - begin
+questions:
+  - What is Before We Begin in Move?
+  - How do I use Before We Begin in Move?
+  - How does Before We Begin work on Sui?
+answer: >-
+  Set up your Move development environment: install Sui, configure your IDE, and
+  learn about the Move 2024 edition.
+goal:
+  description: >-
+    Reader understands the scope and topics covered in the Before We Begin
+    section
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 30
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Before We Begin

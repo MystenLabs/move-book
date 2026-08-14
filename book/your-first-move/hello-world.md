@@ -1,5 +1,35 @@
 ---
-description: "Create your first Move package on Sui: learn the project structure, write a module, compile code, and run tests with the Move CLI."
+description: >-
+  Create your first Move package on Sui: learn the project structure, write a
+  module, compile code, and run tests with the Move CLI.
+title: 'Hello, World!'
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - hello
+  - world
+questions:
+  - 'What is Hello, World! in Move?'
+  - 'How do I use Hello, World! in Move?'
+  - 'How does Hello, World! work on Sui?'
+answer: >-
+  Create your first Move package on Sui: learn the project structure, write a
+  module, compile code, and run tests with the Move CLI.
+goal:
+  description: 'Reader understands and can apply Hello, World! in Move programs'
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Hello, World!

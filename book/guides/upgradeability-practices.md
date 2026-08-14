@@ -1,5 +1,37 @@
 ---
-description: "Best practices for upgrading Move packages on Sui: maintain compatibility, plan for versioning, and avoid breaking changes."
+description: >-
+  Best practices for upgrading Move packages on Sui: maintain compatibility,
+  plan for versioning, and avoid breaking changes.
+title: Upgradeability Practices
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - upgradeability
+  - practices
+  - abilities
+  - upgrades
+questions:
+  - What is Upgradeability Practices in Move?
+  - How do I use Upgradeability Practices in Move?
+  - How does Upgradeability Practices work on Sui?
+answer: >-
+  Best practices for upgrading Move packages on Sui: maintain compatibility,
+  plan for versioning, and avoid breaking changes.
+goal:
+  description: Reader understands and can apply Upgradeability Practices in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Upgradeability Practices

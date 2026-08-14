@@ -1,5 +1,37 @@
 ---
-description: "Define custom types with struct in Move: pack, unpack, access fields, and control field visibility with getters and setters in Sui smart contracts."
+description: >-
+  Define custom types with struct in Move: pack, unpack, access fields, and
+  control field visibility with getters and setters in Sui smart contracts.
+title: Custom Types with Struct
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - custom
+  - types
+  - struct
+  - type system
+questions:
+  - What is Custom Types with Struct in Move?
+  - How do I use Custom Types with Struct in Move?
+  - How does Custom Types with Struct work on Sui?
+answer: >-
+  Define custom types with struct in Move: pack, unpack, access fields, and
+  control field visibility with getters and setters in Sui smart contracts.
+goal:
+  description: Reader understands and can apply Custom Types with Struct in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Custom Types with Struct

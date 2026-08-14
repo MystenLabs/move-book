@@ -1,5 +1,35 @@
 ---
-description: "The Move.toml package manifest: package metadata, dependencies, named addresses, and dependency overrides explained."
+description: >-
+  The Move.toml package manifest: package metadata, dependencies, named
+  addresses, and dependency overrides explained.
+title: Package Manifest
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - package
+  - manifest
+questions:
+  - What is Package Manifest in Move?
+  - How do I use Package Manifest in Move?
+  - How does Package Manifest work on Sui?
+answer: >-
+  The Move.toml package manifest: package metadata, dependencies, named
+  addresses, and dependency overrides explained.
+goal:
+  description: Reader understands and can apply Package Manifest in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Package Manifest

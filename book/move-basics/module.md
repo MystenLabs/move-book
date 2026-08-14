@@ -1,7 +1,35 @@
 ---
-description:
-  'Modules are the building blocks of Move: learn how to declare, organize, and compile modules in
-  your Sui smart contracts.'
+description: >-
+  Modules are the building blocks of Move: learn how to declare, organize, and
+  compile modules in your Sui smart contracts.
+title: Module
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - module
+  - modules
+questions:
+  - What is Module in Move?
+  - How do I use Module in Move?
+  - How does Module work on Sui?
+answer: >-
+  Modules are the building blocks of Move: learn how to declare, organize, and
+  compile modules in your Sui smart contracts.
+goal:
+  description: Reader understands and can apply Module in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Module

@@ -1,6 +1,35 @@
 ---
-title: 'Friends | Reference'
-description: "Move friends reference (deprecated): the legacy friend syntax replaced by public(package) visibility in Move 2024."
+title: Friends | Reference
+description: >-
+  Move friends reference (deprecated): the legacy friend syntax replaced by
+  public(package) visibility in Move 2024.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - friends
+  - reference
+questions:
+  - What is Friends  Reference in Move?
+  - How do I use Friends  Reference in Move?
+  - How does Friends  Reference work on Sui?
+answer: >-
+  Move friends reference (deprecated): the legacy friend syntax replaced by
+  public(package) visibility in Move 2024.
+goal:
+  description: Reader understands and can apply Friends | Reference in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # DEPRECATED: Friends

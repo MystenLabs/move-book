@@ -1,6 +1,39 @@
 ---
-title: 'Local Variables and Scope | Reference'
-description: "Move local variables and scope: let bindings, mutability, type annotations, shadowing, and move semantics reference."
+title: Local Variables and Scope | Reference
+description: >-
+  Move local variables and scope: let bindings, mutability, type annotations,
+  shadowing, and move semantics reference.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - local
+  - variables
+  - scope
+  - reference
+questions:
+  - What is Local Variables and Scope  Reference in Move?
+  - How do I use Local Variables and Scope  Reference in Move?
+  - How does Local Variables and Scope  Reference work on Sui?
+answer: >-
+  Move local variables and scope: let bindings, mutability, type annotations,
+  shadowing, and move semantics reference.
+goal:
+  description: >-
+    Reader understands and can apply Local Variables and Scope | Reference in
+    Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Local Variables and Scope

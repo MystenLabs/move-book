@@ -1,5 +1,35 @@
 ---
-description: "Move testing basics: write tests with the #[test] attribute, use expected failures, and organize test-only code in your modules."
+description: >-
+  Move testing basics: write tests with the #[test] attribute, use expected
+  failures, and organize test-only code in your modules.
+title: Testing Basics
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - testing
+  - basics
+questions:
+  - What is Testing Basics in Move?
+  - How do I use Testing Basics in Move?
+  - How does Testing Basics work on Sui?
+answer: >-
+  Move testing basics: write tests with the #[test] attribute, use expected
+  failures, and organize test-only code in your modules.
+goal:
+  description: Reader understands and can apply Testing Basics in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Testing Basics

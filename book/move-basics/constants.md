@@ -1,5 +1,34 @@
 ---
-description: "Constants in Move: how to define immutable module-level values, naming conventions, and supported constant types."
+description: >-
+  Constants in Move: how to define immutable module-level values, naming
+  conventions, and supported constant types.
+title: Constants
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - constants
+questions:
+  - What is Constants in Move?
+  - How do I use Constants in Move?
+  - How does Constants work on Sui?
+answer: >-
+  Constants in Move: how to define immutable module-level values, naming
+  conventions, and supported constant types.
+goal:
+  description: Reader understands and can apply Constants in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Constants

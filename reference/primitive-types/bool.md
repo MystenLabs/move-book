@@ -1,6 +1,35 @@
 ---
-title: 'Bool | Reference'
-description: "Move bool type reference: true and false literals, logical operators (and, or, not), and boolean expression semantics."
+title: Bool | Reference
+description: >-
+  Move bool type reference: true and false literals, logical operators (and, or,
+  not), and boolean expression semantics.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - bool
+  - reference
+questions:
+  - What is Bool  Reference in Move?
+  - How do I use Bool  Reference in Move?
+  - How does Bool  Reference work on Sui?
+answer: >-
+  Move bool type reference: true and false literals, logical operators (and, or,
+  not), and boolean expression semantics.
+goal:
+  description: Reader understands and can apply Bool | Reference in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Bool

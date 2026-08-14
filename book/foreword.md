@@ -1,5 +1,34 @@
 ---
-description: "The design philosophy behind Move: security by default, expressiveness, and intuitive resource management for smart contracts."
+description: >-
+  The design philosophy behind Move: security by default, expressiveness, and
+  intuitive resource management for smart contracts.
+title: Foreword
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - foreword
+questions:
+  - What is Foreword in Move?
+  - How do I use Foreword in Move?
+  - How does Foreword work on Sui?
+answer: >-
+  The design philosophy behind Move: security by default, expressiveness, and
+  intuitive resource management for smart contracts.
+goal:
+  description: Reader understands and can apply Foreword in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Foreword

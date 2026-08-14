@@ -1,6 +1,35 @@
 ---
-title: 'References | Reference'
-description: "Move references reference: immutable and mutable borrows, reading, writing, ownership rules, and the borrow checker."
+title: References | Reference
+description: >-
+  Move references reference: immutable and mutable borrows, reading, writing,
+  ownership rules, and the borrow checker.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - references
+  - reference
+questions:
+  - What is References  Reference in Move?
+  - How do I use References  Reference in Move?
+  - How does References  Reference work on Sui?
+answer: >-
+  Move references reference: immutable and mutable borrows, reading, writing,
+  ownership rules, and the borrow checker.
+goal:
+  description: Reader understands and can apply References | Reference in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # References

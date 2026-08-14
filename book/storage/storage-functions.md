@@ -1,5 +1,35 @@
 ---
-description: "Sui storage functions: transfer, share, freeze, and receive objects using the sui::transfer module in Move smart contracts."
+description: >-
+  Sui storage functions: transfer, share, freeze, and receive objects using the
+  sui::transfer module in Move smart contracts.
+title: Storage Functions
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - storage
+  - functions
+questions:
+  - What is Storage Functions in Move?
+  - How do I use Storage Functions in Move?
+  - How does Storage Functions work on Sui?
+answer: >-
+  Sui storage functions: transfer, share, freeze, and receive objects using the
+  sui::transfer module in Move smart contracts.
+goal:
+  description: Reader understands and can apply Storage Functions in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Storage Functions

@@ -1,5 +1,36 @@
 ---
-description: "Move code quality checklist: review your Sui smart contracts against current best practices for safety, style, and maintainability."
+description: >-
+  Move code quality checklist: review your Sui smart contracts against current
+  best practices for safety, style, and maintainability.
+title: Code Quality Checklist
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - code
+  - quality
+  - checklist
+questions:
+  - What is Code Quality Checklist in Move?
+  - How do I use Code Quality Checklist in Move?
+  - How does Code Quality Checklist work on Sui?
+answer: >-
+  Move code quality checklist: review your Sui smart contracts against current
+  best practices for safety, style, and maintainability.
+goal:
+  description: Reader understands and can apply Code Quality Checklist in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Code Quality Checklist

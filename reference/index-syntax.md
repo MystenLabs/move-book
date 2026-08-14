@@ -1,6 +1,36 @@
 ---
-title: 'Index Syntax | Reference'
-description: "Move index syntax reference: use bracket notation for custom types with #[syntax(index)] attribute for intuitive access patterns."
+title: Index Syntax | Reference
+description: >-
+  Move index syntax reference: use bracket notation for custom types with
+  #[syntax(index)] attribute for intuitive access patterns.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - index
+  - syntax
+  - reference
+questions:
+  - What is Index Syntax  Reference in Move?
+  - How do I use Index Syntax  Reference in Move?
+  - How does Index Syntax  Reference work on Sui?
+answer: >-
+  Move index syntax reference: use bracket notation for custom types with
+  #[syntax(index)] attribute for intuitive access patterns.
+goal:
+  description: Reader understands and can apply Index Syntax | Reference in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Index Syntax

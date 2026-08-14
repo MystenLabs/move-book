@@ -1,5 +1,35 @@
 ---
-description: "Build and publish a todo list app on Sui: create an account, deploy a Move package, and send transactions via the CLI."
+description: >-
+  Build and publish a todo list app on Sui: create an account, deploy a Move
+  package, and send transactions via the CLI.
+title: 'Hello, Sui!'
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - hello
+  - sui
+questions:
+  - 'What is Hello, Sui! in Move?'
+  - 'How do I use Hello, Sui! in Move?'
+  - 'How does Hello, Sui! work on Sui?'
+answer: >-
+  Build and publish a todo list app on Sui: create an account, deploy a Move
+  package, and send transactions via the CLI.
+goal:
+  description: 'Reader understands and can apply Hello, Sui! in Move programs'
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Hello, Sui!

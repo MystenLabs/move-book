@@ -1,6 +1,35 @@
 ---
-title: 'Loops | Reference'
-description: "Move loop constructs reference: while loops, loop expressions, for loops, break, continue, and iteration patterns."
+title: Loops | Reference
+description: >-
+  Move loop constructs reference: while loops, loop expressions, for loops,
+  break, continue, and iteration patterns.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - loops
+  - reference
+questions:
+  - What is Loops  Reference in Move?
+  - How do I use Loops  Reference in Move?
+  - How does Loops  Reference work on Sui?
+answer: >-
+  Move loop constructs reference: while loops, loop expressions, for loops,
+  break, continue, and iteration patterns.
+goal:
+  description: Reader understands and can apply Loops | Reference in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Loop Constructs in Move

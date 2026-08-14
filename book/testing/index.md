@@ -1,6 +1,38 @@
 ---
 title: Testing Move Programs
-description: "Testing Move smart contracts on Sui: unit tests, test scenarios, linting, coverage reports, gas profiling, and best practices."
+description: >-
+  Testing Move smart contracts on Sui: unit tests, test scenarios, linting,
+  coverage reports, gas profiling, and best practices.
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - testing
+  - move
+  - programs
+questions:
+  - What is Testing Move Programs in Move?
+  - How do I use Testing Move Programs in Move?
+  - How does Testing Move Programs work on Sui?
+answer: >-
+  Testing Move smart contracts on Sui: unit tests, test scenarios, linting,
+  coverage reports, gas profiling, and best practices.
+goal:
+  description: >-
+    Reader understands the scope and topics covered in the Testing Move Programs
+    section
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 30
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Testing

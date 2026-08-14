@@ -1,5 +1,35 @@
 ---
-description: "Glossary of Move and Sui terminology: fast path, parallel execution, internal types, and other key concepts defined."
+description: >-
+  Glossary of Move and Sui terminology: fast path, parallel execution, internal
+  types, and other key concepts defined.
+title: 'Appendix A: Glossary'
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - appendix
+  - glossary
+questions:
+  - 'What is Appendix A: Glossary in Move?'
+  - 'How do I use Appendix A: Glossary in Move?'
+  - 'How does Appendix A: Glossary work on Sui?'
+answer: >-
+  Glossary of Move and Sui terminology: fast path, parallel execution, internal
+  types, and other key concepts defined.
+goal:
+  description: 'Reader understands and can apply Appendix A: Glossary in Move programs'
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Appendix A: Glossary

@@ -1,5 +1,34 @@
 ---
-description: "Learn how Sui transactions work: structure, commands, gas payments, and how they change blockchain state through Move function calls."
+description: >-
+  Learn how Sui transactions work: structure, commands, gas payments, and how
+  they change blockchain state through Move function calls.
+title: Transaction
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - transaction
+questions:
+  - What is Transaction in Move?
+  - How do I use Transaction in Move?
+  - How does Transaction work on Sui?
+answer: >-
+  Learn how Sui transactions work: structure, commands, gas payments, and how
+  they change blockchain state through Move function calls.
+goal:
+  description: Reader understands and can apply Transaction in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Transaction

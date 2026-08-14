@@ -1,5 +1,37 @@
 ---
-description: "The official Move language reference: comprehensive documentation of syntax, types, abilities, functions, and all language features."
+description: >-
+  The official Move language reference: comprehensive documentation of syntax,
+  types, abilities, functions, and all language features.
+title: The Move Reference
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - move
+  - reference
+questions:
+  - What is The Move Reference in Move?
+  - How do I use The Move Reference in Move?
+  - How does The Move Reference work on Sui?
+answer: >-
+  The official Move language reference: comprehensive documentation of syntax,
+  types, abilities, functions, and all language features.
+goal:
+  description: >-
+    Reader understands the scope and topics covered in the The Move Reference
+    section
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 30
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # The Move Reference

@@ -1,5 +1,36 @@
 ---
-description: "Learn how to use Sui objects in Move: storage abilities, transfer functions, ownership rules, and object lifecycle management."
+description: >-
+  Learn how to use Sui objects in Move: storage abilities, transfer functions,
+  ownership rules, and object lifecycle management.
+title: Using Objects
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - using
+  - objects
+  - object model
+questions:
+  - What is Using Objects in Move?
+  - How do I use Using Objects in Move?
+  - How does Using Objects work on Sui?
+answer: >-
+  Learn how to use Sui objects in Move: storage abilities, transfer functions,
+  ownership rules, and object lifecycle management.
+goal:
+  description: Reader understands the scope and topics covered in the Using Objects section
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 30
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Using Objects

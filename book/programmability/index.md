@@ -1,5 +1,38 @@
 ---
-description: "Advanced Sui programmability: patterns, events, dynamic fields, capabilities, BCS serialization, and design patterns in Move."
+description: >-
+  Advanced Sui programmability: patterns, events, dynamic fields, capabilities,
+  BCS serialization, and design patterns in Move.
+title: Advanced Programmability
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - advanced
+  - programmability
+  - abilities
+questions:
+  - What is Advanced Programmability in Move?
+  - How do I use Advanced Programmability in Move?
+  - How does Advanced Programmability work on Sui?
+answer: >-
+  Advanced Sui programmability: patterns, events, dynamic fields, capabilities,
+  BCS serialization, and design patterns in Move.
+goal:
+  description: >-
+    Reader understands the scope and topics covered in the Advanced
+    Programmability section
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 30
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Advanced Programmability

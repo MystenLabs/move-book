@@ -1,6 +1,39 @@
 ---
-title: 'Pattern Matching | Reference'
-description: "Move pattern matching reference: match expressions, destructuring, guards, wildcards, and exhaustive matching rules."
+title: Pattern Matching | Reference
+description: >-
+  Move pattern matching reference: match expressions, destructuring, guards,
+  wildcards, and exhaustive matching rules.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - pattern
+  - matching
+  - reference
+  - design patterns
+questions:
+  - What is Pattern Matching  Reference in Move?
+  - How do I use Pattern Matching  Reference in Move?
+  - How does Pattern Matching  Reference work on Sui?
+answer: >-
+  Move pattern matching reference: match expressions, destructuring, guards,
+  wildcards, and exhaustive matching rules.
+goal:
+  description: >-
+    Reader understands and can apply Pattern Matching | Reference in Move
+    programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Pattern Matching

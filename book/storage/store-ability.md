@@ -1,5 +1,37 @@
 ---
-description: "The store ability in Move allows types to be used as fields in objects and enables public transfer and storage operations on Sui."
+description: >-
+  The store ability in Move allows types to be used as fields in objects and
+  enables public transfer and storage operations on Sui.
+title: 'Ability: Store'
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - ability
+  - store
+  - abilities
+  - storage
+questions:
+  - 'What is Ability: Store in Move?'
+  - 'How do I use Ability: Store in Move?'
+  - 'How does Ability: Store work on Sui?'
+answer: >-
+  The store ability in Move allows types to be used as fields in objects and
+  enables public transfer and storage operations on Sui.
+goal:
+  description: 'Reader understands and can apply Ability: Store in Move programs'
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Ability: Store

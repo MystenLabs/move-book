@@ -1,5 +1,36 @@
 ---
-description: "The address type in Move: literals, named addresses, conversion functions, and how addresses identify accounts and packages on Sui."
+description: >-
+  The address type in Move: literals, named addresses, conversion functions, and
+  how addresses identify accounts and packages on Sui.
+title: Address Type
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - address
+  - type
+  - type system
+questions:
+  - What is Address Type in Move?
+  - How do I use Address Type in Move?
+  - How does Address Type work on Sui?
+answer: >-
+  The address type in Move: literals, named addresses, conversion functions, and
+  how addresses identify accounts and packages on Sui.
+goal:
+  description: Reader understands and can apply Address Type in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Address Type

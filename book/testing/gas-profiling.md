@@ -1,5 +1,35 @@
 ---
-description: "Profile gas usage in Move tests: measure computation costs, compare implementations, and analyze traces with sui analyze-trace."
+description: >-
+  Profile gas usage in Move tests: measure computation costs, compare
+  implementations, and analyze traces with sui analyze-trace.
+title: Gas Profiling
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - gas
+  - profiling
+questions:
+  - What is Gas Profiling in Move?
+  - How do I use Gas Profiling in Move?
+  - How does Gas Profiling work on Sui?
+answer: >-
+  Profile gas usage in Move tests: measure computation costs, compare
+  implementations, and analyze traces with sui analyze-trace.
+goal:
+  description: Reader understands and can apply Gas Profiling in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Gas Profiling

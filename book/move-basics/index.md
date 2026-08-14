@@ -1,5 +1,35 @@
 ---
-description: "Learn Move language fundamentals: types, modules, functions, structs, abilities, generics, and control flow for Sui smart contracts."
+description: >-
+  Learn Move language fundamentals: types, modules, functions, structs,
+  abilities, generics, and control flow for Sui smart contracts.
+title: Move Basics
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - move
+  - basics
+questions:
+  - What is Move Basics in Move?
+  - How do I use Move Basics in Move?
+  - How does Move Basics work on Sui?
+answer: >-
+  Learn Move language fundamentals: types, modules, functions, structs,
+  abilities, generics, and control flow for Sui smart contracts.
+goal:
+  description: Reader understands the scope and topics covered in the Move Basics section
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 30
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Move Basics

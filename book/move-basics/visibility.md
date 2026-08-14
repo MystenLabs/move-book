@@ -1,7 +1,35 @@
 ---
-description:
-  'Visibility modifiers in Move: private, public, public(package), and entry functions for
-  controlling access to module members.'
+description: >-
+  Visibility modifiers in Move: private, public, public(package), and entry
+  functions for controlling access to module members.
+title: Visibility Modifiers
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - visibility
+  - modifiers
+questions:
+  - What is Visibility Modifiers in Move?
+  - How do I use Visibility Modifiers in Move?
+  - How does Visibility Modifiers work on Sui?
+answer: >-
+  Visibility modifiers in Move: private, public, public(package), and entry
+  functions for controlling access to module members.
+goal:
+  description: Reader understands and can apply Visibility Modifiers in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Visibility Modifiers

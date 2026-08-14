@@ -1,6 +1,36 @@
 ---
-title: 'Vector | Reference'
-description: "Move vector type reference: create, access, push, pop, destroy vectors, and use vector literals with full API documentation."
+title: Vector | Reference
+description: >-
+  Move vector type reference: create, access, push, pop, destroy vectors, and
+  use vector literals with full API documentation.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - vector
+  - reference
+  - collections
+questions:
+  - What is Vector  Reference in Move?
+  - How do I use Vector  Reference in Move?
+  - How does Vector  Reference work on Sui?
+answer: >-
+  Move vector type reference: create, access, push, pop, destroy vectors, and
+  use vector literals with full API documentation.
+goal:
+  description: Reader understands and can apply Vector | Reference in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Vector

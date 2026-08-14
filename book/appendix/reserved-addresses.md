@@ -1,5 +1,38 @@
 ---
-description: "Reserved addresses on Sui: standard library (0x1), Sui framework (0x2), system objects, and other fixed address assignments."
+description: >-
+  Reserved addresses on Sui: standard library (0x1), Sui framework (0x2), system
+  objects, and other fixed address assignments.
+title: 'Appendix B: Reserved Addresses'
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - appendix
+  - reserved
+  - addresses
+questions:
+  - 'What is Appendix B: Reserved Addresses in Move?'
+  - 'How do I use Appendix B: Reserved Addresses in Move?'
+  - 'How does Appendix B: Reserved Addresses work on Sui?'
+answer: >-
+  Reserved addresses on Sui: standard library (0x1), Sui framework (0x2), system
+  objects, and other fixed address assignments.
+goal:
+  description: >-
+    Reader understands and can apply Appendix B: Reserved Addresses in Move
+    programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Appendix B: Reserved Addresses

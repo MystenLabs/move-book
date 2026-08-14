@@ -1,5 +1,35 @@
 ---
-description: "The copy ability in Move enables value duplication. Learn how to add copy to custom types and understand its role in resource safety."
+description: >-
+  The copy ability in Move enables value duplication. Learn how to add copy to
+  custom types and understand its role in resource safety.
+title: 'Abilities: Copy'
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - abilities
+  - copy
+questions:
+  - 'What is Abilities: Copy in Move?'
+  - 'How do I use Abilities: Copy in Move?'
+  - 'How does Abilities: Copy work on Sui?'
+answer: >-
+  The copy ability in Move enables value duplication. Learn how to add copy to
+  custom types and understand its role in resource safety.
+goal:
+  description: 'Reader understands and can apply Abilities: Copy in Move programs'
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Abilities: Copy

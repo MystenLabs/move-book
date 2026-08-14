@@ -1,7 +1,37 @@
 ---
-description:
-  'Acknowledgements for The Move Book: credits to The Rust Book, contributors, and the Move
-  community.'
+description: >-
+  Acknowledgements for The Move Book: credits to The Rust Book, contributors,
+  and the Move community.
+title: 'Appendix F: Acknowledgements'
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - appendix
+  - acknowledgements
+questions:
+  - 'What is Appendix F: Acknowledgements in Move?'
+  - 'How do I use Appendix F: Acknowledgements in Move?'
+  - 'How does Appendix F: Acknowledgements work on Sui?'
+answer: >-
+  Acknowledgements for The Move Book: credits to The Rust Book, contributors,
+  and the Move community.
+goal:
+  description: >-
+    Reader understands and can apply Appendix F: Acknowledgements in Move
+    programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Appendix F: Acknowledgements

@@ -1,5 +1,36 @@
 ---
-description: "The key ability in Move makes a struct an object that can be stored, owned, and transferred on the Sui blockchain."
+description: >-
+  The key ability in Move makes a struct an object that can be stored, owned,
+  and transferred on the Sui blockchain.
+title: 'Ability: Key'
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - ability
+  - key
+  - abilities
+questions:
+  - 'What is Ability: Key in Move?'
+  - 'How do I use Ability: Key in Move?'
+  - 'How does Ability: Key work on Sui?'
+answer: >-
+  The key ability in Move makes a struct an object that can be stored, owned,
+  and transferred on the Sui blockchain.
+goal:
+  description: 'Reader understands and can apply Ability: Key in Move programs'
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Ability: Key

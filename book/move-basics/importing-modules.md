@@ -1,5 +1,35 @@
 ---
-description: "How to import modules in Move using the use keyword: single imports, grouped imports, member imports, and resolving naming conflicts."
+description: >-
+  How to import modules in Move using the use keyword: single imports, grouped
+  imports, member imports, and resolving naming conflicts.
+title: Importing Modules
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - importing
+  - modules
+questions:
+  - What is Importing Modules in Move?
+  - How do I use Importing Modules in Move?
+  - How does Importing Modules work on Sui?
+answer: >-
+  How to import modules in Move using the use keyword: single imports, grouped
+  imports, member imports, and resolving naming conflicts.
+goal:
+  description: Reader understands and can apply Importing Modules in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Importing Modules

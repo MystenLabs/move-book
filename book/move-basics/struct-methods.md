@@ -1,5 +1,35 @@
 ---
-description: "Struct methods in Move: use receiver syntax to call functions on struct instances with dot notation for cleaner code."
+description: >-
+  Struct methods in Move: use receiver syntax to call functions on struct
+  instances with dot notation for cleaner code.
+title: Struct Methods
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - struct
+  - methods
+questions:
+  - What is Struct Methods in Move?
+  - How do I use Struct Methods in Move?
+  - How does Struct Methods work on Sui?
+answer: >-
+  Struct methods in Move: use receiver syntax to call functions on struct
+  instances with dot notation for cleaner code.
+goal:
+  description: Reader understands and can apply Struct Methods in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Struct Methods

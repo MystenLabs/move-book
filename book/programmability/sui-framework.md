@@ -1,5 +1,35 @@
 ---
-description: "The Sui Framework: built-in modules for storage, coins, display, clock, events, and other Sui-specific features available to every package."
+description: >-
+  The Sui Framework: built-in modules for storage, coins, display, clock,
+  events, and other Sui-specific features available to every package.
+title: Sui Framework
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - sui
+  - framework
+questions:
+  - What is Sui Framework in Move?
+  - How do I use Sui Framework in Move?
+  - How does Sui Framework work on Sui?
+answer: >-
+  The Sui Framework: built-in modules for storage, coins, display, clock,
+  events, and other Sui-specific features available to every package.
+goal:
+  description: Reader understands and can apply Sui Framework in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Sui Framework

@@ -1,5 +1,34 @@
 ---
-description: "Learn about addresses in Sui — 32-byte unique identifiers used to locate packages, accounts, and objects on the blockchain."
+description: >-
+  Learn about addresses in Sui — 32-byte unique identifiers used to locate
+  packages, accounts, and objects on the blockchain.
+title: Address
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - address
+questions:
+  - What is Address in Move?
+  - How do I use Address in Move?
+  - How does Address work on Sui?
+answer: >-
+  Learn about addresses in Sui — 32-byte unique identifiers used to locate
+  packages, accounts, and objects on the blockchain.
+goal:
+  description: Reader understands and can apply Address in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Address

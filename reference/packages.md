@@ -1,6 +1,36 @@
 ---
-title: 'Packages | Reference'
-description: "Move packages reference: package layout, Move.toml manifest, dependencies, named addresses, and package compilation."
+title: Packages | Reference
+description: >-
+  Move packages reference: package layout, Move.toml manifest, dependencies,
+  named addresses, and package compilation.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - packages
+  - reference
+  - package
+questions:
+  - What is Packages  Reference in Move?
+  - How do I use Packages  Reference in Move?
+  - How does Packages  Reference work on Sui?
+answer: >-
+  Move packages reference: package layout, Move.toml manifest, dependencies,
+  named addresses, and package compilation.
+goal:
+  description: Reader understands and can apply Packages | Reference in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Packages

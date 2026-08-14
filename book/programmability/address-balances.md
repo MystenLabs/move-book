@@ -1,5 +1,35 @@
 ---
-description: "Address balances on Sui: hold fungible value directly at an address without a Coin object, send funds with send_funds, and withdraw them with a Withdrawal."
+description: >-
+  Address balances on Sui: hold fungible value directly at an address without a
+  Coin object, send funds with send_funds, and withdraw them with a Withdrawal.
+title: Address Balances
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - address
+  - balances
+questions:
+  - What is Address Balances in Move?
+  - How do I use Address Balances in Move?
+  - How does Address Balances work on Sui?
+answer: >-
+  Address balances on Sui: hold fungible value directly at an address without a
+  Coin object, send funds with send_funds, and withdraw them with a Withdrawal.
+goal:
+  description: Reader understands and can apply Address Balances in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Address Balances

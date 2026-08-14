@@ -1,5 +1,37 @@
 ---
-description: "One Time Witness (OTW) in Sui Move: a type guaranteed to be instantiated only once, used for Publisher and Coin creation."
+description: >-
+  One Time Witness (OTW) in Sui Move: a type guaranteed to be instantiated only
+  once, used for Publisher and Coin creation.
+title: One Time Witness
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - one
+  - time
+  - witness
+  - witness pattern
+questions:
+  - What is One Time Witness in Move?
+  - How do I use One Time Witness in Move?
+  - How does One Time Witness work on Sui?
+answer: >-
+  One Time Witness (OTW) in Sui Move: a type guaranteed to be instantiated only
+  once, used for Publisher and Coin creation.
+goal:
+  description: Reader understands and can apply One Time Witness in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # One Time Witness

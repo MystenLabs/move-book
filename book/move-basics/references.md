@@ -1,5 +1,34 @@
 ---
-description: "References in Move: immutable and mutable borrows, the borrow checker, and how to safely pass values without transferring ownership."
+description: >-
+  References in Move: immutable and mutable borrows, the borrow checker, and how
+  to safely pass values without transferring ownership.
+title: References
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - references
+questions:
+  - What is References in Move?
+  - How do I use References in Move?
+  - How does References work on Sui?
+answer: >-
+  References in Move: immutable and mutable borrows, the borrow checker, and how
+  to safely pass values without transferring ownership.
+goal:
+  description: Reader understands and can apply References in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # References

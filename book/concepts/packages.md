@@ -1,5 +1,34 @@
 ---
-description: "Understand Move packages — the unit of code organization containing modules, dependencies, and addresses published on the Sui blockchain."
+description: >-
+  Understand Move packages — the unit of code organization containing modules,
+  dependencies, and addresses published on the Sui blockchain.
+title: Package
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - package
+questions:
+  - What is Package in Move?
+  - How do I use Package in Move?
+  - How does Package work on Sui?
+answer: >-
+  Understand Move packages — the unit of code organization containing modules,
+  dependencies, and addresses published on the Sui blockchain.
+goal:
+  description: Reader understands and can apply Package in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Package

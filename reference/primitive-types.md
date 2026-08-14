@@ -1,6 +1,39 @@
 ---
-title: 'Primitive Types | Reference'
-description: "Move primitive types reference: integers, booleans, addresses, vectors, references, tuples, and unit type overview."
+title: Primitive Types | Reference
+description: >-
+  Move primitive types reference: integers, booleans, addresses, vectors,
+  references, tuples, and unit type overview.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - primitive
+  - types
+  - reference
+  - type system
+questions:
+  - What is Primitive Types  Reference in Move?
+  - How do I use Primitive Types  Reference in Move?
+  - How does Primitive Types  Reference work on Sui?
+answer: >-
+  Move primitive types reference: integers, booleans, addresses, vectors,
+  references, tuples, and unit type overview.
+goal:
+  description: >-
+    Reader understands and can apply Primitive Types | Reference in Move
+    programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Primitive Types

@@ -1,5 +1,36 @@
 ---
-description: "Type reflection in Move: inspect type names at runtime using std::type_name for dynamic type checks in smart contracts."
+description: >-
+  Type reflection in Move: inspect type names at runtime using std::type_name
+  for dynamic type checks in smart contracts.
+title: Type Reflection
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - type
+  - reflection
+  - type system
+questions:
+  - What is Type Reflection in Move?
+  - How do I use Type Reflection in Move?
+  - How does Type Reflection work on Sui?
+answer: >-
+  Type reflection in Move: inspect type names at runtime using std::type_name
+  for dynamic type checks in smart contracts.
+goal:
+  description: Reader understands and can apply Type Reflection in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Type Reflection

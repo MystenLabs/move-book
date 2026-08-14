@@ -1,5 +1,35 @@
 ---
-description: "Extend foreign modules in Move tests: add test-only functions to external packages for creating test data and mock objects."
+description: >-
+  Extend foreign modules in Move tests: add test-only functions to external
+  packages for creating test data and mock objects.
+title: Extending Modules
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - extending
+  - modules
+questions:
+  - What is Extending Modules in Move?
+  - How do I use Extending Modules in Move?
+  - How does Extending Modules work on Sui?
+answer: >-
+  Extend foreign modules in Move tests: add test-only functions to external
+  packages for creating test data and mock objects.
+goal:
+  description: Reader understands and can apply Extending Modules in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Extending Modules

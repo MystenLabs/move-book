@@ -1,6 +1,38 @@
 ---
-title: 'Tuples and Unit | Reference'
-description: "Move tuples and unit type reference: multiple return values, destructuring, unit expressions, and tuple-like syntax."
+title: Tuples and Unit | Reference
+description: >-
+  Move tuples and unit type reference: multiple return values, destructuring,
+  unit expressions, and tuple-like syntax.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - tuples
+  - unit
+  - reference
+questions:
+  - What is Tuples and Unit  Reference in Move?
+  - How do I use Tuples and Unit  Reference in Move?
+  - How does Tuples and Unit  Reference work on Sui?
+answer: >-
+  Move tuples and unit type reference: multiple return values, destructuring,
+  unit expressions, and tuple-like syntax.
+goal:
+  description: >-
+    Reader understands and can apply Tuples and Unit | Reference in Move
+    programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Tuples and Unit

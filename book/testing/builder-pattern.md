@@ -1,5 +1,36 @@
 ---
-description: "The Builder pattern for Move tests: construct complex test objects with sensible defaults and method chaining for readable tests."
+description: >-
+  The Builder pattern for Move tests: construct complex test objects with
+  sensible defaults and method chaining for readable tests.
+title: 'Pattern: Builder'
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - pattern
+  - builder
+  - design patterns
+questions:
+  - 'What is Pattern: Builder in Move?'
+  - 'How do I use Pattern: Builder in Move?'
+  - 'How does Pattern: Builder work on Sui?'
+answer: >-
+  The Builder pattern for Move tests: construct complex test objects with
+  sensible defaults and method chaining for readable tests.
+goal:
+  description: 'Reader understands and can apply Pattern: Builder in Move programs'
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Pattern: Builder

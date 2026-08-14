@@ -1,5 +1,34 @@
 ---
-description: "Strings in Move: string literals, the UTF-8 and ASCII String types, common operations, and conversions between them in Sui smart contracts."
+description: >-
+  Strings in Move: string literals, the UTF-8 and ASCII String types, common
+  operations, and conversions between them in Sui smart contracts.
+title: String
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - string
+questions:
+  - What is String in Move?
+  - How do I use String in Move?
+  - How does String work on Sui?
+answer: >-
+  Strings in Move: string literals, the UTF-8 and ASCII String types, common
+  operations, and conversions between them in Sui smart contracts.
+goal:
+  description: Reader understands and can apply String in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # String

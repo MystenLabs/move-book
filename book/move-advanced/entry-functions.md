@@ -1,7 +1,37 @@
 ---
-description:
-  'Entry functions in Move: how the entry modifier restricts a function to transaction-only calls,
-  and the static hot-potato guarantee its arguments receive in return.'
+description: >-
+  Entry functions in Move: how the entry modifier restricts a function to
+  transaction-only calls, and the static hot-potato guarantee its arguments
+  receive in return.
+title: Entry Functions
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - entry
+  - functions
+questions:
+  - What is Entry Functions in Move?
+  - How do I use Entry Functions in Move?
+  - How does Entry Functions work on Sui?
+answer: >-
+  Entry functions in Move: how the entry modifier restricts a function to
+  transaction-only calls, and the static hot-potato guarantee its arguments
+  receive in return.
+goal:
+  description: Reader understands and can apply Entry Functions in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Entry Functions

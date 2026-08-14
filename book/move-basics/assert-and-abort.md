@@ -1,5 +1,36 @@
 ---
-description: "Error handling in Move: use abort to halt execution with error codes and assert! to enforce conditions in smart contracts."
+description: >-
+  Error handling in Move: use abort to halt execution with error codes and
+  assert! to enforce conditions in smart contracts.
+title: Aborting Execution
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - aborting
+  - execution
+  - error handling
+questions:
+  - What is Aborting Execution in Move?
+  - How do I use Aborting Execution in Move?
+  - How does Aborting Execution work on Sui?
+answer: >-
+  Error handling in Move: use abort to halt execution with error codes and
+  assert! to enforce conditions in smart contracts.
+goal:
+  description: Reader understands and can apply Aborting Execution in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Aborting Execution

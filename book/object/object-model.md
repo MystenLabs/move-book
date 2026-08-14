@@ -1,5 +1,36 @@
 ---
-description: "What is a Sui Object: unique identifiers, types, ownership, and native operations like transfer and share for onchain digital assets."
+description: >-
+  What is a Sui Object: unique identifiers, types, ownership, and native
+  operations like transfer and share for onchain digital assets.
+title: What is an Object?
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - what
+  - object
+  - object model
+questions:
+  - What is What is an Object? in Move?
+  - How do I use What is an Object? in Move?
+  - How does What is an Object? work on Sui?
+answer: >-
+  What is a Sui Object: unique identifiers, types, ownership, and native
+  operations like transfer and share for onchain digital assets.
+goal:
+  description: Reader understands and can apply What is an Object? in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # What is an Object?

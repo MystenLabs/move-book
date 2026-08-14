@@ -1,6 +1,38 @@
 ---
-title: 'Compilation Modes | Reference'
-description: "Move compilation modes reference: define named build modes, filter declarations, and configure mode-specific compilation."
+title: Compilation Modes | Reference
+description: >-
+  Move compilation modes reference: define named build modes, filter
+  declarations, and configure mode-specific compilation.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - compilation
+  - modes
+  - reference
+questions:
+  - What is Compilation Modes  Reference in Move?
+  - How do I use Compilation Modes  Reference in Move?
+  - How does Compilation Modes  Reference work on Sui?
+answer: >-
+  Move compilation modes reference: define named build modes, filter
+  declarations, and configure mode-specific compilation.
+goal:
+  description: >-
+    Reader understands and can apply Compilation Modes | Reference in Move
+    programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Compilation Modes

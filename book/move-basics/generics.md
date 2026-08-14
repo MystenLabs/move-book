@@ -1,5 +1,34 @@
 ---
-description: "Generics in Move: write reusable functions and types that work with any type parameter, with phantom types and constraints."
+description: >-
+  Generics in Move: write reusable functions and types that work with any type
+  parameter, with phantom types and constraints.
+title: Generics
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - generics
+questions:
+  - What is Generics in Move?
+  - How do I use Generics in Move?
+  - How does Generics work on Sui?
+answer: >-
+  Generics in Move: write reusable functions and types that work with any type
+  parameter, with phantom types and constraints.
+goal:
+  description: Reader understands and can apply Generics in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Generics

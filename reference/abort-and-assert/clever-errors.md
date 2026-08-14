@@ -1,8 +1,37 @@
 ---
-title: 'Clever Errors | Reference'
-description:
-  Clever errors are a feature that allows for more informative error messages when an assertion
-  fails or an abort is raised
+title: Clever Errors | Reference
+description: >-
+  Clever errors are a feature that allows for more informative error messages
+  when an assertion fails or an abort is raised
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - clever
+  - errors
+  - reference
+  - error handling
+questions:
+  - What is Clever Errors  Reference in Move?
+  - How do I use Clever Errors  Reference in Move?
+  - How does Clever Errors  Reference work on Sui?
+answer: >-
+  Clever errors are a feature that allows for more informative error messages
+  when an assertion fails or an abort is raised
+goal:
+  description: Reader understands and can apply Clever Errors | Reference in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Clever Errors

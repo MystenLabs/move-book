@@ -1,6 +1,35 @@
 ---
-title: 'Abilities | Reference'
-description: "Move abilities reference: copy, drop, store, and key — rules for how values can be used, stored, copied, and discarded."
+title: Abilities | Reference
+description: >-
+  Move abilities reference: copy, drop, store, and key — rules for how values
+  can be used, stored, copied, and discarded.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - abilities
+  - reference
+questions:
+  - What is Abilities  Reference in Move?
+  - How do I use Abilities  Reference in Move?
+  - How does Abilities  Reference work on Sui?
+answer: >-
+  Move abilities reference: copy, drop, store, and key — rules for how values
+  can be used, stored, copied, and discarded.
+goal:
+  description: Reader understands and can apply Abilities | Reference in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Abilities

@@ -1,7 +1,35 @@
 ---
-description:
-  'Control flow in Move: if/else expressions, while and loop constructs, break, continue, and return
-  statements.'
+description: >-
+  Control flow in Move: if/else expressions, while and loop constructs, break,
+  continue, and return statements.
+title: Control Flow
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - control
+  - flow
+questions:
+  - What is Control Flow in Move?
+  - How do I use Control Flow in Move?
+  - How does Control Flow work on Sui?
+answer: >-
+  Control flow in Move: if/else expressions, while and loop constructs, break,
+  continue, and return statements.
+goal:
+  description: Reader understands and can apply Control Flow in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Control Flow

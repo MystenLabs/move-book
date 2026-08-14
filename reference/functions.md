@@ -1,6 +1,35 @@
 ---
-title: 'Functions | Reference'
-description: "Move functions reference: declaration, visibility modifiers, entry functions, return values, and calling conventions."
+title: Functions | Reference
+description: >-
+  Move functions reference: declaration, visibility modifiers, entry functions,
+  return values, and calling conventions.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - functions
+  - reference
+questions:
+  - What is Functions  Reference in Move?
+  - How do I use Functions  Reference in Move?
+  - How does Functions  Reference work on Sui?
+answer: >-
+  Move functions reference: declaration, visibility modifiers, entry functions,
+  return values, and calling conventions.
+goal:
+  description: Reader understands and can apply Functions | Reference in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Functions

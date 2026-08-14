@@ -1,6 +1,36 @@
 ---
-title: 'Method Syntax | Reference'
-description: "Move method syntax reference: call functions with dot notation, receiver types, automatic borrowing, and method resolution."
+title: Method Syntax | Reference
+description: >-
+  Move method syntax reference: call functions with dot notation, receiver
+  types, automatic borrowing, and method resolution.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - method
+  - syntax
+  - reference
+questions:
+  - What is Method Syntax  Reference in Move?
+  - How do I use Method Syntax  Reference in Move?
+  - How does Method Syntax  Reference work on Sui?
+answer: >-
+  Move method syntax reference: call functions with dot notation, receiver
+  types, automatic borrowing, and method resolution.
+goal:
+  description: Reader understands and can apply Method Syntax | Reference in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Methods

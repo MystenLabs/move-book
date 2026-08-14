@@ -1,5 +1,35 @@
 ---
-description: "Install the Move Registry (MVR) CLI to publish, discover, and manage reusable Move packages for Sui development."
+description: >-
+  Install the Move Registry (MVR) CLI to publish, discover, and manage reusable
+  Move packages for Sui development.
+title: Install MVR
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - install
+  - mvr
+questions:
+  - What is Install MVR in Move?
+  - How do I use Install MVR in Move?
+  - How does Install MVR work on Sui?
+answer: >-
+  Install the Move Registry (MVR) CLI to publish, discover, and manage reusable
+  Move packages for Sui development.
+goal:
+  description: Reader understands and can apply Install MVR in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Install MVR

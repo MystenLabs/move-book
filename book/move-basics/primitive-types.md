@@ -1,7 +1,38 @@
 ---
-description:
-  'Move primitive types: booleans and unsigned integers from u8 to u256 - literals and type
-  inference, arithmetic and comparison, casting with as, and overflow behavior.'
+description: >-
+  Move primitive types: booleans and unsigned integers from u8 to u256 -
+  literals and type inference, arithmetic and comparison, casting with as, and
+  overflow behavior.
+title: Primitive Types
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - primitive
+  - types
+  - type system
+questions:
+  - What is Primitive Types in Move?
+  - How do I use Primitive Types in Move?
+  - How does Primitive Types work on Sui?
+answer: >-
+  Move primitive types: booleans and unsigned integers from u8 to u256 -
+  literals and type inference, arithmetic and comparison, casting with as, and
+  overflow behavior.
+goal:
+  description: Reader understands and can apply Primitive Types in Move programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Primitive Types

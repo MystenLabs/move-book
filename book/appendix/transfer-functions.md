@@ -1,5 +1,38 @@
 ---
-description: "Quick reference for Sui transfer functions: transfer, share, freeze, receive, and their public variants with permissions and end states."
+description: >-
+  Quick reference for Sui transfer functions: transfer, share, freeze, receive,
+  and their public variants with permissions and end states.
+title: 'Appendix C: Transfer Functions'
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - appendix
+  - transfer
+  - functions
+questions:
+  - 'What is Appendix C: Transfer Functions in Move?'
+  - 'How do I use Appendix C: Transfer Functions in Move?'
+  - 'How does Appendix C: Transfer Functions work on Sui?'
+answer: >-
+  Quick reference for Sui transfer functions: transfer, share, freeze, receive,
+  and their public variants with permissions and end states.
+goal:
+  description: >-
+    Reader understands and can apply Appendix C: Transfer Functions in Move
+    programs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Appendix C: Transfer Functions
