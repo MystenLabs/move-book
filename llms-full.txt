@@ -17023,7 +17023,7 @@ nft.destroy_for_testing();
 app.destroy_for_testing();
 
 // good! - no need to define special functions for cleanup
-use sui::test_utils::destroy;
+use std::unit_test::destroy;
 
 destroy(nft);
 destroy(app);
