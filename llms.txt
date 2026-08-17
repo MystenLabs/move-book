@@ -6,150 +6,150 @@ The Move Book covers the Move language fundamentals, Sui object model, advanced 
 
 ## Book
 
-- [The Move Book](https://move-book.com/index.md): A comprehensive guide to the Move programming language and Sui blockchain for smart contract developers.
-- [Foreword](https://move-book.com/foreword.md): The design philosophy behind Move: security by default, expressiveness, and intuitive resource management for smart contracts.
-- [Before We Begin](https://move-book.com/before-we-begin/index.md): Set up your Move development environment: install Sui, configure your IDE, and learn about the Move 2024 edition.
-  - [Install Sui](https://move-book.com/before-we-begin/install-sui.md): Install the Sui binary and Move compiler using suiup, Homebrew, or Chocolatey to start developing Move smart contracts.
-  - [Install MVR](https://move-book.com/before-we-begin/install-move-registry-cli.md): Install the Move Registry (MVR) CLI to publish, discover, and manage reusable Move packages for Sui development.
-  - [IDE Support](https://move-book.com/before-we-begin/ide-support.md): Configure VSCode or IntelliJ IDEA for Move development with syntax highlighting, error checking, and code formatting extensions.
-  - [Move 2024](https://move-book.com/before-we-begin/move-2024.md): Overview of Move 2024 edition — the current version of the Move language maintained by Mysten Labs with new features and improvements.
-- [Hello World!](https://move-book.com/your-first-move/hello-world.md): Create your first Move package on Sui: learn the project structure, write a module, compile code, and run tests with the Move CLI.
-- [Hello Sui!](https://move-book.com/your-first-move/hello-sui.md): Build and publish a todo list app on Sui: create an account, deploy a Move package, and send transactions via the CLI.
-- [Concepts](https://move-book.com/concepts/index.md): Core Sui and Move concepts: packages, accounts, transactions, addresses, and how data is stored on the Sui blockchain.
-  - [Packages](https://move-book.com/concepts/packages.md): Understand Move packages — the unit of code organization containing modules, dependencies, and addresses published on the Sui blockchain.
-  - [Manifest](https://move-book.com/concepts/manifest.md): The Move.toml package manifest: package metadata, dependencies, named addresses, and dependency overrides explained.
-  - [Address](https://move-book.com/concepts/address.md): Learn about addresses in Sui — 32-byte unique identifiers used to locate packages, accounts, and objects on the blockchain.
-  - [Account](https://move-book.com/concepts/what-is-an-account.md): Understand Sui accounts: how they are generated from private keys, identified by addresses, and support multiple crypto schemes.
-  - [Transaction](https://move-book.com/concepts/what-is-a-transaction.md): Learn how Sui transactions work: structure, commands, gas payments, and how they change blockchain state through Move function calls.
-- [Move Basics](https://move-book.com/move-basics/index.md): Learn Move language fundamentals: types, modules, functions, structs, abilities, generics, and control flow for Sui smart contracts.
+- [The Move Book](https://move-book.com/index.md)
+- [Foreword](https://move-book.com/foreword.md)
+- [Before We Begin](https://move-book.com/before-we-begin/index.md)
+  - [Install Sui](https://move-book.com/before-we-begin/install-sui.md)
+  - [Install MVR](https://move-book.com/before-we-begin/install-move-registry-cli.md)
+  - [IDE Support](https://move-book.com/before-we-begin/ide-support.md)
+  - [Move 2024](https://move-book.com/before-we-begin/move-2024.md)
+- [Hello World!](https://move-book.com/your-first-move/hello-world.md)
+- [Hello Sui!](https://move-book.com/your-first-move/hello-sui.md)
+- [Concepts](https://move-book.com/concepts/index.md)
+  - [Packages](https://move-book.com/concepts/packages.md)
+  - [Manifest](https://move-book.com/concepts/manifest.md)
+  - [Address](https://move-book.com/concepts/address.md)
+  - [Account](https://move-book.com/concepts/what-is-an-account.md)
+  - [Transaction](https://move-book.com/concepts/what-is-a-transaction.md)
+- [Move Basics](https://move-book.com/move-basics/index.md)
   - [Modules](https://move-book.com/move-basics/module.md)
-  - [Comments](https://move-book.com/move-basics/comments.md): How to use line comments, block comments, and doc comments in Move for documentation and code annotation.
+  - [Comments](https://move-book.com/move-basics/comments.md)
   - [Primitive Types](https://move-book.com/move-basics/primitive-types.md)
-  - [Address Type](https://move-book.com/move-basics/address.md): The address type in Move: literals, named addresses, conversion functions, and how addresses identify accounts and packages on Sui.
-  - [Expressions](https://move-book.com/move-basics/expression.md): Expressions in Move: literals, function calls, blocks, and how almost everything returns a value in the Move language.
-  - [Functions](https://move-book.com/move-basics/function.md): Functions in Move: declare, call, and return values from functions with support for multiple return values and type parameters.
-  - [Structs](https://move-book.com/move-basics/struct.md): Define custom types with struct in Move: pack, unpack, access fields, and control field visibility with getters and setters in Sui smart contracts.
-  - [Abilities Introduction](https://move-book.com/move-basics/abilities-introduction.md): Introduction to Move abilities: copy, drop, key, and store — the system that controls how types behave in smart contracts.
-  - [Ability: Drop](https://move-book.com/move-basics/drop-ability.md): The drop ability in Move allows struct instances to be discarded. Learn how it works and when to use it in Sui smart contracts.
-  - [Importing Modules](https://move-book.com/move-basics/importing-modules.md): How to import modules in Move using the use keyword: single imports, grouped imports, member imports, and resolving naming conflicts.
-  - [Standard Library](https://move-book.com/move-basics/standard-library.md): Overview of the Move Standard Library: common modules for strings, vectors, options, and type names available in every Move package.
+  - [Address Type](https://move-book.com/move-basics/address.md)
+  - [Expressions](https://move-book.com/move-basics/expression.md)
+  - [Functions](https://move-book.com/move-basics/function.md)
+  - [Structs](https://move-book.com/move-basics/struct.md)
+  - [Abilities Introduction](https://move-book.com/move-basics/abilities-introduction.md)
+  - [Ability: Drop](https://move-book.com/move-basics/drop-ability.md)
+  - [Importing Modules](https://move-book.com/move-basics/importing-modules.md)
+  - [Standard Library](https://move-book.com/move-basics/standard-library.md)
   - [Vector](https://move-book.com/move-basics/vector.md)
   - [Option](https://move-book.com/move-basics/option.md)
-  - [String](https://move-book.com/move-basics/string.md): Strings in Move: string literals, the UTF-8 and ASCII String types, common operations, and conversions between them in Sui smart contracts.
+  - [String](https://move-book.com/move-basics/string.md)
   - [Control Flow](https://move-book.com/move-basics/control-flow.md)
-  - [Enums and Match](https://move-book.com/move-basics/enum-and-match.md): Enums and pattern matching in Move: define variant types, use match expressions, and handle multiple cases in smart contracts.
-  - [Struct Methods](https://move-book.com/move-basics/struct-methods.md): Struct methods in Move: use receiver syntax to call functions on struct instances with dot notation for cleaner code.
+  - [Enums and Match](https://move-book.com/move-basics/enum-and-match.md)
+  - [Struct Methods](https://move-book.com/move-basics/struct-methods.md)
   - [Visibility Modifiers](https://move-book.com/move-basics/visibility.md)
-  - [Ownership and Scope](https://move-book.com/move-basics/ownership-and-scope.md): Ownership and scope in Move: how values are moved between scopes, why they cannot be copied or lost, and how the compiler enforces it.
-  - [Ability: Copy](https://move-book.com/move-basics/copy-ability.md): The copy ability in Move enables value duplication. Learn how to add copy to custom types and understand its role in resource safety.
-  - [Constants](https://move-book.com/move-basics/constants.md): Constants in Move: how to define immutable module-level values, naming conventions, and supported constant types.
-  - [Aborting Execution](https://move-book.com/move-basics/assert-and-abort.md): Error handling in Move: use abort to halt execution with error codes and assert! to enforce conditions in smart contracts.
-  - [References](https://move-book.com/move-basics/references.md): References in Move: immutable and mutable borrows, the borrow checker, and how to safely pass values without transferring ownership.
-  - [Generics](https://move-book.com/move-basics/generics.md): Generics in Move: write reusable functions and types that work with any type parameter, with phantom types and constraints.
-  - [Macro Functions](https://move-book.com/move-basics/macros.md): Macro functions in Move: compile-time expanded functions with lambda arguments - how to use standard library macros and define your own.
-  - [Internal Permit](https://move-book.com/move-basics/internal-permit.md): The std::internal module in Move: use Permit<T> to restrict generic function calls to the module that defines the type T.
-  - [Type Reflection](https://move-book.com/move-basics/type-reflection.md): Type reflection in Move: inspect type names at runtime using std::type_name for dynamic type checks in smart contracts.
-  - [Testing](https://move-book.com/move-basics/testing.md): Write and run unit tests in Move using the #[test] attribute, expected failures, and utilities for testing smart contract logic.
-- [Object Model](https://move-book.com/object/index.md): The Sui Object Model explained: theory and concepts behind digital asset representation, ownership, and storage on the Sui blockchain.
-  - [Language for Digital Assets](https://move-book.com/object/digital-assets.md): How Move handles digital assets natively: from fungible tokens to NFTs, with built-in safety and type-level resource guarantees.
-  - [Evolution of Move](https://move-book.com/object/evolution-of-move.md): The evolution of Move from Diem to Sui: how the storage model changed from account-based to the object-based model.
-  - [What is an Object?](https://move-book.com/object/object-model.md): What is a Sui Object: unique identifiers, types, ownership, and native operations like transfer and share for onchain digital assets.
-  - [Ownership](https://move-book.com/object/ownership.md): Object ownership types in Sui: single owner, shared state, immutable objects, and object-owned objects explained with examples.
-  - [Fast Path and Consensus](https://move-book.com/object/fast-path-and-consensus.md): Fast path vs consensus in Sui: how owned objects skip consensus for faster transactions while shared objects require ordering.
-- [Using Objects](https://move-book.com/storage/index.md): Learn how to use Sui objects in Move: storage abilities, transfer functions, ownership rules, and object lifecycle management.
-  - [Ability: Key](https://move-book.com/storage/key-ability.md): The key ability in Move makes a struct an object that can be stored, owned, and transferred on the Sui blockchain.
-  - [Ability: Store](https://move-book.com/storage/store-ability.md): The store ability in Move allows types to be used as fields in objects and enables public transfer and storage operations on Sui.
-  - [Internal Constraint](https://move-book.com/storage/internal-constraint.md): The Sui Verifier internal constraint: why storage operations require the type to be defined in the calling module.
-  - [Storage Functions](https://move-book.com/storage/storage-functions.md): Sui storage functions: transfer, share, freeze, and receive objects using the sui::transfer module in Move smart contracts.
-  - [UID and ID](https://move-book.com/storage/uid-and-id.md): UID and ID in Sui Move: unique object identifiers, how they are created, used for dynamic fields, and guaranteed to be unique.
-  - [Receiving as Object](https://move-book.com/storage/transfer-to-object.md): Transfer to Object (TTO) in Sui: send objects to other objects and receive them using the Receiving type in Move.
-- [Advanced Programmability](https://move-book.com/programmability/index.md): Advanced Sui programmability: patterns, events, dynamic fields, capabilities, BCS serialization, and design patterns in Move.
-  - [Sui Framework](https://move-book.com/programmability/sui-framework.md): The Sui Framework: built-in modules for storage, coins, display, clock, events, and other Sui-specific features available to every package.
-  - [Transaction Context](https://move-book.com/programmability/transaction-context.md): TxContext in Sui Move: access sender address, transaction digest, epoch, gas price, and generate unique IDs in your smart contracts.
-  - [Module Initializer](https://move-book.com/programmability/module-initializer.md): The init function in Move: run one-time setup code when a module is published on Sui, with rules and best practices.
-  - [Pattern: Capability](https://move-book.com/programmability/capability.md): The Capability pattern in Move: use owned objects as access-control tokens to authorize privileged operations in Sui smart contracts.
-  - [Epoch and Time](https://move-book.com/programmability/epoch-and-time.md): Access time in Sui Move: use epochs for operational periods and Clock for millisecond timestamps in your smart contracts.
+  - [Ownership and Scope](https://move-book.com/move-basics/ownership-and-scope.md)
+  - [Ability: Copy](https://move-book.com/move-basics/copy-ability.md)
+  - [Constants](https://move-book.com/move-basics/constants.md)
+  - [Aborting Execution](https://move-book.com/move-basics/assert-and-abort.md)
+  - [References](https://move-book.com/move-basics/references.md)
+  - [Generics](https://move-book.com/move-basics/generics.md)
+  - [Macro Functions](https://move-book.com/move-basics/macros.md)
+  - [Internal Permit](https://move-book.com/move-basics/internal-permit.md)
+  - [Type Reflection](https://move-book.com/move-basics/type-reflection.md)
+  - [Testing](https://move-book.com/move-basics/testing.md)
+- [Object Model](https://move-book.com/object/index.md)
+  - [Language for Digital Assets](https://move-book.com/object/digital-assets.md)
+  - [Evolution of Move](https://move-book.com/object/evolution-of-move.md)
+  - [What is an Object?](https://move-book.com/object/object-model.md)
+  - [Ownership](https://move-book.com/object/ownership.md)
+  - [Fast Path and Consensus](https://move-book.com/object/fast-path-and-consensus.md)
+- [Using Objects](https://move-book.com/storage/index.md)
+  - [Ability: Key](https://move-book.com/storage/key-ability.md)
+  - [Ability: Store](https://move-book.com/storage/store-ability.md)
+  - [Internal Constraint](https://move-book.com/storage/internal-constraint.md)
+  - [Storage Functions](https://move-book.com/storage/storage-functions.md)
+  - [UID and ID](https://move-book.com/storage/uid-and-id.md)
+  - [Receiving as Object](https://move-book.com/storage/transfer-to-object.md)
+- [Advanced Programmability](https://move-book.com/programmability/index.md)
+  - [Sui Framework](https://move-book.com/programmability/sui-framework.md)
+  - [Transaction Context](https://move-book.com/programmability/transaction-context.md)
+  - [Module Initializer](https://move-book.com/programmability/module-initializer.md)
+  - [Pattern: Capability](https://move-book.com/programmability/capability.md)
+  - [Epoch and Time](https://move-book.com/programmability/epoch-and-time.md)
   - [Collections](https://move-book.com/programmability/collections.md)
   - [Pattern: Wrapper Type](https://move-book.com/programmability/wrapper-type-pattern.md)
-  - [Dynamic Fields](https://move-book.com/programmability/dynamic-fields.md): Dynamic fields in Sui: attach heterogeneous key-value data to objects at runtime, bypassing object size limits.
-  - [Dynamic Object Fields](https://move-book.com/programmability/dynamic-object-fields.md): Dynamic object fields in Sui: attach objects as fields that remain accessible by ID, with differences from regular dynamic fields.
-  - [Dynamic Collections](https://move-book.com/programmability/dynamic-collections.md): Dynamic collections in Sui: Bag, Table, ObjectBag, ObjectTable, and LinkedTable built on dynamic fields for flexible storage.
-  - [Pattern: Witness](https://move-book.com/programmability/witness-pattern.md): The Witness pattern in Move: prove type ownership through struct instantiation for type-safe authorization in Sui smart contracts.
-  - [One-Time Witness](https://move-book.com/programmability/one-time-witness.md): One Time Witness (OTW) in Sui Move: a type guaranteed to be instantiated only once, used for Publisher and Coin creation.
-  - [Publisher Authority](https://move-book.com/programmability/publisher.md): The Publisher object in Sui: prove package authority to configure Display, transfer policies, and other type-level settings.
-  - [Object Display](https://move-book.com/programmability/display.md): Object Display in Sui: define metadata templates for your objects with the Display Registry, and migrate Display from V1 to V2.
-  - [Events](https://move-book.com/programmability/events.md): Emit and test events in Sui Move: notify offchain listeners about onchain activity in your smart contracts.
-  - [Balance and Coin](https://move-book.com/programmability/balance-and-coin.md): Balance, Coin, and CoinRegistry in Sui Move: create fungible tokens with the Currency standard, manage supply with TreasuryCap, and store metadata onchain.
-  - [Address Balances](https://move-book.com/programmability/address-balances.md): Address balances on Sui: hold fungible value directly at an address without a Coin object, send funds with send_funds, and withdraw them with a Withdrawal.
-  - [Pattern: Hot Potato](https://move-book.com/programmability/hot-potato-pattern.md): The Hot Potato pattern in Move: a struct with no abilities that must be consumed in the same transaction, enforcing workflow completion.
+  - [Dynamic Fields](https://move-book.com/programmability/dynamic-fields.md)
+  - [Dynamic Object Fields](https://move-book.com/programmability/dynamic-object-fields.md)
+  - [Dynamic Collections](https://move-book.com/programmability/dynamic-collections.md)
+  - [Pattern: Witness](https://move-book.com/programmability/witness-pattern.md)
+  - [One-Time Witness](https://move-book.com/programmability/one-time-witness.md)
+  - [Publisher Authority](https://move-book.com/programmability/publisher.md)
+  - [Object Display](https://move-book.com/programmability/display.md)
+  - [Events](https://move-book.com/programmability/events.md)
+  - [Balance and Coin](https://move-book.com/programmability/balance-and-coin.md)
+  - [Address Balances](https://move-book.com/programmability/address-balances.md)
+  - [Pattern: Hot Potato](https://move-book.com/programmability/hot-potato-pattern.md)
   - [Package Upgrades](https://move-book.com/programmability/package-upgrades.md)
   - [Randomness](https://move-book.com/programmability/randomness.md)
-  - [BCS](https://move-book.com/programmability/bcs.md): BCS (Binary Canonical Serialization) in Move: encode and decode structured data for onchain storage and cross-platform communication.
-- [Testing](https://move-book.com/testing/index.md): Testing Move smart contracts on Sui: unit tests, test scenarios, linting, coverage reports, gas profiling, and best practices.
-  - [Testing Basics](https://move-book.com/testing/testing-basics.md): Move testing basics: write tests with the #[test] attribute, use expected failures, and organize test-only code in your modules.
-  - [What Makes a Good Test](https://move-book.com/testing/good-tests.md): Best practices for writing effective Move tests: concise, focused, and maintainable tests that catch real bugs in smart contracts.
-  - [Unit Test Utilities](https://move-book.com/testing/test-utilities.md): Move test utilities: assert macros, assert_eq, assert_ref_eq, and standard library helpers for writing expressive unit tests.
-  - [Simulating Transaction Context](https://move-book.com/testing/transaction-context.md): Simulate TxContext in Move tests: create dummy contexts, set sender addresses, and generate fresh UIDs for unit testing.
-  - [Test Scenario](https://move-book.com/testing/test-scenario.md): Test Scenario in Sui Move: simulate multi-transaction flows, test object transfers, and verify shared object behavior in tests.
-  - [Using System Objects](https://move-book.com/testing/using-system-objects.md): Use system objects in Move tests: create and manipulate Clock, Random, and DenyList for testing time, randomness, and deny lists.
-  - [Pattern: Builder](https://move-book.com/testing/builder-pattern.md): The Builder pattern for Move tests: construct complex test objects with sensible defaults and method chaining for readable tests.
-  - [Random Inputs](https://move-book.com/testing/random-test.md): Property-based testing in Move with #[random_test]: run tests with randomized inputs to discover edge cases automatically.
-  - [Extending Modules](https://move-book.com/testing/extend-foreign-module.md): Extend foreign modules in Move tests: add test-only functions to external packages for creating test data and mock objects.
-  - [Running Lints](https://move-book.com/testing/linting.md): Run Move linters with sui move lint: catch Sui-specific antipatterns at compile time, suppress false positives, and enforce lints in CI.
-  - [Coverage Reports](https://move-book.com/testing/coverage.md): Generate code coverage reports for Move tests: use the --coverage flag and sui move coverage to identify untested code paths.
-  - [Gas Profiling](https://move-book.com/testing/gas-profiling.md): Profile gas usage in Move tests: measure computation costs, compare implementations, and analyze traces with sui analyze-trace.
+  - [BCS](https://move-book.com/programmability/bcs.md)
+- [Testing](https://move-book.com/testing/index.md)
+  - [Testing Basics](https://move-book.com/testing/testing-basics.md)
+  - [What Makes a Good Test](https://move-book.com/testing/good-tests.md)
+  - [Unit Test Utilities](https://move-book.com/testing/test-utilities.md)
+  - [Simulating Transaction Context](https://move-book.com/testing/transaction-context.md)
+  - [Test Scenario](https://move-book.com/testing/test-scenario.md)
+  - [Using System Objects](https://move-book.com/testing/using-system-objects.md)
+  - [Pattern: Builder](https://move-book.com/testing/builder-pattern.md)
+  - [Random Inputs](https://move-book.com/testing/random-test.md)
+  - [Extending Modules](https://move-book.com/testing/extend-foreign-module.md)
+  - [Running Lints](https://move-book.com/testing/linting.md)
+  - [Coverage Reports](https://move-book.com/testing/coverage.md)
+  - [Gas Profiling](https://move-book.com/testing/gas-profiling.md)
 - [Advanced Move Features](https://move-book.com/move-advanced/index.md)
-  - [Compilation Modes](https://move-book.com/move-advanced/modes.md): Compilation modes in Move: include unpublishable code in named build modes like debug, benchmark, or spec beyond the built-in test mode.
+  - [Compilation Modes](https://move-book.com/move-advanced/modes.md)
   - [Entry Functions](https://move-book.com/move-advanced/entry-functions.md)
-  - [2024 Migration Guide](https://move-book.com/guides/2024-migration-guide.md): Migrate your Move code to the 2024 edition: module labels, let mut, public structs, method syntax, enums and match, macros, clever errors, and step-by-step instructions.
-  - [Upgradability Practices](https://move-book.com/guides/upgradeability-practices.md): Best practices for upgrading Move packages on Sui: maintain compatibility, plan for versioning, and avoid breaking changes.
-  - [Building Against Limits](https://move-book.com/guides/building-against-limits.md): Sui network limits and how to build within them: object size, dynamic fields, transaction limits, and protocol constraints.
-  - [Better Error Handling](https://move-book.com/guides/better-error-handling.md): Improve error handling in Move smart contracts: use descriptive abort codes and error constants for better debugging on Sui.
-  - [Code Quality Checklist](https://move-book.com/guides/code-quality-checklist.md): Move code quality checklist: review your Sui smart contracts against current best practices for safety, style, and maintainability.
+  - [2024 Migration Guide](https://move-book.com/guides/2024-migration-guide.md)
+  - [Upgradability Practices](https://move-book.com/guides/upgradeability-practices.md)
+  - [Building Against Limits](https://move-book.com/guides/building-against-limits.md)
+  - [Better Error Handling](https://move-book.com/guides/better-error-handling.md)
+  - [Code Quality Checklist](https://move-book.com/guides/code-quality-checklist.md)
   - [Using Move Registry](https://move-book.com/guides/using-move-registry.md)
-  - [A. Glossary](https://move-book.com/appendix/glossary.md): Glossary of Move and Sui terminology: fast path, parallel execution, internal types, and other key concepts defined.
-  - [B. Reserved Addresses](https://move-book.com/appendix/reserved-addresses.md): Reserved addresses on Sui: standard library (0x1), Sui framework (0x2), system objects, and other fixed address assignments.
-  - [C. Transfer Functions](https://move-book.com/appendix/transfer-functions.md): Quick reference for Sui transfer functions: transfer, share, freeze, receive, and their public variants with permissions and end states.
-  - [D. Publications](https://move-book.com/appendix/publications.md): Academic publications about Move and Sui: papers on the borrow checker, resource safety, and formal verification of Move programs.
-  - [E. Contributing](https://move-book.com/appendix/contributing.md): How to contribute to The Move Book: submit pull requests, report issues, and help improve the Move programming language guide.
+  - [A. Glossary](https://move-book.com/appendix/glossary.md)
+  - [B. Reserved Addresses](https://move-book.com/appendix/reserved-addresses.md)
+  - [C. Transfer Functions](https://move-book.com/appendix/transfer-functions.md)
+  - [D. Publications](https://move-book.com/appendix/publications.md)
+  - [E. Contributing](https://move-book.com/appendix/contributing.md)
   - [F. Acknowledgements](https://move-book.com/appendix/acknowledgements.md)
 
 ## Reference
 
-- [The Move Reference](https://move-book.com/reference/index.md): The official Move language reference: comprehensive documentation of syntax, types, abilities, functions, and all language features.
-  - [1. Modules](https://move-book.com/reference/modules.md): Move module reference: declare modules, define types and functions, control visibility, and organize code in packages.
-  - [2. Primitive Types](https://move-book.com/reference/primitive-types.md): Move primitive types reference: integers, booleans, addresses, vectors, references, tuples, and unit type overview.
-    - [2.1 Integers](https://move-book.com/reference/primitive-types/integers.md): Move integer types reference: u8, u16, u32, u64, u128, u256 — literals, operations, casting, and overflow behavior.
-    - [2.2 Bool](https://move-book.com/reference/primitive-types/bool.md): Move bool type reference: true and false literals, logical operators (and, or, not), and boolean expression semantics.
-    - [2.3 Address](https://move-book.com/reference/primitive-types/address.md): Move address type reference: 256-bit identifiers, named addresses, hex literals, and address-related operations.
-    - [2.4 Vector](https://move-book.com/reference/primitive-types/vector.md): Move vector type reference: create, access, push, pop, destroy vectors, and use vector literals with full API documentation.
-    - [2.5 References](https://move-book.com/reference/primitive-types/references.md): Move references reference: immutable and mutable borrows, reading, writing, ownership rules, and the borrow checker.
-    - [2.6 Tuples and Unit](https://move-book.com/reference/primitive-types/tuples.md): Move tuples and unit type reference: multiple return values, destructuring, unit expressions, and tuple-like syntax.
-  - [3. Local Variables and Scopes](https://move-book.com/reference/variables.md): Move local variables and scope: let bindings, mutability, type annotations, shadowing, and move semantics reference.
-  - [4. Equality](https://move-book.com/reference/equality.md): Move equality operations reference: == and != operators, type restrictions, and comparison rules for values and references.
-  - [5. Abort and Assert](https://move-book.com/reference/abort-and-assert.md): Move abort and assert reference: halt execution with error codes, enforce conditions with assert!, and handle transaction failures.
+- [The Move Reference](https://move-book.com/reference/index.md)
+  - [1. Modules](https://move-book.com/reference/modules.md)
+  - [2. Primitive Types](https://move-book.com/reference/primitive-types.md)
+    - [2.1 Integers](https://move-book.com/reference/primitive-types/integers.md)
+    - [2.2 Bool](https://move-book.com/reference/primitive-types/bool.md)
+    - [2.3 Address](https://move-book.com/reference/primitive-types/address.md)
+    - [2.4 Vector](https://move-book.com/reference/primitive-types/vector.md)
+    - [2.5 References](https://move-book.com/reference/primitive-types/references.md)
+    - [2.6 Tuples and Unit](https://move-book.com/reference/primitive-types/tuples.md)
+  - [3. Local Variables and Scopes](https://move-book.com/reference/variables.md)
+  - [4. Equality](https://move-book.com/reference/equality.md)
+  - [5. Abort and Assert](https://move-book.com/reference/abort-and-assert.md)
     - [5.1 Clever Errors](https://move-book.com/reference/abort-and-assert/clever-errors.md)
-  - [6. Control Flow](https://move-book.com/reference/control-flow.md): Move control flow reference: if expressions, while and for loops, labeled blocks, pattern matching, and early returns.
-    - [6.1 Conditional Expressions](https://move-book.com/reference/control-flow/conditionals.md): Move conditional expressions reference: if, else, and if-else syntax with type rules and expression-based semantics.
-    - [6.2 Loops](https://move-book.com/reference/control-flow/loops.md): Move loop constructs reference: while loops, loop expressions, for loops, break, continue, and iteration patterns.
-    - [6.3 Labeled Control Flow](https://move-book.com/reference/control-flow/labeled-control-flow.md): Move labeled control flow reference: named loops and blocks, break with labels, and return from named blocks.
-    - [6.4 Pattern Matching](https://move-book.com/reference/control-flow/pattern-matching.md): Move pattern matching reference: match expressions, destructuring, guards, wildcards, and exhaustive matching rules.
-  - [7. Functions](https://move-book.com/reference/functions.md): Move functions reference: declaration, visibility modifiers, entry functions, return values, and calling conventions.
-    - [7.1 Macros](https://move-book.com/reference/functions/macros.md): Move macro functions reference: compile-time expansion, lambda parameters, type parameters, and method syntax for macros.
-  - [8. Structs](https://move-book.com/reference/structs.md): Move structs reference: define custom types, positional and named fields, abilities, visibility, and resource semantics.
-  - [9. Enums](https://move-book.com/reference/enums.md): Move enumerations reference: define variant types, pattern matching with match, abilities, and enum-specific operations.
-  - [10. Constants](https://move-book.com/reference/constants.md): Move constants reference: define compile-time values, supported types, naming rules, and usage in modules.
-  - [11. Generics](https://move-book.com/reference/generics.md): Move generics reference: type parameters, constraints, phantom types, and parametric polymorphism for functions and structs.
-  - [12. Abilities](https://move-book.com/reference/abilities.md): Move abilities reference: copy, drop, store, and key — rules for how values can be used, stored, copied, and discarded.
-  - [13. Uses and Aliases](https://move-book.com/reference/uses.md): Move use and aliases reference: import modules, create aliases, group imports, and resolve naming conflicts.
-  - [14. Method Syntax](https://move-book.com/reference/method-syntax.md): Move method syntax reference: call functions with dot notation, receiver types, automatic borrowing, and method resolution.
-  - [15. Index Syntax](https://move-book.com/reference/index-syntax.md): Move index syntax reference: use bracket notation for custom types with #[syntax(index)] attribute for intuitive access patterns.
-  - [16. Packages](https://move-book.com/reference/packages.md): Move packages reference: package layout, Move.toml manifest, dependencies, named addresses, and package compilation.
-  - [17. Unit Testing](https://move-book.com/reference/unit-testing.md): Move unit testing reference: #[test], #[expected_failure], #[test_only] annotations, test flags, and execution options.
-  - [18. Compilation Modes](https://move-book.com/reference/modes.md): Move compilation modes reference: define named build modes, filter declarations, and configure mode-specific compilation.
-  - [19. Module Extensions](https://move-book.com/reference/extensions.md): Move module extensions reference: add test-only or mode-gated declarations to existing modules from external packages.
-  - [20. Coding Conventions](https://move-book.com/reference/coding-conventions.md): Move coding conventions: naming standards, formatting guidelines, and style recommendations for Sui Move development.
-  - [21. Friends](https://move-book.com/reference/friends.md): Move friends reference (deprecated): the legacy friend syntax replaced by public(package) visibility in Move 2024.
+  - [6. Control Flow](https://move-book.com/reference/control-flow.md)
+    - [6.1 Conditional Expressions](https://move-book.com/reference/control-flow/conditionals.md)
+    - [6.2 Loops](https://move-book.com/reference/control-flow/loops.md)
+    - [6.3 Labeled Control Flow](https://move-book.com/reference/control-flow/labeled-control-flow.md)
+    - [6.4 Pattern Matching](https://move-book.com/reference/control-flow/pattern-matching.md)
+  - [7. Functions](https://move-book.com/reference/functions.md)
+    - [7.1 Macros](https://move-book.com/reference/functions/macros.md)
+  - [8. Structs](https://move-book.com/reference/structs.md)
+  - [9. Enums](https://move-book.com/reference/enums.md)
+  - [10. Constants](https://move-book.com/reference/constants.md)
+  - [11. Generics](https://move-book.com/reference/generics.md)
+  - [12. Abilities](https://move-book.com/reference/abilities.md)
+  - [13. Uses and Aliases](https://move-book.com/reference/uses.md)
+  - [14. Method Syntax](https://move-book.com/reference/method-syntax.md)
+  - [15. Index Syntax](https://move-book.com/reference/index-syntax.md)
+  - [16. Packages](https://move-book.com/reference/packages.md)
+  - [17. Unit Testing](https://move-book.com/reference/unit-testing.md)
+  - [18. Compilation Modes](https://move-book.com/reference/modes.md)
+  - [19. Module Extensions](https://move-book.com/reference/extensions.md)
+  - [20. Coding Conventions](https://move-book.com/reference/coding-conventions.md)
+  - [21. Friends](https://move-book.com/reference/friends.md)
 
 ## Site
 
