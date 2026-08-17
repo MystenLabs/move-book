@@ -1,5 +1,39 @@
 ---
-description: "Generate code coverage reports for Move tests: use the --coverage flag and sui move coverage to identify untested code paths."
+description: >-
+  Generate code coverage reports for Move tests: use the --coverage flag and sui
+  move coverage to identify untested code paths.
+title: Generating Coverage Reports
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - generating
+  - coverage
+  - reports
+questions:
+  - What is Generating Coverage Reports in Move?
+  - How do I use Generating Coverage Reports in Move?
+  - What is Running Tests with Coverage in Move?
+  - What is Coverage Summary in Move?
+answer: >-
+  Generate code coverage reports for Move tests: use the --coverage flag and sui
+  move coverage to identify untested code paths.
+goal:
+  description: >-
+    Reader understands generate code coverage reports for Move tests: use the
+    --coverage flag and sui move coverage to identify untested code paths
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Generating Coverage Reports

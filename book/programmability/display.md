@@ -1,5 +1,38 @@
 ---
-description: "Object Display in Sui: define metadata templates for your objects with the Display Registry, and migrate Display from V1 to V2."
+description: >-
+  Object Display in Sui: define metadata templates for your objects with the
+  Display Registry, and migrate Display from V1 to V2.
+title: Object Display
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - object
+  - display
+  - object model
+questions:
+  - What is Object Display in Move?
+  - How do I use Object Display in Move?
+  - What is Background in Move?
+answer: >-
+  Object Display in Sui: define metadata templates for your objects with the
+  Display Registry, and migrate Display from V1 to V2.
+goal:
+  description: >-
+    Reader understands object Display in Sui: define metadata templates for your
+    objects with the Display Registry, and migrate Display from V1 to V2
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Object Display

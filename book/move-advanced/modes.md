@@ -1,5 +1,38 @@
 ---
-description: "Compilation modes in Move: include unpublishable code in named build modes like debug, benchmark, or spec beyond the built-in test mode."
+description: >-
+  Compilation modes in Move: include unpublishable code in named build modes
+  like debug, benchmark, or spec beyond the built-in test mode.
+title: Modes
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - modes
+questions:
+  - What is Modes in Move?
+  - How do I use Modes in Move?
+  - What is Building with modes in Move?
+  - What is Publication in Move?
+answer: >-
+  Compilation modes in Move: include unpublishable code in named build modes
+  like debug, benchmark, or spec beyond the built-in test mode.
+goal:
+  description: >-
+    Reader understands compilation modes in Move: include unpublishable code in
+    named build modes like debug, benchmark, or spec beyond the built-in test
+    mode
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Modes

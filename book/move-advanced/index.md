@@ -1,7 +1,37 @@
 ---
-description:
-  'Advanced Move language features: modes, extended build configurations, and advanced programming
-  techniques for Sui developers.'
+description: >-
+  Advanced Move language features: modes, extended build configurations, and
+  advanced programming techniques for Sui developers.
+title: Advanced Move Usage
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - advanced
+  - move
+  - usage
+questions:
+  - What are advanced Move features?
+  - What is beyond Move basics?
+answer: >-
+  Advanced Move covers entry functions, visibility modes, macro functions, and
+  other features beyond the language fundamentals.
+goal:
+  description: >-
+    Reader understands advanced Move features like entry functions, visibility,
+    and macros
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 30
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Advanced Move Usage

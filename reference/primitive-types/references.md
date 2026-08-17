@@ -1,6 +1,38 @@
 ---
-title: 'References | Reference'
-description: "Move references reference: immutable and mutable borrows, reading, writing, ownership rules, and the borrow checker."
+title: References | Reference
+description: >-
+  Move references reference: immutable and mutable borrows, reading, writing,
+  ownership rules, and the borrow checker.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - references
+  - reference
+questions:
+  - How does References work in Move?
+  - What is the syntax for References in Move?
+  - What is Reference Operators in Move?
+  - What is Reading and Writing Through References in Move?
+answer: >-
+  Move references reference: immutable and mutable borrows, reading, writing,
+  ownership rules, and the borrow checker.
+goal:
+  description: >-
+    Reader understands move references reference: immutable and mutable borrows,
+    reading, writing, ownership rules, and the borrow checker
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # References

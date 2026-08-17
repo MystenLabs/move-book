@@ -1,5 +1,35 @@
 ---
-description: "Build and publish a todo list app on Sui: create an account, deploy a Move package, and send transactions via the CLI."
+description: >-
+  Build and publish a todo list app on Sui: create an account, deploy a Move
+  package, and send transactions via the CLI.
+title: 'Hello, Sui!'
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - hello
+  - sui
+questions:
+  - How do I create an object in Move?
+  - How do I deploy Move to Sui?
+  - What is Hello Sui?
+answer: >-
+  Hello Sui extends Hello World by creating a Sui object with a UID,
+  transferring it to the sender, and publishing the package to the blockchain.
+goal:
+  description: Reader can write a Move module that creates and transfers an object on Sui
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Hello, Sui!

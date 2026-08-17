@@ -1,7 +1,39 @@
 ---
-description:
-  'Vectors in Move: create dynamic collections, read, add and remove elements, iterate with vector
-  macros, and destroy vectors of non-droppable types.'
+description: >-
+  Vectors in Move: create dynamic collections, read, add and remove elements,
+  iterate with vector macros, and destroy vectors of non-droppable types.
+title: Vector
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - vector
+  - collections
+questions:
+  - What is Vector in Move?
+  - How do I use Vector in Move?
+  - What is Vector Syntax in Move?
+  - What is Reading Elements in Move?
+answer: >-
+  Vectors in Move: create dynamic collections, read, add and remove elements,
+  iterate with vector macros, and destroy vectors of non-droppable types.
+goal:
+  description: >-
+    Reader understands vectors in Move: create dynamic collections, read, add
+    and remove elements, iterate with vector macros, and destroy vectors of
+    non-droppable types
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Vector

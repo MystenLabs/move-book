@@ -1,5 +1,37 @@
 ---
-description: "Expressions in Move: literals, function calls, blocks, and how almost everything returns a value in the Move language."
+description: >-
+  Expressions in Move: literals, function calls, blocks, and how almost
+  everything returns a value in the Move language.
+title: Expression
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - expression
+questions:
+  - What is Expression in Move?
+  - How do I use Expression in Move?
+  - What is Literals in Move?
+  - What is Operators in Move?
+answer: >-
+  Expressions in Move: literals, function calls, blocks, and how almost
+  everything returns a value in the Move language.
+goal:
+  description: >-
+    Reader understands expressions in Move: literals, function calls, blocks,
+    and how almost everything returns a value in the Move language
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Expression

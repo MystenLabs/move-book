@@ -1,5 +1,39 @@
 ---
-description: "The init function in Move: run one-time setup code when a module is published on Sui, with rules and best practices."
+description: >-
+  The init function in Move: run one-time setup code when a module is published
+  on Sui, with rules and best practices.
+title: Module Initializer
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - module
+  - initializer
+  - modules
+questions:
+  - What is Module Initializer in Move?
+  - How do I use Module Initializer in Move?
+  - What is The init Rules in Move?
+  - What is Trust and Security in Move?
+answer: >-
+  The init function in Move: run one-time setup code when a module is published
+  on Sui, with rules and best practices.
+goal:
+  description: >-
+    Reader understands the init function in Move: run one-time setup code when a
+    module is published on Sui, with rules and best practices
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Module Initializer

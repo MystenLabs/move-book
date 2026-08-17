@@ -1,5 +1,39 @@
 ---
-description: "The Sui Object Model explained: theory and concepts behind digital asset representation, ownership, and storage on the Sui blockchain."
+description: >-
+  The Sui Object Model explained: theory and concepts behind digital asset
+  representation, ownership, and storage on the Sui blockchain.
+title: Object Model
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - object
+  - model
+  - object model
+questions:
+  - What is the Sui object model?
+  - How do structs become objects?
+  - What abilities do objects need?
+answer: >-
+  The Sui object model defines how Move structs with the key ability and a UID
+  field become addressable onchain objects that can be owned, shared, frozen, or
+  wrapped.
+goal:
+  description: >-
+    Reader understands the Sui object model and how Move structs become onchain
+    objects
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 30
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Object Model

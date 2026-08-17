@@ -1,5 +1,38 @@
 ---
-description: "Property-based testing in Move with #[random_test]: run tests with randomized inputs to discover edge cases automatically."
+description: >-
+  Property-based testing in Move with #[random_test]: run tests with randomized
+  inputs to discover edge cases automatically.
+title: Random Inputs
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - random
+  - inputs
+questions:
+  - What is Random Inputs in Move?
+  - How do I use Random Inputs in Move?
+  - What is Basic Usage in Move?
+  - What is Supported Types in Move?
+answer: >-
+  Property-based testing in Move with #[random_test]: run tests with randomized
+  inputs to discover edge cases automatically.
+goal:
+  description: >-
+    Reader understands property-based testing in Move with #[random_test]: run
+    tests with randomized inputs to discover edge cases automatically
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Random Inputs

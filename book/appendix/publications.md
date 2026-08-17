@@ -1,5 +1,34 @@
 ---
-description: "Academic publications about Move and Sui: papers on the borrow checker, resource safety, and formal verification of Move programs."
+description: >-
+  Academic publications about Move and Sui: papers on the borrow checker,
+  resource safety, and formal verification of Move programs.
+title: 'Appendix D: Publications'
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - appendix
+  - publications
+questions:
+  - What papers exist about Move?
+  - Where can I find Move research?
+answer: >-
+  This appendix lists academic papers and technical publications about the Move
+  language, type system, and formal verification.
+goal:
+  description: Reader can find academic and technical publications about Move
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Appendix D: Publications

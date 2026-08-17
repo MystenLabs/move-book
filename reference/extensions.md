@@ -1,6 +1,40 @@
 ---
-title: 'Module Extensions | Reference'
-description: "Move module extensions reference: add test-only or mode-gated declarations to existing modules from external packages."
+title: Module Extensions | Reference
+description: >-
+  Move module extensions reference: add test-only or mode-gated declarations to
+  existing modules from external packages.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - module
+  - extensions
+  - reference
+  - modules
+questions:
+  - How does Module Extensions work in Move?
+  - What is the syntax for Module Extensions in Move?
+  - What is Extension Syntax in Move?
+  - What is Applying Extensions in Move?
+answer: >-
+  Move module extensions reference: add test-only or mode-gated declarations to
+  existing modules from external packages.
+goal:
+  description: >-
+    Reader understands move module extensions reference: add test-only or
+    mode-gated declarations to existing modules from external packages
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Module Extensions

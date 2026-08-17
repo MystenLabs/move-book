@@ -1,5 +1,38 @@
 ---
-description: "Ownership and scope in Move: how values are moved between scopes, why they cannot be copied or lost, and how the compiler enforces it."
+description: >-
+  Ownership and scope in Move: how values are moved between scopes, why they
+  cannot be copied or lost, and how the compiler enforces it.
+title: Ownership and Scope
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - ownership
+  - scope
+questions:
+  - What is Ownership and Scope in Move?
+  - How do I use Ownership and Scope in Move?
+  - What is Variable Scope in Move?
+  - What is Moving a Value in Move?
+answer: >-
+  Ownership and scope in Move: how values are moved between scopes, why they
+  cannot be copied or lost, and how the compiler enforces it.
+goal:
+  description: >-
+    Reader understands ownership and scope in Move: how values are moved between
+    scopes, why they cannot be copied or lost, and how the compiler enforces it
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Ownership and Scope

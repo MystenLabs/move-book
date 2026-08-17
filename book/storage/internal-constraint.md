@@ -1,5 +1,38 @@
 ---
-description: "The Sui Verifier internal constraint: why storage operations require the type to be defined in the calling module."
+description: >-
+  The Sui Verifier internal constraint: why storage operations require the type
+  to be defined in the calling module.
+title: 'Sui Verifier: Internal Constraint'
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - sui
+  - verifier
+  - internal
+  - constraint
+questions:
+  - 'What is Sui Verifier: Internal Constraint in Move?'
+  - 'How do I use Sui Verifier: Internal Constraint in Move?'
+answer: >-
+  The Sui Verifier internal constraint: why storage operations require the type
+  to be defined in the calling module.
+goal:
+  description: >-
+    Reader understands the Sui Verifier internal constraint: why storage
+    operations require the type to be defined in the calling module
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Sui Verifier: Internal Constraint

@@ -1,6 +1,40 @@
 ---
-title: 'Sui Object | Reference'
-description: "Sui Object reference: how the key ability defines objects, UID requirements, and object storage on the Sui blockchain."
+title: Sui Object | Reference
+description: >-
+  Sui Object reference: how the key ability defines objects, UID requirements,
+  and object storage on the Sui blockchain.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - sui
+  - object
+  - reference
+  - object model
+questions:
+  - How does Sui Object work in Move?
+  - What is the syntax for Sui Object in Move?
+  - What is Object Rules in Move?
+  - What is Transfer Rules in Move?
+answer: >-
+  Sui Object reference: how the key ability defines objects, UID requirements,
+  and object storage on the Sui blockchain.
+goal:
+  description: >-
+    Reader understands sui Object reference: how the key ability defines
+    objects, UID requirements, and object storage on the Sui blockchain
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Sui Objects

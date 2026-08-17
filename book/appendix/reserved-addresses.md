@@ -1,5 +1,37 @@
 ---
-description: "Reserved addresses on Sui: standard library (0x1), Sui framework (0x2), system objects, and other fixed address assignments."
+description: >-
+  Reserved addresses on Sui: standard library (0x1), Sui framework (0x2), system
+  objects, and other fixed address assignments.
+title: 'Appendix B: Reserved Addresses'
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - appendix
+  - reserved
+  - addresses
+questions:
+  - What addresses are reserved in Move?
+  - What is address 0x1?
+  - What is the Sui framework address?
+answer: >-
+  Move reserves specific addresses for system packages: 0x1 for the standard
+  library, 0x2 for the Sui framework, and 0x3 for additional Sui system
+  packages.
+goal:
+  description: Reader knows which addresses are reserved in Move and their purpose
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Appendix B: Reserved Addresses

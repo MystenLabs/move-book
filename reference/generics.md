@@ -1,6 +1,38 @@
 ---
-title: 'Generics | Reference'
-description: "Move generics reference: type parameters, constraints, phantom types, and parametric polymorphism for functions and structs."
+title: Generics | Reference
+description: >-
+  Move generics reference: type parameters, constraints, phantom types, and
+  parametric polymorphism for functions and structs.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - generics
+  - reference
+questions:
+  - How does Generics work in Move?
+  - What is the syntax for Generics in Move?
+  - What is Declaring Type Parameters in Move?
+  - What is Type Arguments in Move?
+answer: >-
+  Move generics reference: type parameters, constraints, phantom types, and
+  parametric polymorphism for functions and structs.
+goal:
+  description: >-
+    Reader understands move generics reference: type parameters, constraints,
+    phantom types, and parametric polymorphism for functions and structs
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Generics

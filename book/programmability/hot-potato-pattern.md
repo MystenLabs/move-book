@@ -1,5 +1,41 @@
 ---
-description: "The Hot Potato pattern in Move: a struct with no abilities that must be consumed in the same transaction, enforcing workflow completion."
+description: >-
+  The Hot Potato pattern in Move: a struct with no abilities that must be
+  consumed in the same transaction, enforcing workflow completion.
+title: 'Pattern: Hot Potato'
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - pattern
+  - hot
+  - potato
+  - design patterns
+questions:
+  - 'What is Pattern: Hot Potato in Move?'
+  - 'How do I use Pattern: Hot Potato in Move?'
+  - What is Defining a Hot Potato in Move?
+  - What is Applications in Move?
+answer: >-
+  The Hot Potato pattern in Move: a struct with no abilities that must be
+  consumed in the same transaction, enforcing workflow completion.
+goal:
+  description: >-
+    Reader understands the Hot Potato pattern in Move: a struct with no
+    abilities that must be consumed in the same transaction, enforcing workflow
+    completion
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Pattern: Hot Potato

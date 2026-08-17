@@ -1,5 +1,40 @@
 ---
-description: "Improve error handling in Move smart contracts: use descriptive abort codes and error constants for better debugging on Sui."
+description: >-
+  Improve error handling in Move smart contracts: use descriptive abort codes
+  and error constants for better debugging on Sui.
+title: Better Error Handling
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - better
+  - error
+  - handling
+  - error handling
+questions:
+  - What is Better Error Handling in Move?
+  - How do I use Better Error Handling in Move?
+  - 'What is Rule 1: Handle All Possible Scenarios in Move?'
+  - 'What is Rule 2: Abort with Different Codes in Move?'
+answer: >-
+  Improve error handling in Move smart contracts: use descriptive abort codes
+  and error constants for better debugging on Sui.
+goal:
+  description: >-
+    Reader understands improve error handling in Move smart contracts: use
+    descriptive abort codes and error constants for better debugging on Sui
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Better Error Handling

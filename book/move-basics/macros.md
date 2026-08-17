@@ -1,5 +1,39 @@
 ---
-description: "Macro functions in Move: compile-time expanded functions with lambda arguments - how to use standard library macros and define your own."
+description: >-
+  Macro functions in Move: compile-time expanded functions with lambda arguments
+  - how to use standard library macros and define your own.
+title: Macro Functions
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - macro
+  - functions
+questions:
+  - What is Macro Functions in Move?
+  - How do I use Macro Functions in Move?
+  - What is a Macro Function?
+  - What is Defining a Macro in Move?
+answer: >-
+  Macro functions in Move: compile-time expanded functions with lambda arguments
+  - how to use standard library macros and define your own.
+goal:
+  description: >-
+    Reader understands macro functions in Move: compile-time expanded functions
+    with lambda arguments - how to use standard library macros and define your
+    own
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Macro Functions

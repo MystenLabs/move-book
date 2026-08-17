@@ -1,6 +1,39 @@
 ---
-title: 'Structs | Reference'
-description: "Move structs reference: define custom types, positional and named fields, abilities, visibility, and resource semantics."
+title: Structs | Reference
+description: >-
+  Move structs reference: define custom types, positional and named fields,
+  abilities, visibility, and resource semantics.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - structs
+  - reference
+  - struct
+questions:
+  - How does Structs work in Move?
+  - What is the syntax for Structs in Move?
+  - What is Defining Structs in Move?
+  - What is Using Structs in Move?
+answer: >-
+  Move structs reference: define custom types, positional and named fields,
+  abilities, visibility, and resource semantics.
+goal:
+  description: >-
+    Reader understands move structs reference: define custom types, positional
+    and named fields, abilities, visibility, and resource semantics
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Structs and Resources

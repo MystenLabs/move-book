@@ -1,5 +1,39 @@
 ---
-description: "Dynamic fields in Sui: attach heterogeneous key-value data to objects at runtime, bypassing object size limits."
+description: >-
+  Dynamic fields in Sui: attach heterogeneous key-value data to objects at
+  runtime, bypassing object size limits.
+title: Dynamic Fields
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - dynamic
+  - fields
+  - dynamic fields
+questions:
+  - What is Dynamic Fields in Move?
+  - How do I use Dynamic Fields in Move?
+  - What is Definition in Move?
+  - What is Usage in Move?
+answer: >-
+  Dynamic fields in Sui: attach heterogeneous key-value data to objects at
+  runtime, bypassing object size limits.
+goal:
+  description: >-
+    Reader understands dynamic fields in Sui: attach heterogeneous key-value
+    data to objects at runtime, bypassing object size limits
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Dynamic Fields

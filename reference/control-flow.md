@@ -1,6 +1,37 @@
 ---
-title: 'Control Flow | Reference'
-description: "Move control flow reference: if expressions, while and for loops, labeled blocks, pattern matching, and early returns."
+title: Control Flow | Reference
+description: >-
+  Move control flow reference: if expressions, while and for loops, labeled
+  blocks, pattern matching, and early returns.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - control
+  - flow
+  - reference
+questions:
+  - How does Control Flow work in Move?
+  - What is the syntax for Control Flow in Move?
+answer: >-
+  Move control flow reference: if expressions, while and for loops, labeled
+  blocks, pattern matching, and early returns.
+goal:
+  description: >-
+    Reader understands move control flow reference: if expressions, while and
+    for loops, labeled blocks, pattern matching, and early returns
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Control Flow

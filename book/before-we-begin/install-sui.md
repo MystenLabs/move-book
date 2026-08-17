@@ -1,5 +1,34 @@
 ---
-description: "Install the Sui binary and Move compiler using suiup, Homebrew, or Chocolatey to start developing Move smart contracts."
+description: >-
+  Install the Sui binary and Move compiler using suiup, Homebrew, or Chocolatey
+  to start developing Move smart contracts.
+title: Install Sui
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - install
+  - sui
+questions:
+  - How do I install the Sui CLI?
+  - How do I set up Sui for Move development?
+answer: >-
+  Install the Sui CLI using the official installer, then verify with sui
+  --version to begin compiling and testing Move code.
+goal:
+  description: Reader has the Sui CLI installed and can run sui move commands
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Install Sui

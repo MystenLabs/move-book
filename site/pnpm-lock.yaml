@@ -69,6 +69,12 @@ importers:
       '@docusaurus/types':
         specifier: 3.8.1
         version: 3.8.1(acorn@8.15.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      ajv:
+        specifier: ^8.17.1
+        version: 8.17.1
+      gray-matter:
+        specifier: ^4.0.3
+        version: 4.0.3
       typescript:
         specifier: ~5.6.2
         version: 5.6.3

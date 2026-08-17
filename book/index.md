@@ -1,5 +1,38 @@
 ---
-description: "A comprehensive guide to the Move programming language and Sui blockchain for smart contract developers."
+description: >-
+  A comprehensive guide to the Move programming language and Sui blockchain for
+  smart contract developers.
+title: The Move Book
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - move
+  - book
+questions:
+  - What is The Move Book?
+  - How do I learn Move programming?
+  - What topics does The Move Book cover?
+answer: >-
+  The Move Book is a comprehensive guide to the Move programming language and
+  Sui blockchain, covering everything from first steps to advanced patterns,
+  storage, and programmability.
+goal:
+  description: >-
+    Reader understands the scope of The Move Book and can navigate to the right
+    chapter
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 30
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # The Move Book

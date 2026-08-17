@@ -1,5 +1,37 @@
 ---
-description: "Configure VSCode or IntelliJ IDEA for Move development with syntax highlighting, error checking, and code formatting extensions."
+description: >-
+  Configure VSCode or IntelliJ IDEA for Move development with syntax
+  highlighting, error checking, and code formatting extensions.
+title: Set Up Your IDE
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - set
+  - your
+  - ide
+questions:
+  - What IDE should I use for Move?
+  - How do I set up VS Code for Move?
+  - Is there a Move language server?
+answer: >-
+  Move has official IDE support through the move-analyzer language server,
+  providing syntax highlighting, diagnostics, go-to-definition, and autocomplete
+  in VS Code and other editors.
+goal:
+  description: Reader has their IDE configured with Move language support
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Set Up Your IDE

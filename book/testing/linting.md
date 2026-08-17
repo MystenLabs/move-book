@@ -1,5 +1,38 @@
 ---
-description: "Run Move linters with sui move lint: catch Sui-specific antipatterns at compile time, suppress false positives, and enforce lints in CI."
+description: >-
+  Run Move linters with sui move lint: catch Sui-specific antipatterns at
+  compile time, suppress false positives, and enforce lints in CI.
+title: Running Lints
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - running
+  - lints
+questions:
+  - What is Running Lints in Move?
+  - How do I use Running Lints in Move?
+  - What is Default and Extra Lints in Move?
+answer: >-
+  Run Move linters with sui move lint: catch Sui-specific antipatterns at
+  compile time, suppress false positives, and enforce lints in CI.
+goal:
+  description: >-
+    Reader understands run Move linters with sui move lint: catch Sui-specific
+    antipatterns at compile time, suppress false positives, and enforce lints in
+    CI
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Running Lints

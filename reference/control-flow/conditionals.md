@@ -1,6 +1,38 @@
 ---
-title: 'Conditional Expressions | Reference'
-description: "Move conditional expressions reference: if, else, and if-else syntax with type rules and expression-based semantics."
+title: Conditional Expressions | Reference
+description: >-
+  Move conditional expressions reference: if, else, and if-else syntax with type
+  rules and expression-based semantics.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - conditional
+  - expressions
+  - reference
+questions:
+  - How does Conditional Expressions work in Move?
+  - What is the syntax for Conditional Expressions in Move?
+  - What is Grammar for Conditionals in Move?
+answer: >-
+  Move conditional expressions reference: if, else, and if-else syntax with type
+  rules and expression-based semantics.
+goal:
+  description: >-
+    Reader understands move conditional expressions reference: if, else, and
+    if-else syntax with type rules and expression-based semantics
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Conditional `if` Expressions

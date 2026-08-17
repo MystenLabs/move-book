@@ -1,7 +1,38 @@
 ---
-description:
-  'The Option type in Move: represent a value that may be absent, create and inspect options,
-  extract values safely, and process them with option macros.'
+description: >-
+  The Option type in Move: represent a value that may be absent, create and
+  inspect options, extract values safely, and process them with option macros.
+title: Option
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - option
+questions:
+  - What is Option in Move?
+  - How do I use Option in Move?
+  - What is The Option Type in Move?
+  - What is Creating and Using an Option in Move?
+answer: >-
+  The Option type in Move: represent a value that may be absent, create and
+  inspect options, extract values safely, and process them with option macros.
+goal:
+  description: >-
+    Reader understands the Option type in Move: represent a value that may be
+    absent, create and inspect options, extract values safely, and process them
+    with option macros
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Option

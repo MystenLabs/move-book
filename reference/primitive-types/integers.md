@@ -1,6 +1,38 @@
 ---
-title: 'Integers | Reference'
-description: "Move integer types reference: u8, u16, u32, u64, u128, u256 — literals, operations, casting, and overflow behavior."
+title: Integers | Reference
+description: >-
+  Move integer types reference: u8, u16, u32, u64, u128, u256 — literals,
+  operations, casting, and overflow behavior.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - integers
+  - reference
+questions:
+  - How does Integers work in Move?
+  - What is the syntax for Integers in Move?
+  - What is Literals in Move?
+  - What is Operations in Move?
+answer: >-
+  Move integer types reference: u8, u16, u32, u64, u128, u256 — literals,
+  operations, casting, and overflow behavior.
+goal:
+  description: >-
+    Reader understands move integer types reference: u8, u16, u32, u64, u128,
+    u256 — literals, operations, casting, and overflow behavior
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Integers

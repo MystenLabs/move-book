@@ -1,6 +1,41 @@
 ---
-title: 'Unit Tests | Reference'
-description: "Move unit testing reference: #[test], #[expected_failure], #[test_only] annotations, test flags, and execution options."
+title: Unit Tests | Reference
+description: >-
+  Move unit testing reference: #[test], #[expected_failure], #[test_only]
+  annotations, test flags, and execution options.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - unit
+  - tests
+  - reference
+  - testing
+questions:
+  - How does Unit Tests work in Move?
+  - What is the syntax for Unit Tests in Move?
+  - What is Test Annotations in Move?
+  - What is Expected Failures in Move?
+answer: >-
+  Move unit testing reference: #[test], #[expected_failure], #[test_only]
+  annotations, test flags, and execution options.
+goal:
+  description: >-
+    Reader understands move unit testing reference: #[test],
+    #[expected_failure], #[test_only] annotations, test flags, and execution
+    options
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Unit Tests

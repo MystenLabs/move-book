@@ -1,6 +1,41 @@
 ---
-title: 'Abort and Assert | Reference'
-description: "Move abort and assert reference: halt execution with error codes, enforce conditions with assert!, and handle transaction failures."
+title: Abort and Assert | Reference
+description: >-
+  Move abort and assert reference: halt execution with error codes, enforce
+  conditions with assert!, and handle transaction failures.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - abort
+  - assert
+  - reference
+  - error handling
+questions:
+  - How does Abort and Assert work in Move?
+  - What is the syntax for Abort and Assert in Move?
+  - What is abort in Move?
+  - What is The type of abort in Move?
+answer: >-
+  Move abort and assert reference: halt execution with error codes, enforce
+  conditions with assert!, and handle transaction failures.
+goal:
+  description: >-
+    Reader understands move abort and assert reference: halt execution with
+    error codes, enforce conditions with assert!, and handle transaction
+    failures
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Abort and Assert

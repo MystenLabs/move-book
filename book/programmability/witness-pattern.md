@@ -1,5 +1,40 @@
 ---
-description: "The Witness pattern in Move: prove type ownership through struct instantiation for type-safe authorization in Sui smart contracts."
+description: >-
+  The Witness pattern in Move: prove type ownership through struct instantiation
+  for type-safe authorization in Sui smart contracts.
+title: 'Pattern: Witness'
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - pattern
+  - witness
+  - design patterns
+  - witness pattern
+questions:
+  - 'What is Pattern: Witness in Move?'
+  - 'How do I use Pattern: Witness in Move?'
+  - What is Witness in Move in Move?
+  - What is Instantiating a Generic Type in Move?
+answer: >-
+  The Witness pattern in Move: prove type ownership through struct instantiation
+  for type-safe authorization in Sui smart contracts.
+goal:
+  description: >-
+    Reader understands the Witness pattern in Move: prove type ownership through
+    struct instantiation for type-safe authorization in Sui smart contracts
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Pattern: Witness

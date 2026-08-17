@@ -1,5 +1,37 @@
 ---
-description: "Object ownership types in Sui: single owner, shared state, immutable objects, and object-owned objects explained with examples."
+description: >-
+  Object ownership types in Sui: single owner, shared state, immutable objects,
+  and object-owned objects explained with examples.
+title: Ownership
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - ownership
+questions:
+  - What is Ownership in Move?
+  - How do I use Ownership in Move?
+  - What is Account Owner (or Single Owner) in Move?
+  - What is Shared State in Move?
+answer: >-
+  Object ownership types in Sui: single owner, shared state, immutable objects,
+  and object-owned objects explained with examples.
+goal:
+  description: >-
+    Reader understands object ownership types in Sui: single owner, shared
+    state, immutable objects, and object-owned objects explained with examples
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Ownership

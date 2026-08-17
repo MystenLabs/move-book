@@ -1,5 +1,40 @@
 ---
-description: "Guide to open sourcing Move libraries: naming conventions, documentation, testing, and publishing reusable packages for Sui."
+description: >-
+  Guide to open sourcing Move libraries: naming conventions, documentation,
+  testing, and publishing reusable packages for Sui.
+title: Open Sourcing Libraries
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - open
+  - sourcing
+  - libraries
+questions:
+  - What is Open Sourcing Libraries in Move?
+  - How do I use Open Sourcing Libraries in Move?
+  - What is README in Move?
+  - What is Named Addresses in Move?
+answer: >-
+  Guide to open sourcing Move libraries: naming conventions, documentation,
+  testing, and publishing reusable packages for Sui.
+goal:
+  description: >-
+    Reader understands guide to open sourcing Move libraries: naming
+    conventions, documentation, testing, and publishing reusable packages for
+    Sui
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Open Sourcing Libraries

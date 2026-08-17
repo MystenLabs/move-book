@@ -1,6 +1,38 @@
 ---
-title: 'Equality | Reference'
-description: "Move equality operations reference: == and != operators, type restrictions, and comparison rules for values and references."
+title: Equality | Reference
+description: >-
+  Move equality operations reference: == and != operators, type restrictions,
+  and comparison rules for values and references.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - equality
+  - reference
+questions:
+  - How does Equality work in Move?
+  - What is the syntax for Equality in Move?
+  - What is Operations in Move?
+  - What is Restrictions in Move?
+answer: >-
+  Move equality operations reference: == and != operators, type restrictions,
+  and comparison rules for values and references.
+goal:
+  description: >-
+    Reader understands move equality operations reference: == and != operators,
+    type restrictions, and comparison rules for values and references
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Equality

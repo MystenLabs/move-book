@@ -1,5 +1,43 @@
 ---
-description: "Migrate your Move code to the 2024 edition: module labels, let mut, public structs, method syntax, enums and match, macros, clever errors, and step-by-step instructions."
+description: >-
+  Migrate your Move code to the 2024 edition: module labels, let mut, public
+  structs, method syntax, enums and match, macros, clever errors, and
+  step-by-step instructions.
+title: Move 2024 Migration Guide
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - move
+  - '2024'
+  - migration
+  - guide
+questions:
+  - What is Move 2024 Migration Guide in Move?
+  - How do I use Move 2024 Migration Guide in Move?
+  - What is Using the 2024 Edition in Move?
+  - What is Migration Tool in Move?
+answer: >-
+  Migrate your Move code to the 2024 edition: module labels, let mut, public
+  structs, method syntax, enums and match, macros, clever errors, and
+  step-by-step instructions.
+goal:
+  description: >-
+    Reader understands migrate your Move code to the 2024 edition: module
+    labels, let mut, public structs, method syntax, enums and match, macros,
+    clever errors, and step-by-step instructions
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Move 2024 Migration Guide

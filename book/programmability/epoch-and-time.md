@@ -1,5 +1,38 @@
 ---
-description: "Access time in Sui Move: use epochs for operational periods and Clock for millisecond timestamps in your smart contracts."
+description: >-
+  Access time in Sui Move: use epochs for operational periods and Clock for
+  millisecond timestamps in your smart contracts.
+title: Epoch and Time
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - epoch
+  - time
+questions:
+  - What is Epoch and Time in Move?
+  - How do I use Epoch and Time in Move?
+  - What is Epoch in Move?
+  - What is Time in Move?
+answer: >-
+  Access time in Sui Move: use epochs for operational periods and Clock for
+  millisecond timestamps in your smart contracts.
+goal:
+  description: >-
+    Reader understands access time in Sui Move: use epochs for operational
+    periods and Clock for millisecond timestamps in your smart contracts
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Epoch and Time

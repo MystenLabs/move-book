@@ -1,6 +1,38 @@
 ---
-title: 'Enumerations | Reference'
-description: "Move enumerations reference: define variant types, pattern matching with match, abilities, and enum-specific operations."
+title: Enumerations | Reference
+description: >-
+  Move enumerations reference: define variant types, pattern matching with
+  match, abilities, and enum-specific operations.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - enumerations
+  - reference
+questions:
+  - How does Enumerations work in Move?
+  - What is the syntax for Enumerations in Move?
+  - What is Defining Enums in Move?
+  - What is Visibility in Move?
+answer: >-
+  Move enumerations reference: define variant types, pattern matching with
+  match, abilities, and enum-specific operations.
+goal:
+  description: >-
+    Reader understands move enumerations reference: define variant types,
+    pattern matching with match, abilities, and enum-specific operations
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Enumerations

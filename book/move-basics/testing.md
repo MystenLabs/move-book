@@ -1,5 +1,37 @@
 ---
-description: "Write and run unit tests in Move using the #[test] attribute, expected failures, and utilities for testing smart contract logic."
+description: >-
+  Write and run unit tests in Move using the #[test] attribute, expected
+  failures, and utilities for testing smart contract logic.
+title: Testing
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - testing
+questions:
+  - What is Testing in Move?
+  - How do I use Testing in Move?
+  - What is Test-Only Code in Move?
+  - What is Explore More in Move?
+answer: >-
+  Write and run unit tests in Move using the #[test] attribute, expected
+  failures, and utilities for testing smart contract logic.
+goal:
+  description: >-
+    Reader can write and run unit tests in Move using the #[test] attribute,
+    expected failures, and utilities for testing smart contract logic
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Testing

@@ -1,5 +1,36 @@
 ---
-description: "The evolution of Move from Diem to Sui: how the storage model changed from account-based to the object-based model."
+description: >-
+  The evolution of Move from Diem to Sui: how the storage model changed from
+  account-based to the object-based model.
+title: Evolution of Move
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - evolution
+  - move
+questions:
+  - What is Evolution of Move in Move?
+  - How do I use Evolution of Move in Move?
+answer: >-
+  The evolution of Move from Diem to Sui: how the storage model changed from
+  account-based to the object-based model.
+goal:
+  description: >-
+    Reader understands the evolution of Move from Diem to Sui: how the storage
+    model changed from account-based to the object-based model
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Evolution of Move

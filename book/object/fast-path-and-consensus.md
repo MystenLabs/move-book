@@ -1,5 +1,39 @@
 ---
-description: "Fast path vs consensus in Sui: how owned objects skip consensus for faster transactions while shared objects require ordering."
+description: >-
+  Fast path vs consensus in Sui: how owned objects skip consensus for faster
+  transactions while shared objects require ordering.
+title: Fast Path and Consensus
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - fast
+  - path
+  - consensus
+questions:
+  - What is Fast Path and Consensus in Move?
+  - How do I use Fast Path and Consensus in Move?
+  - What is Concurrency Challenge in Move?
+  - What is Fast Path in Move?
+answer: >-
+  Fast path vs consensus in Sui: how owned objects skip consensus for faster
+  transactions while shared objects require ordering.
+goal:
+  description: >-
+    Reader understands fast path vs consensus in Sui: how owned objects skip
+    consensus for faster transactions while shared objects require ordering
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Fast Path and Consensus

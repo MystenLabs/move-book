@@ -1,5 +1,39 @@
 ---
-description: "Test Scenario in Sui Move: simulate multi-transaction flows, test object transfers, and verify shared object behavior in tests."
+description: >-
+  Test Scenario in Sui Move: simulate multi-transaction flows, test object
+  transfers, and verify shared object behavior in tests.
+title: Test Scenario
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - test
+  - scenario
+  - testing
+questions:
+  - What is Test Scenario in Move?
+  - How do I use Test Scenario in Move?
+  - What is Starting and Ending a Scenario in Move?
+  - What is Transaction Simulation in Move?
+answer: >-
+  Test Scenario in Sui Move: simulate multi-transaction flows, test object
+  transfers, and verify shared object behavior in tests.
+goal:
+  description: >-
+    Reader can test Scenario in Sui Move: simulate multi-transaction flows, test
+    object transfers, and verify shared object behavior in tests
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Test Scenario

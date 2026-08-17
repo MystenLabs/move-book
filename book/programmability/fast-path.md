@@ -1,5 +1,38 @@
 ---
-description: "Design for the fast path in Sui: structure owned vs shared objects to maximize transaction parallelism and performance."
+description: >-
+  Design for the fast path in Sui: structure owned vs shared objects to maximize
+  transaction parallelism and performance.
+title: Fast Path
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - fast
+  - path
+questions:
+  - What is Fast Path in Move?
+  - How do I use Fast Path in Move?
+  - What is Frozen objects in Move?
+  - What is In Practice in Move?
+answer: >-
+  Design for the fast path in Sui: structure owned vs shared objects to maximize
+  transaction parallelism and performance.
+goal:
+  description: >-
+    Reader understands design for the fast path in Sui: structure owned vs
+    shared objects to maximize transaction parallelism and performance
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Fast Path

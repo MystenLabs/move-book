@@ -1,7 +1,41 @@
 ---
-description:
-  'Package upgrades on Sui: how new versions are published, what the UpgradeCap is, how to make a
-  package immutable, and how to version and migrate shared state.'
+description: >-
+  Package upgrades on Sui: how new versions are published, what the UpgradeCap
+  is, how to make a package immutable, and how to version and migrate shared
+  state.
+title: Package Upgrades
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - package
+  - upgrades
+questions:
+  - What is Package Upgrades in Move?
+  - How do I use Package Upgrades in Move?
+  - What is An Upgrade Is a New Package in Move?
+  - What Can Change?
+answer: >-
+  Package upgrades on Sui: how new versions are published, what the UpgradeCap
+  is, how to make a package immutable, and how to version and migrate shared
+  state.
+goal:
+  description: >-
+    Reader understands package upgrades on Sui: how new versions are published,
+    what the UpgradeCap is, how to make a package immutable, and how to version
+    and migrate shared state
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Package Upgrades

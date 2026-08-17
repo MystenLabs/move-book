@@ -1,5 +1,40 @@
 ---
-description: "BCS (Binary Canonical Serialization) in Move: encode and decode structured data for onchain storage and cross-platform communication."
+description: >-
+  BCS (Binary Canonical Serialization) in Move: encode and decode structured
+  data for onchain storage and cross-platform communication.
+title: Binary Canonical Serialization
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - binary
+  - canonical
+  - serialization
+  - BCS
+questions:
+  - What is Binary Canonical Serialization in Move?
+  - How do I use Binary Canonical Serialization in Move?
+  - What is Format in Move?
+  - What is Using BCS in Move?
+answer: >-
+  BCS (Binary Canonical Serialization) in Move: encode and decode structured
+  data for onchain storage and cross-platform communication.
+goal:
+  description: >-
+    Reader understands bCS (Binary Canonical Serialization) in Move: encode and
+    decode structured data for onchain storage and cross-platform communication
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Binary Canonical Serialization

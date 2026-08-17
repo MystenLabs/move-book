@@ -1,5 +1,35 @@
 ---
-description: "Create your first Move package on Sui: learn the project structure, write a module, compile code, and run tests with the Move CLI."
+description: >-
+  Create your first Move package on Sui: learn the project structure, write a
+  module, compile code, and run tests with the Move CLI.
+title: 'Hello, World!'
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - hello
+  - world
+questions:
+  - How do I create my first Move project?
+  - How do I write Hello World in Move?
+  - How do I compile and test Move code?
+answer: >-
+  Create a Move package with sui move new, write a module with a public
+  function, compile with sui move build, and test with sui move test.
+goal:
+  description: 'Reader can create a Move package, write a module, compile it, and run tests'
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Hello, World!

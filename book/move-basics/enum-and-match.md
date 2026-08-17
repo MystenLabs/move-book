@@ -1,5 +1,38 @@
 ---
-description: "Enums and pattern matching in Move: define variant types, use match expressions, and handle multiple cases in smart contracts."
+description: >-
+  Enums and pattern matching in Move: define variant types, use match
+  expressions, and handle multiple cases in smart contracts.
+title: Enums and Match
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - enums
+  - match
+questions:
+  - What is Enums and Match in Move?
+  - How do I use Enums and Match in Move?
+  - What is Definition in Move?
+  - What is Instantiating in Move?
+answer: >-
+  Enums and pattern matching in Move: define variant types, use match
+  expressions, and handle multiple cases in smart contracts.
+goal:
+  description: >-
+    Reader understands enums and pattern matching in Move: define variant types,
+    use match expressions, and handle multiple cases in smart contracts
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Enums and Match

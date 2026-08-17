@@ -1,6 +1,38 @@
 ---
-title: 'Modules | Reference'
-description: "Move module reference: declare modules, define types and functions, control visibility, and organize code in packages."
+title: Modules | Reference
+description: >-
+  Move module reference: declare modules, define types and functions, control
+  visibility, and organize code in packages.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - modules
+  - reference
+questions:
+  - How does Modules work in Move?
+  - What is the syntax for Modules in Move?
+  - What is Names in Move?
+  - What is Members in Move?
+answer: >-
+  Move module reference: declare modules, define types and functions, control
+  visibility, and organize code in packages.
+goal:
+  description: >-
+    Reader understands move module reference: declare modules, define types and
+    functions, control visibility, and organize code in packages
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Modules

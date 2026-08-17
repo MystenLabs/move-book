@@ -1,5 +1,41 @@
 ---
-description: "Best practices for writing effective Move tests: concise, focused, and maintainable tests that catch real bugs in smart contracts."
+description: >-
+  Best practices for writing effective Move tests: concise, focused, and
+  maintainable tests that catch real bugs in smart contracts.
+title: What Makes a Good Test
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - what
+  - makes
+  - good
+  - test
+  - testing
+questions:
+  - What Makes a Good Test?
+  - How do I use What Makes a Good Test in Move?
+  - What is Characteristics of Good Tests in Move?
+  - What to Test?
+answer: >-
+  Best practices for writing effective Move tests: concise, focused, and
+  maintainable tests that catch real bugs in smart contracts.
+goal:
+  description: >-
+    Reader understands best practices for writing effective Move tests: concise,
+    focused, and maintainable tests that catch real bugs in smart contracts
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # What Makes a Good Test

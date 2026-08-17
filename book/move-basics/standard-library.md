@@ -1,5 +1,38 @@
 ---
-description: "Overview of the Move Standard Library: common modules for strings, vectors, options, and type names available in every Move package."
+description: >-
+  Overview of the Move Standard Library: common modules for strings, vectors,
+  options, and type names available in every Move package.
+title: Standard Library
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - standard
+  - library
+questions:
+  - What is Standard Library in Move?
+  - How do I use Standard Library in Move?
+  - What is Most Common Modules in Move?
+  - What is Integer Modules in Move?
+answer: >-
+  Overview of the Move Standard Library: common modules for strings, vectors,
+  options, and type names available in every Move package.
+goal:
+  description: >-
+    Reader understands overview of the Move Standard Library: common modules for
+    strings, vectors, options, and type names available in every Move package
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Standard Library

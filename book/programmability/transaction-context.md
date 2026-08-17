@@ -1,5 +1,38 @@
 ---
-description: "TxContext in Sui Move: access sender address, transaction digest, epoch, gas price, and generate unique IDs in your smart contracts."
+description: >-
+  TxContext in Sui Move: access sender address, transaction digest, epoch, gas
+  price, and generate unique IDs in your smart contracts.
+title: Transaction Context
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - transaction
+  - context
+questions:
+  - What is Transaction Context in Move?
+  - How do I use Transaction Context in Move?
+  - What is Reading the Transaction Context in Move?
+  - What is Mutability in Move?
+answer: >-
+  TxContext in Sui Move: access sender address, transaction digest, epoch, gas
+  price, and generate unique IDs in your smart contracts.
+goal:
+  description: >-
+    Reader understands txContext in Sui Move: access sender address, transaction
+    digest, epoch, gas price, and generate unique IDs in your smart contracts
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Transaction Context

@@ -1,6 +1,40 @@
 ---
-title: 'Labeled Control Flow | Reference'
-description: "Move labeled control flow reference: named loops and blocks, break with labels, and return from named blocks."
+title: Labeled Control Flow | Reference
+description: >-
+  Move labeled control flow reference: named loops and blocks, break with
+  labels, and return from named blocks.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - labeled
+  - control
+  - flow
+  - reference
+questions:
+  - How does Labeled Control Flow work in Move?
+  - What is the syntax for Labeled Control Flow in Move?
+  - What is Loops in Move?
+  - What is Labeled Blocks in Move?
+answer: >-
+  Move labeled control flow reference: named loops and blocks, break with
+  labels, and return from named blocks.
+goal:
+  description: >-
+    Reader understands move labeled control flow reference: named loops and
+    blocks, break with labels, and return from named blocks
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Labeled Control Flow

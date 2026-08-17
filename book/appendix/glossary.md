@@ -1,5 +1,34 @@
 ---
-description: "Glossary of Move and Sui terminology: fast path, parallel execution, internal types, and other key concepts defined."
+description: >-
+  Glossary of Move and Sui terminology: fast path, parallel execution, internal
+  types, and other key concepts defined.
+title: 'Appendix A: Glossary'
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - appendix
+  - glossary
+questions:
+  - What does this Move term mean?
+  - Where is the Move glossary?
+answer: >-
+  The glossary defines key terms in the Move language and Sui ecosystem
+  including abilities, objects, modules, packages, and blockchain concepts.
+goal:
+  description: Reader can look up definitions of Move and Sui terminology
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Appendix A: Glossary

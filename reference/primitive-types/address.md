@@ -1,6 +1,38 @@
 ---
-title: 'Address | Reference'
-description: "Move address type reference: 256-bit identifiers, named addresses, hex literals, and address-related operations."
+title: Address | Reference
+description: >-
+  Move address type reference: 256-bit identifiers, named addresses, hex
+  literals, and address-related operations.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - address
+  - reference
+questions:
+  - How does Address work in Move?
+  - What is the syntax for Address in Move?
+  - What is Addresses and Their Syntax in Move?
+  - What is Named Addresses in Move?
+answer: >-
+  Move address type reference: 256-bit identifiers, named addresses, hex
+  literals, and address-related operations.
+goal:
+  description: >-
+    Reader understands move address type reference: 256-bit identifiers, named
+    addresses, hex literals, and address-related operations
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Address

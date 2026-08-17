@@ -1,5 +1,39 @@
 ---
-description: "The Publisher object in Sui: prove package authority to configure Display, transfer policies, and other type-level settings."
+description: >-
+  The Publisher object in Sui: prove package authority to configure Display,
+  transfer policies, and other type-level settings.
+title: Publisher Authority
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - publisher
+  - authority
+  - package
+questions:
+  - What is Publisher Authority in Move?
+  - How do I use Publisher Authority in Move?
+  - What is Definition in Move?
+  - What is Usage in Move?
+answer: >-
+  The Publisher object in Sui: prove package authority to configure Display,
+  transfer policies, and other type-level settings.
+goal:
+  description: >-
+    Reader understands the Publisher object in Sui: prove package authority to
+    configure Display, transfer policies, and other type-level settings
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Publisher Authority

@@ -1,5 +1,38 @@
 ---
-description: "The std::internal module in Move: use Permit<T> to restrict generic function calls to the module that defines the type T."
+description: >-
+  The std::internal module in Move: use Permit<T> to restrict generic function
+  calls to the module that defines the type T.
+title: Internal Permit
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - internal
+  - permit
+questions:
+  - What is Internal Permit in Move?
+  - How do I use Internal Permit in Move?
+  - What is The Problem in Move?
+  - What is The Permit Type in Move?
+answer: >-
+  The std::internal module in Move: use Permit<T> to restrict generic function
+  calls to the module that defines the type T.
+goal:
+  description: >-
+    Reader understands the std::internal module in Move: use Permit<T> to
+    restrict generic function calls to the module that defines the type T
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Internal Permit

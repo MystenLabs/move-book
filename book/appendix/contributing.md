@@ -1,5 +1,31 @@
 ---
-description: "How to contribute to The Move Book: submit pull requests, report issues, and help improve the Move programming language guide."
+description: >-
+  How to contribute to The Move Book: submit pull requests, report issues, and
+  help improve the Move programming language guide.
+title: 'Appendix E: Contributing'
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - appendix
+  - contributing
+questions:
+  - How do I contribute to The Move Book?
+answer: Contributions to The Move Book are welcome via pull requests on GitHub.
+goal:
+  description: Reader knows how to contribute to The Move Book
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 20
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Appendix E: Contributing

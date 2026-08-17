@@ -1,6 +1,39 @@
 ---
-title: 'Macro Functions | Reference'
-description: "Move macro functions reference: compile-time expansion, lambda parameters, type parameters, and method syntax for macros."
+title: Macro Functions | Reference
+description: >-
+  Move macro functions reference: compile-time expansion, lambda parameters,
+  type parameters, and method syntax for macros.
+keywords:
+  - Move
+  - Sui
+  - Move reference
+  - macro
+  - functions
+  - reference
+questions:
+  - How does Macro Functions work in Move?
+  - What is the syntax for Macro Functions in Move?
+  - What is Lambdas in Move?
+  - What is Typing in Move?
+answer: >-
+  Move macro functions reference: compile-time expansion, lambda parameters,
+  type parameters, and method syntax for macros.
+goal:
+  description: >-
+    Reader understands move macro functions reference: compile-time expansion,
+    lambda parameters, type parameters, and method syntax for macros
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Macro Functions

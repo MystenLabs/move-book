@@ -1,5 +1,35 @@
 ---
-description: "Understand Sui accounts: how they are generated from private keys, identified by addresses, and support multiple crypto schemes."
+description: >-
+  Understand Sui accounts: how they are generated from private keys, identified
+  by addresses, and support multiple crypto schemes.
+title: Account
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - account
+questions:
+  - What is Account in Move?
+  - How do I use Account in Move?
+answer: >-
+  Understand Sui accounts: how they are generated from private keys, identified
+  by addresses, and support multiple crypto schemes.
+goal:
+  description: >-
+    Reader understands Sui accounts: how they are generated from private keys,
+    identified by addresses, and support multiple crypto schemes
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Account

@@ -1,7 +1,38 @@
 ---
-description:
-  'Onchain randomness in Sui: generate secure random values in Move smart contracts using the
-  Random shared object.'
+description: >-
+  Onchain randomness in Sui: generate secure random values in Move smart
+  contracts using the Random shared object.
+title: Onchain Randomness
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - onchain
+  - randomness
+questions:
+  - What is Onchain Randomness in Move?
+  - How do I use Onchain Randomness in Move?
+  - What is The Random Object in Move?
+  - What is Using Randomness in Move?
+answer: >-
+  Onchain randomness in Sui: generate secure random values in Move smart
+  contracts using the Random shared object.
+goal:
+  description: >-
+    Reader understands onchain randomness in Sui: generate secure random values
+    in Move smart contracts using the Random shared object
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Onchain Randomness

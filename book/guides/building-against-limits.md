@@ -1,5 +1,39 @@
 ---
-description: "Sui network limits and how to build within them: object size, dynamic fields, transaction limits, and protocol constraints."
+description: >-
+  Sui network limits and how to build within them: object size, dynamic fields,
+  transaction limits, and protocol constraints.
+title: Building Against Limits
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - building
+  - against
+  - limits
+questions:
+  - What is Building Against Limits in Move?
+  - How do I use Building Against Limits in Move?
+  - What is Transaction Size in Move?
+  - What is Object Size in Move?
+answer: >-
+  Sui network limits and how to build within them: object size, dynamic fields,
+  transaction limits, and protocol constraints.
+goal:
+  description: >-
+    Reader understands sui network limits and how to build within them: object
+    size, dynamic fields, transaction limits, and protocol constraints
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Building Against Limits

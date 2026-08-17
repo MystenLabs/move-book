@@ -1,5 +1,37 @@
 ---
-description: "Functions in Move: declare, call, and return values from functions with support for multiple return values and type parameters."
+description: >-
+  Functions in Move: declare, call, and return values from functions with
+  support for multiple return values and type parameters.
+title: Functions
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - functions
+questions:
+  - What is Functions in Move?
+  - How do I use Functions in Move?
+  - What is Function Declaration in Move?
+  - What is Accessing Functions in Move?
+answer: >-
+  Functions in Move: declare, call, and return values from functions with
+  support for multiple return values and type parameters.
+goal:
+  description: >-
+    Reader understands functions in Move: declare, call, and return values from
+    functions with support for multiple return values and type parameters
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Functions

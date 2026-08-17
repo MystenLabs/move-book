@@ -1,5 +1,38 @@
 ---
-description: "How Move handles digital assets natively: from fungible tokens to NFTs, with built-in safety and type-level resource guarantees."
+description: >-
+  How Move handles digital assets natively: from fungible tokens to NFTs, with
+  built-in safety and type-level resource guarantees.
+title: Move - Language for Digital Assets
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - move
+  - language
+  - digital
+  - assets
+questions:
+  - What is Move - Language for Digital Assets in Move?
+  - How do I use Move - Language for Digital Assets in Move?
+answer: >-
+  How Move handles digital assets natively: from fungible tokens to NFTs, with
+  built-in safety and type-level resource guarantees.
+goal:
+  description: >-
+    Reader understands how Move handles digital assets natively: from fungible
+    tokens to NFTs, with built-in safety and type-level resource guarantees
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Move - Language for Digital Assets

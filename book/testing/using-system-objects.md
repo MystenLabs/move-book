@@ -1,5 +1,41 @@
 ---
-description: "Use system objects in Move tests: create and manipulate Clock, Random, and DenyList for testing time, randomness, and deny lists."
+description: >-
+  Use system objects in Move tests: create and manipulate Clock, Random, and
+  DenyList for testing time, randomness, and deny lists.
+title: Creating and Using System Objects in Tests
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - creating
+  - using
+  - system
+  - objects
+  - tests
+questions:
+  - What is Creating and Using System Objects in Tests in Move?
+  - How do I use Creating and Using System Objects in Tests in Move?
+  - What is Clock in Move?
+  - What is Random in Move?
+answer: >-
+  Use system objects in Move tests: create and manipulate Clock, Random, and
+  DenyList for testing time, randomness, and deny lists.
+goal:
+  description: >-
+    Reader can use system objects in Move tests: create and manipulate Clock,
+    Random, and DenyList for testing time, randomness, and deny lists
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Creating and Using System Objects in Tests

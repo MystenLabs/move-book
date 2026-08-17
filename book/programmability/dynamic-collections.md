@@ -1,5 +1,39 @@
 ---
-description: "Dynamic collections in Sui: Bag, Table, ObjectBag, ObjectTable, and LinkedTable built on dynamic fields for flexible storage."
+description: >-
+  Dynamic collections in Sui: Bag, Table, ObjectBag, ObjectTable, and
+  LinkedTable built on dynamic fields for flexible storage.
+title: Dynamic Collections
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - dynamic
+  - collections
+  - dynamic fields
+questions:
+  - What is Dynamic Collections in Move?
+  - How do I use Dynamic Collections in Move?
+  - What is Common Concepts in Move?
+  - What is ObjectBag in Move?
+answer: >-
+  Dynamic collections in Sui: Bag, Table, ObjectBag, ObjectTable, and
+  LinkedTable built on dynamic fields for flexible storage.
+goal:
+  description: >-
+    Reader understands dynamic collections in Sui: Bag, Table, ObjectBag,
+    ObjectTable, and LinkedTable built on dynamic fields for flexible storage
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Dynamic Collections

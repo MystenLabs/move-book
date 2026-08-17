@@ -1,5 +1,36 @@
 ---
-description: "Quick reference for Sui transfer functions: transfer, share, freeze, receive, and their public variants with permissions and end states."
+description: >-
+  Quick reference for Sui transfer functions: transfer, share, freeze, receive,
+  and their public variants with permissions and end states.
+title: 'Appendix C: Transfer Functions'
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - appendix
+  - transfer
+  - functions
+questions:
+  - What transfer functions exist in Move?
+  - How do I transfer objects?
+  - What is public_transfer vs transfer?
+answer: >-
+  Sui provides transfer, public_transfer, share_object, freeze_object, and their
+  variants for moving object ownership between addresses.
+goal:
+  description: Reader understands all transfer functions available in Sui Move
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Appendix C: Transfer Functions

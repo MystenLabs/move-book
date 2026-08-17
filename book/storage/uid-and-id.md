@@ -1,5 +1,37 @@
 ---
-description: "UID and ID in Sui Move: unique object identifiers, how they are created, used for dynamic fields, and guaranteed to be unique."
+description: >-
+  UID and ID in Sui Move: unique object identifiers, how they are created, used
+  for dynamic fields, and guaranteed to be unique.
+title: UID and ID
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - uid
+questions:
+  - What is UID and ID in Move?
+  - How do I use UID and ID in Move?
+  - What is Definition in Move?
+  - What is Fresh UID Generation in Move?
+answer: >-
+  UID and ID in Sui Move: unique object identifiers, how they are created, used
+  for dynamic fields, and guaranteed to be unique.
+goal:
+  description: >-
+    Reader understands uID and ID in Sui Move: unique object identifiers, how
+    they are created, used for dynamic fields, and guaranteed to be unique
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # UID and ID

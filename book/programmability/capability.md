@@ -1,5 +1,41 @@
 ---
-description: "The Capability pattern in Move: use owned objects as access-control tokens to authorize privileged operations in Sui smart contracts."
+description: >-
+  The Capability pattern in Move: use owned objects as access-control tokens to
+  authorize privileged operations in Sui smart contracts.
+title: 'Pattern: Capability'
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - pattern
+  - capability
+  - abilities
+  - design patterns
+questions:
+  - 'What is Pattern: Capability in Move?'
+  - 'How do I use Pattern: Capability in Move?'
+  - What is Capability is an Object in Move?
+  - What is Using init for Admin Capability in Move?
+answer: >-
+  The Capability pattern in Move: use owned objects as access-control tokens to
+  authorize privileged operations in Sui smart contracts.
+goal:
+  description: >-
+    Reader understands the Capability pattern in Move: use owned objects as
+    access-control tokens to authorize privileged operations in Sui smart
+    contracts
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Pattern: Capability

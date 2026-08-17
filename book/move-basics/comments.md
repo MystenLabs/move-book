@@ -1,5 +1,37 @@
 ---
-description: "How to use line comments, block comments, and doc comments in Move for documentation and code annotation."
+description: >-
+  How to use line comments, block comments, and doc comments in Move for
+  documentation and code annotation.
+title: Comments
+keywords:
+  - Move
+  - Sui
+  - Move tutorial
+  - comments
+questions:
+  - What is Comments in Move?
+  - How do I use Comments in Move?
+  - What is Line Comment in Move?
+  - What is Block Comment in Move?
+answer: >-
+  How to use line comments, block comments, and doc comments in Move for
+  documentation and code annotation.
+goal:
+  description: >-
+    Reader understands use line comments, block comments, and doc comments in
+    Move for documentation and code annotation
+  requires:
+    - has_frontmatter:
+        - title
+        - description
+        - keywords
+      label: Has required frontmatter fields
+    - min_words: 50
+      label: Needs content depth
+    - has_questions: true
+      label: Needs questions for AI search visibility
+    - has_answer: true
+      label: Needs answer summary for AI citation
 ---
 
 # Comments
