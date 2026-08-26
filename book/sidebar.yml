@@ -185,6 +185,8 @@ bookSidebar:
         id: programmability/address-balances
       - label: 'Pattern: Hot Potato'
         id: programmability/hot-potato-pattern
+      - label: Scratchpad
+        id: programmability/scratchpad
       - label: Package Upgrades
         id: programmability/package-upgrades
       # - label: '8.18 Pattern: Request'
