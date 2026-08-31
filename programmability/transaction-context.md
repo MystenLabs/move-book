@@ -135,3 +135,4 @@ scenarios and access to objects in storage, use the `sui::test_scenario` module,
 ## Further Reading
 
 - [sui::tx_context][tx-context-framework] module documentation.
+- [Scratchpad](./scratchpad) - a per-transaction key-value store accessed through `TxContext`.

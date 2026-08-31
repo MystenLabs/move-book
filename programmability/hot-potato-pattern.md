@@ -203,3 +203,7 @@ The pattern is used in various forms in the Sui Framework. Here are some example
   a callback.
 - Most common use cases for hot potato are borrowing, flash loans, variable-path execution, and
   compositional patterns.
+
+> The [Scratchpad](./scratchpad), covered in the next section, is another mechanism scoped to a
+> single transaction. The two may look similar, but serve different purposes - see the comparison
+> at the end of that section.

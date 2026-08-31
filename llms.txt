@@ -82,6 +82,7 @@ The Move Book covers the Move language fundamentals, Sui object model, advanced 
   - [Balance and Coin](https://move-book.com/programmability/balance-and-coin.md)
   - [Address Balances](https://move-book.com/programmability/address-balances.md)
   - [Pattern: Hot Potato](https://move-book.com/programmability/hot-potato-pattern.md)
+  - [Scratchpad](https://move-book.com/programmability/scratchpad.md)
   - [Package Upgrades](https://move-book.com/programmability/package-upgrades.md)
   - [Randomness](https://move-book.com/programmability/randomness.md)
   - [BCS](https://move-book.com/programmability/bcs.md)
