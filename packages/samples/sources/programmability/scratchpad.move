@@ -56,6 +56,30 @@ public fun limited_action(ctx: &mut TxContext) {
 }
 // ANCHOR_END: counter
 
+// ANCHOR: once
+/// The one-time action has already run in this transaction.
+const EActionAlreadyCalled: u64 = 1;
+
+/// The one-time action has not run in this transaction.
+const EActionNotCalled: u64 = 2;
+
+/// Marks whether `one_time_action` has run in this transaction.
+public struct ActionCalled() has copy, drop;
+
+/// Perform an action at most once in a transaction.
+public fun one_time_action(ctx: &mut TxContext) {
+    assert!(!ctx.scratch_internal_exists!(ActionCalled()), EActionAlreadyCalled);
+    ctx.scratch_internal_add!(ActionCalled(), true);
+    // ... perform the action
+}
+
+/// Continue only after `one_time_action` has run exactly once.
+public fun continue_after_action(ctx: &TxContext) {
+    assert!(ctx.scratch_internal_exists!(ActionCalled()), EActionNotCalled);
+    // ... continue with the next operation
+}
+// ANCHOR_END: once
+
 // ANCHOR: permit
 /// Issue a `Permit` for `NoteKey`, sharing access to the note with the
 /// caller. Only this module can create it.
