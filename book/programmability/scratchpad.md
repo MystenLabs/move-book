@@ -208,6 +208,11 @@ method aliases:
 
 ```
 
+This follows the general [internal permit](./../move-basics/internal-permit) pattern. A permit value
+carries the authority to act, so passing the value grants that authority. The `copy` ability makes a
+shared permit reusable within the transaction, while the lack of `store` guarantees the `Permit`
+cannot outlive it.
+
 Making the grant function `public` lets any caller obtain a permit and use every scratchpad
 operation for that key type. This is useful when code outside the package needs direct access.
 
@@ -221,11 +226,6 @@ giving them permission to perform every operation on `NoteKey`:
 ```move file=packages/samples/sources/programmability/scratchpad.move anchor=package_access
 
 ```
-
-This follows the general [internal permit](./../move-basics/internal-permit) pattern. A permit value
-carries the authority to act, so passing the value grants that authority. The `copy` ability makes a
-shared permit reusable within the transaction, while the lack of `store` guarantees the `Permit`
-cannot outlive it.
 
 ## Comparison with Hot Potato
 
