@@ -49,10 +49,11 @@ store for these cases. It exists for one transaction and is discarded when the t
 
 ## Keys and Values
 
-An entry in the scratchpad is identified by its key - the key's type and value, hashed
-together the same way as a [dynamic field](./dynamic-fields) name. Unlike a dynamic field, however,
-an entry is not attached to any object: the scratchpad is a single, transaction-wide store, accessed
-through the [transaction context](./transaction-context) rather than a parent `UID`.
+Each scratchpad entry has a key. The key's type and value are hashed together in the same way as a
+[dynamic field](./dynamic-fields) name. Unlike a dynamic field, a scratchpad entry is not attached
+to an object. All entries belong to a single store scoped to the current transaction. Programs
+access this store through the [transaction context](./transaction-context) rather than a parent
+`UID`.
 
 The requirements on keys and values mirror the ephemeral nature of the store:
 
@@ -147,14 +148,15 @@ There are four of them, and all skip the function if there is no entry for the k
 - `get_fold` / `get_mut_fold` - also return a result. They return whatever the function produces,
   or the provided default if the entry does not exist.
 
-Under the hood, the macros are built on the `begin_borrow` / `end_borrow` pair of functions, which
-are public but not intended for direct use: the value is temporarily removed while the function
-runs, and the slot is occupied by a `BorrowMarker` - a transaction-unique stand-in that is checked
-when the value is put back.
-Two consequences follow: the macros take `&mut TxContext` even when the access is read-only, and the
-key must not be accessed again from within the function - the slot holds only the marker for the
-duration of the call, so a nested access of the same key aborts rather than observing a half-updated
-entry.
+The macros call `begin_borrow` and `end_borrow` internally. These functions are public, but they are
+not intended for direct use. `begin_borrow` temporarily removes the value and puts a `BorrowMarker`
+in its slot. The marker is unique to the transaction, and `end_borrow` checks it before restoring the
+value.
+
+This design has two consequences. First, the macros take `&mut TxContext` even for read-only access.
+Second, the provided function must not access the same key again. The slot contains only the marker
+while the function runs, so a nested access to that key aborts instead of observing a partially
+updated entry.
 
 ## Per-Transaction State
 
@@ -207,10 +209,10 @@ giving them permission to perform every operation on `NoteKey`:
 
 ```
 
-This mirrors how the [internal permit](./../move-basics/internal-permit) works in general: the
-authority to act is represented by a value, and passing the value _is_ the authorization. The `copy`
-ability makes a shared permit reusable within the transaction, while the lack of `store` guarantees
-the `Permit` cannot outlive it.
+This follows the general [internal permit](./../move-basics/internal-permit) pattern. A permit value
+carries the authority to act, so passing the value grants that authority. The `copy` ability makes a
+shared permit reusable within the transaction, while the lack of `store` guarantees the `Permit`
+cannot outlive it.
 
 ## Comparison with Hot Potato
 
