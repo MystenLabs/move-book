@@ -1,30 +1,55 @@
 name: Run tests for Move packages
+
 permissions:
   contents: read
-
-# Set the VERSION variable to use when downloading the binary
-# Currently, requires explicit setup, ideally it should be fetched
-# automatically
-# env:
-#   VERSION: 'v1.24.1'
 
 on:
   pull_request:
 
 jobs:
-  download-binary:
+  test-move-packages:
+    name: Test Move packages
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Download Sui
-        uses: jaxxstorm/action-install-gh-release@v1.12.0
-        with:
-          repo: MystenLabs/sui
-          platform: ubuntu
-          version: main
-          cache: enable
+      - uses: actions/checkout@v4
 
-      # Run the tests in every directory using the latest mainnet binary
+      - name: Set cache key
+        id: cache-key
+        run: echo "week=$(date -u +%G-%V)" >> "$GITHUB_OUTPUT"
+
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          cache: false
+
+      - name: Cache suiup and Sui
+        id: suiup-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin/suiup
+            ~/.cargo/.crates.toml
+            ~/.cargo/.crates2.json
+            ~/.config/suiup
+            ~/.local/share/suiup
+            ~/.local/bin/sui
+          key: suiup-sui-${{ runner.os }}-${{ runner.arch }}-${{ steps.cache-key.outputs.week }}
+          restore-keys: |
+            suiup-sui-${{ runner.os }}-${{ runner.arch }}-
+
+      - name: Install suiup
+        if: steps.suiup-cache.outputs.cache-hit != 'true'
+        run: cargo install --git https://github.com/Mystenlabs/suiup.git --locked
+
+      - name: Install Sui
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          suiup install sui -y
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Show Sui version
+        run: sui --version
+
       - run: sui move test --path packages/samples
       - run: sui move test --path packages/reference
       - run: sui move test --path packages/todo_list
