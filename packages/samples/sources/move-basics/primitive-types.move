@@ -3,7 +3,7 @@
 
 module book::primitive_types;
 
-#[test, allow(unused_variable, unused_let_mut, unused_assignment)]
+#[test, allow(unused_variable, untyped_literal, unused_let_mut, unused_assignment)]
 fun variables_and_assignment() {
 // ANCHOR: variables_and_assignment
 // The type annotation is optional when it can be inferred.
@@ -78,6 +78,7 @@ let z: u16 = (x as u16) + ((y as u16) * 2);
 // ANCHOR_END: overflow
 }
 
+#[allow(always_errors)]
 #[test, expected_failure(arithmetic_error, location = Self)]
 fun downcast_abort() {
 // ANCHOR: downcast
@@ -86,6 +87,7 @@ let y = x as u8; // ABORTS! 300 does not fit into `u8`
 // ANCHOR_END: downcast
 }
 
+#[allow(always_errors)]
 #[test, expected_failure(arithmetic_error, location = Self)]
 fun overflow_abort() {
 // ANCHOR: overflow_abort
