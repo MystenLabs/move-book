@@ -175,6 +175,19 @@ subsequent calls increment the counter, and the final value is dropped when the 
 This avoids cleanup, stale state, and storage costs. Without the scratchpad, the same pattern would
 require a dedicated object and careful resetting.
 
+A marker can enforce a stricter rule. In the following example, `one_time_action` adds a marker
+before it performs the action. A second call in the same transaction finds the marker and aborts.
+The `continue_after_action` function also checks the marker, so it only runs after the action has
+completed exactly once:
+
+```move file=packages/samples/sources/programmability/scratchpad.move anchor=once
+
+```
+
+The first check prevents a second successful call. The second check rejects a call to
+`continue_after_action` when the transaction has skipped the action. Together, they guarantee that
+`continue_after_action` follows exactly one call to `one_time_action` in the current transaction.
+
 > Like other per-transaction resources, the scratchpad is bounded by a
 > [protocol limit](./../guides/building-against-limits): a single transaction can hold at most
 > 16,384 entries at the time of writing - 16 times the maximum number of commands in a transaction.
