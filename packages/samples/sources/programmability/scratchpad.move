@@ -76,6 +76,17 @@ public fun replace_note(
 }
 // ANCHOR_END: explicit
 
+// ANCHOR: package_access
+/// Replace the note from another module in this package without exposing a
+/// `Permit<NoteKey>` to the caller.
+public(package) fun replace_note_in_package(
+    note: String,
+    ctx: &mut TxContext,
+): Option<String> {
+    ctx.scratch_internal_replace!(NoteKey(), note)
+}
+// ANCHOR_END: package_access
+
 #[test_only]
 use std::unit_test::assert_eq;
 

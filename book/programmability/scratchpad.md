@@ -193,10 +193,24 @@ method aliases:
 
 ```
 
+Making the grant function `public` lets any caller obtain a permit and use every scratchpad
+operation for that key type. This is useful when code outside the package needs direct access.
+
+> If only modules in the same package need access, prefer a narrowly scoped `public(package)`
+> function instead of handing out a `Permit`. The defining module keeps the permit and exposes only
+> the operations that other modules need.
+
+For example, the defining module can allow other modules in its package to replace the note without
+giving them permission to perform every operation on `NoteKey`:
+
+```move file=packages/samples/sources/programmability/scratchpad.move anchor=package_access
+
+```
+
 This mirrors how the [internal permit](./../move-basics/internal-permit) works in general: the
 authority to act is represented by a value, and passing the value _is_ the authorization. The `copy`
 ability makes a shared permit reusable within the transaction, while the lack of `store` guarantees
-the grant cannot outlive it.
+the `Permit` cannot outlive it.
 
 ## Comparison with Hot Potato
 
