@@ -42,11 +42,9 @@ public fun create_currency(
 // ANCHOR_END: doubloon
 
 #[test_only]
-use std::unit_test::assert_eq;
+use std::unit_test::{Self, assert_eq};
 #[test_only]
 use sui::coin;
-#[test_only]
-use sui::test_utils;
 
 #[test]
 fun test_create_currency() {
@@ -58,8 +56,8 @@ fun test_create_currency() {
     let (coins, metadata_cap) = create_currency(&mut registry, ctx);
     assert_eq!(coins.value(), 1_000_000_000);
 
-    test_utils::destroy(coins);
-    test_utils::destroy(metadata_cap);
+    unit_test::destroy(coins);
+    unit_test::destroy(metadata_cap);
     coin_registry::share_for_testing(registry);
 }
 
@@ -83,5 +81,5 @@ fun test_mint_burn() {
     assert_eq!(treasury_cap.total_supply(), 0);
     // ANCHOR_END: mint_burn
 
-    test_utils::destroy(treasury_cap);
+    unit_test::destroy(treasury_cap);
 }

@@ -1,7 +1,7 @@
 // Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-#[allow(unused_variable)]
+#[allow(unused_variable, untyped_literal)]
 module book::expression;
 
 #[test]
@@ -52,6 +52,7 @@ let sum = {
 // ANCHOR_END: block
 }
 
+#[allow(unused)]
 // ANCHOR: fun_call
 fun add(a: u8, b: u8): u8 {
     a + b

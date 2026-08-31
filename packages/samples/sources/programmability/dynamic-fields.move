@@ -40,8 +40,8 @@ fun test_character_and_accessories() {
     );
 
     // Check that the hat and mustache are attached to the character
-    assert!(df::exists_(&character.id, b"hat_key"));
-    assert!(df::exists_(&character.id, b"mustache_key"));
+    assert!(df::exists(&character.id, b"hat_key"));
+    assert!(df::exists(&character.id, b"mustache_key"));
 
     // Modify the color of the hat
     let hat: &mut Hat = df::borrow_mut(&mut character.id, b"hat_key");
@@ -52,8 +52,8 @@ fun test_character_and_accessories() {
     let mustache: Mustache = df::remove(&mut character.id, b"mustache_key");
 
     // Check that the hat and mustache are no longer attached to the character
-    assert!(!df::exists_(&character.id, b"hat_key"));
-    assert!(!df::exists_(&character.id, b"mustache_key"));
+    assert!(!df::exists(&character.id, b"hat_key"));
+    assert!(!df::exists(&character.id, b"mustache_key"));
 
     std::unit_test::destroy(character);
     std::unit_test::destroy(mustache);
