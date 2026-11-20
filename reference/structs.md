@@ -350,7 +350,7 @@ Dot operators can be chained to access nested fields:
 
 ```move
 let bar = Bar(Foo { x: 3, y: true });
-let x = baz.0.x; // x = 3;
+let x = bar.0.x; // x = 3;
 ```
 
 However, this is not permitted for fields that contain non-primitive types, such a vector or another

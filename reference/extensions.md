@@ -145,7 +145,7 @@ Extensions are allowed for single-file module forms:
 
 ```move
 #[mode(test)]
-extend module p<address>::<identifier>;
+extend module <address>::<identifier>;
 
 (<use> | <type> | <function> | <constant>)*
 ```
